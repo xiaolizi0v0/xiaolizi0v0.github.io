@@ -295,6 +295,99 @@
             margin-bottom: 1rem;
         }
         
+        /* 标题导航栏样式 */
+        .toc-navbar {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+        
+        .toc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .toc-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+        
+        .toc-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        
+        .toc-toggle:hover {
+            background: var(--gray-200);
+            color: var(--gray-800);
+        }
+        
+        .toc-content {
+            max-height: 400px;
+            overflow-y: auto;
+            transition: max-height 0.3s ease;
+        }
+        
+        .toc-content.collapsed {
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 1rem 1.5rem;
+        }
+        
+        .toc-item {
+            margin: 0.3rem 0;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--gray-700);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .toc-link:hover {
+            background: var(--gray-100);
+            color: var(--primary-color);
+        }
+        
+        .toc-link.active {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+        
+        /* 标题级别缩进 */
+        .toc-level-1 { padding-left: 0.75rem; }
+        .toc-level-2 { padding-left: 1.5rem; }
+        .toc-level-3 { padding-left: 2.25rem; }
+        .toc-level-4 { padding-left: 3rem; }
+        .toc-level-5 { padding-left: 3.75rem; }
+        .toc-level-6 { padding-left: 4.5rem; }
+        
         /* 响应式设计 */
         @media (max-width: 768px) {
             .notes-grid {
@@ -315,6 +408,18 @@
             
             .markdown-content h3 {
                 font-size: 1.2rem;
+            }
+            
+            .toc-navbar {
+                margin-left: -1rem;
+                margin-right: -1rem;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+            
+            .toc-content {
+                max-height: 300px;
             }
         }
         
@@ -369,6 +474,22 @@
                 <i class="fas fa-arrow-left"></i>
                 返回笔记列表
             </a>
+            
+            <!-- 标题导航栏 -->
+            <div class="toc-navbar" id="toc-navbar" style="display: none;">
+                <div class="toc-header">
+                    <h3>目录导航</h3>
+                    <button class="toc-toggle" id="toc-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="toc-content" id="toc-content">
+                    <ul class="toc-list" id="toc-list">
+                        <!-- 标题列表将在这里动态生成 -->
+                    </ul>
+                </div>
+            </div>
+            
             <div class="markdown-content" id="markdown-content">
                 <div class="loading">
                     <div class="loading-spinner"></div>
@@ -475,6 +596,21 @@
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                 }));
+            }
+
+            // 标题导航栏切换按钮
+            const tocToggle = document.getElementById('toc-toggle');
+            if (tocToggle) {
+                tocToggle.addEventListener('click', function() {
+                    const tocContent = document.getElementById('toc-content');
+                    tocContent.classList.toggle('collapsed');
+                    const icon = this.querySelector('i');
+                    if (tocContent.classList.contains('collapsed')) {
+                        icon.className = 'fas fa-chevron-down';
+                    } else {
+                        icon.className = 'fas fa-bars';
+                    }
+                });
             }
         }
 
@@ -602,8 +738,121 @@
             // 渲染数学公式
             renderMathFormulas();
 
+            // 生成标题导航栏
+            generateTOC();
+
+            // 显示标题导航栏
+            document.getElementById('toc-navbar').style.display = 'block';
+
             // 滚动到顶部
             window.scrollTo(0, 0);
+        }
+
+        // 生成标题导航栏
+        function generateTOC() {
+            const markdownContent = document.getElementById('markdown-content');
+            const tocList = document.getElementById('toc-list');
+            
+            // 清空现有的导航项
+            tocList.innerHTML = '';
+            
+            // 获取所有标题元素 (h1-h6)
+            const headings = markdownContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            
+            if (headings.length === 0) {
+                tocList.innerHTML = '<li class="toc-item"><span style="color: var(--gray-500);">暂无标题</span></li>';
+                return;
+            }
+            
+            // 为每个标题添加ID（如果还没有）
+            headings.forEach((heading, index) => {
+                if (!heading.id) {
+                    // 生成基于标题文本的ID
+                    const id = 'heading-' + index + '-' + heading.textContent
+                        .toLowerCase()
+                        .replace(/[^a-z0-9\u4e00-\u9fa5]/g, '-')
+                        .replace(/-+/g, '-')
+                        .replace(/^-|-$/g, '');
+                    heading.id = id;
+                }
+            });
+            
+            // 生成导航项
+            headings.forEach((heading) => {
+                const level = parseInt(heading.tagName.substring(1));
+                const listItem = document.createElement('li');
+                listItem.className = 'toc-item';
+                
+                const link = document.createElement('a');
+                link.href = '#' + heading.id;
+                link.className = 'toc-link toc-level-' + level;
+                link.textContent = heading.textContent;
+                
+                // 添加点击事件
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    smoothScrollTo(heading.id);
+                });
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+            
+            // 设置滚动监听
+            setupScrollSpy();
+        }
+
+        // 平滑滚动到指定标题
+        function smoothScrollTo(headingId) {
+            const target = document.getElementById(headingId);
+            if (target) {
+                const offsetTop = target.offsetTop - 100; // 减去导航栏高度
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // 设置滚动监听
+        function setupScrollSpy() {
+            const headings = document.querySelectorAll('#markdown-content h1, #markdown-content h2, #markdown-content h3, #markdown-content h4, #markdown-content h5, #markdown-content h6');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            // 清除所有激活状态
+            function clearActiveLinks() {
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY + 120; // 偏移量
+                
+                // 找到当前可见的标题
+                let currentHeading = null;
+                
+                for (let i = headings.length - 1; i >= 0; i--) {
+                    const heading = headings[i];
+                    if (heading.offsetTop <= scrollPosition) {
+                        currentHeading = heading;
+                        break;
+                    }
+                }
+                
+                // 更新激活状态
+                clearActiveLinks();
+                if (currentHeading) {
+                    const activeLink = document.querySelector(`.toc-link[href="#${currentHeading.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+            
+            // 初始激活状态
+            window.dispatchEvent(new Event('scroll'));
         }
 
         // 渲染数学公式
@@ -627,6 +876,9 @@
             // 切换视图
             document.getElementById('notes-list').style.display = 'block';
             document.getElementById('note-content').style.display = 'none';
+            
+            // 隐藏标题导航栏
+            document.getElementById('toc-navbar').style.display = 'none';
             
             // 恢复页面标题
             document.title = '学习笔记 - 个人博客';
