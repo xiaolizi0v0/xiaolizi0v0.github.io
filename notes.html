@@ -849,6 +849,9 @@
             // 生成标题导航栏
             generateTOC();
 
+            // 设置导航栏滚轮事件
+            setupTocWheelEvent();
+
             // 显示标题导航栏
             document.getElementById('toc-navbar').style.display = 'block';
 
@@ -961,6 +964,56 @@
             
             // 初始激活状态
             window.dispatchEvent(new Event('scroll'));
+        }
+
+        // 设置导航栏滚轮事件
+        function setupTocWheelEvent() {
+            const tocContent = document.getElementById('toc-content');
+            if (!tocContent) return;
+            
+            let isMouseOverToc = false;
+            
+            // 鼠标进入导航栏区域
+            tocContent.addEventListener('mouseenter', function() {
+                isMouseOverToc = true;
+            });
+            
+            // 鼠标离开导航栏区域
+            tocContent.addEventListener('mouseleave', function() {
+                isMouseOverToc = false;
+            });
+            
+            // 阻止导航栏区域的滚轮事件冒泡到页面
+            tocContent.addEventListener('wheel', function(e) {
+                if (isMouseOverToc) {
+                    // 阻止事件冒泡，避免页面滚动
+                    e.stopPropagation();
+                    
+                    // 如果导航栏内容已经滚动到边界，允许事件冒泡到页面
+                    const isAtTop = this.scrollTop === 0;
+                    const isAtBottom = this.scrollTop + this.clientHeight >= this.scrollHeight - 1;
+                    
+                    if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+                        // 在边界时允许页面滚动
+                        return;
+                    }
+                    
+                    // 阻止默认行为，避免页面滚动
+                    e.preventDefault();
+                }
+            });
+            
+            // 为整个导航栏区域添加鼠标事件监听
+            const tocSidebar = document.getElementById('toc-navbar');
+            if (tocSidebar) {
+                tocSidebar.addEventListener('mouseenter', function() {
+                    isMouseOverToc = true;
+                });
+                
+                tocSidebar.addEventListener('mouseleave', function() {
+                    isMouseOverToc = false;
+                });
+            }
         }
 
         // 渲染数学公式
