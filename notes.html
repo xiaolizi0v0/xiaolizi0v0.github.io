@@ -315,6 +315,14 @@
             max-height: calc(100vh - 150px);
             display: flex;
             flex-direction: column;
+            width: 300px;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-sidebar.collapsed {
+            width: 0;
+            opacity: 0;
+            visibility: hidden;
         }
         
         .toc-header {
@@ -324,6 +332,7 @@
             padding: 1rem 1.5rem;
             background: var(--gray-50);
             border-bottom: 1px solid var(--gray-200);
+            flex-shrink: 0;
         }
         
         .toc-header h3 {
@@ -353,11 +362,31 @@
             flex: 1;
             overflow-y: auto;
             transition: max-height 0.3s ease;
+            min-height: 200px;
         }
         
         .toc-content.collapsed {
             max-height: 0;
             overflow: hidden;
+        }
+        
+        /* 导航列表滚动条样式 */
+        .toc-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .toc-content::-webkit-scrollbar-track {
+            background: var(--gray-100);
+            border-radius: 3px;
+        }
+        
+        .toc-content::-webkit-scrollbar-thumb {
+            background: var(--gray-400);
+            border-radius: 3px;
+        }
+        
+        .toc-content::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-500);
         }
         
         .toc-list {
@@ -379,6 +408,7 @@
             transition: var(--transition);
             font-size: 0.95rem;
             line-height: 1.4;
+            word-break: break-word;
         }
         
         .toc-link:hover {
@@ -403,11 +433,18 @@
         /* 右侧内容区域 */
         .content-area {
             min-width: 0; /* 防止内容溢出 */
+            transition: all 0.3s ease;
         }
         
         .content-area .markdown-content {
             max-width: none;
             margin: 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* 当导航栏折叠时，内容区域占满宽度 */
+        .toc-sidebar.collapsed + .content-area {
+            grid-column: 1 / -1;
         }
         
         /* 响应式设计 */
@@ -649,20 +686,27 @@
                 }));
             }
 
-            // 标题导航栏切换按钮
-            const tocToggle = document.getElementById('toc-toggle');
-            if (tocToggle) {
-                tocToggle.addEventListener('click', function() {
-                    const tocContent = document.getElementById('toc-content');
-                    tocContent.classList.toggle('collapsed');
-                    const icon = this.querySelector('i');
-                    if (tocContent.classList.contains('collapsed')) {
-                        icon.className = 'fas fa-chevron-down';
-                    } else {
-                        icon.className = 'fas fa-bars';
-                    }
-                });
-            }
+        // 标题导航栏切换按钮
+        const tocToggle = document.getElementById('toc-toggle');
+        if (tocToggle) {
+            tocToggle.addEventListener('click', function() {
+                const tocSidebar = document.getElementById('toc-navbar');
+                const noteLayout = document.querySelector('.note-layout');
+                const tocContent = document.getElementById('toc-content');
+                
+                tocSidebar.classList.toggle('collapsed');
+                tocContent.classList.toggle('collapsed');
+                
+                const icon = this.querySelector('i');
+                if (tocSidebar.classList.contains('collapsed')) {
+                    icon.className = 'fas fa-chevron-down';
+                    noteLayout.style.gridTemplateColumns = '0 1fr';
+                } else {
+                    icon.className = 'fas fa-bars';
+                    noteLayout.style.gridTemplateColumns = '300px 1fr';
+                }
+            });
+        }
         }
 
         // 渲染笔记列表
