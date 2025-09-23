@@ -983,23 +983,23 @@
                 isMouseOverToc = false;
             });
             
-            // 阻止导航栏区域的滚轮事件冒泡到页面
+            // 处理导航栏区域的滚轮事件
             tocContent.addEventListener('wheel', function(e) {
                 if (isMouseOverToc) {
-                    // 阻止事件冒泡，避免页面滚动
-                    e.stopPropagation();
-                    
                     // 如果导航栏内容已经滚动到边界，允许事件冒泡到页面
                     const isAtTop = this.scrollTop === 0;
                     const isAtBottom = this.scrollTop + this.clientHeight >= this.scrollHeight - 1;
                     
                     if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
-                        // 在边界时允许页面滚动
+                        // 在边界时允许页面滚动，不阻止事件
                         return;
                     }
                     
                     // 阻止默认行为，避免页面滚动
                     e.preventDefault();
+                    
+                    // 手动处理导航栏的滚动
+                    this.scrollTop += e.deltaY;
                 }
             });
             
