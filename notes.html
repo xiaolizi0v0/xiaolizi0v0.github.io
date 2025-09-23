@@ -320,9 +320,21 @@
         }
         
         .toc-sidebar.collapsed {
-            width: 0;
-            opacity: 0;
-            visibility: hidden;
+            width: 50px;
+            min-width: 50px;
+        }
+        
+        .toc-sidebar.collapsed .toc-header h3,
+        .toc-sidebar.collapsed .toc-content {
+            display: none;
+        }
+        
+        .toc-sidebar.collapsed .toc-toggle {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .toc-header {
