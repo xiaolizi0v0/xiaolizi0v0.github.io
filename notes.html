@@ -482,11 +482,11 @@
             .toc-sidebar {
                 position: static;
                 max-height: none;
-                order: 1;
+                order: 2;
             }
             
             .content-area {
-                order: 2;
+                order: 1;
             }
             
             .markdown-content {
@@ -713,14 +713,11 @@
                 tocContent.classList.toggle('collapsed');
                 
                 const icon = this.querySelector('i');
-                var mode = false;
-                if (window.innerWidth > 768) {
-                    mode = true
-                } 
-                if (tocSidebar.classList.contains('collapsed')&&mode) {
+                if(window.innerWidth)
+                if (tocSidebar.classList.contains('collapsed')) {
                     icon.className = 'fas fa-chevron-down';
                     noteLayout.style.gridTemplateColumns = '50px 1fr';
-                } else if(mode){
+                } else {
                     icon.className = 'fas fa-bars';
                     noteLayout.style.gridTemplateColumns = '300px 1fr';
                 }
