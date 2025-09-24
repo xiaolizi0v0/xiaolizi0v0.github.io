@@ -858,8 +858,17 @@
             // 设置导航栏滚轮事件
             setupTocWheelEvent();
 
-            // 显示标题导航栏
-           // document.getElementById('toc-navbar').style.display = 'block';
+            // 显示标题导航栏（响应式判断）
+            const tocNavbar = document.getElementById('toc-navbar');
+            if (tocNavbar) {
+                // 检查屏幕宽度，类似 @media (max-width: 1024px) 的响应式判断
+                if (window.innerWidth > 1024) {
+                    tocNavbar.style.display = 'block';
+                } else {
+                    // 在小屏幕上可以隐藏或使用其他布局
+                    tocNavbar.style.display = 'none';
+                }
+            }
 
             // 滚动到顶部
             window.scrollTo(0, 0);
@@ -1045,7 +1054,8 @@
             document.getElementById('note-content').style.display = 'none';
             
             // 隐藏标题导航栏
-            document.getElementById('toc-navbar').style.display = 'block';
+            
+           // document.getElementById('toc-navbar').style.display = 'block';
             
             // 恢复页面标题
             document.title = '学习笔记 - 个人博客';
