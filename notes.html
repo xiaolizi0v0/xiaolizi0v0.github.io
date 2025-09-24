@@ -713,10 +713,14 @@
                 tocContent.classList.toggle('collapsed');
                 
                 const icon = this.querySelector('i');
-                if (tocSidebar.classList.contains('collapsed')) {
+                var mode = false;
+                if (window.innerWidth > 768) {
+                    mode = true
+                } 
+                if (tocSidebar.classList.contains('collapsed')&&mode) {
                     icon.className = 'fas fa-chevron-down';
                     noteLayout.style.gridTemplateColumns = '50px 1fr';
-                } else {
+                } else if(mode){
                     icon.className = 'fas fa-bars';
                     noteLayout.style.gridTemplateColumns = '300px 1fr';
                 }
