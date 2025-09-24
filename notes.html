@@ -466,9 +466,6 @@
                 grid-template-columns: 250px 1fr;
                 gap: 1.5rem;
             }
-            .toc-sidebar {
-                display: block;
-            }
         }
         
         @media (max-width: 768px) {
@@ -479,14 +476,10 @@
             .note-layout {
                 grid-template-columns: 1fr;
                 gap: 1rem;
-                
             }
             
             .toc-sidebar {
-                position: static;
-                max-height: none;
-                order: 2;
-                display: none;
+                display: none; /* 在移动设备上隐藏目录导航栏 */
             }
             
             .content-area {
@@ -504,10 +497,6 @@
             .markdown-content h2 {
                 font-size: 1.5rem;
             }
-            
-            .toc-content {
-                max-height: 300px;
-            }
         }
         
         @media (max-width: 480px) {
@@ -516,11 +505,7 @@
             }
             
             .toc-sidebar {
-                margin-left: -1rem;
-                margin-right: -1rem;
-                border-radius: 0;
-                border-left: none;
-                border-right: none;
+                display: none; /* 在更小的移动设备上隐藏目录导航栏 */
             }
         }
         
@@ -859,7 +844,11 @@
             setupTocWheelEvent();
 
             // 显示标题导航栏（响应式判断）
-            document.getElementById('toc-navbar').style.display = 'block';
+            if (window.innerWidth > 768) {
+                document.getElementById('toc-navbar').style.display = 'block';
+            } else {
+                document.getElementById('toc-navbar').style.display = 'none';
+            }
 
             // 滚动到顶部
             window.scrollTo(0, 0);
@@ -1044,8 +1033,7 @@
             document.getElementById('notes-list').style.display = 'block';
             document.getElementById('note-content').style.display = 'none';
             
-            // 隐藏标题导航栏
-            
+            // 隐藏标题导航栏（在移动设备上保持隐藏状态）
             document.getElementById('toc-navbar').style.display = 'none';
             
             // 恢复页面标题
