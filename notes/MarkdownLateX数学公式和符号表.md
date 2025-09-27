@@ -163,3 +163,17 @@ blackboard bold：\mathbb{字母}
 [fraktur](https://zhida.zhihu.com/search?content_id=188233767&content_type=Article&match_order=1&q=fraktur&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTg4MDQ5NjYsInEiOiJmcmFrdHVyIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MTg4MjMzNzY3LCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.7E20AhJPG3gkbsJP8A9xn-CAzdzkYxXC-sbON74hh6M&zhida_source=entity)：\mathfrak{字母}
 
 <img src="../image/image-20250923210159544.png" alt="image-20250923210159544" />
+
+## 12 官方
+
+<img src="https://pic1.zhimg.com/v2-e1bcaae080a57fa51bfdc81b9af18546_1440w.jpg" data-caption="" data-size="normal" data-original="https://pic1.zhimg.com/v2-e1bcaae080a57fa51bfdc81b9af18546_r.jpg" style="">
+
+<img src="https://pica.zhimg.com/v2-3a9ed0ce22adbd6ddd7fba6868f2d22c_1440w.jpg" data-caption="" data-size="normal" class="origin_image zh-lightbox-thumb" width="2109" data-original="https://pica.zhimg.com/v2-3a9ed0ce22adbd6ddd7fba6868f2d22c_r.jpg">
+
+<img src="https://pica.zhimg.com/v2-a62ff8bf9ffcad951c75db041f8dac98_1440w.jpg" data-caption=""  data-original="https://pica.zhimg.com/v2-a62ff8bf9ffcad951c75db041f8dac98_r.jpg" style="">
+
+<img src="https://pic1.zhimg.com/v2-e027cdaafb751ca8e577a5392203497a_1440w.jpg" data-caption="" data-original="https://pic1.zhimg.com/v2-e027cdaafb751ca8e577a5392203497a_r.jpg" style="">
+
+$\xleftarrow{n=0}, \xrightarrow[T]{n>0}$ \xleftarrow{n=0}, \xrightarrow[T]{n>0}
+
+ $\max\limits_{x}$: 字符在正下方，\max\limits_{x}
