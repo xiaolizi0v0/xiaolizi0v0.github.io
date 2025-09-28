@@ -520,6 +520,89 @@
             }
         }
         
+        /* 筛选控件样式 */
+        .filter-controls {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .filter-group label {
+            font-weight: 500;
+            color: var(--gray-700);
+            white-space: nowrap;
+        }
+        
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--border-radius);
+            background: white;
+            color: var(--gray-800);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 120px;
+        }
+        
+        .filter-select:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .filter-reset {
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        
+        .filter-reset:hover {
+            background: var(--gray-200);
+            color: var(--gray-800);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+            
+            .filter-group {
+                justify-content: space-between;
+            }
+            
+            .filter-select {
+                flex: 1;
+                max-width: 200px;
+            }
+        }
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -556,6 +639,35 @@
             <div class="notes-header">
                 <h1 class="section-title">学习笔记</h1>
                 <p>这里是我在学习过程中整理的笔记和心得</p>
+            </div>
+            
+            <!-- 日期筛选控件 -->
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="year-filter">年份筛选:</label>
+                    <select id="year-filter" class="filter-select">
+                        <option value="">全部年份</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="month-filter">月份筛选:</label>
+                    <select id="month-filter" class="filter-select">
+                        <option value="">全部月份</option>
+                        <option value="01">一月</option>
+                        <option value="02">二月</option>
+                        <option value="03">三月</option>
+                        <option value="04">四月</option>
+                        <option value="05">五月</option>
+                        <option value="06">六月</option>
+                        <option value="07">七月</option>
+                        <option value="08">八月</option>
+                        <option value="09">九月</option>
+                        <option value="10">十月</option>
+                        <option value="11">十一月</option>
+                        <option value="12">十二月</option>
+                    </select>
+                </div>
+                <button id="reset-filter" class="filter-reset">重置筛选</button>
             </div>
             
             <div class="notes-grid" id="notes-grid">
@@ -694,6 +806,7 @@
 
         // 初始化笔记页面
         function initializeNotesPage() {
+            populateYearFilter();
             renderNotesList();
             
             // 检查URL参数，如果有note参数则直接打开对应笔记
@@ -731,27 +844,149 @@
                 }));
             }
 
-        // 标题导航栏切换按钮
-        const tocToggle = document.getElementById('toc-toggle');
-        if (tocToggle) {
-            tocToggle.addEventListener('click', function() {
-                const tocSidebar = document.getElementById('toc-navbar');
-                const noteLayout = document.querySelector('.note-layout');
-                const tocContent = document.getElementById('toc-content');
-                
-                tocSidebar.classList.toggle('collapsed');
-                tocContent.classList.toggle('collapsed');
-                
-                const icon = this.querySelector('i');
-                if (tocSidebar.classList.contains('collapsed')) {
-                    icon.className = 'fas fa-chevron-down';
-                    noteLayout.style.gridTemplateColumns = '50px 1fr';
-                } else {
-                    icon.className = 'fas fa-bars';
-                    noteLayout.style.gridTemplateColumns = '300px 1fr';
-                }
+            // 标题导航栏切换按钮
+            const tocToggle = document.getElementById('toc-toggle');
+            if (tocToggle) {
+                tocToggle.addEventListener('click', function() {
+                    const tocSidebar = document.getElementById('toc-navbar');
+                    const noteLayout = document.querySelector('.note-layout');
+                    const tocContent = document.getElementById('toc-content');
+                    
+                    tocSidebar.classList.toggle('collapsed');
+                    tocContent.classList.toggle('collapsed');
+                    
+                    const icon = this.querySelector('i');
+                    if (tocSidebar.classList.contains('collapsed')) {
+                        icon.className = 'fas fa-chevron-down';
+                        noteLayout.style.gridTemplateColumns = '50px 1fr';
+                    } else {
+                        icon.className = 'fas fa-bars';
+                        noteLayout.style.gridTemplateColumns = '300px 1fr';
+                    }
+                });
+            }
+
+            // 筛选控件事件监听
+            setupFilterListeners();
+        }
+
+        // 设置筛选控件事件监听
+        function setupFilterListeners() {
+            const yearFilter = document.getElementById('year-filter');
+            const monthFilter = document.getElementById('month-filter');
+            const resetFilter = document.getElementById('reset-filter');
+
+            // 年份筛选变化事件
+            yearFilter.addEventListener('change', applyFilters);
+            
+            // 月份筛选变化事件
+            monthFilter.addEventListener('change', applyFilters);
+            
+            // 重置筛选按钮点击事件
+            resetFilter.addEventListener('click', resetFilters);
+        }
+
+        // 填充年份筛选器
+        function populateYearFilter() {
+            const yearFilter = document.getElementById('year-filter');
+            
+            // 从笔记数据中提取所有年份
+            const years = [...new Set(notes.map(note => {
+                return note.date.split('-')[0]; // 提取年份部分
+            }))].sort((a, b) => b - a); // 按年份降序排列
+            
+            // 清空现有选项（除了"全部年份"）
+            while (yearFilter.children.length > 1) {
+                yearFilter.removeChild(yearFilter.lastChild);
+            }
+            
+            // 添加年份选项
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year + '年';
+                yearFilter.appendChild(option);
             });
         }
+
+        // 应用筛选
+        function applyFilters() {
+            const selectedYear = document.getElementById('year-filter').value;
+            const selectedMonth = document.getElementById('month-filter').value;
+            
+            // 筛选笔记
+            const filteredNotes = notes.filter(note => {
+                const [year, month, day] = note.date.split('-');
+                
+                // 年份筛选
+                if (selectedYear && year !== selectedYear) {
+                    return false;
+                }
+                
+                // 月份筛选
+                if (selectedMonth && month !== selectedMonth) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            // 渲染筛选后的笔记列表
+            renderFilteredNotesList(filteredNotes);
+        }
+
+        // 渲染筛选后的笔记列表
+        function renderFilteredNotesList(filteredNotes) {
+            const notesGrid = document.getElementById('notes-grid');
+            
+            if (filteredNotes.length === 0) {
+                notesGrid.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>没有找到符合条件的笔记</p>
+                        <button class="filter-reset" onclick="resetFilters()" style="margin-top: 1rem;">
+                            重置筛选
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            notesGrid.innerHTML = filteredNotes.map(note => `
+                <div class="note-card" data-note-id="${note.id}">
+                    <div class="note-icon">
+                        <i class="${note.icon}"></i>
+                    </div>
+                    <h3 class="note-title">${note.title}</h3>
+                    <p class="note-preview">${note.description}</p>
+                    <div class="note-meta">
+                        <span class="note-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            ${formatDate(note.date)}
+                        </span>
+                        <button class="btn-view" onclick="openNote('${note.id}')">
+                            查看笔记
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // 添加卡片点击事件
+            document.querySelectorAll('.note-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.btn-view')) {
+                        const noteId = this.getAttribute('data-note-id');
+                        openNote(noteId);
+                    }
+                });
+            });
+        }
+
+        // 重置筛选
+        function resetFilters() {
+            document.getElementById('year-filter').value = '';
+            document.getElementById('month-filter').value = '';
+            renderNotesList();
         }
 
         // 渲染笔记列表
