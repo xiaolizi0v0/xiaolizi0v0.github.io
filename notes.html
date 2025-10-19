@@ -728,19 +728,25 @@
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                packages: ['base', 'ams', 'newcommand', 'configMacros'],
-                tags: 'ams',
-                ams: {
-                    multlineWidth: '85%'
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+                renderActions: {
+                    addMenu: [0, '', '']
                 }
             },
-            loader: {load: ['[tex]/ams', '[tex]/newcommand', '[tex]/configMacros']},
             startup: {
-                typeset: false
+                pageReady: function() {
+                    return MathJax.startup.defaultPageReady().then(function() {
+                        console.log('MathJax is ready');
+                    });
+                }
             }
         };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <script>
         // 笔记数据
         const notes = [
@@ -1324,10 +1330,14 @@
         function renderMathFormulas() {
             // 检查MathJax是否已加载
             if (typeof MathJax !== 'undefined' && MathJax.typeset) {
-                MathJax.typeset();
+                MathJax.typesetPromise().then(() => {
+                    console.log('MathJax typesetting complete');
+                }).catch((err) => {
+                    console.error('MathJax typesetting failed:', err);
+                });
             } else {
                 // 如果MathJax尚未加载，等待一段时间后重试
-                setTimeout(renderMathFormulas, 100);
+                setTimeout(renderMathFormulas, 500);
             }
         }
 
