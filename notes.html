@@ -727,7 +727,16 @@
         window.MathJax = {
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                packages: ['base', 'ams', 'newcommand', 'configMacros'],
+                tags: 'ams',
+                ams: {
+                    multlineWidth: '85%'
+                }
+            },
+            loader: {load: ['[tex]/ams', '[tex]/newcommand', '[tex]/configMacros']},
+            startup: {
+                typeset: false
             }
         };
     </script>
