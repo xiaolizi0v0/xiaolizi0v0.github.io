@@ -726,28 +726,9 @@
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)'],['\\']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]'],['\\']],
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 processEscapes: true,
-                processEnvironments: true,
-                linebreaks: {
-                    automatic: true,
-                    width: 'container'
-                }
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                renderActions: {
-                    addMenu: [0, '', '']
-                },
-                enableMenu: false
-            },
-            startup: {
-                pageReady: function() {
-                    return MathJax.startup.defaultPageReady().then(function() {
-                        console.log('MathJax is ready');
-                    });
-                }
             }
         };
     </script>
