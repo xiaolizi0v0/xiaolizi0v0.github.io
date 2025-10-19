@@ -729,13 +729,18 @@
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 processEscapes: true,
-                processEnvironments: true
+                processEnvironments: true,
+                linebreaks: {
+                    automatic: true,
+                    width: 'container'
+                }
             },
             options: {
                 skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
                 renderActions: {
                     addMenu: [0, '', '']
-                }
+                },
+                enableMenu: false
             },
             startup: {
                 pageReady: function() {
@@ -743,6 +748,14 @@
                         console.log('MathJax is ready');
                     });
                 }
+            },
+            chtml: {
+                displayAlign: 'left',
+                displayIndent: '2em'
+            },
+            svg: {
+                displayAlign: 'left',
+                displayIndent: '2em'
             }
         };
     </script>
