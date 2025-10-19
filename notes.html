@@ -726,8 +726,8 @@
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                inlineMath: [['$', '$'], ['\\(', '\\)'],['\\']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]'],['\\']],
                 processEscapes: true,
                 processEnvironments: true,
                 linebreaks: {
@@ -748,14 +748,6 @@
                         console.log('MathJax is ready');
                     });
                 }
-            },
-            chtml: {
-                displayAlign: 'left',
-                displayIndent: '2em'
-            },
-            svg: {
-                displayAlign: 'left',
-                displayIndent: '2em'
             }
         };
     </script>
