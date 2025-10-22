@@ -951,14 +951,16 @@
         // 加载笔记配置
         async function loadNotesConfig() {
             try {
-                const response = await fetch('data-config.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                // 动态加载 data-config.js
+                await loadScript('data-config.js');
+                
+                // 检查是否成功加载了配置
+                if (typeof window.dataConfig === 'undefined') {
+                    throw new Error('data-config.js 未正确加载');
                 }
-                const config = await response.json();
                 
                 // 更新笔记数据
-                notes = config.notes || [];
+                notes = window.dataConfig.notes || [];
                 
                 console.log('笔记配置加载成功:', {
                     notesCount: notes.length
@@ -967,6 +969,17 @@
                 console.error('加载笔记配置失败:', error);
                 throw error;
             }
+        }
+
+        // 动态加载脚本
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+                document.head.appendChild(script);
+            });
         }
 
         // 渲染笔记列表
