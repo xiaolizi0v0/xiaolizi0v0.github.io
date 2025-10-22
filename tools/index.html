@@ -570,10 +570,11 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="../data-config.js"></script>
     <script>
-        // 工具数据（将从配置文件加载）
-        let tools = [];
-        let categories = {};
+        // 工具数据（从配置文件直接获取）
+        let tools = window.dataConfig ? window.dataConfig.tools : [];
+        let categories = window.dataConfig ? window.dataConfig.categories : {};
 
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
@@ -583,28 +584,28 @@
 
         // 初始化工具页面
         function initializeToolsPage() {
-            loadToolsConfig().then(() => {
-                populateYearFilter();
-                renderToolsList();
-                
-                // 检查URL参数，如果有tool参数则直接打开对应工具
-                const urlParams = new URLSearchParams(window.location.search);
-                const toolId = urlParams.get('tool');
-                if (toolId) {
-                    openTool(toolId);
-                }
-            }).catch(error => {
-                console.error('加载工具配置失败:', error);
+            if (tools.length === 0) {
                 document.getElementById('tools-grid').innerHTML = `
                     <div class="loading">
                         <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--danger-color); margin-bottom: 1rem;"></i>
-                        <p>加载工具配置失败: ${error.message}</p>
+                        <p>工具配置加载失败，请检查 data-config.js 文件</p>
                         <button class="btn-use" onclick="location.reload()" style="margin-top: 1rem;">
                             重新加载
                         </button>
                     </div>
                 `;
-            });
+                return;
+            }
+            
+            populateYearFilter();
+            renderToolsList();
+            
+            // 检查URL参数，如果有tool参数则直接打开对应工具
+            const urlParams = new URLSearchParams(window.location.search);
+            const toolId = urlParams.get('tool');
+            if (toolId) {
+                openTool(toolId);
+            }
         }
 
         // 设置事件监听器
@@ -821,41 +822,6 @@
             });
         }
 
-        // 加载工具配置
-        async function loadToolsConfig() {
-            try {
-                // 动态加载 data-config.js
-                await loadScript('../data-config.js');
-                
-                // 检查是否成功加载了配置
-                if (typeof window.dataConfig === 'undefined') {
-                    throw new Error('data-config.js 未正确加载');
-                }
-                
-                // 更新工具数据和分类
-                tools = window.dataConfig.tools || [];
-                categories = window.dataConfig.categories || {};
-                
-                console.log('工具配置加载成功:', {
-                    toolsCount: tools.length,
-                    categories: Object.keys(categories)
-                });
-            } catch (error) {
-                console.error('加载工具配置失败:', error);
-                throw error;
-            }
-        }
-
-        // 动态加载脚本
-        function loadScript(src) {
-            return new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.src = src;
-                script.onload = resolve;
-                script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-                document.head.appendChild(script);
-            });
-        }
 
         // 获取分类名称
         function getCategoryName(category) {

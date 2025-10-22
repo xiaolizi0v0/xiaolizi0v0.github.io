@@ -742,9 +742,10 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="data-config.js"></script>
     <script>
-        // 笔记数据（将从配置文件加载）
-        let notes = [];
+        // 笔记数据（从配置文件直接获取）
+        let notes = window.dataConfig ? window.dataConfig.notes : [];
 
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
@@ -754,28 +755,28 @@
 
         // 初始化笔记页面
         function initializeNotesPage() {
-            loadNotesConfig().then(() => {
-                populateYearFilter();
-                renderNotesList();
-                
-                // 检查URL参数，如果有note参数则直接打开对应笔记
-                const urlParams = new URLSearchParams(window.location.search);
-                const noteId = urlParams.get('note');
-                if (noteId) {
-                    openNote(noteId);
-                }
-            }).catch(error => {
-                console.error('加载笔记配置失败:', error);
+            if (notes.length === 0) {
                 document.getElementById('notes-grid').innerHTML = `
                     <div class="loading">
                         <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--danger-color); margin-bottom: 1rem;"></i>
-                        <p>加载笔记配置失败: ${error.message}</p>
+                        <p>笔记配置加载失败，请检查 data-config.js 文件</p>
                         <button class="btn-view" onclick="location.reload()" style="margin-top: 1rem;">
                             重新加载
                         </button>
                     </div>
                 `;
-            });
+                return;
+            }
+            
+            populateYearFilter();
+            renderNotesList();
+            
+            // 检查URL参数，如果有note参数则直接打开对应笔记
+            const urlParams = new URLSearchParams(window.location.search);
+            const noteId = urlParams.get('note');
+            if (noteId) {
+                openNote(noteId);
+            }
         }
 
         // 设置事件监听器
@@ -948,39 +949,6 @@
             renderNotesList();
         }
 
-        // 加载笔记配置
-        async function loadNotesConfig() {
-            try {
-                // 动态加载 data-config.js
-                await loadScript('data-config.js');
-                
-                // 检查是否成功加载了配置
-                if (typeof window.dataConfig === 'undefined') {
-                    throw new Error('data-config.js 未正确加载');
-                }
-                
-                // 更新笔记数据
-                notes = window.dataConfig.notes || [];
-                
-                console.log('笔记配置加载成功:', {
-                    notesCount: notes.length
-                });
-            } catch (error) {
-                console.error('加载笔记配置失败:', error);
-                throw error;
-            }
-        }
-
-        // 动态加载脚本
-        function loadScript(src) {
-            return new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.src = src;
-                script.onload = resolve;
-                script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-                document.head.appendChild(script);
-            });
-        }
 
         // 渲染笔记列表
         function renderNotesList() {
