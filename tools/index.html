@@ -3,180 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学习笔记 - 个人博客</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>工具箱 - 个人博客</title>
+    <link rel="stylesheet" href="../styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
     <style>
-        /* Markdown 内容样式 */
-        .markdown-content {
-            max-width: 800px;
-            margin: 0 auto;
+        
+        /* 工具列表样式 */
+        .tools-container {
+            max-width: 1200px;
+            margin: 5rem auto;
             padding: 2rem;
-            line-height: 1.8;
-            color: var(--gray-800);
         }
-        
-        .markdown-content h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 2rem 0 1rem;
-            color: var(--gray-900);
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-        }
-        
-        .markdown-content h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin: 2rem 0 1rem;
-            color: var(--gray-800);
-            border-bottom: 2px solid var(--gray-200);
-            padding-bottom: 0.5rem;
-        }
-        
-        .markdown-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 1.5rem 0 0.8rem;
-            color: var(--gray-700);
-        }
-        
-        .markdown-content h4, .markdown-content h5, .markdown-content h6 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin: 1.2rem 0 0.6rem;
-            color: var(--gray-700);
-        }
-        
-        .markdown-content p {
-            margin: 1rem 0;
-            color: var(--gray-700);
-            line-height: 1.8;
-        }
-        
-        .markdown-content code {
-            background: var(--gray-100);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
-            font-size: 0.9em;
-            color: var(--primary-color);
-        }
-        
-        .markdown-content pre {
-            background: var(--gray-900);
-            color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
-            font-size: 0.9em;
-            line-height: 1.5;
-        }
-        
-        .markdown-content pre code {
-            background: none;
-            padding: 0;
-            color: inherit;
-            font-size: inherit;
-        }
-        
-        .markdown-content blockquote {
-            border-left: 4px solid var(--primary-color);
-            padding-left: 1.5rem;
-            margin: 1.5rem 0;
-            color: var(--gray-600);
-            font-style: italic;
-            background: var(--gray-50);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-        }
-        
-        .markdown-content ul, .markdown-content ol {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-        
-        .markdown-content li {
-            margin: 0.5rem 0;
-            color: var(--gray-700);
-        }
-        
-        .markdown-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            background: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .markdown-content th, .markdown-content td {
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--gray-200);
-            text-align: left;
-        }
-        
-        .markdown-content th {
-            background: var(--gray-100);
-            font-weight: 600;
-            color: var(--gray-800);
-        }
-        
-        .markdown-content tr:nth-child(even) {
-            background: var(--gray-50);
-        }
-        
-        .markdown-content a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .markdown-content a:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
-        
-        .markdown-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--border-radius);
-            margin: 1.5rem 0;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .markdown-content hr {
-            border: none;
-            height: 2px;
-            background: var(--gray-200);
-            margin: 2rem 0;
-        }
-        
-        /* 笔记列表样式 */
         .notes-container {
             max-width: 1200px;
             margin: 5rem auto;
             padding: 2rem;
         }
-        
-        .notes-header {
+        .tools-header {
             text-align: center;
             margin-bottom: 3rem;
         }
         
-        .notes-grid {
+        .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
         
-        .note-card {
+        .tool-card {
             background: white;
             border-radius: var(--border-radius-lg);
             padding: 2rem;
@@ -189,20 +46,20 @@
             flex-direction: column;
         }
         
-        .note-card:hover {
+        .tool-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-xl);
             border-color: var(--primary-color);
         }
         
-        .note-icon {
+        .tool-icon {
             font-size: 3rem;
             color: var(--primary-color);
             margin-bottom: 1rem;
             text-align: center;
         }
         
-        .note-title {
+        .tool-title {
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
@@ -210,7 +67,7 @@
             text-align: center;
         }
         
-        .note-preview {
+        .tool-description {
             color: var(--gray-600);
             line-height: 1.6;
             margin-bottom: 1.5rem;
@@ -221,7 +78,7 @@
             overflow: hidden;
         }
         
-        .note-meta {
+        .tool-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -230,18 +87,30 @@
             margin-top: auto;
         }
         
-        .note-date {
+        .tool-category {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
         
-        .note-actions {
+        .tool-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tool-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        
+        .tool-actions {
             display: flex;
             gap: 1rem;
         }
         
-        .btn-view {
+        .btn-use {
             padding: 0.5rem 1rem;
             background: var(--primary-color);
             color: white;
@@ -253,7 +122,7 @@
             transition: var(--transition);
         }
         
-        .btn-view:hover {
+        .btn-use:hover {
             background: var(--accent-color);
             transform: translateY(-2px);
         }
@@ -449,11 +318,6 @@
             transition: all 0.3s ease;
         }
         
-        .content-area .markdown-content {
-            max-width: none;
-            margin: 0;
-            transition: all 0.3s ease;
-        }
         
         /* 当导航栏折叠时，内容区域占满宽度 */
         .toc-sidebar.collapsed + .content-area {
@@ -489,17 +353,6 @@
                 order: 1;
             }
             
-            .markdown-content {
-                padding: 1rem;
-            }
-            
-            .markdown-content h1 {
-                font-size: 2rem;
-            }
-            
-            .markdown-content h2 {
-                font-size: 1.5rem;
-            }
             
             .toc-content {
                 max-height: 300px;
@@ -507,9 +360,6 @@
         }
         
         @media (max-width: 480px) {
-            .markdown-content h3 {
-                font-size: 1.2rem;
-            }
             
             .toc-sidebar {
                 margin-left: -1rem;
@@ -520,8 +370,8 @@
             }
         }
         
-        /* 筛选控件样式 */
-        .filter-controls {
+        /* 分类筛选样式 */
+        .category-controls {
             display: flex;
             align-items: center;
             gap: 2rem;
@@ -534,19 +384,19 @@
             flex-wrap: wrap;
         }
         
-        .filter-group {
+        .category-group {
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
         
-        .filter-group label {
+        .category-group label {
             font-weight: 500;
             color: var(--gray-700);
             white-space: nowrap;
         }
         
-        .filter-select {
+        .category-select {
             padding: 0.5rem 1rem;
             border: 1px solid var(--gray-300);
             border-radius: var(--border-radius);
@@ -558,17 +408,17 @@
             min-width: 120px;
         }
         
-        .filter-select:hover {
+        .category-select:hover {
             border-color: var(--primary-color);
         }
         
-        .filter-select:focus {
+        .category-select:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         
-        .filter-reset {
+        .category-reset {
             padding: 0.5rem 1rem;
             background: var(--gray-100);
             color: var(--gray-700);
@@ -580,24 +430,24 @@
             white-space: nowrap;
         }
         
-        .filter-reset:hover {
+        .category-reset:hover {
             background: var(--gray-200);
             color: var(--gray-800);
         }
         
         /* 响应式设计 */
         @media (max-width: 768px) {
-            .filter-controls {
+            .category-controls {
                 flex-direction: column;
                 align-items: stretch;
                 gap: 1rem;
             }
             
-            .filter-group {
+            .category-group {
                 justify-content: space-between;
             }
             
-            .filter-select {
+            .category-select {
                 flex: 1;
                 max-width: 200px;
             }
@@ -617,13 +467,14 @@
                 <a href="index.html">我的博客</a>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html#home" class="nav-link">首页</a></li>
-                <li class="nav-item"><a href="index.html#about" class="nav-link">关于我</a></li>
-                <li class="nav-item"><a href="index.html#skills" class="nav-link">技能</a></li>
-                <li class="nav-item"><a href="index.html#projects" class="nav-link">项目</a></li>
-                <li class="nav-item"><a href="index.html#education" class="nav-link">教育</a></li>
-                <li class="nav-item"><a href="notes.html" class="nav-link active">学习笔记</a></li>
-                <li class="nav-item"><a href="index.html#contact" class="nav-link">联系</a></li>
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">首页</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">关于我</a></li>
+                <li class="nav-item"><a href="../index.html#skills" class="nav-link">技能</a></li>
+                <li class="nav-item"><a href="../index.html#projects" class="nav-link">项目</a></li>
+                <li class="nav-item"><a href="../index.html#education" class="nav-link">教育</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">工具箱</a></li>
+                <li class="nav-item"><a href="../notes.html" class="nav-link active">学习笔记</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">联系</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -636,22 +487,32 @@
     <!-- 笔记内容区域 -->
     <main>
         <div id="notes-list" class="notes-container">
-            <div class="notes-header">
-                <h1 class="section-title">学习笔记</h1>
-                <p>这里是我在学习过程中整理的笔记和心得</p>
+            <div class="tools-header">
+                <h1 class="section-title">工具箱</h1>
+                <p>这里是我开发的各种实用小工具，希望能帮助到您！</p>
             </div>
             
-            <!-- 日期筛选控件 -->
-            <div class="filter-controls">
-                <div class="filter-group">
+            <!-- 分类和时间筛选控件 -->
+            <div class="category-controls">
+                <div class="category-group">
+                    <label for="category-filter">工具分类:</label>
+                    <select id="category-filter" class="category-select">
+                        <option value="">全部分类</option>
+                        <option value="text">文本处理</option>
+                        <option value="code">代码工具</option>
+                        <option value="image">图片处理</option>
+                        <option value="other">其他工具</option>
+                    </select>
+                </div>
+                <div class="category-group">
                     <label for="year-filter">年份筛选:</label>
-                    <select id="year-filter" class="filter-select">
+                    <select id="year-filter" class="category-select">
                         <option value="">全部年份</option>
                     </select>
                 </div>
-                <div class="filter-group">
+                <div class="category-group">
                     <label for="month-filter">月份筛选:</label>
-                    <select id="month-filter" class="filter-select">
+                    <select id="month-filter" class="category-select">
                         <option value="">全部月份</option>
                         <option value="01">一月</option>
                         <option value="02">二月</option>
@@ -667,49 +528,17 @@
                         <option value="12">十二月</option>
                     </select>
                 </div>
-                <button id="reset-filter" class="filter-reset">重置筛选</button>
+                <button id="reset-filters" class="category-reset">重置筛选</button>
             </div>
             
-            <div class="notes-grid" id="notes-grid">
+            <div class="tools-grid" id="tools-grid">
                 <div class="loading">
                     <div class="loading-spinner"></div>
-                    <p>正在加载笔记...</p>
+                    <p>正在加载工具...</p>
                 </div>
             </div>
         </div>
 
-        <div id="note-content" class="notes-container" style="display: none;">
-            <a href="#" class="back-button" id="back-button">
-                <i class="fas fa-arrow-left"></i>
-                返回笔记列表
-            </a>
-            
-            <div class="note-layout">
-                <!-- 左侧标题导航栏 -->
-                <div class="toc-sidebar" id="toc-navbar" >
-                    <div class="toc-header">
-                        <h3>目录导航</h3>
-                        <button class="toc-toggle" id="toc-toggle">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                    </div>
-                    <div class="toc-content" id="toc-content">
-                        <ul class="toc-list" id="toc-list">
-                            <!-- 标题列表将在这里动态生成 -->
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- 右侧内容区域 -->
-                <div class="content-area">
-                    <div class="markdown-content" id="markdown-content">
-                        <div class="loading">
-                            <div class="loading-spinner"></div>
-                            <p>正在加载内容...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -742,34 +571,35 @@
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <script>
-        // 笔记数据（将从配置文件加载）
-        let notes = [];
+        // 工具数据（将从配置文件加载）
+        let tools = [];
+        let categories = {};
 
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
-            initializeNotesPage();
+            initializeToolsPage();
             setupEventListeners();
         });
 
-        // 初始化笔记页面
-        function initializeNotesPage() {
-            loadNotesConfig().then(() => {
+        // 初始化工具页面
+        function initializeToolsPage() {
+            loadToolsConfig().then(() => {
                 populateYearFilter();
-                renderNotesList();
+                renderToolsList();
                 
-                // 检查URL参数，如果有note参数则直接打开对应笔记
+                // 检查URL参数，如果有tool参数则直接打开对应工具
                 const urlParams = new URLSearchParams(window.location.search);
-                const noteId = urlParams.get('note');
-                if (noteId) {
-                    openNote(noteId);
+                const toolId = urlParams.get('tool');
+                if (toolId) {
+                    openTool(toolId);
                 }
             }).catch(error => {
-                console.error('加载笔记配置失败:', error);
-                document.getElementById('notes-grid').innerHTML = `
+                console.error('加载工具配置失败:', error);
+                document.getElementById('tools-grid').innerHTML = `
                     <div class="loading">
                         <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--danger-color); margin-bottom: 1rem;"></i>
-                        <p>加载笔记配置失败: ${error.message}</p>
-                        <button class="btn-view" onclick="location.reload()" style="margin-top: 1rem;">
+                        <p>加载工具配置失败: ${error.message}</p>
+                        <button class="btn-use" onclick="location.reload()" style="margin-top: 1rem;">
                             重新加载
                         </button>
                     </div>
@@ -779,50 +609,7 @@
 
         // 设置事件监听器
         function setupEventListeners() {
-            // 返回按钮点击事件
-            document.getElementById('back-button').addEventListener('click', function(e) {
-                e.preventDefault();
-                showNotesList();
-            });
-
-            // 导航菜单切换（复用主站的JS功能）
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
             
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', () => {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-
-                document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    
-                }));
-            }
-
-            // 标题导航栏切换按钮
-            const tocToggle = document.getElementById('toc-toggle');
-            if (tocToggle) {
-                tocToggle.addEventListener('click', function() {
-                    const tocSidebar = document.getElementById('toc-navbar');
-                    const noteLayout = document.querySelector('.note-layout');
-                    const tocContent = document.getElementById('toc-content');
-                    
-                    tocSidebar.classList.toggle('collapsed');
-                    tocContent.classList.toggle('collapsed');
-                    
-                    const icon = this.querySelector('i');
-                    if (tocSidebar.classList.contains('collapsed')) {
-                        icon.className = 'fas fa-chevron-down';
-                        noteLayout.style.gridTemplateColumns = '50px 1fr';
-                    } else {
-                        icon.className = 'fas fa-bars';
-                        noteLayout.style.gridTemplateColumns = '300px 1fr';
-                    }
-                });
-            }
 
             // 筛选控件事件监听
             setupFilterListeners();
@@ -830,10 +617,14 @@
 
         // 设置筛选控件事件监听
         function setupFilterListeners() {
+            const categoryFilter = document.getElementById('category-filter');
             const yearFilter = document.getElementById('year-filter');
             const monthFilter = document.getElementById('month-filter');
-            const resetFilter = document.getElementById('reset-filter');
+            const resetFiltersBtn = document.getElementById('reset-filters');
 
+            // 分类筛选变化事件
+            categoryFilter.addEventListener('change', applyFilters);
+            
             // 年份筛选变化事件
             yearFilter.addEventListener('change', applyFilters);
             
@@ -841,16 +632,16 @@
             monthFilter.addEventListener('change', applyFilters);
             
             // 重置筛选按钮点击事件
-            resetFilter.addEventListener('click', resetFilters);
+            resetFiltersBtn.addEventListener('click', resetFilters);
         }
 
         // 填充年份筛选器
         function populateYearFilter() {
             const yearFilter = document.getElementById('year-filter');
             
-            // 从笔记数据中提取所有年份
-            const years = [...new Set(notes.map(note => {
-                return note.date.split('-')[0]; // 提取年份部分
+            // 从工具数据中提取所有年份
+            const years = [...new Set(tools.map(tool => {
+                return tool.date.split('-')[0]; // 提取年份部分
             }))].sort((a, b) => b - a); // 按年份降序排列
             
             // 清空现有选项（除了"全部年份"）
@@ -869,12 +660,18 @@
 
         // 应用筛选
         function applyFilters() {
+            const selectedCategory = document.getElementById('category-filter').value;
             const selectedYear = document.getElementById('year-filter').value;
             const selectedMonth = document.getElementById('month-filter').value;
             
-            // 筛选笔记
-            const filteredNotes = notes.filter(note => {
-                const [year, month, day] = note.date.split('-');
+            // 筛选工具
+            const filteredTools = tools.filter(tool => {
+                const [year, month, day] = tool.date.split('-');
+                
+                // 分类筛选
+                if (selectedCategory && tool.category !== selectedCategory) {
+                    return false;
+                }
                 
                 // 年份筛选
                 if (selectedYear && year !== selectedYear) {
@@ -889,20 +686,28 @@
                 return true;
             });
             
-            // 渲染筛选后的笔记列表
-            renderFilteredNotesList(filteredNotes);
+            // 渲染筛选后的工具列表
+            renderFilteredToolsList(filteredTools);
         }
 
-        // 渲染筛选后的笔记列表
-        function renderFilteredNotesList(filteredNotes) {
-            const notesGrid = document.getElementById('notes-grid');
+        // 重置筛选
+        function resetFilters() {
+            document.getElementById('category-filter').value = '';
+            document.getElementById('year-filter').value = '';
+            document.getElementById('month-filter').value = '';
+            renderToolsList();
+        }
+
+        // 渲染筛选后的工具列表
+        function renderFilteredToolsList(filteredTools) {
+            const toolsGrid = document.getElementById('tools-grid');
             
-            if (filteredNotes.length === 0) {
-                notesGrid.innerHTML = `
+            if (filteredTools.length === 0) {
+                toolsGrid.innerHTML = `
                     <div class="loading">
                         <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                        <p>没有找到符合条件的笔记</p>
-                        <button class="filter-reset" onclick="resetFilters()" style="margin-top: 1rem;">
+                        <p>没有找到符合条件的工具</p>
+                        <button class="category-reset" onclick="resetFilters()" style="margin-top: 1rem;">
                             重置筛选
                         </button>
                     </div>
@@ -910,157 +715,185 @@
                 return;
             }
 
-            notesGrid.innerHTML = filteredNotes.map(note => `
-                <div class="note-card" data-note-id="${note.id}">
-                    <div class="note-icon">
-                        <i class="${note.icon}"></i>
+            toolsGrid.innerHTML = filteredTools.map(tool => `
+                <div class="tool-card" data-tool-id="${tool.id}">
+                    <div class="tool-icon">
+                        <i class="${tool.icon}"></i>
                     </div>
-                    <h3 class="note-title">${note.title}</h3>
-                    <p class="note-preview">${note.description}</p>
-                    <div class="note-meta">
-                        <span class="note-date">
-                            <i class="fas fa-calendar-alt"></i>
-                            ${formatDate(note.date)}
-                        </span>
-                        <button class="btn-view" onclick="openNote('${note.id}')">
-                            查看笔记
+                    <h3 class="tool-title">${tool.title}</h3>
+                    <p class="tool-description">${tool.description}</p>
+                    <div class="tool-meta">
+                        <div class="tool-info">
+                            <span class="tool-category">
+                                <i class="fas fa-tag"></i>
+                                ${getCategoryName(tool.category)}
+                            </span>
+                            <span class="tool-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                ${formatDate(tool.date)}
+                            </span>
+                        </div>
+                        <button class="btn-use" onclick="openTool('${tool.id}')">
+                            使用工具
                         </button>
                     </div>
                 </div>
             `).join('');
 
             // 添加卡片点击事件
-            document.querySelectorAll('.note-card').forEach(card => {
+            document.querySelectorAll('.tool-card').forEach(card => {
                 card.addEventListener('click', function(e) {
-                    if (!e.target.closest('.btn-view')) {
-                        const noteId = this.getAttribute('data-note-id');
-                        openNote(noteId);
+                    if (!e.target.closest('.btn-use')) {
+                        const toolId = this.getAttribute('data-tool-id');
+                        openTool(toolId);
                     }
                 });
             });
         }
 
-        // 重置筛选
-        function resetFilters() {
-            document.getElementById('year-filter').value = '';
-            document.getElementById('month-filter').value = '';
-            renderNotesList();
+        // 重置分类筛选
+        function resetCategoryFilter() {
+            document.getElementById('category-filter').value = '';
+            renderToolsList();
         }
 
-        // 加载笔记配置
-        async function loadNotesConfig() {
-            try {
-                const response = await fetch('data-config.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const config = await response.json();
-                
-                // 更新笔记数据
-                notes = config.notes || [];
-                
-                console.log('笔记配置加载成功:', {
-                    notesCount: notes.length
-                });
-            } catch (error) {
-                console.error('加载笔记配置失败:', error);
-                throw error;
-            }
-        }
-
-        // 渲染笔记列表
-        function renderNotesList() {
-            const notesGrid = document.getElementById('notes-grid');
+        // 渲染工具列表
+        function renderToolsList() {
+            const toolsGrid = document.getElementById('tools-grid');
             
-            if (notes.length === 0) {
-                notesGrid.innerHTML = `
+            if (tools.length === 0) {
+                toolsGrid.innerHTML = `
                     <div class="loading">
-                        <i class="fas fa-book-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                        <p>暂无笔记</p>
+                        <i class="fas fa-tools" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>暂无工具</p>
                     </div>
                 `;
                 return;
             }
 
-            notesGrid.innerHTML = notes.map(note => `
-                <div class="note-card" data-note-id="${note.id}">
-                    <div class="note-icon">
-                        <i class="${note.icon}"></i>
+            toolsGrid.innerHTML = tools.map(tool => `
+                <div class="tool-card" data-tool-id="${tool.id}">
+                    <div class="tool-icon">
+                        <i class="${tool.icon}"></i>
                     </div>
-                    <h3 class="note-title">${note.title}</h3>
-                    <p class="note-preview">${note.description}</p>
-                    <div class="note-meta">
-                        <span class="note-date">
-                            <i class="fas fa-calendar-alt"></i>
-                            ${formatDate(note.date)}
-                        </span>
-                        <button class="btn-view" onclick="openNote('${note.id}')">
-                            查看笔记
+                    <h3 class="tool-title">${tool.title}</h3>
+                    <p class="tool-description">${tool.description}</p>
+                    <div class="tool-meta">
+                        <div class="tool-info">
+                            <span class="tool-category">
+                                <i class="fas fa-tag"></i>
+                                ${getCategoryName(tool.category)}
+                            </span>
+                            <span class="tool-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                ${formatDate(tool.date)}
+                            </span>
+                        </div>
+                        <button class="btn-use" onclick="openTool('${tool.id}')">
+                            使用工具
                         </button>
                     </div>
                 </div>
             `).join('');
 
             // 添加卡片点击事件
-            document.querySelectorAll('.note-card').forEach(card => {
+            document.querySelectorAll('.tool-card').forEach(card => {
                 card.addEventListener('click', function(e) {
-                    if (!e.target.closest('.btn-view')) {
-                        const noteId = this.getAttribute('data-note-id');
-                        openNote(noteId);
+                    if (!e.target.closest('.btn-use')) {
+                        const toolId = this.getAttribute('data-tool-id');
+                        openTool(toolId);
                     }
                 });
             });
         }
 
-        // 打开笔记
-        function openNote(noteId) {
-            const note = notes.find(n => n.id === noteId);
-            if (!note) return;
-
-            // 更新URL
-            const newUrl = new URL(window.location);
-            newUrl.searchParams.set('note', noteId);
-            window.history.pushState({}, '', newUrl);
-
-            // 显示加载状态
-            document.getElementById('markdown-content').innerHTML = `
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    <p>正在加载 "${note.title}"...</p>
-                </div>
-            `;
-
-            // 切换视图
-            document.getElementById('notes-list').style.display = 'none';
-            document.getElementById('note-content').style.display = 'block';
-
-            // 加载Markdown内容
-            loadMarkdownContent(note.file, note.title);
+        // 加载工具配置
+        async function loadToolsConfig() {
+            try {
+                const response = await fetch('../data-config.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const config = await response.json();
+                
+                // 更新工具数据和分类
+                tools = config.tools || [];
+                categories = config.categories || {};
+                
+                console.log('工具配置加载成功:', {
+                    toolsCount: tools.length,
+                    categories: Object.keys(categories)
+                });
+            } catch (error) {
+                console.error('加载工具配置失败:', error);
+                throw error;
+            }
         }
 
-        // 加载Markdown内容
-        function loadMarkdownContent(filePath, title) {
+        // 获取分类名称
+        function getCategoryName(category) {
+            return categories[category] || '未分类';
+        }
+
+        // 打开工具 - 直接跳转到工具页面
+        function openTool(toolId) {
+            const tool = tools.find(t => t.id === toolId);
+            if (!tool) return;
+
+            // 直接跳转到工具页面
+            window.location.href = tool.file;
+        }
+
+        // 加载工具内容
+        function loadToolContent(filePath, title) {
             fetch(filePath)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('文件加载失败');
+                        throw new Error('工具加载失败');
                     }
                     return response.text();
                 })
-                .then(markdown => {
-                    renderMarkdown(markdown, title);
+                .then(html => {
+                    renderToolContent(html, title);
                 })
                 .catch(error => {
                     document.getElementById('markdown-content').innerHTML = `
                         <div class="loading">
                             <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--danger-color); margin-bottom: 1rem;"></i>
                             <p>加载失败: ${error.message}</p>
-                            <button class="btn-view" onclick="showNotesList()" style="margin-top: 1rem;">
+                            <button class="btn-use" onclick="showToolsList()" style="margin-top: 1rem;">
                                 返回列表
                             </button>
                         </div>
                     `;
                 });
+        }
+
+        // 渲染工具内容
+        function renderToolContent(html, title) {
+            // 更新页面标题和内容
+            document.title = `${title} - 工具箱`;
+            document.getElementById('markdown-content').innerHTML = html;
+            
+            // 应用代码高亮
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+
+            // 渲染数学公式
+            renderMathFormulas();
+
+            // 生成功能导航栏
+            generateTOC();
+
+            // 设置导航栏滚轮事件
+            setupTocWheelEvent();
+
+            // 显示功能导航栏（响应式判断）
+            document.getElementById('toc-navbar').style.display = 'block';
+
+            // 滚动到顶部
+            window.scrollTo(0, 0);
         }
 
         // 渲染Markdown内容
@@ -1277,23 +1110,22 @@
             }
         }
 
-        // 显示笔记列表
-        function showNotesList() {
+        // 显示工具列表
+        function showToolsList() {
             // 清除URL参数
             const newUrl = new URL(window.location);
-            newUrl.searchParams.delete('note');
+            newUrl.searchParams.delete('tool');
             window.history.pushState({}, '', newUrl);
 
             // 切换视图
             document.getElementById('notes-list').style.display = 'block';
-            document.getElementById('note-content').style.display = 'none';
+            document.getElementById('tool-content').style.display = 'none';
             
-            // 隐藏标题导航栏
-            
+            // 隐藏功能导航栏
             document.getElementById('toc-navbar').style.display = 'none';
             
             // 恢复页面标题
-            document.title = '学习笔记 - 个人博客';
+            document.title = '工具箱 - 个人博客';
             
             // 滚动到顶部
             window.scrollTo(0, 0);
@@ -1312,12 +1144,12 @@
         // 处理浏览器前进后退
         window.addEventListener('popstate', function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const noteId = urlParams.get('note');
+            const toolId = urlParams.get('tool');
             
-            if (noteId) {
-                openNote(noteId);
+            if (toolId) {
+                openTool(toolId);
             } else {
-                showNotesList();
+                showToolsList();
             }
         });
 
