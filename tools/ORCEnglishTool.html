@@ -393,10 +393,14 @@
             try {
                 const worker = await Tesseract.createWorker('eng');
                 
+                // 使用一个简单的logger函数，避免闭包问题
                 const { data: { text, confidence } } = await worker.recognize(selectedImage, {
-                    logger: m => {
+                    logger: function(m) {
                         if (m.status === 'recognizing text') {
-                            progressInfo.textContent = `进度: ${Math.round(m.progress * 100)}%`;
+                            // 使用requestAnimationFrame来安全地更新DOM
+                            requestAnimationFrame(() => {
+                                progressInfo.textContent = `进度: ${Math.round(m.progress * 100)}%`;
+                            });
                         }
                     }
                 });
