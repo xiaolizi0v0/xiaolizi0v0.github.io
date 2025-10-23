@@ -335,6 +335,58 @@
             gap: 1rem;
         }
 
+        /* 裁剪功能样式 */
+        .crop-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .crop-container.active {
+            display: flex;
+        }
+
+        .crop-preview {
+            max-width: 100%;
+            max-height: 400px;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            cursor: crosshair;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crop-selection {
+            position: absolute;
+            border: 2px dashed #ff0000;
+            background: rgba(255, 0, 0, 0.1);
+            cursor: move;
+        }
+
+        .crop-handle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff0000;
+            border-radius: 50%;
+            cursor: nwse-resize;
+        }
+
+        .crop-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .crop-info {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -428,6 +480,10 @@
                                 <i class="fas fa-upload"></i>
                                 选择图片
                             </button>
+                            <button class="btn btn-secondary" id="crop-btn" onclick="startCrop()" disabled>
+                                <i class="fas fa-crop"></i>
+                                裁剪图片
+                            </button>
                             <button class="btn btn-success" id="recognize-btn" onclick="recognizeText()" disabled>
                                 <i class="fas fa-search"></i>
                                 识别文字
@@ -437,6 +493,27 @@
                         <!-- 隐藏的文件输入 -->
                         <input type="file" id="file-input" accept="image/*" style="display: none"
                             onchange="handleFileSelect(event)">
+                    </div>
+
+                    <!-- 裁剪功能容器 -->
+                    <div class="crop-container" id="crop-container">
+                        <div class="crop-preview" id="crop-preview">
+                            <img id="crop-image" src="" alt="裁剪图片">
+                            <div class="crop-selection" id="crop-selection" style="display: none;"></div>
+                        </div>
+                        <div class="crop-info" id="crop-info">
+                            拖动鼠标选择裁剪区域
+                        </div>
+                        <div class="crop-actions">
+                            <button class="btn btn-success" onclick="applyCrop()">
+                                <i class="fas fa-check"></i>
+                                应用裁剪
+                            </button>
+                            <button class="btn btn-secondary" onclick="cancelCrop()">
+                                <i class="fas fa-times"></i>
+                                取消裁剪
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -475,6 +552,7 @@
                     <ul>
                         <li>支持本地上传图片进行英文文字识别</li>
                         <li>使用先进的OCR技术识别英文文字</li>
+                        <li>支持图片裁剪功能，可精确选择识别区域</li>
                         <li>识别结果实时显示，支持复制到剪贴板</li>
                         <li>完全在浏览器中处理，保护您的隐私</li>
                         <li>适配移动端和桌面端使用</li>
@@ -514,6 +592,15 @@
         // 全局变量
         let selectedImage = null;
         let dictionary = JSON.parse(localStorage.getItem('ocrDictionary')) || [];
+        
+        // 裁剪相关变量
+        let isCropping = false;
+        let cropStartX = 0;
+        let cropStartY = 0;
+        let cropEndX = 0;
+        let cropEndY = 0;
+        let isDragging = false;
+        let originalImageData = null;
 
         // 使用MyMemory翻译API获取单词翻译
         async function getTranslation(word) {
@@ -551,14 +638,200 @@
             const preview = document.getElementById('image-preview');
             const image = document.getElementById('preview-image');
             const recognizeBtn = document.getElementById('recognize-btn');
+            const cropBtn = document.getElementById('crop-btn');
 
             image.src = imageDataUrl;
             preview.classList.add('active');
             recognizeBtn.disabled = false;
+            cropBtn.disabled = false;
             selectedImage = imageDataUrl;
 
             // 清空之前的识别结果
             document.getElementById('output-result').textContent = '识别结果将显示在这里...';
+        }
+
+        // 开始裁剪
+        function startCrop() {
+            if (!selectedImage) {
+                alert('请先选择图片');
+                return;
+            }
+
+            isCropping = true;
+            const cropContainer = document.getElementById('crop-container');
+            const cropImage = document.getElementById('crop-image');
+            const preview = document.getElementById('image-preview');
+
+            // 隐藏原始预览，显示裁剪容器
+            preview.style.display = 'none';
+            cropContainer.classList.add('active');
+            cropImage.src = selectedImage;
+            originalImageData = selectedImage;
+
+            // 添加裁剪事件监听
+            setupCropEvents();
+        }
+
+        // 设置裁剪事件
+        function setupCropEvents() {
+            const cropPreview = document.getElementById('crop-preview');
+            const cropSelection = document.getElementById('crop-selection');
+            const cropInfo = document.getElementById('crop-info');
+
+            cropPreview.addEventListener('mousedown', startSelection);
+            cropPreview.addEventListener('mousemove', updateSelection);
+            cropPreview.addEventListener('mouseup', endSelection);
+
+            // 触摸事件支持
+            cropPreview.addEventListener('touchstart', handleTouchStart);
+            cropPreview.addEventListener('touchmove', handleTouchMove);
+            cropPreview.addEventListener('touchend', handleTouchEnd);
+
+            cropInfo.textContent = '拖动鼠标选择裁剪区域';
+        }
+
+        // 开始选择区域
+        function startSelection(e) {
+            if (!isCropping) return;
+
+            isDragging = true;
+            const rect = e.currentTarget.getBoundingClientRect();
+            cropStartX = e.clientX - rect.left;
+            cropStartY = e.clientY - rect.top;
+            cropEndX = cropStartX;
+            cropEndY = cropStartY;
+
+            updateCropSelection();
+        }
+
+        // 更新选择区域
+        function updateSelection(e) {
+            if (!isDragging || !isCropping) return;
+
+            const rect = e.currentTarget.getBoundingClientRect();
+            cropEndX = e.clientX - rect.left;
+            cropEndY = e.clientY - rect.top;
+
+            updateCropSelection();
+        }
+
+        // 结束选择区域
+        function endSelection() {
+            isDragging = false;
+        }
+
+        // 更新裁剪选择框显示
+        function updateCropSelection() {
+            const cropSelection = document.getElementById('crop-selection');
+            const cropInfo = document.getElementById('crop-info');
+
+            const x = Math.min(cropStartX, cropEndX);
+            const y = Math.min(cropStartY, cropEndY);
+            const width = Math.abs(cropEndX - cropStartX);
+            const height = Math.abs(cropEndY - cropStartY);
+
+            cropSelection.style.left = x + 'px';
+            cropSelection.style.top = y + 'px';
+            cropSelection.style.width = width + 'px';
+            cropSelection.style.height = height + 'px';
+            cropSelection.style.display = 'block';
+
+            cropInfo.textContent = `选择区域: ${Math.round(width)}×${Math.round(height)} 像素`;
+        }
+
+        // 触摸事件处理
+        function handleTouchStart(e) {
+            if (!isCropping) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = e.currentTarget.getBoundingClientRect();
+            cropStartX = touch.clientX - rect.left;
+            cropStartY = touch.clientY - rect.top;
+            cropEndX = cropStartX;
+            cropEndY = cropStartY;
+            isDragging = true;
+            updateCropSelection();
+        }
+
+        function handleTouchMove(e) {
+            if (!isDragging || !isCropping) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = e.currentTarget.getBoundingClientRect();
+            cropEndX = touch.clientX - rect.left;
+            cropEndY = touch.clientY - rect.top;
+            updateCropSelection();
+        }
+
+        function handleTouchEnd() {
+            isDragging = false;
+        }
+
+        // 应用裁剪
+        function applyCrop() {
+            if (!isCropping) return;
+
+            const cropSelection = document.getElementById('crop-selection');
+            if (cropSelection.style.display === 'none') {
+                alert('请先选择裁剪区域');
+                return;
+            }
+
+            const x = parseInt(cropSelection.style.left);
+            const y = parseInt(cropSelection.style.top);
+            const width = parseInt(cropSelection.style.width);
+            const height = parseInt(cropSelection.style.height);
+
+            if (width < 10 || height < 10) {
+                alert('裁剪区域太小，请选择更大的区域');
+                return;
+            }
+
+            // 创建Canvas进行裁剪
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+
+            img.onload = function() {
+                // 设置Canvas尺寸为裁剪区域
+                canvas.width = width;
+                canvas.height = height;
+
+                // 绘制裁剪区域
+                ctx.drawImage(
+                    img,
+                    x, y, width, height,  // 源图像裁剪区域
+                    0, 0, width, height   // Canvas绘制区域
+                );
+
+                // 获取裁剪后的图片数据
+                const croppedImageData = canvas.toDataURL('image/png');
+                
+                // 更新预览和全局变量
+                const previewImage = document.getElementById('preview-image');
+                previewImage.src = croppedImageData;
+                selectedImage = croppedImageData;
+
+                // 结束裁剪模式
+                cancelCrop();
+                alert('裁剪完成！');
+            };
+
+            img.src = originalImageData;
+        }
+
+        // 取消裁剪
+        function cancelCrop() {
+            isCropping = false;
+            isDragging = false;
+
+            const cropContainer = document.getElementById('crop-container');
+            const preview = document.getElementById('image-preview');
+            const cropSelection = document.getElementById('crop-selection');
+
+            cropContainer.classList.remove('active');
+            preview.style.display = 'block';
+            cropSelection.style.display = 'none';
         }
 
         // 识别文字
@@ -751,14 +1024,23 @@
         function clearAll() {
             const preview = document.getElementById('image-preview');
             const recognizeBtn = document.getElementById('recognize-btn');
+            const cropBtn = document.getElementById('crop-btn');
             const outputResult = document.getElementById('output-result');
             const fileInput = document.getElementById('file-input');
+            const cropContainer = document.getElementById('crop-container');
 
             preview.classList.remove('active');
+            preview.style.display = 'block';
             recognizeBtn.disabled = true;
+            cropBtn.disabled = true;
             outputResult.textContent = '识别结果将显示在这里...';
             fileInput.value = '';
             selectedImage = null;
+            
+            // 重置裁剪状态
+            cropContainer.classList.remove('active');
+            isCropping = false;
+            isDragging = false;
         }
 
         // 页面加载时初始化
