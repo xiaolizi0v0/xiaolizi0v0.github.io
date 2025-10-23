@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,12 +16,12 @@
             margin: 5rem auto;
             padding: 2rem;
         }
-        
+
         .tool-header {
             text-align: center;
             margin-bottom: 3rem;
         }
-        
+
         .tool-content {
             background: white;
             border-radius: var(--border-radius-lg);
@@ -28,14 +29,14 @@
             box-shadow: var(--shadow-md);
             border: 1px solid var(--gray-200);
         }
-        
+
         /* 图片选择区域 */
         .image-selection-area {
             margin-bottom: 2rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--gray-200);
         }
-        
+
         .image-preview-container {
             display: flex;
             flex-direction: column;
@@ -43,7 +44,7 @@
             gap: 1rem;
             margin-bottom: 2rem;
         }
-        
+
         .image-preview {
             max-width: 100%;
             max-height: 400px;
@@ -53,24 +54,24 @@
             background: var(--gray-50);
             display: none;
         }
-        
+
         .image-preview.active {
             display: block;
         }
-        
+
         .image-preview img {
             max-width: 100%;
             max-height: 350px;
             object-fit: contain;
         }
-        
+
         .selection-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .btn {
             padding: 0.8rem 1.5rem;
             border: none;
@@ -82,39 +83,39 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .btn-primary {
             background: var(--primary-color);
             color: white;
         }
-        
+
         .btn-primary:hover {
             background: var(--accent-color);
         }
-        
+
         .btn-secondary {
             background: var(--gray-100);
             color: var(--gray-700);
         }
-        
+
         .btn-secondary:hover {
             background: var(--gray-200);
         }
-        
+
         .btn-success {
             background: var(--success-color);
             color: white;
         }
-        
+
         .btn-success:hover {
             background: #059669;
         }
-        
+
         .btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
-        
+
         /* 文本展示区域 */
         .text-display-area {
             background: var(--gray-50);
@@ -122,12 +123,12 @@
             border-radius: var(--border-radius);
             border: 1px solid var(--gray-200);
         }
-        
+
         .text-display-area h3 {
             margin-top: 0;
             color: var(--gray-700);
         }
-        
+
         .result {
             background: white;
             padding: 1rem;
@@ -138,17 +139,17 @@
             white-space: pre-wrap;
             word-wrap: break-word;
         }
-        
+
         .loading {
             display: none;
             text-align: center;
             padding: 2rem;
         }
-        
+
         .loading.active {
             display: block;
         }
-        
+
         .spinner {
             border: 4px solid var(--gray-200);
             border-top: 4px solid var(--primary-color);
@@ -158,18 +159,23 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
+
         .progress-info {
             margin-top: 1rem;
             color: var(--gray-600);
             font-size: 0.9rem;
         }
-        
+
         .camera-container {
             display: none;
             flex-direction: column;
@@ -177,11 +183,11 @@
             gap: 1rem;
             margin-top: 1rem;
         }
-        
+
         .camera-container.active {
             display: flex;
         }
-        
+
         .camera-preview {
             width: 100%;
             max-width: 400px;
@@ -190,12 +196,12 @@
             border-radius: var(--border-radius);
             background: var(--gray-100);
         }
-        
+
         .camera-actions {
             display: flex;
             gap: 1rem;
         }
-        
+
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -208,34 +214,35 @@
             margin-bottom: 2rem;
             transition: var(--transition);
         }
-        
+
         .back-button:hover {
             background: var(--gray-200);
             color: var(--gray-800);
         }
-        
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .tool-container {
                 margin: 2rem auto;
                 padding: 1rem;
             }
-            
+
             .selection-buttons {
                 flex-direction: column;
                 align-items: stretch;
             }
-            
+
             .btn {
                 justify-content: center;
             }
-            
+
             .camera-actions {
                 flex-direction: column;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
@@ -268,12 +275,12 @@
                 <i class="fas fa-arrow-left"></i>
                 返回工具箱
             </a>
-            
+
             <div class="tool-header">
                 <h1 class="section-title">OCR 英文识别工具</h1>
                 <p>使用先进的OCR技术识别图片中的英文文字，支持摄像头拍摄、本地上传和相册选择</p>
             </div>
-            
+
             <div class="tool-content">
                 <!-- 图片选择区域 -->
                 <div class="image-selection-area">
@@ -282,7 +289,7 @@
                         <div class="image-preview" id="image-preview">
                             <img id="preview-image" src="" alt="预览图片">
                         </div>
-                        
+
                         <div class="selection-buttons">
                             <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
                                 <i class="fas fa-upload"></i>
@@ -293,19 +300,20 @@
                                 识别文字
                             </button>
                         </div>
-                        
+
                         <!-- 隐藏的文件输入 -->
-                        <input type="file" id="file-input" accept="image/*" style="display: none" onchange="handleFileSelect(event)">
+                        <input type="file" id="file-input" accept="image/*" style="display: none"
+                            onchange="handleFileSelect(event)">
                     </div>
                 </div>
-                
+
                 <!-- 加载状态 -->
                 <div class="loading" id="loading">
                     <div class="spinner"></div>
                     <p>正在识别文字...</p>
                     <div class="progress-info" id="progress-info"></div>
                 </div>
-                
+
                 <!-- 文本展示区域 -->
                 <div class="text-display-area">
                     <h3>识别结果</h3>
@@ -323,8 +331,9 @@
                         </button>
                     </div>
                 </div>
-                
-                <div class="tool-info" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--gray-200);">
+
+                <div class="tool-info"
+                    style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--gray-200);">
                     <h3>工具说明</h3>
                     <ul>
                         <li>支持本地上传图片进行英文文字识别</li>
@@ -348,39 +357,39 @@
     <script>
         // 全局变量
         let selectedImage = null;
-        
+
         // 处理文件选择
         function handleFileSelect(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     displayImagePreview(e.target.result);
                 };
                 reader.readAsDataURL(file);
             }
         }
-        
+
         // 显示图片预览
         function displayImagePreview(imageDataUrl) {
             const preview = document.getElementById('image-preview');
             const image = document.getElementById('preview-image');
             const recognizeBtn = document.getElementById('recognize-btn');
-            
+
             image.src = imageDataUrl;
             preview.classList.add('active');
             recognizeBtn.disabled = false;
             selectedImage = imageDataUrl;
-            
+
             // 清空之前的识别结果
             document.getElementById('output-result').textContent = '识别结果将显示在这里...';
         }
-        
+
         // 识别文字
         async function recognizeText() {
             if (!selectedImage) {
-                        alert('请先选择图片');
-                        return;
+                alert('请先选择图片');
+                return;
             }
 
             const loading = document.getElementById('loading');
@@ -391,36 +400,38 @@
             outputResult.textContent = '正在识别...';
 
             try {
-                const worker = await Tesseract.createWorker('eng');
-
-                // ✅ 正确的 logger 设置方式
-                worker.setLogger(m => {
-                        if (m.status === 'recognizing text') {
+                const result = await Tesseract.recognize(
+                    selectedImage,
+                    'eng',
+                    {
+                        logger: m => {
+                            if (m.status === 'recognizing text') {
                                 requestAnimationFrame(() => {
                                     progressInfo.textContent = `进度: ${Math.round(m.progress * 100)}%`;
                                 });
                             }
-                        });
-
-                        // ✅ 这里不再传 logger 参数
-                        const { data: { text, confidence } } = await worker.recognize(selectedImage);
-
-                        outputResult.textContent = text || '未识别到文字';
-                        if (text) {
-                                    outputResult.textContent += `\n\n识别置信度: ${Math.round(confidence)}%`;
                         }
+                    }
+                );
 
-                        await worker.terminate();
+                const text = result.data.text;
+                const confidence = result.data.confidence;
+
+                outputResult.textContent = text || '未识别到文字';
+                if (text) {
+                    outputResult.textContent += `\n\n识别置信度: ${Math.round(confidence)}%`;
+                }
             } catch (error) {
-                        console.error('OCR识别错误:', error);
-                        outputResult.textContent = '识别失败，请重试或更换图片';
+                console.error('OCR识别错误:', error);
+                outputResult.textContent = '识别失败，请重试或更换图片';
             } finally {
-                        loading.classList.remove('active');
-                        progressInfo.textContent = '';
+                loading.classList.remove('active');
+                progressInfo.textContent = '';
             }
         }
 
-        
+
+
         // 复制结果
         function copyResult() {
             const resultText = document.getElementById('output-result').textContent;
@@ -435,33 +446,33 @@
                 alert('没有可复制的内容');
             }
         }
-        
+
         // 清空所有
         function clearAll() {
             const preview = document.getElementById('image-preview');
             const recognizeBtn = document.getElementById('recognize-btn');
             const outputResult = document.getElementById('output-result');
             const fileInput = document.getElementById('file-input');
-            
+
             preview.classList.remove('active');
             recognizeBtn.disabled = true;
             outputResult.textContent = '识别结果将显示在这里...';
             fileInput.value = '';
             selectedImage = null;
         }
-        
+
         // 页面加载时初始化
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // 导航菜单切换（复用主站的JS功能）
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
-            
+
             if (hamburger && navMenu) {
                 hamburger.addEventListener('click', () => {
                     hamburger.classList.toggle('active');
                     navMenu.classList.toggle('active');
                 });
-                
+
                 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
@@ -470,4 +481,5 @@
         });
     </script>
 </body>
+
 </html>
