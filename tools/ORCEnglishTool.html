@@ -284,18 +284,12 @@
                         </div>
                         
                         <div class="selection-buttons">
-                            <button class="btn btn-primary" onclick="openCamera()">
-                                <i class="fas fa-camera"></i>
-                                摄像头拍摄
-                            </button>
+                            
                             <button class="btn btn-secondary" onclick="document.getElementById('file-input').click()">
                                 <i class="fas fa-upload"></i>
                                 本地上传
                             </button>
-                            <button class="btn btn-secondary" onclick="openFilePicker()">
-                                <i class="fas fa-images"></i>
-                                相册选择
-                            </button>
+                    
                             <button class="btn btn-success" id="recognize-btn" onclick="recognizeText()" disabled>
                                 <i class="fas fa-search"></i>
                                 识别文字
@@ -305,20 +299,7 @@
                         <!-- 隐藏的文件输入 -->
                         <input type="file" id="file-input" accept="image/*" style="display: none" onchange="handleFileSelect(event)">
                         
-                        <!-- 摄像头区域 -->
-                        <div class="camera-container" id="camera-container">
-                            <video class="camera-preview" id="camera-preview" autoplay playsinline></video>
-                            <div class="camera-actions">
-                                <button class="btn btn-primary" onclick="capturePhoto()">
-                                    <i class="fas fa-camera"></i>
-                                    拍照
-                                </button>
-                                <button class="btn btn-secondary" onclick="closeCamera()">
-                                    <i class="fas fa-times"></i>
-                                    关闭摄像头
-                                </button>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
                 
