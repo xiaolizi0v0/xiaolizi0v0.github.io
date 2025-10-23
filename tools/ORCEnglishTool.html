@@ -379,48 +379,47 @@
         // 识别文字
         async function recognizeText() {
             if (!selectedImage) {
-                alert('请先选择图片');
-                return;
+                        alert('请先选择图片');
+                        return;
             }
-            
+
             const loading = document.getElementById('loading');
             const progressInfo = document.getElementById('progress-info');
             const outputResult = document.getElementById('output-result');
-            
+
             loading.classList.add('active');
             outputResult.textContent = '正在识别...';
-            
+
             try {
                 const worker = await Tesseract.createWorker('eng');
-                
-                // 使用一个简单的logger函数，避免闭包问题
-                const { data: { text, confidence } } = await worker.recognize(selectedImage, {
-                    logger: function(m) {
+
+                // ✅ 正确的 logger 设置方式
+                worker.setLogger(m => {
                         if (m.status === 'recognizing text') {
-                            // 使用requestAnimationFrame来安全地更新DOM
-                            requestAnimationFrame(() => {
-                                progressInfo.textContent = `进度: ${Math.round(m.progress * 100)}%`;
-                            });
+                                requestAnimationFrame(() => {
+                                    progressInfo.textContent = `进度: ${Math.round(m.progress * 100)}%`;
+                                });
+                            }
+                        });
+
+                        // ✅ 这里不再传 logger 参数
+                        const { data: { text, confidence } } = await worker.recognize(selectedImage);
+
+                        outputResult.textContent = text || '未识别到文字';
+                        if (text) {
+                                    outputResult.textContent += `\n\n识别置信度: ${Math.round(confidence)}%`;
                         }
-                    }
-                });
-                
-                outputResult.textContent = text || '未识别到文字';
-                
-                if (text) {
-                    const confidenceText = `\n\n识别置信度: ${Math.round(confidence)}%`;
-                    outputResult.textContent += confidenceText;
-                }
-                
-                await worker.terminate();
+
+                        await worker.terminate();
             } catch (error) {
-                console.error('OCR识别错误:', error);
-                outputResult.textContent = '识别失败，请重试或更换图片';
+                        console.error('OCR识别错误:', error);
+                        outputResult.textContent = '识别失败，请重试或更换图片';
             } finally {
-                loading.classList.remove('active');
-                progressInfo.textContent = '';
+                        loading.classList.remove('active');
+                        progressInfo.textContent = '';
             }
         }
+
         
         // 复制结果
         function copyResult() {
