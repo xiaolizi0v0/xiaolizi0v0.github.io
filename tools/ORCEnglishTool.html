@@ -677,6 +677,14 @@
             const cropPreview = document.getElementById('crop-preview');
             const cropSelection = document.getElementById('crop-selection');
             const cropInfo = document.getElementById('crop-info');
+            const cropImage = document.getElementById('crop-image');
+
+            // 禁用图片的默认拖拽行为
+            cropImage.setAttribute('draggable', 'false');
+            cropImage.style.pointerEvents = 'none';
+            cropImage.style.userSelect = 'none';
+            cropImage.style.webkitUserSelect = 'none';
+            cropImage.style.webkitTouchCallout = 'none';
 
             cropPreview.addEventListener('mousedown', startSelection);
             cropPreview.addEventListener('mousemove', updateSelection);
@@ -686,6 +694,12 @@
             cropPreview.addEventListener('touchstart', handleTouchStart);
             cropPreview.addEventListener('touchmove', handleTouchMove);
             cropPreview.addEventListener('touchend', handleTouchEnd);
+
+            // 阻止默认的拖拽行为
+            cropPreview.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
 
             cropInfo.textContent = '拖动鼠标选择裁剪区域';
         }
@@ -828,6 +842,13 @@
             const cropContainer = document.getElementById('crop-container');
             const preview = document.getElementById('image-preview');
             const cropSelection = document.getElementById('crop-selection');
+            const cropImage = document.getElementById('crop-image');
+
+            // 恢复图片的正常状态
+            cropImage.style.pointerEvents = '';
+            cropImage.style.userSelect = '';
+            cropImage.style.webkitUserSelect = '';
+            cropImage.style.webkitTouchCallout = '';
 
             cropContainer.classList.remove('active');
             preview.style.display = 'block';
