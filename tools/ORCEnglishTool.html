@@ -284,12 +284,10 @@
                         </div>
                         
                         <div class="selection-buttons">
-                            
-                            <button class="btn btn-secondary" onclick="document.getElementById('file-input').click()">
+                            <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
                                 <i class="fas fa-upload"></i>
-                                本地上传
+                                选择图片
                             </button>
-                    
                             <button class="btn btn-success" id="recognize-btn" onclick="recognizeText()" disabled>
                                 <i class="fas fa-search"></i>
                                 识别文字
@@ -298,8 +296,6 @@
                         
                         <!-- 隐藏的文件输入 -->
                         <input type="file" id="file-input" accept="image/*" style="display: none" onchange="handleFileSelect(event)">
-                        
-                       
                     </div>
                 </div>
                 
@@ -331,7 +327,7 @@
                 <div class="tool-info" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--gray-200);">
                     <h3>工具说明</h3>
                     <ul>
-                        <li>支持三种图片选择方式：摄像头拍摄、本地上传、相册选择</li>
+                        <li>支持本地上传图片进行英文文字识别</li>
                         <li>使用先进的OCR技术识别英文文字</li>
                         <li>识别结果实时显示，支持复制到剪贴板</li>
                         <li>完全在浏览器中处理，保护您的隐私</li>
@@ -351,55 +347,7 @@
 
     <script>
         // 全局变量
-        let currentStream = null;
         let selectedImage = null;
-        
-        // 打开摄像头
-        async function openCamera() {
-            try {
-                const constraints = {
-                    video: {
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 },
-                        facingMode: 'environment' // 优先使用后置摄像头
-                    }
-                };
-                
-                currentStream = await navigator.mediaDevices.getUserMedia(constraints);
-                const video = document.getElementById('camera-preview');
-                video.srcObject = currentStream;
-                
-                document.getElementById('camera-container').classList.add('active');
-            } catch (error) {
-                console.error('无法访问摄像头:', error);
-                alert('无法访问摄像头，请确保已授予摄像头权限');
-            }
-        }
-        
-        // 关闭摄像头
-        function closeCamera() {
-            if (currentStream) {
-                currentStream.getTracks().forEach(track => track.stop());
-                currentStream = null;
-            }
-            document.getElementById('camera-container').classList.remove('active');
-        }
-        
-        // 拍照
-        function capturePhoto() {
-            const video = document.getElementById('camera-preview');
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            
-            // 将图片转换为DataURL
-            const imageDataUrl = canvas.toDataURL('image/jpeg');
-            displayImagePreview(imageDataUrl);
-            closeCamera();
-        }
         
         // 处理文件选择
         function handleFileSelect(event) {
@@ -411,11 +359,6 @@
                 };
                 reader.readAsDataURL(file);
             }
-        }
-        
-        // 打开文件选择器（移动端相册）
-        function openFilePicker() {
-            document.getElementById('file-input').click();
         }
         
         // 显示图片预览
@@ -502,9 +445,6 @@
             outputResult.textContent = '识别结果将显示在这里...';
             fileInput.value = '';
             selectedImage = null;
-            
-            // 关闭摄像头
-            closeCamera();
         }
         
         // 页面加载时初始化
@@ -525,3 +465,6 @@
                 }));
             }
         });
+    </script>
+</body>
+</html>
