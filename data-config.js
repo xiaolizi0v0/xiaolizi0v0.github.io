@@ -1,5 +1,6 @@
 // 数据配置文件 - 工具和笔记配置
 const dataConfig = {
+ //工具
   tools: [
     {
       id: "1",
@@ -11,6 +12,7 @@ const dataConfig = {
       date: "2025-10-22"
     }
   ],
+  //笔记
   notes: [
     {
       id: "1",
