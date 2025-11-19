@@ -117,6 +117,14 @@ const dataConfig = {
       description: "研究生一年级学习笔记",
       file: "notes/研一_2025.11.2.md",
       date: "2025-11-02"
+    },
+    {
+      id: "14",
+      title: "研一_2025.11.13",
+      icon: "fas fa-graduation-cap",
+      description: "图像处理期末",
+      file: "notes/研一_2025.11.13.md",
+      date: "2025-11-13"
     }
   ],
   categories: {
