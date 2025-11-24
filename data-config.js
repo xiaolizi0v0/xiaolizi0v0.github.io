@@ -125,6 +125,13 @@ const dataConfig = {
       description: "图像处理期末",
       file: "notes/研一_2025.11.13.md",
       date: "2025-11-13"
+    },{
+      id: "15",
+      title: "新中特期末",
+      icon: "fas fa-graduation-cap",
+      description: "新中特期末",
+      file: "notes/新中特期末.md",
+      date: "2025-11-24"
     }
   ],
   categories: {
