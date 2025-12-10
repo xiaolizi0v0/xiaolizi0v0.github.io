@@ -132,6 +132,13 @@ const dataConfig = {
       description: "新中特期末",
       file: "notes/新中特期末.md",
       date: "2025-11-24"
+    },{
+      id: "16",
+      title: "研究生英语期末",
+      icon: "fas fa-graduation-cap",
+      description: "研究生英语期末",
+      file: "notes/研究生英语期末.md",
+      date: "2025-12-10"
     }
   ],
   categories: {
