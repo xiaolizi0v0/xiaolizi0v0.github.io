@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF查看器 - 工具箱</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .tool-container {
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 2rem;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tool-content {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: 1rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .toolbar-left, .toolbar-right {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-color);
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-200);
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #d97706;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .page-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .page-input {
+            width: 60px;
+            padding: 0.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .page-info {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            min-width: 80px;
+        }
+
+        .zoom-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .zoom-select {
+            padding: 0.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--border-radius);
+            background: white;
+            font-size: 0.85rem;
+        }
+
+        .pdf-container {
+            display: flex;
+            gap: 1rem;
+            min-height: 600px;
+        }
+
+        .pdf-canvas-area {
+            flex: 1;
+            background: #f5f5f5;
+            border-radius: var(--border-radius);
+            overflow: auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .pdf-canvas {
+            max-width: 100%;
+            box-shadow: var(--shadow-md);
+            margin: 1rem;
+        }
+
+        .words-sidebar {
+            width: 320px;
+            background: var(--gray-50);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .words-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .words-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 0;
+        }
+
+        .words-count {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .words-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .word-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: white;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--gray-200);
+            gap: 1rem;
+        }
+
+        .word-text {
+            font-weight: 500;
+            color: var(--gray-800);
+            flex: 1;
+            word-break: break-word;
+        }
+
+        .word-delete {
+            background: none;
+            border: none;
+            color: var(--error-color, #dc2626);
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .word-delete:hover {
+            background: var(--error-color, #dc2626);
+            color: white;
+        }
+
+        .empty-words {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-500);
+        }
+
+        .empty-words i {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--gray-300);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--gray-50);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--primary-color);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .upload-input {
+            display: none;
+        }
+
+        .loading-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            border-radius: var(--border-radius);
+        }
+
+        .loading-overlay.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spinner {
+            border: 4px solid var(--gray-200);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .tooltip {
+            position: fixed;
+            background: var(--gray-800);
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            background: var(--gray-200);
+            color: var(--gray-800);
+        }
+
+        @media (max-width: 1024px) {
+            .pdf-container {
+                flex-direction: column;
+            }
+            
+            .words-sidebar {
+                width: 100%;
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                margin: 2rem auto;
+                padding: 1rem;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .toolbar-left, .toolbar-right {
+                justify-content: center;
+            }
+
+            .upload-area {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">我的博客</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">首页</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">关于我</a></li>
+                <li class="nav-item"><a href="../index.html#skills" class="nav-link">技能</a></li>
+                <li class="nav-item"><a href="../index.html#projects" class="nav-link">项目</a></li>
+                <li class="nav-item"><a href="../index.html#education" class="nav-link">教育</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">工具箱</a></li>
+                <li class="nav-item"><a href="../notes.html" class="nav-link">学习笔记</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">联系</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="tool-container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                返回工具箱
+            </a>
+
+            <div class="tool-header">
+                <h1 class="section-title">PDF查看器</h1>
+                <p>上传PDF文件进行查看，双击单词可添加到单词册，支持导出单词到Word文档</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="toolbar">
+                    <div class="toolbar-left">
+                        <button class="btn btn-primary" onclick="document.getElementById('pdf-upload').click()">
+                            <i class="fas fa-upload"></i>
+                            上传PDF
+                        </button>
+                        <input type="file" id="pdf-upload" accept=".pdf" class="upload-input" onchange="handleFileUpload(event)">
+                        
+                        <div class="page-controls">
+                            <button class="btn btn-secondary" id="prev-page" onclick="prevPage()" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <input type="number" id="page-number" class="page-input" min="1" value="1" onchange="goToPage()">
+                            <span class="page-info">/ <span id="total-pages">0</span></span>
+                            <button class="btn btn-secondary" id="next-page" onclick="nextPage()" disabled>
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="toolbar-right">
+                        <div class="zoom-controls">
+                            <button class="btn btn-secondary" onclick="zoomOut()">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <select id="zoom-select" class="zoom-select" onchange="setZoom()">
+                                <option value="50">50%</option>
+                                <option value="75">75%</option>
+                                <option value="100" selected>100%</option>
+                                <option value="125">125%</option>
+                                <option value="150">150%</option>
+                                <option value="200">200%</option>
+                            </select>
+                            <button class="btn btn-secondary" onclick="zoomIn()">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+
+                        <button class="btn btn-success" onclick="exportWords()" id="export-btn" disabled>
+                            <i class="fas fa-download"></i>
+                            导出单词
+                        </button>
+                        <button class="btn btn-warning" onclick="clearWords()" id="clear-btn" disabled>
+                            <i class="fas fa-trash"></i>
+                            清空单词册
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pdf-container">
+                    <div class="pdf-canvas-area" id="pdf-canvas-area">
+                        <div class="upload-area" id="upload-area" onclick="document.getElementById('pdf-upload').click()">
+                            <div class="upload-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="upload-text">点击或拖拽上传PDF文件</div>
+                            <div class="upload-hint">支持 .pdf 格式文件</div>
+                        </div>
+                        
+                        <div class="loading-overlay" id="loading-overlay">
+                            <div class="spinner"></div>
+                            <div class="loading-text" id="loading-text">正在加载PDF...</div>
+                        </div>
+                    </div>
+
+                    <div class="words-sidebar">
+                        <div class="words-header">
+                            <h3 class="words-title">单词册</h3>
+                            <span class="words-count" id="words-count">0 个单词</span>
+                        </div>
+                        
+                        <div class="words-list" id="words-list">
+                            <div class="empty-words">
+                                <i class="fas fa-book-open"></i>
+                                <p>暂无单词</p>
+                                <p style="font-size: 0.85rem;">在PDF中双击单词可添加到这里</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-info" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--gray-200);">
+                <h3>工具说明</h3>
+                <ul>
+                    <li>支持上传PDF文件进行在线查看</li>
+                    <li>双击PDF中的单词可将其添加到单词册</li>
+                    <li>单词册支持删除单个单词或清空所有单词</li>
+                    <li>支持将单词册导出为Word文档（仅包含单词列表）</li>
+                    <li>支持缩放、翻页等PDF查看功能</li>
+                    <li>完全在浏览器中处理，保护您的隐私</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 我的个人博客. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        let pdfDoc = null;
+        let currentPage = 1;
+        let zoom = 1;
+        let words = JSON.parse(localStorage.getItem('pdfWords') || '[]');
+        let canvas = null;
+        let ctx = null;
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                loadPDF(file);
+            }
+        }
+
+        async function loadPDF(file) {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const loadingText = document.getElementById('loading-text');
+            const uploadArea = document.getElementById('upload-area');
+            const pdfCanvasArea = document.getElementById('pdf-canvas-area');
+
+            loadingOverlay.classList.add('active');
+            uploadArea.style.display = 'none';
+            loadingText.textContent = '正在加载PDF...';
+
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                const typedArray = new Uint8Array(arrayBuffer);
+                
+                pdfDoc = await pdfjsLib.getDocument(typedArray).promise;
+                
+                const totalPages = pdfDoc.numPages;
+                document.getElementById('total-pages').textContent = totalPages;
+                document.getElementById('page-number').max = totalPages;
+                document.getElementById('prev-page').disabled = false;
+                document.getElementById('next-page').disabled = false;
+
+                if (!canvas) {
+                    canvas = document.createElement('canvas');
+                    canvas.className = 'pdf-canvas';
+                    ctx = canvas.getContext('2d');
+                    pdfCanvasArea.appendChild(canvas);
+                    
+                    canvas.addEventListener('dblclick', handleDoubleClick);
+                }
+
+                await renderPage(1);
+                updateWordsList();
+            } catch (error) {
+                console.error('加载PDF失败:', error);
+                alert('加载PDF失败，请确保文件是有效的PDF格式');
+                uploadArea.style.display = 'block';
+            } finally {
+                loadingOverlay.classList.remove('active');
+            }
+        }
+
+        async function renderPage(pageNum) {
+            if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) return;
+
+            currentPage = pageNum;
+            document.getElementById('page-number').value = pageNum;
+
+            const page = await pdfDoc.getPage(pageNum);
+            const viewport = page.getViewport({ scale: zoom });
+            
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+
+            const renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+
+            await page.render(renderContext).promise;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                renderPage(currentPage - 1);
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < pdfDoc.numPages) {
+                renderPage(currentPage + 1);
+            }
+        }
+
+        function goToPage() {
+            const pageNum = parseInt(document.getElementById('page-number').value);
+            if (pageNum >= 1 && pageNum <= pdfDoc.numPages) {
+                renderPage(pageNum);
+            } else {
+                document.getElementById('page-number').value = currentPage;
+            }
+        }
+
+        function zoomIn() {
+            zoom = Math.min(zoom + 0.25, 3);
+            document.getElementById('zoom-select').value = Math.round(zoom * 100);
+            if (pdfDoc) {
+                renderPage(currentPage);
+            }
+        }
+
+        function zoomOut() {
+            zoom = Math.max(zoom - 0.25, 0.25);
+            document.getElementById('zoom-select').value = Math.round(zoom * 100);
+            if (pdfDoc) {
+                renderPage(currentPage);
+            }
+        }
+
+        function setZoom() {
+            const zoomValue = parseInt(document.getElementById('zoom-select').value);
+            zoom = zoomValue / 100;
+            if (pdfDoc) {
+                renderPage(currentPage);
+            }
+        }
+
+        async function handleDoubleClick(event) {
+            if (!pdfDoc) return;
+
+            const rect = canvas.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width;
+            const y = (event.clientY - rect.top) / rect.height;
+
+            const page = await pdfDoc.getPage(currentPage);
+            const viewport = page.getViewport({ scale: zoom });
+            
+            const textContent = await page.getTextContent();
+            const pageWidth = viewport.width;
+            const pageHeight = viewport.height;
+
+            let foundWord = null;
+            let closestDist = Infinity;
+
+            for (const item of textContent.items) {
+                if (item.str && item.transform) {
+                    const tx = item.transform[4];
+                    const ty = item.transform[5];
+                    const fontHeight = Math.abs(item.transform[3]);
+                    const fontWidth = Math.abs(item.transform[0]);
+                    const wordWidth = item.str.length * fontWidth * 0.6;
+
+                    const wordX = tx / pageWidth;
+                    const wordY = (pageHeight - ty) / pageHeight;
+                    const wordWidthNorm = wordWidth / pageWidth;
+                    const wordHeightNorm = fontHeight / pageHeight;
+
+                    if (x >= wordX && x <= wordX + wordWidthNorm &&
+                        y >= wordY - wordHeightNorm && y <= wordY) {
+                        const dist = Math.abs(x - (wordX + wordWidthNorm / 2)) + 
+                                     Math.abs(y - (wordY - wordHeightNorm / 2));
+                        if (dist < closestDist) {
+                            closestDist = dist;
+                            foundWord = item.str;
+                        }
+                    }
+                }
+            }
+
+            if (foundWord) {
+                const cleanWord = foundWord.replace(/[^a-zA-Z]/g, '');
+                if (cleanWord.length > 1) {
+                    addWord(cleanWord);
+                }
+            }
+        }
+
+        function addWord(word) {
+            const lowerWord = word.toLowerCase();
+            
+            if (words.some(w => w.toLowerCase() === lowerWord)) {
+                alert(`单词 "${word}" 已在单词册中`);
+                return;
+            }
+
+            words.push(word);
+            saveWords();
+            updateWordsList();
+            alert(`已添加单词: ${word}`);
+        }
+
+        function deleteWord(word) {
+            if (confirm(`确定要删除单词 "${word}" 吗？`)) {
+                words = words.filter(w => w !== word);
+                saveWords();
+                updateWordsList();
+            }
+        }
+
+        function clearWords() {
+            if (confirm('确定要清空所有单词吗？此操作不可撤销。')) {
+                words = [];
+                saveWords();
+                updateWordsList();
+            }
+        }
+
+        function saveWords() {
+            localStorage.setItem('pdfWords', JSON.stringify(words));
+        }
+
+        function updateWordsList() {
+            const wordsList = document.getElementById('words-list');
+            const wordsCount = document.getElementById('words-count');
+            const exportBtn = document.getElementById('export-btn');
+            const clearBtn = document.getElementById('clear-btn');
+
+            wordsCount.textContent = `${words.length} 个单词`;
+            exportBtn.disabled = words.length === 0;
+            clearBtn.disabled = words.length === 0;
+
+            if (words.length === 0) {
+                wordsList.innerHTML = `
+                    <div class="empty-words">
+                        <i class="fas fa-book-open"></i>
+                        <p>暂无单词</p>
+                        <p style="font-size: 0.85rem;">在PDF中双击单词可添加到这里</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const sortedWords = [...words].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+            
+            wordsList.innerHTML = sortedWords.map(word => `
+                <div class="word-item">
+                    <span class="word-text">${word}</span>
+                    <button class="word-delete" onclick="deleteWord('${word}')" title="删除单词">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function exportWords() {
+            if (words.length === 0) {
+                alert('单词册为空，无需导出');
+                return;
+            }
+
+            const sortedWords = [...words].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+            const textContent = sortedWords.join('\n');
+
+            const blob = new Blob([textContent], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '单词册.doc';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            alert('单词册已导出为Word文档');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }));
+            }
+
+            const uploadArea = document.getElementById('upload-area');
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                const file = e.dataTransfer.files[0];
+                if (file && file.type === 'application/pdf') {
+                    loadPDF(file);
+                } else {
+                    alert('请上传PDF文件');
+                }
+            });
+
+            updateWordsList();
+        });
+    </script>
+</body>
+</html>

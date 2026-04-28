@@ -10,6 +10,15 @@ const dataConfig = {
       file: "ORCEnglishTool.html",
       category: "text",
       date: "2025-10-22"
+    },
+    {
+      id: "2",
+      title: "PDF查看器",
+      icon: "fas fa-file-pdf",
+      description: "上传PDF文件进行查看，双击单词可添加到单词册，支持导出单词到Word文档",
+      file: "PDFViewer.html",
+      category: "other",
+      date: "2026-04-28"
     }
   ],
   //笔记
