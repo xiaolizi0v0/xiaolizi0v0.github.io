@@ -627,7 +627,23 @@
             await page.render(renderContext).promise;
 
             const textContent = await page.getTextContent();
-            textItems = textContent.items.filter(item => item.str && item.str.trim().length > 0);
+            textItems = textContent.items
+                .filter(item => item.str && item.str.trim().length > 0)
+                .map(item => {
+                    const tx = item.transform[4];
+                    const ty = item.transform[5];
+                    const fontHeight = Math.abs(item.transform[3]);
+                    const fontWidth = Math.abs(item.transform[0]);
+                    const wordWidth = item.str.length * fontWidth * 0.6;
+                    
+                    return {
+                        str: item.str,
+                        x: tx,
+                        y: viewport.height - ty,
+                        width: wordWidth,
+                        height: fontHeight
+                    };
+                });
         }
 
         function prevPage() {
@@ -679,8 +695,8 @@
             if (!pdfDoc || !canvas || textItems.length === 0) return null;
 
             const rect = canvas.getBoundingClientRect();
-            const x = (mouseX - rect.left) / rect.width;
-            const y = (mouseY - rect.top) / rect.height;
+            const mouseXInCanvas = mouseX - rect.left;
+            const mouseYInCanvas = mouseY - rect.top;
 
             const pageWidth = canvas.width;
             const pageHeight = canvas.height;
@@ -689,32 +705,26 @@
             let closestDist = Infinity;
 
             for (const item of textItems) {
-                if (item.str && item.transform) {
-                    const tx = item.transform[4];
-                    const ty = item.transform[5];
-                    const fontHeight = Math.abs(item.transform[3]);
-                    const fontWidth = Math.abs(item.transform[0]);
-                    const wordWidth = item.str.length * fontWidth * 0.6;
+                const wordLeft = item.x;
+                const wordRight = item.x + item.width;
+                const wordTop = item.y - item.height;
+                const wordBottom = item.y;
 
-                    const wordX = tx / pageWidth;
-                    const wordY = (pageHeight - ty) / pageHeight;
-                    const wordWidthNorm = wordWidth / pageWidth;
-                    const wordHeightNorm = fontHeight / pageHeight;
-
-                    if (x >= wordX && x <= wordX + wordWidthNorm &&
-                        y >= wordY - wordHeightNorm && y <= wordY) {
-                        const dist = Math.abs(x - (wordX + wordWidthNorm / 2)) + 
-                                     Math.abs(y - (wordY - wordHeightNorm / 2));
-                        if (dist < closestDist) {
-                            closestDist = dist;
-                            foundWord = {
-                                text: item.str,
-                                x: wordX,
-                                y: wordY - wordHeightNorm,
-                                width: wordWidthNorm,
-                                height: wordHeightNorm
-                            };
-                        }
+                if (mouseXInCanvas >= wordLeft && mouseXInCanvas <= wordRight &&
+                    mouseYInCanvas >= wordTop && mouseYInCanvas <= wordBottom) {
+                    const centerX = (wordLeft + wordRight) / 2;
+                    const centerY = (wordTop + wordBottom) / 2;
+                    const dist = Math.abs(mouseXInCanvas - centerX) + Math.abs(mouseYInCanvas - centerY);
+                    
+                    if (dist < closestDist) {
+                        closestDist = dist;
+                        foundWord = {
+                            text: item.str,
+                            x: wordLeft / pageWidth,
+                            y: wordTop / pageHeight,
+                            width: item.width / pageWidth,
+                            height: item.height / pageHeight
+                        };
                     }
                 }
             }
