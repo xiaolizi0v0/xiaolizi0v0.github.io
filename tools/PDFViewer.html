@@ -140,32 +140,51 @@
             min-height: 600px;
         }
 
-        .pdf-canvas-area {
+        .pdf-content-area {
             flex: 1;
-            background: #f5f5f5;
+            background: white;
             border-radius: var(--border-radius);
             overflow: auto;
+            border: 1px solid var(--gray-200);
+        }
+
+        .pdf-page {
+            padding: 2rem;
+            min-height: 800px;
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .pdf-canvas {
-            max-width: 100%;
-            box-shadow: var(--shadow-md);
+            background: white;
             margin: 1rem;
-            cursor: text;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 4px;
         }
 
-        .word-highlight {
-            position: absolute;
-            border: 2px solid var(--primary-color);
-            background: rgba(59, 130, 246, 0.1);
-            pointer-events: none;
-            z-index: 5;
+        .pdf-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .word-span {
+            display: inline-block;
+            padding: 2px 4px;
+            margin: 1px;
+            cursor: pointer;
             border-radius: 3px;
-            transition: all 0.1s ease;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .word-span:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid var(--primary-color);
+        }
+
+        .word-span.highlighted {
+            background: rgba(59, 130, 246, 0.3);
+            border: 1px solid var(--primary-color);
         }
 
         .words-sidebar {
@@ -253,7 +272,7 @@
         .upload-area {
             border: 2px dashed var(--gray-300);
             border-radius: var(--border-radius-lg);
-            padding: 3rem;
+            padding: 4rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -330,23 +349,6 @@
             font-size: 0.95rem;
         }
 
-        .tooltip {
-            position: fixed;
-            background: var(--gray-800);
-            color: white;
-            padding: 0.5rem 0.75rem;
-            border-radius: var(--border-radius);
-            font-size: 0.85rem;
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .tooltip.visible {
-            opacity: 1;
-        }
-
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -393,6 +395,11 @@
 
             .upload-area {
                 padding: 2rem 1rem;
+            }
+
+            .pdf-page {
+                padding: 1rem;
+                margin: 0.5rem;
             }
         }
     </style>
@@ -460,11 +467,11 @@
                                 <i class="fas fa-search-minus"></i>
                             </button>
                             <select id="zoom-select" class="zoom-select" onchange="setZoom()">
-                                <option value="50">50%</option>
                                 <option value="75">75%</option>
                                 <option value="100" selected>100%</option>
                                 <option value="125">125%</option>
                                 <option value="150">150%</option>
+                                <option value="175">175%</option>
                                 <option value="200">200%</option>
                             </select>
                             <button class="btn btn-secondary" onclick="zoomIn()">
@@ -484,7 +491,7 @@
                 </div>
 
                 <div class="pdf-container">
-                    <div class="pdf-canvas-area" id="pdf-canvas-area">
+                    <div class="pdf-content-area" id="pdf-content-area">
                         <div class="upload-area" id="upload-area" onclick="document.getElementById('pdf-upload').click()">
                             <div class="upload-icon">
                                 <i class="fas fa-file-pdf"></i>
@@ -542,10 +549,7 @@
         let currentPage = 1;
         let zoom = 1;
         let words = JSON.parse(localStorage.getItem('pdfWords') || '[]');
-        let canvas = null;
-        let ctx = null;
-        let textItems = [];
-        let highlightDiv = null;
+        let allPagesText = [];
 
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -560,7 +564,7 @@
             const loadingOverlay = document.getElementById('loading-overlay');
             const loadingText = document.getElementById('loading-text');
             const uploadArea = document.getElementById('upload-area');
-            const pdfCanvasArea = document.getElementById('pdf-canvas-area');
+            const pdfContentArea = document.getElementById('pdf-content-area');
 
             loadingOverlay.classList.add('active');
             uploadArea.style.display = 'none';
@@ -571,29 +575,21 @@
                 const typedArray = new Uint8Array(arrayBuffer);
                 
                 pdfDoc = await pdfjsLib.getDocument(typedArray).promise;
-                
                 const totalPages = pdfDoc.numPages;
+                
                 document.getElementById('total-pages').textContent = totalPages;
                 document.getElementById('page-number').max = totalPages;
                 document.getElementById('prev-page').disabled = false;
                 document.getElementById('next-page').disabled = false;
 
-                if (!canvas) {
-                    canvas = document.createElement('canvas');
-                    canvas.className = 'pdf-canvas';
-                    ctx = canvas.getContext('2d');
-                    pdfCanvasArea.appendChild(canvas);
-                    
-                    canvas.addEventListener('dblclick', handleDoubleClick);
-                    canvas.addEventListener('mousemove', handleMouseMove);
-                    canvas.addEventListener('mouseleave', handleMouseLeave);
-                }
-
-                if (!highlightDiv) {
-                    highlightDiv = document.createElement('div');
-                    highlightDiv.className = 'word-highlight';
-                    highlightDiv.style.display = 'none';
-                    pdfCanvasArea.appendChild(highlightDiv);
+                loadingText.textContent = '正在提取文本...';
+                allPagesText = [];
+                
+                for (let i = 1; i <= totalPages; i++) {
+                    loadingText.textContent = `正在提取第 ${i}/${totalPages} 页...`;
+                    const page = await pdfDoc.getPage(i);
+                    const textContent = await page.getTextContent();
+                    allPagesText.push(textContent);
                 }
 
                 await renderPage(1);
@@ -613,40 +609,71 @@
             currentPage = pageNum;
             document.getElementById('page-number').value = pageNum;
 
-            const page = await pdfDoc.getPage(pageNum);
-            const viewport = page.getViewport({ scale: zoom });
-            
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
+            const textContent = allPagesText[pageNum - 1];
+            const pdfContentArea = document.getElementById('pdf-content-area');
 
-            const renderContext = {
-                canvasContext: ctx,
-                viewport: viewport
-            };
+            const pageDiv = document.createElement('div');
+            pageDiv.className = 'pdf-page';
+            pageDiv.style.fontSize = `${16 * zoom}px`;
 
-            await page.render(renderContext).promise;
+            const textDiv = document.createElement('div');
+            textDiv.className = 'pdf-text';
 
-            const textContent = await page.getTextContent();
-            textItems = textContent.items
-                .filter(item => item.str && item.str.trim().length > 0)
-                .map(item => {
-                    const fontHeight = Math.abs(item.transform[3]);
-                    const fontWidth = Math.abs(item.transform[0]);
-                    const wordWidth = item.str.length * fontWidth * 0.7;
+            let html = '';
+            let lastY = -1;
+
+            for (const item of textContent.items) {
+                if (item.str && item.str.trim().length > 0) {
+                    const itemY = item.transform[5];
                     
-                    const pdfX = item.transform[4];
-                    const pdfY = item.transform[5];
+                    if (lastY !== -1 && itemY < lastY - 10) {
+                        html += '<br><br>';
+                    } else if (lastY !== -1 && itemY < lastY) {
+                        html += '<br>';
+                    }
                     
-                    const viewportPoint = viewport.convertToViewportPoint(pdfX, pdfY);
+                    const words = item.str.split(/(\s+)/);
+                    words.forEach(word => {
+                        if (/\s+/.test(word)) {
+                            html += word;
+                        } else if (/^[a-zA-Z]+$/.test(word)) {
+                            const isInWords = words.some(w => w.toLowerCase() === word.toLowerCase());
+                            html += `<span class="word-span${isInWords ? ' highlighted' : ''}" data-word="${word}">${word}</span>`;
+                        } else {
+                            html += word;
+                        }
+                    });
                     
-                    return {
-                        str: item.str,
-                        x: viewportPoint.x,
-                        y: viewport.height - viewportPoint.y,
-                        width: wordWidth * zoom,
-                        height: fontHeight * zoom
-                    };
-                });
+                    lastY = itemY;
+                }
+            }
+
+            textDiv.innerHTML = html;
+            pageDiv.appendChild(textDiv);
+            pdfContentArea.innerHTML = '';
+            pdfContentArea.appendChild(pageDiv);
+
+            document.querySelectorAll('.word-span').forEach(span => {
+                span.addEventListener('mouseenter', handleWordHover);
+                span.addEventListener('mouseleave', handleWordLeave);
+                span.addEventListener('dblclick', handleWordDoubleClick);
+            });
+        }
+
+        function handleWordHover(e) {
+            e.target.classList.add('highlighted');
+        }
+
+        function handleWordLeave(e) {
+            const word = e.target.dataset.word;
+            if (!words.some(w => w.toLowerCase() === word.toLowerCase())) {
+                e.target.classList.remove('highlighted');
+            }
+        }
+
+        function handleWordDoubleClick(e) {
+            const word = e.target.dataset.word;
+            addWord(word);
         }
 
         function prevPage() {
@@ -671,7 +698,7 @@
         }
 
         function zoomIn() {
-            zoom = Math.min(zoom + 0.25, 3);
+            zoom = Math.min(zoom + 0.25, 2);
             document.getElementById('zoom-select').value = Math.round(zoom * 100);
             if (pdfDoc) {
                 renderPage(currentPage);
@@ -679,7 +706,7 @@
         }
 
         function zoomOut() {
-            zoom = Math.max(zoom - 0.25, 0.25);
+            zoom = Math.max(zoom - 0.25, 0.75);
             document.getElementById('zoom-select').value = Math.round(zoom * 100);
             if (pdfDoc) {
                 renderPage(currentPage);
@@ -694,85 +721,6 @@
             }
         }
 
-        function getWordAtPosition(mouseX, mouseY) {
-            if (!pdfDoc || !canvas || textItems.length === 0) return null;
-
-            const rect = canvas.getBoundingClientRect();
-            const mouseXInCanvas = mouseX - rect.left;
-            const mouseYInCanvas = mouseY - rect.top;
-
-            const pageWidth = canvas.width;
-            const pageHeight = canvas.height;
-
-            let foundWord = null;
-            let closestDist = Infinity;
-
-            for (const item of textItems) {
-                const wordLeft = item.x;
-                const wordRight = item.x + item.width;
-                const wordTop = item.y - item.height;
-                const wordBottom = item.y;
-
-                if (mouseXInCanvas >= wordLeft && mouseXInCanvas <= wordRight &&
-                    mouseYInCanvas >= wordTop && mouseYInCanvas <= wordBottom) {
-                    const centerX = (wordLeft + wordRight) / 2;
-                    const centerY = (wordTop + wordBottom) / 2;
-                    const dist = Math.abs(mouseXInCanvas - centerX) + Math.abs(mouseYInCanvas - centerY);
-                    
-                    if (dist < closestDist) {
-                        closestDist = dist;
-                        foundWord = {
-                            text: item.str,
-                            x: wordLeft / pageWidth,
-                            y: wordTop / pageHeight,
-                            width: item.width / pageWidth,
-                            height: item.height / pageHeight
-                        };
-                    }
-                }
-            }
-
-            return foundWord;
-        }
-
-        function handleMouseMove(event) {
-            const word = getWordAtPosition(event.clientX, event.clientY);
-            
-            if (word && highlightDiv) {
-                const rect = canvas.getBoundingClientRect();
-                const canvasArea = document.getElementById('pdf-canvas-area');
-                const areaRect = canvasArea.getBoundingClientRect();
-                
-                highlightDiv.style.display = 'block';
-                highlightDiv.style.left = (rect.left - areaRect.left + word.x * rect.width) + 'px';
-                highlightDiv.style.top = (rect.top - areaRect.top + word.y * rect.height) + 'px';
-                highlightDiv.style.width = (word.width * rect.width) + 'px';
-                highlightDiv.style.height = (word.height * rect.height) + 'px';
-                highlightDiv.textContent = word.text;
-            } else if (highlightDiv) {
-                highlightDiv.style.display = 'none';
-            }
-        }
-
-        function handleMouseLeave() {
-            if (highlightDiv) {
-                highlightDiv.style.display = 'none';
-            }
-        }
-
-        async function handleDoubleClick(event) {
-            if (!pdfDoc) return;
-
-            const word = getWordAtPosition(event.clientX, event.clientY);
-            
-            if (word) {
-                const cleanWord = word.text.replace(/[^a-zA-Z]/g, '');
-                if (cleanWord.length > 1) {
-                    addWord(cleanWord);
-                }
-            }
-        }
-
         function addWord(word) {
             const lowerWord = word.toLowerCase();
             
@@ -784,7 +732,16 @@
             words.push(word);
             saveWords();
             updateWordsList();
+            highlightWordInText(word);
             alert(`已添加单词: ${word}`);
+        }
+
+        function highlightWordInText(word) {
+            document.querySelectorAll('.word-span').forEach(span => {
+                if (span.dataset.word.toLowerCase() === word.toLowerCase()) {
+                    span.classList.add('highlighted');
+                }
+            });
         }
 
         function deleteWord(word) {
@@ -792,7 +749,16 @@
                 words = words.filter(w => w !== word);
                 saveWords();
                 updateWordsList();
+                unhighlightWordInText(word);
             }
+        }
+
+        function unhighlightWordInText(word) {
+            document.querySelectorAll('.word-span').forEach(span => {
+                if (span.dataset.word.toLowerCase() === word.toLowerCase()) {
+                    span.classList.remove('highlighted');
+                }
+            });
         }
 
         function clearWords() {
@@ -800,6 +766,9 @@
                 words = [];
                 saveWords();
                 updateWordsList();
+                document.querySelectorAll('.word-span').forEach(span => {
+                    span.classList.remove('highlighted');
+                });
             }
         }
 
