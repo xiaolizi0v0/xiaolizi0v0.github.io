@@ -630,18 +630,21 @@
             textItems = textContent.items
                 .filter(item => item.str && item.str.trim().length > 0)
                 .map(item => {
-                    const tx = item.transform[4];
-                    const ty = item.transform[5];
                     const fontHeight = Math.abs(item.transform[3]);
                     const fontWidth = Math.abs(item.transform[0]);
-                    const wordWidth = item.str.length * fontWidth * 0.6;
+                    const wordWidth = item.str.length * fontWidth * 0.7;
+                    
+                    const pdfX = item.transform[4];
+                    const pdfY = item.transform[5];
+                    
+                    const viewportPoint = viewport.convertToViewportPoint(pdfX, pdfY);
                     
                     return {
                         str: item.str,
-                        x: tx,
-                        y: viewport.height - ty,
-                        width: wordWidth,
-                        height: fontHeight
+                        x: viewportPoint.x,
+                        y: viewport.height - viewportPoint.y,
+                        width: wordWidth * zoom,
+                        height: fontHeight * zoom
                     };
                 });
         }
