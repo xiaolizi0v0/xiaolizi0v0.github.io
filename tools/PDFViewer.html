@@ -155,6 +155,17 @@
             max-width: 100%;
             box-shadow: var(--shadow-md);
             margin: 1rem;
+            cursor: text;
+        }
+
+        .word-highlight {
+            position: absolute;
+            border: 2px solid var(--primary-color);
+            background: rgba(59, 130, 246, 0.1);
+            pointer-events: none;
+            z-index: 5;
+            border-radius: 3px;
+            transition: all 0.1s ease;
         }
 
         .words-sidebar {
@@ -533,6 +544,8 @@
         let words = JSON.parse(localStorage.getItem('pdfWords') || '[]');
         let canvas = null;
         let ctx = null;
+        let textItems = [];
+        let highlightDiv = null;
 
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -572,6 +585,15 @@
                     pdfCanvasArea.appendChild(canvas);
                     
                     canvas.addEventListener('dblclick', handleDoubleClick);
+                    canvas.addEventListener('mousemove', handleMouseMove);
+                    canvas.addEventListener('mouseleave', handleMouseLeave);
+                }
+
+                if (!highlightDiv) {
+                    highlightDiv = document.createElement('div');
+                    highlightDiv.className = 'word-highlight';
+                    highlightDiv.style.display = 'none';
+                    pdfCanvasArea.appendChild(highlightDiv);
                 }
 
                 await renderPage(1);
@@ -603,6 +625,9 @@
             };
 
             await page.render(renderContext).promise;
+
+            const textContent = await page.getTextContent();
+            textItems = textContent.items.filter(item => item.str && item.str.trim().length > 0);
         }
 
         function prevPage() {
@@ -650,24 +675,20 @@
             }
         }
 
-        async function handleDoubleClick(event) {
-            if (!pdfDoc) return;
+        function getWordAtPosition(mouseX, mouseY) {
+            if (!pdfDoc || !canvas || textItems.length === 0) return null;
 
             const rect = canvas.getBoundingClientRect();
-            const x = (event.clientX - rect.left) / rect.width;
-            const y = (event.clientY - rect.top) / rect.height;
+            const x = (mouseX - rect.left) / rect.width;
+            const y = (mouseY - rect.top) / rect.height;
 
-            const page = await pdfDoc.getPage(currentPage);
-            const viewport = page.getViewport({ scale: zoom });
-            
-            const textContent = await page.getTextContent();
-            const pageWidth = viewport.width;
-            const pageHeight = viewport.height;
+            const pageWidth = canvas.width;
+            const pageHeight = canvas.height;
 
             let foundWord = null;
             let closestDist = Infinity;
 
-            for (const item of textContent.items) {
+            for (const item of textItems) {
                 if (item.str && item.transform) {
                     const tx = item.transform[4];
                     const ty = item.transform[5];
@@ -686,14 +707,53 @@
                                      Math.abs(y - (wordY - wordHeightNorm / 2));
                         if (dist < closestDist) {
                             closestDist = dist;
-                            foundWord = item.str;
+                            foundWord = {
+                                text: item.str,
+                                x: wordX,
+                                y: wordY - wordHeightNorm,
+                                width: wordWidthNorm,
+                                height: wordHeightNorm
+                            };
                         }
                     }
                 }
             }
 
-            if (foundWord) {
-                const cleanWord = foundWord.replace(/[^a-zA-Z]/g, '');
+            return foundWord;
+        }
+
+        function handleMouseMove(event) {
+            const word = getWordAtPosition(event.clientX, event.clientY);
+            
+            if (word && highlightDiv) {
+                const rect = canvas.getBoundingClientRect();
+                const canvasArea = document.getElementById('pdf-canvas-area');
+                const areaRect = canvasArea.getBoundingClientRect();
+                
+                highlightDiv.style.display = 'block';
+                highlightDiv.style.left = (rect.left - areaRect.left + word.x * rect.width) + 'px';
+                highlightDiv.style.top = (rect.top - areaRect.top + word.y * rect.height) + 'px';
+                highlightDiv.style.width = (word.width * rect.width) + 'px';
+                highlightDiv.style.height = (word.height * rect.height) + 'px';
+                highlightDiv.textContent = word.text;
+            } else if (highlightDiv) {
+                highlightDiv.style.display = 'none';
+            }
+        }
+
+        function handleMouseLeave() {
+            if (highlightDiv) {
+                highlightDiv.style.display = 'none';
+            }
+        }
+
+        async function handleDoubleClick(event) {
+            if (!pdfDoc) return;
+
+            const word = getWordAtPosition(event.clientX, event.clientY);
+            
+            if (word) {
+                const cleanWord = word.text.replace(/[^a-zA-Z]/g, '');
                 if (cleanWord.length > 1) {
                     addWord(cleanWord);
                 }
