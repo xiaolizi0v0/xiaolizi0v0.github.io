@@ -860,22 +860,40 @@
             const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() || '#3b82f6';
 
             const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-            const curvePath = (a, b) => {
+            const curvePath = (a, b, strengthMul = 1) => {
+                const dx = b.x - a.x;
                 const dy = b.y - a.y;
-                const absDy = Math.abs(dy);
-                const baseOffset = clamp(absDy * 0.35, 28, 90);
+                const len = Math.hypot(dx, dy) || 1;
 
-                // 优先往右绕；如果右侧不够空间就往左。
-                const rightSpace = contentWidth - a.x;
-                const leftSpace = a.x;
-                const dir = rightSpace >= baseOffset + 16 ? 1 : (leftSpace >= baseOffset + 16 ? -1 : 1);
-                const offset = baseOffset * dir;
+                // 法向量（垂直方向）
+                let nx = -dy / len;
+                let ny = dx / len;
 
-                const c1x = clamp(a.x + offset, 8, contentWidth - 8);
-                const c2x = clamp(b.x + offset, 8, contentWidth - 8);
+                // 弧度大小：跟距离相关，且最小也足够明显
+                const magnitude = clamp(len * 0.25 * strengthMul, 36, 140);
 
-                // 使用 cubic Bezier，让曲线整体往一侧鼓出。
-                return `M ${a.x} ${a.y} C ${c1x} ${a.y} ${c2x} ${b.y} ${b.x} ${b.y}`;
+                const midX = (a.x + b.x) / 2;
+                const midY = (a.y + b.y) / 2;
+
+                // 默认让曲线朝“左侧”鼓（control.x 更小）；如果会越界就翻转。
+                const preferLeft = -1;
+                if (nx * preferLeft < 0) {
+                    nx = -nx;
+                    ny = -ny;
+                }
+
+                let cx = midX + nx * magnitude;
+                let cy = midY + ny * magnitude;
+
+                if (cx < 8 || cx > contentWidth - 8 || cy < 8 || cy > contentHeight - 8) {
+                    cx = midX - nx * magnitude;
+                    cy = midY - ny * magnitude;
+                }
+
+                cx = clamp(cx, 8, contentWidth - 8);
+                cy = clamp(cy, 8, contentHeight - 8);
+
+                return `M ${a.x} ${a.y} Q ${cx} ${cy} ${b.x} ${b.y}`;
             };
 
             // 已确定的连线（点与点之间）
@@ -901,7 +919,7 @@
 
                 const last = points[points.length - 1];
                 const rubber = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                rubber.setAttribute('d', curvePath(last, { x: mx, y: my }));
+                rubber.setAttribute('d', `M ${last.x} ${last.y} L ${mx} ${my}`);
                 rubber.setAttribute('stroke', primary);
                 rubber.setAttribute('stroke-width', '2');
                 rubber.setAttribute('fill', 'none');
