@@ -1325,7 +1325,7 @@
             pruneLinkedWords();
             const linkedSet = new Set(linkedWordOrder);
 
-            const sortedWords = [...words].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+            const sortedWords = [...words];
 
             // 重建 DOM（避免单词中出现 ' 导致 onclick 模板字符串崩掉，也方便画连线/定位动画）。
             wordsList.innerHTML = '';
@@ -1388,8 +1388,7 @@
                 return;
             }
 
-            const sortedWords = [...words].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
-            const textContent = sortedWords.join('\n');
+            const textContent = words.join('\n');
 
             const blob = new Blob([textContent], { type: 'application/msword' });
             const url = URL.createObjectURL(blob);
