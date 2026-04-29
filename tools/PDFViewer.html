@@ -149,10 +149,15 @@
             position: relative;
         }
 
+        .pdf-stage {
+            position: relative;
+            margin: 0 auto;
+            display: block;
+        }
+
         .pdf-canvas {
             display: block;
             margin: 0 auto;
-            max-width: 100%;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
@@ -473,6 +478,7 @@
 
                 <div class="pdf-container">
                     <div class="pdf-content-area" id="pdf-content-area">
+                        <div id="pdf-stage" class="pdf-stage"></div>
                         <div class="upload-area" id="upload-area" onclick="document.getElementById('pdf-upload').click()">
                             <div class="upload-icon">
                                 <i class="fas fa-file-pdf"></i>
@@ -532,10 +538,14 @@
         let words = JSON.parse(localStorage.getItem('pdfWords') || '[]');
         let allPagesText = [];
         let currentCanvas = null;
+        let currentWordBoxes = [];
+        let pdfStage = null;
 
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
         document.addEventListener('DOMContentLoaded', function() {
+            pdfStage = document.getElementById('pdf-stage');
+
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
 
@@ -575,6 +585,65 @@
 
             updateWordsList();
         });
+
+        function extractEnglishWord(text) {
+            if (!text) return null;
+            const match = String(text).match(/[A-Za-z]+(?:['-][A-Za-z]+)*/);
+            return match ? match[0] : null;
+        }
+
+        function buildWordBoxes(textContent, viewport) {
+            const items = textContent?.items || [];
+            const boxes = [];
+
+            for (const item of items) {
+                const word = extractEnglishWord(item?.str);
+                if (!word || word.length <= 1) continue;
+                if (!item?.transform) continue;
+
+                // Convert item transform into viewport (canvas) coordinate space.
+                const tx = pdfjsLib.Util.transform(viewport.transform, item.transform);
+                const x = tx[4];
+                const y = tx[5];
+                const fontHeight = Math.hypot(tx[2], tx[3]);
+
+                // item.width is in PDF units; scale to viewport pixels.
+                const width = (typeof item.width === 'number' ? item.width * viewport.scale : word.length * fontHeight * 0.6);
+
+                const left = x;
+                const top = y - fontHeight;
+
+                // Skip weird/invalid boxes.
+                if (!Number.isFinite(left) || !Number.isFinite(top) || !Number.isFinite(width) || !Number.isFinite(fontHeight)) continue;
+                if (width <= 0 || fontHeight <= 0) continue;
+
+                boxes.push({
+                    word,
+                    rect: { left, top, width, height: fontHeight },
+                    center: { x: left + width / 2, y: top + fontHeight / 2 },
+                });
+            }
+
+            return boxes;
+        }
+
+        function findWordBoxAtPoint(xPx, yPx) {
+            let best = null;
+            let bestDist = Infinity;
+
+            for (const box of currentWordBoxes) {
+                const r = box.rect;
+                if (xPx >= r.left && xPx <= r.left + r.width && yPx >= r.top && yPx <= r.top + r.height) {
+                    const dist = Math.abs(xPx - box.center.x) + Math.abs(yPx - box.center.y);
+                    if (dist < bestDist) {
+                        bestDist = dist;
+                        best = box;
+                    }
+                }
+            }
+
+            return best;
+        }
 
         function handleFileUpload(event) {
             const file = event.target.files[0];
@@ -620,6 +689,7 @@
                 console.error('加载PDF失败:', error);
                 alert('加载PDF失败，请确保文件是有效的PDF格式');
                 uploadArea.style.display = 'flex';
+                if (pdfStage) pdfStage.innerHTML = '';
             } finally {
                 loadingOverlay.classList.remove('active');
             }
@@ -647,134 +717,82 @@
 
             await page.render(renderContext).promise;
 
-            const pdfContentArea = document.getElementById('pdf-content-area');
-            pdfContentArea.innerHTML = '';
-            pdfContentArea.appendChild(canvas);
+            if (!pdfStage) {
+                pdfStage = document.getElementById('pdf-stage');
+            }
+            if (!pdfStage) return;
+
+            pdfStage.innerHTML = '';
+            pdfStage.style.width = canvas.width + 'px';
+            pdfStage.style.height = canvas.height + 'px';
+            pdfStage.appendChild(canvas);
 
             currentCanvas = canvas;
+
+            if (!highlightDiv) {
+                highlightDiv = document.createElement('div');
+                highlightDiv.className = 'word-highlight';
+            }
+            highlightDiv.style.display = 'none';
+            pdfStage.appendChild(highlightDiv);
+
+            currentWordBoxes = buildWordBoxes(allPagesText[pageNum - 1], viewport);
 
             canvas.addEventListener('dblclick', handleDoubleClick);
             canvas.addEventListener('mousemove', handleMouseMove);
             canvas.addEventListener('mouseleave', handleMouseLeave);
         }
 
-        async function handleDoubleClick(event) {
+        function handleDoubleClick(event) {
             if (!pdfDoc || !currentCanvas) return;
 
             const rect = currentCanvas.getBoundingClientRect();
-            const x = (event.clientX - rect.left) / rect.width;
-            const y = (event.clientY - rect.top) / rect.height;
+            const xPx = (event.clientX - rect.left) * (currentCanvas.width / rect.width);
+            const yPx = (event.clientY - rect.top) * (currentCanvas.height / rect.height);
 
-            const textContent = allPagesText[currentPage - 1];
-            if (!textContent) return;
-
-            const page = await pdfDoc.getPage(currentPage);
-            const viewport = page.getViewport({ scale: zoom });
-            
-            let foundWord = null;
-            let closestDist = Infinity;
-
-            for (const item of textContent.items) {
-                if (item.str && item.transform) {
-                    const tx = item.transform[4];
-                    const ty = item.transform[5];
-                    const fontHeight = Math.abs(item.transform[3]);
-                    const fontWidth = Math.abs(item.transform[0]);
-                    const wordWidth = item.str.length * fontWidth * 0.6;
-
-                    const wordX = tx / viewport.width;
-                    const wordY = (viewport.height - ty) / viewport.height;
-                    const wordWidthNorm = wordWidth / viewport.width;
-                    const wordHeightNorm = fontHeight / viewport.height;
-
-                    if (x >= wordX && x <= wordX + wordWidthNorm &&
-                        y >= wordY - wordHeightNorm && y <= wordY) {
-                        const dist = Math.abs(x - (wordX + wordWidthNorm / 2)) + 
-                                     Math.abs(y - (wordY - wordHeightNorm / 2));
-                        if (dist < closestDist) {
-                            closestDist = dist;
-                            foundWord = item.str;
-                        }
-                    }
-                }
-            }
-
-            if (foundWord) {
-                const cleanWord = foundWord.replace(/[^a-zA-Z]/g, '');
-                if (cleanWord.length > 1) {
-                    addWord(cleanWord);
-                }
+            const hit = findWordBoxAtPoint(xPx, yPx);
+            if (hit?.word) {
+                addWord(hit.word);
             }
         }
 
         let highlightDiv = null;
+        let hoverRafId = null;
+        let pendingHoverPoint = null;
 
-        async function handleMouseMove(event) {
+        function handleMouseMove(event) {
             if (!pdfDoc || !currentCanvas) return;
+            pendingHoverPoint = { clientX: event.clientX, clientY: event.clientY };
+
+            if (hoverRafId) return;
+            hoverRafId = requestAnimationFrame(() => {
+                hoverRafId = null;
+                updateHoverHighlight();
+            });
+        }
+
+        function updateHoverHighlight() {
+            if (!pendingHoverPoint || !currentCanvas || !highlightDiv) return;
 
             const rect = currentCanvas.getBoundingClientRect();
-            const x = (event.clientX - rect.left) / rect.width;
-            const y = (event.clientY - rect.top) / rect.height;
+            const xPx = (pendingHoverPoint.clientX - rect.left) * (currentCanvas.width / rect.width);
+            const yPx = (pendingHoverPoint.clientY - rect.top) * (currentCanvas.height / rect.height);
 
-            const textContent = allPagesText[currentPage - 1];
-            if (!textContent) return;
-
-            const page = await pdfDoc.getPage(currentPage);
-            const viewport = page.getViewport({ scale: zoom });
-            
-            let foundWord = null;
-            let closestDist = Infinity;
-            let wordRect = null;
-
-            for (const item of textContent.items) {
-                if (item.str && item.transform) {
-                    const tx = item.transform[4];
-                    const ty = item.transform[5];
-                    const fontHeight = Math.abs(item.transform[3]);
-                    const fontWidth = Math.abs(item.transform[0]);
-                    const wordWidth = item.str.length * fontWidth * 0.6;
-
-                    const wordX = tx / viewport.width;
-                    const wordY = (viewport.height - ty) / viewport.height;
-                    const wordWidthNorm = wordWidth / viewport.width;
-                    const wordHeightNorm = fontHeight / viewport.height;
-
-                    if (x >= wordX && x <= wordX + wordWidthNorm &&
-                        y >= wordY - wordHeightNorm && y <= wordY) {
-                        const dist = Math.abs(x - (wordX + wordWidthNorm / 2)) + 
-                                     Math.abs(y - (wordY - wordHeightNorm / 2));
-                        if (dist < closestDist) {
-                            closestDist = dist;
-                            foundWord = item.str;
-                            wordRect = {
-                                x: tx,
-                                y: viewport.height - ty - fontHeight,
-                                width: wordWidth,
-                                height: fontHeight
-                            };
-                        }
-                    }
-                }
-            }
-
-            if (foundWord && wordRect) {
-                if (!highlightDiv) {
-                    highlightDiv = document.createElement('div');
-                    highlightDiv.className = 'word-highlight';
-                    document.getElementById('pdf-content-area').appendChild(highlightDiv);
-                }
-                
+            const hit = findWordBoxAtPoint(xPx, yPx);
+            if (hit?.rect) {
+                const r = hit.rect;
                 highlightDiv.style.display = 'block';
-                highlightDiv.style.left = wordRect.x + 'px';
-                highlightDiv.style.top = wordRect.y + 'px';
-                highlightDiv.style.width = wordRect.width + 'px';
-                highlightDiv.style.height = wordRect.height + 'px';
-            } else if (highlightDiv) {
+                highlightDiv.style.left = r.left + 'px';
+                highlightDiv.style.top = r.top + 'px';
+                highlightDiv.style.width = r.width + 'px';
+                highlightDiv.style.height = r.height + 'px';
+            } else {
                 highlightDiv.style.display = 'none';
             }
         }
 
         function handleMouseLeave() {
+            pendingHoverPoint = null;
             if (highlightDiv) {
                 highlightDiv.style.display = 'none';
             }
