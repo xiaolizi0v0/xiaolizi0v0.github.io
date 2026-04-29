@@ -599,6 +599,18 @@
         let wordListElsByWord = new Map();
         let wordTextElsByWord = new Map();
         let wordListScrollBound = false;
+        let wordListMouseBound = false;
+        let lastPointerClientPoint = null;
+        let linkDrawRafId = null;
+        let globalLinkPointerBound = false;
+
+        function scheduleWordLinkDraw() {
+            if (linkDrawRafId) return;
+            linkDrawRafId = requestAnimationFrame(() => {
+                linkDrawRafId = null;
+                drawWordLinks();
+            });
+        }
 
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -683,6 +695,44 @@
                     updateWordLinksUI();
                 });
             }
+
+            if (!wordListMouseBound) {
+                wordListMouseBound = true;
+
+                wordsList.addEventListener('mousemove', (e) => {
+                    if (linkedWordOrder.length === 0) return;
+                    lastPointerClientPoint = { clientX: e.clientX, clientY: e.clientY };
+                    scheduleWordLinkDraw();
+                });
+
+                // 需求：鼠标移出单词列表区域时，跟随线消失。
+                wordsList.addEventListener('mouseleave', () => {
+                    lastPointerClientPoint = null;
+                    scheduleWordLinkDraw();
+                });
+            }
+
+            if (!globalLinkPointerBound) {
+                globalLinkPointerBound = true;
+
+                // 左键点击非复选框区域：隐藏“跟随线”（不清空已选点/固定线）。
+                document.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return;
+                    if (linkedWordOrder.length === 0) return;
+
+                    const target = e.target;
+                    const isCheckbox = target && target.closest && target.closest('.word-link-checkbox');
+
+                    if (isCheckbox) {
+                        lastPointerClientPoint = { clientX: e.clientX, clientY: e.clientY };
+                        scheduleWordLinkDraw();
+                        return;
+                    }
+
+                    lastPointerClientPoint = null;
+                    scheduleWordLinkDraw();
+                });
+            }
         }
 
         function normalizeWordKey(word) {
@@ -733,6 +783,10 @@
             }
 
             updateWordLinksUI();
+
+            if (linkedWordOrder.length === 0) {
+                lastPointerClientPoint = null;
+            }
         }
 
         function pruneLinkedWords() {
@@ -780,6 +834,7 @@
 
             const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() || '#3b82f6';
 
+            // 已确定的连线（点与点之间）
             for (let i = 0; i < points.length - 1; i++) {
                 const a = points[i];
                 const b = points[i + 1];
@@ -790,6 +845,24 @@
                 path.setAttribute('fill', 'none');
                 path.setAttribute('opacity', '0.9');
                 linksSvgEl.appendChild(path);
+            }
+
+            // 橡皮筋跟随线：从最后一个点连到鼠标位置
+            if (lastPointerClientPoint && points.length >= 1) {
+                const mxRaw = (lastPointerClientPoint.clientX - listRect.left);
+                const myRaw = (lastPointerClientPoint.clientY - listRect.top) + wordsList.scrollTop;
+                const mx = Math.max(0, Math.min(contentWidth, mxRaw));
+                const my = Math.max(0, Math.min(contentHeight, myRaw));
+
+                const last = points[points.length - 1];
+                const rubber = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                rubber.setAttribute('d', `M ${last.x} ${last.y} L ${mx} ${my}`);
+                rubber.setAttribute('stroke', primary);
+                rubber.setAttribute('stroke-width', '2');
+                rubber.setAttribute('fill', 'none');
+                rubber.setAttribute('opacity', '0.85');
+                rubber.setAttribute('stroke-dasharray', '6 6');
+                linksSvgEl.appendChild(rubber);
             }
 
             for (const p of points) {
