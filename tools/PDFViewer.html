@@ -859,16 +859,36 @@
 
             const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim() || '#3b82f6';
 
+            const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+            const curvePath = (a, b) => {
+                const dy = b.y - a.y;
+                const absDy = Math.abs(dy);
+                const baseOffset = clamp(absDy * 0.35, 28, 90);
+
+                // 优先往右绕；如果右侧不够空间就往左。
+                const rightSpace = contentWidth - a.x;
+                const leftSpace = a.x;
+                const dir = rightSpace >= baseOffset + 16 ? 1 : (leftSpace >= baseOffset + 16 ? -1 : 1);
+                const offset = baseOffset * dir;
+
+                const c1x = clamp(a.x + offset, 8, contentWidth - 8);
+                const c2x = clamp(b.x + offset, 8, contentWidth - 8);
+
+                // 使用 cubic Bezier，让曲线整体往一侧鼓出。
+                return `M ${a.x} ${a.y} C ${c1x} ${a.y} ${c2x} ${b.y} ${b.x} ${b.y}`;
+            };
+
             // 已确定的连线（点与点之间）
             for (let i = 0; i < points.length - 1; i++) {
                 const a = points[i];
                 const b = points[i + 1];
                 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                path.setAttribute('d', `M ${a.x} ${a.y} L ${b.x} ${b.y}`);
+                path.setAttribute('d', curvePath(a, b));
                 path.setAttribute('stroke', primary);
                 path.setAttribute('stroke-width', '2');
                 path.setAttribute('fill', 'none');
                 path.setAttribute('opacity', '0.9');
+                path.setAttribute('stroke-linecap', 'round');
                 linksSvgEl.appendChild(path);
             }
 
@@ -881,12 +901,13 @@
 
                 const last = points[points.length - 1];
                 const rubber = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                rubber.setAttribute('d', `M ${last.x} ${last.y} L ${mx} ${my}`);
+                rubber.setAttribute('d', curvePath(last, { x: mx, y: my }));
                 rubber.setAttribute('stroke', primary);
                 rubber.setAttribute('stroke-width', '2');
                 rubber.setAttribute('fill', 'none');
                 rubber.setAttribute('opacity', '0.85');
                 rubber.setAttribute('stroke-dasharray', '6 6');
+                rubber.setAttribute('stroke-linecap', 'round');
                 linksSvgEl.appendChild(rubber);
             }
 
