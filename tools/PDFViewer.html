@@ -235,6 +235,23 @@
             height: 16px;
             cursor: pointer;
             flex: 0 0 auto;
+            appearance: none;
+            -webkit-appearance: none;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            background: white;
+            display: inline-block;
+            position: relative;
+        }
+
+        .word-link-checkbox:checked {
+            border-color: var(--primary-color);
+            background: radial-gradient(circle at center, var(--primary-color) 0 45%, rgba(255, 255, 255, 0) 48%);
+        }
+
+        .word-link-checkbox:focus-visible {
+            outline: 3px solid rgba(59, 130, 246, 0.25);
+            outline-offset: 2px;
         }
 
         .word-links-svg {
@@ -244,7 +261,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 2;
+            z-index: 6;
         }
 
         .compound-preview {
@@ -603,6 +620,7 @@
         let lastPointerClientPoint = null;
         let linkDrawRafId = null;
         let globalLinkPointerBound = false;
+        let isLinkingModeActive = false;
 
         function scheduleWordLinkDraw() {
             if (linkDrawRafId) return;
@@ -700,7 +718,7 @@
                 wordListMouseBound = true;
 
                 wordsList.addEventListener('mousemove', (e) => {
-                    if (linkedWordOrder.length === 0) return;
+                    if (!isLinkingModeActive || linkedWordOrder.length === 0) return;
                     lastPointerClientPoint = { clientX: e.clientX, clientY: e.clientY };
                     scheduleWordLinkDraw();
                 });
@@ -708,6 +726,7 @@
                 // 需求：鼠标移出单词列表区域时，跟随线消失。
                 wordsList.addEventListener('mouseleave', () => {
                     lastPointerClientPoint = null;
+                    isLinkingModeActive = false;
                     scheduleWordLinkDraw();
                 });
             }
@@ -725,11 +744,13 @@
 
                     if (isCheckbox) {
                         lastPointerClientPoint = { clientX: e.clientX, clientY: e.clientY };
+                        isLinkingModeActive = true;
                         scheduleWordLinkDraw();
                         return;
                     }
 
                     lastPointerClientPoint = null;
+                    isLinkingModeActive = false;
                     scheduleWordLinkDraw();
                 });
             }
@@ -786,6 +807,10 @@
 
             if (linkedWordOrder.length === 0) {
                 lastPointerClientPoint = null;
+                isLinkingModeActive = false;
+            } else if (checked) {
+                // 勾选任意一个点，进入“继续连线”模式（跟随线可用）。
+                isLinkingModeActive = true;
             }
         }
 
@@ -848,7 +873,7 @@
             }
 
             // 橡皮筋跟随线：从最后一个点连到鼠标位置
-            if (lastPointerClientPoint && points.length >= 1) {
+            if (isLinkingModeActive && lastPointerClientPoint && points.length >= 1) {
                 const mxRaw = (lastPointerClientPoint.clientX - listRect.left);
                 const myRaw = (lastPointerClientPoint.clientY - listRect.top) + wordsList.scrollTop;
                 const mx = Math.max(0, Math.min(contentWidth, mxRaw));
@@ -1284,6 +1309,13 @@
                 checkbox.className = 'word-link-checkbox';
                 checkbox.title = '勾选后连线组成复合词';
                 checkbox.checked = linkedSet.has(word);
+                checkbox.addEventListener('mousedown', (e) => {
+                    // 让“跟随线”在点下复选框的瞬间就能出现（不必等 mousemove）。
+                    if (e.button !== 0) return;
+                    isLinkingModeActive = true;
+                    lastPointerClientPoint = { clientX: e.clientX, clientY: e.clientY };
+                    scheduleWordLinkDraw();
+                });
                 checkbox.addEventListener('change', (e) => {
                     toggleWordLink(word, e.target.checked);
                 });
