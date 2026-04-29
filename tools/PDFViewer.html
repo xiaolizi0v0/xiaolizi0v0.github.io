@@ -202,7 +202,7 @@
 
         .word-item {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             padding: 0.75rem;
             background: white;
@@ -211,6 +211,43 @@
             gap: 1rem;
             position: relative;
             z-index: 3;
+        }
+
+        .word-item.dragging {
+            opacity: 0.65;
+        }
+
+        .word-item-placeholder {
+            border: 2px dashed var(--gray-300);
+            background: var(--gray-50);
+            border-radius: var(--border-radius);
+        }
+
+        .word-drag-handle {
+            width: 18px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            cursor: grab;
+            flex: 0 0 auto;
+            border-radius: var(--border-radius);
+        }
+
+        .word-drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .word-drag-bar {
+            width: 2px;
+            height: 16px;
+            background: var(--gray-300);
+            border-radius: 2px;
+        }
+
+        .word-drag-handle:hover .word-drag-bar {
+            background: var(--gray-400);
         }
 
         .word-text {
@@ -622,6 +659,14 @@
         let globalLinkPointerBound = false;
         let isLinkingModeActive = false;
 
+        let dragState = {
+            active: false,
+            pointerId: null,
+            draggedEl: null,
+            placeholderEl: null,
+            containerEl: null,
+        };
+
         function scheduleWordLinkDraw() {
             if (linkDrawRafId) return;
             linkDrawRafId = requestAnimationFrame(() => {
@@ -824,6 +869,110 @@
             updateCompoundPreview();
             drawWordLinks();
         }
+
+        function getDragInsertAfterElement(container, clientY) {
+            const draggableElements = [...container.querySelectorAll('.word-item:not(.dragging)')];
+            let closest = { offset: Number.NEGATIVE_INFINITY, element: null };
+
+            for (const child of draggableElements) {
+                const box = child.getBoundingClientRect();
+                const offset = clientY - (box.top + box.height / 2);
+                if (offset < 0 && offset > closest.offset) {
+                    closest = { offset, element: child };
+                }
+            }
+
+            return closest.element;
+        }
+
+        function startWordDrag(e, itemEl, wordsList) {
+            if (!itemEl || !wordsList) return;
+            if (dragState.active) return;
+
+            dragState.active = true;
+            dragState.pointerId = e.pointerId;
+            dragState.draggedEl = itemEl;
+            dragState.containerEl = wordsList;
+
+            const rect = itemEl.getBoundingClientRect();
+            const placeholder = document.createElement('div');
+            placeholder.className = 'word-item-placeholder';
+            placeholder.style.height = rect.height + 'px';
+            placeholder.style.margin = getComputedStyle(itemEl).margin;
+
+            dragState.placeholderEl = placeholder;
+            itemEl.classList.add('dragging');
+
+            // 占位符放到当前元素位置
+            wordsList.insertBefore(placeholder, itemEl.nextSibling);
+
+            try {
+                itemEl.setPointerCapture(e.pointerId);
+            } catch {
+                // ignore
+            }
+
+            // 拖拽时也刷新一次连线（占位符会改变布局）
+            scheduleWordLinkDraw();
+        }
+
+        function onWordDragMove(e) {
+            if (!dragState.active) return;
+            if (e.pointerId !== dragState.pointerId) return;
+            if (!dragState.containerEl || !dragState.placeholderEl || !dragState.draggedEl) return;
+
+            const afterEl = getDragInsertAfterElement(dragState.containerEl, e.clientY);
+            if (afterEl == null) {
+                dragState.containerEl.appendChild(dragState.placeholderEl);
+            } else {
+                dragState.containerEl.insertBefore(dragState.placeholderEl, afterEl);
+            }
+
+            scheduleWordLinkDraw();
+        }
+
+        function finishWordDrag() {
+            if (!dragState.active) return;
+            const { draggedEl, placeholderEl, containerEl } = dragState;
+            dragState.active = false;
+            dragState.pointerId = null;
+            dragState.draggedEl = null;
+            dragState.placeholderEl = null;
+            dragState.containerEl = null;
+
+            if (!draggedEl || !placeholderEl || !containerEl) return;
+
+            draggedEl.classList.remove('dragging');
+            containerEl.insertBefore(draggedEl, placeholderEl);
+            placeholderEl.remove();
+
+            // 同步 words 顺序（用于导出/刷新保持顺序）
+            words = Array.from(containerEl.querySelectorAll('.word-item'))
+                .map(el => el.dataset.word)
+                .filter(Boolean);
+            saveWords();
+
+            updateWordLinksUI();
+        }
+
+        function cancelWordDrag() {
+            if (!dragState.active) return;
+            const { draggedEl, placeholderEl } = dragState;
+            dragState.active = false;
+            dragState.pointerId = null;
+            dragState.draggedEl = null;
+            dragState.placeholderEl = null;
+            dragState.containerEl = null;
+
+            if (draggedEl) draggedEl.classList.remove('dragging');
+            if (placeholderEl) placeholderEl.remove();
+            updateWordLinksUI();
+        }
+
+        // 全局监听拖拽移动/结束
+        window.addEventListener('pointermove', onWordDragMove);
+        window.addEventListener('pointerup', () => finishWordDrag());
+        window.addEventListener('pointercancel', () => cancelWordDrag());
 
         function drawWordLinks() {
             const wordsList = document.getElementById('words-list');
@@ -1339,6 +1488,19 @@
                 item.className = 'word-item';
                 item.dataset.word = word;
 
+                const dragHandle = document.createElement('div');
+                dragHandle.className = 'word-drag-handle';
+                dragHandle.title = '拖拽排序';
+                dragHandle.setAttribute('aria-label', '拖拽排序');
+                dragHandle.innerHTML = '<span class="word-drag-bar"></span><span class="word-drag-bar"></span><span class="word-drag-bar"></span>';
+                dragHandle.addEventListener('pointerdown', (e) => {
+                    if (e.button !== 0) return;
+                    // 只允许拖拽柄触发拖动
+                    e.preventDefault();
+                    e.stopPropagation();
+                    startWordDrag(e, item, wordsList);
+                });
+
                 const text = document.createElement('span');
                 text.className = 'word-text';
                 text.textContent = word;
@@ -1368,6 +1530,7 @@
                 });
 
                 // 要求：复选框在“删除图标左边”。
+                item.appendChild(dragHandle);
                 item.appendChild(text);
                 item.appendChild(checkbox);
                 item.appendChild(delBtn);
