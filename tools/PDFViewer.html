@@ -1103,10 +1103,17 @@
             }
         }
 
-        function extractEnglishWord(text) {
-            if (!text) return null;
-            const match = String(text).match(/[A-Za-z]+(?:['-][A-Za-z]+)*/);
-            return match ? match[0] : null;
+        function getEnglishWordSpans(text) {
+            const spans = [];
+            const raw = String(text || '');
+            const regex = /[A-Za-z]+(?:['-][A-Za-z]+)*/g;
+            let match;
+
+            while ((match = regex.exec(raw)) !== null) {
+                spans.push({ word: match[0], start: match.index, end: match.index + match[0].length });
+            }
+
+            return spans;
         }
 
         function buildWordBoxes(textContent, viewport) {
@@ -1114,9 +1121,11 @@
             const boxes = [];
 
             for (const item of items) {
-                const word = extractEnglishWord(item?.str);
-                if (!word || word.length <= 1) continue;
                 if (!item?.transform) continue;
+
+                const rawText = String(item?.str || '');
+                const spans = getEnglishWordSpans(rawText);
+                if (spans.length === 0) continue;
 
                 // Convert item transform into viewport (canvas) coordinate space.
                 const tx = pdfjsLib.Util.transform(viewport.transform, item.transform);
@@ -1124,21 +1133,34 @@
                 const y = tx[5];
                 const fontHeight = Math.hypot(tx[2], tx[3]);
 
-                // item.width is in PDF units; scale to viewport pixels.
-                const width = (typeof item.width === 'number' ? item.width * viewport.scale : word.length * fontHeight * 0.6);
+                if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(fontHeight) || fontHeight <= 0) continue;
+                if (rawText.length === 0) continue;
 
-                const left = x;
+                // item.width is in PDF units; scale to viewport pixels.
+                const textWidth = (typeof item.width === 'number' && item.width > 0)
+                    ? item.width * viewport.scale
+                    : rawText.length * fontHeight * 0.6;
+
+                if (!Number.isFinite(textWidth) || textWidth <= 0) continue;
+                const charWidth = textWidth / rawText.length;
+
                 const top = y - fontHeight;
 
-                // Skip weird/invalid boxes.
-                if (!Number.isFinite(left) || !Number.isFinite(top) || !Number.isFinite(width) || !Number.isFinite(fontHeight)) continue;
-                if (width <= 0 || fontHeight <= 0) continue;
+                for (const span of spans) {
+                    if (!span.word || span.word.length <= 1) continue;
 
-                boxes.push({
-                    word,
-                    rect: { left, top, width, height: fontHeight },
-                    center: { x: left + width / 2, y: top + fontHeight / 2 },
-                });
+                    const left = x + charWidth * span.start;
+                    const width = charWidth * span.word.length;
+
+                    if (!Number.isFinite(left) || !Number.isFinite(top) || !Number.isFinite(width)) continue;
+                    if (width <= 0) continue;
+
+                    boxes.push({
+                        word: span.word,
+                        rect: { left, top, width, height: fontHeight },
+                        center: { x: left + width / 2, y: top + fontHeight / 2 },
+                    });
+                }
             }
 
             return boxes;
@@ -1248,8 +1270,8 @@
             if (!pdfStage) return;
 
             pdfStage.innerHTML = '';
-            pdfStage.style.width = canvas.width + 'px';
-            pdfStage.style.height = canvas.height + 'px';
+            pdfStage.style.width = viewport.width + 'px';
+            pdfStage.style.height = viewport.height + 'px';
             pdfStage.appendChild(canvas);
 
             currentCanvas = canvas;
