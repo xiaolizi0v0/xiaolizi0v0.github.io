@@ -1272,8 +1272,8 @@
             if (!pdfDoc || !currentCanvas) return;
 
             const rect = currentCanvas.getBoundingClientRect();
-            const xPx = (event.clientX - rect.left) * (currentCanvas.width / rect.width);
-            const yPx = (event.clientY - rect.top) * (currentCanvas.height / rect.height);
+            const xPx = (event.clientX - rect.left) * (currentCanvas.width / rect.width / (window.devicePixelRatio || 1));
+            const yPx = (event.clientY - rect.top) * (currentCanvas.height / rect.height / (window.devicePixelRatio || 1));
 
             const hit = findWordBoxAtPoint(xPx, yPx);
             if (!hit?.word || !hit?.rect) return;
@@ -1393,8 +1393,8 @@
             if (!pendingHoverPoint || !currentCanvas || !highlightDiv) return;
 
             const rect = currentCanvas.getBoundingClientRect();
-            const xPx = (pendingHoverPoint.clientX - rect.left) * (currentCanvas.width / rect.width);
-            const yPx = (pendingHoverPoint.clientY - rect.top) * (currentCanvas.height / rect.height);
+            const xPx = (pendingHoverPoint.clientX - rect.left) * (currentCanvas.width / rect.width / (window.devicePixelRatio || 1));
+            const yPx = (pendingHoverPoint.clientY - rect.top) * (currentCanvas.height / rect.height / (window.devicePixelRatio || 1));
 
             const hit = findWordBoxAtPoint(xPx, yPx);
             if (hit?.rect) {
