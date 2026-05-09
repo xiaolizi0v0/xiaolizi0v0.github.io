@@ -1415,17 +1415,18 @@
             if (!pendingHoverPoint || !currentCanvas || !highlightDiv) return;
 
             const rect = currentCanvas.getBoundingClientRect();
-            const xPx = (pendingHoverPoint.clientX - rect.left) * (currentCanvas.width / rect.width / (window.devicePixelRatio || 1));
-            const yPx = (pendingHoverPoint.clientY - rect.top) * (currentCanvas.height / rect.height / (window.devicePixelRatio || 1));
+            const dpr = window.devicePixelRatio || 1;
+            const xPx = (pendingHoverPoint.clientX - rect.left) * (currentCanvas.width / rect.width / dpr);
+            const yPx = (pendingHoverPoint.clientY - rect.top) * (currentCanvas.height / rect.height / dpr);
 
             const hit = findWordBoxAtPoint(xPx, yPx);
             if (hit?.rect) {
                 const r = hit.rect;
                 highlightDiv.style.display = 'block';
-                highlightDiv.style.left = r.left + 'px';
-                highlightDiv.style.top = r.top + 'px';
-                highlightDiv.style.width = r.width + 'px';
-                highlightDiv.style.height = r.height + 'px';
+                highlightDiv.style.left = r.left * dpr + 'px';
+                highlightDiv.style.top = r.top * dpr + 'px';
+                highlightDiv.style.width = r.width * dpr + 'px';
+                highlightDiv.style.height = r.height * dpr + 'px';
 
                 if (hit.word !== currentHoverWord) {
                     currentHoverWord = hit.word;
@@ -1442,6 +1443,7 @@
 
         async function showTranslation(word, rect) {
             const translation = await translateWord(word);
+            const dpr = window.devicePixelRatio || 1;
             
             if (!highlightTooltip) {
                 highlightTooltip = document.createElement('div');
@@ -1452,8 +1454,8 @@
             if (translation) {
                 highlightTooltip.textContent = translation;
                 highlightTooltip.style.display = 'block';
-                highlightTooltip.style.left = rect.left + 'px';
-                highlightTooltip.style.top = (rect.top - 30) + 'px';
+                highlightTooltip.style.left = rect.left * dpr + 'px';
+                highlightTooltip.style.top = (rect.top - 30) * dpr + 'px';
                 highlightTooltip.style.width = 'auto';
                 highlightTooltip.style.maxWidth = '200px';
             } else {
