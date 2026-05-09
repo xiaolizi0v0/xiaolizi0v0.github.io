@@ -1223,10 +1223,18 @@
             
             const canvas = document.createElement('canvas');
             canvas.className = 'pdf-canvas';
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
+            
+            const devicePixelRatio = window.devicePixelRatio || 1;
+            canvas.width = viewport.width * devicePixelRatio;
+            canvas.height = viewport.height * devicePixelRatio;
+            canvas.style.width = viewport.width + 'px';
+            canvas.style.height = viewport.height + 'px';
 
             const ctx = canvas.getContext('2d');
+            ctx.scale(devicePixelRatio, devicePixelRatio);
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
             const renderContext = {
                 canvasContext: ctx,
                 viewport: viewport
