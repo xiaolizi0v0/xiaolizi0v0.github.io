@@ -1118,6 +1118,7 @@
 
         function buildWordBoxes(textContent, viewport) {
             const items = textContent?.items || [];
+            const styles = textContent?.styles || {};
             const boxes = [];
 
             for (const item of items) {
@@ -1132,19 +1133,21 @@
                 const x = tx[4];
                 const y = tx[5];
                 const fontHeight = Math.hypot(tx[2], tx[3]);
+                const fontStyle = styles[item.fontName] || {};
+                const ascent = Number.isFinite(fontStyle.ascent) ? fontStyle.ascent : 0.8;
 
                 if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(fontHeight) || fontHeight <= 0) continue;
                 if (rawText.length === 0) continue;
 
                 // item.width is in PDF units; scale to viewport pixels.
-                const textWidth = (typeof item.width === 'number' && item.width > 0)
-                    ? item.width * viewport.scale
+                const textWidth = (typeof item.width === 'number' && item.width !== 0)
+                    ? Math.abs(item.width) * viewport.scale
                     : rawText.length * fontHeight * 0.6;
 
                 if (!Number.isFinite(textWidth) || textWidth <= 0) continue;
                 const charWidth = textWidth / rawText.length;
 
-                const top = y - fontHeight;
+                const top = y - fontHeight * ascent;
 
                 for (const span of spans) {
                     if (!span.word || span.word.length <= 1) continue;
@@ -1218,7 +1221,7 @@
                 for (let i = 1; i <= totalPages; i++) {
                     loadingText.textContent = `正在提取第 ${i}/${totalPages} 页...`;
                     const page = await pdfDoc.getPage(i);
-                    const textContent = await page.getTextContent();
+                    const textContent = await page.getTextContent({ disableCombineTextItems: true });
                     allPagesText.push(textContent);
                 }
 
@@ -1294,8 +1297,8 @@
             if (!pdfDoc || !currentCanvas) return;
 
             const rect = currentCanvas.getBoundingClientRect();
-            const xPx = (event.clientX - rect.left) * (currentCanvas.width / rect.width / (window.devicePixelRatio || 1));
-            const yPx = (event.clientY - rect.top) * (currentCanvas.height / rect.height / (window.devicePixelRatio || 1));
+            const xPx = event.clientX - rect.left;
+            const yPx = event.clientY - rect.top;
 
             const hit = findWordBoxAtPoint(xPx, yPx);
             if (!hit?.word || !hit?.rect) return;
@@ -1310,11 +1313,9 @@
             if (!currentCanvas || !word) return;
 
             const canvasRect = currentCanvas.getBoundingClientRect();
-            const scaleX = canvasRect.width / currentCanvas.width;
-            const scaleY = canvasRect.height / currentCanvas.height;
 
-            const startX = canvasRect.left + (sourceRectCanvasPx.left + sourceRectCanvasPx.width / 2) * scaleX;
-            const startY = canvasRect.top + (sourceRectCanvasPx.top + sourceRectCanvasPx.height / 2) * scaleY;
+            const startX = canvasRect.left + sourceRectCanvasPx.left + sourceRectCanvasPx.width / 2;
+            const startY = canvasRect.top + sourceRectCanvasPx.top + sourceRectCanvasPx.height / 2;
 
             const targetTextEl = wordTextElsByWord.get(word);
             const fallbackEl = document.getElementById('words-list') || document.querySelector('.words-sidebar');
@@ -1415,18 +1416,17 @@
             if (!pendingHoverPoint || !currentCanvas || !highlightDiv) return;
 
             const rect = currentCanvas.getBoundingClientRect();
-            const dpr = window.devicePixelRatio || 1;
-            const xPx = (pendingHoverPoint.clientX - rect.left) * (currentCanvas.width / rect.width / dpr);
-            const yPx = (pendingHoverPoint.clientY - rect.top) * (currentCanvas.height / rect.height / dpr);
+            const xPx = pendingHoverPoint.clientX - rect.left;
+            const yPx = pendingHoverPoint.clientY - rect.top;
 
             const hit = findWordBoxAtPoint(xPx, yPx);
             if (hit?.rect) {
                 const r = hit.rect;
                 highlightDiv.style.display = 'block';
-                highlightDiv.style.left = r.left * dpr + 'px';
-                highlightDiv.style.top = r.top * dpr + 'px';
-                highlightDiv.style.width = r.width * dpr + 'px';
-                highlightDiv.style.height = r.height * dpr + 'px';
+                highlightDiv.style.left = r.left + 'px';
+                highlightDiv.style.top = r.top + 'px';
+                highlightDiv.style.width = r.width + 'px';
+                highlightDiv.style.height = r.height + 'px';
 
                 if (hit.word !== currentHoverWord) {
                     currentHoverWord = hit.word;
@@ -1443,7 +1443,6 @@
 
         async function showTranslation(word, rect) {
             const translation = await translateWord(word);
-            const dpr = window.devicePixelRatio || 1;
             
             if (!highlightTooltip) {
                 highlightTooltip = document.createElement('div');
@@ -1454,8 +1453,8 @@
             if (translation) {
                 highlightTooltip.textContent = translation;
                 highlightTooltip.style.display = 'block';
-                highlightTooltip.style.left = rect.left * dpr + 'px';
-                highlightTooltip.style.top = (rect.top - 30) * dpr + 'px';
+                highlightTooltip.style.left = rect.left + 'px';
+                highlightTooltip.style.top = (rect.top - 30) + 'px';
                 highlightTooltip.style.width = 'auto';
                 highlightTooltip.style.maxWidth = '200px';
             } else {
