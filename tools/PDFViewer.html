@@ -1454,8 +1454,13 @@
             if (translation) {
                 highlightTooltip.textContent = translation;
                 highlightTooltip.style.display = 'block';
-                highlightTooltip.style.left = rect.left * dpr + 'px';
-                highlightTooltip.style.top = (rect.top - 30) * dpr + 'px';
+                
+                const canvasRect = currentCanvas.getBoundingClientRect();
+                const scaleX = canvasRect.width / (currentCanvas.width / dpr);
+                const scaleY = canvasRect.height / (currentCanvas.height / dpr);
+                
+                highlightTooltip.style.left = rect.left * scaleX + 'px';
+                highlightTooltip.style.top = (rect.top - 30) * scaleY + 'px';
                 highlightTooltip.style.width = 'auto';
                 highlightTooltip.style.maxWidth = '200px';
             } else {
