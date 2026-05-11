@@ -1423,10 +1423,10 @@
             if (hit?.rect) {
                 const r = hit.rect;
                 highlightDiv.style.display = 'block';
-                highlightDiv.style.left = r.left * dpr + 'px';
-                highlightDiv.style.top = r.top * dpr + 'px';
-                highlightDiv.style.width = r.width * dpr + 'px';
-                highlightDiv.style.height = r.height * dpr + 'px';
+                highlightDiv.style.left = r.left + 'px';
+                highlightDiv.style.top = r.top + 'px';
+                highlightDiv.style.width = r.width + 'px';
+                highlightDiv.style.height = r.height + 'px';
 
                 if (hit.word !== currentHoverWord) {
                     currentHoverWord = hit.word;
@@ -1455,12 +1455,8 @@
                 highlightTooltip.textContent = translation;
                 highlightTooltip.style.display = 'block';
                 
-                const canvasRect = currentCanvas.getBoundingClientRect();
-                const scaleX = canvasRect.width / (currentCanvas.width / dpr);
-                const scaleY = canvasRect.height / (currentCanvas.height / dpr);
-                
-                highlightTooltip.style.left = rect.left * scaleX + 'px';
-                highlightTooltip.style.top = (rect.top - 30) * scaleY + 'px';
+                highlightTooltip.style.left = rect.left + 'px';
+                highlightTooltip.style.top = (rect.top - 30) + 'px';
                 highlightTooltip.style.width = 'auto';
                 highlightTooltip.style.maxWidth = '200px';
             } else {
