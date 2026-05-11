@@ -1270,6 +1270,8 @@
             if (!pdfStage) return;
 
             pdfStage.innerHTML = '';
+            highlightDiv = null;
+            highlightTooltip = null;
             pdfStage.style.width = viewport.width + 'px';
             pdfStage.style.height = viewport.height + 'px';
             pdfStage.appendChild(canvas);
