@@ -1,127 +1,130 @@
-{
+﻿{
   "foods": [
     {
-      "foodName": "香辣鸡腿饭",
-      "shopName": "一食堂热菜窗",
-      "address": "教学楼A区一层",
-      "tags": [
-        "辣",
-        "热菜",
-        "人气"
-      ],
-      "price": 16.5
+      "foodName": "韭菜鸡蛋水饺大份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "大份", "韭菜", "鸡蛋"],
+      "price": 13
     },
     {
-      "foodName": "番茄牛腩面",
-      "shopName": "风味面馆",
-      "address": "学生街西侧",
-      "tags": [
-        "酸甜",
-        "面食"
-      ],
-      "price": 18.0
+      "foodName": "韭菜鸡蛋水饺小份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "小份", "韭菜", "鸡蛋"],
+      "price": 11
     },
     {
-      "foodName": "糖醋里脊",
-      "shopName": "二食堂小炒窗",
-      "address": "宿舍区南门旁",
-      "tags": [
-        "甜",
-        "热菜"
-      ],
-      "price": 14.0
+      "foodName": "韭菜猪肉水饺大份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "大份", "韭菜", "猪肉"],
+      "price": 13
     },
     {
-      "foodName": "麻辣香锅",
-      "shopName": "校园香锅屋",
-      "address": "商业街二层",
-      "tags": [
-        "辣",
-        "重口",
-        "可拼"
-      ],
-      "price": 24.8
+      "foodName": "韭菜猪肉水饺小份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "小份", "韭菜", "猪肉"],
+      "price": 11
     },
     {
-      "foodName": "鲜虾滑蛋饭",
-      "shopName": "三食堂粤味窗",
-      "address": "图书馆东侧",
-      "tags": [
-        "鲜",
-        "清淡"
-      ],
-      "price": 21.5
+      "foodName": "白菜猪肉水饺大份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "大份", "白菜", "猪肉"],
+      "price": 13
     },
     {
-      "foodName": "宫保鸡丁",
-      "shopName": "川湘小厨",
-      "address": "教学楼B区一层",
-      "tags": [
-        "微辣",
-        "下饭"
-      ],
-      "price": 13.5
+      "foodName": "白菜猪肉水饺小份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "小份", "白菜", "猪肉"],
+      "price": 11
     },
     {
-      "foodName": "紫薯燕麦粥",
-      "shopName": "早餐轻食窗",
-      "address": "一食堂门口",
-      "tags": [
-        "甜",
-        "早餐",
-        "轻食"
-      ],
-      "price": 7.5
+      "foodName": "玉米猪肉水饺大份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "大份", "玉米", "猪肉"],
+      "price": 13
     },
     {
-      "foodName": "黑椒牛柳意面",
-      "shopName": "西餐简餐窗",
-      "address": "商业街一层",
-      "tags": [
-        "咸香",
-        "西式"
-      ],
-      "price": 22.0
+      "foodName": "玉米猪肉水饺小份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "小份", "玉米", "猪肉"],
+      "price": 11
     },
     {
-      "foodName": "蛋包饭",
-      "shopName": "日式简餐屋",
-      "address": "学生活动中心一层",
-      "tags": [
-        "甜咸",
-        "推荐"
-      ],
-      "price": 15.0
+      "foodName": "芹菜猪肉水饺大份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "大份", "芹菜", "猪肉"],
+      "price": 13
     },
     {
-      "foodName": "鸡蛋煎饼",
-      "shopName": "早餐档口",
-      "address": "北门美食区",
-      "tags": [
-        "早餐",
-        "香脆"
-      ],
-      "price": 6.0
+      "foodName": "芹菜猪肉水饺小份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "小份", "芹菜", "猪肉"],
+      "price": 11
     },
     {
-      "foodName": "芒果布丁",
-      "shopName": "甜品饮品站",
-      "address": "二食堂出口",
-      "tags": [
-        "甜",
-        "冷食"
-      ],
-      "price": 9.9
+      "foodName": "千里香馄饨大份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["馄饨", "大份"],
+      "price": 9
     },
     {
-      "foodName": "酸菜鱼片饭",
-      "shopName": "鱼粉小馆",
-      "address": "宿舍区东门",
-      "tags": [
-        "酸辣",
-        "鱼类"
-      ],
-      "price": 19.8
+      "foodName": "千里香馄饨小份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["馄饨", "小份"],
+      "price": 7
+    },
+    {
+      "foodName": "鸭血粉丝汤",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["粉丝汤", "鸭血"],
+      "price": 10
+    },
+    {
+      "foodName": "牛肉大葱馅",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "牛肉", "大葱"],
+      "price": 15
+    },
+    {
+      "foodName": "猪肉香菇馅大份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "大份", "猪肉", "香菇"],
+      "price": 13
+    },
+    {
+      "foodName": "猪肉香菇馅小份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "小份", "猪肉", "香菇"],
+      "price": 11
+    },
+    {
+      "foodName": "三鲜虾仁馅大份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "大份", "三鲜", "虾仁"],
+      "price": 13
+    },
+    {
+      "foodName": "三鲜虾仁馅小份",
+      "shopName": "手工水饺",
+      "address": "北食堂一楼",
+      "tags": ["水饺", "小份", "三鲜", "虾仁"],
+      "price": 11
     }
   ]
 }
