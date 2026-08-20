@@ -17,11 +17,9 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = 'var(--shadow-md)';
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
+        navbar.classList.remove('scrolled');
     }
 });
 
@@ -177,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化所有功能
     animateSkills();
     revealOnScroll();
-    typeWriterEffect();
     initProjectHover();
     initSocialLinks();
     

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <title>OCR 英文识别工具 - 工具箱</title>
     <link rel="stylesheet" href="../styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
     <!-- Tesseract.js OCR 库 -->
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
     <style>
@@ -23,7 +23,7 @@
         }
 
         .tool-content {
-            background: white;
+            background: var(--ds-bg-surface-1);
             border-radius: var(--border-radius-lg);
             padding: 2rem;
             box-shadow: var(--shadow-md);
@@ -130,7 +130,7 @@
         }
 
         .result {
-            background: white;
+            background: var(--ds-bg-surface-1);
             padding: 1rem;
             border-radius: var(--border-radius);
             border: 1px solid var(--gray-200);
@@ -180,7 +180,7 @@
         }
 
         .dictionary-content {
-            background: white;
+            background: var(--ds-bg-surface-1);
             border-radius: var(--border-radius-lg);
             padding: 2rem;
             max-width: 600px;

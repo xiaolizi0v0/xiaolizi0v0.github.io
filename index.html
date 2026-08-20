@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人博客 - 专业个人主页</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -16,7 +16,7 @@
                 <a href="#home">我的博客</a>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">首页</a></li>
+                <li class="nav-item"><a href="#home" class="nav-link active">首页</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">关于我</a></li>
                 <li class="nav-item"><a href="#skills" class="nav-link">技能</a></li>
                 <li class="nav-item"><a href="#projects" class="nav-link">项目</a></li>
@@ -37,8 +37,9 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
+                <span class="hero-eyebrow">Personal Blog</span>
                 <h1 class="hero-title">你好，我是 <span class="highlight">xiaolizi0v0</span></h1>
-                <p class="hero-subtitle"> passionate about creating innovative solutions</p>
+                <p class="hero-subtitle">passionate about creating innovative solutions</p>
                 <p class="hero-description">
                     一名充满激情的开发者，专注于创造有影响力的数字体验。
                     致力于通过技术解决现实世界的问题。
@@ -49,8 +50,20 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="image-placeholder">
-                    <i class="fas fa-user-circle"></i>
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">my-blog</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">$</span> <span class="cmd">git push origin main</span></p>
+                        <p class="output"><span class="ok">✔</span> Blog 已部署，在线运行中</p>
+                        <p><span class="prompt">$</span> <span class="cmd">npm run dev --watch</span></p>
+                        <p class="output">编译：HTML / CSS / JS 全部通过</p>
+                        <p class="output"><span class="ok">✔</span> 欢迎访问我的个人博客</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,6 +72,7 @@
     <!-- 关于我 -->
     <section id="about" class="about">
         <div class="container">
+            <span class="section-eyebrow">About Me</span>
             <h2 class="section-title">关于我</h2>
             <div class="about-content">
                 <div class="about-text">
@@ -97,6 +111,7 @@
     <!-- 技能部分 -->
     <section id="skills" class="skills">
         <div class="container">
+            <span class="section-eyebrow">Skills</span>
             <h2 class="section-title">技术技能</h2>
             <div class="skills-grid">
                 <div class="skill-category">
@@ -195,61 +210,62 @@
     <!-- 项目部分 -->
     <section id="projects" class="projects">
         <div class="container">
+            <span class="section-eyebrow">Projects</span>
             <h2 class="section-title">精选项目</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-laptop-code"></i>
+                        <i class="fas fa-robot"></i>
                     </div>
                     <div class="project-content">
-                        <h3>电子商务平台</h3>
-                        <p>一个全栈电子商务解决方案，包含用户认证、支付集成和库存管理功能。</p>
+                        <h3>CosS</h3>
+                        <p>基于 MCP 协议的 AI 多智能体协作开发工作区，通过统一编排内核让多个 Agent 协同完成软件开发任务。</p>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">MCP</span>
+                            <span class="tech-tag">AI Agent</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">查看演示</a>
-                            <a href="#" class="project-link">GitHub</a>
+                            <a href="https://github.com/xiaolizi0v0/CosS" class="project-link" target="_blank" rel="noopener noreferrer">查看项目</a>
+                            <a href="https://github.com/xiaolizi0v0/CosS" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-camera"></i>
                     </div>
                     <div class="project-content">
-                        <h3>移动应用</h3>
-                        <p>跨平台移动应用，提供实时数据同步和离线功能，优化用户体验。</p>
+                        <h3>termsnap</h3>
+                        <p>为终端用户打造的快捷键选区截图工具 —— 截图、自动保存、一键粘贴文件路径。</p>
                         <div class="project-tech">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Redux</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">查看演示</a>
-                            <a href="#" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>数据分析仪表板</h3>
-                        <p>实时数据可视化平台，支持多种数据源和自定义报表功能。</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Vue.js</span>
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">快捷键</span>
+                            <span class="tech-tag">截图工具</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">查看演示</a>
-                            <a href="#" class="project-link">GitHub</a>
+                            <a href="https://github.com/xiaolizi0v0/termsnap" class="project-link" target="_blank" rel="noopener noreferrer">查看项目</a>
+                            <a href="https://github.com/xiaolizi0v0/termsnap" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>小游戏合集</h3>
+                        <p>HoodleMachine、DamoGame 等童年小游戏作品集，用代码复刻美好回忆。</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">游戏</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/xiaolizi0v0/HoodleMachine" class="project-link" target="_blank" rel="noopener noreferrer">查看项目</a>
+                            <a href="https://github.com/xiaolizi0v0" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -260,6 +276,7 @@
     <!-- 教育背景 -->
     <section id="education" class="education">
         <div class="container">
+            <span class="section-eyebrow">Education</span>
             <h2 class="section-title">教育背景</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -286,6 +303,7 @@
     <!-- 联系方式 -->
     <section id="contact" class="contact">
         <div class="container">
+            <span class="section-eyebrow">Contact</span>
             <h2 class="section-title">联系我</h2>
             <div class="contact-content">
                 <div class="contact-info">
@@ -302,7 +320,7 @@
                         <span>北京市，中国</span>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://github.com/xiaolizi0v0" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                     </div>
