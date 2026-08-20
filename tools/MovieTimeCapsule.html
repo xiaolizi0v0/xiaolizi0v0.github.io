@@ -1517,6 +1517,7 @@
                 let lastErr = '';
                 const put = (sha) => fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
                     method: 'PUT',
+                    cache: 'no-store',
                     headers: { 'Content-Type': 'application/json', Authorization: `token ${pat}` },
                     body: JSON.stringify({
                         message,
@@ -1524,29 +1525,31 @@
                         ...(sha ? { sha } : {})
                     })
                 });
-
-                // 1. 取当前 sha（默认 JSON Accept 返回元数据）
-                let sha = null;
-                try {
+                // 取当前 sha；加 no-store 防 304（304 无响应体且 ok=false）
+                const getSha = async () => {
                     const meta = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                        cache: 'no-store',
                         headers: { Authorization: `token ${pat}` }
                     });
-                    if (meta.ok) sha = (await meta.json()).sha;
-                    // 404 → 文件不存在，sha 保持 null，走创建分支
-                } catch (e) { lastErr = '获取 sha 异常：' + e.message; }
+                    if (meta.ok) return (await meta.json()).sha;
+                    if (meta.status === 304) {
+                        // 兜底：304 时 GitHub 的 ETag 就是 sha（去掉引号）
+                        const etag = meta.headers.get('etag');
+                        if (etag) return etag.replace(/^"|"$/g, '');
+                    }
+                    return null;
+                };
 
-                // 2. 文件存在则带 sha 更新；不存在则创建
+                // 1. 文件存在则带 sha 更新；不存在（sha 为 null）则创建
+                let sha = await getSha();
                 let res = await put(sha);
                 if (res.ok) return { ok: true, error: '' };
                 try { lastErr = (await res.json()).message || ('HTTP ' + res.status); } catch (e) { lastErr = 'HTTP ' + res.status; }
 
-                // 3. sha 过期冲突（422/409）→ 重取 sha 再试一次
-                if ((res.status === 422 || res.status === 409) && sha) {
+                // 2. 422/409（文件已存在但 sha 缺失/过期）→ 无条件重取 sha 再试一次
+                if (res.status === 422 || res.status === 409) {
                     try {
-                        const meta = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
-                            headers: { Authorization: `token ${pat}` }
-                        });
-                        if (meta.ok) sha = (await meta.json()).sha;
+                        sha = await getSha();
                         res = await put(sha);
                         if (res.ok) return { ok: true, error: '' };
                         try { lastErr = (await res.json()).message || ('HTTP ' + res.status); } catch (e) { lastErr = 'HTTP ' + res.status; }
@@ -2707,11 +2710,13 @@
             let repoList = [];
             try {
                 const metaRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
                     headers: { Authorization: `token ${pat}` }
                 });
                 if (metaRes.ok) sha = (await metaRes.json()).sha;
                 // 用 raw Accept 拉取文件原文用于合并比对
                 const rawRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
                     headers: Object.assign({ Accept: 'application/vnd.github.raw' }, { Authorization: `token ${pat}` })
                 });
                 if (rawRes.ok) {
@@ -2766,6 +2771,7 @@
             try {
                 const headers = pat ? { Authorization: `token ${pat}` } : {};
                 const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
                     headers: Object.assign({ Accept: 'application/vnd.github.raw' }, headers)
                 });
                 if (!res.ok) {
@@ -2823,6 +2829,7 @@
             try {
                 const { owner, repo } = ghRepoInfo();
                 const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
                     headers: { Accept: 'application/vnd.github.raw', Authorization: `token ${pat}` }
                 });
                 if (!res.ok) return;
