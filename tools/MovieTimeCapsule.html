@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="dark" style="color-scheme: dark;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -249,6 +249,41 @@
             margin-bottom: 1rem;
         }
 
+        .saved-search-box {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-pill);
+            padding: 0.35rem 0.9rem;
+            color: var(--gray-500);
+            transition: var(--transition);
+        }
+
+        .saved-search-box:focus-within {
+            border-color: var(--ds-brand);
+        }
+
+        .saved-search-box input {
+            border: none;
+            background: transparent;
+            color: var(--ds-text-primary);
+            font-size: 0.85rem;
+            font-family: var(--ds-font-sans);
+            outline: none;
+            width: 230px;
+        }
+
+        .saved-search-box input::placeholder {
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 768px) {
+            .saved-search-box { width: 100%; }
+            .saved-search-box input { width: 100%; }
+        }
+
         .section-label h2 {
             font-family: var(--ds-font-display);
             font-size: 1.2rem;
@@ -271,7 +306,7 @@
         /* ========== 海报卡片（爱奇艺风格） ========== */
         .poster-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
             gap: 1.1rem;
         }
 
@@ -782,6 +817,23 @@
             cursor: pointer;
         }
 
+        /* 深色主题：标签文字颜色与下拉框选项修正 */
+        [data-theme="dark"] .poster-meta .tag,
+        [data-theme="dark"] .modal-meta .tag {
+            background: rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .92);
+            border-color: rgba(255, 255, 255, .14);
+        }
+        [data-theme="dark"] select,
+        [data-theme="dark"] .modal-field select {
+            color-scheme: dark;
+        }
+        [data-theme="dark"] select option,
+        [data-theme="dark"] .modal-field select option {
+            background: #1f1f23;
+            color: #fff;
+        }
+
         .modal-actions {
             margin-top: auto;
             padding-top: 1.5rem;
@@ -839,7 +891,7 @@
         }
 
         .modal-rate .tv-btn {
-            color: var(--ds-brand-light);
+            color: #fff;
             font-weight: 600;
         }
 
@@ -986,6 +1038,10 @@
             <div class="saved-section">
                 <div class="section-label">
                     <h2><i class="fas fa-film"></i> 我的片单 <span class="count-badge" id="saved-count">0</span></h2>
+                    <div class="saved-search-box">
+                        <i class="fas fa-search"></i>
+                        <input id="saved-search" type="text" placeholder="搜索片名/年份/类型/平台/地区" autocomplete="off">
+                    </div>
                 </div>
                 <div class="poster-grid" id="saved-list"></div>
                 <div id="empty-state" class="empty-state">
@@ -1274,6 +1330,7 @@
         let currentPlatform = '';      // 平台（二级）
         let currentEra = '';           // 年代（二级）
         let currentRegion = '';        // 地区（二级）
+        let currentSearch = "";       // 片单文字搜索
 
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
@@ -1486,6 +1543,11 @@
                 if (currentPlatform && (r.platform || '') !== currentPlatform) return false;
                 if (currentEra && eraOf(r.year) !== currentEra) return false;
                 if (currentRegion && (r.region || '') !== currentRegion) return false;
+                if (currentSearch) {
+                    const hay = [r.title, r.year, r.genre, r.platform, r.region, r.note, r.desc, r.sub_title]
+                        .filter(Boolean).join(' ').toLowerCase();
+                    if (!hay.includes(currentSearch)) return false;
+                }
                 return true;
             });
         }
@@ -1574,7 +1636,7 @@
 
             if (list.length === 0) {
                 savedList.innerHTML = `<div class="empty-state" style="grid-column:1/-1;border:none;">
-                    <i class="fas fa-filter"></i><p>当前分类下没有记录</p></div>`;
+                    <i class="fas fa-search"></i><p>${currentSearch ? `未找到与「${currentSearch}」匹配的记录` : '当前分类下没有记录'}</p></div>`;
                 return;
             }
 
@@ -1587,6 +1649,22 @@
                         <div class="poster-bottom">
                             <span class="card-type">${typeName(r.type)}</span>
                             <span class="card-date">${r.watchedDate || ''}</span>
+                        </div>
+                        <div class="poster-card-hover" onclick="event.stopPropagation()">
+                            <div>
+                                <div class="hover-title">${r.title || '未命名'}</div>
+                                <div class="hover-tags">
+                                    <span class="tag">${typeName(r.type)}</span>
+                                    ${r.year ? `<span class="tag">${r.year}</span>` : ''}
+                                    ${r.region ? `<span class="tag">${r.region}</span>` : ''}
+                                    ${r.platform ? `<span class="tag">${r.platform}</span>` : ''}
+                                </div>
+                                <div class="hover-meta">${r.note ? '备注：' + r.note : (r.genre ? r.genre : (r.watchedDate ? '观看 ' + r.watchedDate : ''))}</div>
+                            </div>
+                            <div class="hover-bottom">
+                                <button class="hover-btn primary" data-detail="${r.id}">查看详情</button>
+                                <button class="hover-btn danger" data-hover-del="${r.id}" title="删除"><i class="fas fa-trash-alt"></i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="poster-info">
@@ -1607,6 +1685,30 @@
                     const id = card.dataset.mid;
                     const rec = records.find(r => r.id === id);
                     if (rec) openModal(rec, 'saved');
+                });
+            });
+
+            // 悬停层：查看详情
+            savedList.querySelectorAll('[data-detail]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.detail;
+                    const rec = records.find(r => r.id === id);
+                    if (rec) openModal(rec, 'saved');
+                });
+            });
+
+            // 悬停层：删除
+            savedList.querySelectorAll('[data-hover-del]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.hoverDel;
+                    if (confirm('确定删除这条观影记录吗？')) {
+                        const idx = records.findIndex(r => r.id === id);
+                        if (idx >= 0) {
+                            records.splice(idx, 1);
+                            saveRecords(records);
+                            renderSaved();
+                        }
+                    }
                 });
             });
 
@@ -1767,6 +1869,12 @@
         });
 
         // ========== 分类切换 ==========
+        // 片单文字搜索
+        document.getElementById('saved-search').addEventListener('input', (e) => {
+            currentSearch = e.target.value.trim().toLowerCase();
+            renderSaved();
+        });
+
         document.getElementById('category-nav').addEventListener('click', e => {
             const tab = e.target.closest('.cat-tab');
             if (!tab) return;
