@@ -2174,20 +2174,28 @@
                     }
                     if (!playData) { alert('请先进入播放模式再导入'); return; }
                     if (!playData.eps) playData.eps = [];
-                    let added = 0;
+                    let added = 0, updated = 0;
                     videos.forEach(v => {
                         if (!v || typeof v !== 'object') return;
                         const title = (v.title || '').toString().trim();
                         const url = (v.url || '').toString().trim();
                         if (!title && !url) return;
-                        playData.eps.push({ title: title || ('集数 ' + (playData.eps.length + 1)), url: url || DEFAULT_TEST_URL });
-                        added++;
+                        const ep = { title: title || ('集数 ' + (playData.eps.length + 1)), url: url || DEFAULT_TEST_URL };
+                        // 同 title 已存在 → 替换 url；否则新增
+                        const idx = playData.eps.findIndex(x => x.title === ep.title);
+                        if (idx >= 0) {
+                            playData.eps[idx].url = ep.url;
+                            updated++;
+                        } else {
+                            playData.eps.push(ep);
+                            added++;
+                        }
                     });
-                    if (added > 0) {
+                    if (added > 0 || updated > 0) {
                         playData.updatedAt = Date.now();
                         saveRecords(records);   // 写本地并自动同步仓库
                         buildPlayPanel(playData);
-                        alert(`导入完成：新增 ${added} 条集数`);
+                        alert(`导入完成：新增 ${added} 条，更新 ${updated} 条`);
                     } else {
                         alert('未解析到有效的集数数据');
                     }
