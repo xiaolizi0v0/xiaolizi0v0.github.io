@@ -1507,30 +1507,51 @@
             syncTimer = setTimeout(autoSyncToRepo, 1500);
         }
 
+        // ========== GitHub 写入：串行队列 + sha 冲突自动重试 ==========
+        let ghWriteQueue = Promise.resolve();
+
+        // 统一写入函数：串行执行、自动取最新 sha、422/409 冲突时重试一次
+        function ghWrite(owner, repo, pat, content, message) {
+            const task = ghWriteQueue.then(async () => {
+                let sha = null;
+                for (let attempt = 0; attempt < 2; attempt++) {
+                    // 取当前 sha（默认 JSON Accept 返回元数据）
+                    try {
+                        const meta = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                            headers: { Authorization: `token ${pat}` }
+                        });
+                        if (meta.ok) sha = (await meta.json()).sha;
+                    } catch (e) {}
+                    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', Authorization: `token ${pat}` },
+                        body: JSON.stringify({
+                            message,
+                            content: b64Encode(content),
+                            ...(sha ? { sha } : {})
+                        })
+                    });
+                    if (res.ok) return true;
+                    // sha 过期冲突 → 重取 sha 后重试一次
+                    if (res.status === 422 || res.status === 409) {
+                        continue;
+                    }
+                    return false;
+                }
+                return false;
+            });
+            ghWriteQueue = task.catch(() => {});
+            return task;
+        }
+
         // 自动把 records 推送到仓库（需已配置 gh_pat）
         async function autoSyncToRepo() {
             const pat = localStorage.getItem('gh_pat');
             if (!pat) return;
             try {
                 const { owner, repo } = ghRepoInfo();
-                const content = JSON.stringify(records, null, 2);
-                let sha = null;
-                try {
-                    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
-                        headers: { Authorization: `token ${pat}` }
-                    });
-                    if (res.ok) sha = (await res.json()).sha;
-                } catch (e) {}
-                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json', Authorization: `token ${pat}` },
-                    body: JSON.stringify({
-                        message: '自动同步影视剧片单数据',
-                        content: b64Encode(content),
-                        ...(sha ? { sha } : {})
-                    })
-                });
-                showSyncToast(res.ok);
+                const ok = await ghWrite(owner, repo, pat, JSON.stringify(records, null, 2), '自动同步影视剧片单数据');
+                showSyncToast(ok);
             } catch (e) {
                 showSyncToast(false);
             }
@@ -2711,26 +2732,13 @@
 
             const content = JSON.stringify(records, null, 2);
 
-            // 4. 执行覆盖保存
+            // 4. 执行覆盖保存（走统一串行写入，sha 冲突自动重试）
             ghStatus('正在保存到仓库...' + mergedMsg, true);
-            try {
-                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json', Authorization: `token ${pat}` },
-                    body: JSON.stringify({
-                        message: '更新影视剧片单数据',
-                        content: b64Encode(content),
-                        ...(sha ? { sha } : {})
-                    })
-                });
-                if (res.ok) {
-                    ghStatus('已保存到仓库：' + (await res.json()).commit.sha.slice(0, 7) + mergedMsg, true);
-                } else {
-                    const err = await res.json();
-                    ghStatus('保存失败：' + (err.message || res.status), false);
-                }
-            } catch (e) {
-                ghStatus('保存失败：' + e.message, false);
+            const ok = await ghWrite(owner, repo, pat, content, '更新影视剧片单数据');
+            if (ok) {
+                ghStatus('已保存到仓库' + mergedMsg, true);
+            } else {
+                ghStatus('保存失败：写入被拒绝（sha 冲突或权限不足）', false);
             }
         });
 
