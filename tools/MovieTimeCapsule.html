@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13"></script>
     <style>
         .tool-container {
             max-width: 1240px;
@@ -1149,6 +1150,58 @@
             color: #fff;
         }
 
+        #ep-add {
+            align-self: flex-start;
+        }
+
+        .ep-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0.7rem;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: 10px;
+            animation: playPanelIn .3s ease;
+        }
+
+        .ep-form input {
+            width: 100%;
+            padding: 0.5rem 0.7rem;
+            background: var(--ds-bg-page);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: 8px;
+            color: var(--ds-text-primary);
+            font-size: 0.85rem;
+            font-family: var(--ds-font-sans);
+            outline: none;
+        }
+
+        .ep-form input:focus {
+            border-color: var(--ds-brand);
+        }
+
+        .ep-form-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .ep-form-actions .hover-btn {
+            flex: 1;
+            padding: 0.5rem 0.8rem;
+        }
+
+        .ep-edit {
+            font-size: 0.7rem;
+            margin-left: 0.25rem;
+            opacity: .6;
+        }
+
+        .ep-edit:hover {
+            opacity: 1;
+        }
+
         .video-player {
             width: 100%;
             height: 100%;
@@ -1341,7 +1394,16 @@
                             <button class="ghost-btn" id="play-exit"><i class="fas fa-arrow-left"></i> 返回详情</button>
                         </div>
                         <div class="play-episodes" id="play-episodes"></div>
-                        <div class="play-tip"><i class="fas fa-info-circle"></i> 演示模式：使用公开授权的测试片源，仅用于展示播放器界面。</div>
+                        <button class="ghost-btn" id="ep-add"><i class="fas fa-plus"></i> 添加集数</button>
+                        <div class="ep-form hidden" id="ep-form">
+                            <input id="ep-title" type="text" placeholder="集标题，如：第25集 / 番外篇" autocomplete="off">
+                            <input id="ep-url" type="text" placeholder="视频地址（.m3u8 或 .mp4）" autocomplete="off">
+                            <div class="ep-form-actions">
+                                <button class="hover-btn primary" id="ep-save"><i class="fas fa-check"></i> 保存</button>
+                                <button class="ghost-btn" id="ep-cancel"><i class="fas fa-times"></i> 取消</button>
+                            </div>
+                        </div>
+                        <div class="play-tip"><i class="fas fa-info-circle"></i> 演示模式：使用公开授权的测试片源；自定义集可填自己的 m3u8/mp4 地址。</div>
                     </div>
                 </div>
             </div>
@@ -1850,43 +1912,116 @@
             }
         }
 
+        // 自定义集（内存保存，{ title, url }）
+        let customEps = [];
+        let editingEpIndex = -1;
+        let playData = null;
+        // 默认测试视频地址（m3u8），添加集数时预填，可改成你自己的
+        const DEFAULT_TEST_URL = 'index.m3u8';
+
         function buildPlayPanel(data) {
+            playData = data;
             const isSeries = data.type === 'tv' || data.type === 'anime' || data.type === 'variety';
             const totalEpisodes = isSeries ? 24 : 1;
             const epContainer = document.getElementById('play-episodes');
             document.getElementById('play-title').textContent = data.title || '';
-
+            document.getElementById('ep-form').classList.add('hidden');
             epContainer.innerHTML = '';
-            if (totalEpisodes === 1) {
+
+            const makeBtn = (label, url, active) => {
                 const b = document.createElement('button');
-                b.className = 'ep-btn active';
-                b.textContent = '正片';
-                b.addEventListener('click', () => playVideo(DEMO_EPS[0]));
-                epContainer.appendChild(b);
+                b.className = 'ep-btn' + (active ? ' active' : '');
+                b.textContent = label;
+                b.addEventListener('click', () => {
+                    epContainer.querySelectorAll('.ep-btn').forEach(x => x.classList.remove('active'));
+                    b.classList.add('active');
+                    playVideo(url);
+                });
+                return b;
+            };
+
+            // 内置演示集
+            if (totalEpisodes === 1) {
+                epContainer.appendChild(makeBtn('正片', DEMO_BASE + DEMO_EPS[0] + '.mp4', true));
             } else {
                 for (let i = 1; i <= totalEpisodes; i++) {
-                    const b = document.createElement('button');
-                    b.className = 'ep-btn' + (i === 1 ? ' active' : '');
-                    b.textContent = '第' + String(i).padStart(2, '0') + '集';
-                    b.addEventListener('click', () => {
-                        epContainer.querySelectorAll('.ep-btn').forEach(x => x.classList.remove('active'));
-                        b.classList.add('active');
-                        playVideo(DEMO_EPS[(i - 1) % DEMO_EPS.length]);
-                    });
-                    epContainer.appendChild(b);
+                    epContainer.appendChild(makeBtn('第' + String(i).padStart(2, '0') + '集', DEMO_BASE + DEMO_EPS[(i - 1) % DEMO_EPS.length] + '.mp4', i === 1));
                 }
             }
-            playVideo(DEMO_EPS[0]);
+
+            // 自定义集（带编辑按钮）
+            customEps.forEach((ep, idx) => {
+                const b = document.createElement('button');
+                b.className = 'ep-btn';
+                b.innerHTML = `<span>${ep.title}</span><i class="fas fa-pencil-alt ep-edit" title="修改视频地址"></i>`;
+                b.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('ep-edit')) {
+                        editingEpIndex = idx;
+                        document.getElementById('ep-title').value = ep.title;
+                        document.getElementById('ep-url').value = ep.url;
+                        document.getElementById('ep-form').classList.remove('hidden');
+                        return;
+                    }
+                    epContainer.querySelectorAll('.ep-btn').forEach(x => x.classList.remove('active'));
+                    b.classList.add('active');
+                    playVideo(ep.url);
+                });
+                epContainer.appendChild(b);
+            });
+
+            playVideo(DEMO_BASE + DEMO_EPS[0] + '.mp4');
         }
 
-        function playVideo(key) {
+        function playVideo(url) {
             const v = document.querySelector('.video-player');
             if (!v) return;
-            v.src = DEMO_BASE + key + '.mp4';
-            v.play().catch(() => {});
+            // 清理旧的 hls 实例
+            if (v.hls) { v.hls.destroy(); v.hls = null; }
+            if (url.endsWith('.m3u8') && window.Hls && Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(url);
+                hls.attachMedia(v);
+                v.hls = hls;
+                hls.on(Hls.Events.MANIFEST_PARSED, () => v.play().catch(() => {}));
+            } else {
+                v.src = url;
+                v.play().catch(() => {});
+            }
         }
 
         document.getElementById('play-exit').addEventListener('click', exitPlayMode);
+
+        // 添加 / 编辑自定义集
+        document.getElementById('ep-add').addEventListener('click', () => {
+            editingEpIndex = -1;
+            document.getElementById('ep-title').value = '';
+            document.getElementById('ep-url').value = DEFAULT_TEST_URL;
+            document.getElementById('ep-form').classList.remove('hidden');
+        });
+
+        document.getElementById('ep-cancel').addEventListener('click', () => {
+            document.getElementById('ep-form').classList.add('hidden');
+            editingEpIndex = -1;
+        });
+
+        document.getElementById('ep-save').addEventListener('click', () => {
+            const title = document.getElementById('ep-title').value.trim();
+            const url = document.getElementById('ep-url').value.trim();
+            if (!title || !url) {
+                alert('请填写集标题和视频地址');
+                return;
+            }
+            const isEdit = editingEpIndex >= 0;
+            if (isEdit) {
+                customEps[editingEpIndex] = { title, url };
+            } else {
+                customEps.push({ title, url });
+            }
+            editingEpIndex = -1;
+            buildPlayPanel(playData);
+            // 播放刚保存/编辑的自定义集
+            playVideo(url);
+        });
 
         // 点击遮罩关闭、ESC 关闭
         modalEl.addEventListener('click', (e) => {
