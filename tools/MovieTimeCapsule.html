@@ -1425,7 +1425,11 @@
                             <button class="ghost-btn" id="play-exit"><i class="fas fa-arrow-left"></i> 返回详情</button>
                         </div>
                         <div class="play-episodes" id="play-episodes"></div>
-                        <button class="ghost-btn" id="ep-add"><i class="fas fa-plus"></i> 添加集数</button>
+                        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+                            <button class="ghost-btn" id="ep-add"><i class="fas fa-plus"></i> 添加集数</button>
+                            <button class="ghost-btn" id="ep-import"><i class="fas fa-file-import"></i> 导入JSON</button>
+                            <input type="file" id="ep-import-file" accept=".json,application/json" hidden>
+                        </div>
                         <div class="ep-form hidden" id="ep-form">
                             <input id="ep-title" type="text" placeholder="集标题，如：第25集 / 番外篇" autocomplete="off">
                             <input id="ep-url" type="text" placeholder="视频地址（.m3u8 或 .mp4）" autocomplete="off">
@@ -2149,6 +2153,50 @@
         document.getElementById('ep-cancel').addEventListener('click', () => {
             document.getElementById('ep-form').classList.add('hidden');
             editingEpIndex = -1;
+        });
+
+        // 导入集数 JSON（格式：{ type:"m3u8_video_folder", videos:[{title,url}] }）
+        document.getElementById('ep-import').addEventListener('click', () => {
+            document.getElementById('ep-import-file').click();
+        });
+
+        document.getElementById('ep-import-file').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                try {
+                    const data = JSON.parse(reader.result);
+                    const videos = Array.isArray(data) ? data : (Array.isArray(data.videos) ? data.videos : null);
+                    if (!videos) {
+                        alert('JSON 格式不正确：需要 { videos: [...] } 或直接是数组');
+                        return;
+                    }
+                    if (!playData) { alert('请先进入播放模式再导入'); return; }
+                    if (!playData.eps) playData.eps = [];
+                    let added = 0;
+                    videos.forEach(v => {
+                        if (!v || typeof v !== 'object') return;
+                        const title = (v.title || '').toString().trim();
+                        const url = (v.url || '').toString().trim();
+                        if (!title && !url) return;
+                        playData.eps.push({ title: title || ('集数 ' + (playData.eps.length + 1)), url: url || DEFAULT_TEST_URL });
+                        added++;
+                    });
+                    if (added > 0) {
+                        playData.updatedAt = Date.now();
+                        saveRecords(records);   // 写本地并自动同步仓库
+                        buildPlayPanel(playData);
+                        alert(`导入完成：新增 ${added} 条集数`);
+                    } else {
+                        alert('未解析到有效的集数数据');
+                    }
+                } catch (err) {
+                    alert('JSON 文件解析失败：' + err.message);
+                }
+            };
+            reader.readAsText(file);
+            e.target.value = '';
         });
 
         document.getElementById('ep-save').addEventListener('click', () => {
