@@ -395,6 +395,73 @@
             max-width: 118px;
         }
 
+        /* 评价与观影次数 */
+        .rate-row {
+            gap: 0.15rem;
+            margin-top: 0.35rem;
+        }
+
+        .rate-btn,
+        .tv-btn,
+        .undo-btn {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 0.15rem 0.3rem;
+            font-size: 0.82rem;
+            color: var(--gray-400);
+            font-family: var(--ds-font-sans);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.15rem;
+        }
+
+        .rate-btn:hover {
+            color: var(--danger-color);
+        }
+
+        .rate-btn.active {
+            color: var(--danger-color);
+        }
+
+        .rate-btn.done.active,
+        .rate-btn[data-done].active {
+            color: var(--success-color);
+        }
+
+        .tv-btn {
+            color: var(--ds-brand-light);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .tv-btn:hover {
+            color: var(--ds-brand);
+            transform: scale(1.1);
+        }
+
+        .tv-btn span {
+            font-size: 0.75rem;
+            margin-left: 0.1rem;
+        }
+
+        .undo-btn {
+            font-size: 0.72rem;
+            color: var(--gray-300);
+        }
+
+        .undo-btn:hover {
+            color: var(--gray-500);
+        }
+
+        .count-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.1rem;
+            margin-left: 0.35rem;
+        }
+
         /* 空状态 */
         .empty-state {
             text-align: center;
@@ -674,6 +741,69 @@
             padding: 0.6rem 1.3rem;
         }
 
+        /* 弹窗右下角：评价与观影次数 */
+        .modal-rate {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid var(--ds-border-subtle);
+        }
+
+        .modal-rate .rate-btn,
+        .modal-rate .tv-btn,
+        .modal-rate .undo-btn {
+            border: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            border-radius: var(--ds-radius-pill);
+            padding: 0.45rem 0.9rem;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: var(--transition);
+        }
+
+        .modal-rate .rate-btn:hover {
+            color: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+
+        .modal-rate .rate-btn.active {
+            color: #fff;
+            background: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+
+        .modal-rate .rate-btn.done.active {
+            background: var(--warning-color);
+            border-color: var(--warning-color);
+            color: #fff;
+        }
+
+        .modal-rate .tv-btn {
+            color: var(--ds-brand-light);
+            font-weight: 600;
+        }
+
+        .modal-rate .tv-btn:hover {
+            background: var(--ds-brand);
+            border-color: var(--ds-brand);
+            color: #fff;
+        }
+
+        .modal-rate .tv-btn span {
+            font-size: 0.85rem;
+        }
+
+        .modal-rate .undo-btn:hover {
+            color: var(--ds-text-primary);
+            border-color: var(--ds-border-hover);
+        }
+
         @media (max-width: 640px) {
             .modal-body {
                 flex-direction: column;
@@ -820,6 +950,7 @@
                     <div class="modal-desc" id="modal-desc"></div>
                     <div class="modal-extra" id="modal-extra"></div>
                     <div class="modal-actions" id="modal-actions"></div>
+                    <div class="modal-rate" id="modal-rate"></div>
                 </div>
             </div>
         </div>
@@ -880,11 +1011,23 @@
         // 从百科信息卡中提取类型（如：犯罪 剧情）
         function extractGenre(d) {
             const card = d.card || [];
-            const entry = card.find(c => c.name === '类型');
+            // 兼容不同类型卡片的字段名：类型 / 作品类型 / 节目类型 / 影片类型 …
+            const entry = card.find(c => /类型$/.test(c.name || ''));
             if (!entry || !entry.value || !entry.value[0]) return '';
-            const raw = entry.value[0].replace(/<[^>]*>/g, '').replace(/\s+/g, ' ');
+            // 去掉 <sup>上标引用</sup>、<a>标签及残留标签
+            const raw = entry.value[0]
+                .replace(/<sup[^>]*>[\s\S]*?<\/sup>/g, '')
+                .replace(/<[^>]*>/g, '')
+                .replace(/\s+/g, ' ');
             const parts = raw.split(/[、，,]/).map(s => s.trim()).filter(Boolean);
             return parts.slice(0, 3).join(' ');
+        }
+
+        // 把类型字符串渲染成独立的小徽章标签
+        function genreChips(g) {
+            if (!g) return '';
+            return g.split(/\s+/).filter(Boolean)
+                .map(x => `<span class="tag">${x}</span>`).join('');
         }
 
         // 生成百度 CDN 缩略图 URL（限宽 300px）
@@ -1040,7 +1183,7 @@
             metaEl.innerHTML = `
                 <span class="tag">${typeName(data.type)}</span>
                 ${data.year ? `<span>${data.year}</span>` : ''}
-                ${data.genre ? `<span>${data.genre}</span>` : ''}
+                ${genreChips(data.genre)}
             `;
 
             const imgWrap = document.getElementById('modal-image');
@@ -1053,6 +1196,9 @@
             const descEl = document.getElementById('modal-desc');
             descEl.textContent = data.desc || data.sub_title || '暂无简介';
             descEl.style.display = data.desc || data.sub_title ? '' : 'none';
+
+            // 评价与观影次数区（仅已存记录显示，右下角）
+            document.getElementById('modal-rate').innerHTML = '';
 
             const extraEl = document.getElementById('modal-extra');
             const extraParts = [];
@@ -1115,6 +1261,40 @@
                         renderSaved();
                     });
                 }
+
+                // 右下角：点赞 / 拉完了 / 观影次数 + 撤回
+                const rateEl = document.getElementById('modal-rate');
+                rateEl.innerHTML = `
+                    <button class="rate-btn ${data.liked ? 'active' : ''}" id="modal-like" title="点赞"><i class="fas fa-heart"></i> 点赞</button>
+                    <button class="rate-btn done ${data.done ? 'active' : ''}" id="modal-done" title="拉完了（不好看）"><i class="fas fa-thumbs-down"></i> 拉完了</button>
+                    <button class="undo-btn" id="modal-dec" title="撤回一次观影次数"><i class="fas fa-undo"></i> 撤回</button>
+                    <button class="tv-btn" id="modal-inc" title="点击增加一次观影次数"><i class="fas fa-tv"></i> <span id="modal-count">${data.count || 1}</span></button>
+                `;
+                document.getElementById('modal-like').addEventListener('click', () => {
+                    data.liked = data.liked ? 0 : 1;
+                    if (data.liked) data.done = 0;   // 与"拉完了"互斥
+                    saveRecords(records);
+                    document.getElementById('modal-like').classList.toggle('active', !!data.liked);
+                    document.getElementById('modal-done').classList.toggle('active', !!data.done);
+                });
+                document.getElementById('modal-done').addEventListener('click', () => {
+                    data.done = data.done ? 0 : 1;
+                    if (data.done) data.liked = 0;   // 与"点赞"互斥
+                    saveRecords(records);
+                    document.getElementById('modal-like').classList.toggle('active', !!data.liked);
+                    document.getElementById('modal-done').classList.toggle('active', !!data.done);
+                });
+                document.getElementById('modal-inc').addEventListener('click', () => {
+                    data.count = (data.count || 1) + 1;
+                    saveRecords(records);
+                    document.getElementById('modal-count').textContent = data.count;
+                });
+                document.getElementById('modal-dec').addEventListener('click', () => {
+                    data.count = Math.max(1, (data.count || 1) - 1);
+                    saveRecords(records);
+                    document.getElementById('modal-count').textContent = data.count;
+                });
+
                 document.getElementById('modal-delete-btn').addEventListener('click', () => {
                     if (confirm('确定删除这条观影记录吗？')) {
                         const idx = records.findIndex(r => r.id === data.id);
@@ -1246,7 +1426,7 @@
                         <div class="poster-meta">
                             <span class="tag">${typeName(r.type)}</span>
                             ${r.year ? `<span>${r.year}</span>` : ''}
-                            ${r.genre ? `<span>${r.genre}</span>` : ''}
+                            ${genreChips(r.genre)}
                             ${r.platform ? `<span><i class="fas fa-tv"></i> ${r.platform}</span>` : ''}
                         </div>
                         <div class="poster-meta">
@@ -1326,7 +1506,7 @@
                         <div class="poster-meta">
                             <span class="tag">${typeName(item.type)}</span>
                             ${item.year ? `<span>${item.year}</span>` : ''}
-                            ${item.genre ? `<span>${item.genre}</span>` : ''}
+                            ${genreChips(item.genre)}
                         </div>
                         ${item.desc ? `<div class="poster-meta" title="${item.desc}" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.desc}</div>` : ''}
                     </div>
@@ -1375,6 +1555,9 @@
                 sub_title: '',
                 desc: '',
                 note: '',
+                liked: 0,
+                done: 0,
+                count: 1,
                 watchedDate: nowDateStr(),
                 timestamp: Date.now()
             }, rec);
