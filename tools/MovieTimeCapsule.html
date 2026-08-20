@@ -555,6 +555,13 @@
             return 'movie';
         }
 
+        // 生成百度 CDN 缩略图 URL（限宽 300px）
+        function thumbnailize(imgUrl) {
+            if (!imgUrl) return '';
+            const base = imgUrl.split('?')[0];
+            return base + '?x-bce-process=image/resize,w_300,limit_1/format,f_auto';
+        }
+
         // JSONP 加载器：通过 <script> 标签请求，绕过 CORS 限制
         function jsonp(url, cbParam, timeout, charset) {
             return new Promise((resolve, reject) => {
@@ -612,7 +619,7 @@
                         year: extractYear(text),
                         type: detectType(text),
                         url: d.url || 'https://baike.baidu.com/item/' + encodeURIComponent(d.title),
-                        img: d.image || '',
+                        img: thumbnailize(d.image),
                         sub_title: '',
                         desc: (d.abstract || d.desc || '').slice(0, 140)
                     };
@@ -671,7 +678,7 @@
             savedList.innerHTML = records.map((r, idx) => `
                 <div class="saved-card" data-idx="${idx}">
                     ${r.img
-                        ? `<img class="saved-poster" src="${r.img}" alt="${r.title}" loading="lazy" onerror="posterError(this)">`
+                        ? `<img class="saved-poster" src="${r.img}" alt="${r.title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
                         : `<div class="saved-poster" style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);"><i class="fas fa-film"></i></div>`}
                     <div class="saved-info">
                         <div class="saved-title">${r.title || '未命名'}</div>
@@ -729,7 +736,7 @@
                     return `
                     <div class="result-card">
                         ${img
-                            ? `<img class="result-poster" src="${img}" alt="${title}" loading="lazy" onerror="posterError(this)">`
+                            ? `<img class="result-poster" src="${img}" alt="${title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
                             : `<div class="result-poster" style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);"><i class="fas fa-film"></i></div>`}
                         <div class="result-info">
                             <div class="result-title">${title}</div>
