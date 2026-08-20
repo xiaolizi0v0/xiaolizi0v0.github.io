@@ -2665,14 +2665,15 @@
             localStorage.setItem('gh_pat', pat);
             const { owner, repo } = ghRepoInfo();
 
-            // 1. 先获取当前文件 sha 和仓库里的记录
+            // 1. 先获取当前文件 sha（用默认 JSON Accept，返回元数据含 sha）
             let sha = null;
             let repoList = [];
             try {
-                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
-                    headers: Object.assign({ Accept: 'application/vnd.github.raw' }, { Authorization: `token ${pat}` })
+                const metaRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    headers: { Authorization: `token ${pat}` }
                 });
-                if (res.ok) sha = (await res.json()).sha;
+                if (metaRes.ok) sha = (await metaRes.json()).sha;
+                // 用 raw Accept 拉取文件原文用于合并比对
                 const rawRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
                     headers: Object.assign({ Accept: 'application/vnd.github.raw' }, { Authorization: `token ${pat}` })
                 });
