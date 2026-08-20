@@ -83,6 +83,126 @@
     --transition: all .3s ease;
 }
 
+/* ============================================================
+   浅色主题（非主页使用：笔记 / 工具）
+   通过 <html data-theme="light"> 启用
+   ============================================================ */
+[data-theme="light"] {
+    --ds-bg-page: #f9f8f8;
+    --ds-bg-page-2: #f1f2f4;
+    --ds-bg-dark: #fff;
+    --ds-bg-surface-1: #ffffff;
+    --ds-bg-surface-2: #f8fafc;
+    --ds-bg-surface-3: #f1f5f9;
+    --ds-bg-hover: rgba(0, 0, 0, .04);
+    --ds-bg-glass: #ffffff;
+    --ds-bg-code: #0f172a;
+
+    --ds-border-default: rgba(0, 0, 0, .1);
+    --ds-border-subtle: rgba(0, 0, 0, .06);
+    --ds-border-strong: rgba(0, 0, 0, .24);
+    --ds-border-hover: rgba(0, 0, 0, .2);
+    --ds-border-divider: rgba(0, 0, 0, .12);
+
+    --ds-text-primary: #1e232c;
+    --ds-text-secondary: rgba(32, 33, 36, .82);
+    --ds-text-description: rgba(0, 0, 0, .65);
+    --ds-text-placeholder: #8691a1;
+
+    --ds-brand: #4d6bfe;
+    --ds-brand-light: #4176e6;
+    --ds-brand-glow: #3a65c2;
+    --ds-brand-medium: #3157b8;
+
+    --ds-shadow-card: 0 0 0 1px #f1f5f9, 0 2px 4px rgba(0, 0, 0, .05), 0 12px 24px rgba(0, 0, 0, .05);
+
+    /* 兼容旧代码的浅色变量 */
+    --primary-color: #4d6bfe;
+    --secondary-color: #6799fe;
+    --accent-color: #6799fe;
+    --dark-color: #1e293b;
+    --light-color: #f8fafc;
+
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, .05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04);
+}
+
+/* 浅色主题组件覆盖 */
+[data-theme="light"] .navbar {
+    background: rgba(255, 255, 255, .65);
+    border-bottom-color: rgba(0, 0, 0, .08);
+}
+
+[data-theme="light"] .navbar.scrolled {
+    background: rgba(255, 255, 255, .88);
+    border-bottom-color: rgba(0, 0, 0, .1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+}
+
+[data-theme="light"] .nav-logo a {
+    color: var(--ds-text-primary);
+}
+
+[data-theme="light"] .bar {
+    background: #1e293b;
+}
+
+[data-theme="light"] .nav-link:hover {
+    color: var(--ds-text-primary);
+}
+
+[data-theme="light"] .nav-link.active {
+    color: var(--ds-text-primary);
+}
+
+[data-theme="light"] .nav-menu.active {
+    background: rgba(255, 255, 255, .96);
+    border-bottom-color: rgba(0, 0, 0, .08);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, .12);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+    background: var(--ds-bg-page);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .2);
+    border-color: var(--ds-bg-page);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, .32);
+}
+
+[data-theme="light"] ::selection {
+    background: rgba(77, 107, 254, .25);
+    color: #1e232c;
+}
+
+[data-theme="light"] .skill-progress {
+    box-shadow: 0 0 12px rgba(77, 107, 254, .3);
+}
+
+[data-theme="light"] .terminal-window {
+    background: #1e232c;
+    box-shadow:
+        inset 0 1px 0 hsla(0, 0%, 100%, .08),
+        0 24px 64px rgba(0, 0, 0, .35);
+}
+
 * {
     margin: 0;
     padding: 0;
