@@ -1300,6 +1300,7 @@
                         <button class="ghost-btn" id="export-btn"><i class="fas fa-download"></i> 导出</button>
                         <button class="ghost-btn" id="import-btn"><i class="fas fa-upload"></i> 导入</button>
                         <input type="file" id="import-file" accept=".json,application/json" hidden>
+                        <button class="ghost-btn" id="gh-sync-btn"><i class="fab fa-github"></i> GitHub同步</button>
                     </div>
                 </div>
                 <div class="nav-row secondary">
@@ -1409,6 +1410,40 @@
             </div>
             <div class="modal-copyright hidden" id="modal-copyright">
                 本页面内容仅供学习使用，不能对外传播。
+            </div>
+        </div>
+    </div>
+
+    <!-- GitHub 同步弹窗 -->
+    <div class="modal-overlay hidden" id="gh-modal">
+        <div class="modal" style="max-width: 480px; height: auto;">
+            <button class="modal-close" id="gh-close" title="关闭"><i class="fas fa-times"></i></button>
+            <div class="modal-body" style="height: auto; flex-direction: column; max-height: 88vh; overflow-y: auto;">
+                <div style="padding: 1.4rem 1.4rem 1.2rem;">
+                    <h2 class="modal-title" style="font-size: 1.2rem; margin-bottom: 0.5rem;">GitHub 数据同步</h2>
+                    <div class="modal-meta" style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+                        片单数据默认保存在浏览器 localStorage。GitHub Pages 是纯静态托管，页面无法直接写入仓库文件，因此通过 GitHub REST API 把数据以 JSON 文件提交到仓库，实现跨设备同步。
+                    </div>
+                    <div class="modal-field" style="margin-bottom: 0.6rem;">
+                        <label>仓库</label>
+                        <div class="value" id="gh-repo-label"></div>
+                    </div>
+                    <div class="modal-field" style="margin-bottom: 0.6rem;">
+                        <label>文件名</label>
+                        <div class="value" id="gh-file-label"></div>
+                    </div>
+                    <label style="display:block;font-size:0.82rem;color:var(--gray-500);margin-bottom:0.35rem;">Personal Access Token（需 repo 写权限）</label>
+                    <input type="password" id="gh-token" placeholder="ghp_xxxx..." autocomplete="off"
+                        style="width:100%;padding:0.55rem 0.8rem;background:var(--ds-bg-page);border:1px solid var(--ds-border-subtle);border-radius:8px;color:var(--ds-text-primary);font-size:0.9rem;font-family:var(--ds-font-sans);">
+                    <div class="play-tip" style="margin-top:0.45rem;">
+                        获取方式：GitHub → Settings → Developer settings → Personal access tokens → 勾选 repo 权限生成。Token 仅保存在浏览器本地，不会上传其它地方。
+                    </div>
+                    <div class="modal-actions" style="margin-top:1rem; padding-top:1rem;">
+                        <button class="card-btn" id="gh-save-btn"><i class="fas fa-upload"></i> 保存到仓库</button>
+                        <button class="card-btn" id="gh-load-btn"><i class="fas fa-download"></i> 从仓库加载</button>
+                    </div>
+                    <div class="play-tip" id="gh-status" style="margin-top:0.7rem;"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -1921,38 +1956,25 @@
 
         function buildPlayPanel(data) {
             playData = data;
-            const isSeries = data.type === 'tv' || data.type === 'anime' || data.type === 'variety';
-            const totalEpisodes = isSeries ? 24 : 1;
             const epContainer = document.getElementById('play-episodes');
             document.getElementById('play-title').textContent = data.title || '';
             document.getElementById('ep-form').classList.add('hidden');
             epContainer.innerHTML = '';
 
-            const makeBtn = (label, url, active) => {
-                const b = document.createElement('button');
-                b.className = 'ep-btn' + (active ? ' active' : '');
-                b.textContent = label;
-                b.addEventListener('click', () => {
-                    epContainer.querySelectorAll('.ep-btn').forEach(x => x.classList.remove('active'));
-                    b.classList.add('active');
-                    playVideo(url);
-                });
-                return b;
-            };
-
-            // 内置演示集
-            if (totalEpisodes === 1) {
-                epContainer.appendChild(makeBtn('正片', DEMO_BASE + DEMO_EPS[0] + '.mp4', true));
-            } else {
-                for (let i = 1; i <= totalEpisodes; i++) {
-                    epContainer.appendChild(makeBtn('第' + String(i).padStart(2, '0') + '集', DEMO_BASE + DEMO_EPS[(i - 1) % DEMO_EPS.length] + '.mp4', i === 1));
-                }
+            // 默认没有任何集数，只有用户通过"添加集数"添加的自定义集
+            if (customEps.length === 0) {
+                const hint = document.createElement('div');
+                hint.className = 'play-tip';
+                hint.style.gridColumn = '1 / -1';
+                hint.style.padding = '0.5rem 0';
+                hint.innerHTML = '<i class="fas fa-plus-circle"></i> 暂无集数，点击下方「添加集数」添加你自己的视频';
+                epContainer.appendChild(hint);
+                return;
             }
 
-            // 自定义集（带编辑按钮）
             customEps.forEach((ep, idx) => {
                 const b = document.createElement('button');
-                b.className = 'ep-btn';
+                b.className = 'ep-btn' + (idx === 0 ? ' active' : '');
                 b.innerHTML = `<span>${ep.title}</span><i class="fas fa-pencil-alt ep-edit" title="修改视频地址"></i>`;
                 b.addEventListener('click', (e) => {
                     if (e.target.classList.contains('ep-edit')) {
@@ -1969,7 +1991,8 @@
                 epContainer.appendChild(b);
             });
 
-            playVideo(DEMO_BASE + DEMO_EPS[0] + '.mp4');
+            // 有集数时默认播放第一集
+            playVideo(customEps[0].url);
         }
 
         function playVideo(url) {
@@ -2487,6 +2510,121 @@
             };
             reader.readAsText(file);
             e.target.value = '';
+        });
+
+        // ========== GitHub 数据同步 ==========
+        // 从页面域名推导仓库信息：xxx.github.io → owner=xxx, repo=xxx.github.io
+        function ghRepoInfo() {
+            const host = location.hostname;
+            let owner = 'xiaolizi0v0';
+            let repo = 'xiaolizi0v0.github.io';
+            const m = host.match(/^([^.]+)\.github\.io$/);
+            if (m) { owner = m[1]; repo = m[1] + '.github.io'; }
+            else if (host === 'localhost' || host === '127.0.0.1') { /* 本地调试用默认值 */ }
+            return { owner, repo };
+        }
+        const GH_PATH = 'tools/movieTimeCapsule.json';
+
+        function ghModal(show) {
+            const el = document.getElementById('gh-modal');
+            if (show) {
+                const { owner, repo } = ghRepoInfo();
+                document.getElementById('gh-repo-label').textContent = `${owner}/${repo}`;
+                document.getElementById('gh-file-label').textContent = GH_PATH;
+                document.getElementById('gh-token').value = localStorage.getItem('gh_pat') || '';
+                document.getElementById('gh-status').textContent = '';
+                el.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                el.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.getElementById('gh-sync-btn').addEventListener('click', () => ghModal(true));
+        document.getElementById('gh-close').addEventListener('click', () => ghModal(false));
+        document.getElementById('gh-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) ghModal(false);
+        });
+
+        function ghStatus(msg, ok) {
+            const el = document.getElementById('gh-status');
+            el.textContent = msg;
+            el.style.color = ok ? 'var(--success-color)' : 'var(--danger-color)';
+        }
+
+        // base64（支持中文）
+        function b64Encode(str) {
+            return btoa(unescape(encodeURIComponent(str)));
+        }
+
+        // 保存片单 JSON 到仓库
+        document.getElementById('gh-save-btn').addEventListener('click', async () => {
+            const pat = document.getElementById('gh-token').value.trim();
+            if (!pat) { ghStatus('请先填写 Personal Access Token', false); return; }
+            localStorage.setItem('gh_pat', pat);
+            const { owner, repo } = ghRepoInfo();
+            const content = JSON.stringify(records, null, 2);
+            // 先获取当前文件 sha（若已存在）
+            let sha = null;
+            try {
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    headers: { Authorization: `token ${pat}` }
+                });
+                if (res.ok) sha = (await res.json()).sha;
+            } catch (e) {}
+            ghStatus('正在保存到仓库...', true);
+            try {
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', Authorization: `token ${pat}` },
+                    body: JSON.stringify({
+                        message: '更新影视剧片单数据',
+                        content: b64Encode(content),
+                        ...(sha ? { sha } : {})
+                    })
+                });
+                if (res.ok) {
+                    ghStatus('已保存到仓库：' + (await res.json()).commit.sha.slice(0, 7), true);
+                } else {
+                    const err = await res.json();
+                    ghStatus('保存失败：' + (err.message || res.status), false);
+                }
+            } catch (e) {
+                ghStatus('保存失败：' + e.message, false);
+            }
+        });
+
+        // 从仓库加载片单 JSON 并合并
+        document.getElementById('gh-load-btn').addEventListener('click', async () => {
+            const pat = document.getElementById('gh-token').value.trim();
+            const { owner, repo } = ghRepoInfo();
+            ghStatus('正在从仓库加载...', true);
+            try {
+                const headers = pat ? { Authorization: `token ${pat}` } : {};
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    headers: Object.assign({ Accept: 'application/vnd.github.raw' }, headers)
+                });
+                if (!res.ok) {
+                    ghStatus('加载失败：仓库中可能还没有该文件（' + res.status + '）', false);
+                    return;
+                }
+                const data = JSON.parse(await res.text());
+                const list = Array.isArray(data) ? data : (data.records || []);
+                let added = 0;
+                list.forEach(rec => {
+                    if (!rec || !rec.title) return;
+                    if (!records.some(r => r.id === rec.id)) {
+                        records.push(Object.assign({ watchedDate: nowDateStr(), timestamp: Date.now() }, rec));
+                        added++;
+                    }
+                });
+                saveRecords(records);
+                renderSaved();
+                ghStatus(`从仓库加载完成：新增 ${added} 条`, true);
+            } catch (e) {
+                ghStatus('加载失败：' + e.message, false);
+            }
         });
 
         // ========== 导航菜单切换 ==========
