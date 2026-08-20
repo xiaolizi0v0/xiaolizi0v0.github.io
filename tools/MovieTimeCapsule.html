@@ -143,31 +143,60 @@
             margin: 0 0.4rem;
         }
 
-        .genre-tabs {
+        /* 二级分类筛选 */
+        .nav-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-row.secondary {
+            padding-top: 0.6rem;
+            margin-top: 0.6rem;
+            border-top: 1px solid var(--ds-border-subtle);
+            gap: 0.9rem;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-size: 0.78rem;
+            color: var(--gray-400);
+            white-space: nowrap;
+            font-family: var(--ds-font-mono);
+        }
+
+        .filter-tabs {
             display: flex;
             gap: 0.3rem;
             flex-wrap: wrap;
         }
 
-        .genre-chip {
-            padding: 0.3rem 0.9rem;
+        .filter-tab {
+            padding: 0.28rem 0.85rem;
             border: 1px solid var(--ds-border-subtle);
             border-radius: var(--ds-radius-pill);
             background: var(--ds-bg-surface-1);
             color: var(--gray-600);
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-family: var(--ds-font-sans);
             cursor: pointer;
             transition: var(--transition);
             white-space: nowrap;
         }
 
-        .genre-chip:hover {
+        .filter-tab:hover {
             border-color: var(--ds-border-hover);
             color: var(--ds-text-primary);
         }
 
-        .genre-chip.active {
+        .filter-tab.active {
             background: var(--ds-brand);
             border-color: var(--ds-brand);
             color: #fff;
@@ -394,7 +423,7 @@
         /* ========== 手动添加表单 ========== */
         .manual-form {
             display: grid;
-            grid-template-columns: 1.4fr 0.7fr 0.7fr 0.9fr 1fr auto;
+            grid-template-columns: 1.4fr 0.7fr 0.7fr 0.9fr 0.9fr 1fr auto;
             gap: 0.6rem;
             margin-bottom: 1.5rem;
             padding: 1.2rem;
@@ -620,7 +649,8 @@
             color: var(--ds-text-primary);
         }
 
-        .modal-field input[type=date] {
+        .modal-field input[type=date],
+        .modal-field select {
             border: 1px solid var(--ds-border-subtle);
             background: var(--ds-bg-surface-1);
             color: var(--ds-text-primary);
@@ -628,6 +658,7 @@
             padding: 0.35rem 0.6rem;
             font-size: 0.88rem;
             font-family: var(--ds-font-sans);
+            cursor: pointer;
         }
 
         .modal-actions {
@@ -700,18 +731,32 @@
 
             <!-- 分类导航 -->
             <div class="category-nav" id="category-nav">
-                <button class="cat-tab active" data-cat="all">全部</button>
-                <button class="cat-tab" data-cat="movie">电影</button>
-                <button class="cat-tab" data-cat="tv">电视剧</button>
-                <button class="cat-tab" data-cat="variety">综艺</button>
-                <button class="cat-tab" data-cat="anime">动漫</button>
-                <span class="nav-divider"></span>
-                <div class="genre-tabs" id="genre-tabs"></div>
-                <div class="nav-actions">
-                    <button class="ghost-btn" id="toggle-manual"><i class="fas fa-plus"></i> 手动添加</button>
-                    <button class="ghost-btn" id="export-btn"><i class="fas fa-download"></i> 导出</button>
-                    <button class="ghost-btn" id="import-btn"><i class="fas fa-upload"></i> 导入</button>
-                    <input type="file" id="import-file" accept=".json,application/json" hidden>
+                <div class="nav-row">
+                    <button class="cat-tab active" data-cat="all">全部</button>
+                    <button class="cat-tab" data-cat="movie">电影</button>
+                    <button class="cat-tab" data-cat="tv">电视剧</button>
+                    <button class="cat-tab" data-cat="variety">综艺</button>
+                    <button class="cat-tab" data-cat="anime">动漫</button>
+                    <div class="nav-actions">
+                        <button class="ghost-btn" id="toggle-manual"><i class="fas fa-plus"></i> 手动添加</button>
+                        <button class="ghost-btn" id="export-btn"><i class="fas fa-download"></i> 导出</button>
+                        <button class="ghost-btn" id="import-btn"><i class="fas fa-upload"></i> 导入</button>
+                        <input type="file" id="import-file" accept=".json,application/json" hidden>
+                    </div>
+                </div>
+                <div class="nav-row secondary">
+                    <div class="filter-group">
+                        <span class="filter-label">题材</span>
+                        <div class="filter-tabs" id="genre-tabs"></div>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">平台</span>
+                        <div class="filter-tabs" id="platform-tabs"></div>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">年代</span>
+                        <div class="filter-tabs" id="era-tabs"></div>
+                    </div>
                 </div>
             </div>
 
@@ -735,6 +780,16 @@
                     <option value="anime">动漫</option>
                 </select>
                 <input id="m-genre" type="text" placeholder="类型，如 剧情 犯罪">
+                <select id="m-platform">
+                    <option value="">观看平台</option>
+                    <option value="影院">影院</option>
+                    <option value="爱奇艺">爱奇艺</option>
+                    <option value="腾讯">腾讯</option>
+                    <option value="优酷">优酷</option>
+                    <option value="B站">B站</option>
+                    <option value="芒果TV">芒果TV</option>
+                    <option value="其他">其他</option>
+                </select>
                 <input id="m-note" type="text" placeholder="备注（可选）">
                 <button class="card-btn" id="m-save">保存</button>
             </div>
@@ -867,17 +922,19 @@
             });
         }
 
-        // 搜索百度百科词条（建议词 + 用户原始输入 精确匹配，再逐个查详情，过滤非影视）
+        // 搜索百度百科词条（建议词 + 用户原始输入 精确匹配，再逐个查详情）
         async function searchBaidu(keyword) {
+            const userInput = keyword.trim();
+
             // 1. 获取建议词（该接口返回 GBK 编码，强制按 GBK 解码）
             const sug = await jsonp(
-                'https://suggestion.baidu.com/su?wd=' + encodeURIComponent(keyword) + '&prod=baike',
+                'https://suggestion.baidu.com/su?wd=' + encodeURIComponent(userInput) + '&prod=baike',
                 'cb',
                 12000,
                 'gbk'
             );
             // 把用户原始输入也作为一个候选（精确匹配），与建议词合并去重
-            const candidates = [...new Set([keyword, ...((sug && sug.s) || [])])].slice(0, 6);
+            const candidates = [...new Set([userInput, ...((sug && sug.s) || [])])].slice(0, 6);
 
             // 2. 并行查询每个词条详情（含海报、年份、类型、简介）
             const list = await Promise.all(candidates.map(async name => {
@@ -905,7 +962,8 @@
                     return null;
                 }
             }));
-            // 过滤：1) 字段缺失 2) 类型为"其他"（非影视，如材料/方言等）
+
+            // 过滤：1) 字段缺失 2) 非影视词条（如文化术语、耐火砖、方言等）
             // 同时按 id 去重（同一个词条被建议词+用户输入重复加入）
             const seen = new Set();
             return list.filter(Boolean).filter(r => {
@@ -919,15 +977,17 @@
         async function searchMovies(keyword) {
             const list = await searchBaidu(keyword);
             if (list.length === 0) {
-                throw new Error('百度百科没有找到相关词条，可更换关键词或手动添加');
+                throw new Error('未找到影视词条（百度百科默认词条非影视已过滤）。若为动漫/剧集，可尝试更精确名称或直接手动添加。');
             }
             return list;
         }
 
         // ===================== 页面逻辑 =====================
         let records = loadRecords();
-        let currentCat = 'all';   // all / movie / tv
-        let currentGenre = '';    // 当前选中的类型
+        let currentCat = 'all';        // all / movie / tv / variety / anime
+        let currentGenre = '';         // 题材（二级）
+        let currentPlatform = '';      // 平台（二级）
+        let currentEra = '';           // 年代（二级）
 
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
@@ -938,9 +998,25 @@
         const emptyState = document.getElementById('empty-state');
         const savedCount = document.getElementById('saved-count');
         const genreTabs = document.getElementById('genre-tabs');
+        const platformTabs = document.getElementById('platform-tabs');
+        const eraTabs = document.getElementById('era-tabs');
+
+        // 平台可选项
+        const PLATFORMS = ['影院', '爱奇艺', '腾讯', '优酷', 'B站', '芒果TV', '其他'];
+        // 年代区间
+        const ERAS = ['2020后', '2010s', '2000s', '更早'];
 
         function typeName(t) {
             return { movie: '电影', tv: '电视剧', variety: '综艺', anime: '动漫', other: '其他' }[t] || '电影';
+        }
+
+        function eraOf(year) {
+            const y = parseInt(year);
+            if (!y) return '';
+            if (y >= 2020) return '2020后';
+            if (y >= 2010) return '2010s';
+            if (y >= 2000) return '2000s';
+            return '更早';
         }
 
         // 海报加载失败时替换为占位图标
@@ -982,6 +1058,9 @@
             const extraParts = [];
             if (mode === 'saved') {
                 extraParts.push(`<div class="modal-field"><label>观看日期</label><input type="date" id="modal-date" value="${data.watchedDate || ''}"></div>`);
+                const platformOpts = ['<option value="">未设置</option>']
+                    .concat(PLATFORMS.map(p => `<option value="${p}" ${p === (data.platform || '') ? 'selected' : ''}>${p}</option>`));
+                extraParts.push(`<div class="modal-field"><label>观看平台</label><select id="modal-platform">${platformOpts.join('')}</select></div>`);
                 if (data.note) extraParts.push(`<div class="modal-field"><label>备注</label><div class="value">${data.note}</div></div>`);
             }
             extraEl.innerHTML = extraParts.join('');
@@ -1028,6 +1107,14 @@
                         saveRecords(records);
                     });
                 }
+                const platformInput = document.getElementById('modal-platform');
+                if (platformInput) {
+                    platformInput.addEventListener('change', () => {
+                        data.platform = platformInput.value;
+                        saveRecords(records);
+                        renderSaved();
+                    });
+                }
                 document.getElementById('modal-delete-btn').addEventListener('click', () => {
                     if (confirm('确定删除这条观影记录吗？')) {
                         const idx = records.findIndex(r => r.id === data.id);
@@ -1067,19 +1154,56 @@
                     const g = (r.genre || '').split(/\s+/).filter(Boolean);
                     if (!g.includes(currentGenre)) return false;
                 }
+                if (currentPlatform && (r.platform || '') !== currentPlatform) return false;
+                if (currentEra && eraOf(r.year) !== currentEra) return false;
                 return true;
             });
         }
 
+        // 题材筛选（动态生成）
         function renderGenreTabs() {
             const genres = [...new Set(records.flatMap(r => (r.genre || '').split(/\s+/).filter(Boolean)))].slice(0, 12);
-            genreTabs.innerHTML = genres.map(g =>
-                `<button class="genre-chip ${g === currentGenre ? 'active' : ''}" data-genre="${g}">${g}</button>`
-            ).join('');
-            genreTabs.querySelectorAll('.genre-chip').forEach(chip => {
-                chip.addEventListener('click', () => {
-                    currentGenre = chip.dataset.genre === currentGenre ? '' : chip.dataset.genre;
+            genreTabs.innerHTML =
+                `<button class="filter-tab ${currentGenre === '' ? 'active' : ''}" data-g="__all">全部</button>` +
+                genres.map(g =>
+                    `<button class="filter-tab ${g === currentGenre ? 'active' : ''}" data-g="${g}">${g}</button>`
+                ).join('');
+            genreTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentGenre = tab.dataset.g === '__all' ? '' : tab.dataset.g;
                     renderGenreTabs();
+                    renderSaved();
+                });
+            });
+        }
+
+        // 平台筛选（固定选项）
+        function renderPlatformTabs() {
+            platformTabs.innerHTML =
+                `<button class="filter-tab ${currentPlatform === '' ? 'active' : ''}" data-p="__all">全部</button>` +
+                PLATFORMS.map(p =>
+                    `<button class="filter-tab ${p === currentPlatform ? 'active' : ''}" data-p="${p}">${p}</button>`
+                ).join('');
+            platformTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentPlatform = tab.dataset.p === '__all' ? '' : tab.dataset.p;
+                    renderPlatformTabs();
+                    renderSaved();
+                });
+            });
+        }
+
+        // 年代筛选（固定选项）
+        function renderEraTabs() {
+            eraTabs.innerHTML =
+                `<button class="filter-tab ${currentEra === '' ? 'active' : ''}" data-e="__all">全部</button>` +
+                ERAS.map(e =>
+                    `<button class="filter-tab ${e === currentEra ? 'active' : ''}" data-e="${e}">${e}</button>`
+                ).join('');
+            eraTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentEra = tab.dataset.e === '__all' ? '' : tab.dataset.e;
+                    renderEraTabs();
                     renderSaved();
                 });
             });
@@ -1088,6 +1212,8 @@
         // ========== 渲染已存片单（爱奇艺风格海报墙） ==========
         function renderSaved() {
             renderGenreTabs();
+            renderPlatformTabs();
+            renderEraTabs();
             const list = filteredRecords();
             list.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
             savedCount.textContent = records.length;
@@ -1121,6 +1247,7 @@
                             <span class="tag">${typeName(r.type)}</span>
                             ${r.year ? `<span>${r.year}</span>` : ''}
                             ${r.genre ? `<span>${r.genre}</span>` : ''}
+                            ${r.platform ? `<span><i class="fas fa-tv"></i> ${r.platform}</span>` : ''}
                         </div>
                         <div class="poster-meta">
                             <i class="fas fa-calendar-alt"></i>
@@ -1244,6 +1371,7 @@
                 url: '',
                 img: '',
                 genre: '',
+                platform: '',
                 sub_title: '',
                 desc: '',
                 note: '',
@@ -1282,6 +1410,8 @@
                 searchStatus.className = 'search-status error';
                 searchStatus.textContent = e.message || '搜索失败';
                 resultsGrid.innerHTML = '';
+                // 搜不到时预填手动添加表单，方便快速记录
+                document.getElementById('m-title').value = keyword;
             } finally {
                 searchBtn.disabled = false;
                 searchBtn.innerHTML = '<i class="fas fa-search"></i> 搜索';
@@ -1305,8 +1435,9 @@
             if (!tab) return;
             currentCat = tab.dataset.cat;
             currentGenre = '';
+            currentPlatform = '';
+            currentEra = '';
             document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t === tab));
-            renderGenreTabs();
             renderSaved();
         });
 
@@ -1327,11 +1458,13 @@
                 year: document.getElementById('m-year').value.trim(),
                 type: document.getElementById('m-type').value,
                 genre: document.getElementById('m-genre').value.trim(),
+                platform: document.getElementById('m-platform').value,
                 note: document.getElementById('m-note').value.trim()
             });
             document.getElementById('m-title').value = '';
             document.getElementById('m-year').value = '';
             document.getElementById('m-genre').value = '';
+            document.getElementById('m-platform').value = '';
             document.getElementById('m-note').value = '';
             document.getElementById('manual-form').classList.add('hidden');
         });
