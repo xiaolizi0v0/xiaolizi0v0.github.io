@@ -24,7 +24,7 @@ const dataConfig = {
       id: "3",
       title: "影视剧观影存储时间胶囊",
       icon: "fas fa-film",
-      description: "输入影视剧名称，自动搜索维基百科数据并记录观影时间，存入时间胶囊随时回忆看过的作品",
+      description: "输入影视剧名称，自动搜索百度百科数据（含海报）并记录观影时间，存入时间胶囊随时回忆看过的作品",
       file: "MovieTimeCapsule.html",
       category: "other",
       date: "2026-08-20"

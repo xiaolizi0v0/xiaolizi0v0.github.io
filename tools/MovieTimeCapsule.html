@@ -458,7 +458,7 @@
         <div class="tool-container">
             <div class="tool-header">
                 <h1 class="section-title">影视剧观影存储时间胶囊</h1>
-                <p>输入影视剧名称，自动搜索维基百科数据并记录观影时间。存进时间胶囊，随时回忆看过的每一部作品。</p>
+                <p>输入影视剧名称，自动搜索百度百科数据并记录观影时间。存进时间胶囊，随时回忆看过的每一部作品。</p>
             </div>
 
             <!-- 搜索 -->
@@ -468,7 +468,7 @@
                     <button id="search-btn" class="btn-search">搜索</button>
                 </div>
                 <div id="search-status" class="search-status"></div>
-                <div class="tip">搜索使用免费稳定的维基百科开放 API（无需代理，CORS 原生支持）。找不到的条目可手动添加。</div>
+                <div class="tip">数据来自百度百科（openapi + JSONP 加载，无需代理），含海报缩略图。找不到的条目可手动添加。</div>
             </div>
 
             <!-- 搜索结果 -->
@@ -538,7 +538,7 @@
             return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
         }
 
-        // ===================== 维基百科搜索（CORS 原生支持，无需代理） =====================
+        // ===================== 百度百科搜索（JSONP 加载，无需 CORS/代理） =====================
         function cleanTitle(t) {
             return t.replace(/[（(].*?[）)]/g, '').trim();
         }
@@ -549,73 +549,84 @@
         }
 
         function detectType(s) {
-            return /电视剧|剧集|连续剧/.test(s) ? 'tv' : 'movie';
+            if (/电视剧|网络剧|网剧|连续剧/.test(s)) return 'tv';
+            const m = s.match(/执导的([\u4e00-\u9fa5]{0,8}?)(片|剧)/);
+            if (m) return m[2] === '剧' ? 'tv' : 'movie';
+            return 'movie';
         }
 
-        // 通过 parse 接口抓取条目信息框里的海报缩略图
-        async function getPoster(title) {
-            try {
-                const url = 'https://zh.wikipedia.org/w/api.php?action=parse&page='
-                    + encodeURIComponent(title) + '&prop=text&section=0&format=json&origin=*';
-                const res = await fetch(url);
-                if (!res.ok) return '';
-                const data = await res.json();
-                const html = (data.parse && data.parse.text && data.parse.text['*']) || '';
-                const m = html.match(/src="([^"]*?upload\.wikimedia\.org[^"]*?\/thumb\/[^"]*?\.(?:jpe?g|png)[^"]*)"/i);
-                if (!m) return '';
-                let src = m[1].split('?')[0]; // 去掉追踪参数
-                if (src.startsWith('//')) src = 'https:' + src;
-                return src;
-            } catch (e) {
-                return '';
-            }
-        }
-
-        // 维基百科开放 API：带 origin=* 即原生支持 CORS，免费稳定，无需任何代理
-        async function searchWikipedia(keyword) {
-            // 1. 开放搜索找候选条目
-            const openUrl = 'https://zh.wikipedia.org/w/api.php?action=opensearch&search='
-                + encodeURIComponent(keyword) + '&limit=6&format=json&origin=*';
-            const openRes = await fetch(openUrl);
-            if (!openRes.ok) throw new Error('维基百科搜索失败，请稍后重试');
-            const [query, titles, descs, urls] = await openRes.json();
-            if (!titles || !titles.length) return [];
-
-            // 2. 批量获取每个条目的简介（含年份、类型信息）
-            const detailUrl = 'https://zh.wikipedia.org/w/api.php?action=query&titles='
-                + encodeURIComponent(titles.join('|'))
-                + '&prop=extracts&exintro=1&explaintext=1&format=json&origin=*&redirects=1';
-            const detailRes = await fetch(detailUrl);
-            const detail = await detailRes.json();
-            const pages = (detail.query && detail.query.pages) || {};
-
-            const results = titles.map((t, i) => {
-                const page = Object.values(pages).find(p => p.title === t) || {};
-                const extract = page.extract || descs[i] || '';
-                return {
-                    id: 'wiki-' + (page.pageid || i),
-                    title: t,
-                    year: extractYear(t + ' ' + extract),
-                    type: detectType(t + ' ' + extract),
-                    url: urls[i] || '',
-                    img: '',
-                    sub_title: '',
-                    desc: extract.slice(0, 140)
+        // JSONP 加载器：通过 <script> 标签请求，绕过 CORS 限制
+        function jsonp(url, cbParam, timeout, charset) {
+            return new Promise((resolve, reject) => {
+                const cb = 'bkcb' + Date.now() + Math.floor(Math.random() * 1000);
+                const script = document.createElement('script');
+                if (charset) script.charset = charset;
+                const timer = setTimeout(() => {
+                    delete window[cb];
+                    script.remove();
+                    reject(new Error('请求超时'));
+                }, timeout || 12000);
+                window[cb] = (data) => {
+                    clearTimeout(timer);
+                    delete window[cb];
+                    script.remove();
+                    resolve(data);
                 };
-            }).filter(r => !r.title.includes('(消歧义)') && !r.title.includes('（消歧义）'));
+                script.onerror = () => {
+                    clearTimeout(timer);
+                    delete window[cb];
+                    script.remove();
+                    reject(new Error('加载失败'));
+                };
+                script.src = url + '&' + cbParam + '=' + cb;
+                document.head.appendChild(script);
+            });
+        }
 
-            // 3. 并行抓取每个条目的海报缩略图
-            await Promise.all(results.map(async r => {
-                r.img = await getPoster(r.title);
+        // 搜索百度百科词条（先用建议词接口，再逐个查详情）
+        async function searchBaidu(keyword) {
+            // 1. 获取建议词（该接口返回 GBK 编码，强制按 GBK 解码）
+            const sug = await jsonp(
+                'https://suggestion.baidu.com/su?wd=' + encodeURIComponent(keyword) + '&prod=baike',
+                'cb',
+                12000,
+                'gbk'
+            );
+            const names = (sug && sug.s) || [];
+            if (!names.length) return [];
+            const candidates = [...new Set(names)].slice(0, 6);
+
+            // 2. 并行查询每个词条详情（含海报、年份、类型、简介）
+            const list = await Promise.all(candidates.map(async name => {
+                try {
+                    const d = await jsonp(
+                        'https://baike.baidu.com/api/openapi/BaikeLemmaCardApi?scope=103&format=json&appid=379020'
+                            + '&bk_key=' + encodeURIComponent(name) + '&bk_length=300',
+                        'callback'
+                    );
+                    if (!d || !d.title) return null;
+                    const text = (d.desc || '') + ' ' + (d.abstract || '');
+                    return {
+                        id: 'baike-' + d.id,
+                        title: d.title,
+                        year: extractYear(text),
+                        type: detectType(text),
+                        url: d.url || 'https://baike.baidu.com/item/' + encodeURIComponent(d.title),
+                        img: d.image || '',
+                        sub_title: '',
+                        desc: (d.abstract || d.desc || '').slice(0, 140)
+                    };
+                } catch (e) {
+                    return null;
+                }
             }));
-
-            return results;
+            return list.filter(Boolean);
         }
 
         async function searchMovies(keyword) {
-            const list = await searchWikipedia(keyword);
+            const list = await searchBaidu(keyword);
             if (list.length === 0) {
-                throw new Error('维基百科没有找到相关条目，可更换关键词或手动添加');
+                throw new Error('百度百科没有找到相关词条，可更换关键词或手动添加');
             }
             return list;
         }
@@ -792,14 +803,14 @@
             searchBtn.disabled = true;
             searchBtn.textContent = '搜索中...';
             searchStatus.className = 'search-status';
-            searchStatus.textContent = '正在搜索维基百科...';
+            searchStatus.textContent = '正在搜索百度百科...';
             searchResults.classList.add('hidden');
 
             try {
                 const list = await searchMovies(keyword);
                 renderResults(list);
                 searchStatus.className = 'search-status';
-                searchStatus.textContent = `找到 ${list.length} 条结果（维基百科）`;
+                searchStatus.textContent = `找到 ${list.length} 条结果（百度百科）`;
             } catch (e) {
                 searchStatus.className = 'search-status error';
                 searchStatus.textContent = e.message || '搜索失败';
