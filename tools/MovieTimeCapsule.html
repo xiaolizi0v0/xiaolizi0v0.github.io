@@ -463,6 +463,199 @@
                 gap: 0.8rem;
             }
         }
+
+        /* ========== 详情弹窗（小红书风格） ========== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 1.5rem;
+            animation: modalFade .2s ease;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal {
+            background: var(--ds-bg-page);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+            width: 100%;
+            max-width: 880px;
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: modalSlide .25s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(20px) scale(0.98); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .45);
+            color: #fff;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, .7);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            max-height: 88vh;
+        }
+
+        .modal-image {
+            flex: 0 0 42%;
+            background: var(--ds-bg-surface-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-side {
+            flex: 1;
+            min-width: 0;
+            padding: 1.75rem 1.75rem 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-title {
+            font-family: var(--ds-font-display);
+            font-size: 1.55rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .modal-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.7rem;
+            font-size: 0.88rem;
+            color: var(--gray-500);
+        }
+
+        .modal-meta .tag {
+            background: var(--ds-bg-surface-3);
+            border: 1px solid var(--ds-border-subtle);
+            padding: 0.15rem 0.7rem;
+            border-radius: var(--ds-radius-pill);
+            font-size: 0.82rem;
+            color: var(--gray-600);
+        }
+
+        .modal-desc {
+            margin-top: 1.1rem;
+            font-size: 0.96rem;
+            line-height: 1.75;
+            color: var(--gray-600);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .modal-extra {
+            margin-top: 1.2rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid var(--ds-border-subtle);
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .modal-field {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+        }
+
+        .modal-field label {
+            color: var(--gray-500);
+            min-width: 70px;
+        }
+
+        .modal-field .value {
+            color: var(--ds-text-primary);
+        }
+
+        .modal-field input[type=date] {
+            border: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            color: var(--ds-text-primary);
+            border-radius: 8px;
+            padding: 0.35rem 0.6rem;
+            font-size: 0.88rem;
+            font-family: var(--ds-font-sans);
+        }
+
+        .modal-actions {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-actions .card-btn,
+        .modal-actions .ghost-btn {
+            padding: 0.6rem 1.3rem;
+        }
+
+        @media (max-width: 640px) {
+            .modal-body {
+                flex-direction: column;
+                overflow-y: auto;
+            }
+            .modal-image {
+                flex: none;
+                width: 100%;
+                max-height: 55vh;
+            }
+            .modal-side {
+                padding: 1.25rem 1.25rem 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -558,6 +751,23 @@
             </div>
         </div>
     </main>
+
+    <!-- 详情弹窗（小红书风格） -->
+    <div class="modal-overlay hidden" id="detail-modal">
+        <div class="modal">
+            <button class="modal-close" id="modal-close" title="关闭"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <div class="modal-image" id="modal-image"></div>
+                <div class="modal-side">
+                    <h2 class="modal-title" id="modal-title"></h2>
+                    <div class="modal-meta" id="modal-meta"></div>
+                    <div class="modal-desc" id="modal-desc"></div>
+                    <div class="modal-extra" id="modal-extra"></div>
+                    <div class="modal-actions" id="modal-actions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- 页脚 -->
     <footer class="footer">
@@ -733,6 +943,112 @@
             el.parentNode.replaceChild(holder, el);
         }
 
+        // 详情弹窗（小红书风格）：mode = 'result' / 'saved'
+        const modalEl = document.getElementById('detail-modal');
+
+        function openModal(data, mode) {
+            const recorded = records.some(r => r.id === String(data.id));
+
+            document.getElementById('modal-title').textContent = data.title || '未命名';
+            const metaEl = document.getElementById('modal-meta');
+            metaEl.innerHTML = `
+                <span class="tag">${typeName(data.type)}</span>
+                ${data.year ? `<span>${data.year}</span>` : ''}
+                ${data.genre ? `<span>${data.genre}</span>` : ''}
+            `;
+
+            const imgWrap = document.getElementById('modal-image');
+            if (data.img) {
+                imgWrap.innerHTML = `<img src="${data.img}" alt="${data.title}" referrerpolicy="no-referrer" onerror="posterError(this)">`;
+            } else {
+                imgWrap.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);width:100%;height:100%;"><i class="fas fa-film" style="font-size:4rem;"></i></div>';
+            }
+
+            const descEl = document.getElementById('modal-desc');
+            descEl.textContent = data.desc || data.sub_title || '暂无简介';
+            descEl.style.display = data.desc || data.sub_title ? '' : 'none';
+
+            const extraEl = document.getElementById('modal-extra');
+            const extraParts = [];
+            if (mode === 'saved') {
+                extraParts.push(`<div class="modal-field"><label>观看日期</label><input type="date" id="modal-date" value="${data.watchedDate || ''}"></div>`);
+                if (data.note) extraParts.push(`<div class="modal-field"><label>备注</label><div class="value">${data.note}</div></div>`);
+            }
+            extraEl.innerHTML = extraParts.join('');
+            extraEl.style.display = extraParts.length ? '' : 'none';
+
+            const actEl = document.getElementById('modal-actions');
+            const baike = data.url ? `<a class="ghost-btn" href="${data.url}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> 查看百科</a>` : '';
+            if (mode === 'result') {
+                actEl.innerHTML = `
+                    <button class="card-btn ${recorded ? 'recorded' : ''}" id="modal-record-btn" ${recorded ? 'disabled' : ''}>
+                        ${recorded ? '已记录' : '记录观看'}
+                    </button>
+                    ${baike}
+                `;
+                if (!recorded) {
+                    document.getElementById('modal-record-btn').addEventListener('click', () => {
+                        addRecord({
+                            id: String(data.id),
+                            title: data.title || '未知作品',
+                            year: data.year || '',
+                            type: data.type === 'tv' ? 'tv' : (data.type === 'variety' ? 'variety' : (data.type === 'anime' ? 'anime' : 'movie')),
+                            url: data.url || '',
+                            img: data.img || '',
+                            genre: data.genre || '',
+                            sub_title: data.sub_title || '',
+                            desc: data.desc || ''
+                        });
+                        const btn = document.getElementById('modal-record-btn');
+                        btn.classList.add('recorded');
+                        btn.textContent = '已记录';
+                        btn.disabled = true;
+                    });
+                }
+            } else {
+                // saved
+                actEl.innerHTML = `
+                    ${baike}
+                    <button class="card-btn danger" id="modal-delete-btn"><i class="fas fa-trash-alt"></i> 删除记录</button>
+                `;
+                const dateInput = document.getElementById('modal-date');
+                if (dateInput) {
+                    dateInput.addEventListener('change', () => {
+                        data.watchedDate = dateInput.value;
+                        saveRecords(records);
+                    });
+                }
+                document.getElementById('modal-delete-btn').addEventListener('click', () => {
+                    if (confirm('确定删除这条观影记录吗？')) {
+                        const idx = records.findIndex(r => r.id === data.id);
+                        if (idx >= 0) {
+                            records.splice(idx, 1);
+                            saveRecords(records);
+                        }
+                        closeModal();
+                        renderSaved();
+                    }
+                });
+            }
+
+            modalEl.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modalEl.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // 点击遮罩关闭、ESC 关闭
+        modalEl.addEventListener('click', (e) => {
+            if (e.target === modalEl) closeModal();
+        });
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) closeModal();
+        });
+
         // ========== 分类过滤 ==========
         function filteredRecords() {
             return records.filter(r => {
@@ -779,14 +1095,14 @@
                 return;
             }
 
-            savedList.innerHTML = list.map((r, i) => `
-                <div class="poster-card" data-idx="${i}">
+            savedList.innerHTML = list.map((r) => `
+                <div class="poster-card" data-mid="${r.id}">
                     <div class="poster-wrap">
                         ${r.img
                             ? `<img class="poster-img" src="${r.img}" alt="${r.title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
                             : `<div style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);width:100%;height:100%;"><i class="fas fa-film" style="font-size:2.2rem;"></i></div>`}
                         <div class="poster-overlay">
-                            <button class="card-btn danger" data-del="${i}" title="删除记录"><i class="fas fa-trash-alt"></i> 删除</button>
+                            <button class="card-btn danger" data-del="${r.id}" title="删除记录" onclick="event.stopPropagation()"><i class="fas fa-trash-alt"></i> 删除</button>
                         </div>
                     </div>
                     <div class="poster-info">
@@ -798,28 +1114,45 @@
                         </div>
                         <div class="poster-meta">
                             <i class="fas fa-calendar-alt"></i>
-                            <input type="date" class="date-edit" value="${r.watchedDate || ''}" data-date="${i}">
+                            <input type="date" class="date-edit" value="${r.watchedDate || ''}" data-date="${r.id}">
                         </div>
                     </div>
                 </div>
             `).join('');
 
+            // 卡片点击打开弹窗
+            savedList.querySelectorAll('.poster-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = card.dataset.mid;
+                    const rec = records.find(r => r.id === id);
+                    if (rec) openModal(rec, 'saved');
+                });
+            });
+
+            // 删除（按 id 定位，避免筛选后索引错位）
             savedList.querySelectorAll('[data-del]').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const i = parseInt(btn.dataset.del);
+                    const id = btn.dataset.del;
                     if (confirm('确定删除这条观影记录吗？')) {
-                        records.splice(i, 1);
-                        saveRecords(records);
-                        renderSaved();
+                        const idx = records.findIndex(r => r.id === id);
+                        if (idx >= 0) {
+                            records.splice(idx, 1);
+                            saveRecords(records);
+                            renderSaved();
+                        }
                     }
                 });
             });
 
+            // 修改观看日期
             savedList.querySelectorAll('.date-edit').forEach(inp => {
                 inp.addEventListener('change', () => {
-                    const i = parseInt(inp.dataset.date);
-                    records[i].watchedDate = inp.value;
-                    saveRecords(records);
+                    const id = inp.dataset.date;
+                    const rec = records.find(r => r.id === id);
+                    if (rec) {
+                        rec.watchedDate = inp.value;
+                        saveRecords(records);
+                    }
                 });
             });
         }
@@ -840,13 +1173,13 @@
             resultsGrid.innerHTML = list.map((item, idx) => {
                 const recorded = records.some(r => r.id === String(item.id));
                 return `
-                <div class="poster-card">
+                <div class="poster-card" data-modal-idx="${idx}">
                     <div class="poster-wrap">
                         ${item.img
                             ? `<img class="poster-img" src="${item.img}" alt="${item.title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
                             : `<div style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);width:100%;height:100%;"><i class="fas fa-film" style="font-size:2.2rem;"></i></div>`}
                         <div class="poster-overlay">
-                            <button class="card-btn ${recorded ? 'recorded' : ''}" data-record="${idx}" ${recorded ? 'disabled' : ''}>
+                            <button class="card-btn ${recorded ? 'recorded' : ''}" data-record="${idx}" ${recorded ? 'disabled' : ''} onclick="event.stopPropagation()">
                                 ${recorded ? '已记录' : '记录观看'}
                             </button>
                         </div>
@@ -863,6 +1196,14 @@
                 </div>`;
             }).join('');
 
+            // 卡片点击打开弹窗
+            resultsGrid.querySelectorAll('.poster-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const i = parseInt(card.dataset.modalIdx);
+                    openModal(list[i], 'result');
+                });
+            });
+
             resultsGrid.querySelectorAll('.card-btn:not(.recorded)').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const item = list[parseInt(btn.dataset.record)];
@@ -870,7 +1211,7 @@
                         id: String(item.id),
                         title: item.title || '未知作品',
                         year: item.year || '',
-                        type: item.type === 'tv' ? 'tv' : 'movie',
+                        type: item.type === 'tv' ? 'tv' : (item.type === 'variety' ? 'variety' : (item.type === 'anime' ? 'anime' : 'movie')),
                         url: item.url || '',
                         img: item.img || '',
                         genre: item.genre || '',
