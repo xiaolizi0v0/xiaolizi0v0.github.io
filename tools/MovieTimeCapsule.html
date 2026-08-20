@@ -1510,37 +1510,46 @@
         // ========== GitHub 写入：串行队列 + sha 冲突自动重试 ==========
         let ghWriteQueue = Promise.resolve();
 
-        // 统一写入函数：串行执行、自动取最新 sha、422/409 冲突时重试一次
+        // 统一写入函数：串行执行；先尝试不带 sha 的 PUT（新建），缺 sha 时报错再取 sha 重试
+        // 返回 { ok: boolean, error?: string }
         function ghWrite(owner, repo, pat, content, message) {
             const task = ghWriteQueue.then(async () => {
-                let sha = null;
-                for (let attempt = 0; attempt < 2; attempt++) {
-                    // 取当前 sha（默认 JSON Accept 返回元数据）
-                    try {
-                        const meta = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
-                            headers: { Authorization: `token ${pat}` }
-                        });
-                        if (meta.ok) sha = (await meta.json()).sha;
-                    } catch (e) {}
-                    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json', Authorization: `token ${pat}` },
-                        body: JSON.stringify({
-                            message,
-                            content: b64Encode(content),
-                            ...(sha ? { sha } : {})
-                        })
+                let lastErr = '';
+                const put = (sha) => fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', Authorization: `token ${pat}` },
+                    body: JSON.stringify({
+                        message,
+                        content: b64Encode(content),
+                        ...(sha ? { sha } : {})
+                    })
+                });
+
+                // 第 1 次：不带 sha 尝试（文件不存在时创建成功）
+                let res = await put(null);
+                if (res.ok) return { ok: true, error: '' };
+                try { lastErr = (await res.json()).message || ('HTTP ' + res.status); } catch (e) { lastErr = 'HTTP ' + res.status; }
+
+                // 第 2 次：取最新 sha 后带 sha 更新
+                try {
+                    const meta = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                        headers: { Authorization: `token ${pat}` }
                     });
-                    if (res.ok) return true;
-                    // sha 过期冲突 → 重取 sha 后重试一次
-                    if (res.status === 422 || res.status === 409) {
-                        continue;
+                    if (!meta.ok) {
+                        const m = await meta.json().catch(() => null);
+                        lastErr = '获取 sha 失败(' + meta.status + ')：' + (m && m.message ? m.message : meta.statusText);
+                    } else {
+                        const sha = (await meta.json()).sha;
+                        res = await put(sha);
+                        if (res.ok) return { ok: true, error: '' };
+                        try { lastErr = (await res.json()).message || ('HTTP ' + res.status); } catch (e) { lastErr = 'HTTP ' + res.status; }
                     }
-                    return false;
+                } catch (e) {
+                    lastErr = '获取 sha 异常：' + e.message;
                 }
-                return false;
+                return { ok: false, error: lastErr };
             });
-            ghWriteQueue = task.catch(() => {});
+            ghWriteQueue = task.catch(() => ({ ok: false, error: '同步队列异常' }));
             return task;
         }
 
@@ -1550,24 +1559,24 @@
             if (!pat) return;
             try {
                 const { owner, repo } = ghRepoInfo();
-                const ok = await ghWrite(owner, repo, pat, JSON.stringify(records, null, 2), '自动同步影视剧片单数据');
-                showSyncToast(ok);
+                const r = await ghWrite(owner, repo, pat, JSON.stringify(records, null, 2), '自动同步影视剧片单数据');
+                showSyncToast(r.ok, r.error);
             } catch (e) {
                 showSyncToast(false);
             }
         }
 
-        function showSyncToast(ok) {
+        function showSyncToast(ok, err) {
             let t = document.getElementById('sync-toast');
             if (!t) {
                 t = document.createElement('div');
                 t.id = 'sync-toast';
                 document.body.appendChild(t);
             }
-            t.textContent = ok ? '已自动同步到仓库' : '自动同步失败（可能未配置 Token）';
+            t.textContent = ok ? '已自动同步到仓库' : ('自动同步失败：' + (err || '未配置 Token'));
             t.className = 'show ' + (ok ? 'ok' : 'err');
             clearTimeout(t._timer);
-            t._timer = setTimeout(() => t.classList.remove('show'), 2500);
+            t._timer = setTimeout(() => t.classList.remove('show'), 4000);
         }
 
         function nowDateStr() {
