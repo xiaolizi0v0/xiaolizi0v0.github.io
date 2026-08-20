@@ -152,6 +152,28 @@
             align-items: center;
         }
 
+        .result-desc {
+            font-size: 0.82rem;
+            color: var(--gray-500);
+            margin-top: 0.4rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .saved-note {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-top: 0.25rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
         .result-meta .tag {
             background: var(--ds-bg-surface-3);
             border: 1px solid var(--ds-border-subtle);
@@ -436,17 +458,17 @@
         <div class="tool-container">
             <div class="tool-header">
                 <h1 class="section-title">影视剧观影存储时间胶囊</h1>
-                <p>输入影视剧名称，自动搜索豆瓣数据并记录观影时间。存进时间胶囊，随时回忆看过的每一部作品。</p>
+                <p>输入影视剧名称，自动搜索维基百科数据并记录观影时间。存进时间胶囊，随时回忆看过的每一部作品。</p>
             </div>
 
             <!-- 搜索 -->
             <div class="search-box">
                 <div class="search-row">
                     <input id="search-input" type="text" placeholder="输入影视剧名称，如：肖申克的救赎" autocomplete="off">
-                    <button id="search-btn" class="btn-search">搜索豆瓣</button>
+                    <button id="search-btn" class="btn-search">搜索</button>
                 </div>
                 <div id="search-status" class="search-status"></div>
-                <div class="tip">通过免费搜索引擎（Bing）搜索片名，再用 HTML 解析器从结果中提取豆瓣条目。若网络代理不稳定，可直接手动添加。</div>
+                <div class="tip">搜索使用免费稳定的维基百科开放 API（无需代理，CORS 原生支持）。找不到的条目可手动添加。</div>
             </div>
 
             <!-- 搜索结果 -->
@@ -516,40 +538,7 @@
             return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
         }
 
-        // ===================== 网络请求（多级代理容错） =====================
-        async function fetchWithProxies(url) {
-            const variants = [
-                { label: 'direct', build: u => u },
-                { label: 'allorigins-get', build: u => 'https://api.allorigins.win/get?url=' + encodeURIComponent(u) },
-                { label: 'corsproxy', build: u => 'https://corsproxy.io/?url=' + encodeURIComponent(u) },
-                { label: 'codetabs', build: u => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u) },
-                { label: 'allorigins-raw', build: u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u) }
-            ];
-
-            for (const v of variants) {
-                try {
-                    const res = await fetch(v.build(url), {
-                        signal: AbortSignal.timeout(12000),
-                        headers: { 'Accept': 'text/html, application/xhtml+xml, */*' }
-                    });
-                    if (!res.ok) continue;
-                    let text = await res.text();
-                    // allorigins /get 会把内容包在 JSON 的 contents 字段里
-                    if (v.label === 'allorigins-get') {
-                        try {
-                            const j = JSON.parse(text);
-                            if (j && typeof j.contents === 'string') text = j.contents;
-                        } catch (e) { /* 保持原样 */ }
-                    }
-                    return text;
-                } catch (e) {
-                    // 继续尝试下一个代理
-                }
-            }
-            throw new Error('网络请求失败');
-        }
-
-        // 免费搜索引擎（Bing）+ HTML 解析器，从搜索结果中提取豆瓣条目
+        // ===================== 维基百科搜索（CORS 原生支持，无需代理） =====================
         function cleanTitle(t) {
             return t.replace(/[（(].*?[）)]/g, '').trim();
         }
@@ -563,44 +552,72 @@
             return /电视剧|剧集|连续剧/.test(s) ? 'tv' : 'movie';
         }
 
-        // 通过免费搜索引擎搜索片名，再用 HTML 解析器提取豆瓣条目
-        async function searchMovies(keyword) {
-            const url = 'https://www.bing.com/search?q=' + encodeURIComponent(keyword + ' 豆瓣');
-            const html = await fetchWithProxies(url);
-
-            const doc = new DOMParser().parseFromString(html, 'text/html');
-            const items = doc.querySelectorAll('li.b_algo');
-            const results = [];
-            const seen = new Set();
-
-            items.forEach(li => {
-                const anchor = li.querySelector('h2 a');
-                if (!anchor) return;
-                const link = anchor.href || '';
-                const m = link.match(/movie\.douban\.com\/subject\/(\d+)\//);
-                if (!m || seen.has(m[1])) return;
-                seen.add(m[1]);
-
-                const rawTitle = anchor.textContent || '';
-                const snippetEl = li.querySelector('.b_caption p');
-                const snippet = snippetEl ? snippetEl.textContent : '';
-                const combined = rawTitle + ' ' + snippet;
-
-                results.push({
-                    id: m[1],
-                    title: cleanTitle(rawTitle) || '未知作品',
-                    year: extractYear(combined),
-                    type: detectType(combined),
-                    url: link.split('&')[0],
-                    img: '',
-                    sub_title: ''
-                });
-            });
-
-            if (results.length === 0) {
-                throw new Error('搜索到的结果中没有豆瓣条目，请更换关键词或手动添加');
+        // 通过 parse 接口抓取条目信息框里的海报缩略图
+        async function getPoster(title) {
+            try {
+                const url = 'https://zh.wikipedia.org/w/api.php?action=parse&page='
+                    + encodeURIComponent(title) + '&prop=text&section=0&format=json&origin=*';
+                const res = await fetch(url);
+                if (!res.ok) return '';
+                const data = await res.json();
+                const html = (data.parse && data.parse.text && data.parse.text['*']) || '';
+                const m = html.match(/src="([^"]*?upload\.wikimedia\.org[^"]*?\/thumb\/[^"]*?\.(?:jpe?g|png)[^"]*)"/i);
+                if (!m) return '';
+                let src = m[1].split('?')[0]; // 去掉追踪参数
+                if (src.startsWith('//')) src = 'https:' + src;
+                return src;
+            } catch (e) {
+                return '';
             }
+        }
+
+        // 维基百科开放 API：带 origin=* 即原生支持 CORS，免费稳定，无需任何代理
+        async function searchWikipedia(keyword) {
+            // 1. 开放搜索找候选条目
+            const openUrl = 'https://zh.wikipedia.org/w/api.php?action=opensearch&search='
+                + encodeURIComponent(keyword) + '&limit=6&format=json&origin=*';
+            const openRes = await fetch(openUrl);
+            if (!openRes.ok) throw new Error('维基百科搜索失败，请稍后重试');
+            const [query, titles, descs, urls] = await openRes.json();
+            if (!titles || !titles.length) return [];
+
+            // 2. 批量获取每个条目的简介（含年份、类型信息）
+            const detailUrl = 'https://zh.wikipedia.org/w/api.php?action=query&titles='
+                + encodeURIComponent(titles.join('|'))
+                + '&prop=extracts&exintro=1&explaintext=1&format=json&origin=*&redirects=1';
+            const detailRes = await fetch(detailUrl);
+            const detail = await detailRes.json();
+            const pages = (detail.query && detail.query.pages) || {};
+
+            const results = titles.map((t, i) => {
+                const page = Object.values(pages).find(p => p.title === t) || {};
+                const extract = page.extract || descs[i] || '';
+                return {
+                    id: 'wiki-' + (page.pageid || i),
+                    title: t,
+                    year: extractYear(t + ' ' + extract),
+                    type: detectType(t + ' ' + extract),
+                    url: urls[i] || '',
+                    img: '',
+                    sub_title: '',
+                    desc: extract.slice(0, 140)
+                };
+            }).filter(r => !r.title.includes('(消歧义)') && !r.title.includes('（消歧义）'));
+
+            // 3. 并行抓取每个条目的海报缩略图
+            await Promise.all(results.map(async r => {
+                r.img = await getPoster(r.title);
+            }));
+
             return results;
+        }
+
+        async function searchMovies(keyword) {
+            const list = await searchWikipedia(keyword);
+            if (list.length === 0) {
+                throw new Error('维基百科没有找到相关条目，可更换关键词或手动添加');
+            }
+            return list;
         }
 
         // ===================== 页面逻辑 =====================
@@ -618,6 +635,16 @@
             return t === 'tv' ? '剧集' : '电影';
         }
 
+        // 海报加载失败时替换为占位图标
+        function posterError(el) {
+            el.onerror = null;
+            const holder = document.createElement('div');
+            holder.className = el.classList.contains('result-poster') ? 'result-poster' : 'saved-poster';
+            holder.style.cssText = 'display:flex;align-items:center;justify-content:center;color:var(--gray-400);';
+            holder.innerHTML = '<i class="fas fa-film"></i>';
+            el.parentNode.replaceChild(holder, el);
+        }
+
         // 渲染已存列表
         function renderSaved() {
             records.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
@@ -633,7 +660,7 @@
             savedList.innerHTML = records.map((r, idx) => `
                 <div class="saved-card" data-idx="${idx}">
                     ${r.img
-                        ? `<img class="saved-poster" src="${r.img}" alt="${r.title}" loading="lazy" onerror="this.style.display='none'">`
+                        ? `<img class="saved-poster" src="${r.img}" alt="${r.title}" loading="lazy" onerror="posterError(this)">`
                         : `<div class="saved-poster" style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);"><i class="fas fa-film"></i></div>`}
                     <div class="saved-info">
                         <div class="saved-title">${r.title || '未命名'}</div>
@@ -643,7 +670,8 @@
                             ${r.sub_title ? `<span title="${r.sub_title}">${r.sub_title}</span>` : ''}
                             <input type="date" class="date-edit" value="${r.watchedDate || ''}" data-idx="${idx}">
                         </div>
-                        ${r.note ? `<div class="saved-meta">${r.note}</div>` : ''}
+                        ${r.note ? `<div class="saved-meta saved-note">${r.note}</div>` : ''}
+                        ${!r.note && r.desc ? `<div class="saved-meta saved-note">${r.desc}</div>` : ''}
                     </div>
                     <button class="btn-delete" data-idx="${idx}" title="删除记录"><i class="fas fa-trash-alt"></i></button>
                 </div>
@@ -690,7 +718,7 @@
                     return `
                     <div class="result-card">
                         ${img
-                            ? `<img class="result-poster" src="${img}" alt="${title}" loading="lazy" onerror="this.style.display='none'">`
+                            ? `<img class="result-poster" src="${img}" alt="${title}" loading="lazy" onerror="posterError(this)">`
                             : `<div class="result-poster" style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);"><i class="fas fa-film"></i></div>`}
                         <div class="result-info">
                             <div class="result-title">${title}</div>
@@ -699,6 +727,7 @@
                                 ${year ? `<span>${year}</span>` : ''}
                                 ${item.sub_title ? `<span>${item.sub_title}</span>` : ''}
                             </div>
+                            ${item.desc ? `<div class="result-desc">${item.desc}</div>` : ''}
                         </div>
                         <button class="btn-record ${recorded ? 'recorded' : ''}" data-idx="${idx}" ${recorded ? 'disabled' : ''}>
                             ${recorded ? '已记录' : '记录观看'}
@@ -716,7 +745,8 @@
                         type: item.type === 'tv' ? 'tv' : 'movie',
                         url: item.url || '',
                         img: item.img || '',
-                        sub_title: item.sub_title || ''
+                        sub_title: item.sub_title || '',
+                        desc: item.desc || ''
                     });
                     btn.classList.add('recorded');
                     btn.textContent = '已记录';
@@ -736,6 +766,7 @@
                 url: '',
                 img: '',
                 sub_title: '',
+                desc: '',
                 note: '',
                 watchedDate: nowDateStr(),
                 timestamp: Date.now()
@@ -761,20 +792,20 @@
             searchBtn.disabled = true;
             searchBtn.textContent = '搜索中...';
             searchStatus.className = 'search-status';
-            searchStatus.textContent = '正在搜索豆瓣...';
+            searchStatus.textContent = '正在搜索维基百科...';
             searchResults.classList.add('hidden');
 
             try {
                 const list = await searchMovies(keyword);
                 renderResults(list);
                 searchStatus.className = 'search-status';
-                searchStatus.textContent = `找到 ${list.length} 条结果（Bing 搜索）`;
+                searchStatus.textContent = `找到 ${list.length} 条结果（维基百科）`;
             } catch (e) {
                 searchStatus.className = 'search-status error';
                 searchStatus.textContent = e.message || '搜索失败';
             } finally {
                 searchBtn.disabled = false;
-                searchBtn.textContent = '搜索豆瓣';
+                searchBtn.textContent = '搜索';
             }
         }
 
