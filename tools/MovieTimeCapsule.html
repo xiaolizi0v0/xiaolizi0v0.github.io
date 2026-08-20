@@ -9,347 +9,349 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
     <style>
         .tool-container {
-            max-width: 1000px;
+            max-width: 1240px;
             margin: 5rem auto;
-            padding: 2rem;
+            padding: 0 1.5rem 2rem;
         }
 
+        /* ========== 顶部：标题 + 爱奇艺风格搜索栏 ========== */
         .tool-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.5rem 0;
         }
 
-        .tool-header p {
-            color: var(--gray-600);
-            max-width: 560px;
-            margin: 0 auto;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-family: var(--ds-font-display);
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            letter-spacing: -0.01em;
         }
 
-        /* 搜索框 */
-        .search-box {
+        .brand i {
+            color: var(--ds-brand);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
             background: var(--ds-bg-surface-1);
             border: 1px solid var(--ds-border-subtle);
-            border-radius: var(--ds-radius-panel);
+            border-radius: var(--ds-radius-pill);
+            padding: 0.35rem 0.35rem 0.35rem 1.1rem;
             box-shadow: var(--shadow-sm);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            width: min(480px, 100%);
         }
 
-        .search-row {
-            display: flex;
-            gap: 0.75rem;
+        .search-bar:focus-within {
+            border-color: var(--ds-brand);
+            box-shadow: 0 0 0 3px rgba(77, 107, 254, .15);
         }
 
-        .search-row input {
+        .search-bar input {
             flex: 1;
-            padding: 0.85rem 1.15rem;
-            background: var(--ds-bg-page);
-            border: 1px solid var(--ds-border-subtle);
-            border-radius: var(--ds-radius-input);
-            font-size: 1rem;
+            border: none;
+            background: transparent;
+            font-size: 0.95rem;
             font-family: var(--ds-font-sans);
             color: var(--ds-text-primary);
-            transition: var(--transition);
-        }
-
-        .search-row input:focus {
             outline: none;
-            border-color: var(--ds-brand);
-            box-shadow: 0 0 0 3px rgba(77, 107, 254, .18);
         }
 
-        .search-row input::placeholder {
+        .search-bar input::placeholder {
             color: var(--ds-text-placeholder);
         }
 
-        .btn-search {
-            padding: 0.85rem 1.8rem;
+        .search-bar button {
             background: var(--ds-brand);
             color: #fff;
             border: none;
             border-radius: var(--ds-radius-pill);
-            font-size: 0.95rem;
+            padding: 0.55rem 1.5rem;
+            font-size: 0.92rem;
             font-weight: 600;
             font-family: var(--ds-font-sans);
             cursor: pointer;
-            white-space: nowrap;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        .btn-search:hover {
+        .search-bar button:hover {
             background: #3f5eea;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(77, 107, 254, .35);
         }
 
-        .btn-search:disabled {
+        .search-bar button:disabled {
             opacity: .6;
             cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+        }
+
+        /* ========== 分类导航（爱奇艺风格频道栏） ========== */
+        .category-nav {
+            position: sticky;
+            top: 68px;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            padding: 0.6rem 1rem;
+            background: var(--ds-bg-page);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-panel);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+        }
+
+        .cat-tab {
+            padding: 0.4rem 1.1rem;
+            border: none;
+            border-radius: var(--ds-radius-pill);
+            background: transparent;
+            color: var(--gray-500);
+            font-size: 0.92rem;
+            font-weight: 500;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .cat-tab:hover {
+            color: var(--ds-text-primary);
+            background: var(--ds-bg-surface-1);
+        }
+
+        .cat-tab.active {
+            background: var(--ds-brand);
+            color: #fff;
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 18px;
+            background: var(--ds-border-strong);
+            margin: 0 0.4rem;
+        }
+
+        .genre-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .genre-chip {
+            padding: 0.3rem 0.9rem;
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-pill);
+            background: var(--ds-bg-surface-1);
+            color: var(--gray-600);
+            font-size: 0.82rem;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .genre-chip:hover {
+            border-color: var(--ds-border-hover);
+            color: var(--ds-text-primary);
+        }
+
+        .genre-chip.active {
+            background: var(--ds-brand);
+            border-color: var(--ds-brand);
+            color: #fff;
+        }
+
+        .nav-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .ghost-btn {
+            padding: 0.45rem 1rem;
+            background: transparent;
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-pill);
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .ghost-btn:hover {
+            border-color: var(--ds-border-hover);
+            color: var(--ds-text-primary);
+            background: var(--ds-bg-surface-1);
+        }
+
+        /* ========== 搜索结果 ========== */
+        .search-results {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-label h2 {
+            font-family: var(--ds-font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .search-status {
-            margin-top: 0.9rem;
             font-size: 0.9rem;
             color: var(--gray-500);
-            min-height: 1.2rem;
         }
 
         .search-status.error {
             color: var(--danger-color);
         }
 
-        /* 搜索结果 */
-        .search-results {
-            margin-bottom: 1.5rem;
+        /* ========== 海报卡片（爱奇艺风格） ========== */
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.1rem;
         }
 
-        .result-card {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+        .poster-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
             background: var(--ds-bg-surface-1);
             border: 1px solid var(--ds-border-subtle);
-            border-radius: var(--ds-radius-panel);
-            padding: 0.9rem 1.1rem;
-            margin-bottom: 0.75rem;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }
 
-        .result-card:hover {
+        .poster-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
             border-color: var(--ds-border-hover);
-            transform: translateY(-2px);
         }
 
-        .result-poster {
-            width: 60px;
-            height: 84px;
-            border-radius: 8px;
+        .poster-wrap {
+            position: relative;
+            aspect-ratio: 2 / 3;
+            background: var(--ds-bg-surface-3);
+            overflow: hidden;
+        }
+
+        .poster-img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            background: var(--ds-bg-surface-3);
-            flex-shrink: 0;
+            display: block;
         }
 
-        .result-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .result-title {
-            font-weight: 600;
-            font-size: 1.05rem;
-            color: var(--ds-text-primary);
-        }
-
-        .result-meta {
-            font-size: 0.85rem;
-            color: var(--gray-500);
-            margin-top: 0.2rem;
+        .poster-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .55) 100%);
             display: flex;
-            gap: 0.75rem;
-            align-items: center;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 0.9rem;
+            opacity: 0;
+            transition: opacity .25s ease;
         }
 
-        .result-desc {
-            font-size: 0.82rem;
-            color: var(--gray-500);
-            margin-top: 0.4rem;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        .poster-card:hover .poster-overlay {
+            opacity: 1;
         }
 
-        .saved-note {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            margin-top: 0.25rem;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .result-meta .tag {
-            background: var(--ds-bg-surface-3);
-            border: 1px solid var(--ds-border-subtle);
-            padding: 0.1rem 0.6rem;
-            border-radius: var(--ds-radius-pill);
-            font-size: 0.75rem;
-            color: var(--gray-600);
-        }
-
-        .btn-record {
-            padding: 0.55rem 1.2rem;
+        .card-btn {
+            padding: 0.45rem 1.1rem;
             background: var(--ds-brand);
             color: #fff;
             border: none;
             border-radius: var(--ds-radius-pill);
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             font-weight: 600;
             font-family: var(--ds-font-sans);
             cursor: pointer;
-            white-space: nowrap;
             transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
         }
 
-        .btn-record:hover {
+        .card-btn:hover {
             background: #3f5eea;
+            transform: scale(1.04);
         }
 
-        .btn-record.recorded {
+        .card-btn.danger {
+            background: rgba(255, 95, 87, .9);
+        }
+
+        .card-btn.danger:hover {
+            background: #ff5f57;
+        }
+
+        .card-btn.recorded {
             background: var(--ds-bg-surface-3);
             color: var(--gray-500);
             cursor: default;
+            box-shadow: none;
         }
 
-        /* 手动添加 */
-        .manual-box {
-            margin-bottom: 2.5rem;
+        .poster-info {
+            padding: 0.55rem 0.65rem 0.7rem;
         }
 
-        .btn-ghost {
-            padding: 0.6rem 1.3rem;
-            background: transparent;
-            border: 1px solid var(--ds-border-subtle);
-            border-radius: var(--ds-radius-pill);
-            color: var(--gray-600);
+        .poster-title {
             font-size: 0.9rem;
-            font-weight: 500;
-            font-family: var(--ds-font-sans);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-ghost:hover {
-            border-color: var(--ds-border-hover);
-            color: var(--ds-text-primary);
-            background: var(--ds-bg-surface-1);
-        }
-
-        .manual-form {
-            display: grid;
-            grid-template-columns: 1.4fr 0.7fr 0.7fr 1fr auto;
-            gap: 0.6rem;
-            margin-top: 0.9rem;
-            align-items: center;
-        }
-
-        .manual-form input,
-        .manual-form select {
-            padding: 0.7rem 0.9rem;
-            background: var(--ds-bg-surface-1);
-            border: 1px solid var(--ds-border-subtle);
-            border-radius: var(--ds-radius-input);
-            font-size: 0.95rem;
-            font-family: var(--ds-font-sans);
-            color: var(--ds-text-primary);
-            transition: var(--transition);
-        }
-
-        .manual-form input:focus,
-        .manual-form select:focus {
-            outline: none;
-            border-color: var(--ds-brand);
-            box-shadow: 0 0 0 3px rgba(77, 107, 254, .15);
-        }
-
-        .manual-form select {
-            cursor: pointer;
-        }
-
-        /* 已存列表 */
-        .saved-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .saved-header h2 {
-            font-family: var(--ds-font-display);
-            font-size: 1.4rem;
             font-weight: 600;
             color: var(--ds-text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .count-badge {
-            background: var(--ds-brand);
-            color: #fff;
-            font-size: 0.8rem;
-            padding: 0.15rem 0.7rem;
-            border-radius: var(--ds-radius-pill);
-            font-family: var(--ds-font-sans);
-        }
-
-        .saved-actions {
-            display: flex;
-            gap: 0.6rem;
-        }
-
-        .saved-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 0.9rem;
-        }
-
-        .saved-card {
-            background: var(--ds-bg-surface-1);
-            border: 1px solid var(--ds-border-subtle);
-            border-radius: var(--ds-radius-panel);
-            box-shadow: var(--shadow-sm);
-            padding: 0.9rem 1.1rem;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        .saved-card:hover {
-            border-color: var(--ds-border-hover);
-            transform: translateY(-2px);
-        }
-
-        .saved-poster {
-            width: 52px;
-            height: 72px;
-            border-radius: 7px;
-            object-fit: cover;
-            background: var(--ds-bg-surface-3);
-            flex-shrink: 0;
-        }
-
-        .saved-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .saved-title {
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--ds-text-primary);
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
-        .saved-meta {
-            font-size: 0.82rem;
-            color: var(--gray-500);
-            margin-top: 0.25rem;
+        .poster-meta {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
             flex-wrap: wrap;
+            font-size: 0.78rem;
+            color: var(--gray-500);
+            margin-top: 0.25rem;
+        }
+
+        .poster-meta .tag {
+            background: var(--ds-bg-surface-3);
+            border: 1px solid var(--ds-border-subtle);
+            padding: 0.05rem 0.5rem;
+            border-radius: var(--ds-radius-pill);
+            font-size: 0.72rem;
+            color: var(--gray-600);
         }
 
         .date-edit {
@@ -357,35 +359,21 @@
             background: var(--ds-bg-page);
             color: var(--gray-600);
             border-radius: 6px;
-            padding: 0.15rem 0.4rem;
-            font-size: 0.82rem;
+            padding: 0.1rem 0.35rem;
+            font-size: 0.76rem;
             font-family: var(--ds-font-sans);
             cursor: pointer;
+            max-width: 118px;
         }
 
-        .btn-delete {
-            background: transparent;
-            border: none;
-            color: var(--gray-400);
-            font-size: 1rem;
-            cursor: pointer;
-            padding: 0.4rem;
-            border-radius: 50%;
-            transition: var(--transition);
-            flex-shrink: 0;
-        }
-
-        .btn-delete:hover {
-            color: var(--danger-color);
-            background: rgba(255, 95, 87, .1);
-        }
-
+        /* 空状态 */
         .empty-state {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 3.5rem 1rem;
             color: var(--gray-400);
             border: 1px dashed var(--ds-border-strong);
             border-radius: var(--ds-radius-panel);
+            margin-top: 0.5rem;
         }
 
         .empty-state i {
@@ -403,28 +391,76 @@
             display: none !important;
         }
 
-        .tip {
-            font-size: 0.8rem;
-            color: var(--gray-400);
-            margin-top: 0.6rem;
+        /* ========== 手动添加表单 ========== */
+        .manual-form {
+            display: grid;
+            grid-template-columns: 1.4fr 0.7fr 0.7fr 0.9fr 1fr auto;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-panel);
+            box-shadow: var(--shadow-sm);
+            align-items: center;
         }
 
-        @media (max-width: 700px) {
-            .search-row {
+        .manual-form input,
+        .manual-form select {
+            padding: 0.6rem 0.85rem;
+            background: var(--ds-bg-page);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-input);
+            font-size: 0.9rem;
+            font-family: var(--ds-font-sans);
+            color: var(--ds-text-primary);
+            transition: var(--transition);
+        }
+
+        .manual-form input:focus,
+        .manual-form select:focus {
+            outline: none;
+            border-color: var(--ds-brand);
+            box-shadow: 0 0 0 3px rgba(77, 107, 254, .15);
+        }
+
+        .manual-form select {
+            cursor: pointer;
+        }
+
+        .tip {
+            font-size: 0.78rem;
+            color: var(--gray-400);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-header {
                 flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .category-nav {
+                position: static;
+                gap: 0.3rem;
+            }
+
+            .nav-actions {
+                margin-left: 0;
+                width: 100%;
             }
 
             .manual-form {
                 grid-template-columns: 1fr 1fr;
             }
 
-            .saved-list {
-                grid-template-columns: 1fr;
-            }
-
-            .saved-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .poster-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 0.8rem;
             }
         }
     </style>
@@ -456,50 +492,65 @@
 
     <main>
         <div class="tool-container">
+            <!-- 顶部：标题 + 搜索栏 -->
             <div class="tool-header">
-                <h1 class="section-title">影视剧观影存储时间胶囊</h1>
-                <p>输入影视剧名称，自动搜索百度百科数据并记录观影时间。存进时间胶囊，随时回忆看过的每一部作品。</p>
-            </div>
-
-            <!-- 搜索 -->
-            <div class="search-box">
-                <div class="search-row">
-                    <input id="search-input" type="text" placeholder="输入影视剧名称，如：肖申克的救赎" autocomplete="off">
-                    <button id="search-btn" class="btn-search">搜索</button>
+                <div class="brand">
+                    <i class="fas fa-clock"></i> 影视剧观影存储时间胶囊
                 </div>
-                <div id="search-status" class="search-status"></div>
-                <div class="tip">数据来自百度百科（openapi + JSONP 加载，无需代理），含海报缩略图。找不到的条目可手动添加。</div>
+                <div class="search-bar">
+                    <input id="search-input" type="text" placeholder="搜你想看的影视剧，如：肖申克的救赎" autocomplete="off">
+                    <button id="search-btn"><i class="fas fa-search"></i> 搜索</button>
+                </div>
+            </div>
+            <div class="tip">数据来自百度百科（JSONP 加载，无需代理），含海报缩略图。</div>
+
+            <!-- 分类导航 -->
+            <div class="category-nav" id="category-nav">
+                <button class="cat-tab active" data-cat="all">全部</button>
+                <button class="cat-tab" data-cat="movie">电影</button>
+                <button class="cat-tab" data-cat="tv">电视剧</button>
+                <button class="cat-tab" data-cat="variety">综艺</button>
+                <button class="cat-tab" data-cat="anime">动漫</button>
+                <span class="nav-divider"></span>
+                <div class="genre-tabs" id="genre-tabs"></div>
+                <div class="nav-actions">
+                    <button class="ghost-btn" id="toggle-manual"><i class="fas fa-plus"></i> 手动添加</button>
+                    <button class="ghost-btn" id="export-btn"><i class="fas fa-download"></i> 导出</button>
+                    <button class="ghost-btn" id="import-btn"><i class="fas fa-upload"></i> 导入</button>
+                    <input type="file" id="import-file" accept=".json,application/json" hidden>
+                </div>
             </div>
 
             <!-- 搜索结果 -->
-            <div id="search-results" class="search-results hidden"></div>
-
-            <!-- 手动添加 -->
-            <div class="manual-box">
-                <button id="toggle-manual" class="btn-ghost">找不到？手动添加</button>
-                <div id="manual-form" class="manual-form hidden">
-                    <input id="m-title" type="text" placeholder="名称（必填）">
-                    <input id="m-year" type="text" placeholder="年份，如 1994">
-                    <select id="m-type">
-                        <option value="movie">电影</option>
-                        <option value="tv">剧集</option>
-                    </select>
-                    <input id="m-note" type="text" placeholder="备注（可选）">
-                    <button id="m-save" class="btn-record">保存</button>
+            <div id="search-results" class="search-results hidden">
+                <div class="section-label">
+                    <span id="search-status" class="search-status"></span>
+                    <button class="ghost-btn" id="close-search"><i class="fas fa-times"></i> 关闭结果</button>
                 </div>
+                <div class="poster-grid" id="results-grid"></div>
             </div>
 
-            <!-- 已存列表 -->
+            <!-- 手动添加表单 -->
+            <div id="manual-form" class="manual-form hidden">
+                <input id="m-title" type="text" placeholder="名称（必填）">
+                <input id="m-year" type="text" placeholder="年份，如 1994">
+                <select id="m-type">
+                    <option value="movie">电影</option>
+                    <option value="tv">电视剧</option>
+                    <option value="variety">综艺</option>
+                    <option value="anime">动漫</option>
+                </select>
+                <input id="m-genre" type="text" placeholder="类型，如 剧情 犯罪">
+                <input id="m-note" type="text" placeholder="备注（可选）">
+                <button class="card-btn" id="m-save">保存</button>
+            </div>
+
+            <!-- 已存片单 -->
             <div class="saved-section">
-                <div class="saved-header">
-                    <h2>我的观影时间胶囊 <span class="count-badge" id="saved-count">0</span></h2>
-                    <div class="saved-actions">
-                        <button id="export-btn" class="btn-ghost"><i class="fas fa-download"></i> 导出 JSON</button>
-                        <button id="import-btn" class="btn-ghost"><i class="fas fa-upload"></i> 导入 JSON</button>
-                        <input type="file" id="import-file" accept=".json,application/json" hidden>
-                    </div>
+                <div class="section-label">
+                    <h2><i class="fas fa-film"></i> 我的片单 <span class="count-badge" id="saved-count">0</span></h2>
                 </div>
-                <div id="saved-list" class="saved-list"></div>
+                <div class="poster-grid" id="saved-list"></div>
                 <div id="empty-state" class="empty-state">
                     <i class="fas fa-film"></i>
                     <p>还没有记录，搜索并添加你的第一部影视剧吧！</p>
@@ -539,20 +590,34 @@
         }
 
         // ===================== 百度百科搜索（JSONP 加载，无需 CORS/代理） =====================
-        function cleanTitle(t) {
-            return t.replace(/[（(].*?[）)]/g, '').trim();
-        }
-
         function extractYear(s) {
             const m = s.match(/(?:19|20)\d{2}/);
             return m ? m[0] : '';
         }
 
         function detectType(s) {
-            if (/电视剧|网络剧|网剧|连续剧/.test(s)) return 'tv';
-            const m = s.match(/执导的([\u4e00-\u9fa5]{0,8}?)(片|剧)/);
-            if (m) return m[2] === '剧' ? 'tv' : 'movie';
+            // 小说 / 漫画等非影视条目
+            if (/创作.{0,8}?(小说|漫画)|系列小说|轻小说|长篇漫画/.test(s)) return 'other';
+            // 综艺
+            if (/综艺|真人秀|脱口秀|选秀|访谈节目/.test(s)) return 'variety';
+            // 动画电影归为电影，纯动画/动漫归为动漫
+            if (/动画电影/.test(s)) return 'movie';
+            if (/动画|动漫|番剧/.test(s)) return 'anime';
+            // 电视剧（"执导/主演的...剧"，要求"剧"是类型词组末字，避免误匹配"剧情片"）
+            if (/电视剧|网络剧|网剧|(?:执导|主演)的[\u4e00-\u9fa5]{0,10}?剧(?![一-龥])/.test(s)) return 'tv';
+            // 电影
+            if (/(?:执导|主演)的[\u4e00-\u9fa5]{0,10}?片|电影|影片/.test(s)) return 'movie';
             return 'movie';
+        }
+
+        // 从百科信息卡中提取类型（如：犯罪 剧情）
+        function extractGenre(d) {
+            const card = d.card || [];
+            const entry = card.find(c => c.name === '类型');
+            if (!entry || !entry.value || !entry.value[0]) return '';
+            const raw = entry.value[0].replace(/<[^>]*>/g, '').replace(/\s+/g, ' ');
+            const parts = raw.split(/[、，,]/).map(s => s.trim()).filter(Boolean);
+            return parts.slice(0, 3).join(' ');
         }
 
         // 生成百度 CDN 缩略图 URL（限宽 300px）
@@ -620,6 +685,7 @@
                         type: detectType(text),
                         url: d.url || 'https://baike.baidu.com/item/' + encodeURIComponent(d.title),
                         img: thumbnailize(d.image),
+                        genre: extractGenre(d),
                         sub_title: '',
                         desc: (d.abstract || d.desc || '').slice(0, 140)
                     };
@@ -640,32 +706,64 @@
 
         // ===================== 页面逻辑 =====================
         let records = loadRecords();
+        let currentCat = 'all';   // all / movie / tv
+        let currentGenre = '';    // 当前选中的类型
 
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
         const searchStatus = document.getElementById('search-status');
         const searchResults = document.getElementById('search-results');
+        const resultsGrid = document.getElementById('results-grid');
         const savedList = document.getElementById('saved-list');
         const emptyState = document.getElementById('empty-state');
         const savedCount = document.getElementById('saved-count');
+        const genreTabs = document.getElementById('genre-tabs');
 
         function typeName(t) {
-            return t === 'tv' ? '剧集' : '电影';
+            return { movie: '电影', tv: '电视剧', variety: '综艺', anime: '动漫', other: '其他' }[t] || '电影';
         }
 
         // 海报加载失败时替换为占位图标
         function posterError(el) {
             el.onerror = null;
             const holder = document.createElement('div');
-            holder.className = el.classList.contains('result-poster') ? 'result-poster' : 'saved-poster';
-            holder.style.cssText = 'display:flex;align-items:center;justify-content:center;color:var(--gray-400);';
-            holder.innerHTML = '<i class="fas fa-film"></i>';
+            holder.className = 'poster-wrap';
+            holder.style.cssText = 'display:flex;align-items:center;justify-content:center;color:var(--gray-400);aspect-ratio:2/3;';
+            holder.innerHTML = '<i class="fas fa-film" style="font-size:2.2rem;"></i>';
             el.parentNode.replaceChild(holder, el);
         }
 
-        // 渲染已存列表
+        // ========== 分类过滤 ==========
+        function filteredRecords() {
+            return records.filter(r => {
+                if (currentCat !== 'all' && r.type !== currentCat) return false;
+                if (currentGenre) {
+                    const g = (r.genre || '').split(/\s+/).filter(Boolean);
+                    if (!g.includes(currentGenre)) return false;
+                }
+                return true;
+            });
+        }
+
+        function renderGenreTabs() {
+            const genres = [...new Set(records.flatMap(r => (r.genre || '').split(/\s+/).filter(Boolean)))].slice(0, 12);
+            genreTabs.innerHTML = genres.map(g =>
+                `<button class="genre-chip ${g === currentGenre ? 'active' : ''}" data-genre="${g}">${g}</button>`
+            ).join('');
+            genreTabs.querySelectorAll('.genre-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    currentGenre = chip.dataset.genre === currentGenre ? '' : chip.dataset.genre;
+                    renderGenreTabs();
+                    renderSaved();
+                });
+            });
+        }
+
+        // ========== 渲染已存片单（爱奇艺风格海报墙） ==========
         function renderSaved() {
-            records.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+            renderGenreTabs();
+            const list = filteredRecords();
+            list.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
             savedCount.textContent = records.length;
 
             if (records.length === 0) {
@@ -675,30 +773,40 @@
             }
             emptyState.classList.add('hidden');
 
-            savedList.innerHTML = records.map((r, idx) => `
-                <div class="saved-card" data-idx="${idx}">
-                    ${r.img
-                        ? `<img class="saved-poster" src="${r.img}" alt="${r.title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
-                        : `<div class="saved-poster" style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);"><i class="fas fa-film"></i></div>`}
-                    <div class="saved-info">
-                        <div class="saved-title">${r.title || '未命名'}</div>
-                        <div class="saved-meta">
+            if (list.length === 0) {
+                savedList.innerHTML = `<div class="empty-state" style="grid-column:1/-1;border:none;">
+                    <i class="fas fa-filter"></i><p>当前分类下没有记录</p></div>`;
+                return;
+            }
+
+            savedList.innerHTML = list.map((r, i) => `
+                <div class="poster-card" data-idx="${i}">
+                    <div class="poster-wrap">
+                        ${r.img
+                            ? `<img class="poster-img" src="${r.img}" alt="${r.title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
+                            : `<div style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);width:100%;height:100%;"><i class="fas fa-film" style="font-size:2.2rem;"></i></div>`}
+                        <div class="poster-overlay">
+                            <button class="card-btn danger" data-del="${i}" title="删除记录"><i class="fas fa-trash-alt"></i> 删除</button>
+                        </div>
+                    </div>
+                    <div class="poster-info">
+                        <div class="poster-title" title="${r.title}">${r.title || '未命名'}</div>
+                        <div class="poster-meta">
                             <span class="tag">${typeName(r.type)}</span>
                             ${r.year ? `<span>${r.year}</span>` : ''}
-                            ${r.sub_title ? `<span title="${r.sub_title}">${r.sub_title}</span>` : ''}
-                            <input type="date" class="date-edit" value="${r.watchedDate || ''}" data-idx="${idx}">
+                            ${r.genre ? `<span>${r.genre}</span>` : ''}
                         </div>
-                        ${r.note ? `<div class="saved-meta saved-note">${r.note}</div>` : ''}
-                        ${!r.note && r.desc ? `<div class="saved-meta saved-note">${r.desc}</div>` : ''}
+                        <div class="poster-meta">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="date" class="date-edit" value="${r.watchedDate || ''}" data-date="${i}">
+                        </div>
                     </div>
-                    <button class="btn-delete" data-idx="${idx}" title="删除记录"><i class="fas fa-trash-alt"></i></button>
                 </div>
             `).join('');
 
-            // 删除
-            savedList.querySelectorAll('.btn-delete').forEach(btn => {
+            savedList.querySelectorAll('[data-del]').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const i = parseInt(btn.dataset.idx);
+                    const i = parseInt(btn.dataset.del);
                     if (confirm('确定删除这条观影记录吗？')) {
                         records.splice(i, 1);
                         saveRecords(records);
@@ -707,55 +815,57 @@
                 });
             });
 
-            // 修改观看日期
             savedList.querySelectorAll('.date-edit').forEach(inp => {
                 inp.addEventListener('change', () => {
-                    const i = parseInt(inp.dataset.idx);
+                    const i = parseInt(inp.dataset.date);
                     records[i].watchedDate = inp.value;
                     saveRecords(records);
                 });
             });
         }
 
-        // 渲染搜索结果
+        // ========== 渲染搜索结果（爱奇艺风格海报墙） ==========
         function renderResults(list) {
             if (!list.length) {
-                searchResults.innerHTML = '';
+                resultsGrid.innerHTML = '';
                 searchResults.classList.add('hidden');
-                searchStatus.textContent = '没有找到相关结果，可手动添加。';
+                searchStatus.textContent = '没有找到相关词条，可手动添加。';
+                searchStatus.className = 'search-status error';
                 return;
             }
             searchResults.classList.remove('hidden');
-            searchResults.innerHTML = '<div class="result-card" style="justify-content:center;font-weight:600;color:var(--gray-500);border-style:dashed;">请选择要记录的作品：</div>' +
-                list.map((item, idx) => {
-                    const title = item.title || '未知作品';
-                    const year = item.year || '';
-                    const type = item.type === 'tv' ? '剧集' : '电影';
-                    const img = item.img || '';
-                    const recorded = records.some(r => r.id === String(item.id));
-                    return `
-                    <div class="result-card">
-                        ${img
-                            ? `<img class="result-poster" src="${img}" alt="${title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
-                            : `<div class="result-poster" style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);"><i class="fas fa-film"></i></div>`}
-                        <div class="result-info">
-                            <div class="result-title">${title}</div>
-                            <div class="result-meta">
-                                <span class="tag">${type}</span>
-                                ${year ? `<span>${year}</span>` : ''}
-                                ${item.sub_title ? `<span>${item.sub_title}</span>` : ''}
-                            </div>
-                            ${item.desc ? `<div class="result-desc">${item.desc}</div>` : ''}
-                        </div>
-                        <button class="btn-record ${recorded ? 'recorded' : ''}" data-idx="${idx}" ${recorded ? 'disabled' : ''}>
-                            ${recorded ? '已记录' : '记录观看'}
-                        </button>
-                    </div>`;
-                }).join('');
+            searchStatus.className = 'search-status';
+            searchStatus.textContent = `找到 ${list.length} 条结果（百度百科）`;
 
-            searchResults.querySelectorAll('.btn-record:not(.recorded)').forEach(btn => {
+            resultsGrid.innerHTML = list.map((item, idx) => {
+                const recorded = records.some(r => r.id === String(item.id));
+                return `
+                <div class="poster-card">
+                    <div class="poster-wrap">
+                        ${item.img
+                            ? `<img class="poster-img" src="${item.img}" alt="${item.title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
+                            : `<div style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);width:100%;height:100%;"><i class="fas fa-film" style="font-size:2.2rem;"></i></div>`}
+                        <div class="poster-overlay">
+                            <button class="card-btn ${recorded ? 'recorded' : ''}" data-record="${idx}" ${recorded ? 'disabled' : ''}>
+                                ${recorded ? '已记录' : '记录观看'}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="poster-info">
+                        <div class="poster-title" title="${item.title}">${item.title}</div>
+                        <div class="poster-meta">
+                            <span class="tag">${typeName(item.type)}</span>
+                            ${item.year ? `<span>${item.year}</span>` : ''}
+                            ${item.genre ? `<span>${item.genre}</span>` : ''}
+                        </div>
+                        ${item.desc ? `<div class="poster-meta" title="${item.desc}" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.desc}</div>` : ''}
+                    </div>
+                </div>`;
+            }).join('');
+
+            resultsGrid.querySelectorAll('.card-btn:not(.recorded)').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const item = list[parseInt(btn.dataset.idx)];
+                    const item = list[parseInt(btn.dataset.record)];
                     addRecord({
                         id: String(item.id),
                         title: item.title || '未知作品',
@@ -763,14 +873,13 @@
                         type: item.type === 'tv' ? 'tv' : 'movie',
                         url: item.url || '',
                         img: item.img || '',
+                        genre: item.genre || '',
                         sub_title: item.sub_title || '',
                         desc: item.desc || ''
                     });
                     btn.classList.add('recorded');
                     btn.textContent = '已记录';
                     btn.disabled = true;
-                    searchStatus.textContent = '已记录到时间胶囊 ✓';
-                    savedList.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
         }
@@ -783,6 +892,7 @@
                 type: 'movie',
                 url: '',
                 img: '',
+                genre: '',
                 sub_title: '',
                 desc: '',
                 note: '',
@@ -799,7 +909,7 @@
             renderSaved();
         }
 
-        // 搜索
+        // ========== 搜索 ==========
         async function doSearch() {
             const keyword = searchInput.value.trim();
             if (!keyword) {
@@ -808,22 +918,22 @@
                 return;
             }
             searchBtn.disabled = true;
-            searchBtn.textContent = '搜索中...';
-            searchStatus.className = 'search-status';
+            searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 搜索中';
             searchStatus.textContent = '正在搜索百度百科...';
-            searchResults.classList.add('hidden');
+            searchStatus.className = 'search-status';
+            searchResults.classList.remove('hidden');
 
             try {
                 const list = await searchMovies(keyword);
                 renderResults(list);
-                searchStatus.className = 'search-status';
-                searchStatus.textContent = `找到 ${list.length} 条结果（百度百科）`;
             } catch (e) {
+                searchResults.classList.remove('hidden');
                 searchStatus.className = 'search-status error';
                 searchStatus.textContent = e.message || '搜索失败';
+                resultsGrid.innerHTML = '';
             } finally {
                 searchBtn.disabled = false;
-                searchBtn.textContent = '搜索';
+                searchBtn.innerHTML = '<i class="fas fa-search"></i> 搜索';
             }
         }
 
@@ -832,7 +942,24 @@
             if (e.key === 'Enter') doSearch();
         });
 
-        // 手动添加
+        // 关闭搜索结果
+        document.getElementById('close-search').addEventListener('click', () => {
+            searchResults.classList.add('hidden');
+            resultsGrid.innerHTML = '';
+        });
+
+        // ========== 分类切换 ==========
+        document.getElementById('category-nav').addEventListener('click', e => {
+            const tab = e.target.closest('.cat-tab');
+            if (!tab) return;
+            currentCat = tab.dataset.cat;
+            currentGenre = '';
+            document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t === tab));
+            renderGenreTabs();
+            renderSaved();
+        });
+
+        // ========== 手动添加 ==========
         document.getElementById('toggle-manual').addEventListener('click', () => {
             document.getElementById('manual-form').classList.toggle('hidden');
         });
@@ -848,16 +975,17 @@
                 title: title,
                 year: document.getElementById('m-year').value.trim(),
                 type: document.getElementById('m-type').value,
+                genre: document.getElementById('m-genre').value.trim(),
                 note: document.getElementById('m-note').value.trim()
             });
             document.getElementById('m-title').value = '';
             document.getElementById('m-year').value = '';
+            document.getElementById('m-genre').value = '';
             document.getElementById('m-note').value = '';
             document.getElementById('manual-form').classList.add('hidden');
-            savedList.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
-        // 导出 JSON
+        // ========== 导出 / 导入 JSON ==========
         document.getElementById('export-btn').addEventListener('click', () => {
             const blob = new Blob([JSON.stringify(records, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -870,7 +998,6 @@
             URL.revokeObjectURL(url);
         });
 
-        // 导入 JSON
         document.getElementById('import-btn').addEventListener('click', () => {
             document.getElementById('import-file').click();
         });
@@ -906,7 +1033,7 @@
             e.target.value = '';
         });
 
-        // 导航菜单切换
+        // ========== 导航菜单切换 ==========
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
         if (hamburger && navMenu) {
@@ -920,7 +1047,7 @@
             }));
         }
 
-        // 初始化
+        // ========== 初始化 ==========
         renderSaved();
     </script>
 </body>
