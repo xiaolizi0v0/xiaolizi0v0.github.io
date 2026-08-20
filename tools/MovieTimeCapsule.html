@@ -1030,6 +1030,43 @@
                 .map(x => `<span class="tag">${x}</span>`).join('');
         }
 
+        // 平台名 → 统一标准平台
+        const PLATFORM_MAP = {
+            '爱奇艺': '爱奇艺',
+            'iqiyi': '爱奇艺',
+            '腾讯视频': '腾讯',
+            '腾讯': '腾讯',
+            '优酷网': '优酷',
+            '优酷': '优酷',
+            'bilibili': 'B站',
+            '哔哩哔哩': 'B站',
+            '芒果tv': '芒果TV',
+            '芒果': '芒果TV',
+            '电影院': '影院',
+            '院线': '影院',
+            '影院': '影院'
+        };
+
+        // 从百科信息卡中提取观看平台（在线播放平台 / 网络播放平台 / 播出平台 …）
+        function extractPlatform(d) {
+            const card = d.card || [];
+            const entry = card.find(c => /平台$/.test(c.name || ''));
+            if (!entry || !entry.value || !entry.value[0]) return '';
+            const raw = entry.value[0]
+                .replace(/<sup[^>]*>[\s\S]*?<\/sup>/g, '')
+                .replace(/<[^>]*>/g, '')
+                .replace(/\s+/g, '');
+            const names = raw.split(/[、，,]/).map(s => s.trim()).filter(Boolean);
+            for (const n of names) {
+                const lower = n.toLowerCase();
+                for (const [k, v] of Object.entries(PLATFORM_MAP)) {
+                    const kl = k.toLowerCase();
+                    if (lower.includes(kl) || kl.includes(lower)) return v;
+                }
+            }
+            return names.length ? '其他' : '';
+        }
+
         // 生成百度 CDN 缩略图 URL（限宽 300px）
         function thumbnailize(imgUrl) {
             if (!imgUrl) return '';
@@ -1098,6 +1135,7 @@
                         url: d.url || 'https://baike.baidu.com/item/' + encodeURIComponent(d.title),
                         img: thumbnailize(d.image),
                         genre: extractGenre(d),
+                        platform: extractPlatform(d),
                         sub_title: '',
                         desc: (d.abstract || d.desc || '').slice(0, 140)
                     };
@@ -1231,6 +1269,7 @@
                             url: data.url || '',
                             img: data.img || '',
                             genre: data.genre || '',
+                            platform: data.platform || '',
                             sub_title: data.sub_title || '',
                             desc: data.desc || ''
                         });
@@ -1532,6 +1571,7 @@
                         url: item.url || '',
                         img: item.img || '',
                         genre: item.genre || '',
+                        platform: item.platform || '',
                         sub_title: item.sub_title || '',
                         desc: item.desc || ''
                     });
