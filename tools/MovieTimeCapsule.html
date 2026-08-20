@@ -1046,6 +1046,99 @@
             border-color: var(--ds-border-hover);
         }
 
+        /* ========== 播放演示模式（纯前端效果） ========== */
+        .modal-body.playing .modal-image {
+            flex: 0 0 62%;
+            display: block;
+            background: #000;
+        }
+
+        .modal-body.playing .modal-side {
+            flex: 1;
+            padding: 1.1rem 1.1rem 1rem;
+        }
+
+        .modal-body.playing .modal-side > :not(.modal-play-panel) {
+            display: none;
+        }
+
+        .modal-play-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .play-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .play-header h3 {
+            font-family: var(--ds-font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+        }
+
+        .play-episodes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+            gap: 0.45rem;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 0.2rem;
+        }
+
+        .ep-btn {
+            border: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            color: var(--gray-600);
+            border-radius: 6px;
+            padding: 0.4rem 0.3rem;
+            font-size: 0.78rem;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ep-btn:hover {
+            border-color: var(--ds-border-hover);
+            color: var(--ds-text-primary);
+        }
+
+        .ep-btn.active {
+            background: var(--ds-brand);
+            border-color: var(--ds-brand);
+            color: #fff;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+            border-radius: 0;
+        }
+
+        .play-tip {
+            font-size: 0.78rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .modal-copyright {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            padding: 0.55rem 1rem;
+            border-top: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            letter-spacing: 0.02em;
+        }
+
         @media (max-width: 640px) {
             .modal-body {
                 flex-direction: column;
@@ -1192,7 +1285,7 @@
     <div class="modal-overlay hidden" id="detail-modal">
         <div class="modal">
             <button class="modal-close" id="modal-close" title="关闭"><i class="fas fa-times"></i></button>
-            <div class="modal-body">
+            <div class="modal-body" id="modal-body">
                 <div class="modal-image" id="modal-image"></div>
                 <div class="modal-side">
                     <h2 class="modal-title" id="modal-title"></h2>
@@ -1201,7 +1294,19 @@
                     <div class="modal-extra" id="modal-extra"></div>
                     <div class="modal-actions" id="modal-actions"></div>
                     <div class="modal-rate" id="modal-rate"></div>
+                    <!-- 播放演示面板（点击"播放演示"后显示） -->
+                    <div class="modal-play-panel hidden" id="modal-play-panel">
+                        <div class="play-header">
+                            <h3 id="play-title"></h3>
+                            <button class="ghost-btn" id="play-exit"><i class="fas fa-arrow-left"></i> 返回详情</button>
+                        </div>
+                        <div class="play-episodes" id="play-episodes"></div>
+                        <div class="play-tip"><i class="fas fa-info-circle"></i> 演示模式：使用公开授权的测试片源，仅用于展示播放器界面。</div>
+                    </div>
                 </div>
+            </div>
+            <div class="modal-copyright hidden" id="modal-copyright">
+                本页面内容仅供学习使用，不能对外传播。
             </div>
         </div>
     </div>
@@ -1596,8 +1701,10 @@
                 // saved
                 actEl.innerHTML = `
                     ${baike}
+                    <button class="card-btn" id="modal-play"><i class="fas fa-play"></i> 播放演示</button>
                     <button class="card-btn danger" id="modal-delete-btn"><i class="fas fa-trash-alt"></i> 删除记录</button>
                 `;
+                document.getElementById('modal-play').addEventListener('click', () => enterPlayMode(data));
                 const dateInput = document.getElementById('modal-date');
                 if (dateInput) {
                     dateInput.addEventListener('change', () => {
@@ -1665,9 +1772,73 @@
         }
 
         function closeModal() {
+            exitPlayMode();
             modalEl.classList.add('hidden');
             document.body.style.overflow = '';
         }
+
+        // ========== 播放演示（纯前端效果，公开授权测试片源） ==========
+        const DEMO_EPS = ['BigBuckBunny', 'ElephantsDream', 'ForBiggerBlazes', 'ForBiggerEscapes', 'ForBiggerFun', 'ForBiggerJoyrides'];
+        const DEMO_BASE = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/';
+
+        function enterPlayMode(data) {
+            const body = document.getElementById('modal-body');
+            const imgWrap = document.getElementById('modal-image');
+            body.classList.add('playing');
+            imgWrap.innerHTML = `<video class="video-player" controls poster="${data.img || ''}"></video>`;
+            buildPlayPanel(data);
+            document.getElementById('modal-copyright').classList.remove('hidden');
+            document.getElementById('modal-play-panel').classList.remove('hidden');
+        }
+
+        function exitPlayMode() {
+            const body = document.getElementById('modal-body');
+            if (body) body.classList.remove('playing');
+            const c = document.getElementById('modal-copyright');
+            if (c) c.classList.add('hidden');
+            const p = document.getElementById('modal-play-panel');
+            if (p) p.classList.add('hidden');
+            const v = document.querySelector('.video-player');
+            if (v) { v.pause(); }
+        }
+
+        function buildPlayPanel(data) {
+            const isSeries = data.type === 'tv' || data.type === 'anime' || data.type === 'variety';
+            const totalEpisodes = isSeries ? 24 : 1;
+            const epContainer = document.getElementById('play-episodes');
+            document.getElementById('play-title').textContent = data.title || '';
+
+            epContainer.innerHTML = '';
+            if (totalEpisodes === 1) {
+                const b = document.createElement('button');
+                b.className = 'ep-btn active';
+                b.textContent = '正片';
+                b.addEventListener('click', () => playVideo(DEMO_EPS[0]));
+                epContainer.appendChild(b);
+            } else {
+                for (let i = 1; i <= totalEpisodes; i++) {
+                    const b = document.createElement('button');
+                    b.className = 'ep-btn' + (i === 1 ? ' active' : '');
+                    b.textContent = '第' + String(i).padStart(2, '0') + '集';
+                    b.addEventListener('click', () => {
+                        epContainer.querySelectorAll('.ep-btn').forEach(x => x.classList.remove('active'));
+                        b.classList.add('active');
+                        playVideo(DEMO_EPS[(i - 1) % DEMO_EPS.length]);
+                    });
+                    epContainer.appendChild(b);
+                }
+            }
+            playVideo(DEMO_EPS[0]);
+        }
+
+        function playVideo(key) {
+            const v = document.querySelector('.video-player');
+            if (!v) return;
+            v.src = DEMO_BASE + key + '.mp4';
+            v.play().catch(() => {});
+        }
+
+        document.getElementById('play-exit').addEventListener('click', exitPlayMode);
 
         // 点击遮罩关闭、ESC 关闭
         modalEl.addEventListener('click', (e) => {
