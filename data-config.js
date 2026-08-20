@@ -19,6 +19,15 @@ const dataConfig = {
       file: "PDFViewer.html",
       category: "other",
       date: "2026-04-28"
+    },
+    {
+      id: "3",
+      title: "影视剧观影存储时间胶囊",
+      icon: "fas fa-film",
+      description: "输入影视剧名称，自动搜索豆瓣数据并记录观影时间，存入时间胶囊随时回忆看过的作品",
+      file: "MovieTimeCapsule.html",
+      category: "other",
+      date: "2026-08-20"
     }
   ],
   //笔记

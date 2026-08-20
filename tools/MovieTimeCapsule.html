@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影视剧观影存储时间胶囊 - 工具箱</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
+    <style>
+        .tool-container {
+            max-width: 1000px;
+            margin: 5rem auto;
+            padding: 2rem;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .tool-header p {
+            color: var(--gray-600);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* 搜索框 */
+        .search-box {
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-panel);
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .search-row input {
+            flex: 1;
+            padding: 0.85rem 1.15rem;
+            background: var(--ds-bg-page);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-input);
+            font-size: 1rem;
+            font-family: var(--ds-font-sans);
+            color: var(--ds-text-primary);
+            transition: var(--transition);
+        }
+
+        .search-row input:focus {
+            outline: none;
+            border-color: var(--ds-brand);
+            box-shadow: 0 0 0 3px rgba(77, 107, 254, .18);
+        }
+
+        .search-row input::placeholder {
+            color: var(--ds-text-placeholder);
+        }
+
+        .btn-search {
+            padding: 0.85rem 1.8rem;
+            background: var(--ds-brand);
+            color: #fff;
+            border: none;
+            border-radius: var(--ds-radius-pill);
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .btn-search:hover {
+            background: #3f5eea;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(77, 107, 254, .35);
+        }
+
+        .btn-search:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .search-status {
+            margin-top: 0.9rem;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            min-height: 1.2rem;
+        }
+
+        .search-status.error {
+            color: var(--danger-color);
+        }
+
+        /* 搜索结果 */
+        .search-results {
+            margin-bottom: 1.5rem;
+        }
+
+        .result-card {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-panel);
+            padding: 0.9rem 1.1rem;
+            margin-bottom: 0.75rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .result-card:hover {
+            border-color: var(--ds-border-hover);
+            transform: translateY(-2px);
+        }
+
+        .result-poster {
+            width: 60px;
+            height: 84px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: var(--ds-bg-surface-3);
+            flex-shrink: 0;
+        }
+
+        .result-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .result-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--ds-text-primary);
+        }
+
+        .result-meta {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-top: 0.2rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .result-meta .tag {
+            background: var(--ds-bg-surface-3);
+            border: 1px solid var(--ds-border-subtle);
+            padding: 0.1rem 0.6rem;
+            border-radius: var(--ds-radius-pill);
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+
+        .btn-record {
+            padding: 0.55rem 1.2rem;
+            background: var(--ds-brand);
+            color: #fff;
+            border: none;
+            border-radius: var(--ds-radius-pill);
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .btn-record:hover {
+            background: #3f5eea;
+        }
+
+        .btn-record.recorded {
+            background: var(--ds-bg-surface-3);
+            color: var(--gray-500);
+            cursor: default;
+        }
+
+        /* 手动添加 */
+        .manual-box {
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-ghost {
+            padding: 0.6rem 1.3rem;
+            background: transparent;
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-pill);
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--ds-border-hover);
+            color: var(--ds-text-primary);
+            background: var(--ds-bg-surface-1);
+        }
+
+        .manual-form {
+            display: grid;
+            grid-template-columns: 1.4fr 0.7fr 0.7fr 1fr auto;
+            gap: 0.6rem;
+            margin-top: 0.9rem;
+            align-items: center;
+        }
+
+        .manual-form input,
+        .manual-form select {
+            padding: 0.7rem 0.9rem;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-input);
+            font-size: 0.95rem;
+            font-family: var(--ds-font-sans);
+            color: var(--ds-text-primary);
+            transition: var(--transition);
+        }
+
+        .manual-form input:focus,
+        .manual-form select:focus {
+            outline: none;
+            border-color: var(--ds-brand);
+            box-shadow: 0 0 0 3px rgba(77, 107, 254, .15);
+        }
+
+        .manual-form select {
+            cursor: pointer;
+        }
+
+        /* 已存列表 */
+        .saved-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .saved-header h2 {
+            font-family: var(--ds-font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .count-badge {
+            background: var(--ds-brand);
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 0.15rem 0.7rem;
+            border-radius: var(--ds-radius-pill);
+            font-family: var(--ds-font-sans);
+        }
+
+        .saved-actions {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .saved-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 0.9rem;
+        }
+
+        .saved-card {
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-panel);
+            box-shadow: var(--shadow-sm);
+            padding: 0.9rem 1.1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .saved-card:hover {
+            border-color: var(--ds-border-hover);
+            transform: translateY(-2px);
+        }
+
+        .saved-poster {
+            width: 52px;
+            height: 72px;
+            border-radius: 7px;
+            object-fit: cover;
+            background: var(--ds-bg-surface-3);
+            flex-shrink: 0;
+        }
+
+        .saved-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .saved-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--ds-text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .saved-meta {
+            font-size: 0.82rem;
+            color: var(--gray-500);
+            margin-top: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .date-edit {
+            border: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-page);
+            color: var(--gray-600);
+            border-radius: 6px;
+            padding: 0.15rem 0.4rem;
+            font-size: 0.82rem;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background: transparent;
+            border: none;
+            color: var(--gray-400);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: 50%;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .btn-delete:hover {
+            color: var(--danger-color);
+            background: rgba(255, 95, 87, .1);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--gray-400);
+            border: 1px dashed var(--ds-border-strong);
+            border-radius: var(--ds-radius-panel);
+        }
+
+        .empty-state i {
+            font-size: 2.6rem;
+            margin-bottom: 0.75rem;
+            color: var(--ds-brand-light);
+            opacity: .6;
+        }
+
+        .empty-state p {
+            font-size: 0.95rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .tip {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: 0.6rem;
+        }
+
+        @media (max-width: 700px) {
+            .search-row {
+                flex-direction: column;
+            }
+
+            .manual-form {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .saved-list {
+                grid-template-columns: 1fr;
+            }
+
+            .saved-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">我的博客</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">首页</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">关于我</a></li>
+                <li class="nav-item"><a href="../index.html#skills" class="nav-link">技能</a></li>
+                <li class="nav-item"><a href="../index.html#projects" class="nav-link">项目</a></li>
+                <li class="nav-item"><a href="../index.html#education" class="nav-link">教育</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link active">工具箱</a></li>
+                <li class="nav-item"><a href="../notes.html" class="nav-link">学习笔记</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">联系</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1 class="section-title">影视剧观影存储时间胶囊</h1>
+                <p>输入影视剧名称，自动搜索豆瓣数据并记录观影时间。存进时间胶囊，随时回忆看过的每一部作品。</p>
+            </div>
+
+            <!-- 搜索 -->
+            <div class="search-box">
+                <div class="search-row">
+                    <input id="search-input" type="text" placeholder="输入影视剧名称，如：肖申克的救赎" autocomplete="off">
+                    <button id="search-btn" class="btn-search">搜索豆瓣</button>
+                </div>
+                <div id="search-status" class="search-status"></div>
+                <div class="tip">通过免费搜索引擎（Bing）搜索片名，再用 HTML 解析器从结果中提取豆瓣条目。若网络代理不稳定，可直接手动添加。</div>
+            </div>
+
+            <!-- 搜索结果 -->
+            <div id="search-results" class="search-results hidden"></div>
+
+            <!-- 手动添加 -->
+            <div class="manual-box">
+                <button id="toggle-manual" class="btn-ghost">找不到？手动添加</button>
+                <div id="manual-form" class="manual-form hidden">
+                    <input id="m-title" type="text" placeholder="名称（必填）">
+                    <input id="m-year" type="text" placeholder="年份，如 1994">
+                    <select id="m-type">
+                        <option value="movie">电影</option>
+                        <option value="tv">剧集</option>
+                    </select>
+                    <input id="m-note" type="text" placeholder="备注（可选）">
+                    <button id="m-save" class="btn-record">保存</button>
+                </div>
+            </div>
+
+            <!-- 已存列表 -->
+            <div class="saved-section">
+                <div class="saved-header">
+                    <h2>我的观影时间胶囊 <span class="count-badge" id="saved-count">0</span></h2>
+                    <div class="saved-actions">
+                        <button id="export-btn" class="btn-ghost"><i class="fas fa-download"></i> 导出 JSON</button>
+                        <button id="import-btn" class="btn-ghost"><i class="fas fa-upload"></i> 导入 JSON</button>
+                        <input type="file" id="import-file" accept=".json,application/json" hidden>
+                    </div>
+                </div>
+                <div id="saved-list" class="saved-list"></div>
+                <div id="empty-state" class="empty-state">
+                    <i class="fas fa-film"></i>
+                    <p>还没有记录，搜索并添加你的第一部影视剧吧！</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 我的个人博客. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ===================== 数据存储 =====================
+        const STORAGE_KEY = 'movieTimeCapsule';
+
+        function loadRecords() {
+            try {
+                const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                return Array.isArray(data) ? data : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveRecords(list) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        }
+
+        function nowDateStr() {
+            const d = new Date();
+            const pad = n => String(n).padStart(2, '0');
+            return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+        }
+
+        // ===================== 网络请求（多级代理容错） =====================
+        async function fetchWithProxies(url) {
+            const variants = [
+                { label: 'direct', build: u => u },
+                { label: 'allorigins-get', build: u => 'https://api.allorigins.win/get?url=' + encodeURIComponent(u) },
+                { label: 'corsproxy', build: u => 'https://corsproxy.io/?url=' + encodeURIComponent(u) },
+                { label: 'codetabs', build: u => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u) },
+                { label: 'allorigins-raw', build: u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u) }
+            ];
+
+            for (const v of variants) {
+                try {
+                    const res = await fetch(v.build(url), {
+                        signal: AbortSignal.timeout(12000),
+                        headers: { 'Accept': 'text/html, application/xhtml+xml, */*' }
+                    });
+                    if (!res.ok) continue;
+                    let text = await res.text();
+                    // allorigins /get 会把内容包在 JSON 的 contents 字段里
+                    if (v.label === 'allorigins-get') {
+                        try {
+                            const j = JSON.parse(text);
+                            if (j && typeof j.contents === 'string') text = j.contents;
+                        } catch (e) { /* 保持原样 */ }
+                    }
+                    return text;
+                } catch (e) {
+                    // 继续尝试下一个代理
+                }
+            }
+            throw new Error('网络请求失败');
+        }
+
+        // 免费搜索引擎（Bing）+ HTML 解析器，从搜索结果中提取豆瓣条目
+        function cleanTitle(t) {
+            return t.replace(/[（(].*?[）)]/g, '').trim();
+        }
+
+        function extractYear(s) {
+            const m = s.match(/(?:19|20)\d{2}/);
+            return m ? m[0] : '';
+        }
+
+        function detectType(s) {
+            return /电视剧|剧集|连续剧/.test(s) ? 'tv' : 'movie';
+        }
+
+        // 通过免费搜索引擎搜索片名，再用 HTML 解析器提取豆瓣条目
+        async function searchMovies(keyword) {
+            const url = 'https://www.bing.com/search?q=' + encodeURIComponent(keyword + ' 豆瓣');
+            const html = await fetchWithProxies(url);
+
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            const items = doc.querySelectorAll('li.b_algo');
+            const results = [];
+            const seen = new Set();
+
+            items.forEach(li => {
+                const anchor = li.querySelector('h2 a');
+                if (!anchor) return;
+                const link = anchor.href || '';
+                const m = link.match(/movie\.douban\.com\/subject\/(\d+)\//);
+                if (!m || seen.has(m[1])) return;
+                seen.add(m[1]);
+
+                const rawTitle = anchor.textContent || '';
+                const snippetEl = li.querySelector('.b_caption p');
+                const snippet = snippetEl ? snippetEl.textContent : '';
+                const combined = rawTitle + ' ' + snippet;
+
+                results.push({
+                    id: m[1],
+                    title: cleanTitle(rawTitle) || '未知作品',
+                    year: extractYear(combined),
+                    type: detectType(combined),
+                    url: link.split('&')[0],
+                    img: '',
+                    sub_title: ''
+                });
+            });
+
+            if (results.length === 0) {
+                throw new Error('搜索到的结果中没有豆瓣条目，请更换关键词或手动添加');
+            }
+            return results;
+        }
+
+        // ===================== 页面逻辑 =====================
+        let records = loadRecords();
+
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const searchStatus = document.getElementById('search-status');
+        const searchResults = document.getElementById('search-results');
+        const savedList = document.getElementById('saved-list');
+        const emptyState = document.getElementById('empty-state');
+        const savedCount = document.getElementById('saved-count');
+
+        function typeName(t) {
+            return t === 'tv' ? '剧集' : '电影';
+        }
+
+        // 渲染已存列表
+        function renderSaved() {
+            records.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+            savedCount.textContent = records.length;
+
+            if (records.length === 0) {
+                savedList.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            emptyState.classList.add('hidden');
+
+            savedList.innerHTML = records.map((r, idx) => `
+                <div class="saved-card" data-idx="${idx}">
+                    ${r.img
+                        ? `<img class="saved-poster" src="${r.img}" alt="${r.title}" loading="lazy" onerror="this.style.display='none'">`
+                        : `<div class="saved-poster" style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);"><i class="fas fa-film"></i></div>`}
+                    <div class="saved-info">
+                        <div class="saved-title">${r.title || '未命名'}</div>
+                        <div class="saved-meta">
+                            <span class="tag">${typeName(r.type)}</span>
+                            ${r.year ? `<span>${r.year}</span>` : ''}
+                            ${r.sub_title ? `<span title="${r.sub_title}">${r.sub_title}</span>` : ''}
+                            <input type="date" class="date-edit" value="${r.watchedDate || ''}" data-idx="${idx}">
+                        </div>
+                        ${r.note ? `<div class="saved-meta">${r.note}</div>` : ''}
+                    </div>
+                    <button class="btn-delete" data-idx="${idx}" title="删除记录"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            `).join('');
+
+            // 删除
+            savedList.querySelectorAll('.btn-delete').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const i = parseInt(btn.dataset.idx);
+                    if (confirm('确定删除这条观影记录吗？')) {
+                        records.splice(i, 1);
+                        saveRecords(records);
+                        renderSaved();
+                    }
+                });
+            });
+
+            // 修改观看日期
+            savedList.querySelectorAll('.date-edit').forEach(inp => {
+                inp.addEventListener('change', () => {
+                    const i = parseInt(inp.dataset.idx);
+                    records[i].watchedDate = inp.value;
+                    saveRecords(records);
+                });
+            });
+        }
+
+        // 渲染搜索结果
+        function renderResults(list) {
+            if (!list.length) {
+                searchResults.innerHTML = '';
+                searchResults.classList.add('hidden');
+                searchStatus.textContent = '没有找到相关结果，可手动添加。';
+                return;
+            }
+            searchResults.classList.remove('hidden');
+            searchResults.innerHTML = '<div class="result-card" style="justify-content:center;font-weight:600;color:var(--gray-500);border-style:dashed;">请选择要记录的作品：</div>' +
+                list.map((item, idx) => {
+                    const title = item.title || '未知作品';
+                    const year = item.year || '';
+                    const type = item.type === 'tv' ? '剧集' : '电影';
+                    const img = item.img || '';
+                    const recorded = records.some(r => r.id === String(item.id));
+                    return `
+                    <div class="result-card">
+                        ${img
+                            ? `<img class="result-poster" src="${img}" alt="${title}" loading="lazy" onerror="this.style.display='none'">`
+                            : `<div class="result-poster" style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);"><i class="fas fa-film"></i></div>`}
+                        <div class="result-info">
+                            <div class="result-title">${title}</div>
+                            <div class="result-meta">
+                                <span class="tag">${type}</span>
+                                ${year ? `<span>${year}</span>` : ''}
+                                ${item.sub_title ? `<span>${item.sub_title}</span>` : ''}
+                            </div>
+                        </div>
+                        <button class="btn-record ${recorded ? 'recorded' : ''}" data-idx="${idx}" ${recorded ? 'disabled' : ''}>
+                            ${recorded ? '已记录' : '记录观看'}
+                        </button>
+                    </div>`;
+                }).join('');
+
+            searchResults.querySelectorAll('.btn-record:not(.recorded)').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const item = list[parseInt(btn.dataset.idx)];
+                    addRecord({
+                        id: String(item.id),
+                        title: item.title || '未知作品',
+                        year: item.year || '',
+                        type: item.type === 'tv' ? 'tv' : 'movie',
+                        url: item.url || '',
+                        img: item.img || '',
+                        sub_title: item.sub_title || ''
+                    });
+                    btn.classList.add('recorded');
+                    btn.textContent = '已记录';
+                    btn.disabled = true;
+                    searchStatus.textContent = '已记录到时间胶囊 ✓';
+                    savedList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+        }
+
+        function addRecord(rec) {
+            const record = Object.assign({
+                id: 'manual-' + Date.now(),
+                title: '',
+                year: '',
+                type: 'movie',
+                url: '',
+                img: '',
+                sub_title: '',
+                note: '',
+                watchedDate: nowDateStr(),
+                timestamp: Date.now()
+            }, rec);
+            if (!record.watchedDate) record.watchedDate = nowDateStr();
+            if (!record.timestamp) record.timestamp = Date.now();
+
+            if (!records.some(r => r.id === record.id)) {
+                records.push(record);
+            }
+            saveRecords(records);
+            renderSaved();
+        }
+
+        // 搜索
+        async function doSearch() {
+            const keyword = searchInput.value.trim();
+            if (!keyword) {
+                searchStatus.textContent = '请输入影视剧名称';
+                searchStatus.className = 'search-status error';
+                return;
+            }
+            searchBtn.disabled = true;
+            searchBtn.textContent = '搜索中...';
+            searchStatus.className = 'search-status';
+            searchStatus.textContent = '正在搜索豆瓣...';
+            searchResults.classList.add('hidden');
+
+            try {
+                const list = await searchMovies(keyword);
+                renderResults(list);
+                searchStatus.className = 'search-status';
+                searchStatus.textContent = `找到 ${list.length} 条结果（Bing 搜索）`;
+            } catch (e) {
+                searchStatus.className = 'search-status error';
+                searchStatus.textContent = e.message || '搜索失败';
+            } finally {
+                searchBtn.disabled = false;
+                searchBtn.textContent = '搜索豆瓣';
+            }
+        }
+
+        searchBtn.addEventListener('click', doSearch);
+        searchInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter') doSearch();
+        });
+
+        // 手动添加
+        document.getElementById('toggle-manual').addEventListener('click', () => {
+            document.getElementById('manual-form').classList.toggle('hidden');
+        });
+
+        document.getElementById('m-save').addEventListener('click', () => {
+            const title = document.getElementById('m-title').value.trim();
+            if (!title) {
+                alert('请填写名称');
+                return;
+            }
+            addRecord({
+                id: 'manual-' + Date.now(),
+                title: title,
+                year: document.getElementById('m-year').value.trim(),
+                type: document.getElementById('m-type').value,
+                note: document.getElementById('m-note').value.trim()
+            });
+            document.getElementById('m-title').value = '';
+            document.getElementById('m-year').value = '';
+            document.getElementById('m-note').value = '';
+            document.getElementById('manual-form').classList.add('hidden');
+            savedList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // 导出 JSON
+        document.getElementById('export-btn').addEventListener('click', () => {
+            const blob = new Blob([JSON.stringify(records, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `观影时间胶囊_${nowDateStr()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // 导入 JSON
+        document.getElementById('import-btn').addEventListener('click', () => {
+            document.getElementById('import-file').click();
+        });
+
+        document.getElementById('import-file').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                try {
+                    const data = JSON.parse(reader.result);
+                    const list = Array.isArray(data) ? data : (data.records || []);
+                    let added = 0;
+                    list.forEach(rec => {
+                        if (!rec || !rec.title) return;
+                        if (!rec.id) rec.id = 'manual-' + Date.now() + '-' + added;
+                        if (!records.some(r => r.id === rec.id)) {
+                            records.push(Object.assign({
+                                watchedDate: nowDateStr(),
+                                timestamp: Date.now()
+                            }, rec));
+                            added++;
+                        }
+                    });
+                    saveRecords(records);
+                    renderSaved();
+                    alert(`导入完成：新增 ${added} 条记录`);
+                } catch (err) {
+                    alert('JSON 文件解析失败');
+                }
+            };
+            reader.readAsText(file);
+            e.target.value = '';
+        });
+
+        // 导航菜单切换
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }));
+        }
+
+        // 初始化
+        renderSaved();
+    </script>
+</body>
+</html>
