@@ -24,7 +24,7 @@ const dataConfig = {
       id: "3",
       title: "影视剧观影存储时间胶囊",
       icon: "fas fa-film",
-      description: "爱奇艺风格片单：搜索百度百科自动分类（电影/电视剧/综艺/动漫），支持题材/平台/年代二级筛选，记录观影时间",
+      description: "爱奇艺风格片单：搜索百度百科自动识别电影/电视剧/综艺/动漫及题材、平台、地区、年代，支持多维度筛选与评价",
       file: "MovieTimeCapsule.html",
       category: "other",
       date: "2026-08-20"
