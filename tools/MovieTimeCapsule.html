@@ -1510,7 +1510,7 @@
         // ========== GitHub 写入：串行队列 + sha 冲突自动重试 ==========
         let ghWriteQueue = Promise.resolve();
 
-        // 统一写入函数：串行执行；先尝试不带 sha 的 PUT（新建），缺 sha 时报错再取 sha 重试
+        // 统一写入函数：串行执行；先 GET 拿 sha，文件存在直接带 sha 更新，不存在则创建
         // 返回 { ok: boolean, error?: string }
         function ghWrite(owner, repo, pat, content, message) {
             const task = ghWriteQueue.then(async () => {
@@ -1525,27 +1525,34 @@
                     })
                 });
 
-                // 第 1 次：不带 sha 尝试（文件不存在时创建成功）
-                let res = await put(null);
-                if (res.ok) return { ok: true, error: '' };
-                try { lastErr = (await res.json()).message || ('HTTP ' + res.status); } catch (e) { lastErr = 'HTTP ' + res.status; }
-
-                // 第 2 次：取最新 sha 后带 sha 更新
+                // 1. 取当前 sha（默认 JSON Accept 返回元数据）
+                let sha = null;
                 try {
                     const meta = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
                         headers: { Authorization: `token ${pat}` }
                     });
-                    if (!meta.ok) {
-                        const m = await meta.json().catch(() => null);
-                        lastErr = '获取 sha 失败(' + meta.status + ')：' + (m && m.message ? m.message : meta.statusText);
-                    } else {
-                        const sha = (await meta.json()).sha;
+                    if (meta.ok) sha = (await meta.json()).sha;
+                    // 404 → 文件不存在，sha 保持 null，走创建分支
+                } catch (e) { lastErr = '获取 sha 异常：' + e.message; }
+
+                // 2. 文件存在则带 sha 更新；不存在则创建
+                let res = await put(sha);
+                if (res.ok) return { ok: true, error: '' };
+                try { lastErr = (await res.json()).message || ('HTTP ' + res.status); } catch (e) { lastErr = 'HTTP ' + res.status; }
+
+                // 3. sha 过期冲突（422/409）→ 重取 sha 再试一次
+                if ((res.status === 422 || res.status === 409) && sha) {
+                    try {
+                        const meta = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                            headers: { Authorization: `token ${pat}` }
+                        });
+                        if (meta.ok) sha = (await meta.json()).sha;
                         res = await put(sha);
                         if (res.ok) return { ok: true, error: '' };
                         try { lastErr = (await res.json()).message || ('HTTP ' + res.status); } catch (e) { lastErr = 'HTTP ' + res.status; }
+                    } catch (e) {
+                        lastErr = '重试异常：' + e.message;
                     }
-                } catch (e) {
-                    lastErr = '获取 sha 异常：' + e.message;
                 }
                 return { ok: false, error: lastErr };
             });
@@ -2743,11 +2750,11 @@
 
             // 4. 执行覆盖保存（走统一串行写入，sha 冲突自动重试）
             ghStatus('正在保存到仓库...' + mergedMsg, true);
-            const ok = await ghWrite(owner, repo, pat, content, '更新影视剧片单数据');
-            if (ok) {
+            const wr = await ghWrite(owner, repo, pat, content, '更新影视剧片单数据');
+            if (wr.ok) {
                 ghStatus('已保存到仓库' + mergedMsg, true);
             } else {
-                ghStatus('保存失败：写入被拒绝（sha 冲突或权限不足）', false);
+                ghStatus('保存失败：' + (wr.error || '写入被拒绝'), false);
             }
         });
 
