@@ -1797,7 +1797,7 @@
                         </div>
                         ${r.platform ? `<span class="platform-badge" style="background:${PLATFORM_COLORS[r.platform] || '#6B7280'}">${r.platform}</span>` : ''}
                         <div class="poster-card-hover" onclick="event.stopPropagation()">
-                            <div>
+                            <div class="hover-top">
                                 <div class="hover-title">${r.title || '未命名'}</div>
                                 <div class="hover-tags">
                                     <span class="tag">${typeName(r.type)}</span>
@@ -1805,7 +1805,7 @@
                                     ${r.region ? `<span class="tag">${r.region}</span>` : ''}
                                     ${r.platform ? `<span class="tag">${r.platform}</span>` : ''}
                                 </div>
-                                <div class="hover-meta">${r.note ? '备注：' + r.note : (r.genre ? r.genre : (r.watchedDate ? '观看 ' + r.watchedDate : ''))}</div>
+                                ${(r.desc || r.note) ? `<div class="hover-desc">${r.desc || ('备注：' + r.note)}</div>` : ''}
                             </div>
                             <div class="hover-bottom">
                                 <button class="hover-btn primary" data-detail="${r.id}">查看详情</button>
