@@ -786,6 +786,36 @@
             }
         }
 
+        /* 自动同步提示 */
+        #sync-toast {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 300;
+            padding: 0.55rem 1rem;
+            border-radius: var(--ds-radius-pill);
+            font-size: 0.82rem;
+            font-family: var(--ds-font-sans);
+            color: #fff;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .3s ease, transform .3s ease;
+            pointer-events: none;
+        }
+
+        #sync-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #sync-toast.ok {
+            background: var(--success-color);
+        }
+
+        #sync-toast.err {
+            background: var(--danger-color);
+        }
+
         /* ========== 详情弹窗（小红书风格） ========== */
         .modal-overlay {
             position: fixed;
@@ -1468,8 +1498,55 @@
             }
         }
 
+        let syncTimer = null;
+
+        // 每次修改都会调用：写 localStorage 并触发自动同步（1.5s 防抖）
         function saveRecords(list) {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+            if (syncTimer) clearTimeout(syncTimer);
+            syncTimer = setTimeout(autoSyncToRepo, 1500);
+        }
+
+        // 自动把 records 推送到仓库（需已配置 gh_pat）
+        async function autoSyncToRepo() {
+            const pat = localStorage.getItem('gh_pat');
+            if (!pat) return;
+            try {
+                const { owner, repo } = ghRepoInfo();
+                const content = JSON.stringify(records, null, 2);
+                let sha = null;
+                try {
+                    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                        headers: { Authorization: `token ${pat}` }
+                    });
+                    if (res.ok) sha = (await res.json()).sha;
+                } catch (e) {}
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', Authorization: `token ${pat}` },
+                    body: JSON.stringify({
+                        message: '自动同步影视剧片单数据',
+                        content: b64Encode(content),
+                        ...(sha ? { sha } : {})
+                    })
+                });
+                showSyncToast(res.ok);
+            } catch (e) {
+                showSyncToast(false);
+            }
+        }
+
+        function showSyncToast(ok) {
+            let t = document.getElementById('sync-toast');
+            if (!t) {
+                t = document.createElement('div');
+                t.id = 'sync-toast';
+                document.body.appendChild(t);
+            }
+            t.textContent = ok ? '已自动同步到仓库' : '自动同步失败（可能未配置 Token）';
+            t.className = 'show ' + (ok ? 'ok' : 'err');
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => t.classList.remove('show'), 2500);
         }
 
         function nowDateStr() {
@@ -1846,6 +1923,7 @@
                 if (dateInput) {
                     dateInput.addEventListener('change', () => {
                         data.watchedDate = dateInput.value;
+                        data.updatedAt = Date.now();
                         saveRecords(records);
                     });
                 }
@@ -1853,6 +1931,7 @@
                 if (platformInput) {
                     platformInput.addEventListener('change', () => {
                         data.platform = platformInput.value;
+                        data.updatedAt = Date.now();
                         saveRecords(records);
                         renderSaved();
                     });
@@ -1869,6 +1948,7 @@
                 document.getElementById('modal-like').addEventListener('click', () => {
                     data.liked = data.liked ? 0 : 1;
                     if (data.liked) data.done = 0;   // 与"拉完了"互斥
+                    data.updatedAt = Date.now();
                     saveRecords(records);
                     document.getElementById('modal-like').classList.toggle('active', !!data.liked);
                     document.getElementById('modal-done').classList.toggle('active', !!data.done);
@@ -1876,17 +1956,20 @@
                 document.getElementById('modal-done').addEventListener('click', () => {
                     data.done = data.done ? 0 : 1;
                     if (data.done) data.liked = 0;   // 与"点赞"互斥
+                    data.updatedAt = Date.now();
                     saveRecords(records);
                     document.getElementById('modal-like').classList.toggle('active', !!data.liked);
                     document.getElementById('modal-done').classList.toggle('active', !!data.done);
                 });
                 document.getElementById('modal-inc').addEventListener('click', () => {
                     data.count = (data.count || 1) + 1;
+                    data.updatedAt = Date.now();
                     saveRecords(records);
                     document.getElementById('modal-count').textContent = data.count;
                 });
                 document.getElementById('modal-dec').addEventListener('click', () => {
                     data.count = Math.max(1, (data.count || 1) - 1);
+                    data.updatedAt = Date.now();
                     saveRecords(records);
                     document.getElementById('modal-count').textContent = data.count;
                 });
@@ -1947,8 +2030,7 @@
             }
         }
 
-        // 自定义集（内存保存，{ title, url }）
-        let customEps = [];
+        // 自定义集（保存到记录的 eps 数组里，随记录同步到仓库）
         let editingEpIndex = -1;
         let playData = null;
         // 默认测试视频地址（m3u8），添加集数时预填，可改成你自己的
@@ -1961,8 +2043,10 @@
             document.getElementById('ep-form').classList.add('hidden');
             epContainer.innerHTML = '';
 
+            const eps = data.eps || [];
+
             // 默认没有任何集数，只有用户通过"添加集数"添加的自定义集
-            if (customEps.length === 0) {
+            if (eps.length === 0) {
                 const hint = document.createElement('div');
                 hint.className = 'play-tip';
                 hint.style.gridColumn = '1 / -1';
@@ -1972,7 +2056,7 @@
                 return;
             }
 
-            customEps.forEach((ep, idx) => {
+            eps.forEach((ep, idx) => {
                 const b = document.createElement('button');
                 b.className = 'ep-btn' + (idx === 0 ? ' active' : '');
                 b.innerHTML = `<span>${ep.title}</span><i class="fas fa-pencil-alt ep-edit" title="修改视频地址"></i>`;
@@ -1992,7 +2076,7 @@
             });
 
             // 有集数时默认播放第一集
-            playVideo(customEps[0].url);
+            playVideo(eps[0].url);
         }
 
         function playVideo(url) {
@@ -2034,13 +2118,17 @@
                 alert('请填写集标题和视频地址');
                 return;
             }
+            if (!playData) return;
+            if (!playData.eps) playData.eps = [];
             const isEdit = editingEpIndex >= 0;
             if (isEdit) {
-                customEps[editingEpIndex] = { title, url };
+                playData.eps[editingEpIndex] = { title, url };
             } else {
-                customEps.push({ title, url });
+                playData.eps.push({ title, url });
             }
+            playData.updatedAt = Date.now();
             editingEpIndex = -1;
+            saveRecords(records);   // 写 localStorage 并自动同步到仓库
             buildPlayPanel(playData);
             // 播放刚保存/编辑的自定义集
             playVideo(url);
@@ -2256,6 +2344,7 @@
                     const rec = records.find(r => r.id === id);
                     if (rec) {
                         rec.watchedDate = inp.value;
+                        rec.updatedAt = Date.now();
                         saveRecords(records);
                     }
                 });
@@ -2363,11 +2452,14 @@
                 liked: 0,
                 done: 0,
                 count: 1,
+                eps: [],
                 watchedDate: nowDateStr(),
-                timestamp: Date.now()
+                timestamp: Date.now(),
+                updatedAt: Date.now()
             }, rec);
             if (!record.watchedDate) record.watchedDate = nowDateStr();
             if (!record.timestamp) record.timestamp = Date.now();
+            if (!record.updatedAt) record.updatedAt = record.timestamp;
 
             if (!records.some(r => r.id === record.id)) {
                 records.push(record);
@@ -2489,21 +2581,29 @@
                 try {
                     const data = JSON.parse(reader.result);
                     const list = Array.isArray(data) ? data : (data.records || []);
-                    let added = 0;
+                    let added = 0, updated = 0;
                     list.forEach(rec => {
                         if (!rec || !rec.title) return;
                         if (!rec.id) rec.id = 'manual-' + Date.now() + '-' + added;
-                        if (!records.some(r => r.id === rec.id)) {
+                        const exist = records.find(r => r.id === rec.id);
+                        if (!exist) {
                             records.push(Object.assign({
                                 watchedDate: nowDateStr(),
-                                timestamp: Date.now()
+                                timestamp: Date.now(),
+                                updatedAt: Date.now()
                             }, rec));
                             added++;
+                        } else if ((rec.updatedAt || 0) > (exist.updatedAt || 0)) {
+                            // 导入的记录更新，保留其修改时间，用导入版本覆盖
+                            const idx = records.indexOf(exist);
+                            records[idx] = Object.assign({}, exist, rec);
+                            records[idx].timestamp = exist.timestamp || records[idx].timestamp;
+                            updated++;
                         }
                     });
                     saveRecords(records);
                     renderSaved();
-                    alert(`导入完成：新增 ${added} 条记录`);
+                    alert(`导入完成：新增 ${added} 条，更新 ${updated} 条`);
                 } catch (err) {
                     alert('JSON 文件解析失败');
                 }
@@ -2558,22 +2658,60 @@
             return btoa(unescape(encodeURIComponent(str)));
         }
 
-        // 保存片单 JSON 到仓库
+        // 保存片单 JSON 到仓库（保存前先合并仓库数据，避免本地缺的记录被覆盖丢失）
         document.getElementById('gh-save-btn').addEventListener('click', async () => {
             const pat = document.getElementById('gh-token').value.trim();
             if (!pat) { ghStatus('请先填写 Personal Access Token', false); return; }
             localStorage.setItem('gh_pat', pat);
             const { owner, repo } = ghRepoInfo();
-            const content = JSON.stringify(records, null, 2);
-            // 先获取当前文件 sha（若已存在）
+
+            // 1. 先获取当前文件 sha 和仓库里的记录
             let sha = null;
+            let repoList = [];
             try {
                 const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
-                    headers: { Authorization: `token ${pat}` }
+                    headers: Object.assign({ Accept: 'application/vnd.github.raw' }, { Authorization: `token ${pat}` })
                 });
                 if (res.ok) sha = (await res.json()).sha;
+                const rawRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    headers: Object.assign({ Accept: 'application/vnd.github.raw' }, { Authorization: `token ${pat}` })
+                });
+                if (rawRes.ok) {
+                    const d = JSON.parse(await rawRes.text());
+                    repoList = Array.isArray(d) ? d : (d.records || []);
+                }
             } catch (e) {}
-            ghStatus('正在保存到仓库...', true);
+
+            // 2. 合并仓库数据到本地（本地没有的 → 新增；仓库更新的 → 覆盖）
+            let merged = 0;
+            repoList.forEach(rec => {
+                if (!rec || !rec.id || !rec.title) return;
+                if (!rec.updatedAt) rec.updatedAt = rec.timestamp || Date.now();
+                const exist = records.find(r => r.id === rec.id);
+                if (!exist) {
+                    records.push(Object.assign({ watchedDate: nowDateStr(), timestamp: Date.now() }, rec));
+                    merged++;
+                } else if ((rec.updatedAt || 0) > (exist.updatedAt || 0)) {
+                    const idx = records.indexOf(exist);
+                    records[idx] = Object.assign({}, exist, rec);
+                    records[idx].timestamp = exist.timestamp || records[idx].timestamp;
+                    merged++;
+                }
+            });
+
+            // 3. 若合并了仓库数据，保存到本地并提示
+            let mergedMsg = '';
+            if (merged > 0) {
+                saveRecords(records);
+                renderSaved();
+                mergedMsg = `（已合并仓库中本地缺失/更新的 ${merged} 条记录）`;
+                ghStatus(`保存前已合并仓库数据 ${merged} 条...`, true);
+            }
+
+            const content = JSON.stringify(records, null, 2);
+
+            // 4. 执行覆盖保存
+            ghStatus('正在保存到仓库...' + mergedMsg, true);
             try {
                 const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
                     method: 'PUT',
@@ -2585,7 +2723,7 @@
                     })
                 });
                 if (res.ok) {
-                    ghStatus('已保存到仓库：' + (await res.json()).commit.sha.slice(0, 7), true);
+                    ghStatus('已保存到仓库：' + (await res.json()).commit.sha.slice(0, 7) + mergedMsg, true);
                 } else {
                     const err = await res.json();
                     ghStatus('保存失败：' + (err.message || res.status), false);
@@ -2611,17 +2749,28 @@
                 }
                 const data = JSON.parse(await res.text());
                 const list = Array.isArray(data) ? data : (data.records || []);
-                let added = 0;
+                let added = 0, updated = 0, skipped = 0;
                 list.forEach(rec => {
                     if (!rec || !rec.title) return;
-                    if (!records.some(r => r.id === rec.id)) {
+                    if (!rec.updatedAt) rec.updatedAt = rec.timestamp || Date.now();
+                    const exist = records.find(r => r.id === rec.id);
+                    if (!exist) {
                         records.push(Object.assign({ watchedDate: nowDateStr(), timestamp: Date.now() }, rec));
                         added++;
+                    } else if ((rec.updatedAt || 0) > (exist.updatedAt || 0)) {
+                        // 仓库版本更新 → 用仓库版本覆盖本地
+                        const idx = records.indexOf(exist);
+                        records[idx] = Object.assign({}, exist, rec);
+                        records[idx].timestamp = exist.timestamp || records[idx].timestamp;
+                        updated++;
+                    } else {
+                        // 本地版本更新（或相同）→ 保留本地
+                        skipped++;
                     }
                 });
                 saveRecords(records);
                 renderSaved();
-                ghStatus(`从仓库加载完成：新增 ${added} 条`, true);
+                ghStatus(`加载完成：新增 ${added} 条，更新 ${updated} 条，保留本地 ${skipped} 条`, true);
             } catch (e) {
                 ghStatus('加载失败：' + e.message, false);
             }
@@ -2641,8 +2790,28 @@
             }));
         }
 
-        // ========== 初始化 ==========
+        // ========== 初始化：仓库为唯一数据源，无 token/读取失败时回退 localStorage ==========
         renderSaved();
+        (async function initFromRepo() {
+            const pat = localStorage.getItem('gh_pat');
+            if (!pat) return;   // 未配置 token，仅用本地
+            try {
+                const { owner, repo } = ghRepoInfo();
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    headers: { Accept: 'application/vnd.github.raw', Authorization: `token ${pat}` }
+                });
+                if (!res.ok) return;
+                const data = JSON.parse(await res.text());
+                const list = Array.isArray(data) ? data : (data.records || []);
+                if (list.length === 0) return;
+                records = list;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+                renderSaved();
+                showSyncToast(true);
+            } catch (e) {
+                // 读取失败，回退本地缓存
+            }
+        })();
     </script>
 </body>
 </html>
