@@ -328,7 +328,7 @@
 
         .poster-wrap {
             position: relative;
-            aspect-ratio: 2 / 3;
+            aspect-ratio: 3 / 4;
             background: var(--ds-bg-surface-3);
             overflow: hidden;
         }
@@ -376,6 +376,21 @@
             font-size: 0.72rem;
             opacity: .9;
             text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+        }
+
+        /* 平台徽章（海报右上角，仿爱奇艺独播位置） */
+        .platform-badge {
+            position: absolute;
+            top: 0.4rem;
+            right: 0.4rem;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+            z-index: 5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+            letter-spacing: 0.02em;
         }
 
         /* 卡片悬停大图效果（爱奇艺风格） */
@@ -1501,7 +1516,7 @@
             el.onerror = null;
             const holder = document.createElement('div');
             holder.className = 'poster-wrap';
-            holder.style.cssText = 'display:flex;align-items:center;justify-content:center;color:var(--gray-400);aspect-ratio:2/3;';
+            holder.style.cssText = 'display:flex;align-items:center;justify-content:center;color:var(--gray-400);aspect-ratio:3/4;';
             holder.innerHTML = '<i class="fas fa-film" style="font-size:2.2rem;"></i>';
             el.parentNode.replaceChild(holder, el);
         }
