@@ -2828,5 +2828,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787331943647,
     "updatedAt": 1787331943647
+  },
+  {
+    "id": "baike-21807",
+    "title": "新白娘子传奇",
+    "year": "1992",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/21807/17768145.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/5ab5c9ea15ce36d3d53905f8b7a92d87e950342a1bfa?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "爱情 奇幻 古装",
+    "platform": "爱奇艺",
+    "region": "港台",
+    "sub_title": "",
+    "desc": "《新白娘子传奇》是由中国台湾省的台湾电视公司出品，夏祖辉、何麒执导，贡敏、赵文川、方桂兰、何冀平等编剧，赵雅芝、叶童、陈美琪主演的古装神话音乐剧。该剧取材自中国古代四大民间爱情传说之一的《白蛇传》，以玉山主人的小说《雷峰塔奇传》和梦花馆主的《白蛇全传》为蓝本改编而成，讲述了蛇妖白",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787331980404,
+    "updatedAt": 1787331980404
   }
 ]
