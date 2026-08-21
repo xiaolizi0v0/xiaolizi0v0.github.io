@@ -2870,5 +2870,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787332036303,
     "updatedAt": 1787332036303
+  },
+  {
+    "id": "baike-602593",
+    "title": "步步惊心",
+    "year": "2011",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/602593/4899440.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/574e9258d109b3de9c8274d924f37b81800a19d8e667?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "清装 穿越",
+    "platform": "优酷",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《步步惊心》是由上海唐人电影制作有限公司出品，李国立执导，王莉芝、桐华编剧，刘诗诗、吴奇隆、郑嘉颖、袁弘、林更新等人主演的清装穿越剧。该剧改编自桐华的同名长篇小说，主要讲述了现代白领张晓因车祸穿越到清朝康熙年间，成为满族少女马尔泰·若曦，她看透所有人的命运，却无法掌握自己的结局，",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787332058097,
+    "updatedAt": 1787332058097
   }
 ]
