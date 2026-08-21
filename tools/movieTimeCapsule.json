@@ -2639,5 +2639,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787331649008,
     "updatedAt": 1787331649008
+  },
+  {
+    "id": "baike-246459",
+    "title": "家有儿女",
+    "year": "2005",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/246459/6728118.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/9f510fb30f2442a7d933220b3419ba4bd11373f0a450?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "情景 喜剧 家庭",
+    "platform": "腾讯",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《家有儿女》是由中国电视艺术家协会影视中心、北京电视台等联合出品，李建宏、臧里、袁振江统筹编剧，林丛执导，宋丹丹、高亚麟、杨紫、张一山、尤浩然、丹琳主演的系列情景喜剧。该系列共有四部，主要讲述了两个离异家庭结合后，在父母和三个孩子之间发生的各种有趣故事。《家有儿女1》于2005年",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787331657497,
+    "updatedAt": 1787331657497
   }
 ]
