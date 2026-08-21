@@ -1568,5 +1568,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787330252071,
     "updatedAt": 1787330252071
+  },
+  {
+    "id": "baike-1986576",
+    "title": "西游记续集",
+    "year": "2000",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/1986576/1986576.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/3c6d55fbb2fb4316e18ed0b42ca4462308f7d36f?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "剧情 动作 奇幻",
+    "platform": "B站",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《西游记续集》是由无锡中视影视基地股份有限公司出品，杨洁执导，戴英禄、邹忆青、杨洁编剧，六小龄童、徐少华、迟重瑞、崔景富、刘大刚等主演的古装剧。该剧讲述了唐僧师徒四人终于到达灵山，求取真经修得正果，师徒一行四人驾云回到都城长安，并向唐王讲述取经经历的故事。该剧于2000年1月28",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787330275441,
+    "updatedAt": 1787330275441
   }
 ]
