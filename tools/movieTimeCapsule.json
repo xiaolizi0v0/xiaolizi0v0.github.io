@@ -1400,5 +1400,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787329988631,
     "updatedAt": 1787329988631
+  },
+  {
+    "id": "baike-898699",
+    "title": "士兵突击",
+    "year": "2006",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/898699/6028347.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/42a98226cffc1e174e668b7a4190f603728de9a4?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "军事 动作 励志",
+    "platform": "",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《士兵突击》是由中国人民解放军八一电影制片厂、华谊兄弟传媒集团联合出品，拍摄于中国大陆，由康洪雷执导、兰晓龙编剧、王宝强、陈思诚、段奕宏、张国强、高锦、邢佳栋、张译、李晨等人主演的军事动作剧。该剧改编自兰晓龙小说《士兵突击》，讲述了一个农村出身的普通士兵许三多的成长历程，不抛弃、",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787330003197,
+    "updatedAt": 1787330003197
   }
 ]
