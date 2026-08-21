@@ -1548,8 +1548,11 @@
                     这需要部署一个 Cloudflare Worker 作为跨域代理，仅需浏览器操作，无需安装任何工具。
                 </div>
                 <div class="play-tip" id="proxy-status" style="margin-bottom: 0.9rem; padding: 0.5rem 0.7rem; background: var(--ds-bg-surface-1); border-radius: 8px;"></div>
-                <div class="modal-actions" style="flex-direction: column; align-items: stretch; gap: 0.6rem; padding-top: 0.6rem;">
-                    <button class="card-btn" id="proxy-set"><i class="fas fa-paste"></i> 我已部署，粘贴域名启用</button>
+                <label style="display:block;font-size:0.82rem;color:var(--gray-500);margin-bottom:0.35rem;">Cloudflare Worker 域名</label>
+                <input type="text" id="proxy-input" placeholder="https://xxx.workers.dev" autocomplete="off"
+                    style="width:100%;padding:0.55rem 0.8rem;background:var(--ds-bg-page);border:1px solid var(--ds-border-subtle);border-radius:8px;color:var(--ds-text-primary);font-size:0.9rem;font-family:var(--ds-font-sans);">
+                <div class="modal-actions" style="flex-direction: column; align-items: stretch; gap: 0.6rem; padding-top: 0.8rem;">
+                    <button class="card-btn" id="proxy-set"><i class="fas fa-paste"></i> 保存并启用</button>
                     <button class="card-btn" id="proxy-deploy"><i class="fas fa-cloud-upload-alt"></i> 复制代码，去 Cloudflare 部署</button>
                     <button class="card-btn danger" id="proxy-off"><i class="fas fa-power-off"></i> 关闭代理</button>
                 </div>
@@ -2876,6 +2879,8 @@ function jsonResponse(obj, status) {
         }
 
         function openProxyModal() {
+            // 预填当前已保存的域名
+            document.getElementById('proxy-input').value = localStorage.getItem('baike_proxy') || '';
             updateProxyState();
             document.getElementById('proxy-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -2891,18 +2896,18 @@ function jsonResponse(obj, status) {
             if (e.target === e.currentTarget) closeProxyModal();
         });
 
-        // 粘贴域名启用
+        // 保存并启用（读取输入框，留空则关闭）
         document.getElementById('proxy-set').addEventListener('click', () => {
-            const existing = localStorage.getItem('baike_proxy') || '';
-            const input = prompt(
-                '粘贴你的 Cloudflare Worker 域名（如 https://xxx.workers.dev），即可开启"一个输入搜出所有同名词条"。\n\n留空并确定 = 关闭代理。',
-                existing
-            );
-            if (input === null) return;
-            const v = input.trim().replace(/\/+$/, '');
-            if (v) localStorage.setItem('baike_proxy', v);
-            else localStorage.removeItem('baike_proxy');
-            updateProxyState();
+            const v = document.getElementById('proxy-input').value.trim().replace(/\/+$/, '');
+            if (v) {
+                localStorage.setItem('baike_proxy', v);
+                updateProxyState();
+                closeProxyModal();
+            } else {
+                localStorage.removeItem('baike_proxy');
+                updateProxyState();
+                closeProxyModal();
+            }
         });
 
         // 复制代码去 Cloudflare 部署
@@ -2910,7 +2915,7 @@ function jsonResponse(obj, status) {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(WORKER_CODE).then(() => {
                     window.open('https://dash.cloudflare.com/?to=/:account/workers/new', '_blank');
-                    alert('Worker 代码已复制到剪贴板！\n\n接下来：\n1. 打开的新页面里新建 Worker\n2. 粘贴代码（Ctrl+V）\n3. 点 Deploy 部署\n4. 回到本页点"开启同名词条搜索"→"我已部署，粘贴域名启用"');
+                    alert('Worker 代码已复制到剪贴板！\n\n接下来：\n1. 打开的新页面里新建 Worker\n2. 粘贴代码（Ctrl+V）\n3. 点 Deploy 部署\n4. 回到本页粘贴你的 xxx.workers.dev 域名并点"保存并启用"');
                 }).catch(() => {
                     alert('复制失败，请到仓库 worker-proxy/worker.js 手动复制。');
                 });
@@ -2925,6 +2930,7 @@ function jsonResponse(obj, status) {
             if (confirm('确定关闭同名词条搜索代理吗？')) {
                 localStorage.removeItem('baike_proxy');
                 updateProxyState();
+                closeProxyModal();
             }
         });
         updateProxyState();
