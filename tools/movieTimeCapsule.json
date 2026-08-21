@@ -1589,5 +1589,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787330275441,
     "updatedAt": 1787330275441
+  },
+  {
+    "id": "baike-252920",
+    "title": "繁花",
+    "year": "2023",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E7%B9%81%E8%8A%B1/24361154",
+    "img": "https://bkimg.cdn.bcebos.com/pic/d53f8794a4c27d1ed21b606d508dba6eddc451da9258?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "当代 都市 爱情",
+    "platform": "腾讯",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《繁花》是由中央电视台、上海腾讯企鹅影视文化传播有限公司、上海电影（集团）有限公司、上海繁花里企业发展有限公司、上海上影电影制作有限公司出品，王家卫执导、监制，秦雯编剧，胡歌、马伊琍、唐嫣、辛芷蕾领衔主演，郑恺、游本昌、陈龙、董勇、吴越、陈国庆、papi酱、黄觉特邀主演，范湉湉、",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787330286595,
+    "updatedAt": 1787330286595
   }
 ]
