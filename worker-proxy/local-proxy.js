@@ -43,15 +43,27 @@ function findBrowser() {
 }
 const BROWSER = findBrowser();
 
-// 用无头浏览器渲染 URL，返回渲染后的 DOM 文本
-function browserDump(urlStr) {
+// 用无头浏览器渲染 URL（失败自动重试 2 次，Chrome 偶发启动异常）
+async function browserDump(urlStr) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const out = await browserDumpOnce(urlStr);
+      if (out && out.length > 1000) return out;
+    } catch (e) {}
+    // 短延迟后重试
+    await new Promise(r => setTimeout(r, 800 * (attempt + 1)));
+  }
+  throw new Error('浏览器抓取失败（已重试 3 次）');
+}
+
+function browserDumpOnce(urlStr) {
   return new Promise((resolve, reject) => {
     if (!BROWSER) {
       return reject(new Error('未找到 Chrome/Edge，请安装浏览器后重试'));
     }
     // --user-data-dir 独立实例：避免 Chrome 已运行时 --dump-dom 被交给现有进程导致无输出
     const path = require('path');
-    const tmpDir = path.join(require('os').tmpdir(), 'baike-proxy-' + Date.now());
+    const tmpDir = path.join(require('os').tmpdir(), 'baike-proxy-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8));
     const args = [
       '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage',
       '--user-data-dir=' + tmpDir,
@@ -94,18 +106,25 @@ function extractBasicInfo(html) {
     if (end > -1) {
       try {
         const obj = JSON.parse(s.slice(0, end + 1));
-        const content = (obj.card && obj.card.content) || [];
-        for (const c of content) {
-          const name = (c.title || '').replace(/\s+/g, ' ').trim();
-          if (!name || !Array.isArray(c.data)) continue;
-          const vals = [];
-          for (const d of c.data) {
-            const text = d.text || [];
-            for (const t of text) {
-              if (t && t.text) vals.push(t.text);
+        const cardObj = obj.card || {};
+        // 兼容两种结构：content（旧版单栏） 和 left/right（新版分栏）
+        const groups = [];
+        if (Array.isArray(cardObj.content)) groups.push(cardObj.content);
+        if (Array.isArray(cardObj.left)) groups.push(cardObj.left);
+        if (Array.isArray(cardObj.right)) groups.push(cardObj.right);
+        for (const content of groups) {
+          for (const c of content) {
+            const name = (c.title || '').replace(/\s+/g, ' ').trim();
+            if (!name || !Array.isArray(c.data)) continue;
+            const vals = [];
+            for (const d of c.data) {
+              const text = d.text || [];
+              for (const t of text) {
+                if (t && t.text) vals.push(t.text);
+              }
             }
+            if (vals.length) card.push({ name, value: [vals.join(' ').replace(/\s+/g, ' ').trim()] });
           }
-          if (vals.length) card.push({ name, value: [vals.join(' ').replace(/\s+/g, ' ').trim()] });
         }
         if (card.length) return card;
       } catch (e) {}
@@ -227,10 +246,12 @@ async function handleSuggest(wd) {
   const list = items.map(it => {
     // 从 card 数组解析补充字段
     const card = it.card || [];
+    // 匹配时字段名去空格（百度常见"类 型""导 演"）
     const findVal = (names) => {
       for (const c of card) {
+        const cName = (c.name || '').replace(/\s+/g, '');
         for (const n of names) {
-          if (c.name.includes(n) && c.value && c.value[0]) return c.value[0];
+          if (cName.includes(n) && c.value && c.value[0]) return c.value[0];
         }
       }
       return '';
@@ -245,7 +266,6 @@ async function handleSuggest(wd) {
     }
     const regionRaw = findVal(['制片地区', '地区', '拍摄地点']);
     const yearRaw = findVal(['上映时间', '首播时间', '播出时间', '发行时间']);
-    const company = findVal(['出品公司', '出品方', '制作公司', '网络播放平台']);
     const descText = (it.lemmaDesc || '') + ' ';
 
     // 地区映射
@@ -274,10 +294,18 @@ async function handleSuggest(wd) {
     if (ym) year = ym[0];
     if (!year) { const ym2 = descText.match(/(19|20)\d{2}/); if (ym2) year = ym2[0]; }
 
-    // 平台
+    // 平台：从"网络播放平台"字段提取平台名（只保留匹配到的平台，不要整串公司名）
     let platform = '';
-    const pM = (company || '').match(/爱奇艺|腾讯|优酷|芒果|哔哩|bilibili|央视|CCTV|卫视|电影公司|影视公司|制片厂|视频/);
-    if (pM) platform = company;
+    const platformRaw = findVal(['网络播放平台', '播出平台', '播放平台']);
+    if (platformRaw) {
+      const names = platformRaw.split(/[、，,;；]/).map(s => s.trim()).filter(Boolean);
+      const matched = names.filter(n => /爱奇艺|腾讯视频|腾讯|优酷|芒果TV|芒果|哔哩|bilibili|B站|央视|CCTV|卫视|搜狐|乐视|西瓜视频|抖音|快手|视频平台/.test(n));
+      platform = matched.join('、');
+    }
+
+    // 完整词条名：详情页 title 优先，否则用"基础名（短描述）"构造，确保同名词条能区分
+    const shortDesc = (it.origDesc || it.lemmaDesc || '').trim();
+    const fullTitle = it.fullTitle || (it.lemmaTitle + (shortDesc ? '（' + shortDesc + '）' : ''));
 
     const d = {
       id: it.lemmaId,
@@ -288,7 +316,7 @@ async function handleSuggest(wd) {
       url: 'https://baike.baidu.com/item/' + encodeURIComponent(it.lemmaTitle) + '/' + it.lemmaId,
       card: card,
       classify: it.classify || [],
-      fullTitle: it.fullTitle || '',
+      fullTitle: fullTitle,
       // 补充解析字段
       genre: genre,
       region: region,

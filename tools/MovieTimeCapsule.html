@@ -1720,7 +1720,7 @@
         // 把类型字符串渲染成独立的小徽章标签
         function genreChips(g) {
             if (!g) return '';
-            return g.split(/\s+/).filter(Boolean)
+            return g.split(/[\s、，,]+/).filter(Boolean)
                 .map(x => `<span class="tag">${x}</span>`).join('');
         }
 
