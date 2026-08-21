@@ -2787,25 +2787,142 @@
             if (e.key === 'Enter') doSearch();
         });
 
-        // ========== Cloudflare Worker 代理配置 ==========
+        // ========== Cloudflare Worker 一键部署（直接调用 Cloudflare API） ==========
+        // 通过 api.cloudflare.com（CORS-enabled）用 API Token 创建/更新 Worker，
+        // 自动获取 workers.dev 域名并写入 localStorage，无需本地安装任何工具。
+        const WORKER_NAME = 'baike-suggest-proxy';
+        const WORKER_CODE = `/**
+ * 百度百科同名词条搜索代理
+ * 仅转发白名单内的百度接口，加上 CORS 头返回给前端。
+ */
+export default {
+  async fetch(request) {
+    if (request.method !== 'GET') {
+      return jsonResponse({ error: 'Method Not Allowed' }, 405);
+    }
+    const url = new URL(request.url);
+    const target = url.searchParams.get('url');
+    if (!target) {
+      return jsonResponse({ error: '缺少 url 参数' }, 400);
+    }
+    const allowList = [
+      'https://baike.baidu.com/api/',
+      'https://suggestion.baidu.com/su'
+    ];
+    if (!allowList.some(p => target.startsWith(p))) {
+      return jsonResponse({ error: '目标地址不在白名单内' }, 403);
+    }
+    try {
+      const resp = await fetch(target, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+          'Referer': 'https://baike.baidu.com/',
+          'Accept': 'application/json, text/plain, */*'
+        }
+      });
+      const body = await resp.text();
+      return new Response(body, {
+        status: resp.status,
+        headers: {
+          'Content-Type': resp.headers.get('Content-Type') || 'application/json; charset=utf-8',
+          'Access-Control-Allow-Origin': '*',
+          'Cache-Control': 'no-store'
+        }
+      });
+    } catch (e) {
+      return jsonResponse({ error: '代理请求失败: ' + e.message }, 502);
+    }
+  }
+};
+function jsonResponse(obj, status) {
+  return new Response(JSON.stringify(obj), {
+    status: status,
+    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
+  });
+}`;
+
         function updateProxyState() {
             const proxy = localStorage.getItem('baike_proxy');
             const el = document.getElementById('proxy-state');
             if (el) el.textContent = proxy
                 ? '同名词条搜索已开启（' + proxy + '）'
-                : '开启同名词条搜索（Cloudflare Worker）';
+                : '一键部署同名词条搜索（Cloudflare Worker）';
         }
-        document.getElementById('proxy-btn').addEventListener('click', () => {
-            const current = localStorage.getItem('baike_proxy') || '';
-            const input = prompt(
-                '粘贴你的 Cloudflare Worker 域名（如 https://xxx.workers.dev），即可开启"一个输入搜出所有同名词条"。\n\n留空并确定 = 关闭代理。',
-                current
+
+        // 部署：输入 API Token → 创建/更新 Worker → 自动取域名 → 启用
+        document.getElementById('proxy-btn').addEventListener('click', async () => {
+            const existing = localStorage.getItem('baike_proxy');
+            if (existing && !confirm('同名词条搜索已开启：' + existing + '\n\n点击"确定"重新部署并更新，点击"取消"关闭代理。')) {
+                localStorage.removeItem('baike_proxy');
+                updateProxyState();
+                return;
+            }
+            const token = prompt(
+                '请输入 Cloudflare API Token（需 Workers Scripts: Edit 权限）。\n\n'
+                + '获取方式：Cloudflare 控制台 → 右上角头像 → My Profile → API Tokens → Create Token → '
+                + '选择 "Edit Cloudflare Workers" 模板 → 创建并复制 token。'
             );
-            if (input === null) return;   // 取消
-            const v = input.trim().replace(/\/+$/, '');
-            if (v) localStorage.setItem('baike_proxy', v);
-            else localStorage.removeItem('baike_proxy');
-            updateProxyState();
+            if (!token) return;
+            const btn = document.getElementById('proxy-btn');
+            btn.disabled = true;
+            const old = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 部署中...';
+            try {
+                // 1. 获取账户 ID
+                const accRes = await fetch('https://api.cloudflare.com/client/v4/accounts', {
+                    headers: { Authorization: 'Bearer ' + token }
+                });
+                const accData = await accRes.json();
+                if (!accRes.ok || !accData.result || accData.result.length === 0) {
+                    throw new Error(accData.errors ? accData.errors.map(e => e.message).join(';') : '获取账户失败');
+                }
+                const accountId = accData.result[0].id;
+
+                // 2. 上传 Worker 脚本（multipart：代码 + metadata）
+                const metadata = JSON.stringify({
+                    main_module: 'worker.js',
+                    compatibility_date: '2024-09-01',
+                    bindings: []
+                });
+                const form = new FormData();
+                form.append('worker.js', new Blob([WORKER_CODE], { type: 'application/javascript' }), 'worker.js');
+                form.append('metadata', new Blob([metadata], { type: 'application/json' }), 'metadata');
+                const upRes = await fetch(
+                    'https://api.cloudflare.com/client/v4/accounts/' + accountId + '/workers/scripts/' + WORKER_NAME,
+                    {
+                        method: 'PUT',
+                        headers: { Authorization: 'Bearer ' + token },
+                        body: form
+                    }
+                );
+                const upData = await upRes.json();
+                if (!upRes.ok || !upData.success) {
+                    throw new Error(upData.errors ? upData.errors.map(e => e.message).join(';') : '上传 Worker 失败');
+                }
+
+                // 3. 获取 workers.dev 子域（脚本默认启用 workers.dev 访问）
+                const subRes = await fetch(
+                    'https://api.cloudflare.com/client/v4/accounts/' + accountId + '/workers/scripts/' + WORKER_NAME + '/subdomain',
+                    { headers: { Authorization: 'Bearer ' + token } }
+                );
+                const subData = await subRes.json();
+                let domain = null;
+                if (subRes.ok && subData.result && subData.result.length > 0) {
+                    domain = 'https://' + subData.result[0].worker_subdomain + '.workers.dev';
+                } else {
+                    // 退路：脚本名固定格式
+                    domain = 'https://' + WORKER_NAME + '.' + (accData.result[0].name || '') + '.workers.dev';
+                }
+                localStorage.setItem('baike_proxy', domain.replace(/\/+$/, ''));
+                localStorage.setItem('cf_api_token', token);
+                updateProxyState();
+                alert('部署成功！同名词条搜索已开启：\n' + domain + '\n\n现在搜索任意影视名，会列出所有同名词条。');
+            } catch (e) {
+                alert('部署失败：' + e.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = old;
+            }
         });
         updateProxyState();
 
