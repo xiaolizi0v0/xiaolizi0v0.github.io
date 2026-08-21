@@ -2126,14 +2126,37 @@
         function playVideo(url) {
             const v = document.querySelector('.video-player');
             if (!v) return;
-            // 清理旧的 hls 实例
+            // 彻底清理旧的 hls 实例与媒体状态，避免缓冲残留
             if (v.hls) { v.hls.destroy(); v.hls = null; }
+            v.pause();
+            v.removeAttribute('src');
+            v.load();
+
             if (url.endsWith('.m3u8') && window.Hls && Hls.isSupported()) {
-                const hls = new Hls();
+                const hls = new Hls({
+                    // 音画/音频解码优化
+                    lowLatencyMode: false,        // 关掉低延迟模式，减少漂移与解码异常
+                    maxBufferLength: 30,          // 缓冲时长上限，避免缓冲过长导致解码状态损坏
+                    maxMaxBufferLength: 600,
+                    backBufferLength: 90,
+                    // 关键：转封装放到主线程，绕开 Worker 音频解码 bug（空洞感/杂音的主因）
+                    enableWorker: false
+                });
                 hls.loadSource(url);
                 hls.attachMedia(v);
                 v.hls = hls;
                 hls.on(Hls.Events.MANIFEST_PARSED, () => v.play().catch(() => {}));
+                // 致命错误自动恢复：网络错误重载，媒体错误（音频解码异常）恢复
+                hls.on(Hls.Events.ERROR, (evt, data) => {
+                    if (!data.fatal) return;
+                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                        hls.startLoad();
+                    } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+                        hls.recoverMediaError();
+                    } else {
+                        hls.destroy();
+                    }
+                });
             } else {
                 v.src = url;
                 v.play().catch(() => {});
