@@ -1694,5 +1694,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787330718103,
     "updatedAt": 1787330718103
+  },
+  {
+    "id": "baike-54370",
+    "title": "还珠格格",
+    "year": "1998",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/54370/6195097.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/dbb44aed2e738bd4b31c05a6d7d390d6277f9f2f53a9?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "爱情 古装 喜剧",
+    "platform": "",
+    "region": "",
+    "sub_title": "",
+    "desc": "《还珠格格第一部》是改编自琼瑶同名小说的古装清宫喜剧，由孙树培导演，琼瑶亲自担任编剧，林心如、苏有朋、周杰领衔主演，陈志朋、张铁林等联合主演。该剧讲述了乾隆之女夏紫薇到北京城与失散多年的父亲相认。在走投无路之际遇上女飞贼小燕子，并结为姐妹。小燕子为她想办法混入宫，但在阴差阳错中与",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787330729317,
+    "updatedAt": 1787330729317
   }
 ]
