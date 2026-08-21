@@ -135,10 +135,26 @@ async function handleSuggest(wd) {
     }
   });
 
+  // 补全：对每个影视条目用无头浏览器抓详情页，从 og:image 拿封面
+  // 串行 + 限制最多 MAX_FILL 个（避免开多个 chrome 实例卡死）
+  const VIDEO_CLASS = /影视作品|电影|电视剧|动漫|动画|综艺|纪录片/;
+  const MAX_FILL = 8;
+  const items = [...map.values()];
+  const toFill = items.filter(it => !it.abstractPic && (VIDEO_CLASS.test((it.classify || []).join(' ')) || /电影|剧|动画|综艺|纪录片/.test(it.lemmaDesc))).slice(0, MAX_FILL);
+  for (const it of toFill) {
+    try {
+      const html = await browserDump('https://baike.baidu.com/item/' + encodeURIComponent(it.lemmaTitle) + '/' + it.lemmaId);
+      const ogM = html.match(/<meta property="og:image" content="([^"]+)"/);
+      const imgM = html.match(/"image":"([^"]+)"/);
+      const img = ogM ? ogM[1] : (imgM ? imgM[1] : '');
+      if (img) it.abstractPic = img;
+    } catch (e) {}
+  }
+
   return {
     word: wd,
-    list: [...map.values()],
-    debug: { suggestCount: suggestList.length, lemmasCount: lemmas.length, mergedCount: map.size, page: pageInfo }
+    list: items,
+    debug: { suggestCount: suggestList.length, lemmasCount: lemmas.length, mergedCount: map.size, filledCount: toFill.length, page: pageInfo }
   };
 }
 
