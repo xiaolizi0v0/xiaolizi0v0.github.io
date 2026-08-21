@@ -72,6 +72,69 @@ function browserDump(urlStr) {
   });
 }
 
+// 从详情页 HTML 提取基本信息卡，首选 window.PAGE_DATA 结构化 JSON（最稳定），
+// 兜底用 HTML 版(itemName_igbyC) 或 JSON 版 DOM 正则
+function extractBasicInfo(html) {
+  const card = [];
+
+  // 1) 首选：PAGE_DATA 里的 card 结构 {"type":3,"content":[{"key":"...","title":"字段名","data":[{"dataType":"text","text":[{"tag":"text","text":"值"}]}]}]}
+  const start = html.indexOf('PAGE_DATA=');
+  if (start > -1) {
+    let s = html.slice(start + 'PAGE_DATA='.length);
+    let depth = 0, inStr = false, end = -1;
+    for (let i = 0; i < s.length; i++) {
+      const c = s[i];
+      if (inStr) {
+        if (c === '\\') i++;
+        else if (c === '"') inStr = false;
+      } else if (c === '"') inStr = true;
+      else if (c === '{') depth++;
+      else if (c === '}') { depth--; if (depth === 0) { end = i; break; } }
+    }
+    if (end > -1) {
+      try {
+        const obj = JSON.parse(s.slice(0, end + 1));
+        const content = (obj.card && obj.card.content) || [];
+        for (const c of content) {
+          const name = (c.title || '').replace(/\s+/g, ' ').trim();
+          if (!name || !Array.isArray(c.data)) continue;
+          const vals = [];
+          for (const d of c.data) {
+            const text = d.text || [];
+            for (const t of text) {
+              if (t && t.text) vals.push(t.text);
+            }
+          }
+          if (vals.length) card.push({ name, value: [vals.join(' ').replace(/\s+/g, ' ').trim()] });
+        }
+        if (card.length) return card;
+      } catch (e) {}
+    }
+  }
+
+  // 2) HTML 版
+  if (html.includes('itemName_igbyC')) {
+    const blocks = [...html.matchAll(/itemName_igbyC">([^<]*)<\/dt><dd[^>]*>([\s\S]*?)<\/dd>/g)];
+    for (const m of blocks) {
+      const name = m[1].replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+      const spans = [...m[2].matchAll(/J-lemma-content-lemma-text"[^>]*>([\s\S]*?)<\/span>/g)].map(x => x[1]);
+      const val = spans.map(s => s.replace(/<[^>]*>/g, '')).join(' ').replace(/\s+/g, ' ').trim();
+      if (name && val) card.push({ name, value: [val] });
+    }
+    return card;
+  }
+
+  // 3) JSON 版 DOM
+  const blocks = [...html.matchAll(/"title":"([^"]+)"[\s\S]{0,150}?"data":\[([\s\S]*?)\](?=,"[a-z]"|\}\})/g)];
+  for (const m of blocks) {
+    const name = m[1].replace(/\s+/g, ' ').trim();
+    // text 和 innerlink 两种标签都提取（innerlink 是链接文本）
+    const vals = [...m[2].matchAll(/"(?:tag":"text|lemmaId":\d+,"tag":"innerlink)","text":"([^"]+)"/g)].map(x => x[1]);
+    if (name && vals.length) card.push({ name, value: [vals.join(' ').replace(/\s+/g, ' ').trim()] });
+  }
+  return card;
+}
+
 // 合并 suggest 结果与词条页 DOM 的完整同名词条列表
 async function handleSuggest(wd) {
   let suggestList = [];
@@ -135,14 +198,17 @@ async function handleSuggest(wd) {
     }
   });
 
-  // 补全：对每个影视条目用无头浏览器抓详情页，提取封面(og:image)/完整简介(meta description)/完整词条名(title)
+  // 补全：对每个影视条目用无头浏览器抓详情页，提取封面/完整简介/完整词条名/基本信息卡
   // 串行 + 限制最多 MAX_FILL 个（避免开多个 chrome 实例卡死）
   const VIDEO_CLASS = /影视作品|电影|电视剧|动漫|动画|综艺|纪录片/;
   const MAX_FILL = 8;
   const items = [...map.values()];
-  const toFill = items.filter(it => !it.abstractPic && (VIDEO_CLASS.test((it.classify || []).join(' ')) || /电影|剧|动画|综艺|纪录片/.test(it.lemmaDesc))).slice(0, MAX_FILL);
+  // 影视类条目全部补全（拿 card/genre/region/封面），无论 suggest 是否已带封面
+  const toFill = items.filter(it => (VIDEO_CLASS.test((it.classify || []).join(' ')) || /电影|剧|动画|综艺|纪录片/.test(it.lemmaDesc)) && !it.card).slice(0, MAX_FILL);
   for (const it of toFill) {
     try {
+      // 保存原始短描述（补全后会被完整简介覆盖，genre 兜底要用短描述避免误判）
+      it.origDesc = it.lemmaDesc || '';
       const html = await browserDump('https://baike.baidu.com/item/' + encodeURIComponent(it.lemmaTitle) + '/' + it.lemmaId);
       const ogM = html.match(/<meta property="og:image" content="([^"]+)"/);
       const imgM = html.match(/"image":"([^"]+)"/);
@@ -150,16 +216,91 @@ async function handleSuggest(wd) {
       const titleM = html.match(/<title>([^<]*)_百度百科<\/title>/);
       const img = ogM ? ogM[1] : (imgM ? imgM[1] : '');
       if (img) it.abstractPic = img;
-      // 完整简介（去掉百科 title 尾巴）
       if (descM && descM[1]) it.lemmaDesc = descM[1];
-      // 完整词条名（如"迷墙（英国1982年...电影）"）
       if (titleM && titleM[1]) it.fullTitle = titleM[1].trim();
+      // 基本信息卡：兼容 HTML 版(itemName_igbyC) 和 JSON 版("name":"...","data":[{"text":[{"tag":"text","text":"值"}]}])
+      it.card = extractBasicInfo(html);
     } catch (e) {}
   }
 
+  // 组装成 card API 格式 + 补充解析字段（题材/地区/年份/平台），前端直接展示
+  const list = items.map(it => {
+    // 从 card 数组解析补充字段
+    const card = it.card || [];
+    const findVal = (names) => {
+      for (const c of card) {
+        for (const n of names) {
+          if (c.name.includes(n) && c.value && c.value[0]) return c.value[0];
+        }
+      }
+      return '';
+    };
+    let genre = findVal(['类型', '题材', '作品类型', '影片类型', '节目类型']);
+    // genre 兜底：从原始短描述提取题材关键词（避免被完整简介误判）
+    if (!genre) {
+      const GENRES = ['剧情', '喜剧', '爱情', '动作', '悬疑', '惊悚', '犯罪', '科幻', '奇幻', '冒险', '动画', '战争', '历史', '传记', '纪录', '音乐', '歌舞', '恐怖', '武侠', '古装', '家庭', '运动', '灾难'];
+      const src = it.origDesc || it.lemmaDesc || '';
+      const found = GENRES.filter(g => src.includes(g) || (it.lemmaTitle || '').includes(g));
+      if (found.length) genre = found.join('、');
+    }
+    const regionRaw = findVal(['制片地区', '地区', '拍摄地点']);
+    const yearRaw = findVal(['上映时间', '首播时间', '播出时间', '发行时间']);
+    const company = findVal(['出品公司', '出品方', '制作公司', '网络播放平台']);
+    const descText = (it.lemmaDesc || '') + ' ';
+
+    // 地区映射
+    const REGION_MAP = { '中国内地':'国产', '中国大陆':'国产', '内地':'国产', '中国香港':'港台', '香港':'港台', '中国台湾':'港台', '台湾':'港台', '澳门':'港台', '日本':'日韩', '韩国':'日韩', '美国':'欧美', '英国':'欧美', '法国':'欧美', '德国':'欧美', '加拿大':'欧美', '澳大利亚':'欧美', '意大利':'欧美', '西班牙':'欧美', '俄罗斯':'欧美', '印度':'其他', '泰国':'其他', '其他':'其他' };
+    let region = '';
+    const regionNames = (regionRaw || '').split(/[、，,]/).map(s => s.trim()).filter(Boolean);
+    for (const n of regionNames) {
+      if (REGION_MAP[n]) { region = REGION_MAP[n]; break; }
+      for (const [k, v] of Object.entries(REGION_MAP)) {
+        if (n.includes(k)) { region = v; break; }
+      }
+      if (region) break;
+    }
+    if (!region && regionNames.length) region = '其他';
+    // region 兜底：从 desc 提取国家
+    if (!region) {
+      const REGION_HINTS = [['中国', '国产'], ['内地', '国产'], ['大陆', '国产'], ['香港', '港台'], ['台湾', '港台'], ['澳门', '港台'], ['日本', '日韩'], ['韩国', '日韩'], ['美国', '欧美'], ['英国', '欧美'], ['法国', '欧美'], ['德国', '欧美'], ['意大利', '欧美'], ['西班牙', '欧美'], ['俄罗斯', '欧美'], ['加拿大', '欧美'], ['澳大利亚', '欧美'], ['印度', '其他'], ['泰国', '其他']];
+      for (const [k, v] of REGION_HINTS) {
+        if ((it.lemmaDesc || '').includes(k)) { region = v; break; }
+      }
+    }
+
+    // 年份
+    let year = '';
+    const ym = (yearRaw || '').match(/(19|20)\d{2}/);
+    if (ym) year = ym[0];
+    if (!year) { const ym2 = descText.match(/(19|20)\d{2}/); if (ym2) year = ym2[0]; }
+
+    // 平台
+    let platform = '';
+    const pM = (company || '').match(/爱奇艺|腾讯|优酷|芒果|哔哩|bilibili|央视|CCTV|卫视|电影公司|影视公司|制片厂|视频/);
+    if (pM) platform = company;
+
+    const d = {
+      id: it.lemmaId,
+      title: it.lemmaTitle,
+      desc: it.lemmaDesc || '',
+      image: it.abstractPic,
+      abstract: it.lemmaDesc || '',
+      url: 'https://baike.baidu.com/item/' + encodeURIComponent(it.lemmaTitle) + '/' + it.lemmaId,
+      card: card,
+      classify: it.classify || [],
+      fullTitle: it.fullTitle || '',
+      // 补充解析字段
+      genre: genre,
+      region: region,
+      year: year,
+      platform: platform
+    };
+    return d;
+  });
+
   return {
     word: wd,
-    list: items,
+    list: list,
     debug: { suggestCount: suggestList.length, lemmasCount: lemmas.length, mergedCount: map.size, filledCount: toFill.length, page: pageInfo }
   };
 }

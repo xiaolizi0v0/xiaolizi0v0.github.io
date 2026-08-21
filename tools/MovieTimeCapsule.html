@@ -1899,7 +1899,7 @@
             });
         }
 
-        // 通过本地代理（JSONP 格式）调用百度 searchui/suggest，拿到同名词条全列表
+        // 通过本地代理（JSONP 格式）调用百度 searchui/suggest，拿到同名词条全列表（card API 格式）
         async function searchBaiduViaProxy(keyword) {
             const proxy = localStorage.getItem('baike_proxy');
             if (!proxy) return null;   // 未配置代理，返回 null 走原逻辑
@@ -1912,8 +1912,9 @@
                 const VIDEO_CLASS = /影视|电影|电视剧|动漫|动画|综艺|纪录片|网剧|剧集/;
                 const NON_VIDEO_CLASS = /音乐|图书|书刊|小说|游戏|软件|人物|植物|化学|歌曲|专辑|漫画|运动|奖项/;
 
+                // 代理返回的是 card API 格式，直接复用现有解析器
                 const result = items.map(item => {
-                    const text = (item.lemmaDesc || '') + ' ';
+                    const text = (item.desc || '') + ' ' + (item.abstract || '');
                     const cls = (item.classify || []).join(' ');
                     let type;
                     if (cls) {
@@ -1931,18 +1932,18 @@
                     }
                     if (type === 'other') return null;
                     return {
-                        id: 'baike-' + item.lemmaId,
+                        id: 'baike-' + item.id,
                         // 完整词条名优先（如"迷墙（英国1982年...电影）"），否则用基础名
-                        title: item.fullTitle || item.lemmaTitle,
-                        year: extractYear(text),
+                        title: item.fullTitle || item.title,
+                        year: item.year || extractYear(text),
                         type: type,
-                        url: 'https://baike.baidu.com/item/' + encodeURIComponent(item.lemmaTitle) + '/' + item.lemmaId,
-                        img: thumbnailize(item.abstractPic),
-                        genre: '',
-                        platform: '',
-                        region: '',
+                        url: item.url || 'https://baike.baidu.com/item/' + encodeURIComponent(item.title) + '/' + item.id,
+                        img: thumbnailize(item.image),
+                        genre: item.genre || '',
+                        platform: item.platform || '',
+                        region: item.region || '',
                         sub_title: '',
-                        desc: (item.lemmaDesc || text).slice(0, 140)
+                        desc: (item.abstract || item.desc || '').slice(0, 140)
                     };
                 }).filter(Boolean);
 
