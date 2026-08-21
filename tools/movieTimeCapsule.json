@@ -746,5 +746,26 @@
     "watchedDate": "2026-08-21",
     "timestamp": 1787312236722,
     "updatedAt": 1787312236722
+  },
+  {
+    "id": "baike-32501328",
+    "title": "千香",
+    "year": "2026",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E5%8D%83%E9%A6%99/60704749",
+    "img": "https://bkimg.cdn.bcebos.com/pic/7a899e510fb30f2442a77145eec8c643ad4bd113a57a?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "古装 爱情 仙侠",
+    "platform": "优酷",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《千香》是由优酷、欢瑞世纪出品，鞠觉亮、杨小波执导，邵思涵编剧，宋威龙、鞠婧祎（按姓氏笔画排序）领衔主演，叶盛佳、朱丽岚、刘梦芮、何中华、张志浩、林艾泇、郑合惠子、赵华为、梁咏妮、傅方俊特别出演的古装爱情仙侠剧。剧情简介：该剧改编自十四郎的小说《千香引》，以\"海陨至，建木现\"为背",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-21",
+    "timestamp": 1787312251574,
+    "updatedAt": 1787312251574
   }
 ]
