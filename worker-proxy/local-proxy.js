@@ -1,16 +1,17 @@
 /**
- * 百度百科同名词条搜索 - 本地代理（Node.js，无需安装依赖）
+ * 百度百科同名词条搜索 - 浏览器代理（Node.js，无需 npm 依赖）
  *
- * 为什么用 curl：百度对 Node.js 的 TLS 指纹（https.get / fetch）触发"百度安全验证"(403)，
- * 但 curl 的指纹能通过，且你的家庭宽带 IP 访问百度正常。
- * 本脚本通过 child_process 调 curl 抓取百度数据，加上 CORS 头返回给前端。
+ * 原理：百度对脚本/服务器请求（curl、Node fetch、数据中心 IP）实施安全验证，
+ *      但真实浏览器指纹能通过。本脚本用系统已安装的 Chrome/Edge 无头模式
+ *      （--headless --dump-dom）渲染百度词条页，执行 JS 后输出完整 DOM，
+ *      再提取 lemmas 数组（完整同名词条列表），加 CORS 头返回给前端。
  *
  * 使用方式：
- *   1. 电脑需安装 Node.js（https://nodejs.org）—— Windows/Mac 自带 curl
- *   2. 在本目录打开终端，运行：node local-proxy.js
- *   3. 看到 "本地代理已启动" 后，保持窗口开着
- *   4. 在博客页面的"同名词条搜索"弹窗输入框粘贴：http://127.0.0.1:8080
- *   5. 点"保存并启用"，之后搜索即可列出全部同名词条
+ *   1. 电脑需安装 Node.js + Chrome 或 Edge（Windows 自带 Edge）
+ *   2. 双击 start-proxy.bat（或 node local-proxy.js）
+ *   3. 页面填代理地址：http://127.0.0.1:25100
+ *
+ * 注意：每请求一次会启动一次无头浏览器（约 2-5 秒），适合低频使用。
  */
 
 const http = require('http');
@@ -19,40 +20,82 @@ const { URL } = require('url');
 
 const PORT = 25100;
 
-const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+// 自动探测 Chrome / Edge 路径
+function findBrowser() {
+  const path = require('path');
+  const candidates = [
+    path.join(process.env.PROGRAMFILES || '', 'Google', 'Chrome', 'Application', 'chrome.exe'),
+    path.join(process.env['PROGRAMFILES(X86)'] || '', 'Google', 'Chrome', 'Application', 'chrome.exe'),
+    path.join(process.env['PROGRAMFILES(X86)'] || '', 'Microsoft', 'Edge', 'Application', 'msedge.exe'),
+    path.join(process.env.PROGRAMFILES || '', 'Microsoft', 'Edge', 'Application', 'msedge.exe'),
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+    '/usr/bin/google-chrome',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+    '/usr/bin/microsoft-edge'
+  ];
+  const fs = require('fs');
+  for (const p of candidates) {
+    if (p && fs.existsSync(p)) return p;
+  }
+  return null;
+}
+const BROWSER = findBrowser();
 
-// 调系统 curl 抓取（curl 指纹能通过百度反爬）
-function curlGet(urlStr) {
+// 用无头浏览器渲染 URL，返回渲染后的 DOM 文本
+function browserDump(urlStr) {
   return new Promise((resolve, reject) => {
+    if (!BROWSER) {
+      return reject(new Error('未找到 Chrome/Edge，请安装浏览器后重试'));
+    }
+    // --user-data-dir 独立实例：避免 Chrome 已运行时 --dump-dom 被交给现有进程导致无输出
+    const path = require('path');
+    const tmpDir = path.join(require('os').tmpdir(), 'baike-proxy-' + Date.now());
     const args = [
-      '-sSL', '--max-time', '25',
-      '-H', 'User-Agent: ' + UA,
-      '-H', 'Accept-Language: zh-CN,zh;q=0.9,en;q=0.8',
-      '-H', 'Referer: https://baike.baidu.com/',
+      '--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage',
+      '--user-data-dir=' + tmpDir,
+      '--virtual-time-budget=6000',
+      '--dump-dom',
       urlStr
     ];
-    execFile('curl', args, { maxBuffer: 10 * 1024 * 1024, encoding: 'utf8' }, (err, stdout, stderr) => {
-      if (err) return reject(new Error(err.message || 'curl 失败'));
+    execFile(BROWSER, args, { maxBuffer: 20 * 1024 * 1024, encoding: 'utf8', timeout: 30000 }, (err, stdout, stderr) => {
+      // 清理临时目录
+      try { require('fs').rmSync(tmpDir, { recursive: true, force: true }); } catch (e) {}
+      if (err) {
+        // 部分版本 --dump-dom 会返回非零退出码但仍输出内容
+        if (stdout && stdout.length > 1000) return resolve(stdout);
+        return reject(new Error('浏览器抓取失败: ' + (err.message || '') + (stderr || '').slice(0, 200)));
+      }
       resolve(stdout);
     });
   });
 }
 
-// 合并 suggest 结果与词条页 HTML 的完整同名词条列表
+// 合并 suggest 结果与词条页 DOM 的完整同名词条列表
 async function handleSuggest(wd) {
   let suggestList = [];
   try {
-    const out = await curlGet('https://baike.baidu.com/api/searchui/suggest?wd=' + encodeURIComponent(wd));
-    const d = JSON.parse(out);
-    suggestList = (d && d.list) || [];
+    // suggest 接口用普通 fetch（无头浏览器抓 JSON 太重，curl 能过 suggest 的风控）
+    const out = await fetch('https://baike.baidu.com/api/searchui/suggest?wd=' + encodeURIComponent(wd), {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Referer': 'https://baike.baidu.com/'
+      }
+    });
+    if (out.ok) {
+      const d = await out.json();
+      suggestList = (d && d.list) || [];
+    }
   } catch (e) {}
 
   let lemmas = [];
   let pageInfo = { status: 'ok', size: 0, hasLemmas: false };
   try {
-    const html = await curlGet('https://baike.baidu.com/item/' + encodeURIComponent(wd));
+    const html = await browserDump('https://baike.baidu.com/item/' + encodeURIComponent(wd));
     pageInfo.size = html.length;
     pageInfo.hasLemmas = html.includes('lemmas');
+    pageInfo.verify = html.includes('百度安全验证');
     const patterns = [
       /"lemmas":(\[.*?\]),"categoryList"/,
       /"lemmas":(\[.*?\]),"navigation"/
@@ -63,7 +106,7 @@ async function handleSuggest(wd) {
     }
   } catch (e) { pageInfo.status = 'error: ' + e.message; }
 
-  // 以 HTML lemmas 为准（完整），suggest 补充封面图
+  // 以 DOM lemmas 为准（完整），suggest 补充封面图
   const map = new Map();
   lemmas.forEach(l => {
     if (!l || !l.lemmaId) return;
@@ -127,8 +170,8 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify(result));
     } else {
-      const body = await curlGet(target);
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      const body = await browserDump(target);
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(body);
     }
   } catch (e) {
@@ -139,10 +182,10 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, '127.0.0.1', () => {
   console.log('========================================');
-  console.log('  本地代理已启动 (curl 模式)');
-  console.log('  在博客页面"同名词条搜索"弹窗输入框粘贴：');
-  console.log('  http://127.0.0.1:' + PORT);
-  console.log('  然后点"保存并启用"');
+  console.log('  浏览器代理已启动 (无头 Chrome/Edge)');
+  console.log('  浏览器: ' + (BROWSER ? BROWSER : '未找到（请安装 Chrome/Edge）'));
+  console.log('  代理地址: http://127.0.0.1:' + PORT);
   console.log('========================================');
-  console.log('  提示：保持本窗口开着即可。Ctrl+C 停止。');
+  console.log('  在博客页面输入框粘贴上述地址并保存启用');
+  console.log('  提示：保持本窗口开着，Ctrl+C 停止');
 });

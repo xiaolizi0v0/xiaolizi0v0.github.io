@@ -1899,7 +1899,7 @@
             });
         }
 
-        // 通过 Cloudflare Worker 代理调用百度 searchui/suggest，拿到同名词条全列表
+        // 通过本地代理调用百度 searchui/suggest 拿到同名词条全列表，再用 card API 补全详情
         async function searchBaiduViaProxy(keyword) {
             const proxy = localStorage.getItem('baike_proxy');
             if (!proxy) return null;   // 未配置代理，返回 null 走原逻辑
@@ -1914,18 +1914,18 @@
                 const VIDEO_CLASS = /影视|电影|电视剧|动漫|动画|综艺|纪录片|网剧|剧集/;
                 const NON_VIDEO_CLASS = /音乐|图书|书刊|小说|游戏|软件|人物|植物|化学|歌曲|专辑|漫画|运动|奖项/;
 
-                return items.map(item => {
+                // 1. 先用 suggest/lemmas 数据过滤出影视类，并生成基础条目
+                const base = items.map(item => {
                     const text = (item.lemmaDesc || '') + ' ';
                     const cls = (item.classify || []).join(' ');
                     let type;
                     if (cls) {
-                        // 优先用 classify：明确影视 / 明确非影视 / 不确定回退 detectType
                         if (VIDEO_CLASS.test(cls) && !NON_VIDEO_CLASS.test(cls)) {
                             type = detectType(text);
                             if (type === 'other') type = cls.includes('动漫') || cls.includes('动画') ? 'anime'
                                 : cls.includes('综艺') ? 'variety' : 'movie';
                         } else if (NON_VIDEO_CLASS.test(cls)) {
-                            return null;   // 明确非影视（音乐专辑/图书/小说等）
+                            return null;   // 明确非影视
                         } else {
                             type = detectType(text);
                         }
@@ -1938,6 +1938,7 @@
                         title: item.lemmaTitle,
                         year: extractYear(text),
                         type: type,
+                        lemmaId: item.lemmaId,
                         url: 'https://baike.baidu.com/item/' + encodeURIComponent(item.lemmaTitle) + '/' + item.lemmaId,
                         img: thumbnailize(item.abstractPic),
                         genre: '',
@@ -1947,6 +1948,38 @@
                         desc: text.trim().slice(0, 140)
                     };
                 }).filter(Boolean);
+
+                // 2. 对每个影视词条并行调 card API（lemmaId 精确定位）补全封面/题材/地区/简介
+                const enriched = await Promise.all(base.map(async b => {
+                    try {
+                        const d = await jsonp(
+                            'https://baike.baidu.com/api/openapi/BaikeLemmaCardApi?scope=103&format=json&appid=379020'
+                                + '&bk_key=' + encodeURIComponent(b.title) + '&lemmaId=' + b.lemmaId + '&bk_length=300',
+                            'callback'
+                        );
+                        if (!d || !d.title) return b;
+                        const text = (d.desc || '') + ' ' + (d.abstract || '');
+                        return {
+                            ...b,
+                            year: extractYear(text) || b.year,
+                            img: thumbnailize(d.image) || b.img,
+                            genre: extractGenre(d) || b.genre,
+                            platform: extractPlatform(d) || b.platform,
+                            region: extractRegion(d) || b.region,
+                            desc: (d.abstract || d.desc || b.desc).slice(0, 140)
+                        };
+                    } catch (e) {
+                        return b;   // 补全失败保留基础数据
+                    }
+                }));
+
+                // 按 id 去重
+                const seen = new Set();
+                return enriched.filter(r => {
+                    if (seen.has(r.id)) return false;
+                    seen.add(r.id);
+                    return true;
+                });
             } catch (e) {
                 return null;   // 代理失败回退原逻辑
             }
