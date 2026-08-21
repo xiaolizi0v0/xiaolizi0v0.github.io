@@ -473,5 +473,26 @@
     "watchedDate": "2026-08-21",
     "timestamp": 1787311737075,
     "updatedAt": 1787311737075
+  },
+  {
+    "id": "baike-35854",
+    "title": "人鱼",
+    "year": "2026",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E4%BA%BA%E9%B1%BC/59177126",
+    "img": "https://bkimg.cdn.bcebos.com/pic/6c224f4a20a4462309f757f7c37f650e0cf3d6ca79aa?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "社会 悬疑",
+    "platform": "腾讯",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《人鱼》是由腾讯视频出品，灵河文化、一未文化联合出品，灵河文化制作，杨磊执导，田良良、陈晨任编剧，刘孜、张开泰、黄杨钿甜、董勇领衔主演，张帆、陈创、何思甜、张棪琰、罗海琼、是安、赵健、段钰、董向荣、薛佳凝特别出演的现实痛感成长自救话题剧。该剧于2026年8月4日在腾讯视频播出。该",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-21",
+    "timestamp": 1787311787048,
+    "updatedAt": 1787311787048
   }
 ]
