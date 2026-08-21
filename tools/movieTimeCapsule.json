@@ -2345,5 +2345,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787331374816,
     "updatedAt": 1787331374816
+  },
+  {
+    "id": "baike-940347",
+    "title": "玫瑰的故事",
+    "year": "1986",
+    "type": "movie",
+    "url": "http://baike.baidu.com/subview/940347/5129618.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/d8f9d72a6059252dd42aafa585c3143b5bb5c9ea1343?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "爱情",
+    "platform": "爱奇艺",
+    "region": "港台",
+    "sub_title": "",
+    "desc": "《玫瑰的故事》是由星辉影业有限公司出品，杨凡执导，亦舒、杨凡编剧，周润发、张曼玉、陈冠中、夏萍主演的爱情片。该片于1986年2月21日在中国香港上映。该片根据亦舒创作的小说《玫瑰的故事》改编，讲述了富家千金黄玫瑰从少女到少妇，在家庭、爱情、事业和婚姻中不断成长的故事。1987年，",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787331389070,
+    "updatedAt": 1787331389070
   }
 ]
