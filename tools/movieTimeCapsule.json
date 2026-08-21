@@ -368,5 +368,26 @@
     "watchedDate": "2026-08-21",
     "timestamp": 1787311636377,
     "updatedAt": 1787311636377
+  },
+  {
+    "id": "baike-36224204",
+    "title": "铁拳教育",
+    "year": "2026",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E9%93%81%E6%8B%B3%E6%95%99%E8%82%B2",
+    "img": "https://bkimg.cdn.bcebos.com/pic/6d81800a19d8bc3eb135b5248cd6b11ea8d3fc1fef92?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "动作",
+    "platform": "其他",
+    "region": "日韩",
+    "sub_title": "",
+    "desc": "《铁拳教育》是Netflix出品，由YLAB PLEX、GTist联合制作，洪忠灿执导，李南奎、金多熙、文钟浩编剧，金武烈、李星民、秦基周、表志勋共同主演的韩国动作剧。《铁拳教育》改编自韩国作家蔡溶宅（채용택）与HAN GARAM（한가람）联合创作的网络漫画《不良指导官》，讲述在",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-21",
+    "timestamp": 1787311656407,
+    "updatedAt": 1787311656407
   }
 ]
