@@ -3458,5 +3458,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787333185063,
     "updatedAt": 1787333185063
+  },
+  {
+    "id": "baike-65053583",
+    "title": "春夜（강미자 KANG Mija执导的电影）",
+    "year": "2024",
+    "type": "movie",
+    "url": "https://baike.baidu.com/item/%E6%98%A5%E5%A4%9C/65053583",
+    "img": "https://bkimg.cdn.bcebos.com/pic/8601a18b87d6277f9e2fb96c17610830e924b8995617?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "剧情",
+    "platform": "",
+    "region": "日韩",
+    "sub_title": "",
+    "desc": "《春夜》是由강미자 KANG Mija执导，이지상 LEE Jisang、강미자 KANG Mija担任编剧，韩艺璃、金瑟镇主演的电影。",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787333301901,
+    "updatedAt": 1787333301901
   }
 ]
