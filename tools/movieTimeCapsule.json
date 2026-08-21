@@ -1442,5 +1442,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787330018372,
     "updatedAt": 1787330018372
+  },
+  {
+    "id": "baike-4219",
+    "title": "仙剑奇侠传三",
+    "year": "2009",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/4219/5215511.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/b58f8c5494eef01f3a29e01d4fa28e25bc315d60d7ec?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "爱情 奇幻 武侠",
+    "platform": "优酷",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《仙剑奇侠传三》（Chinese Paladin 3），是根据国产单机游戏《仙剑奇侠传三》改编的同名古装玄幻电视剧，中国大陆制片，由上海唐人电影制作有限公司出品，邓紫珊编剧，李国立、梁胜权、林玉芬、黄俊文执导，胡歌、霍建华、杨幂、唐嫣、刘诗诗、黄志玮、林子聪、刘家辉等联袂主演的古",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787330026272,
+    "updatedAt": 1787330026272
   }
 ]
