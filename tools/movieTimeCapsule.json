@@ -980,5 +980,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787329640460,
     "updatedAt": 1787329640460
+  },
+  {
+    "id": "baike-364916",
+    "title": "狂飙",
+    "year": "2023",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E7%8B%82%E9%A3%99/57027307",
+    "img": "https://bkimg.cdn.bcebos.com/pic/f636afc379310a55b319fb12661d54a98226cefcba87?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "反黑 刑侦",
+    "platform": "爱奇艺",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《狂飙》是由中央电视台、爱奇艺出品，留白影视、中国长安出版传媒联合出品，中央政法委宣传教育局、中央政法委政法综治信息中心指导拍摄，徐纪周执导，徐纪周、朱俊懿编剧，张译、张颂文、李一桐、张志坚、吴刚领衔主演，倪大红、韩童生、李建义、石兆琪特邀主演，李健、高叶、王骁、林家川、苏小玎主",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787329672898,
+    "updatedAt": 1787329672898
   }
 ]
