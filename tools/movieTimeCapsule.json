@@ -3395,5 +3395,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787333053118,
     "updatedAt": 1787333053118
+  },
+  {
+    "id": "baike-32501366",
+    "title": "云之羽",
+    "year": "2023",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E4%BA%91%E4%B9%8B%E7%BE%BD/60704822",
+    "img": "https://bkimg.cdn.bcebos.com/pic/7dd98d1001e93901213fd07f80ba43e736d12f2e3861?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "剧情 奇幻 古装",
+    "platform": "爱奇艺",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《云之羽》是北京爱奇艺科技有限公司出品的古装谍战爱情剧，由顾晓声执导，顾晓声担任总编剧，虞书欣、张凌赫领衔主演，丞磊、卢昱晓、金靖、孙晨竣、田嘉瑞主演，温峥嵘特别出演，欧米德、左叶、纪凌尘、林子烨、梁雪峰、艾米出演，曾舜晞特邀出演，陈都灵、曾可妮特别出演，傅首尔友情出演的古装谍战",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787333126151,
+    "updatedAt": 1787333126151
   }
 ]
