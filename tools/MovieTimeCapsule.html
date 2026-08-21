@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13"></script>
+    <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.7.11/dist/shaka-player.compiled.min.js"></script>
     <style>
         .tool-container {
             max-width: 1240px;
@@ -2064,6 +2065,7 @@
             if (c) c.classList.add('hidden');
             const p = document.getElementById('modal-play-panel');
             if (p) p.classList.add('hidden');
+            cleanupPlayer();   // 销毁 shaka / hls 实例并暂停
             const v = document.querySelector('.video-player');
             if (v) { v.pause(); }
             // 恢复原海报（不再停留在播放视口）
@@ -2126,41 +2128,89 @@
         function playVideo(url) {
             const v = document.querySelector('.video-player');
             if (!v) return;
-            // 彻底清理旧的 hls 实例与媒体状态，避免缓冲残留
-            if (v.hls) { v.hls.destroy(); v.hls = null; }
+            // 彻底清理旧的播放器实例与媒体状态，避免缓冲残留
+            cleanupPlayer();
             v.pause();
             v.removeAttribute('src');
             v.load();
 
-            if (url.endsWith('.m3u8') && window.Hls && Hls.isSupported()) {
-                const hls = new Hls({
-                    // 音画/音频解码优化
-                    lowLatencyMode: false,        // 关掉低延迟模式，减少漂移与解码异常
-                    maxBufferLength: 30,          // 缓冲时长上限，避免缓冲过长导致解码状态损坏
-                    maxMaxBufferLength: 600,
-                    backBufferLength: 90,
-                    // 关键：转封装放到主线程，绕开 Worker 音频解码 bug（空洞感/杂音的主因）
-                    enableWorker: false
-                });
-                hls.loadSource(url);
-                hls.attachMedia(v);
-                v.hls = hls;
-                hls.on(Hls.Events.MANIFEST_PARSED, () => v.play().catch(() => {}));
-                // 致命错误自动恢复：网络错误重载，媒体错误（音频解码异常）恢复
-                hls.on(Hls.Events.ERROR, (evt, data) => {
-                    if (!data.fatal) return;
-                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
-                        hls.startLoad();
-                    } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-                        hls.recoverMediaError();
-                    } else {
-                        hls.destroy();
+            if (url.endsWith('.m3u8')) {
+                // 首选 Shaka Player（独立 HLS 实现，音频解码更稳定）
+                if (window.shaka && shaka.Player.isBrowserSupported()) {
+                    try {
+                        shaka.polyfill();
+                        const player = new shaka.Player();
+                        v.shakaPlayer = player;
+                        player.attach(v).then(() => {
+                            return player.load(url);
+                        }).then(() => {
+                            v.play().catch(() => {});
+                        }).catch(() => {
+                            // Shaka 失败降级 hls.js
+                            fallbackHls(v, url);
+                        });
+                        // 致命错误自动恢复
+                        player.addEventListener('error', (e) => {
+                            const data = e.detail || {};
+                            if (data.severity === shaka.util.Error.Severity.CRITICAL) {
+                                player.load(url).then(() => v.play().catch(() => {}));
+                            }
+                        });
+                        return;
+                    } catch (e) {
+                        fallbackHls(v, url);
+                        return;
                     }
-                });
-            } else {
+                }
+                fallbackHls(v, url);
+                return;
+            }
+
+            // 普通 mp4 等直接原生播放
+            v.src = url;
+            v.play().catch(() => {});
+        }
+
+        function cleanupPlayer() {
+            const v = document.querySelector('.video-player');
+            if (!v) return;
+            if (v.shakaPlayer) {
+                try { v.shakaPlayer.destroy(); } catch (e) {}
+                v.shakaPlayer = null;
+            }
+            if (v.hls) {
+                try { v.hls.destroy(); } catch (e) {}
+                v.hls = null;
+            }
+        }
+
+        function fallbackHls(v, url) {
+            if (!window.Hls || !Hls.isSupported()) {
                 v.src = url;
                 v.play().catch(() => {});
+                return;
             }
+            const hls = new Hls({
+                lowLatencyMode: false,
+                maxBufferLength: 30,
+                maxMaxBufferLength: 600,
+                backBufferLength: 90,
+                enableWorker: false
+            });
+            hls.loadSource(url);
+            hls.attachMedia(v);
+            v.hls = hls;
+            hls.on(Hls.Events.MANIFEST_PARSED, () => v.play().catch(() => {}));
+            hls.on(Hls.Events.ERROR, (evt, data) => {
+                if (!data.fatal) return;
+                if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                    hls.startLoad();
+                } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+                    hls.recoverMediaError();
+                } else {
+                    hls.destroy();
+                }
+            });
         }
 
         document.getElementById('play-exit').addEventListener('click', exitPlayMode);
