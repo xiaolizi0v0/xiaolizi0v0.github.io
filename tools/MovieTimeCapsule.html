@@ -1813,36 +1813,21 @@
             });
         }
 
-        // 搜索百度百科词条（建议词 + 用户输入 + 影视限定词扩展，再逐个查详情）
+        // 搜索百度百科词条（建议词 + 用户原始输入 精确匹配，再逐个查详情）
         async function searchBaidu(keyword) {
             const userInput = keyword.trim();
 
             // 1. 获取建议词（该接口返回 GBK 编码，强制按 GBK 解码）
-            let sugList = [];
-            try {
-                const sug = await jsonp(
-                    'https://suggestion.baidu.com/su?wd=' + encodeURIComponent(userInput) + '&prod=baike',
-                    'cb',
-                    12000,
-                    'gbk'
-                );
-                sugList = (sug && sug.s) || [];
-            } catch (e) {
-                // 建议词接口失败不阻断，继续用输入本身
-            }
+            const sug = await jsonp(
+                'https://suggestion.baidu.com/su?wd=' + encodeURIComponent(userInput) + '&prod=baike',
+                'cb',
+                12000,
+                'gbk'
+            );
+            // 把用户原始输入也作为一个候选（精确匹配），与建议词合并去重
+            const candidates = [...new Set([userInput, ...((sug && sug.s) || [])])].slice(0, 6);
 
-            // 2. 候选词 = 用户输入 + 建议词 + 影视限定词扩展（应对同名词条）
-            //    如搜"英雄"返回汉语词语时，自动补查"英雄电视剧/电影/动漫/综艺/网剧"
-            const qualifiers = ['电视剧', '电影', '动漫', '综艺', '网剧', '纪录片'];
-            const extended = [
-                userInput,
-                ...sugList,
-                ...qualifiers.map(q => userInput + q),
-                ...qualifiers.map(q => userInput + ' ' + q)
-            ];
-            const candidates = [...new Set(extended)].slice(0, 18);
-
-            // 3. 并行查询每个词条详情（含海报、年份、类型、简介）
+            // 2. 并行查询每个词条详情（含海报、年份、类型、简介）
             const list = await Promise.all(candidates.map(async name => {
                 try {
                     const d = await jsonp(
@@ -1853,7 +1838,6 @@
                     if (!d || !d.title) return null;
                     const text = (d.desc || '') + ' ' + (d.abstract || '');
                     const type = detectType(text);
-                    if (type === 'other') return null;   // 提前过滤非影视，减少无效结果
                     return {
                         id: 'baike-' + d.id,
                         title: d.title,
@@ -1872,8 +1856,8 @@
                 }
             }));
 
-            // 4. 过滤：1) 字段缺失 2) 非影视词条（如文化术语、耐火砖、方言等）
-            //    同时按 id 去重（同一个词条被建议词+用户输入+限定词重复加入）
+            // 过滤：1) 字段缺失 2) 非影视词条（如文化术语、耐火砖、方言等）
+            // 同时按 id 去重（同一个词条被建议词+用户输入重复加入）
             const seen = new Set();
             return list.filter(Boolean).filter(r => {
                 if (r.type === 'other') return false;
