@@ -767,5 +767,26 @@
     "watchedDate": "2026-08-21",
     "timestamp": 1787312251574,
     "updatedAt": 1787312254291
+  },
+  {
+    "id": "baike-1544",
+    "title": "翘楚",
+    "year": "2026",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E7%BF%98%E6%A5%9A/65146668",
+    "img": "https://bkimg.cdn.bcebos.com/pic/962bd40735fae6cd7b895f1806ee182442a7d933a10f?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "古装权谋剧",
+    "platform": "优酷",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《翘楚》是由优酷出品，大麦娱乐、阅文集团联合出品，星河工作室制作，杨龙执导，李旻、夏梦莹编剧，陈都灵、周翊然领衔主演（排名不分先后，按姓氏首字母排序），唐晓天特邀主演，王瑞昌特别主演，汪卓成、荣蓉特邀出演，周逵、赵麒特别出演，马跃、虞祎杰、沈泰友情出演，吴施乐、高茂桐、章时安、周",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-21",
+    "timestamp": 1787312300601,
+    "updatedAt": 1787312300601
   }
 ]
