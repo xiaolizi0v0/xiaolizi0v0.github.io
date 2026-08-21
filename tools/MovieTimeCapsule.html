@@ -1907,10 +1907,30 @@
                 if (!res.ok) return null;
                 const data = await res.json();
                 const items = (data && data.list) || [];
+
+                // classify 关键词判定影视
+                const VIDEO_CLASS = /影视|电影|电视剧|动漫|动画|综艺|纪录片|网剧|剧集/;
+                const NON_VIDEO_CLASS = /音乐|图书|书刊|小说|游戏|软件|人物|植物|化学|歌曲|专辑|漫画|运动|奖项/;
+
                 return items.map(item => {
                     const text = (item.lemmaDesc || '') + ' ';
-                    const type = detectType(text);
-                    if (type === 'other') return null;   // 过滤非影视同名词条
+                    const cls = (item.classify || []).join(' ');
+                    let type;
+                    if (cls) {
+                        // 优先用 classify：明确影视 / 明确非影视 / 不确定回退 detectType
+                        if (VIDEO_CLASS.test(cls) && !NON_VIDEO_CLASS.test(cls)) {
+                            type = detectType(text);
+                            if (type === 'other') type = cls.includes('动漫') || cls.includes('动画') ? 'anime'
+                                : cls.includes('综艺') ? 'variety' : 'movie';
+                        } else if (NON_VIDEO_CLASS.test(cls)) {
+                            return null;   // 明确非影视（音乐专辑/图书/小说等）
+                        } else {
+                            type = detectType(text);
+                        }
+                    } else {
+                        type = detectType(text);
+                    }
+                    if (type === 'other') return null;
                     return {
                         id: 'baike-' + item.lemmaId,
                         title: item.lemmaTitle,
@@ -2814,10 +2834,17 @@
         // 说明：api.cloudflare.com 拒绝浏览器跨域（无 CORS 头），无法前端直接部署。
         // 因此提供"复制代码 + 打开新建页手动部署"的流程，部署后粘贴域名启用。
         const WORKER_CODE = `/**
- * 百度百科同名词条搜索代理
- * 仅转发白名单内的百度接口，加上 CORS 头返回给前端。
+ * 百度百科同名词条搜索代理（完整版）
+ * 1. 转发白名单内的百度接口，加 CORS 头
+ * 2. 对 suggest 请求：额外抓取词条页 HTML，提取完整同名词条列表（searchui/suggest 接口本身返回不全）
  * 部署：Cloudflare 控制台 → Workers & Pages → Create → 粘贴本代码 → Deploy
  */
+const HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+  'Referer': 'https://baike.baidu.com/',
+  'Accept': 'application/json, text/plain, */*'
+};
+
 export default {
   async fetch(request) {
     if (request.method !== 'GET') {
@@ -2836,13 +2863,12 @@ export default {
       return jsonResponse({ error: '目标地址不在白名单内' }, 403);
     }
     try {
-      const resp = await fetch(target, {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
-          'Referer': 'https://baike.baidu.com/',
-          'Accept': 'application/json, text/plain, */*'
-        }
-      });
+      // suggest 请求 → 合并完整同名词条列表
+      if (target.includes('/api/searchui/suggest')) {
+        return await handleSuggest(target);
+      }
+      // 其他白名单接口直接透传
+      const resp = await fetch(target, { headers: HEADERS });
       const body = await resp.text();
       return new Response(body, {
         status: resp.status,
@@ -2857,6 +2883,65 @@ export default {
     }
   }
 };
+
+// 合并 suggest 结果与词条页 HTML 里的完整同名词条列表
+async function handleSuggest(target) {
+  const wd = new URL(target).searchParams.get('wd') || '';
+  let suggestList = [];
+  try {
+    const s = await fetch(target, { headers: HEADERS });
+    if (s.ok) {
+      const data = await s.json();
+      suggestList = data.list || [];
+    }
+  } catch (e) {}
+
+  let lemmas = [];
+  try {
+    const pageUrl = 'https://baike.baidu.com/item/' + encodeURIComponent(wd);
+    const p = await fetch(pageUrl, { headers: HEADERS });
+    if (p.ok) {
+      const html = await p.text();
+      const m = html.match(/"lemmas":(\[.*?\]),"categoryList"/);
+      if (m) {
+        lemmas = JSON.parse(m[1]);
+      }
+    }
+  } catch (e) {}
+
+  // 以 HTML lemmas 为准（完整），suggest 补充封面图
+  const map = new Map();
+  lemmas.forEach(l => {
+    if (!l || !l.lemmaId) return;
+    map.set(String(l.lemmaId), {
+      lemmaId: l.lemmaId,
+      lemmaTitle: l.lemmaTitle || wd,
+      lemmaDesc: l.lemmaDesc || '',
+      classify: Array.isArray(l.classify) ? l.classify : [],
+      abstractPic: ''
+    });
+  });
+  suggestList.forEach(s => {
+    if (!s || !s.lemmaId) return;
+    const key = String(s.lemmaId);
+    const ex = map.get(key);
+    if (ex) {
+      if (!ex.abstractPic && s.abstractPic) ex.abstractPic = s.abstractPic;
+    } else {
+      map.set(key, {
+        lemmaId: s.lemmaId,
+        lemmaTitle: s.lemmaTitle || wd,
+        lemmaDesc: s.lemmaDesc || '',
+        classify: [],
+        abstractPic: s.abstractPic || ''
+      });
+    }
+  });
+
+  const list = [...map.values()];
+  return jsonResponse({ word: wd, list: list });
+}
+
 function jsonResponse(obj, status) {
   return new Response(JSON.stringify(obj), {
     status: status,

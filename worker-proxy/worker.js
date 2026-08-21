@@ -1,30 +1,35 @@
 /**
- * 影视剧观影存储时间胶囊 - 同名词条搜索代理
+ * 百度百科同名词条搜索代理（完整版）
  *
  * 用途：百度百科的 searchui/suggest 接口（返回同名词条全列表）无 CORS 头，
  *      纯静态前端无法跨域调用。本 Worker 作为转发代理，加上 CORS 头返回给前端。
  *
+ * 增强：searchui/suggest 接口本身返回不全（"迷墙"页面有 6 个同名词条，接口只返回 4 个），
+ *      因此额外抓取词条页 HTML，用正则提取完整的 lemmas 数组（含 classify 分类），合并返回。
+ *
  * 部署方式：
- *   1. 打开 https://deploy.workers.cloudflare.com/
- *   2. 用 GitHub 账号授权，选择本仓库（或手动粘贴本文件内容创建 Worker）
- *   3. 部署后得到域名 https://xxxx.workers.dev
- *   4. 在工具页面的"开启代理"输入框中粘贴该域名
+ *   1. 打开 https://dash.cloudflare.com/?to=/:account/workers/new
+ *   2. 新建 Worker，粘贴本代码，点 Deploy
+ *   3. 得到域名 https://xxxx.workers.dev
+ *   4. 在工具页面的"开启代理"弹窗中输入框粘贴该域名，点"保存并启用"
  */
+
+const HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+  'Referer': 'https://baike.baidu.com/',
+  'Accept': 'application/json, text/plain, */*'
+};
 
 export default {
   async fetch(request) {
-    // 仅允许 GET
     if (request.method !== 'GET') {
       return jsonResponse({ error: 'Method Not Allowed' }, 405);
     }
-
     const url = new URL(request.url);
     const target = url.searchParams.get('url');
     if (!target) {
       return jsonResponse({ error: '缺少 url 参数' }, 400);
     }
-
-    // 安全校验：只允许转发百度百科接口，防止被滥用为开放代理
     const allowList = [
       'https://baike.baidu.com/api/',
       'https://suggestion.baidu.com/su'
@@ -32,17 +37,14 @@ export default {
     if (!allowList.some(p => target.startsWith(p))) {
       return jsonResponse({ error: '目标地址不在白名单内' }, 403);
     }
-
     try {
-      const resp = await fetch(target, {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
-          'Referer': 'https://baike.baidu.com/',
-          'Accept': 'application/json, text/plain, */*'
-        }
-      });
+      // suggest 请求 → 合并完整同名词条列表
+      if (target.includes('/api/searchui/suggest')) {
+        return await handleSuggest(target);
+      }
+      // 其他白名单接口直接透传
+      const resp = await fetch(target, { headers: HEADERS });
       const body = await resp.text();
-      // 返回时带上 CORS 头，前端即可跨域读取
       return new Response(body, {
         status: resp.status,
         headers: {
@@ -57,12 +59,67 @@ export default {
   }
 };
 
+// 合并 suggest 结果与词条页 HTML 里的完整同名词条列表
+async function handleSuggest(target) {
+  const wd = new URL(target).searchParams.get('wd') || '';
+  let suggestList = [];
+  try {
+    const s = await fetch(target, { headers: HEADERS });
+    if (s.ok) {
+      const data = await s.json();
+      suggestList = data.list || [];
+    }
+  } catch (e) {}
+
+  let lemmas = [];
+  try {
+    const pageUrl = 'https://baike.baidu.com/item/' + encodeURIComponent(wd);
+    const p = await fetch(pageUrl, { headers: HEADERS });
+    if (p.ok) {
+      const html = await p.text();
+      const m = html.match(/"lemmas":(\[.*?\]),"categoryList"/);
+      if (m) {
+        lemmas = JSON.parse(m[1]);
+      }
+    }
+  } catch (e) {}
+
+  // 以 HTML lemmas 为准（完整），suggest 补充封面图
+  const map = new Map();
+  lemmas.forEach(l => {
+    if (!l || !l.lemmaId) return;
+    map.set(String(l.lemmaId), {
+      lemmaId: l.lemmaId,
+      lemmaTitle: l.lemmaTitle || wd,
+      lemmaDesc: l.lemmaDesc || '',
+      classify: Array.isArray(l.classify) ? l.classify : [],
+      abstractPic: ''
+    });
+  });
+  suggestList.forEach(s => {
+    if (!s || !s.lemmaId) return;
+    const key = String(s.lemmaId);
+    const ex = map.get(key);
+    if (ex) {
+      if (!ex.abstractPic && s.abstractPic) ex.abstractPic = s.abstractPic;
+    } else {
+      map.set(key, {
+        lemmaId: s.lemmaId,
+        lemmaTitle: s.lemmaTitle || wd,
+        lemmaDesc: s.lemmaDesc || '',
+        classify: [],
+        abstractPic: s.abstractPic || ''
+      });
+    }
+  });
+
+  const list = [...map.values()];
+  return jsonResponse({ word: wd, list: list });
+}
+
 function jsonResponse(obj, status) {
   return new Response(JSON.stringify(obj), {
     status: status,
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*'
-    }
+    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
   });
 }
