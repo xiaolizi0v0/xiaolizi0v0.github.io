@@ -4,7 +4,7 @@
  * 用途：百度百科的 searchui/suggest 接口（返回同名词条全列表）无 CORS 头，
  *      纯静态前端无法跨域调用。本 Worker 作为转发代理，加上 CORS 头返回给前端。
  *
- * 增强：searchui/suggest 接口本身返回不全（"迷墙"页面有 6 个同名词条，接口只返回 4 个），
+ * 增强：searchui/suggest 接口本身返回不全（"迷墙"页面有 6 个同名词条，接口只返回几个），
  *      因此额外抓取词条页 HTML，用正则提取完整的 lemmas 数组（含 classify 分类），合并返回。
  *
  * 部署方式：
@@ -62,9 +62,16 @@ export default {
 // 合并 suggest 结果与词条页 HTML 里的完整同名词条列表
 async function handleSuggest(target) {
   const wd = new URL(target).searchParams.get('wd') || '';
+
+  // URL 规范化：解码 search 参数让 fetch 重新编码，避免双重编码
+  const normalized = new URL(target);
+  for (const [k, v] of [...normalized.searchParams]) {
+    try { normalized.searchParams.set(k, decodeURIComponent(v)); } catch (e) {}
+  }
+
   let suggestList = [];
   try {
-    const s = await fetch(target, { headers: HEADERS });
+    const s = await fetch(normalized.toString(), { headers: HEADERS });
     if (s.ok) {
       const data = await s.json();
       suggestList = data.list || [];
@@ -77,9 +84,15 @@ async function handleSuggest(target) {
     const p = await fetch(pageUrl, { headers: HEADERS });
     if (p.ok) {
       const html = await p.text();
-      const m = html.match(/"lemmas":(\[.*?\]),"categoryList"/);
-      if (m) {
-        lemmas = JSON.parse(m[1]);
+      const patterns = [
+        /"lemmas":(\[.*?\]),"categoryList"/,
+        /"lemmas":(\[.*?\]),"navigation"/
+      ];
+      for (const p2 of patterns) {
+        const m = html.match(p2);
+        if (m) {
+          try { lemmas = JSON.parse(m[1]); break; } catch (e) {}
+        }
       }
     }
   } catch (e) {}
@@ -114,7 +127,11 @@ async function handleSuggest(target) {
   });
 
   const list = [...map.values()];
-  return jsonResponse({ word: wd, list: list });
+  return jsonResponse({
+    word: wd,
+    list: list,
+    debug: { suggestCount: suggestList.length, lemmasCount: lemmas.length, mergedCount: list.length }
+  });
 }
 
 function jsonResponse(obj, status) {
