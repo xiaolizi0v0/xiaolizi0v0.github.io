@@ -2912,5 +2912,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787332064189,
     "updatedAt": 1787332064189
+  },
+  {
+    "id": "baike-64630",
+    "title": "signal",
+    "year": "2016",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/signal/16700065",
+    "img": "https://bkimg.cdn.bcebos.com/pic/0d338744ebf81a4c510f59b2647d7759252dd42a080a?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "刑侦 悬疑 推理",
+    "platform": "",
+    "region": "日韩",
+    "sub_title": "",
+    "desc": "《Signal》（又名《信号》）是由韩国tvN有线电视台出品，金元锡导演，金恩熙编剧，李帝勋、金惠秀、赵震雄主演的犯罪悬疑剧。该剧是根据20世纪80年代震惊韩国的“华城连环杀人案”改编而来，讲述罪犯心理分析师朴海英，透过偶然拾获的旧式对讲机，联系上15年前作风独特的重案组刑警李材",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787332081518,
+    "updatedAt": 1787332081518
   }
 ]
