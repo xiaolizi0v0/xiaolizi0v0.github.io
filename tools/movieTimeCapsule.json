@@ -165,7 +165,8 @@
       },
       {
         "title": "第06集",
-        "url": "https://v.lzcdn27.com/20260811/15160_5f447e4e/2000k/hls/mixed.m3u8"
+        "url": "https://v.lzcdn27.com/20260811/15160_5f447e4e/2000k/hls/mixed.m3u8",
+        "watched": true
       },
       {
         "title": "第07集",
@@ -284,7 +285,7 @@
         "url": "https://v.lzcdn27.com/20260820/15684_39d05f87/2000k/hls/mixed.m3u8"
       }
     ],
-    "updatedAt": 1787314308135
+    "updatedAt": 1787317249734
   },
   {
     "id": "baike-33901924",
