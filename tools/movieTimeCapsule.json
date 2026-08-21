@@ -1610,5 +1610,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787330286595,
     "updatedAt": 1787330286595
+  },
+  {
+    "id": "baike-890425",
+    "title": "想见你",
+    "year": "2019",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E6%83%B3%E8%A7%81%E4%BD%A0/24179952",
+    "img": "https://bkimg.cdn.bcebos.com/pic/0ff41bd5ad6eddc4f8dc9ea836dbb6fd526633ad?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "爱情 悬疑 奇幻",
+    "platform": "爱奇艺",
+    "region": "港台",
+    "sub_title": "",
+    "desc": "《想见你》是由福斯传媒集团、三凤制作公司出品，简奇峰、林欣慧编剧，黄天仁执导，柯佳嬿、许光汉、施柏宇等主演的爱情悬疑奇幻剧。该剧讲述了分别在1998年和2019年的男女主人公们，通过一盘磁带穿梭时空，找寻彼此的爱情故事。该剧于2019年11月17日在中视首播，并在爱奇艺、腾讯视频",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787330297693,
+    "updatedAt": 1787330297693
   }
 ]
