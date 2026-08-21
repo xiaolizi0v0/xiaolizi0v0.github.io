@@ -2030,5 +2030,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787331070319,
     "updatedAt": 1787331070319
+  },
+  {
+    "id": "baike-2419",
+    "title": "老友记",
+    "year": "1994",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/2419/20332564.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/279759ee3d6d55fbb2fbf8a30c70584a20a4472377a1?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "喜剧",
+    "platform": "爱奇艺",
+    "region": "欧美",
+    "sub_title": "",
+    "desc": "《老友记》（Friends）是美国全国广播公司出品的系列情景喜剧，由大卫·克莱恩、玛尔塔·考夫曼担任主创，凯文·布赖特、Gary Halvorson、迈克尔·莱拜克等执导，詹妮弗·安妮斯顿、大卫·修蒙、柯特妮·考克斯、丽莎·库卓、马特·勒布朗和马修·派瑞主演。该剧讲述了居住在纽约",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787331076492,
+    "updatedAt": 1787331076492
   }
 ]
