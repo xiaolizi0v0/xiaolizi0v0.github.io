@@ -286,5 +286,26 @@
       }
     ],
     "updatedAt": 1787292714331
+  },
+  {
+    "id": "baike-33901924",
+    "title": "沧元图2",
+    "year": "2024",
+    "type": "anime",
+    "url": "http://baike.baidu.com/item/%E6%B2%A7%E5%85%83%E5%9B%BE2",
+    "img": "https://bkimg.cdn.bcebos.com/pic/b3119313b07eca8065389e812d7480dda144ad342507?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "动作 动画 奇幻",
+    "platform": "优酷",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《沧元图2》（Azure Legacy 2）是由张毅立执导，焦柄乾编剧，张磊、段艺璇、马斑马、姜广涛、孙睿扬等配音，优酷出品，天使文化、神漫文化联合出品的网络动画。该网络动画改编自阅文集团起点中文网作家我吃西红柿的同名小说。讲述了沧元界妖邪作乱，人族饱受摧残，主角孟川自小立下为母",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-21",
+    "timestamp": 1787302733371,
+    "updatedAt": 1787302733371
   }
 ]
