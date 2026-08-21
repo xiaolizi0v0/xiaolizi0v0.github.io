@@ -896,5 +896,26 @@
     "watchedDate": "2026-08-21",
     "timestamp": 1787327687767,
     "updatedAt": 1787327687767
+  },
+  {
+    "id": "baike-36477960",
+    "title": "李熊猫",
+    "year": "2026",
+    "type": "anime",
+    "url": "http://baike.baidu.com/item/%E6%9D%8E%E7%86%8A%E7%8C%AB/67649452",
+    "img": "https://bkimg.cdn.bcebos.com/pic/b3119313b07eca806538f7cbc27e80dda144ad3425d3?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "冒险 悬疑",
+    "platform": "爱奇艺",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《李熊猫》是2026年中国大陆冒险、悬疑类动画作品，由爱奇艺出品，爱奇艺高能工作室与上海花原文化传播有限公司（“洛水花原”）联合制作，改编自文舟创作的小说，由《苍兰诀》导演王昕打造，特邀《咒术回战》总作画监督西位辉实参与制作，并由齐璇、魏一凡、小连杀担任主要配音。作品于2026年",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-21",
+    "timestamp": 1787327725089,
+    "updatedAt": 1787327725089
   }
 ]
