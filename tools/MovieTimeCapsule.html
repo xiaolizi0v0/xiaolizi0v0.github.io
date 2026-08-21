@@ -1902,7 +1902,8 @@
         // 通过本地代理（JSONP 格式）调用百度 searchui/suggest，拿到同名词条全列表（card API 格式）
         async function searchBaiduViaProxy(keyword) {
             const proxy = localStorage.getItem('baike_proxy');
-            if (!proxy) return null;   // 未配置代理，返回 null 走原逻辑
+            const on = localStorage.getItem('baike_proxy_on') === '1';
+            if (!proxy || !on) return null;   // 未配置或已停用，返回 null 走原逻辑
             try {
                 const target = 'https://baike.baidu.com/api/searchui/suggest?wd=' + encodeURIComponent(keyword.trim());
                 const data = await jsonp(proxy + '?url=' + encodeURIComponent(target), 'callback', 60000);
@@ -2846,15 +2847,18 @@
 
         function updateProxyState() {
             const proxy = localStorage.getItem('baike_proxy');
+            const on = localStorage.getItem('baike_proxy_on') === '1';
             const el = document.getElementById('proxy-state');
             if (el) el.textContent = proxy
-                ? '同名词条搜索已开启（' + proxy + '）'
+                ? (on ? '同名词条搜索已开启（' + proxy + '）' : '同名词条搜索已停用（保留 ' + proxy + '）')
                 : '开启同名词条搜索（Cloudflare Worker）';
             const st = document.getElementById('proxy-status');
             if (st) {
                 st.innerHTML = proxy
-                    ? '<i class="fas fa-check-circle" style="color:var(--success-color)"></i> 已启用：<code>' + proxy + '</code>'
-                    : '<i class="fas fa-info-circle" style="color:var(--gray-500)"></i> 当前未启用';
+                    ? (on
+                        ? '<i class="fas fa-check-circle" style="color:var(--success-color)"></i> 已启用：<code>' + proxy + '</code>'
+                        : '<i class="fas fa-pause-circle" style="color:var(--gray-500)"></i> 已停用（地址保留：<code>' + proxy + '</code>）')
+                    : '<i class="fas fa-info-circle" style="color:var(--gray-500)"></i> 当前未配置';
             }
         }
 
@@ -2888,6 +2892,7 @@
                     // 代理已运行
                     document.getElementById('proxy-input').value = 'http://127.0.0.1:25100';
                     localStorage.setItem('baike_proxy', 'http://127.0.0.1:25100');
+                    localStorage.setItem('baike_proxy_on', '1');
                     updateProxyState();
                     closeProxyModal();
                     alert('本地代理已运行并已启用！\n\n现在搜索任意影视名，即可列出所有同名词条。');
@@ -2909,10 +2914,12 @@
             const v = document.getElementById('proxy-input').value.trim().replace(/\/+$/, '');
             if (v) {
                 localStorage.setItem('baike_proxy', v);
+                localStorage.setItem('baike_proxy_on', '1');
                 updateProxyState();
                 closeProxyModal();
             } else {
                 localStorage.removeItem('baike_proxy');
+                localStorage.removeItem('baike_proxy_on');
                 updateProxyState();
                 closeProxyModal();
             }
@@ -2934,10 +2941,10 @@
             );
         });
 
-        // 关闭代理
+        // 关闭代理（保留已填写的地址，仅停用）
         document.getElementById('proxy-off').addEventListener('click', () => {
-            if (confirm('确定关闭同名词条搜索代理吗？')) {
-                localStorage.removeItem('baike_proxy');
+            if (confirm('确定停用同名词条搜索代理吗？（已填写的地址会保留）')) {
+                localStorage.setItem('baike_proxy_on', '0');
                 updateProxyState();
                 closeProxyModal();
             }

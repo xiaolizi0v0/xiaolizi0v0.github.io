@@ -392,24 +392,45 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, '127.0.0.1', () => {
-  console.log('========================================');
-  console.log('  浏览器代理已启动 (无头 Chrome/Edge)');
-  console.log('  浏览器: ' + (BROWSER ? BROWSER : '未找到（请安装 Chrome/Edge）'));
-  console.log('  代理地址: http://127.0.0.1:' + PORT);
-  console.log('========================================');
-  console.log('  在博客页面输入框粘贴上述地址并保存启用');
-  console.log('  提示：保持本窗口开着，Ctrl+C 停止');
+// 启动前自动清理占用端口的残留进程（Windows：netstat + taskkill），避免 EADDRINUSE
+function killPortOccupier(port) {
+  return new Promise((resolve) => {
+    const { exec } = require('child_process');
+    exec('netstat -ano', (err, stdout) => {
+      if (err || !stdout) return resolve(false);
+      const lines = stdout.split(/\r?\n/).filter(l =>
+        l.includes('127.0.0.1:' + port) && /LISTENING/i.test(l));
+      if (!lines.length) return resolve(false);
+      const pids = [...new Set(lines.map(l => {
+        const m = l.trim().split(/\s+/);
+        return m[m.length - 1];
+      }).filter(p => p && p !== String(process.pid)))];
+      if (!pids.length) return resolve(false);
+      let done = 0;
+      pids.forEach(pid => {
+        exec('taskkill /F /PID ' + pid, () => { if (++done === pids.length) resolve(true); });
+      });
+    });
+  });
+}
+
+killPortOccupier(PORT).then(killed => {
+  if (killed) console.log('[清理] 已关闭占用端口 ' + PORT + ' 的残留代理进程');
+  server.listen(PORT, '127.0.0.1', () => {
+    console.log('========================================');
+    console.log('  浏览器代理已启动 (无头 Chrome/Edge)');
+    console.log('  浏览器: ' + (BROWSER ? BROWSER : '未找到（请安装 Chrome/Edge）'));
+    console.log('  代理地址: http://127.0.0.1:' + PORT);
+    console.log('========================================');
+    console.log('  在博客页面输入框粘贴上述地址并保存启用');
+    console.log('  提示：保持本窗口开着，Ctrl+C 停止');
+  });
 });
 // 端口被占用时给出友好提示，而不是直接崩溃
 server.on('error', (e) => {
   if (e.code === 'EADDRINUSE') {
-    console.error('\n[错误] 端口 ' + PORT + ' 已被占用！');
-    console.error('可能是之前的代理进程还在运行。解决办法：');
-    console.error('  1. 关闭旧的代理窗口');
-    console.error('  2. 或在命令行执行：  taskkill /F /PID ' + (process.pid));
-    console.error('  3. 或重启电脑后重新双击 start-proxy.bat');
-    console.error('也可直接使用当前已运行的代理（无需重复启动）。');
+    console.error('\n[错误] 端口 ' + PORT + ' 已被占用且自动清理失败。');
+    console.error('请手动关闭旧的代理进程后重试。');
     process.exit(1);
   }
   throw e;
