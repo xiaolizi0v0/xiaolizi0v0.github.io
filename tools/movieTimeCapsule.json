@@ -641,5 +641,26 @@
     "watchedDate": "2026-08-21",
     "timestamp": 1787311967940,
     "updatedAt": 1787311967940
+  },
+  {
+    "id": "baike-32848998",
+    "title": "聪明镇",
+    "year": "2026",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E8%81%AA%E6%98%8E%E9%95%87/61274926",
+    "img": "https://bkimg.cdn.bcebos.com/pic/8cb1cb1349540923dd5410f6d005c609b3de9d82e3bc?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "剧情 恐怖",
+    "platform": "其他",
+    "region": "港台",
+    "sub_title": "",
+    "desc": "《聪明镇》（Bloody Smart），是由Viu（中国香港）发行，奇迹影业制作，谢骏毅执导，谢骏毅、余沛、郑雅岚担任编剧，梁咏琪、陈妍霏、许曦文、赵文瑄、天心等主演，于中国台湾制片的恐怖剧。该剧改编自伊藤润二的《富江》《双一》等漫画作品，讲述重考生赵佳琦与母亲何丽芬搬进升学率百",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-21",
+    "timestamp": 1787311981112,
+    "updatedAt": 1787311981112
   }
 ]
