@@ -2051,5 +2051,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787331076492,
     "updatedAt": 1787331076492
+  },
+  {
+    "id": "baike-2218150",
+    "title": "生命树",
+    "year": "2026",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E7%94%9F%E5%91%BD%E6%A0%91/56653372",
+    "img": "https://bkimg.cdn.bcebos.com/pic/0b46f21fbe096b63f624b1805f6f9044ebf81b4c0694?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "剧情",
+    "platform": "爱奇艺",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《生命树》是由中央广播电视总台、正午阳光、爱奇艺、中国电视剧制作中心出品、高满堂总策划，王三毛、磊子初稿编剧，肖意凡、黄凯文、李雪、赵烁、刘小溪编剧，李雪执导，赵烁担任分组导演，侯鸿亮任总制片人，赵子煜任制片人，杨紫领衔主演，胡歌特别出演，李光洁、张哲华领衔主演，梅婷、袁弘、杨烁",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787331097131,
+    "updatedAt": 1787331097131
   }
 ]
