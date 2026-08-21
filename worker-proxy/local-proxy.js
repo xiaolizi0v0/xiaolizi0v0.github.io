@@ -135,7 +135,7 @@ async function handleSuggest(wd) {
     }
   });
 
-  // 补全：对每个影视条目用无头浏览器抓详情页，从 og:image 拿封面
+  // 补全：对每个影视条目用无头浏览器抓详情页，提取封面(og:image)/完整简介(meta description)/完整词条名(title)
   // 串行 + 限制最多 MAX_FILL 个（避免开多个 chrome 实例卡死）
   const VIDEO_CLASS = /影视作品|电影|电视剧|动漫|动画|综艺|纪录片/;
   const MAX_FILL = 8;
@@ -146,8 +146,14 @@ async function handleSuggest(wd) {
       const html = await browserDump('https://baike.baidu.com/item/' + encodeURIComponent(it.lemmaTitle) + '/' + it.lemmaId);
       const ogM = html.match(/<meta property="og:image" content="([^"]+)"/);
       const imgM = html.match(/"image":"([^"]+)"/);
+      const descM = html.match(/<meta name="description" content="([^"]+)"/);
+      const titleM = html.match(/<title>([^<]*)_百度百科<\/title>/);
       const img = ogM ? ogM[1] : (imgM ? imgM[1] : '');
       if (img) it.abstractPic = img;
+      // 完整简介（去掉百科 title 尾巴）
+      if (descM && descM[1]) it.lemmaDesc = descM[1];
+      // 完整词条名（如"迷墙（英国1982年...电影）"）
+      if (titleM && titleM[1]) it.fullTitle = titleM[1].trim();
     } catch (e) {}
   }
 
@@ -180,19 +186,34 @@ const server = http.createServer(async (req, res) => {
   }
 
   try {
+    // 支持 JSONP：有 callback 参数则包装成 cb({...})，无则返回纯 JSON
+    const cb = url.searchParams.get('callback');
+    const sendJson = (obj, status) => {
+      res.writeHead(status || 200, { 'Content-Type': cb ? 'application/javascript; charset=utf-8' : 'application/json; charset=utf-8' });
+      const body = JSON.stringify(obj);
+      res.end(cb ? cb + '(' + body + ');' : body);
+    };
+
     if (target.includes('/api/searchui/suggest')) {
       const wd = new URL(target).searchParams.get('wd') || '';
       const result = await handleSuggest(wd);
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify(result));
+      // 兼容百度 JSONP 结构：result_code/message 外层包装
+      sendJson({ result_code: '1', message: '', ...result });
     } else {
       const body = await browserDump(target);
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(body);
+      if (cb) {
+        res.writeHead(200, { 'Content-Type': 'application/javascript; charset=utf-8' });
+        res.end(cb + '(' + JSON.stringify(body) + ');');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.end(body);
+      }
     }
   } catch (e) {
-    res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' });
-    res.end(JSON.stringify({ error: '代理请求失败: ' + e.message }));
+    const cb = url.searchParams.get('callback');
+    res.writeHead(502, { 'Content-Type': cb ? 'application/javascript; charset=utf-8' : 'application/json; charset=utf-8' });
+    const err = JSON.stringify({ error: '代理请求失败: ' + e.message });
+    res.end(cb ? cb + '(' + err + ');' : err);
   }
 });
 

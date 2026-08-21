@@ -1899,15 +1899,13 @@
             });
         }
 
-        // 通过本地代理调用百度 searchui/suggest 拿到同名词条全列表（封面等详情由代理补全）
+        // 通过本地代理（JSONP 格式）调用百度 searchui/suggest，拿到同名词条全列表
         async function searchBaiduViaProxy(keyword) {
             const proxy = localStorage.getItem('baike_proxy');
             if (!proxy) return null;   // 未配置代理，返回 null 走原逻辑
             try {
                 const target = 'https://baike.baidu.com/api/searchui/suggest?wd=' + encodeURIComponent(keyword.trim());
-                const res = await fetch(proxy + '?url=' + encodeURIComponent(target), { cache: 'no-store' });
-                if (!res.ok) return null;
-                const data = await res.json();
+                const data = await jsonp(proxy + '?url=' + encodeURIComponent(target), 'callback', 60000);
                 const items = (data && data.list) || [];
 
                 // classify 关键词判定影视
@@ -1934,7 +1932,8 @@
                     if (type === 'other') return null;
                     return {
                         id: 'baike-' + item.lemmaId,
-                        title: item.lemmaTitle,
+                        // 完整词条名优先（如"迷墙（英国1982年...电影）"），否则用基础名
+                        title: item.fullTitle || item.lemmaTitle,
                         year: extractYear(text),
                         type: type,
                         url: 'https://baike.baidu.com/item/' + encodeURIComponent(item.lemmaTitle) + '/' + item.lemmaId,
@@ -1943,7 +1942,7 @@
                         platform: '',
                         region: '',
                         sub_title: '',
-                        desc: text.trim().slice(0, 140)
+                        desc: (item.lemmaDesc || text).slice(0, 140)
                     };
                 }).filter(Boolean);
 
