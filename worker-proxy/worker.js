@@ -4,8 +4,7 @@
  * 用途：百度百科的 searchui/suggest 接口（返回同名词条全列表）无 CORS 头，
  *      纯静态前端无法跨域调用。本 Worker 作为转发代理，加上 CORS 头返回给前端。
  *
- * 增强：searchui/suggest 接口本身返回不全（"迷墙"页面有 6 个同名词条，接口只返回几个），
- *      因此额外抓取词条页 HTML，用正则提取完整的 lemmas 数组（含 classify 分类），合并返回。
+ * 增强：searchui/suggest 接口本身返回不全，额外抓取词条页 HTML 提取完整 lemmas 数组。
  *
  * 部署方式：
  *   1. 打开 https://dash.cloudflare.com/?to=/:account/workers/new
@@ -15,9 +14,14 @@
  */
 
 const HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+  'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+  'Accept-Encoding': 'gzip, deflate, br',
+  'Cache-Control': 'no-cache',
+  'Connection': 'keep-alive',
   'Referer': 'https://baike.baidu.com/',
-  'Accept': 'application/json, text/plain, */*'
+  'Upgrade-Insecure-Requests': '1'
 };
 
 export default {
@@ -79,11 +83,15 @@ async function handleSuggest(target) {
   } catch (e) {}
 
   let lemmas = [];
+  let pageInfo = { status: 0, size: 0, hasLemmas: false };
   try {
-    const pageUrl = 'https://baike.baidu.com/item/' + encodeURIComponent(wd);
+    const pageUrl = 'https://baike.baidu.com/item/' + (encodeURIComponent(wd));
     const p = await fetch(pageUrl, { headers: HEADERS });
+    pageInfo.status = p.status;
     if (p.ok) {
       const html = await p.text();
+      pageInfo.size = html.length;
+      pageInfo.hasLemmas = html.includes('lemmas');
       const patterns = [
         /"lemmas":(\[.*?\]),"categoryList"/,
         /"lemmas":(\[.*?\]),"navigation"/
@@ -95,7 +103,7 @@ async function handleSuggest(target) {
         }
       }
     }
-  } catch (e) {}
+  } catch (e) { pageInfo.error = e.message; }
 
   // 以 HTML lemmas 为准（完整），suggest 补充封面图
   const map = new Map();
@@ -130,7 +138,7 @@ async function handleSuggest(target) {
   return jsonResponse({
     word: wd,
     list: list,
-    debug: { suggestCount: suggestList.length, lemmasCount: lemmas.length, mergedCount: list.length }
+    debug: { suggestCount: suggestList.length, lemmasCount: lemmas.length, mergedCount: list.length, page: pageInfo }
   });
 }
 
