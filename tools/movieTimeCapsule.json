@@ -3501,17 +3501,19 @@
     "eps": [
       {
         "title": "20260820选歌组队上",
-        "url": "https://v.lzcdn28.com/20260820/14581_450d6ce8/2000k/hls/mixed.m3u8"
+        "url": "https://v.lzcdn28.com/20260820/14581_450d6ce8/2000k/hls/mixed.m3u8",
+        "watched": true
       },
       {
         "title": "20260820选歌组队下",
-        "url": "https://v.lzcdn28.com/20260820/14580_452d8fa9/2000k/hls/mixed.m3u8"
+        "url": "https://v.lzcdn28.com/20260820/14580_452d8fa9/2000k/hls/mixed.m3u8",
+        "watched": true
       },
       {
         "title": "20260821一公挑战赛上",
         "url": "https://v.lzcdn28.com/20260821/14656_23e73826/2000k/hls/mixed.m3u8"
       }
     ],
-    "updatedAt": 1787334085046
+    "updatedAt": 1787334653456
   }
 ]
