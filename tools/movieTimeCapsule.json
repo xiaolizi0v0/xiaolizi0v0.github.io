@@ -1652,5 +1652,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787330316049,
     "updatedAt": 1787330316049
+  },
+  {
+    "id": "manual-1787330499124",
+    "title": "棋魂",
+    "year": "",
+    "type": "tv",
+    "url": "",
+    "img": "",
+    "genre": "",
+    "platform": "",
+    "region": "",
+    "sub_title": "",
+    "desc": "",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787330499124,
+    "updatedAt": 1787330499124
   }
 ]
