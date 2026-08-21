@@ -1537,6 +1537,26 @@
         </div>
     </div>
 
+    <!-- Cloudflare Worker 代理配置弹窗 -->
+    <div class="modal-overlay hidden" id="proxy-modal">
+        <div class="modal" style="max-width: 460px; height: auto;">
+            <button class="modal-close" id="proxy-close" title="关闭"><i class="fas fa-times"></i></button>
+            <div style="padding: 1.4rem 1.4rem 1.2rem;">
+                <h2 class="modal-title" style="font-size: 1.15rem; margin-bottom: 0.5rem;">同名词条搜索代理</h2>
+                <div class="modal-meta" style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.9rem;">
+                    启用后，搜索一个名称即可列出所有同名影视词条（如"英雄"→ 电视剧/电影/动漫）。<br>
+                    这需要部署一个 Cloudflare Worker 作为跨域代理，仅需浏览器操作，无需安装任何工具。
+                </div>
+                <div class="play-tip" id="proxy-status" style="margin-bottom: 0.9rem; padding: 0.5rem 0.7rem; background: var(--ds-bg-surface-1); border-radius: 8px;"></div>
+                <div class="modal-actions" style="flex-direction: column; align-items: stretch; gap: 0.6rem; padding-top: 0.6rem;">
+                    <button class="card-btn" id="proxy-set"><i class="fas fa-paste"></i> 我已部署，粘贴域名启用</button>
+                    <button class="card-btn" id="proxy-deploy"><i class="fas fa-cloud-upload-alt"></i> 复制代码，去 Cloudflare 部署</button>
+                    <button class="card-btn danger" id="proxy-off"><i class="fas fa-power-off"></i> 关闭代理</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
@@ -2847,46 +2867,63 @@ function jsonResponse(obj, status) {
             if (el) el.textContent = proxy
                 ? '同名词条搜索已开启（' + proxy + '）'
                 : '开启同名词条搜索（Cloudflare Worker）';
+            const st = document.getElementById('proxy-status');
+            if (st) {
+                st.innerHTML = proxy
+                    ? '<i class="fas fa-check-circle" style="color:var(--success-color)"></i> 已启用：<code>' + proxy + '</code>'
+                    : '<i class="fas fa-info-circle" style="color:var(--gray-500)"></i> 当前未启用';
+            }
         }
 
-        document.getElementById('proxy-btn').addEventListener('click', () => {
-            const existing = localStorage.getItem('baike_proxy');
-            if (existing && !confirm('同名词条搜索已开启：' + existing + '\n\n点击"确定"重新配置，点击"取消"关闭代理。')) {
-                localStorage.removeItem('baike_proxy');
-                updateProxyState();
-                return;
-            }
-            const action = prompt(
-                '请选择操作：\n\n'
-                + '1 = 我已部署好 Worker，直接粘贴域名\n'
-                + '2 = 帮我复制 Worker 代码，我去 Cloudflare 部署\n\n'
-                + '（输入 1 或 2）',
-                '1'
+        function openProxyModal() {
+            updateProxyState();
+            document.getElementById('proxy-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeProxyModal() {
+            document.getElementById('proxy-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('proxy-btn').addEventListener('click', openProxyModal);
+        document.getElementById('proxy-close').addEventListener('click', closeProxyModal);
+        document.getElementById('proxy-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeProxyModal();
+        });
+
+        // 粘贴域名启用
+        document.getElementById('proxy-set').addEventListener('click', () => {
+            const existing = localStorage.getItem('baike_proxy') || '';
+            const input = prompt(
+                '粘贴你的 Cloudflare Worker 域名（如 https://xxx.workers.dev），即可开启"一个输入搜出所有同名词条"。\n\n留空并确定 = 关闭代理。',
+                existing
             );
-            if (action === null) return;
-            if (action.trim() === '2') {
-                // 复制代码 + 打开新建页
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(WORKER_CODE).then(() => {
-                        window.open('https://dash.cloudflare.com/?to=/:account/workers/new', '_blank');
-                        alert('Worker 代码已复制到剪贴板！\n\n接下来：\n1. 打开的新页面里新建 Worker\n2. 粘贴代码（Ctrl+V）\n3. 点 Deploy 部署\n4. 回到本页点"开启同名词条搜索"，输入 1 并粘贴你的 xxx.workers.dev 域名');
-                    }).catch(() => {
-                        alert('复制失败，请手动复制。' + '\n\n代码可在仓库 worker-proxy/worker.js 里查看。');
-                    });
-                } else {
+            if (input === null) return;
+            const v = input.trim().replace(/\/+$/, '');
+            if (v) localStorage.setItem('baike_proxy', v);
+            else localStorage.removeItem('baike_proxy');
+            updateProxyState();
+        });
+
+        // 复制代码去 Cloudflare 部署
+        document.getElementById('proxy-deploy').addEventListener('click', () => {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(WORKER_CODE).then(() => {
                     window.open('https://dash.cloudflare.com/?to=/:account/workers/new', '_blank');
-                    alert('请到仓库 worker-proxy/worker.js 复制代码，到 Cloudflare 新建 Worker 粘贴部署。');
-                }
+                    alert('Worker 代码已复制到剪贴板！\n\n接下来：\n1. 打开的新页面里新建 Worker\n2. 粘贴代码（Ctrl+V）\n3. 点 Deploy 部署\n4. 回到本页点"开启同名词条搜索"→"我已部署，粘贴域名启用"');
+                }).catch(() => {
+                    alert('复制失败，请到仓库 worker-proxy/worker.js 手动复制。');
+                });
             } else {
-                // 粘贴域名
-                const input = prompt(
-                    '粘贴你的 Cloudflare Worker 域名（如 https://xxx.workers.dev），即可开启"一个输入搜出所有同名词条"。\n\n留空并确定 = 关闭代理。',
-                    existing || ''
-                );
-                if (input === null) return;
-                const v = input.trim().replace(/\/+$/, '');
-                if (v) localStorage.setItem('baike_proxy', v);
-                else localStorage.removeItem('baike_proxy');
+                window.open('https://dash.cloudflare.com/?to=/:account/workers/new', '_blank');
+                alert('请到仓库 worker-proxy/worker.js 复制代码，到 Cloudflare 新建 Worker 粘贴部署。');
+            }
+        });
+
+        // 关闭代理
+        document.getElementById('proxy-off').addEventListener('click', () => {
+            if (confirm('确定关闭同名词条搜索代理吗？')) {
+                localStorage.removeItem('baike_proxy');
                 updateProxyState();
             }
         });
