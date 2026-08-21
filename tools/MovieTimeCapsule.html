@@ -1233,6 +1233,29 @@
             opacity: 1;
         }
 
+        /* 已看过标记 */
+        .ep-btn.watched {
+            border-color: var(--success-color);
+            background: rgba(60, 179, 113, .12);
+            color: var(--success-color);
+        }
+
+        .ep-btn.watched .ep-check {
+            opacity: 1;
+            color: var(--success-color);
+        }
+
+        .ep-check {
+            font-size: 0.7rem;
+            margin-left: 0.25rem;
+            opacity: .4;
+        }
+
+        .ep-check:hover {
+            opacity: 1;
+            color: var(--ds-brand);
+        }
+
         .video-player {
             width: 100%;
             height: 100%;
@@ -2104,14 +2127,25 @@
 
             eps.forEach((ep, idx) => {
                 const b = document.createElement('button');
-                b.className = 'ep-btn' + (idx === 0 ? ' active' : '');
-                b.innerHTML = `<span>${ep.title}</span><i class="fas fa-pencil-alt ep-edit" title="修改视频地址"></i>`;
+                b.className = 'ep-btn' + (idx === 0 ? ' active' : '') + (ep.watched ? ' watched' : '');
+                const checkIcon = ep.watched
+                    ? '<i class="fas fa-check-circle ep-check" title="已看过，点击取消"></i>'
+                    : '<i class="fas fa-circle ep-check" title="标记为已看过"></i>';
+                b.innerHTML = `<span>${ep.title}</span>${checkIcon}<i class="fas fa-pencil-alt ep-edit" title="修改视频地址"></i>`;
                 b.addEventListener('click', (e) => {
                     if (e.target.classList.contains('ep-edit')) {
                         editingEpIndex = idx;
                         document.getElementById('ep-title').value = ep.title;
                         document.getElementById('ep-url').value = ep.url;
                         document.getElementById('ep-form').classList.remove('hidden');
+                        return;
+                    }
+                    if (e.target.classList.contains('ep-check')) {
+                        // 标记/取消已看过
+                        ep.watched = !ep.watched;
+                        playData.updatedAt = Date.now();
+                        saveRecords(records);   // 写本地并自动同步仓库
+                        buildPlayPanel(playData);
                         return;
                     }
                     epContainer.querySelectorAll('.ep-btn').forEach(x => x.classList.remove('active'));
@@ -2149,12 +2183,23 @@
                             // Shaka 失败降级 hls.js
                             fallbackHls(v, url);
                         });
-                        // 致命错误自动恢复
+                        // 致命错误自动恢复：记住进度 seek 回去，限制重载次数避免从头播
+                        let shakaRetry = 0;
                         player.addEventListener('error', (e) => {
                             const data = e.detail || {};
-                            if (data.severity === shaka.util.Error.Severity.CRITICAL) {
-                                player.load(url).then(() => v.play().catch(() => {}));
-                            }
+                            if (data.severity !== shaka.util.Error.Severity.CRITICAL) return;
+                            if (shakaRetry >= 2) { player.destroy(); return; }
+                            shakaRetry++;
+                            const resumeTime = v.currentTime || 0;
+                            player.load(url).then(() => {
+                                // 重载后会从头，把进度恢复到出错前
+                                if (resumeTime > 1 && v.duration && resumeTime < v.duration) {
+                                    v.currentTime = resumeTime;
+                                }
+                                v.play().catch(() => {});
+                            }).catch(() => {
+                                fallbackHls(v, url);
+                            });
                         });
                         return;
                     } catch (e) {
@@ -2291,7 +2336,8 @@
             if (!playData.eps) playData.eps = [];
             const isEdit = editingEpIndex >= 0;
             if (isEdit) {
-                playData.eps[editingEpIndex] = { title, url };
+                // 保留原有的 watched 标记
+                playData.eps[editingEpIndex] = Object.assign({}, playData.eps[editingEpIndex], { title, url });
             } else {
                 playData.eps.push({ title, url });
             }
