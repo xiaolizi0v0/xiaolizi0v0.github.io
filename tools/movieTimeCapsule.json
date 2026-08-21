@@ -1232,5 +1232,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787329813647,
     "updatedAt": 1787329813647
+  },
+  {
+    "id": "baike-3767",
+    "title": "武林外传",
+    "year": "2006",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/3767/5165423.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/3b292df5e0fe9925bc310a221efd49df8db1cb13db3e?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "喜剧 武侠 古装",
+    "platform": "爱奇艺",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《武林外传》是由北京联盟影业投资有限公司出品，宁财神编剧，尚敬执导，闫妮、姚晨、倪虹洁、沙溢、喻恩泰、姜超、王莎莎等人主演的古装武侠喜剧。该剧讲述了七侠镇同福客栈里一群性格迥异的年轻人，在嬉笑怒骂中共同成长的故事。该剧于2006年1月2日在央视八套播出；该剧平均收视率过5%，首日",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787329826164,
+    "updatedAt": 1787329826164
   }
 ]
