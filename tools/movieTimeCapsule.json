@@ -1484,5 +1484,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787330046916,
     "updatedAt": 1787330046916
+  },
+  {
+    "id": "baike-1286491",
+    "title": "庆余年",
+    "year": "2019",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E5%BA%86%E4%BD%99%E5%B9%B4/18023915",
+    "img": "https://bkimg.cdn.bcebos.com/pic/ac345982b2b7d0a20cf4875c6ab761094b36adaf2ce3?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "古装",
+    "platform": "腾讯",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《庆余年》是由腾讯影业与新丽电视联合承制，天津深蓝影视传媒有限公司、上海阅文影视文化传播有限公司、华娱时代影业投资（北京）股份有限公司、上海数龙科技有限公司、海南广播电视总台、海南电广传媒影视有限公司共同打造，孙皓执导，王倦与猫腻担任编剧，张若昀、李沁领衔主演，陈道明、吴刚特别主",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787330088245,
+    "updatedAt": 1787330088245
   }
 ]
