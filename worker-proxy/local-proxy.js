@@ -367,3 +367,16 @@ server.listen(PORT, '127.0.0.1', () => {
   console.log('  在博客页面输入框粘贴上述地址并保存启用');
   console.log('  提示：保持本窗口开着，Ctrl+C 停止');
 });
+// 端口被占用时给出友好提示，而不是直接崩溃
+server.on('error', (e) => {
+  if (e.code === 'EADDRINUSE') {
+    console.error('\n[错误] 端口 ' + PORT + ' 已被占用！');
+    console.error('可能是之前的代理进程还在运行。解决办法：');
+    console.error('  1. 关闭旧的代理窗口');
+    console.error('  2. 或在命令行执行：  taskkill /F /PID ' + (process.pid));
+    console.error('  3. 或重启电脑后重新双击 start-proxy.bat');
+    console.error('也可直接使用当前已运行的代理（无需重复启动）。');
+    process.exit(1);
+  }
+  throw e;
+});

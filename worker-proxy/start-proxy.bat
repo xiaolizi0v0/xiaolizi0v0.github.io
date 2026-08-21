@@ -19,6 +19,13 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+rem 清理占用 25100 端口的残留代理进程，避免 EADDRINUSE
+for /f "tokens=5" %%p in ('netstat -ano ^| findstr "127.0.0.1:25100" ^| findstr "LISTENING"') do (
+    echo [清理] 关闭残留的代理进程 (PID %%p) ...
+    taskkill /F /PID %%p >nul 2>nul
+)
+timeout /t 1 /nobreak >nul
+
 echo 正在启动本地代理 (127.0.0.1:25100) ...
 echo 请保持本窗口开着，关闭即停止代理。
 echo 代理地址：http://127.0.0.1:25100
