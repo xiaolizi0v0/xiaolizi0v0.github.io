@@ -1545,15 +1545,17 @@
                 <h2 class="modal-title" style="font-size: 1.15rem; margin-bottom: 0.5rem;">同名词条搜索代理</h2>
                 <div class="modal-meta" style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.9rem;">
                     启用后，搜索一个名称即可列出所有同名影视词条（如"英雄"→ 电视剧/电影/动漫）。<br>
-                    这需要部署一个 Cloudflare Worker 作为跨域代理，仅需浏览器操作，无需安装任何工具。
+                    推荐使用<b>本地代理</b>（仓库 <code>worker-proxy/local-proxy.js</code>，运行 <code>node local-proxy.js</code>），
+                    地址填 <code>http://127.0.0.1:25100</code>。
                 </div>
                 <div class="play-tip" id="proxy-status" style="margin-bottom: 0.9rem; padding: 0.5rem 0.7rem; background: var(--ds-bg-surface-1); border-radius: 8px;"></div>
                 <label style="display:block;font-size:0.82rem;color:var(--gray-500);margin-bottom:0.35rem;">Cloudflare Worker 域名</label>
                 <input type="text" id="proxy-input" placeholder="https://xxx.workers.dev" autocomplete="off"
                     style="width:100%;padding:0.55rem 0.8rem;background:var(--ds-bg-page);border:1px solid var(--ds-border-subtle);border-radius:8px;color:var(--ds-text-primary);font-size:0.9rem;font-family:var(--ds-font-sans);">
                 <div class="modal-actions" style="flex-direction: column; align-items: stretch; gap: 0.6rem; padding-top: 0.8rem;">
+                    <button class="card-btn" id="proxy-start"><i class="fas fa-play"></i> 一键启动本地代理</button>
                     <button class="card-btn" id="proxy-set"><i class="fas fa-paste"></i> 保存并启用</button>
-                    <button class="card-btn" id="proxy-deploy"><i class="fas fa-cloud-upload-alt"></i> 复制代码，去 Cloudflare 部署</button>
+                    <button class="card-btn" id="proxy-deploy"><i class="fas fa-terminal"></i> 查看本地代理使用说明</button>
                     <button class="card-btn danger" id="proxy-off"><i class="fas fa-power-off"></i> 关闭代理</button>
                 </div>
             </div>
@@ -2833,148 +2835,6 @@
         // ========== Cloudflare Worker 代理配置 ==========
         // 说明：api.cloudflare.com 拒绝浏览器跨域（无 CORS 头），无法前端直接部署。
         // 因此提供"复制代码 + 打开新建页手动部署"的流程，部署后粘贴域名启用。
-        const WORKER_CODE = `/**
- * 百度百科同名词条搜索代理（完整版）
- * 1. 转发白名单内的百度接口，加 CORS 头
- * 2. 对 suggest 请求：额外抓取词条页 HTML，提取完整同名词条列表（searchui/suggest 接口本身返回不全）
- * 部署：Cloudflare 控制台 → Workers & Pages → Create → 粘贴本代码 → Deploy
- */
-const HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-  'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
-  'Accept-Encoding': 'gzip, deflate, br',
-  'Cache-Control': 'no-cache',
-  'Connection': 'keep-alive',
-  'Referer': 'https://baike.baidu.com/',
-  'Upgrade-Insecure-Requests': '1'
-};
-
-export default {
-  async fetch(request) {
-    if (request.method !== 'GET') {
-      return jsonResponse({ error: 'Method Not Allowed' }, 405);
-    }
-    const url = new URL(request.url);
-    const target = url.searchParams.get('url');
-    if (!target) {
-      return jsonResponse({ error: '缺少 url 参数' }, 400);
-    }
-    const allowList = [
-      'https://baike.baidu.com/api/',
-      'https://suggestion.baidu.com/su'
-    ];
-    if (!allowList.some(p => target.startsWith(p))) {
-      return jsonResponse({ error: '目标地址不在白名单内' }, 403);
-    }
-    try {
-      // suggest 请求 → 合并完整同名词条列表
-      if (target.includes('/api/searchui/suggest')) {
-        return await handleSuggest(target);
-      }
-      // 其他白名单接口直接透传
-      const resp = await fetch(target, { headers: HEADERS });
-      const body = await resp.text();
-      return new Response(body, {
-        status: resp.status,
-        headers: {
-          'Content-Type': resp.headers.get('Content-Type') || 'application/json; charset=utf-8',
-          'Access-Control-Allow-Origin': '*',
-          'Cache-Control': 'no-store'
-        }
-      });
-    } catch (e) {
-      return jsonResponse({ error: '代理请求失败: ' + e.message }, 502);
-    }
-  }
-};
-
-// 合并 suggest 结果与词条页 HTML 里的完整同名词条列表
-async function handleSuggest(target) {
-  const wd = new URL(target).searchParams.get('wd') || '';
-
-  // URL 规范化：解码 search 参数让 fetch 重新编码，避免双重编码
-  const normalized = new URL(target);
-  for (const [k, v] of [...normalized.searchParams]) {
-    try { normalized.searchParams.set(k, decodeURIComponent(v)); } catch (e) {}
-  }
-
-  let suggestList = [];
-  try {
-    const s = await fetch(normalized.toString(), { headers: HEADERS });
-    if (s.ok) {
-      const data = await s.json();
-      suggestList = data.list || [];
-    }
-  } catch (e) {}
-
-  let lemmas = [];
-  let pageInfo = { status: 0, size: 0, hasLemmas: false };
-  try {
-    const pageUrl = 'https://baike.baidu.com/item/' + (encodeURIComponent(wd));
-    const p = await fetch(pageUrl, { headers: HEADERS });
-    pageInfo.status = p.status;
-    if (p.ok) {
-      const html = await p.text();
-      pageInfo.size = html.length;
-      pageInfo.hasLemmas = html.includes('lemmas');
-      // 兼容多种 lemmas 边界
-      const patterns = [
-        /"lemmas":(\[.*?\]),"categoryList"/,
-        /"lemmas":(\[.*?\]),"navigation"/
-      ];
-      for (const p2 of patterns) {
-        const m = html.match(p2);
-        if (m) {
-          try { lemmas = JSON.parse(m[1]); break; } catch (e) {}
-        }
-      }
-    }
-  } catch (e) { pageInfo.error = e.message; }
-
-  // 以 HTML lemmas 为准（完整），suggest 补充封面图
-  const map = new Map();
-  lemmas.forEach(l => {
-    if (!l || !l.lemmaId) return;
-    map.set(String(l.lemmaId), {
-      lemmaId: l.lemmaId,
-      lemmaTitle: l.lemmaTitle || wd,
-      lemmaDesc: l.lemmaDesc || '',
-      classify: Array.isArray(l.classify) ? l.classify : [],
-      abstractPic: ''
-    });
-  });
-  suggestList.forEach(s => {
-    if (!s || !s.lemmaId) return;
-    const key = String(s.lemmaId);
-    const ex = map.get(key);
-    if (ex) {
-      if (!ex.abstractPic && s.abstractPic) ex.abstractPic = s.abstractPic;
-    } else {
-      map.set(key, {
-        lemmaId: s.lemmaId,
-        lemmaTitle: s.lemmaTitle || wd,
-        lemmaDesc: s.lemmaDesc || '',
-        classify: [],
-        abstractPic: s.abstractPic || ''
-      });
-    }
-  });
-
-  const list = [...map.values()];
-  return jsonResponse({
-    word: wd,
-    list: list,
-    debug: { suggestCount: suggestList.length, lemmasCount: lemmas.length, mergedCount: list.length, page: pageInfo }
-  });
-}
-
-function jsonResponse(obj, status) {
-  return new Response(JSON.stringify(obj), {
-    status: status,
-    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
-  });
-}`;
 
         function updateProxyState() {
             const proxy = localStorage.getItem('baike_proxy');
@@ -3008,6 +2868,34 @@ function jsonResponse(obj, status) {
             if (e.target === e.currentTarget) closeProxyModal();
         });
 
+        // 一键启动本地代理：检测是否已运行，未运行则引导双击脚本
+        document.getElementById('proxy-start').addEventListener('click', async () => {
+            const btn = document.getElementById('proxy-start');
+            const old = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 检测中...';
+            try {
+                const res = await fetch('http://127.0.0.1:25100/?url=' + encodeURIComponent('https://baike.baidu.com/api/searchui/suggest?wd=test'), { cache: 'no-store' });
+                if (res.ok) {
+                    // 代理已运行
+                    document.getElementById('proxy-input').value = 'http://127.0.0.1:25100';
+                    localStorage.setItem('baike_proxy', 'http://127.0.0.1:25100');
+                    updateProxyState();
+                    closeProxyModal();
+                    alert('本地代理已运行并已启用！\n\n现在搜索任意影视名，即可列出所有同名词条。');
+                } else {
+                    document.getElementById('proxy-input').value = 'http://127.0.0.1:25100';
+                    alert('本地代理未运行。\n\n请双击仓库 worker-proxy 目录下的启动脚本：\n  Windows: start-proxy.bat\n  macOS/Linux: start-proxy.sh\n\n（需先安装 Node.js）\n\n代理启动后，在下方输入框填入 http://127.0.0.1:25100 并点"保存并启用"。');
+                }
+            } catch (e) {
+                document.getElementById('proxy-input').value = 'http://127.0.0.1:25100';
+                alert('本地代理未运行。\n\n请双击仓库 worker-proxy 目录下的启动脚本：\n  Windows: start-proxy.bat\n  macOS/Linux: start-proxy.sh\n\n（需先安装 Node.js）\n\n代理启动后，在下方输入框填入 http://127.0.0.1:25100 并点"保存并启用"。');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = old;
+            }
+        });
+
         // 保存并启用（读取输入框，留空则关闭）
         document.getElementById('proxy-set').addEventListener('click', () => {
             const v = document.getElementById('proxy-input').value.trim().replace(/\/+$/, '');
@@ -3022,19 +2910,20 @@ function jsonResponse(obj, status) {
             }
         });
 
-        // 复制代码去 Cloudflare 部署
+        // 本地代理使用说明
         document.getElementById('proxy-deploy').addEventListener('click', () => {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(WORKER_CODE).then(() => {
-                    window.open('https://dash.cloudflare.com/?to=/:account/workers/new', '_blank');
-                    alert('Worker 代码已复制到剪贴板！\n\n接下来：\n1. 打开的新页面里新建 Worker\n2. 粘贴代码（Ctrl+V）\n3. 点 Deploy 部署\n4. 回到本页粘贴你的 xxx.workers.dev 域名并点"保存并启用"');
-                }).catch(() => {
-                    alert('复制失败，请到仓库 worker-proxy/worker.js 手动复制。');
-                });
-            } else {
-                window.open('https://dash.cloudflare.com/?to=/:account/workers/new', '_blank');
-                alert('请到仓库 worker-proxy/worker.js 复制代码，到 Cloudflare 新建 Worker 粘贴部署。');
-            }
+            alert(
+                '本地代理使用步骤：\n\n'
+                + '1. 电脑需安装 Node.js（https://nodejs.org）\n\n'
+                + '2. 打开终端/命令提示符，进入目录：\n'
+                + '   worker-proxy/\n\n'
+                + '3. 运行：\n'
+                + '   node local-proxy.js\n\n'
+                + '4. 看到"本地代理已启动"后，保持窗口开着\n\n'
+                + '5. 回到本页，在域名输入框粘贴：\n'
+                + '   http://127.0.0.1:25100\n\n'
+                + '6. 点"保存并启用"即可'
+            );
         });
 
         // 关闭代理
