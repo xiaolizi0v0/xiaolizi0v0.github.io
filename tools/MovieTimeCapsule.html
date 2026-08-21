@@ -184,13 +184,30 @@
             flex-wrap: wrap;
         }
 
-        /* 题材可能很多：横向滚动保持紧凑 */
+        /* 题材可能很多：3 行 × 12 列网格，超出向下滚动 */
         #genre-tabs {
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            padding-bottom: 0.3rem;
-            max-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 0.4rem;
+            max-height: calc(3 * 36px + 2 * 0.5rem + 0.4rem);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0.2rem 0.3rem 0.4rem 0;
             scrollbar-width: thin;
+        }
+
+        #genre-tabs .filter-tab {
+            width: 100%;
+            text-align: center;
+            padding: 0.3rem 0.3rem;
+            font-size: 0.78rem;
+        }
+
+        @media (max-width: 1100px) {
+            #genre-tabs { grid-template-columns: repeat(8, 1fr); }
+        }
+        @media (max-width: 768px) {
+            #genre-tabs { grid-template-columns: repeat(5, 1fr); }
         }
 
         .filter-tab {
