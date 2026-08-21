@@ -2765,5 +2765,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787331900291,
     "updatedAt": 1787331900291
+  },
+  {
+    "id": "baike-11229",
+    "title": "神雕侠侣",
+    "year": "2014",
+    "type": "tv",
+    "url": "http://baike.baidu.com/view/11229.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/bd315c6034a85edf8db1525fa20e1e23dd54564edf0e?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "武侠",
+    "platform": "腾讯",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《神雕侠侣》是由华夏视听环球传媒（北京）股份有限公司出品，李慧珠执导，于正编剧，陈晓、陈妍希领衔主演，张馨予、张永刚、张哲瀚、陈翔、邓莎等联合主演的古装武侠剧。该剧改编自金庸创作的小说《神雕侠侣》，讲述了南宋末年，杨过和小龙女经历的凄美爱情与江湖恩怨的故事。该剧于2014年12月",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787331912614,
+    "updatedAt": 1787331912614
   }
 ]
