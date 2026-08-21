@@ -2484,7 +2484,7 @@
             return records.filter(r => {
                 if (currentCat !== 'all' && (r.type || '') !== currentCat) return false;
                 if (currentGenre && currentGenre !== '') {
-                    const g = (r.genre || '').split(/\s+/).filter(Boolean);
+                    const g = (r.genre || '').split(/[\s、，,]+/).filter(Boolean);
                     if (!g.includes(currentGenre)) return false;
                 }
                 if (currentPlatform && currentPlatform !== '') {
@@ -2507,7 +2507,7 @@
 
         // 题材筛选（动态生成，含所有记录中出现过的题材）
         function renderGenreTabs() {
-            const genres = [...new Set(records.flatMap(r => (r.genre || '').split(/\s+/).filter(Boolean)))];
+            const genres = [...new Set(records.flatMap(r => (r.genre || '').split(/[\s、，,]+/).filter(Boolean)))];
             genreTabs.innerHTML =
                 `<button class="filter-tab ${currentGenre === '' ? 'active' : ''}" data-g="__all">全部</button>` +
                 genres.map(g =>

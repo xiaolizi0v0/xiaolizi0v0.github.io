@@ -220,7 +220,7 @@ async function handleSuggest(wd) {
   // 补全：对每个影视条目用无头浏览器抓详情页，提取封面/完整简介/完整词条名/基本信息卡
   // 串行 + 限制最多 MAX_FILL 个（避免开多个 chrome 实例卡死）
   const VIDEO_CLASS = /影视作品|电影|电视剧|动漫|动画|综艺|纪录片/;
-  const MAX_FILL = 8;
+  const MAX_FILL = 4;
   const items = [...map.values()];
   // 影视类条目全部补全（拿 card/genre/region/封面），无论 suggest 是否已带封面
   const toFill = items.filter(it => (VIDEO_CLASS.test((it.classify || []).join(' ')) || /电影|剧|动画|综艺|纪录片/.test(it.lemmaDesc)) && !it.card).slice(0, MAX_FILL);
@@ -256,17 +256,10 @@ async function handleSuggest(wd) {
       }
       return '';
     };
+    // 题材：只取 card"类型/题材"字段（不兜底猜，避免误判）
     let genre = findVal(['类型', '题材', '作品类型', '影片类型', '节目类型']);
-    // genre 兜底：从原始短描述提取题材关键词（避免被完整简介误判）
-    if (!genre) {
-      const GENRES = ['剧情', '喜剧', '爱情', '动作', '悬疑', '惊悚', '犯罪', '科幻', '奇幻', '冒险', '动画', '战争', '历史', '传记', '纪录', '音乐', '歌舞', '恐怖', '武侠', '古装', '家庭', '运动', '灾难'];
-      const src = it.origDesc || it.lemmaDesc || '';
-      const found = GENRES.filter(g => src.includes(g) || (it.lemmaTitle || '').includes(g));
-      if (found.length) genre = found.join('、');
-    }
     const regionRaw = findVal(['制片地区', '地区', '拍摄地点']);
     const yearRaw = findVal(['上映时间', '首播时间', '播出时间', '发行时间']);
-    const descText = (it.lemmaDesc || '') + ' ';
 
     // 地区映射
     const REGION_MAP = { '中国内地':'国产', '中国大陆':'国产', '内地':'国产', '中国香港':'港台', '香港':'港台', '中国台湾':'港台', '台湾':'港台', '澳门':'港台', '日本':'日韩', '韩国':'日韩', '美国':'欧美', '英国':'欧美', '法国':'欧美', '德国':'欧美', '加拿大':'欧美', '澳大利亚':'欧美', '意大利':'欧美', '西班牙':'欧美', '俄罗斯':'欧美', '印度':'其他', '泰国':'其他', '其他':'其他' };
@@ -280,27 +273,40 @@ async function handleSuggest(wd) {
       if (region) break;
     }
     if (!region && regionNames.length) region = '其他';
-    // region 兜底：从 desc 提取国家
-    if (!region) {
-      const REGION_HINTS = [['中国', '国产'], ['内地', '国产'], ['大陆', '国产'], ['香港', '港台'], ['台湾', '港台'], ['澳门', '港台'], ['日本', '日韩'], ['韩国', '日韩'], ['美国', '欧美'], ['英国', '欧美'], ['法国', '欧美'], ['德国', '欧美'], ['意大利', '欧美'], ['西班牙', '欧美'], ['俄罗斯', '欧美'], ['加拿大', '欧美'], ['澳大利亚', '欧美'], ['印度', '其他'], ['泰国', '其他']];
-      for (const [k, v] of REGION_HINTS) {
-        if ((it.lemmaDesc || '').includes(k)) { region = v; break; }
-      }
-    }
 
-    // 年份
+    // 年份：只取 card"上映时间/首播时间"（不兜底从简介猜，避免误取简介里的年份）
     let year = '';
     const ym = (yearRaw || '').match(/(19|20)\d{2}/);
     if (ym) year = ym[0];
-    if (!year) { const ym2 = descText.match(/(19|20)\d{2}/); if (ym2) year = ym2[0]; }
 
-    // 平台：从"网络播放平台"字段提取平台名（只保留匹配到的平台，不要整串公司名）
+    // 平台：从"网络播放平台"字段提取平台名，映射成前端 PLATFORM_MAP 标准 key（用于平台徽章颜色）
     let platform = '';
+    const PLATFORM_KEY = {
+      '爱奇艺':'爱奇艺', 'iqiyi':'爱奇艺', 'iq':'爱奇艺',
+      '腾讯视频':'腾讯', '腾讯':'腾讯', 'tencent':'腾讯',
+      '优酷':'优酷', '优酷网':'优酷', 'youku':'优酷',
+      '哔哩哔哩':'B站', 'bilibili':'B站', 'b站':'B站', '哔哩':'B站',
+      '芒果tv':'芒果TV', '芒果TV':'芒果TV', '芒果':'芒果TV',
+      '央视':'央视', 'cctv':'央视', '央视八套':'央视', '央视一套':'央视',
+      '卫视':'卫视',
+      '搜狐':'其他', '乐视':'其他', '西瓜视频':'其他', '抖音':'其他', '快手':'其他'
+    };
     const platformRaw = findVal(['网络播放平台', '播出平台', '播放平台']);
     if (platformRaw) {
       const names = platformRaw.split(/[、，,;；]/).map(s => s.trim()).filter(Boolean);
-      const matched = names.filter(n => /爱奇艺|腾讯视频|腾讯|优酷|芒果TV|芒果|哔哩|bilibili|B站|央视|CCTV|卫视|搜狐|乐视|西瓜视频|抖音|快手|视频平台/.test(n));
-      platform = matched.join('、');
+      const stdKeys = [];
+      for (const n of names) {
+        // 精确匹配或按常见别名识别
+        if (PLATFORM_KEY[n]) { stdKeys.push(PLATFORM_KEY[n]); continue; }
+        if (/爱奇艺|iqiyi/i.test(n)) stdKeys.push('爱奇艺');
+        else if (/腾讯|tencent/i.test(n)) stdKeys.push('腾讯');
+        else if (/优酷|youku/i.test(n)) stdKeys.push('优酷');
+        else if (/哔哩|bilibili|b站/i.test(n)) stdKeys.push('B站');
+        else if (/芒果/i.test(n)) stdKeys.push('芒果TV');
+        else if (/央视|cctv/i.test(n)) stdKeys.push('央视');
+        else if (/卫视/i.test(n)) stdKeys.push('卫视');
+      }
+      platform = [...new Set(stdKeys)].join('、');
     }
 
     // 完整词条名：详情页 title 优先，否则用"基础名（短描述）"构造，确保同名词条能区分
