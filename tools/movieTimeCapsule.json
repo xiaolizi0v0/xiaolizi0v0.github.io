@@ -2219,5 +2219,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787331263172,
     "updatedAt": 1787331263172
+  },
+  {
+    "id": "baike-221103",
+    "title": "爱情公寓",
+    "year": "",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/221103/6384693.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/d058ccbf6c81800ab7214c31bc3533fa838b47cd?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "喜剧 爱情",
+    "platform": "爱奇艺",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《爱情公寓》是上海电影集团公司、上海辛迪加影视有限公司出品，由汪远、韦正、邹杰编剧、韦正执导，娄艺潇、陈赫、孙艺洲、李金铭、王传君、邓家佳、金世佳、赵霁、李佳航、赵文琪、成果、张一铎、万籽麟领衔主演的爱情喜剧。一幢并不奢华的公寓，两间普普通通的套房，住着七个不同背景，不同身份，不",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787331310133,
+    "updatedAt": 1787331310133
   }
 ]
