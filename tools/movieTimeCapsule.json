@@ -3059,5 +3059,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787332186722,
     "updatedAt": 1787332186722
+  },
+  {
+    "id": "baike-10994364",
+    "title": "来自星星的你",
+    "year": "2013",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/10994364/13595943.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/32fa828ba61ea8d3fd1fe57c6252274e251f95caf208?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "爱情 奇幻",
+    "platform": "爱奇艺",
+    "region": "日韩",
+    "sub_title": "",
+    "desc": "《来自星星的你》是由张太维执导，朴智恩编剧，金秀贤、全智贤主演，刘仁娜、朴海镇等共演的奇幻爱情剧，于2013年12月18日在韩国SBS电视台首播。该剧主要讲述了已在地球生活长达400年的外星人都敏俊，结识了搬家到隔壁的大牌女星千颂伊，两人从一开始互相讨厌演变成相互爱恋的故事。20",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787332241354,
+    "updatedAt": 1787332241354
   }
 ]
