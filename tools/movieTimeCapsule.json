@@ -3496,9 +3496,22 @@
     "liked": 0,
     "done": 0,
     "count": 1,
-    "eps": [],
+    "eps": [
+      {
+        "title": "20260820选歌组队上",
+        "url": "https://v.lzcdn28.com/20260820/14581_450d6ce8/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "20260820选歌组队下",
+        "url": "https://v.lzcdn28.com/20260820/14580_452d8fa9/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "20260821一公挑战赛上",
+        "url": "https://v.lzcdn28.com/20260821/14656_23e73826/2000k/hls/mixed.m3u8"
+      }
+    ],
     "watchedDate": "2026-08-22",
     "timestamp": 1787333561632,
-    "updatedAt": 1787333561632
+    "updatedAt": 1787334085046
   }
 ]
