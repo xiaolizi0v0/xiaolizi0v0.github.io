@@ -184,8 +184,10 @@
             flex-wrap: wrap;
         }
 
-        /* 题材可能很多：3 行 × 12 列网格，超出向下滚动 */
+        /* 题材可能很多：3 行 × 12 列网格，超出向下滚动；与"题材"标签同行、占满剩余宽度 */
         #genre-tabs {
+            flex: 1;
+            min-width: 0;
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 0.4rem;
