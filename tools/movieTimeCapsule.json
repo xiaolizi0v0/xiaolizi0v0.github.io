@@ -1946,5 +1946,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787330961889,
     "updatedAt": 1787330961889
+  },
+  {
+    "id": "baike-22399322",
+    "title": "终极笔记",
+    "year": "2020",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E7%BB%88%E6%9E%81%E7%AC%94%E8%AE%B0/53341445",
+    "img": "https://bkimg.cdn.bcebos.com/pic/eac4b74543a98226cffcd73197dbae014a90f603bdd6?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "青春 奇幻",
+    "platform": "爱奇艺",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《终极笔记》是爱奇艺出品，由邹曦、马小刚、卫立洲联合执导，曾舜晞、肖宇梁、哈妮克孜领衔主演，刘宇宁、范明、王劲松、刘雪华特邀出演，成方旭、刘昱晗、刘思远主演，张铭恩、张帆、胡耘豪、朱杰友情出演的青春冒险剧。讲述了发生在云顶天宫事件之后的一系列事件，其中吴邪从三叔处得知了西沙海底的",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787330983872,
+    "updatedAt": 1787330983872
   }
 ]
