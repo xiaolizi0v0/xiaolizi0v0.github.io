@@ -2806,7 +2806,8 @@
 
         // ========== 搜索 ==========
         async function doSearch() {
-            const keyword = searchInput.value.trim();
+            // 清除零宽空格(U+200B)、零宽连字符(U+200C/D)、BOM(U+FEFF)等不可见字符（复制内容常携带，会导致百度接口编码异常）
+            const keyword = searchInput.value.replace(/[\u200B\u200C\u200D\uFEFF]/g, '').trim();
             if (!keyword) {
                 searchStatus.textContent = '请输入影视剧名称';
                 searchStatus.className = 'search-status error';
