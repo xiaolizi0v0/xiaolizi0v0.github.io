@@ -184,6 +184,15 @@
             flex-wrap: wrap;
         }
 
+        /* 题材可能很多：横向滚动保持紧凑 */
+        #genre-tabs {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 0.3rem;
+            max-width: 100%;
+            scrollbar-width: thin;
+        }
+
         .filter-tab {
             padding: 0.28rem 0.85rem;
             border: 1px solid var(--ds-border-subtle);
@@ -2385,9 +2394,9 @@
             });
         }
 
-        // 题材筛选（动态生成）
+        // 题材筛选（动态生成，含所有记录中出现过的题材）
         function renderGenreTabs() {
-            const genres = [...new Set(records.flatMap(r => (r.genre || '').split(/\s+/).filter(Boolean)))].slice(0, 12);
+            const genres = [...new Set(records.flatMap(r => (r.genre || '').split(/\s+/).filter(Boolean)))];
             genreTabs.innerHTML =
                 `<button class="filter-tab ${currentGenre === '' ? 'active' : ''}" data-g="__all">全部</button>` +
                 genres.map(g =>
