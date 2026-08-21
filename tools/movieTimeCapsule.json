@@ -1001,5 +1001,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787329672898,
     "updatedAt": 1787329672898
+  },
+  {
+    "id": "baike-979532",
+    "title": "甄嬛传",
+    "year": "2011",
+    "type": "variety",
+    "url": "http://baike.baidu.com/subview/979532/12229029.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/c995d143ad4bd11373f09a55e6f8b30f4bfbfbedaf07?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "剧情 古装宫廷",
+    "platform": "优酷",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《甄嬛传》是2011年由北京电视艺术中心出品，吴雪岚（流潋紫）、王小平担任编剧，郑晓龙执导，孙俪、陈建斌、蔡少芬领衔主演、刘雪华、李东学、李天柱、蒋欣、陶昕然、斓曦、张晓龙、蓝盈莹、孙茜、战菁一联合主演，颖儿友情出演的清装宫斗剧。该剧改编自吴雪岚（流潋紫）所著小说《后宫·甄嬛传》",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787329688163,
+    "updatedAt": 1787329688163
   }
 ]
