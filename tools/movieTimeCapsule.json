@@ -2513,5 +2513,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787331533691,
     "updatedAt": 1787331533691
+  },
+  {
+    "id": "baike-1391388",
+    "title": "问心",
+    "year": "2023",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E9%97%AE%E5%BF%83/63111644",
+    "img": "https://bkimg.cdn.bcebos.com/pic/622762d0f703918fa0ecebd2636a319759ee3d6d6e29?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "都市 医疗",
+    "platform": "腾讯",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《问心》是由柠萌影视出品，黎志执导，周艺飞编剧，赵又廷、毛晓彤领衔主演，金世佳特别主演，陈冲、周野芒、周雨彤、佟梦实、袁文康友情出演，陈昊宇、严晓频、房子斌、赵君、马吟吟联合主演的都市医疗情感话题剧。该剧讲述了周筱风、方筱然和林逸三位心脏科医生机缘巧合下，在东立医院心脏中心相遇。",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787331571120,
+    "updatedAt": 1787331571120
   }
 ]
