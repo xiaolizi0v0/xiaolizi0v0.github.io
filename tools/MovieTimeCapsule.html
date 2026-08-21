@@ -1367,7 +1367,10 @@
                     <button id="search-btn"><i class="fas fa-search"></i> 搜索</button>
                 </div>
             </div>
-            <div class="tip">数据来自百度百科（JSONP 加载，无需代理），含海报缩略图。</div>
+            <div class="tip" style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
+                <span>数据来自百度百科（JSONP 加载，无需代理），含海报缩略图。</span>
+                <button class="ghost-btn" id="proxy-btn" style="padding:0.15rem 0.6rem;font-size:0.75rem;"><i class="fas fa-cloud"></i> <span id="proxy-state">开启同名词条搜索（Cloudflare Worker）</span></button>
+            </div>
 
             <!-- 分类导航 -->
             <div class="category-nav" id="category-nav">
@@ -1815,6 +1818,10 @@
 
         // 搜索百度百科词条（建议词 + 用户原始输入 精确匹配，再逐个查详情）
         async function searchBaidu(keyword) {
+            // 优先走 Cloudflare Worker 代理：能返回同名词条全列表（一个输入 → 多个同名影视条目）
+            const proxyList = await searchBaiduViaProxy(keyword);
+            if (proxyList && proxyList.length > 0) return proxyList;
+
             const userInput = keyword.trim();
 
             // 1. 获取建议词（该接口返回 GBK 编码，强制按 GBK 解码）
@@ -1865,6 +1872,39 @@
                 seen.add(r.id);
                 return true;
             });
+        }
+
+        // 通过 Cloudflare Worker 代理调用百度 searchui/suggest，拿到同名词条全列表
+        async function searchBaiduViaProxy(keyword) {
+            const proxy = localStorage.getItem('baike_proxy');
+            if (!proxy) return null;   // 未配置代理，返回 null 走原逻辑
+            try {
+                const target = 'https://baike.baidu.com/api/searchui/suggest?wd=' + encodeURIComponent(keyword.trim());
+                const res = await fetch(proxy + '?url=' + encodeURIComponent(target), { cache: 'no-store' });
+                if (!res.ok) return null;
+                const data = await res.json();
+                const items = (data && data.list) || [];
+                return items.map(item => {
+                    const text = (item.lemmaDesc || '') + ' ';
+                    const type = detectType(text);
+                    if (type === 'other') return null;   // 过滤非影视同名词条
+                    return {
+                        id: 'baike-' + item.lemmaId,
+                        title: item.lemmaTitle,
+                        year: extractYear(text),
+                        type: type,
+                        url: 'https://baike.baidu.com/item/' + encodeURIComponent(item.lemmaTitle) + '/' + item.lemmaId,
+                        img: thumbnailize(item.abstractPic),
+                        genre: '',
+                        platform: '',
+                        region: '',
+                        sub_title: '',
+                        desc: text.trim().slice(0, 140)
+                    };
+                }).filter(Boolean);
+            } catch (e) {
+                return null;   // 代理失败回退原逻辑
+            }
         }
 
         async function searchMovies(keyword) {
@@ -2746,6 +2786,28 @@
         searchInput.addEventListener('keydown', e => {
             if (e.key === 'Enter') doSearch();
         });
+
+        // ========== Cloudflare Worker 代理配置 ==========
+        function updateProxyState() {
+            const proxy = localStorage.getItem('baike_proxy');
+            const el = document.getElementById('proxy-state');
+            if (el) el.textContent = proxy
+                ? '同名词条搜索已开启（' + proxy + '）'
+                : '开启同名词条搜索（Cloudflare Worker）';
+        }
+        document.getElementById('proxy-btn').addEventListener('click', () => {
+            const current = localStorage.getItem('baike_proxy') || '';
+            const input = prompt(
+                '粘贴你的 Cloudflare Worker 域名（如 https://xxx.workers.dev），即可开启"一个输入搜出所有同名词条"。\n\n留空并确定 = 关闭代理。',
+                current
+            );
+            if (input === null) return;   // 取消
+            const v = input.trim().replace(/\/+$/, '');
+            if (v) localStorage.setItem('baike_proxy', v);
+            else localStorage.removeItem('baike_proxy');
+            updateProxyState();
+        });
+        updateProxyState();
 
         // 关闭搜索结果
         document.getElementById('close-search').addEventListener('click', () => {
