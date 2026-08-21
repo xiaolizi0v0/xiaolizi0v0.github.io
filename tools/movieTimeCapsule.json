@@ -1316,5 +1316,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787329860602,
     "updatedAt": 1787329860602
+  },
+  {
+    "id": "baike-1562685",
+    "title": "琅琊榜",
+    "year": "2015",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/1562685/12093740.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/ca1349540923dd54564ef7bbf552a4de9c82d058e297?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "古装 剧情",
+    "platform": "爱奇艺",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《琅琊榜》是由山东影视传媒集团出品，由孔笙、李雪执导，海宴担任编剧，胡歌、刘涛、王凯、黄维德、陈龙、丁勇岱、刘敏涛领衔主演，靳东、陈丽娜友情出演，刘奕君、王劲松、张龄心、吴磊、程皓枫、郭晓然、王永泉、高鑫、王鸥、周奇奇、张棪琰、宁文彤主演的古装权谋剧。剧情简介：该剧根据海宴同名网",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787329877039,
+    "updatedAt": 1787329877039
   }
 ]
