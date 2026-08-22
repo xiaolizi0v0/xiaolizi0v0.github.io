@@ -103,14 +103,11 @@
             top: 68px;
             z-index: 60;
             display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            flex-wrap: wrap;
-            padding: 0.6rem 1rem;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding: 0.7rem 0.2rem 1rem;
             background: var(--ds-bg-page);
-            border: 1px solid var(--ds-border-subtle);
-            border-radius: var(--ds-radius-panel);
-            box-shadow: var(--shadow-sm);
+            /* 无边框无阴影，直接融入页面背景；分割线由 .nav-row.secondary 的 border-top 承担 */
             margin-bottom: 1.5rem;
         }
 
@@ -342,18 +339,17 @@
 
         .poster-card {
             position: relative;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            background: var(--ds-bg-surface-1);
-            border: 1px solid var(--ds-border-subtle);
-            box-shadow: var(--shadow-sm);
+            background: transparent;
+            border: none;
+            box-shadow: none;
             transition: var(--transition);
         }
 
         .poster-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
-            border-color: var(--ds-border-hover);
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
         }
 
         .poster-wrap {
@@ -361,6 +357,7 @@
             aspect-ratio: 3 / 4;
             background: var(--ds-bg-surface-3);
             overflow: hidden;
+            border-radius: 12px;
         }
 
         .poster-wrap::after {
@@ -370,7 +367,7 @@
             height: 55%;
             background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .82) 100%);
             pointer-events: none;
-            border-radius: 0 0 10px 10px;
+            border-radius: 0 0 12px 12px;
         }
 
         .poster-img {
@@ -607,11 +604,12 @@
         }
 
         .poster-info {
-            padding: 0.55rem 0.65rem 0.7rem;
+            /* 无背景无边框，标题信息直接贴在海报下方，保持轻量 */
+            padding: 0.45rem 0.2rem 0;
         }
 
         .poster-title {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
             color: var(--ds-text-primary);
             white-space: nowrap;
@@ -624,18 +622,18 @@
             align-items: center;
             gap: 0.45rem;
             flex-wrap: wrap;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: var(--gray-500);
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
         }
 
         .poster-meta .tag {
-            background: var(--ds-bg-surface-3);
-            border: 1px solid var(--ds-border-subtle);
-            padding: 0.05rem 0.5rem;
-            border-radius: var(--ds-radius-pill);
+            background: transparent;
+            border: none;
+            padding: 0;
+            border-radius: 0;
             font-size: 0.72rem;
-            color: var(--gray-600);
+            color: var(--gray-500);
         }
 
         .date-edit {
@@ -1014,12 +1012,11 @@
             cursor: pointer;
         }
 
-        /* 深色主题：标签文字颜色与下拉框选项修正 */
-        [data-theme="dark"] .poster-meta .tag,
-        [data-theme="dark"] .modal-meta .tag {
-            background: rgba(255, 255, 255, .1);
-            color: rgba(255, 255, 255, .92);
-            border-color: rgba(255, 255, 255, .14);
+        /* 深色主题：标签文字颜色修正（保持无背景轻量风格） */
+        [data-theme="dark"] .poster-meta .tag {
+            background: transparent;
+            color: rgba(255, 255, 255, .78);
+            border-color: transparent;
         }
         [data-theme="dark"] select,
         [data-theme="dark"] .modal-field select {
