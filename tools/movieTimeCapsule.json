@@ -1026,7 +1026,7 @@
     "id": "baike-979532",
     "title": "甄嬛传",
     "year": "2011",
-    "type": "variety",
+    "type": "tv",
     "url": "http://baike.baidu.com/subview/979532/12229029.htm",
     "img": "https://bkimg.cdn.bcebos.com/pic/c995d143ad4bd11373f09a55e6f8b30f4bfbfbedaf07?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
     "genre": "剧情 古装宫廷",
@@ -1039,7 +1039,7 @@
     "done": 0,
     "count": 1,
     "eps": [],
-    "updatedAt": 1787329688163
+    "updatedAt": 1787393538640
   },
   {
     "watchedDate": "2026-08-22",
