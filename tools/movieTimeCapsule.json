@@ -3516,5 +3516,26 @@
       }
     ],
     "updatedAt": 1787336472217
+  },
+  {
+    "id": "baike-61800088",
+    "title": "鱿鱼游戏第一季",
+    "year": "2021",
+    "type": "tv",
+    "url": "https://baike.baidu.com/item/%E9%B1%BF%E9%B1%BC%E6%B8%B8%E6%88%8F%E7%AC%AC%E4%B8%80%E5%AD%A3/61800088",
+    "img": "https://bkimg.cdn.bcebos.com/pic/8d5494eef01f3a292df506900e75ab315c6034a8d616?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "悬疑、惊悚",
+    "platform": "",
+    "region": "日韩",
+    "sub_title": "",
+    "desc": "《鱿鱼游戏》是由Netflix出品，黄东赫执导，李政宰、朴海秀、魏化俊、郑好娟等主演的惊悚悬疑电视剧，于2021年9月17日在Netflix上线。该剧讲述了数百名为生活所困的人，为了456亿韩元的奖金参加了6个生死逃杀游戏的故事。",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787386528482,
+    "updatedAt": 1787386528482
   }
 ]
