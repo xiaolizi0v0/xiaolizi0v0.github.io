@@ -4046,7 +4046,7 @@
     "id": "baike-21182808",
     "title": "少年歌行",
     "year": "2018",
-    "type": "movie",
+    "type": "anime",
     "url": "http://baike.baidu.com/item/%E5%B0%91%E5%B9%B4%E6%AD%8C%E8%A1%8C/22371759",
     "img": "https://bkimg.cdn.bcebos.com/pic/64380cd7912397dda144fd6d5bcba5b7d0a20cf4290b?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
     "genre": "古风",
@@ -4061,6 +4061,6 @@
     "eps": [],
     "watchedDate": "2026-08-22",
     "timestamp": 1787389803009,
-    "updatedAt": 1787389803009
+    "updatedAt": 1787389819845
   }
 ]
