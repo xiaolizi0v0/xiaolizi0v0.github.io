@@ -4945,9 +4945,14 @@
     "liked": 0,
     "done": 0,
     "count": 1,
-    "eps": [],
+    "eps": [
+      {
+        "title": "第36集",
+        "url": "https://v.lzcdn31.com/20260822/10319_ef3923eb/2000k/hls/mixed.m3u8"
+      }
+    ],
     "watchedDate": "2026-08-23",
     "timestamp": 1787430055073,
-    "updatedAt": 1787430055073
+    "updatedAt": 1787430106381
   }
 ]
