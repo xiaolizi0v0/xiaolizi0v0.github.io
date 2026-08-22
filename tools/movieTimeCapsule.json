@@ -3579,5 +3579,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787386883316,
     "updatedAt": 1787386883316
+  },
+  {
+    "id": "baike-9411254",
+    "title": "鹿鼎记（1998年李添胜执导的武侠剧）",
+    "year": "1998",
+    "type": "tv",
+    "url": "https://baike.baidu.com/item/%E9%B9%BF%E9%BC%8E%E8%AE%B0/9411254",
+    "img": "https://bkimg.cdn.bcebos.com/pic/908fa0ec08fa513d2697c4ce463542fbb2fb431673d0?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "武侠",
+    "platform": "腾讯",
+    "region": "港台",
+    "sub_title": "",
+    "desc": "《鹿鼎记》是由香港电视广播有限公司出品，李添胜执导，陈静仪编剧，陈小春、马浚伟、梁小冰、陈少霞、刘玉翠等主演的古装武侠剧。该剧改编自金庸的同名武侠小说，讲述了清代康熙年间，出身市井的韦小宝机缘巧合下进宫当了太监，并与江湖势力结交，在他与康熙帝成为好友后，凭借自己的聪明机智帮助康熙",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787387201318,
+    "updatedAt": 1787387201318
   }
 ]
