@@ -4910,9 +4910,14 @@
     "liked": 0,
     "done": 0,
     "count": 1,
-    "eps": [],
+    "eps": [
+      {
+        "title": "20260816下",
+        "url": "https://v.lzcdn28.com/20260816/14375_fb36997e/2000k/hls/mixed.m3u8"
+      }
+    ],
     "watchedDate": "2026-08-23",
     "timestamp": 1787429503496,
-    "updatedAt": 1787429503496
+    "updatedAt": 1787429516571
   }
 ]
