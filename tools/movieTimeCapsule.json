@@ -4356,5 +4356,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787390511348,
     "updatedAt": 1787390511348
+  },
+  {
+    "id": "baike-1078409",
+    "title": "济公游记",
+    "year": "1998",
+    "type": "tv",
+    "url": "http://baike.baidu.com/view/1078409.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/94cad1c8a786c9177f3ec013326767cf3bc79f3df9dc?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "剧情 古装 喜剧",
+    "platform": "",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《济公游记》是由游本昌、张晓秋联合执导，游本昌领衔主演的20集古装神话喜剧，于1998年在中国大陆首播。该剧是继电视剧《济公》播出10年后，由北京本昌文化艺术传播中心、格力电器股份公司、浙江有线电视台、北京国安广告总公司联合制作的新作。新编《济公游记》包含11个故事，以诙谐、幽默",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787390567629,
+    "updatedAt": 1787390567629
   }
 ]
