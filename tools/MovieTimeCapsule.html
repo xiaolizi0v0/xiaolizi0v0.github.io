@@ -1087,6 +1087,58 @@
             border-top: 1px solid var(--ds-border-subtle);
         }
 
+        .modal-edit-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal-edit-panel .edit-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .edit-form {
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            gap: 0.55rem 0.8rem;
+            align-items: center;
+        }
+
+        .edit-form label {
+            font-size: 0.82rem;
+            color: var(--gray-500);
+            text-align: right;
+        }
+
+        .edit-form input,
+        .edit-form select,
+        .edit-form textarea {
+            padding: 0.45rem 0.65rem;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: 8px;
+            color: var(--ds-text-primary);
+            font-size: 0.86rem;
+            font-family: var(--ds-font-sans);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .edit-form input:focus,
+        .edit-form select:focus,
+        .edit-form textarea:focus {
+            border-color: var(--ds-brand);
+        }
+
+        .edit-form textarea {
+            resize: vertical;
+            line-height: 1.5;
+        }
+
         .modal-rate .rate-btn,
         .modal-rate .tv-btn,
         .modal-rate .undo-btn {
@@ -1505,6 +1557,45 @@
                     <div class="modal-extra" id="modal-extra"></div>
                     <div class="modal-actions" id="modal-actions"></div>
                     <div class="modal-rate" id="modal-rate"></div>
+
+                    <!-- 编辑面板 -->
+                    <div class="modal-edit-panel hidden" id="modal-edit-panel">
+                        <h3 class="edit-title">编辑记录</h3>
+                        <div class="edit-form">
+                            <label>标题</label>
+                            <input type="text" id="edit-title" autocomplete="off">
+                            <label>年份</label>
+                            <input type="text" id="edit-year" autocomplete="off">
+                            <label>类型</label>
+                            <select id="edit-type">
+                                <option value="movie">电影</option>
+                                <option value="tv">电视剧</option>
+                                <option value="variety">综艺</option>
+                                <option value="anime">动漫</option>
+                            </select>
+                            <label>地区</label>
+                            <input type="text" id="edit-region" autocomplete="off">
+                            <label>题材</label>
+                            <input type="text" id="edit-genre" autocomplete="off" placeholder="多个用空格分隔">
+                            <label>平台</label>
+                            <select id="edit-platform"></select>
+                            <label>观看日期</label>
+                            <input type="date" id="edit-watchedDate">
+                            <label>海报图 URL</label>
+                            <input type="text" id="edit-img" autocomplete="off">
+                            <label>百科链接</label>
+                            <input type="text" id="edit-url" autocomplete="off">
+                            <label>简介</label>
+                            <textarea id="edit-desc" rows="4"></textarea>
+                            <label>备注</label>
+                            <textarea id="edit-note" rows="2"></textarea>
+                        </div>
+                        <div class="modal-actions" style="padding-top:1rem;">
+                            <button class="card-btn" id="edit-save"><i class="fas fa-check"></i> 保存</button>
+                            <button class="ghost-btn" id="edit-cancel"><i class="fas fa-times"></i> 取消</button>
+                        </div>
+                    </div>
+
                     <!-- 播放演示面板（点击"播放演示"后显示） -->
                     <div class="modal-play-panel hidden" id="modal-play-panel">
                         <div class="play-header">
@@ -2138,9 +2229,11 @@
                 actEl.innerHTML = `
                     ${baike}
                     <button class="card-btn" id="modal-play"><i class="fas fa-play"></i> 播放演示</button>
+                    <button class="card-btn" id="modal-edit-btn"><i class="fas fa-pen"></i> 编辑</button>
                     <button class="card-btn danger" id="modal-delete-btn"><i class="fas fa-trash-alt"></i> 删除记录</button>
                 `;
                 document.getElementById('modal-play').addEventListener('click', () => enterPlayMode(data));
+                document.getElementById('modal-edit-btn').addEventListener('click', () => enterEditMode(data));
                 const dateInput = document.getElementById('modal-date');
                 if (dateInput) {
                     dateInput.addEventListener('change', () => {
@@ -2215,8 +2308,73 @@
 
         function closeModal() {
             exitPlayMode();
+            exitEditMode();
             modalEl.classList.add('hidden');
             document.body.style.overflow = '';
+        }
+
+        // ========== 编辑记录 ==========
+        function enterEditMode(data) {
+            const viewIds = ['modal-title', 'modal-meta', 'modal-desc', 'modal-extra', 'modal-actions', 'modal-rate'];
+            viewIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            document.getElementById('modal-edit-panel').classList.remove('hidden');
+
+            document.getElementById('edit-title').value = data.title || '';
+            document.getElementById('edit-year').value = data.year || '';
+            document.getElementById('edit-type').value = data.type || 'movie';
+            document.getElementById('edit-region').value = data.region || '';
+            document.getElementById('edit-genre').value = data.genre || '';
+            document.getElementById('edit-watchedDate').value = data.watchedDate || '';
+            document.getElementById('edit-img').value = data.img || '';
+            document.getElementById('edit-url').value = data.url || '';
+            document.getElementById('edit-desc').value = data.desc || data.sub_title || '';
+            document.getElementById('edit-note').value = data.note || '';
+
+            const platSel = document.getElementById('edit-platform');
+            platSel.innerHTML = ['<option value="">未设置</option>']
+                .concat(PLATFORMS.map(p => `<option value="${p}" ${p === (data.platform || '') ? 'selected' : ''}>${p}</option>`))
+                .join('');
+
+            document.getElementById('edit-save').onclick = () => saveEdit(data);
+            document.getElementById('edit-cancel').onclick = () => exitEditMode();
+        }
+
+        function exitEditMode() {
+            document.getElementById('modal-edit-panel').classList.add('hidden');
+            const viewIds = ['modal-title', 'modal-meta', 'modal-desc', 'modal-extra', 'modal-actions', 'modal-rate'];
+            viewIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = '';
+            });
+            // 恢复简介区默认 display
+            const descEl = document.getElementById('modal-desc');
+            if (descEl) descEl.style.display = descEl.textContent ? '' : 'none';
+        }
+
+        function saveEdit(data) {
+            const idx = records.findIndex(r => r.id === data.id);
+            if (idx < 0) return;
+            records[idx] = Object.assign({}, records[idx], {
+                title: document.getElementById('edit-title').value.trim() || data.title,
+                year: document.getElementById('edit-year').value.trim(),
+                type: document.getElementById('edit-type').value,
+                region: document.getElementById('edit-region').value.trim(),
+                genre: document.getElementById('edit-genre').value.trim(),
+                platform: document.getElementById('edit-platform').value,
+                watchedDate: document.getElementById('edit-watchedDate').value,
+                img: document.getElementById('edit-img').value.trim(),
+                url: document.getElementById('edit-url').value.trim(),
+                desc: document.getElementById('edit-desc').value.trim(),
+                note: document.getElementById('edit-note').value.trim(),
+                updatedAt: Date.now()
+            });
+            saveRecords(records);
+            renderSaved();
+            exitEditMode();
+            openModal(records[idx], 'saved');
         }
 
         // ========== 播放演示（纯前端效果，公开授权测试片源） ==========
