@@ -4751,9 +4751,106 @@
     "liked": 0,
     "done": 0,
     "count": 1,
-    "eps": [],
+    "eps": [
+      {
+        "title": "第01集",
+        "url": "https://v.cdnlz29.com/20251211/11408_4acf63a3/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第02集",
+        "url": "https://v.cdnlz29.com/20251211/11413_1453abc1/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第03集",
+        "url": "https://v.cdnlz29.com/20251211/11420_f5de0530/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第04集",
+        "url": "https://v.cdnlz29.com/20251211/11431_c6bf4aae/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第05集",
+        "url": "https://v.cdnlz29.com/20251211/11436_2f66f2fa/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第06集",
+        "url": "https://v.cdnlz29.com/20251211/11439_5bf3859c/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第07集",
+        "url": "https://v.cdnlz29.com/20251211/11450_651f1027/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第08集",
+        "url": "https://v.cdnlz29.com/20251211/11455_2f1b2a66/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第09集",
+        "url": "https://v.cdnlz29.com/20251211/11460_f2bc1948/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第10集",
+        "url": "https://v.cdnlz29.com/20251211/11462_32914d54/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第11集",
+        "url": "https://v.cdnlz29.com/20251211/11471_e2dd834d/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第12集",
+        "url": "https://v.cdnlz29.com/20251211/11478_4cba5e07/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第13集",
+        "url": "https://v.cdnlz29.com/20251211/11481_2abe26af/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第14集",
+        "url": "https://v.cdnlz29.com/20251211/11485_fa405823/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第15集",
+        "url": "https://v.cdnlz29.com/20251211/11493_4542b117/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第16集",
+        "url": "https://v.cdnlz29.com/20251211/11496_36ec7fa8/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第17集",
+        "url": "https://v.cdnlz29.com/20251211/11506_ce15df9e/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第18集",
+        "url": "https://v.cdnlz29.com/20251211/11507_2f40eefe/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第19集",
+        "url": "https://v.cdnlz29.com/20251211/11512_81e40ead/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第20集",
+        "url": "https://v.cdnlz29.com/20251211/11518_c4cd4dac/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第21集",
+        "url": "https://v.cdnlz29.com/20251211/11524_2eec2914/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第22集",
+        "url": "https://v.cdnlz29.com/20251211/11526_ed67eadc/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第23集",
+        "url": "https://v.cdnlz29.com/20251211/11528_c0ce7759/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "第24集",
+        "url": "https://v.cdnlz29.com/20251211/11530_db773544/2000k/hls/mixed.m3u8"
+      }
+    ],
     "watchedDate": "2026-08-22",
     "timestamp": 1787391044237,
-    "updatedAt": 1787391044237
+    "updatedAt": 1787391696115
   }
 ]
