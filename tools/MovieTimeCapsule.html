@@ -6,7 +6,7 @@
     <title>影视剧观影存储时间胶囊 - 工具箱</title>
     <link rel="stylesheet" href="../styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13"></script>
     <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.7.11/dist/shaka-player.compiled.min.js"></script>
     <style>
@@ -31,14 +31,21 @@
             align-items: center;
             gap: 0.7rem;
             font-family: var(--ds-font-display);
-            font-size: 1.45rem;
+            font-size: 2.1rem;
             font-weight: 600;
             color: var(--ds-text-primary);
             letter-spacing: -0.01em;
         }
 
-        .brand i {
-            color: var(--ds-brand);
+        .brand-text {
+            font-family: "ZCOOL KuaiLe", var(--ds-font-display);
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 0.06em;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, .18);
+            text-shadow:
+                0 1px 0 rgba(0, 0, 0, .35),
+                0 0 24px rgba(77, 107, 254, .35);
         }
 
         .search-bar {
@@ -1355,7 +1362,7 @@
             <!-- 顶部：标题 + 搜索栏 -->
             <div class="tool-header">
                 <div class="brand">
-                    <i class="fas fa-clock"></i> 影视剧观影存储时间胶囊
+                    <span class="brand-text">影视剧观影存储时间胶囊</span>
                 </div>
                 <div class="search-bar">
                     <input id="search-input" type="text" placeholder="搜你想看的影视剧，如：肖申克的救赎" autocomplete="off">
