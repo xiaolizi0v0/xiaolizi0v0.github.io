@@ -99,15 +99,12 @@
 
         /* ========== 分类导航（爱奇艺风格频道栏） ========== */
         .category-nav {
-            position: sticky;
-            top: 68px;
-            z-index: 60;
             display: flex;
             flex-direction: column;
             gap: 0.6rem;
             padding: 0.7rem 0.2rem 1rem;
             background: var(--ds-bg-page);
-            /* 无边框无阴影，直接融入页面背景；分割线由 .nav-row.secondary 的 border-top 承担 */
+            /* 无边框无阴影，直接融入页面背景；筛选区不跟随滚动 */
             margin-bottom: 1.5rem;
         }
 
