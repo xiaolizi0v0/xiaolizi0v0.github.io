@@ -4482,5 +4482,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787390685623,
     "updatedAt": 1787390685623
+  },
+  {
+    "id": "baike-201990",
+    "title": "春光灿烂猪八戒",
+    "year": "2000",
+    "type": "tv",
+    "url": "http://baike.baidu.com/subview/201990/7593544.htm",
+    "img": "https://bkimg.cdn.bcebos.com/pic/d8f9d72a6059252d41119efb329b033b5ab5b9cf?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "古装 剧情 喜剧",
+    "platform": "爱奇艺",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《春光灿烂猪八戒》是由江苏电视台、苏州南方派文化传播有限公司、浙江有线电视台等联合摄制，梦继、叶崇铭执导，天空创作编剧，徐峥、孙兴、李立群、陶虹、翁虹、陈红领衔主演，寇占文、王伯昭、戴春荣、金巧巧、刘小峰主演的古装神话情感喜剧。该剧讲述了八戒原是一只平凡的小猪，因为想逃脱被宰杀的",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787390709425,
+    "updatedAt": 1787390709425
   }
 ]
