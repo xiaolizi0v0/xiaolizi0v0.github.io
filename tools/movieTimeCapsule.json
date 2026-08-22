@@ -4146,5 +4146,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787389962362,
     "updatedAt": 1787389962362
+  },
+  {
+    "id": "baike-1593103",
+    "title": "青云志",
+    "year": "2016",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E9%9D%92%E4%BA%91%E5%BF%97/17545555",
+    "img": "https://bkimg.cdn.bcebos.com/pic/bd3eb13533fa828ba61e8d1b8f485634970a314eecb6?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "奇幻 武侠 古装",
+    "platform": "腾讯",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《青云志》是由欢瑞世纪影视传媒股份有限公司出品，邵潇逸、张少微编剧，朱锐斌、刘国辉、周远舟、朱少杰执导，赵丽颖、杨紫、成毅、秦俊杰领衔主演，茅子俊、焦俊艳、白雪、刘学义主演的仙侠奇幻电视剧。该剧改编自萧鼎的长篇仙侠小说《诛仙》，讲述了少年张小凡与好友林惊羽一同被青云门收归门下。结",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787389969402,
+    "updatedAt": 1787389969402
   }
 ]
