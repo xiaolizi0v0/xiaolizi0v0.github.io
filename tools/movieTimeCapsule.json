@@ -4713,5 +4713,26 @@
     "watchedDate": "2026-08-22",
     "timestamp": 1787390936991,
     "updatedAt": 1787390936991
+  },
+  {
+    "id": "baike-21203314",
+    "title": "唐人街探案3",
+    "year": "2021",
+    "type": "movie",
+    "url": "http://baike.baidu.com/item/%E5%94%90%E4%BA%BA%E8%A1%97%E6%8E%A2%E6%A1%883",
+    "img": "https://bkimg.cdn.bcebos.com/pic/a686c9177f3e6709c93d6054af9f883df8dcd100ff5a?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "动作 悬疑 喜剧",
+    "platform": "",
+    "region": "国产",
+    "sub_title": "",
+    "desc": "《唐人街探案3》是由陈思诚执导，王宝强、刘昊然领衔主演，妻夫木聪、托尼·贾、长泽雅美等主演的动作悬疑喜剧电影，于2021年2月12日在中国大陆上映。该片是《唐人街探案》系列的第三部，讲述了继“曼谷夺金杀人案”“纽约五行连环杀人案”后，唐仁、秦风被野田昊请到日本东京调查一桩密室杀人",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-22",
+    "timestamp": 1787390948200,
+    "updatedAt": 1787390948200
   }
 ]
