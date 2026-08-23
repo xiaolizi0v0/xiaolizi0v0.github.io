@@ -3703,14 +3703,15 @@
     "eps": [
       {
         "title": "第187集",
-        "url": "https://vip.ffzy-plays.com/20260815/57103_70a419e6/3000k/hls/mixed.m3u8"
+        "url": "https://vip.ffzy-plays.com/20260815/57103_70a419e6/3000k/hls/mixed.m3u8",
+        "watched": true
       },
       {
         "title": "第188集",
         "url": "https://vip.ffzy-plays.com/20260822/57323_42f03166/3000k/hls/mixed.m3u8"
       }
     ],
-    "updatedAt": 1787429862690
+    "updatedAt": 1787471726491
   },
   {
     "watchedDate": "2026-08-22",
