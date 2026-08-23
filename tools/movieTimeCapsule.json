@@ -4817,7 +4817,8 @@
       },
       {
         "title": "第03集",
-        "url": "https://v.cdnlz29.com/20251211/11420_f5de0530/2000k/hls/mixed.m3u8"
+        "url": "https://v.cdnlz29.com/20251211/11420_f5de0530/2000k/hls/mixed.m3u8",
+        "watched": true
       },
       {
         "title": "第04集",
@@ -4904,7 +4905,7 @@
         "url": "https://v.cdnlz29.com/20251211/11530_db773544/2000k/hls/mixed.m3u8"
       }
     ],
-    "updatedAt": 1787484049192
+    "updatedAt": 1787485571512
   },
   {
     "watchedDate": "2026-08-22",
