@@ -1781,12 +1781,56 @@
             return task;
         }
 
+        // 把仓库拉取的记录合并进本地 records（按 updatedAt 判定：缺失则新增、仓库更新则覆盖）
+        // 返回合并条数
+        function mergeRepoRecords(repoList) {
+            let merged = 0;
+            repoList.forEach(rec => {
+                if (!rec || !rec.id || !rec.title) return;
+                if (!rec.updatedAt) rec.updatedAt = rec.timestamp || Date.now();
+                const exist = records.find(r => r.id === rec.id);
+                if (!exist) {
+                    records.push(Object.assign({ watchedDate: nowDateStr(), timestamp: Date.now() }, rec));
+                    merged++;
+                } else if ((rec.updatedAt || 0) > (exist.updatedAt || 0)) {
+                    const idx = records.indexOf(exist);
+                    records[idx] = Object.assign({}, exist, rec);
+                    records[idx].timestamp = exist.timestamp || records[idx].timestamp;
+                    merged++;
+                }
+            });
+            return merged;
+        }
+
         // 自动把 records 推送到仓库（需已配置 gh_pat）
+        // 多设备安全：先拉取仓库当前内容合并到本地，再推送合并后的全量，避免互相覆盖
         async function autoSyncToRepo() {
             const pat = localStorage.getItem('gh_pat');
             if (!pat) return;
+            const { owner, repo } = ghRepoInfo();
+
+            // 1. 先拉取仓库内容并合并到本地
             try {
-                const { owner, repo } = ghRepoInfo();
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
+                    headers: Object.assign({ Accept: 'application/vnd.github.raw' }, { Authorization: `token ${pat}` })
+                });
+                if (res.ok) {
+                    const d = JSON.parse(await res.text());
+                    const repoList = Array.isArray(d) ? d : (d.records || []);
+                    const merged = mergeRepoRecords(repoList);
+                    if (merged > 0) {
+                        // 直接写 localStorage，不触发 saveRecords 以避免再次调度自动同步形成循环
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+                        renderSaved();
+                    }
+                }
+            } catch (e) {
+                // 拉取失败不阻塞后续推送
+            }
+
+            // 2. 推送合并后的全量到仓库
+            try {
                 const r = await ghWrite(owner, repo, pat, JSON.stringify(records, null, 2), '自动同步影视剧片单数据');
                 showSyncToast(r.ok, r.error);
             } catch (e) {
@@ -3334,22 +3378,8 @@
                 }
             } catch (e) {}
 
-            // 2. 合并仓库数据到本地（本地没有的 → 新增；仓库更新的 → 覆盖）
-            let merged = 0;
-            repoList.forEach(rec => {
-                if (!rec || !rec.id || !rec.title) return;
-                if (!rec.updatedAt) rec.updatedAt = rec.timestamp || Date.now();
-                const exist = records.find(r => r.id === rec.id);
-                if (!exist) {
-                    records.push(Object.assign({ watchedDate: nowDateStr(), timestamp: Date.now() }, rec));
-                    merged++;
-                } else if ((rec.updatedAt || 0) > (exist.updatedAt || 0)) {
-                    const idx = records.indexOf(exist);
-                    records[idx] = Object.assign({}, exist, rec);
-                    records[idx].timestamp = exist.timestamp || records[idx].timestamp;
-                    merged++;
-                }
-            });
+            // 2. 合并仓库数据到本地（复用与自动同步一致的逻辑）
+            const merged = mergeRepoRecords(repoList);
 
             // 3. 若合并了仓库数据，保存到本地并提示
             let mergedMsg = '';
