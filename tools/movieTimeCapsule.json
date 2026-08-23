@@ -4989,7 +4989,8 @@
     "eps": [
       {
         "title": "第06集",
-        "url": "https://v.lzcdn31.com/20260813/9752_745e95fc/2000k/hls/mixed.m3u8"
+        "url": "https://v.lzcdn31.com/20260813/9752_745e95fc/2000k/hls/mixed.m3u8",
+        "watched": true
       },
       {
         "title": "第07集",
@@ -4998,6 +4999,6 @@
     ],
     "watchedDate": "2026-08-23",
     "timestamp": 1787430287694,
-    "updatedAt": 1787430535674
+    "updatedAt": 1787467011438
   }
 ]
