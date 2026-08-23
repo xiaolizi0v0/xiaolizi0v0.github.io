@@ -4938,11 +4938,19 @@
       {
         "title": "20260816下",
         "url": "https://v.lzcdn28.com/20260816/14375_fb36997e/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "20260823上",
+        "url": "https://v.lzcdn28.com/20260823/14723_bc2553b0/2000k/hls/mixed.m3u8"
+      },
+      {
+        "title": "20260823下",
+        "url": "https://v.lzcdn28.com/20260823/14722_b1cba93e/2000k/hls/mixed.m3u8"
       }
     ],
     "watchedDate": "2026-08-23",
     "timestamp": 1787429503496,
-    "updatedAt": 1787429516571
+    "updatedAt": 1787467353847
   },
   {
     "id": "baike-63571807",
