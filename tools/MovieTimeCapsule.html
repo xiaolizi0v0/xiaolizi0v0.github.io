@@ -769,6 +769,13 @@
             margin-top: 0.5rem;
         }
 
+        .current-list-count {
+            margin-top: 0.8rem;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
         .empty-state i {
             font-size: 2.6rem;
             margin-bottom: 0.75rem;
@@ -1547,6 +1554,7 @@
                     </div>
                 </div>
                 <div class="poster-grid" id="saved-list"></div>
+                <div class="current-list-count" id="current-list-count">当前片单：0 部</div>
                 <div id="empty-state" class="empty-state">
                     <i class="fas fa-film"></i>
                     <p>还没有记录，搜索并添加你的第一部影视剧吧！</p>
@@ -2269,6 +2277,7 @@
         const savedList = document.getElementById('saved-list');
         const emptyState = document.getElementById('empty-state');
         const savedCount = document.getElementById('saved-count');
+        const currentListCount = document.getElementById('current-list-count');
         const genreTabs = document.getElementById('genre-tabs');
         const platformTabs = document.getElementById('platform-tabs');
         const eraTabs = document.getElementById('era-tabs');
@@ -2935,6 +2944,7 @@
             const list = filteredRecords();
             list.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
             savedCount.textContent = records.length;
+            currentListCount.textContent = `当前片单：${list.length} 部`;
 
             if (records.length === 0) {
                 savedList.innerHTML = '';
