@@ -5660,6 +5660,27 @@
       "watchedDate": "2026-08-24",
       "timestamp": 1787580622129,
       "updatedAt": 1787580622129
+    },
+    {
+      "id": "baike-81832",
+      "title": "内在美",
+      "year": "2015",
+      "type": "movie",
+      "url": "http://baike.baidu.com/item/%E5%86%85%E5%9C%A8%E7%BE%8E/17669030",
+      "img": "https://bkimg.cdn.bcebos.com/pic/b21bb051f8198618367abf4dc4b139738bd4b21c48ff?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+      "genre": "爱情",
+      "platform": "",
+      "region": "日韩",
+      "sub_title": "",
+      "desc": "《内在美》又名《我的变身男友》《爱上变身情人》是由韩国Yong Film出品，白钟烈执导，由Seon-jeong Kim、朴正艺、卢熙京担任编剧，韩孝周、朴叙俊、千禹熙、李栋旭等主演的爱情电影，片长127分钟，于2015年8月20日在韩国上映。该电影改编自英特尔与东芝合拍的短片广",
+      "note": "",
+      "liked": 0,
+      "done": 0,
+      "count": 1,
+      "eps": [],
+      "watchedDate": "2026-08-24",
+      "timestamp": 1787580714071,
+      "updatedAt": 1787580714071
     }
   ],
   "deleted": {
