@@ -5174,5 +5174,26 @@
     "watchedDate": "2026-08-24",
     "timestamp": 1787576655988,
     "updatedAt": 1787576655988
+  },
+  {
+    "id": "baike-23373168",
+    "title": "僵尸侦探",
+    "year": "2020",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E5%83%B5%E5%B0%B8%E4%BE%A6%E6%8E%A2/52799053",
+    "img": "https://bkimg.cdn.bcebos.com/pic/7af40ad162d9f2d3572c7f2f36ba9d13632763d066ee?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "喜剧 恐怖",
+    "platform": "",
+    "region": "日韩",
+    "sub_title": "",
+    "desc": "《僵尸侦探》是由申在贤执导，白恩真编剧，崔振赫、朴柱炫等主演的恐怖喜剧，于2020年9月7日在韩国KBS2电视台首播。该剧讲述了丧失人类时期的记忆的僵尸变身成侦探，在人类社会孤军奋战并找寻自己的身世之谜的故事。",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-24",
+    "timestamp": 1787576692086,
+    "updatedAt": 1787576692086
   }
 ]
