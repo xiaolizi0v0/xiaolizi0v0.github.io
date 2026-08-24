@@ -5765,6 +5765,27 @@
       "watchedDate": "2026-08-24",
       "timestamp": 1787580874509,
       "updatedAt": 1787580874509
+    },
+    {
+      "id": "baike-20855288",
+      "title": "live（2018年李光洙、郑有美主演韩国电视剧）",
+      "year": "2018",
+      "type": "movie",
+      "url": "https://baike.baidu.com/item/live/20855288",
+      "img": "https://bkimg.cdn.bcebos.com/pic/8d5494eef01f3a29463eff6b9525bc315d607ca4?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+      "genre": "都市、情感、警匪",
+      "platform": "",
+      "region": "日韩",
+      "sub_title": "",
+      "desc": "《LIVE》是韩国tvN有线电视台于2018年3月10日起在水木档播出的都市情感连续剧，由金奎泰执导，卢熙京编剧，李光洙、郑裕美、裴晟祐、裴宗玉主演。该剧以警察局为背景，以警察局的日常为事件的中心，讲述了那些维护正义价值的警察们的喜怒哀乐。",
+      "note": "",
+      "liked": 0,
+      "done": 0,
+      "count": 1,
+      "eps": [],
+      "watchedDate": "2026-08-24",
+      "timestamp": 1787580956239,
+      "updatedAt": 1787580956239
     }
   ],
   "deleted": {
