@@ -1706,11 +1706,44 @@
     <script>
         // ===================== 数据存储 =====================
         const STORAGE_KEY = 'movieTimeCapsule';
+        const DELETED_KEY = STORAGE_KEY + ':deleted';
+
+        function recordKey(id) {
+            return id === undefined || id === null ? '' : String(id);
+        }
+
+        function recordUpdatedAt(rec) {
+            const value = Number(rec && (rec.updatedAt || rec.timestamp));
+            return Number.isFinite(value) ? value : 0;
+        }
+
+        function loadDeletedRecords() {
+            try {
+                const data = JSON.parse(localStorage.getItem(DELETED_KEY) || '{}');
+                const result = {};
+                if (Array.isArray(data)) {
+                    data.forEach(item => {
+                        if (!item || item.id === undefined || item.id === null) return;
+                        const at = Number(item.deletedAt || item.updatedAt || item.timestamp);
+                        if (Number.isFinite(at) && at > 0) result[recordKey(item.id)] = at;
+                    });
+                } else if (data && typeof data === 'object') {
+                    Object.keys(data).forEach(id => {
+                        const at = Number(data[id]);
+                        if (Number.isFinite(at) && at > 0) result[recordKey(id)] = at;
+                    });
+                }
+                return result;
+            } catch (e) {
+                return {};
+            }
+        }
 
         function loadRecords() {
             try {
                 const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
-                return Array.isArray(data) ? data : [];
+                const list = Array.isArray(data) ? data : (data && data.records);
+                return Array.isArray(list) ? list.filter(rec => rec && !rec._deleted) : [];
             } catch (e) {
                 return [];
             }
@@ -1721,6 +1754,7 @@
         // 每次修改都会调用：写 localStorage 并触发自动同步（1.5s 防抖）
         function saveRecords(list) {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+            localStorage.setItem(DELETED_KEY, JSON.stringify(deletedRecords));
             if (syncTimer) clearTimeout(syncTimer);
             syncTimer = setTimeout(autoSyncToRepo, 1500);
         }
@@ -1781,25 +1815,96 @@
             return task;
         }
 
-        // 把仓库拉取的记录合并进本地 records（按 updatedAt 判定：缺失则新增、仓库更新则覆盖）
-        // 返回合并条数
-        function mergeRepoRecords(repoList) {
+        // 兼容旧版数组格式，同时读取删除标记。
+        function parseRepoData(data) {
+            const list = Array.isArray(data) ? data : (data && Array.isArray(data.records) ? data.records : []);
+            const deleted = {};
+            const rawDeleted = Array.isArray(data) ? null : (data && (data.deleted || data.deletedRecords));
+            const addDeleted = (id, value) => {
+                const at = Number(value);
+                if (id !== undefined && id !== null && Number.isFinite(at) && at > 0) {
+                    deleted[recordKey(id)] = Math.max(deleted[recordKey(id)] || 0, at);
+                }
+            };
+            if (Array.isArray(rawDeleted)) {
+                rawDeleted.forEach(item => {
+                    if (!item) return;
+                    addDeleted(item.id, item.deletedAt || item.updatedAt || item.timestamp);
+                });
+            } else if (rawDeleted && typeof rawDeleted === 'object') {
+                Object.keys(rawDeleted).forEach(id => addDeleted(id, rawDeleted[id]));
+            }
+            const active = [];
+            list.forEach(rec => {
+                if (!rec || rec.id === undefined || rec.id === null) return;
+                if (rec._deleted) {
+                    addDeleted(rec.id, rec.deletedAt || rec.updatedAt || rec.timestamp);
+                } else if (rec.title) {
+                    active.push(rec);
+                }
+            });
+            return { records: active, deleted };
+        }
+
+        function buildRepoData() {
+            const deleted = Object.assign({}, deletedRecords);
+            return Object.keys(deleted).length
+                ? { version: 2, records: records.slice(), deleted }
+                : records.slice();
+        }
+
+        // 把仓库拉取的记录和删除标记合并进本地 records。
+        // 删除时间晚于或等于记录更新时间时，以删除为准；新版本记录可以重新恢复。
+        function mergeRepoRecords(repoData) {
+            const state = Array.isArray(repoData) ? parseRepoData(repoData) : (repoData && Array.isArray(repoData.records) ? repoData : parseRepoData(repoData));
             let merged = 0;
-            repoList.forEach(rec => {
-                if (!rec || !rec.id || !rec.title) return;
-                if (!rec.updatedAt) rec.updatedAt = rec.timestamp || Date.now();
-                const exist = records.find(r => r.id === rec.id);
-                if (!exist) {
-                    records.push(Object.assign({ watchedDate: nowDateStr(), timestamp: Date.now() }, rec));
+
+            Object.keys(state.deleted || {}).forEach(id => {
+                const at = Number(state.deleted[id]);
+                if (at > (deletedRecords[id] || 0)) {
+                    deletedRecords[id] = at;
                     merged++;
-                } else if ((rec.updatedAt || 0) > (exist.updatedAt || 0)) {
-                    const idx = records.indexOf(exist);
-                    records[idx] = Object.assign({}, exist, rec);
-                    records[idx].timestamp = exist.timestamp || records[idx].timestamp;
+                }
+            });
+
+            const before = records.length;
+            records = records.filter(rec => {
+                const deletedAt = deletedRecords[recordKey(rec.id)] || 0;
+                return !(deletedAt && deletedAt >= recordUpdatedAt(rec));
+            });
+            merged += before - records.length;
+
+            state.records.forEach(rec => {
+                if (!rec || rec.id === undefined || rec.id === null || !rec.title) return;
+                const id = recordKey(rec.id);
+                const remoteUpdatedAt = recordUpdatedAt(rec) || Date.now();
+                if ((deletedRecords[id] || 0) >= remoteUpdatedAt) return;
+
+                const normalized = Object.assign({ watchedDate: nowDateStr(), timestamp: Date.now() }, rec);
+                if (!normalized.updatedAt) normalized.updatedAt = remoteUpdatedAt;
+                const idx = records.findIndex(local => recordKey(local.id) === id);
+                if (idx < 0) {
+                    records.push(normalized);
+                    delete deletedRecords[id];
+                    merged++;
+                } else if (remoteUpdatedAt > recordUpdatedAt(records[idx])) {
+                    normalized.timestamp = records[idx].timestamp || normalized.timestamp;
+                    records[idx] = Object.assign({}, records[idx], normalized);
+                    delete deletedRecords[id];
                     merged++;
                 }
             });
             return merged;
+        }
+
+        function deleteRecordById(id) {
+            const key = recordKey(id);
+            if (!key) return false;
+            const before = records.length;
+            records = records.filter(rec => recordKey(rec.id) !== key);
+            deletedRecords[key] = Date.now();
+            saveRecords(records);
+            return records.length !== before;
         }
 
         // 自动把 records 推送到仓库（需已配置 gh_pat）
@@ -1817,11 +1922,11 @@
                 });
                 if (res.ok) {
                     const d = JSON.parse(await res.text());
-                    const repoList = Array.isArray(d) ? d : (d.records || []);
-                    const merged = mergeRepoRecords(repoList);
+                    const merged = mergeRepoRecords(parseRepoData(d));
                     if (merged > 0) {
                         // 直接写 localStorage，不触发 saveRecords 以避免再次调度自动同步形成循环
                         localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+                        localStorage.setItem(DELETED_KEY, JSON.stringify(deletedRecords));
                         renderSaved();
                     }
                 }
@@ -1831,7 +1936,7 @@
 
             // 2. 推送合并后的全量到仓库
             try {
-                const r = await ghWrite(owner, repo, pat, JSON.stringify(records, null, 2), '自动同步影视剧片单数据');
+                const r = await ghWrite(owner, repo, pat, JSON.stringify(buildRepoData(), null, 2), '自动同步影视剧片单数据');
                 showSyncToast(r.ok, r.error);
             } catch (e) {
                 showSyncToast(false);
@@ -2147,6 +2252,7 @@
         }
 
         // ===================== 页面逻辑 =====================
+        let deletedRecords = loadDeletedRecords();
         let records = loadRecords();
         let currentCat = 'all';        // all / movie / tv / variety / anime
         let currentGenre = '';         // 题材（二级）
@@ -2346,11 +2452,7 @@
 
                 document.getElementById('modal-delete-btn').addEventListener('click', () => {
                     if (confirm('确定删除这条观影记录吗？')) {
-                        const idx = records.findIndex(r => r.id === data.id);
-                        if (idx >= 0) {
-                            records.splice(idx, 1);
-                            saveRecords(records);
-                        }
+                        deleteRecordById(data.id);
                         closeModal();
                         renderSaved();
                     }
@@ -2906,15 +3008,12 @@
 
             // 悬停层：删除
             savedList.querySelectorAll('[data-hover-del]').forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     const id = btn.dataset.hoverDel;
                     if (confirm('确定删除这条观影记录吗？')) {
-                        const idx = records.findIndex(r => r.id === id);
-                        if (idx >= 0) {
-                            records.splice(idx, 1);
-                            saveRecords(records);
-                            renderSaved();
-                        }
+                        deleteRecordById(id);
+                        renderSaved();
                     }
                 });
             });
@@ -3043,7 +3142,8 @@
             if (!record.timestamp) record.timestamp = Date.now();
             if (!record.updatedAt) record.updatedAt = record.timestamp;
 
-            if (!records.some(r => r.id === record.id)) {
+            delete deletedRecords[recordKey(record.id)];
+            if (!records.some(r => recordKey(r.id) === recordKey(record.id))) {
                 records.push(record);
             }
             saveRecords(records);
@@ -3273,12 +3373,13 @@
             reader.onload = () => {
                 try {
                     const data = JSON.parse(reader.result);
-                    const list = Array.isArray(data) ? data : (data.records || []);
+                    const list = parseRepoData(data).records;
                     let added = 0, updated = 0;
                     list.forEach(rec => {
                         if (!rec || !rec.title) return;
                         if (!rec.id) rec.id = 'manual-' + Date.now() + '-' + added;
-                        const exist = records.find(r => r.id === rec.id);
+                        delete deletedRecords[recordKey(rec.id)];
+                        const exist = records.find(r => recordKey(r.id) === recordKey(rec.id));
                         if (!exist) {
                             records.push(Object.assign({
                                 watchedDate: nowDateStr(),
@@ -3360,7 +3461,7 @@
 
             // 1. 先获取当前文件 sha（用默认 JSON Accept，返回元数据含 sha）
             let sha = null;
-            let repoList = [];
+            let repoData = [];
             try {
                 const metaRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
                     cache: 'no-store',
@@ -3373,13 +3474,12 @@
                     headers: Object.assign({ Accept: 'application/vnd.github.raw' }, { Authorization: `token ${pat}` })
                 });
                 if (rawRes.ok) {
-                    const d = JSON.parse(await rawRes.text());
-                    repoList = Array.isArray(d) ? d : (d.records || []);
+                    repoData = JSON.parse(await rawRes.text());
                 }
             } catch (e) {}
 
             // 2. 合并仓库数据到本地（复用与自动同步一致的逻辑）
-            const merged = mergeRepoRecords(repoList);
+            const merged = mergeRepoRecords(repoData);
 
             // 3. 若合并了仓库数据，保存到本地并提示
             let mergedMsg = '';
@@ -3390,7 +3490,7 @@
                 ghStatus(`保存前已合并仓库数据 ${merged} 条...`, true);
             }
 
-            const content = JSON.stringify(records, null, 2);
+            const content = JSON.stringify(buildRepoData(), null, 2);
 
             // 4. 执行覆盖保存（走统一串行写入，sha 冲突自动重试）
             ghStatus('正在保存到仓库...' + mergedMsg, true);
@@ -3418,29 +3518,12 @@
                     return;
                 }
                 const data = JSON.parse(await res.text());
-                const list = Array.isArray(data) ? data : (data.records || []);
-                let added = 0, updated = 0, skipped = 0;
-                list.forEach(rec => {
-                    if (!rec || !rec.title) return;
-                    if (!rec.updatedAt) rec.updatedAt = rec.timestamp || Date.now();
-                    const exist = records.find(r => r.id === rec.id);
-                    if (!exist) {
-                        records.push(Object.assign({ watchedDate: nowDateStr(), timestamp: Date.now() }, rec));
-                        added++;
-                    } else if ((rec.updatedAt || 0) > (exist.updatedAt || 0)) {
-                        // 仓库版本更新 → 用仓库版本覆盖本地
-                        const idx = records.indexOf(exist);
-                        records[idx] = Object.assign({}, exist, rec);
-                        records[idx].timestamp = exist.timestamp || records[idx].timestamp;
-                        updated++;
-                    } else {
-                        // 本地版本更新（或相同）→ 保留本地
-                        skipped++;
-                    }
-                });
+                const before = records.length;
+                const merged = mergeRepoRecords(data);
                 saveRecords(records);
                 renderSaved();
-                ghStatus(`加载完成：新增 ${added} 条，更新 ${updated} 条，保留本地 ${skipped} 条`, true);
+                const removed = Math.max(0, before - records.length);
+                ghStatus(`加载完成：同步变更 ${merged} 条${removed ? `，删除 ${removed} 条` : ''}`, true);
             } catch (e) {
                 ghStatus('加载失败：' + e.message, false);
             }
@@ -3473,10 +3556,11 @@
                 });
                 if (!res.ok) return;
                 const data = JSON.parse(await res.text());
-                const list = Array.isArray(data) ? data : (data.records || []);
-                if (list.length === 0) return;
-                records = list;
+                const state = parseRepoData(data);
+                if (state.records.length === 0 && Object.keys(state.deleted).length === 0) return;
+                mergeRepoRecords(state);
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+                localStorage.setItem(DELETED_KEY, JSON.stringify(deletedRecords));
                 renderSaved();
                 showSyncToast(true);
             } catch (e) {
