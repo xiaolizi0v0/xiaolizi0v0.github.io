@@ -4959,12 +4959,13 @@
       },
       {
         "title": "20260823下",
-        "url": "https://v.lzcdn28.com/20260823/14722_b1cba93e/2000k/hls/mixed.m3u8"
+        "url": "https://v.lzcdn28.com/20260823/14722_b1cba93e/2000k/hls/mixed.m3u8",
+        "watched": true
       }
     ],
     "watchedDate": "2026-08-23",
     "timestamp": 1787429503496,
-    "updatedAt": 1787562040627
+    "updatedAt": 1787565823019
   },
   {
     "id": "baike-63571807",
