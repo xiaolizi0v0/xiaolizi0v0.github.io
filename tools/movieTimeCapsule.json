@@ -4837,7 +4837,8 @@
       },
       {
         "title": "第07集",
-        "url": "https://v.cdnlz29.com/20251211/11450_651f1027/2000k/hls/mixed.m3u8"
+        "url": "https://v.cdnlz29.com/20251211/11450_651f1027/2000k/hls/mixed.m3u8",
+        "watched": true
       },
       {
         "title": "第08集",
@@ -4908,7 +4909,7 @@
         "url": "https://v.cdnlz29.com/20251211/11530_db773544/2000k/hls/mixed.m3u8"
       }
     ],
-    "updatedAt": 1787573092413
+    "updatedAt": 1787576499506
   },
   {
     "watchedDate": "2026-08-22",
@@ -5028,6 +5029,8 @@
     "updatedAt": 1787469169647
   },
   {
+    "watchedDate": "2026-08-24",
+    "timestamp": 1787576053634,
     "id": "baike-36036897",
     "title": "一吻爆炸",
     "year": "2025",
@@ -5044,11 +5047,11 @@
     "done": 0,
     "count": 1,
     "eps": [],
-    "watchedDate": "2026-08-24",
-    "timestamp": 1787576053634,
     "updatedAt": 1787576053634
   },
   {
+    "watchedDate": "2026-08-24",
+    "timestamp": 1787576337550,
     "id": "baike-8395761",
     "title": "甜蜜家园",
     "year": "2020",
@@ -5065,11 +5068,11 @@
     "done": 0,
     "count": 1,
     "eps": [],
-    "watchedDate": "2026-08-24",
-    "timestamp": 1787576337550,
     "updatedAt": 1787576368229
   },
   {
+    "watchedDate": "2026-08-24",
+    "timestamp": 1787576449537,
     "id": "baike-19059953",
     "title": "举重妖精金福珠",
     "year": "2016",
@@ -5086,11 +5089,11 @@
     "done": 0,
     "count": 1,
     "eps": [],
-    "watchedDate": "2026-08-24",
-    "timestamp": 1787576449537,
     "updatedAt": 1787576449537
   },
   {
+    "watchedDate": "2026-08-24",
+    "timestamp": 1787576484627,
     "id": "baike-21194473",
     "title": "加油吧威基基",
     "year": "2018",
@@ -5107,11 +5110,11 @@
     "done": 0,
     "count": 1,
     "eps": [],
-    "watchedDate": "2026-08-24",
-    "timestamp": 1787576484627,
     "updatedAt": 1787576484627
   },
   {
+    "watchedDate": "2026-08-24",
+    "timestamp": 1787576508163,
     "id": "baike-20956238",
     "title": "今生是第一次",
     "year": "2017",
@@ -5128,8 +5131,6 @@
     "done": 0,
     "count": 1,
     "eps": [],
-    "watchedDate": "2026-08-24",
-    "timestamp": 1787576508163,
     "updatedAt": 1787576508163
   }
 ]
