@@ -5195,5 +5195,26 @@
     "watchedDate": "2026-08-24",
     "timestamp": 1787576692086,
     "updatedAt": 1787576692086
+  },
+  {
+    "id": "baike-21085237",
+    "title": "广播罗曼史",
+    "year": "2018",
+    "type": "tv",
+    "url": "http://baike.baidu.com/item/%E5%B9%BF%E6%92%AD%E7%BD%97%E6%9B%BC%E5%8F%B2",
+    "img": "https://bkimg.cdn.bcebos.com/pic/b2de9c82d158ccbf3c86cd5015d8bc3eb13541a5?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+    "genre": "爱情 剧情",
+    "platform": "",
+    "region": "日韩",
+    "sub_title": "",
+    "desc": "《广播罗曼史》是韩国KBS电视台于2018年1月29日起在月火档播出的爱情连续剧，由文浚河执导，全有利编剧，尹斗俊、金所泫、尹博、金亚荣主演。该剧主要讲述了没有剧本就什么都做不了的大明星与不会写剧本的编剧联手打造广播节目的故事。",
+    "note": "",
+    "liked": 0,
+    "done": 0,
+    "count": 1,
+    "eps": [],
+    "watchedDate": "2026-08-24",
+    "timestamp": 1787577013933,
+    "updatedAt": 1787577013933
   }
 ]
