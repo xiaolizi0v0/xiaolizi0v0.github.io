@@ -2002,8 +2002,153 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
-      "updatedAt": 1787330983872
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://vip.ffzy-play1.com/20221025/3795_c5662145/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第02集",
+          "url": "https://vip.ffzy-play1.com/20221025/3797_59a0dc09/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第03集",
+          "url": "https://vip.ffzy-play1.com/20221025/3796_1a497b44/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第04集",
+          "url": "https://vip.ffzy-play1.com/20221025/3799_ecc329ff/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第05集",
+          "url": "https://vip.ffzy-play1.com/20221025/3798_128fc569/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第06集",
+          "url": "https://vip.ffzy-play1.com/20221025/3801_39a2579e/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第07集",
+          "url": "https://vip.ffzy-play1.com/20221025/3800_210c0f72/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第08集",
+          "url": "https://vip.ffzy-play1.com/20221025/3802_a87d7660/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第09集",
+          "url": "https://vip.ffzy-play1.com/20221025/3803_549cfa15/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第10集",
+          "url": "https://vip.ffzy-play1.com/20221025/3805_0c3b13c3/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第11集",
+          "url": "https://vip.ffzy-play1.com/20221025/3804_108adff5/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第12集",
+          "url": "https://vip.ffzy-play1.com/20221025/3807_db442c4c/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第13集",
+          "url": "https://vip.ffzy-play1.com/20221025/3806_d7d64b06/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第14集",
+          "url": "https://vip.ffzy-play1.com/20221025/3808_7577e37c/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第15集",
+          "url": "https://vip.ffzy-play1.com/20221025/3809_4cdfeb46/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第16集",
+          "url": "https://vip.ffzy-play1.com/20221025/3811_b6e9dbc8/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第17集",
+          "url": "https://vip.ffzy-play1.com/20221025/3810_31a715c5/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第18集",
+          "url": "https://vip.ffzy-play1.com/20221025/3813_03dacd12/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第19集",
+          "url": "https://vip.ffzy-play1.com/20221025/3812_b0a0d913/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第20集",
+          "url": "https://vip.ffzy-play1.com/20221025/3814_8b0e1da1/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第21集",
+          "url": "https://vip.ffzy-play1.com/20221025/3815_adf65ba6/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第22集",
+          "url": "https://vip.ffzy-play1.com/20221025/3816_f9ccc797/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第23集",
+          "url": "https://vip.ffzy-play1.com/20221025/3817_69242265/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第24集",
+          "url": "https://vip.ffzy-play1.com/20221025/3818_bef54baf/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第25集",
+          "url": "https://vip.ffzy-play1.com/20221025/3819_b8f2951e/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第26集",
+          "url": "https://vip.ffzy-play1.com/20221025/3820_18824b6b/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第27集",
+          "url": "https://vip.ffzy-play1.com/20221025/3822_79c3e963/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第28集",
+          "url": "https://vip.ffzy-play1.com/20221025/3821_7c831e8e/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第29集",
+          "url": "https://vip.ffzy-play1.com/20221025/3823_6be8ffad/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第30集",
+          "url": "https://vip.ffzy-play1.com/20221025/3824_f008a896/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第31集",
+          "url": "https://vip.ffzy-play1.com/20221025/3825_d17b8e4f/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第32集",
+          "url": "https://vip.ffzy-play1.com/20221025/3826_11eff96f/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第33集",
+          "url": "https://vip.ffzy-play1.com/20221025/3827_f5fd38ac/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第34集",
+          "url": "https://vip.ffzy-play1.com/20221025/3828_fdbb297c/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第35集",
+          "url": "https://vip.ffzy-play1.com/20221025/3829_2b9a0c5c/2000k/hls/mixed.m3u8"
+        },
+        {
+          "title": "第36集",
+          "url": "https://vip.ffzy-play1.com/20221025/3830_da9e5b8c/2000k/hls/mixed.m3u8"
+        }
+      ],
+      "updatedAt": 1787724832962
     },
     {
       "watchedDate": "2026-08-22",
