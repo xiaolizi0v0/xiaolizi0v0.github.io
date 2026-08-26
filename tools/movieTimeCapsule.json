@@ -6376,7 +6376,8 @@
       },
       {
         "title": "第02集",
-        "url": "https://vip.ffzy-play.com/20221027/5815_5550a179/2000k/hls/mixed.m3u8"
+        "url": "https://vip.ffzy-play.com/20221027/5815_5550a179/2000k/hls/mixed.m3u8",
+        "watched": true
       },
       {
         "title": "第03集",
@@ -6501,7 +6502,7 @@
     ],
     "watchedDate": "2026-08-26",
     "timestamp": 1787723818244,
-    "updatedAt": 1787751597285
+    "updatedAt": 1787753979044
   },
   {
     "id": "baike-26824736",
