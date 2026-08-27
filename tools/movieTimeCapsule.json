@@ -6418,7 +6418,8 @@
         },
         {
           "title": "第10集",
-          "url": "https://vip.ffzy-play.com/20221027/5823_81dfb573/2000k/hls/mixed.m3u8"
+          "url": "https://vip.ffzy-play.com/20221027/5823_81dfb573/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第11集",
@@ -6511,7 +6512,7 @@
       ],
       "watchedDate": "2026-08-26",
       "timestamp": 1787723818244,
-      "updatedAt": 1787833735252
+      "updatedAt": 1787840785540
     },
     {
       "id": "baike-26824736",
