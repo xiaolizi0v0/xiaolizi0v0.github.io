@@ -6403,7 +6403,8 @@
         },
         {
           "title": "第07集",
-          "url": "https://vip.ffzy-play.com/20221027/5820_5559d1da/2000k/hls/mixed.m3u8"
+          "url": "https://vip.ffzy-play.com/20221027/5820_5559d1da/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第08集",
@@ -6508,7 +6509,7 @@
       ],
       "watchedDate": "2026-08-26",
       "timestamp": 1787723818244,
-      "updatedAt": 1787816749546
+      "updatedAt": 1787819544930
     },
     {
       "id": "baike-26824736",
