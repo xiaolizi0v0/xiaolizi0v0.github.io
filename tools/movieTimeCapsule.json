@@ -6438,7 +6438,8 @@
         },
         {
           "title": "第14集",
-          "url": "https://vip.ffzy-play.com/20221027/5827_6a1bf7c8/2000k/hls/mixed.m3u8"
+          "url": "https://vip.ffzy-play.com/20221027/5827_6a1bf7c8/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第15集",
@@ -6515,7 +6516,7 @@
       ],
       "watchedDate": "2026-08-26",
       "timestamp": 1787723818244,
-      "updatedAt": 1787844760320
+      "updatedAt": 1787845835767
     },
     {
       "id": "baike-26824736",
