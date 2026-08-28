@@ -6463,7 +6463,8 @@
         },
         {
           "title": "第19集",
-          "url": "https://vip.ffzy-play.com/20221027/5832_28a5a120/2000k/hls/mixed.m3u8"
+          "url": "https://vip.ffzy-play.com/20221027/5832_28a5a120/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第20集",
@@ -6520,7 +6521,7 @@
       ],
       "watchedDate": "2026-08-26",
       "timestamp": 1787723818244,
-      "updatedAt": 1787907118435
+      "updatedAt": 1787909517641
     },
     {
       "id": "baike-26824736",
