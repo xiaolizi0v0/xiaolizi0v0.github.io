@@ -5172,11 +5172,15 @@
           "title": "第07集",
           "url": "https://v.lzcdn31.com/20260820/10104_aab09802/2000k/hls/mixed.m3u8",
           "watched": true
+        },
+        {
+          "title": "第08集",
+          "url": "https://v.lzcdn31.com/20260827/10561_4879a6d8/2000k/hls/mixed.m3u8"
         }
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787430287694,
-      "updatedAt": 1787469169647
+      "updatedAt": 1788001666423
     },
     {
       "watchedDate": "2026-08-24",
