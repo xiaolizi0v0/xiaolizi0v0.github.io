@@ -19,7 +19,7 @@
       "liked": 1,
       "done": 0,
       "count": 1,
-      "updatedAt": 1788088439418,
+      "updatedAt": 1788090972685,
       "eps": [
         {
           "title": "第06集",
@@ -68,7 +68,8 @@
         },
         {
           "title": "第15集",
-          "url": "https://cdn.yzzy31-play.com/20260826/24690_f2013aa6/3000k/hls/mixed.m3u8"
+          "url": "https://cdn.yzzy31-play.com/20260826/24690_f2013aa6/3000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第16集",
