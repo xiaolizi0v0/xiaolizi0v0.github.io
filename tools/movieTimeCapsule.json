@@ -19,7 +19,7 @@
       "liked": 1,
       "done": 0,
       "count": 1,
-      "updatedAt": 1788025646587,
+      "updatedAt": 1788072583126,
       "eps": [
         {
           "title": "第06集",
@@ -33,7 +33,8 @@
         },
         {
           "title": "第08集",
-          "url": "https://v.lzcdn27.com/20260822/15806_edebc69a/2000k/hls/mixed.m3u8"
+          "url": "https://v.lzcdn27.com/20260822/15806_edebc69a/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第09集",
