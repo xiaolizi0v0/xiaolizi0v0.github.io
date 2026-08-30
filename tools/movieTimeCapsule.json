@@ -19,7 +19,7 @@
       "liked": 1,
       "done": 0,
       "count": 1,
-      "updatedAt": 1788080620220,
+      "updatedAt": 1788083254657,
       "eps": [
         {
           "title": "第06集",
@@ -53,7 +53,8 @@
         },
         {
           "title": "第12集",
-          "url": "https://player.yzzyvip-35.com/20260824/14630_f0b875eb/3000k/hls/mixed.m3u8"
+          "url": "https://player.yzzyvip-35.com/20260824/14630_f0b875eb/3000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第13集",
