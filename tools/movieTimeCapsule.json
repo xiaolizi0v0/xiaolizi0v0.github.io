@@ -19,7 +19,7 @@
       "liked": 1,
       "done": 0,
       "count": 1,
-      "updatedAt": 1788099994414,
+      "updatedAt": 1788102817496,
       "eps": [
         {
           "title": "第06集",
@@ -88,7 +88,8 @@
         },
         {
           "title": "第19集",
-          "url": "https://cdn.yzzy31-play.com/20260829/24858_baa0cb56/3000k/hls/mixed.m3u8"
+          "url": "https://cdn.yzzy31-play.com/20260829/24858_baa0cb56/3000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第20集",
@@ -6800,6 +6801,8 @@
       "updatedAt": 1787725010765
     },
     {
+      "watchedDate": "2026-08-27",
+      "timestamp": 1787809072830,
       "id": "baike-65619917",
       "title": "金色（2026年徐兵执导的大漠寻金武侠冒险剧）",
       "year": "2026",
@@ -6816,8 +6819,6 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-08-27",
-      "timestamp": 1787809072830,
       "updatedAt": 1787809089138
     }
   ],
