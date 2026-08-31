@@ -6869,7 +6869,8 @@
         },
         {
           "title": "第05集",
-          "url": "https://v.lzcdn27.com/20260827/16111_3038c253/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260827/16111_3038c253/index.m3u8",
+          "watched": true
         },
         {
           "title": "第06集",
@@ -6900,7 +6901,7 @@
           "url": "https://v.lzcdn27.com/20260831/16290_30cabfd2/index.m3u8"
         }
       ],
-      "updatedAt": 1788176672782
+      "updatedAt": 1788179472287
     }
   ],
   "deleted": {
