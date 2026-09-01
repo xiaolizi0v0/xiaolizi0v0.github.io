@@ -5188,7 +5188,8 @@
         },
         {
           "title": "20260830上-01",
-          "url": "https://v.lzcdn28.com/20260830/15037_2f1630c4/index.m3u8"
+          "url": "https://v.lzcdn28.com/20260830/15037_2f1630c4/index.m3u8",
+          "watched": true
         },
         {
           "title": "20260830上-02",
@@ -5197,7 +5198,7 @@
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787429503496,
-      "updatedAt": 1788240764469
+      "updatedAt": 1788244661824
     },
     {
       "id": "baike-63571807",
