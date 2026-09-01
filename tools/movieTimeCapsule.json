@@ -6920,10 +6920,59 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://v.lzcdn27.com/20260831/16273_d424af1c/index.m3u8"
+        },
+        {
+          "title": "第02集",
+          "url": "https://v.lzcdn27.com/20260831/16274_6a7e975f/index.m3u8"
+        },
+        {
+          "title": "第03集",
+          "url": "https://v.lzcdn27.com/20260831/16275_f9e361c4/index.m3u8"
+        },
+        {
+          "title": "第04集",
+          "url": "https://v.lzcdn27.com/20260831/16276_5ea99c7d/index.m3u8"
+        },
+        {
+          "title": "第05集",
+          "url": "https://v.lzcdn27.com/20260831/16277_837ce617/index.m3u8"
+        },
+        {
+          "title": "第06集",
+          "url": "https://v.lzcdn27.com/20260831/16278_002cbe07/index.m3u8"
+        },
+        {
+          "title": "第07集",
+          "url": "https://v.lzcdn27.com/20260831/16279_31b76d1b/index.m3u8"
+        },
+        {
+          "title": "第08集",
+          "url": "https://v.lzcdn27.com/20260831/16280_66984caf/index.m3u8"
+        },
+        {
+          "title": "第09集",
+          "url": "https://v.lzcdn27.com/20260901/16331_488d59c2/index.m3u8"
+        },
+        {
+          "title": "第10集",
+          "url": "https://v.lzcdn27.com/20260901/16330_be10328a/index.m3u8"
+        },
+        {
+          "title": "第11集",
+          "url": "https://v.lzcdn27.com/20260901/16329_495d73ee/index.m3u8"
+        },
+        {
+          "title": "第12集",
+          "url": "https://v.lzcdn27.com/20260901/16328_08011e55/index.m3u8"
+        }
+      ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788238404077,
-      "updatedAt": 1788238404077
+      "updatedAt": 1788238571439
     },
     {
       "watchedDate": "2026-09-01",
