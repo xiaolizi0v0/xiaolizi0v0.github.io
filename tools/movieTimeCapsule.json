@@ -6555,7 +6555,8 @@
         },
         {
           "title": "第22集",
-          "url": "https://vip.ffzy-play.com/20221027/5835_3f3acb1d/2000k/hls/mixed.m3u8"
+          "url": "https://vip.ffzy-play.com/20221027/5835_3f3acb1d/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第23集",
@@ -6600,7 +6601,7 @@
       ],
       "watchedDate": "2026-08-26",
       "timestamp": 1787723818244,
-      "updatedAt": 1788010744182
+      "updatedAt": 1788237402042
     },
     {
       "id": "baike-26824736",
@@ -6808,6 +6809,8 @@
       "updatedAt": 1787725010765
     },
     {
+      "watchedDate": "2026-08-27",
+      "timestamp": 1787809072830,
       "id": "baike-65619917",
       "title": "金色（2026年徐兵执导的大漠寻金武侠冒险剧）",
       "year": "2026",
@@ -6824,8 +6827,6 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-08-27",
-      "timestamp": 1787809072830,
       "updatedAt": 1787809089138
     },
     {
@@ -6904,6 +6905,8 @@
       "updatedAt": 1788179472287
     },
     {
+      "watchedDate": "2026-09-01",
+      "timestamp": 1788232184091,
       "id": "baike-28993462",
       "title": "魔幻手机2：傻妞归来",
       "year": "2014",
@@ -6920,11 +6923,11 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-09-01",
-      "timestamp": 1788232184091,
       "updatedAt": 1788232184091
     },
     {
+      "watchedDate": "2026-09-01",
+      "timestamp": 1788232199325,
       "id": "baike-1111485",
       "title": "魔幻手机",
       "year": "2008",
@@ -6941,8 +6944,6 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-09-01",
-      "timestamp": 1788232199325,
       "updatedAt": 1788232199325
     }
   ],
