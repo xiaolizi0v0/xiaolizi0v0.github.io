@@ -6988,7 +6988,8 @@
         },
         {
           "title": "第03集",
-          "url": "https://v.lzcdn27.com/20260831/16275_f9e361c4/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260831/16275_f9e361c4/index.m3u8",
+          "watched": true
         },
         {
           "title": "第04集",
@@ -7027,7 +7028,7 @@
           "url": "https://v.lzcdn27.com/20260901/16328_08011e55/index.m3u8"
         }
       ],
-      "updatedAt": 1788240896576
+      "updatedAt": 1788277339613
     }
   ],
   "deleted": {
