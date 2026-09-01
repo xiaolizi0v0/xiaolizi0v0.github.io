@@ -35,6 +35,7 @@
 
     <!-- 英雄区域 -->
     <section id="home" class="hero">
+        <canvas class="hero-bg-canvas" id="heroCanvas" aria-hidden="true"></canvas>
         <div class="hero-container">
             <div class="hero-content">
                 <span class="hero-eyebrow">Personal Blog</span>
@@ -75,7 +76,7 @@
             <span class="section-eyebrow">About Me</span>
             <h2 class="section-title">关于我</h2>
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text reveal">
                     <p>
                         我是一名充满热情的开发者和问题解决者，拥有扎实的技术背景和丰富的项目经验。
                         我热爱学习新技术，享受将复杂想法转化为优雅解决方案的过程。
@@ -85,21 +86,21 @@
                         我相信技术的力量可以改变世界，让生活变得更美好。
                     </p>
                     <div class="about-stats">
-                        <div class="stat">
+                        <div class="stat reveal" style="--reveal-delay:.15s">
                             <span class="stat-number">50+</span>
                             <span class="stat-label">完成项目</span>
                         </div>
-                        <div class="stat">
+                        <div class="stat reveal" style="--reveal-delay:.25s">
                             <span class="stat-number">3+</span>
                             <span class="stat-label">年经验</span>
                         </div>
-                        <div class="stat">
+                        <div class="stat reveal" style="--reveal-delay:.35s">
                             <span class="stat-number">100%</span>
                             <span class="stat-label">客户满意度</span>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
+                <div class="about-image reveal" style="--reveal-delay:.1s">
                     <div class="image-placeholder about-img">
                         <i class="fas fa-code"></i>
                     </div>
@@ -114,7 +115,7 @@
             <span class="section-eyebrow">Skills</span>
             <h2 class="section-title">技术技能</h2>
             <div class="skills-grid">
-                <div class="skill-category">
+                <div class="skill-category reveal">
                     <h3>前端开发</h3>
                     <div class="skill-list">
                         <div class="skill-item">
@@ -144,7 +145,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="skill-category reveal" style="--reveal-delay:.12s">
                     <h3>后端开发</h3>
                     <div class="skill-list">
                         <div class="skill-item">
@@ -174,7 +175,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="skill-category reveal" style="--reveal-delay:.24s">
                     <h3>其他技能</h3>
                     <div class="skill-list">
                         <div class="skill-item">
@@ -213,7 +214,7 @@
             <span class="section-eyebrow">Projects</span>
             <h2 class="section-title">精选项目</h2>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card reveal">
                     <div class="project-image">
                         <i class="fas fa-robot"></i>
                     </div>
@@ -232,7 +233,7 @@
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card reveal" style="--reveal-delay:.12s">
                     <div class="project-image">
                         <i class="fas fa-camera"></i>
                     </div>
@@ -251,7 +252,7 @@
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card reveal" style="--reveal-delay:.24s">
                     <div class="project-image">
                         <i class="fas fa-gamepad"></i>
                     </div>
@@ -279,7 +280,7 @@
             <span class="section-eyebrow">Education</span>
             <h2 class="section-title">教育背景</h2>
             <div class="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <h3>计算机科学硕士</h3>
                         <span class="timeline-date">2022 - 2024</span>
@@ -287,7 +288,7 @@
                         <p>主修人工智能和机器学习，GPA: 3.9/4.0</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item reveal" style="--reveal-delay:.15s">
                     <div class="timeline-content">
                         <h3>软件工程学士</h3>
                         <span class="timeline-date">2018 - 2022</span>

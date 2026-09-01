@@ -57,19 +57,31 @@ function animateSkills() {
     });
 }
 
-// 滚动显示动画
+// 滚动显示动画（IntersectionObserver，单次触发）
+let _revealObserver = null;
 function revealOnScroll() {
+    if (_revealObserver) return; // 已初始化则直接返回，保证幂等
     const reveals = document.querySelectorAll('.reveal');
-    
-    reveals.forEach(reveal => {
-        const windowHeight = window.innerHeight;
-        const elementTop = reveal.getBoundingClientRect().top;
-        const elementVisible = 150;
-        
-        if (elementTop < windowHeight - elementVisible) {
-            reveal.classList.add('active');
-        }
-    });
+    if (!reveals.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+        // 不支持 IO 时直接显示，避免内容永久隐藏
+        reveals.forEach(r => r.classList.add('active'));
+        return;
+    }
+
+    _revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // 进出视口都切换状态：向下/向上滚动均会重新触发动效
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            } else {
+                entry.target.classList.remove('active');
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(r => _revealObserver.observe(r));
 }
 
 // 表单验证和提交
@@ -321,4 +333,149 @@ window.PersonalBlog = {
     initThemeToggle,
     debounce
 };
+
+// ===================== 首屏体感光晕背景 =====================
+// 深仿 DeepSeek harness：点阵网格 + 体积光晕，随鼠标联动（仅首屏 hero）
+(function initHeroBackground() {
+    const hero = document.querySelector('.hero');
+    const canvas = hero && hero.querySelector('.hero-bg-canvas');
+    if (!hero || !canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let W = 0, H = 0, dpr = 1;
+
+    function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = hero.clientWidth;
+        H = hero.clientHeight;
+        canvas.width = Math.max(1, Math.round(W * dpr));
+        canvas.height = Math.max(1, Math.round(H * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // 光晕团：相对锚点(bx,by)、半径 r、颜色 c、透明度 a、漂移参数(sp, ph)
+    const blobs = [
+        { bx: 0.25, by: 0.30, r: 360, c: '255,255,255', a: 0.22, sp: 0.00018, ph: 0 },
+        { bx: 0.74, by: 0.20, r: 300, c: '103,153,254', a: 0.20, sp: 0.00026, ph: 2 },
+        { bx: 0.55, by: 0.80, r: 400, c: '77,107,254', a: 0.16, sp: 0.00014, ph: 4 },
+        { bx: 0.12, by: 0.76, r: 280, c: '255,255,255', a: 0.13, sp: 0.00022, ph: 1 }
+    ];
+
+    // 鼠标状态（相对 hero 左上角）
+    let mx = 0, my = 0, tmx = 0, tmy = 0;
+    function setTarget(clientX, clientY) {
+        const rect = hero.getBoundingClientRect();
+        tmx = clientX - rect.left;
+        tmy = clientY - rect.top;
+    }
+    hero.addEventListener('pointermove', e => setTarget(e.clientX, e.clientY));
+    hero.addEventListener('pointerleave', () => { tmx = W / 2; tmy = H / 2; });
+
+    function drawGrid(px, py) {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgba(255,255,255,0.05)';
+        const gap = 26;
+        const ox = -px * 18, oy = -py * 18;
+        let startX = ox % gap; if (startX > 0) startX -= gap;
+        let startY = oy % gap; if (startY > 0) startY -= gap;
+        for (let y = startY; y < H; y += gap) {
+            for (let x = startX; x < W; x += gap) {
+                ctx.fillRect(x, y, 1, 1);
+            }
+        }
+    }
+
+    function draw(ts) {
+        ctx.clearRect(0, 0, W, H);
+
+        // 鼠标阻尼跟随
+        mx += (tmx - mx) * 0.06;
+        my += (tmy - my) * 0.06;
+
+        const px = (mx - W / 2) / W;   // 视差系数 -0.5..0.5
+        const py = (my - H / 2) / H;
+
+        // 点阵网格（轻微视差）
+        drawGrid(px, py);
+
+        // 体积光晕（用 lighter 叠加提亮深色底）
+        ctx.globalCompositeOperation = 'lighter';
+        for (const b of blobs) {
+            const driftX = Math.sin(ts * b.sp + b.ph) * 42;
+            const driftY = Math.cos(ts * b.sp * 1.3 + b.ph) * 32;
+            let bx = b.bx * W + driftX;
+            let by = b.by * H + driftY;
+
+            // 鼠标靠近时轻微推开
+            const dx = bx - mx, dy = by - my;
+            const d = Math.hypot(dx, dy) || 0.001;
+            const push = Math.max(0, 1 - d / 400) * 70;
+            bx += (dx / d) * push;
+            by += (dy / d) * push;
+
+            const g = ctx.createRadialGradient(bx, by, 0, bx, by, b.r);
+            g.addColorStop(0, `rgba(${b.c},${b.a})`);
+            g.addColorStop(1, `rgba(${b.c},0)`);
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.arc(bx, by, b.r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // 鼠标处柔和高光
+        const mg = ctx.createRadialGradient(mx, my, 0, mx, my, 220);
+        mg.addColorStop(0, 'rgba(120,160,255,0.10)');
+        mg.addColorStop(1, 'rgba(120,160,255,0)');
+        ctx.fillStyle = mg;
+        ctx.beginPath();
+        ctx.arc(mx, my, 220, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.globalCompositeOperation = 'source-over';
+    }
+
+    let rafId = null;
+    let running = false;
+
+    function loop(ts) {
+        draw(ts || 0);
+        rafId = requestAnimationFrame(loop);
+    }
+
+    function start() {
+        if (running) return;
+        running = true;
+        mx = tmx = W / 2;
+        my = tmy = H / 2;
+        rafId = requestAnimationFrame(loop);
+    }
+
+    function stop() {
+        running = false;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = null;
+    }
+
+    if (reduceMotion) {
+        // 无障碍：仅静态渲染一帧（网格 + 光晕，无漂移）
+        draw(0);
+    } else {
+        // 仅在 hero 进入视口时运行，离开则暂停以省 CPU
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) start();
+                    else stop();
+                });
+            }, { threshold: 0.01 });
+            io.observe(hero);
+        } else {
+            start();
+        }
+    }
+})();
 
