@@ -6808,8 +6808,6 @@
       "updatedAt": 1787725010765
     },
     {
-      "watchedDate": "2026-08-27",
-      "timestamp": 1787809072830,
       "id": "baike-65619917",
       "title": "金色（2026年徐兵执导的大漠寻金武侠冒险剧）",
       "year": "2026",
@@ -6826,6 +6824,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-08-27",
+      "timestamp": 1787809072830,
       "updatedAt": 1787809089138
     },
     {
@@ -6902,6 +6902,27 @@
         }
       ],
       "updatedAt": 1788179472287
+    },
+    {
+      "id": "baike-28993462",
+      "title": "魔幻手机2：傻妞归来",
+      "year": "2014",
+      "type": "tv",
+      "url": "http://baike.baidu.com/item/%E9%AD%94%E5%B9%BB%E6%89%8B%E6%9C%BA2%EF%BC%9A%E5%82%BB%E5%A6%9E%E5%BD%92%E6%9D%A5",
+      "img": "https://bkimg.cdn.bcebos.com/pic/359b033b5bb5c9ea15ce4dd21661a1003af33a8715f3?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+      "genre": "剧情 喜剧 科幻",
+      "platform": "爱奇艺",
+      "region": "其他",
+      "sub_title": "",
+      "desc": "《魔幻手机2：傻妞归来》是由中央电视台、北京天星亿源影视文化传播有限公司、北京松联国际影视文化传媒有限公司、浙江华策影视股份有限公司联合出品，九年编剧，余明生、国建勇执导，舒畅、李滨、曹骏、马文忠领衔主演的科幻剧。该剧延续《魔幻手机》的剧情，讲述了未来世界的“傻妞”回到现代，帮助",
+      "note": "",
+      "liked": 0,
+      "done": 0,
+      "count": 1,
+      "eps": [],
+      "watchedDate": "2026-09-01",
+      "timestamp": 1788232184091,
+      "updatedAt": 1788232184091
     }
   ],
   "deleted": {
