@@ -8,6 +8,7 @@
    ============================================================ */
 
 :root {
+    color-scheme: dark;
     /* DeepSeek 设计令牌 */
     --ds-bg-page: #0a0a0a;
     --ds-bg-page-2: #0d0d0f;
@@ -88,6 +89,7 @@
    通过 <html data-theme="light"> 启用
    ============================================================ */
 [data-theme="light"] {
+    color-scheme: light;
     --ds-bg-page: #f9f8f8;
     --ds-bg-page-2: #f1f2f4;
     --ds-bg-dark: #fff;
@@ -266,15 +268,6 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.nav-logo::before {
-    content: '';
-    width: 22px;
-    height: 22px;
-    border-radius: 7px;
-    background: linear-gradient(135deg, var(--ds-brand-light), var(--ds-brand));
-    box-shadow: 0 0 18px rgba(var(--ds-rgb-primary), .55);
 }
 
 .nav-logo a {

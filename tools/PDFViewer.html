@@ -465,17 +465,83 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.8rem 1.5rem;
-            background: var(--gray-100);
-            color: var(--gray-700);
+            background: rgba(255, 255, 255, .06);
+            color: #e8eaed;
             text-decoration: none;
             border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, .12);
             margin-bottom: 2rem;
             transition: var(--transition);
         }
 
         .back-button:hover {
-            background: var(--gray-200);
-            color: var(--gray-800);
+            background: rgba(255, 255, 255, .12);
+            color: #ffffff;
+        }
+
+        /* ============================================================
+           页面背景改黑色（仅页面级；.tool-content 内容区保持浅色）
+           ============================================================ */
+        body {
+            background: #0a0a0a !important;
+        }
+
+        .tool-header .section-title {
+            color: #ffffff;
+        }
+
+        .tool-header p {
+            color: var(--gray-400);
+        }
+
+        /* 导航栏改深色（覆盖浅色主题），与黑色页面一致 */
+        .navbar {
+            background: rgba(10, 10, 10, .75) !important;
+            border-bottom-color: rgba(255, 255, 255, .08) !important;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, .9) !important;
+            border-bottom-color: rgba(255, 255, 255, .1) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .35) !important;
+        }
+
+        .nav-logo a {
+            color: #ffffff !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, .7) !important;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #ffffff !important;
+        }
+
+        .nav-menu.active {
+            background: rgba(10, 10, 10, .96) !important;
+        }
+
+        /* 页脚改深色（覆盖浅色主题的 .footer） */
+        .footer {
+            background: #0a0a0a !important;
+            color: rgba(255, 255, 255, .5) !important;
+            border-top-color: rgba(255, 255, 255, .08) !important;
+        }
+
+        /* “工具说明”位于 .tool-content 之外（在黑色页面上），改为浅色文字以保证可读 */
+        .tool-info {
+            color: rgba(255, 255, 255, .6) !important;
+            border-top-color: rgba(255, 255, 255, .12) !important;
+        }
+
+        .tool-info h3 {
+            color: #ffffff !important;
+        }
+
+        .tool-info li {
+            color: rgba(255, 255, 255, .6) !important;
         }
 
         @media (max-width: 1024px) {
@@ -514,7 +580,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="../index.html">我的博客</a>
+                <a href="../index.html">Xiaolizi0v0's BLOG</a>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="../index.html#home" class="nav-link">首页</a></li>

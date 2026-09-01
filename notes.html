@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>学习笔记 - 个人博客</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
     <style>
+        /* 让原生控件（下拉列表等）跟随深色主题 */
+        html { color-scheme: dark; }
+
         /* Markdown 内容样式 */
         .markdown-content {
             max-width: 800px;
@@ -169,93 +172,169 @@
             margin-bottom: 3rem;
         }
         
+        /* ============================================================
+           竖版卡片：顶部全宽图 + 标题/日期/摘要 + 底部操作条
+           ============================================================ */
         .notes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
             margin-bottom: 3rem;
+            padding-top: 0.5rem;
         }
-        
+
         .note-card {
             background: var(--ds-bg-surface-1);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            border: 1px solid var(--gray-200);
-            cursor: pointer;
+            border: 1px solid var(--ds-border-default);
+            border-radius: 20px;
+            box-shadow: var(--ds-shadow-card);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+
+        .note-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--ds-border-hover);
+            box-shadow: var(--ds-shadow-card), 0 24px 44px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 顶部全宽图（贴顶，圆角只留底部） */
+        .card-media {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--ds-border-default);
+            background:
+                radial-gradient(ellipse 60% 80% at 50% 20%, rgba(var(--ds-rgb-primary), .18), transparent 70%),
+                var(--ds-bg-surface-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-media img {
+            width: 100%;
             height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s ease;
+        }
+
+        .note-card:hover .card-media img {
+            transform: scale(1.06);
+        }
+
+        .card-media i {
+            font-size: 3rem;
+            color: var(--ds-brand-light);
+        }
+
+        .card-body {
+            padding: 20px;
+            flex: 1;
             display: flex;
             flex-direction: column;
         }
-        
-        .note-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary-color);
+
+        /* 标题 */
+        .card-title {
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--ds-text-primary);
+            line-height: 1.3;
+            margin-bottom: 8px;
         }
-        
-        .note-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            text-align: center;
+
+        .card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color .3s ease;
         }
-        
-        .note-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--gray-800);
-            text-align: center;
+
+        .note-card:hover .card-title a {
+            color: var(--ds-brand-light);
         }
-        
-        .note-preview {
-            color: var(--gray-600);
+
+        /* 日期 */
+        .card-date {
+            font-size: 13px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        /* 摘要 */
+        .card-desc {
+            font-size: 14px;
+            color: var(--ds-text-description);
             line-height: 1.6;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            margin-bottom: 16px;
         }
-        
-        .note-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--gray-500);
-            font-size: 0.9rem;
+
+        /* 底部操作条 */
+        .card-footer {
             margin-top: auto;
-        }
-        
-        .note-date {
+            background: var(--ds-bg-surface-2);
+            border: 1px solid var(--ds-border-default);
+            border-radius: 12px;
+            padding: 11px 14px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: space-between;
+            gap: 10px;
         }
-        
-        .note-actions {
-            display: flex;
-            gap: 1rem;
+
+        .card-link {
+            color: var(--ds-brand-light);
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: opacity .2s ease;
         }
-        
+
+        .card-link:hover {
+            opacity: .8;
+        }
+
+        .card-tag {
+            background: var(--ds-bg-surface-3);
+            border: 1px solid var(--ds-border-subtle);
+            color: var(--ds-text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 13px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
         .btn-view {
-            padding: 0.5rem 1.2rem;
+            margin-left: auto;
+            padding: 0.45rem 1.1rem;
             background: var(--primary-color);
             color: white;
             border: none;
             border-radius: var(--ds-radius-pill);
             cursor: pointer;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: var(--transition);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
-        
+
         .btn-view:hover {
             background: var(--accent-color);
-            transform: translateY(-2px);
+        }
+
+        .btn-view:active {
+            transform: scale(0.96);
         }
         
         /* 返回按钮 */
@@ -472,7 +551,14 @@
             .notes-grid {
                 grid-template-columns: 1fr;
             }
-            
+            .card-media {
+                height: 180px;
+            }
+            .btn-view {
+                padding: 0.35rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
             .note-layout {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -521,6 +607,70 @@
         }
         
         /* 筛选控件样式 */
+        /* 可折叠筛选区（默认折叠） */
+        .filter-panel {
+            background: var(--ds-bg-surface-1);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 2rem;
+        }
+
+        .filter-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            color: var(--gray-700);
+            font-size: 0.95rem;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+        }
+
+        .filter-toggle:hover {
+            color: var(--gray-800);
+            background: var(--gray-50);
+        }
+
+        .filter-toggle i.fa-sliders-h {
+            color: #6b7280;
+        }
+
+        .toggle-chev {
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            transition: transform 0.3s ease;
+        }
+
+        .filter-panel.open .toggle-chev {
+            transform: rotate(180deg);
+        }
+
+        .filter-body {
+            display: none;
+        }
+
+        .filter-panel.open .filter-body {
+            display: block;
+        }
+
+        /* 折叠区内的筛选控件改为内嵌样式（不再自带卡片背景） */
+        .filter-panel .filter-controls {
+            margin-bottom: 0;
+            padding: 0.5rem 1.5rem 1.25rem;
+            background: none;
+            box-shadow: none;
+            border: none;
+            border-top: 1px solid var(--gray-200);
+        }
+
         .filter-controls {
             display: flex;
             align-items: center;
@@ -546,28 +696,99 @@
             white-space: nowrap;
         }
         
-        .filter-select {
+        /* ===== 自定义下拉框（跟随深色主题，替代原生 select） ===== */
+        .custom-select {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* 原生 select 保留用于逻辑，视觉隐藏 */
+        .cs-native {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cs-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            min-width: 120px;
             padding: 0.5rem 1rem;
             border: 1px solid var(--gray-300);
             border-radius: var(--border-radius);
             background: var(--ds-bg-surface-1);
             color: var(--gray-800);
             font-size: 0.9rem;
+            font-family: inherit;
             cursor: pointer;
             transition: var(--transition);
-            min-width: 120px;
+            white-space: nowrap;
         }
-        
-        .filter-select:hover {
+
+        .cs-btn:hover {
             border-color: var(--primary-color);
         }
-        
-        .filter-select:focus {
-            outline: none;
+
+        .custom-select.open .cs-btn {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 0 3px rgba(77, 107, 254, 0.15);
         }
-        
+
+        .cs-chev {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            transition: transform 0.25s ease;
+        }
+
+        .custom-select.open .cs-chev {
+            transform: rotate(180deg);
+        }
+
+        .cs-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            min-width: 100%;
+            max-height: 280px;
+            overflow-y: auto;
+            background: var(--ds-bg-dark);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 0.3rem;
+            z-index: 200;
+        }
+
+        .custom-select.open .cs-menu {
+            display: block;
+        }
+
+        .cs-item {
+            padding: 0.45rem 0.75rem;
+            border-radius: calc(var(--border-radius) - 3px);
+            color: var(--gray-700);
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .cs-item:hover {
+            background: var(--gray-100);
+            color: var(--gray-800);
+        }
+
+        .cs-item.active {
+            background: rgba(77, 107, 254, 0.14);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
         .filter-reset {
             padding: 0.5rem 1rem;
             background: var(--gray-100);
@@ -596,10 +817,14 @@
             .filter-group {
                 justify-content: space-between;
             }
-            
-            .filter-select {
+
+            .custom-select {
                 flex: 1;
                 max-width: 200px;
+            }
+
+            .custom-select .cs-btn {
+                width: 100%;
             }
         }
         
@@ -614,7 +839,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html">我的博客</a>
+                <a href="index.html">Xiaolizi0v0's BLOG</a>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html#home" class="nav-link">首页</a></li>
@@ -637,40 +862,59 @@
     <!-- 笔记内容区域 -->
     <main>
         <div id="notes-list" class="notes-container">
-            <div class="notes-header">
-                <h1 class="section-title">学习笔记</h1>
-                <p>这里是我在学习过程中整理的笔记和心得</p>
-            </div>
-            
+            <!-- 可折叠筛选区（默认折叠） -->
+            <div class="filter-panel" id="filter-panel">
+                <button type="button" class="filter-toggle" id="filter-toggle" aria-expanded="false">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>筛选</span>
+                    <i class="fas fa-chevron-down toggle-chev"></i>
+                </button>
+                <div class="filter-body" id="filter-body">
             <!-- 日期筛选控件 -->
             <div class="filter-controls">
                 <div class="filter-group">
                     <label for="year-filter">年份筛选:</label>
-                    <select id="year-filter" class="filter-select">
-                        <option value="">全部年份</option>
-                    </select>
+                    <div class="custom-select" data-select-id="year-filter">
+                        <select id="year-filter" class="cs-native">
+                            <option value="">全部年份</option>
+                        </select>
+                        <button type="button" class="cs-btn" aria-haspopup="listbox">
+                            <span class="cs-value">全部年份</span>
+                            <i class="fas fa-chevron-down cs-chev"></i>
+                        </button>
+                        <div class="cs-menu" role="listbox"></div>
+                    </div>
                 </div>
                 <div class="filter-group">
                     <label for="month-filter">月份筛选:</label>
-                    <select id="month-filter" class="filter-select">
-                        <option value="">全部月份</option>
-                        <option value="01">一月</option>
-                        <option value="02">二月</option>
-                        <option value="03">三月</option>
-                        <option value="04">四月</option>
-                        <option value="05">五月</option>
-                        <option value="06">六月</option>
-                        <option value="07">七月</option>
-                        <option value="08">八月</option>
-                        <option value="09">九月</option>
-                        <option value="10">十月</option>
-                        <option value="11">十一月</option>
-                        <option value="12">十二月</option>
-                    </select>
+                    <div class="custom-select" data-select-id="month-filter">
+                        <select id="month-filter" class="cs-native">
+                            <option value="">全部月份</option>
+                            <option value="01">一月</option>
+                            <option value="02">二月</option>
+                            <option value="03">三月</option>
+                            <option value="04">四月</option>
+                            <option value="05">五月</option>
+                            <option value="06">六月</option>
+                            <option value="07">七月</option>
+                            <option value="08">八月</option>
+                            <option value="09">九月</option>
+                            <option value="10">十月</option>
+                            <option value="11">十一月</option>
+                            <option value="12">十二月</option>
+                        </select>
+                        <button type="button" class="cs-btn" aria-haspopup="listbox">
+                            <span class="cs-value">全部月份</span>
+                            <i class="fas fa-chevron-down cs-chev"></i>
+                        </button>
+                        <div class="cs-menu" role="listbox"></div>
+                    </div>
                 </div>
                 <button id="reset-filter" class="filter-reset">重置筛选</button>
             </div>
-            
+                </div>
+            </div>
+
             <div class="notes-grid" id="notes-grid">
                 <div class="loading">
                     <div class="loading-spinner"></div>
@@ -751,7 +995,111 @@
         document.addEventListener('DOMContentLoaded', function() {
             initializeNotesPage();
             setupEventListeners();
+            initCustomSelects();
+            initFilterPanel();
         });
+
+        // 筛选区折叠/展开（默认折叠）
+        function initFilterPanel() {
+            const panel = document.getElementById('filter-panel');
+            const toggle = document.getElementById('filter-toggle');
+            if (!panel || !toggle) return;
+            toggle.addEventListener('click', () => {
+                const open = panel.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', open);
+            });
+        }
+
+        // ===== 自定义下拉框：视觉层，与原生 select 双向同步 =====
+        function initCustomSelects() {
+            const wrappers = document.querySelectorAll('.custom-select');
+
+            wrappers.forEach(wrapper => {
+                const native = wrapper.querySelector('select');
+                const btn = wrapper.querySelector('.cs-btn');
+                const valueEl = wrapper.querySelector('.cs-value');
+                const menu = wrapper.querySelector('.cs-menu');
+
+                // 根据原生 option 重建菜单
+                function rebuildMenu() {
+                    menu.innerHTML = '';
+                    Array.from(native.options).forEach(opt => {
+                        const item = document.createElement('div');
+                        item.className = 'cs-item';
+                        item.setAttribute('role', 'option');
+                        item.textContent = opt.textContent;
+                        item.dataset.value = opt.value;
+                        if (opt.value === native.value) item.classList.add('active');
+                        item.addEventListener('click', () => {
+                            native.value = opt.value;
+                            valueEl.textContent = opt.textContent;
+                            syncActive(wrapper);
+                            closeAll();
+                            native.dispatchEvent(new Event('change', { bubbles: true }));
+                        });
+                        menu.appendChild(item);
+                    });
+                }
+
+                // 点击按钮：展开 / 收起
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const wasOpen = wrapper.classList.contains('open');
+                    closeAll();
+                    if (!wasOpen) {
+                        rebuildMenu();
+                        wrapper.classList.add('open');
+                    }
+                });
+
+                // 监听原生 select 的 change（例如程序化赋值、键盘操作）
+                native.addEventListener('change', () => {
+                    const opt = native.options[native.selectedIndex];
+                    valueEl.textContent = opt ? opt.textContent : '';
+                    syncActive(wrapper);
+                });
+
+                // 首次构建
+                rebuildMenu();
+            });
+        }
+
+        // 同步菜单中 active 项
+        function syncActive(wrapper) {
+            const native = wrapper.querySelector('select');
+            wrapper.querySelectorAll('.cs-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.value === native.value);
+            });
+        }
+
+        // 关闭所有已展开的下拉
+        function closeAll() {
+            document.querySelectorAll('.custom-select.open').forEach(w => {
+                w.classList.remove('open');
+            });
+        }
+
+        // 点击下拉框外部时收起
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.custom-select')) {
+                closeAll();
+            }
+        });
+
+        // Esc 收起
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeAll();
+        });
+
+        // 程序化修改原生 select 后，同步自定义下拉的显示
+        function syncCustomSelect(selectEl) {
+            const wrapper = selectEl.closest('.custom-select');
+            if (!wrapper) return;
+            const opt = selectEl.options[selectEl.selectedIndex];
+            const valueEl = wrapper.querySelector('.cs-value');
+            if (opt && valueEl) valueEl.textContent = opt.textContent;
+            syncActive(wrapper);
+        }
 
         // 初始化笔记页面
         function initializeNotesPage() {
@@ -912,21 +1260,16 @@
                 return;
             }
 
-            notesGrid.innerHTML = filteredNotes.map(note => `
+            notesGrid.innerHTML = filteredNotes.map((note, i) => `
                 <div class="note-card" data-note-id="${note.id}">
-                    <div class="note-icon">
-                        <i class="${note.icon}"></i>
-                    </div>
-                    <h3 class="note-title">${note.title}</h3>
-                    <p class="note-preview">${note.description}</p>
-                    <div class="note-meta">
-                        <span class="note-date">
-                            <i class="fas fa-calendar-alt"></i>
-                            ${formatDate(note.date)}
-                        </span>
-                        <button class="btn-view" onclick="openNote('${note.id}')">
-                            查看笔记
-                        </button>
+                    <div class="card-body">
+                        <p class="card-title"><a href="#" onclick="event.stopPropagation(); openNote('${note.id}')">${note.title}</a></p>
+                        <p class="card-date">${formatDate(note.date)}</p>
+                        <p class="card-desc">${note.description}</p>
+                        <div class="card-footer">
+                            <a class="card-link" href="#" onclick="event.stopPropagation(); openNote('${note.id}')">阅读全文</a>
+                            <span class="card-tag">笔记</span>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -946,6 +1289,8 @@
         function resetFilters() {
             document.getElementById('year-filter').value = '';
             document.getElementById('month-filter').value = '';
+            syncCustomSelect(document.getElementById('year-filter'));
+            syncCustomSelect(document.getElementById('month-filter'));
             renderNotesList();
         }
 
@@ -964,21 +1309,16 @@
                 return;
             }
 
-            notesGrid.innerHTML = notes.map(note => `
+            notesGrid.innerHTML = notes.map((note, i) => `
                 <div class="note-card" data-note-id="${note.id}">
-                    <div class="note-icon">
-                        <i class="${note.icon}"></i>
-                    </div>
-                    <h3 class="note-title">${note.title}</h3>
-                    <p class="note-preview">${note.description}</p>
-                    <div class="note-meta">
-                        <span class="note-date">
-                            <i class="fas fa-calendar-alt"></i>
-                            ${formatDate(note.date)}
-                        </span>
-                        <button class="btn-view" onclick="openNote('${note.id}')">
-                            查看笔记
-                        </button>
+                    <div class="card-body">
+                        <p class="card-title"><a href="#" onclick="event.stopPropagation(); openNote('${note.id}')">${note.title}</a></p>
+                        <p class="card-date">${formatDate(note.date)}</p>
+                        <p class="card-desc">${note.description}</p>
+                        <div class="card-footer">
+                            <a class="card-link" href="#" onclick="event.stopPropagation(); openNote('${note.id}')">阅读全文</a>
+                            <span class="card-tag">笔记</span>
+                        </div>
                     </div>
                 </div>
             `).join('');
