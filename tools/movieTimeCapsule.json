@@ -5193,12 +5193,13 @@
         },
         {
           "title": "20260830上-02",
-          "url": "https://v.lzcdn28.com/20260830/15036_4ab079ec/index.m3u8"
+          "url": "https://v.lzcdn28.com/20260830/15036_4ab079ec/index.m3u8",
+          "watched": true
         }
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787429503496,
-      "updatedAt": 1788244661824
+      "updatedAt": 1788247854903
     },
     {
       "id": "baike-63571807",
