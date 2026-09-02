@@ -2770,8 +2770,14 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
-      "updatedAt": 1787331340268
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://vip1.lz-cdn.com/20220330/7492_e6832e12/index.m3u8",
+          "watched": false
+        }
+      ],
+      "updatedAt": 1788351570038
     },
     {
       "watchedDate": "2026-08-22",
