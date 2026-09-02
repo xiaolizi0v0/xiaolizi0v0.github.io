@@ -2506,8 +2506,14 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
-      "updatedAt": 1787331310133
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://vip.ffzy-play2.com/20230729/54197_bb73d8ee/index.m3u8",
+          "watched": false
+        }
+      ],
+      "updatedAt": 1788350502116
     },
     {
       "watchedDate": "2026-08-22",
