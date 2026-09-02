@@ -48,6 +48,7 @@ jobs:
           test -f "$PROJECT_PATH/project.pbxproj"
           test -f ios/MovieTimeCapsule/MovieTimeCapsule/Resources/tools/MovieTimeCapsule.html
           test -f ios/MovieTimeCapsule/MovieTimeCapsule/Resources/tools/movieTimeCapsule.json
+          test -f ios/MovieTimeCapsule/MovieTimeCapsule/Resources/tools/ipad-overrides.css
           test -f ios/MovieTimeCapsule/MovieTimeCapsule/Resources/styles.css
 
       - name: Sync web resources
@@ -91,6 +92,7 @@ jobs:
           test -f "$app_path/styles.css"
           test -f "$app_path/tools/MovieTimeCapsule.html"
           test -f "$app_path/tools/movieTimeCapsule.json"
+          test -f "$app_path/tools/ipad-overrides.css"
           /usr/bin/plutil -lint "$plist_path"
           bundle_id="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$plist_path")"
           test "$bundle_id" = "com.xiaolizi.timecapsule.ipad"

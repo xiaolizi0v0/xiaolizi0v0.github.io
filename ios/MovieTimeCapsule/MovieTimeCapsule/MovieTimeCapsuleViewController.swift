@@ -16,6 +16,10 @@ final class MovieTimeCapsuleViewController: UIViewController, WKNavigationDelega
         webView.navigationDelegate = self
         webView.uiDelegate = self
         webView.allowsBackForwardNavigationGestures = false
+        webView.isOpaque = false
+        webView.backgroundColor = .black
+        webView.scrollView.backgroundColor = .black
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
 
         self.webView = webView
         self.view = webView
@@ -32,13 +36,19 @@ final class MovieTimeCapsuleViewController: UIViewController, WKNavigationDelega
         webView.frame = view.bounds
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
     private func loadBundledPage() {
         guard let bundleURL = Bundle.main.resourceURL else { return }
 
         let pageURL = bundleURL.appendingPathComponent("tools/MovieTimeCapsule.html")
         guard FileManager.default.fileExists(atPath: pageURL.path) else { return }
 
-        webView.loadFileURL(pageURL, allowingReadAccessTo: bundleURL)
+        var components = URLComponents(url: pageURL, resolvingAgainstBaseURL: false)
+        components?.queryItems = [URLQueryItem(name: "app", value: "ipad")]
+        webView.loadFileURL(components?.url ?? pageURL, allowingReadAccessTo: bundleURL)
     }
 
     func webView(

@@ -1,0 +1,526 @@
+/*
+ * iPad presentation layer.
+ * The original page keeps all data/search/sync/player behavior; this file only
+ * turns the bundled page into a touch-first tablet application shell.
+ */
+
+html.ipad-app {
+    --ipad-bg: #090b10;
+    --ipad-surface: #151821;
+    --ipad-surface-2: #1c202b;
+    --ipad-border: rgba(255, 255, 255, .1);
+    --ipad-muted: #a2a7b5;
+    --ipad-brand: #4d6bfe;
+    --ipad-brand-light: #79a6ff;
+    --ipad-gutter: clamp(24px, 4.6vw, 58px);
+    --ipad-left: max(var(--ipad-gutter), env(safe-area-inset-left));
+    --ipad-right: max(var(--ipad-gutter), env(safe-area-inset-right));
+    --ipad-top: env(safe-area-inset-top);
+    --ipad-bottom: env(safe-area-inset-bottom);
+    background: var(--ipad-bg) !important;
+    color-scheme: dark;
+}
+
+html.ipad-app,
+html.ipad-app body {
+    width: 100%;
+    min-width: 0;
+    min-height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    background:
+        radial-gradient(circle at 72% -10%, rgba(77, 107, 254, .18), transparent 34rem),
+        var(--ipad-bg) !important;
+    color: #f6f7fb;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html.ipad-app .navbar,
+html.ipad-app .footer {
+    display: none !important;
+}
+
+html.ipad-app main {
+    min-height: 100vh;
+}
+
+html.ipad-app .tool-container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--ipad-right) calc(68px + var(--ipad-bottom)) var(--ipad-left);
+    box-sizing: border-box;
+}
+
+html.ipad-app .tool-header {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(16px, 2.4vw, 30px);
+    min-height: calc(78px + var(--ipad-top));
+    margin-right: calc(var(--ipad-right) * -1);
+    margin-left: calc(var(--ipad-left) * -1);
+    padding: calc(12px + var(--ipad-top)) var(--ipad-right) 12px var(--ipad-left);
+    box-sizing: border-box;
+    background: rgba(9, 11, 16, .91);
+    border-bottom: 1px solid rgba(255, 255, 255, .07);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+html.ipad-app .brand {
+    flex: 0 0 auto;
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    white-space: nowrap;
+}
+
+html.ipad-app .brand-sub {
+    font-size: .88rem;
+    color: var(--ipad-brand-light);
+}
+
+html.ipad-app .search-bar {
+    flex: 1 1 360px;
+    width: auto;
+    max-width: 720px;
+    min-height: 50px;
+    margin-left: auto;
+    background: rgba(255, 255, 255, .08);
+    border-color: var(--ipad-border);
+}
+
+html.ipad-app .search-bar:focus-within {
+    background: rgba(255, 255, 255, .11);
+    border-color: rgba(121, 166, 255, .75);
+    box-shadow: 0 0 0 3px rgba(77, 107, 254, .18);
+}
+
+html.ipad-app .search-bar input,
+html.ipad-app input,
+html.ipad-app select,
+html.ipad-app textarea {
+    font-size: max(16px, 1em);
+}
+
+html.ipad-app .search-bar button {
+    min-height: 44px;
+    padding: 0 22px;
+    background: var(--ipad-brand);
+}
+
+html.ipad-app .tip {
+    justify-content: flex-end;
+    margin: 12px 0 0;
+    color: var(--ipad-muted);
+    font-size: .8rem;
+}
+
+html.ipad-app .tip > span:first-child {
+    display: none !important;
+}
+
+html.ipad-app .tip .ghost-btn {
+    background: rgba(255, 255, 255, .045);
+    border-color: var(--ipad-border);
+}
+
+html.ipad-app .category-nav {
+    position: sticky;
+    top: calc(78px + var(--ipad-top));
+    z-index: 70;
+    display: block;
+    margin: 0 calc(var(--ipad-right) * -1) 24px calc(var(--ipad-left) * -1);
+    padding: 10px var(--ipad-right) 13px var(--ipad-left);
+    background: rgba(9, 11, 16, .93);
+    border-bottom: 1px solid rgba(255, 255, 255, .07);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+html.ipad-app .category-nav .nav-row:first-child {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 4px;
+    min-width: 0;
+}
+
+html.ipad-app .cat-tab {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 8px 16px;
+    color: #aeb3c0;
+    border-radius: 9px;
+}
+
+html.ipad-app .cat-tab.active {
+    color: #fff;
+    background: rgba(77, 107, 254, .18);
+}
+
+html.ipad-app .cat-tab.active::after {
+    bottom: 1px;
+    width: 24px;
+}
+
+html.ipad-app .nav-actions {
+    flex: 0 0 auto;
+    margin-left: auto;
+    flex-wrap: nowrap;
+}
+
+html.ipad-app .nav-actions .ghost-btn {
+    min-height: 44px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, .045);
+}
+
+html.ipad-app .nav-row.secondary {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 9px 20px;
+    margin-top: 9px;
+    padding: 10px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, .07);
+}
+
+html.ipad-app .filter-group {
+    display: flex;
+    min-width: 0;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+}
+
+html.ipad-app .filter-label {
+    flex: 0 0 auto;
+    min-width: 2.2rem;
+    color: var(--ipad-brand-light);
+    font-size: .78rem;
+}
+
+html.ipad-app .filter-tabs,
+html.ipad-app #genre-tabs {
+    display: flex;
+    min-width: 0;
+    max-width: none;
+    max-height: none;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 0 2px;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+html.ipad-app .filter-tabs::-webkit-scrollbar,
+html.ipad-app #genre-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+html.ipad-app #genre-tabs .filter-tab,
+html.ipad-app .filter-tab {
+    width: auto;
+    min-height: 38px;
+    flex: 0 0 auto;
+    padding: 7px 13px;
+    color: #adb2bf;
+    background: rgba(255, 255, 255, .055);
+    border-color: var(--ipad-border);
+}
+
+html.ipad-app .filter-tab.active {
+    color: #fff;
+    background: rgba(77, 107, 254, .28);
+    border-color: rgba(121, 166, 255, .55);
+}
+
+html.ipad-app .saved-section {
+    margin-top: 14px;
+}
+
+html.ipad-app .saved-section .section-label {
+    margin-bottom: 17px;
+}
+
+html.ipad-app .saved-section h2 {
+    font-size: 1.4rem;
+}
+
+html.ipad-app .section-tip {
+    color: #777f91;
+}
+
+html.ipad-app .saved-search-box {
+    min-height: 42px;
+    background: rgba(255, 255, 255, .06);
+    border-color: var(--ipad-border);
+}
+
+html.ipad-app .poster-grid {
+    grid-template-columns: repeat(auto-fill, minmax(clamp(158px, 18vw, 214px), 1fr));
+    gap: clamp(20px, 2.5vw, 30px) clamp(14px, 1.8vw, 22px);
+}
+
+html.ipad-app .poster-card {
+    min-width: 0;
+    border-radius: 13px;
+    background: transparent;
+}
+
+html.ipad-app .poster-card:hover {
+    transform: translateY(-3px);
+    box-shadow: none;
+}
+
+html.ipad-app .poster-wrap {
+    aspect-ratio: 2 / 3;
+    border-radius: 13px;
+    background: var(--ipad-surface);
+    box-shadow: 0 9px 24px rgba(0, 0, 0, .24);
+}
+
+html.ipad-app .poster-info {
+    padding: 10px 2px 0;
+}
+
+html.ipad-app .poster-title {
+    overflow: hidden;
+    color: #f2f3f7;
+    font-size: .98rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html.ipad-app .poster-meta {
+    margin-top: 5px;
+    color: #8f96a7;
+    font-size: .78rem;
+}
+
+html.ipad-app .poster-card-hover {
+    background: linear-gradient(180deg, rgba(9, 11, 16, .76), rgba(9, 11, 16, .98));
+}
+
+html.ipad-app .modal-overlay {
+    padding: max(24px, var(--ipad-top)) max(24px, var(--ipad-right)) max(24px, var(--ipad-bottom)) max(24px, var(--ipad-left));
+    background: rgba(0, 0, 0, .76);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+html.ipad-app .modal {
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 20px;
+    background: #12151d;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, .58);
+}
+
+html.ipad-app #detail-modal .modal {
+    width: min(92vw, 1120px);
+    max-width: 1120px;
+    max-height: 86vh;
+    overflow: hidden;
+}
+
+html.ipad-app #detail-modal .modal-body {
+    width: 100%;
+    height: min(78vh, 760px);
+    max-height: 86vh;
+    min-width: 0;
+    overflow: hidden;
+}
+
+html.ipad-app #detail-modal .modal-image {
+    flex: 0 0 40%;
+    min-width: 0;
+    background: #090b10;
+}
+
+html.ipad-app #detail-modal .modal-side {
+    min-width: 0;
+    padding: clamp(22px, 3vw, 36px);
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+html.ipad-app #detail-modal .modal-title {
+    padding-right: 34px;
+    font-size: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+html.ipad-app #detail-modal .modal-desc {
+    font-size: .96rem;
+    line-height: 1.7;
+}
+
+html.ipad-app #detail-modal .modal-field,
+html.ipad-app #detail-modal .modal-actions,
+html.ipad-app #detail-modal .modal-rate {
+    min-width: 0;
+    flex-wrap: wrap;
+}
+
+html.ipad-app #detail-modal .modal-body.playing .modal-image {
+    flex-basis: 64%;
+}
+
+html.ipad-app #detail-modal .modal-body.playing .modal-side {
+    padding: clamp(18px, 2.2vw, 28px);
+}
+
+html.ipad-app .modal-close,
+html.ipad-app .ghost-btn,
+html.ipad-app .card-btn,
+html.ipad-app .hover-btn,
+html.ipad-app .ep-btn,
+html.ipad-app .tv-btn,
+html.ipad-app .rate-btn,
+html.ipad-app .undo-btn {
+    touch-action: manipulation;
+}
+
+html.ipad-app .empty-state {
+    min-height: 220px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .035);
+}
+
+@media (hover: none), (pointer: coarse) {
+    html.ipad-app .poster-card-hover {
+        display: none !important;
+    }
+
+    html.ipad-app .poster-card:hover {
+        transform: none;
+    }
+}
+
+@media (orientation: portrait) and (max-width: 900px) {
+    html.ipad-app {
+        --ipad-gutter: clamp(22px, 4.2vw, 36px);
+    }
+
+    html.ipad-app .tool-header {
+        align-content: center;
+        flex-wrap: wrap;
+        gap: 9px 18px;
+        min-height: calc(126px + var(--ipad-top));
+        padding-bottom: 11px;
+    }
+
+    html.ipad-app .brand {
+        width: 100%;
+        font-size: 1.5rem;
+    }
+
+    html.ipad-app .search-bar {
+        max-width: none;
+        flex-basis: 100%;
+        margin-left: 0;
+    }
+
+    html.ipad-app .category-nav {
+        top: calc(126px + var(--ipad-top));
+    }
+
+    html.ipad-app .category-nav .nav-row:first-child {
+        flex-wrap: wrap;
+        row-gap: 8px;
+    }
+
+    html.ipad-app .nav-actions {
+        display: grid;
+        width: 100%;
+        margin-left: 0;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    html.ipad-app .nav-actions .ghost-btn {
+        min-width: 0;
+        justify-content: center;
+        padding-inline: 8px;
+    }
+
+    html.ipad-app .nav-row.secondary {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    html.ipad-app .poster-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    html.ipad-app #detail-modal .modal {
+        width: min(94vw, 760px);
+    }
+
+    html.ipad-app #detail-modal .modal-body {
+        height: min(80vh, 800px);
+    }
+
+    html.ipad-app #detail-modal .modal-image {
+        flex-basis: 42%;
+    }
+
+    html.ipad-app #detail-modal .modal-body.playing {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    html.ipad-app #detail-modal .modal-body.playing .modal-image {
+        width: 100%;
+        min-height: 42vh;
+        flex: 0 0 42vh;
+    }
+
+    html.ipad-app #detail-modal .modal-body.playing .modal-side {
+        width: 100%;
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        overflow: visible;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1000px) {
+    html.ipad-app .nav-row.secondary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px 22px;
+    }
+
+    html.ipad-app .poster-grid {
+        grid-template-columns: repeat(auto-fill, minmax(clamp(172px, 15vw, 224px), 1fr));
+    }
+}
+
+@media (max-height: 760px) and (orientation: landscape) {
+    html.ipad-app .tool-header {
+        min-height: calc(70px + var(--ipad-top));
+        padding-top: calc(8px + var(--ipad-top));
+        padding-bottom: 8px;
+    }
+
+    html.ipad-app .category-nav {
+        top: calc(70px + var(--ipad-top));
+        padding-top: 7px;
+        padding-bottom: 9px;
+    }
+
+    html.ipad-app .nav-row.secondary {
+        margin-top: 6px;
+        padding-top: 7px;
+    }
+
+    html.ipad-app #detail-modal .modal-body {
+        height: 84vh;
+    }
+}
