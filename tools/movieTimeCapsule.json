@@ -7018,7 +7018,8 @@
         },
         {
           "title": "第09集",
-          "url": "https://v.lzcdn27.com/20260901/16331_488d59c2/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260901/16331_488d59c2/index.m3u8",
+          "watched": true
         },
         {
           "title": "第10集",
@@ -7033,7 +7034,7 @@
           "url": "https://v.lzcdn27.com/20260901/16328_08011e55/index.m3u8"
         }
       ],
-      "updatedAt": 1788334827067
+      "updatedAt": 1788338937975
     }
   ],
   "deleted": {
