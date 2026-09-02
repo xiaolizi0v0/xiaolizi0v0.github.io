@@ -7765,10 +7765,16 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
+      "eps": [
+        {
+          "title": "HD国语",
+          "url": "https://vip.ffzy-play9.com/20260901/49192_2e4d29df/index.m3u8",
+          "watched": false
+        }
+      ],
       "watchedDate": "2026-09-03",
       "timestamp": 1788369887552,
-      "updatedAt": 1788369887552
+      "updatedAt": 1788370476382
     }
   ],
   "deleted": {
