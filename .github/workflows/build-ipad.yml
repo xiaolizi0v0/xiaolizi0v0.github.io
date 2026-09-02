@@ -1,0 +1,97 @@
+name: Build iPad IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: Xcode 构建配置
+        required: true
+        default: Release
+        type: choice
+        options:
+          - Release
+          - Debug
+  push:
+    paths:
+      - .github/workflows/build-ipad.yml
+      - ios/**
+      - tools/MovieTimeCapsule.html
+      - tools/movieTimeCapsule.json
+      - styles.css
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build unsigned iPad IPA
+    runs-on: macos-15
+    env:
+      APP_SCHEME: MovieTimeCapsule
+      PROJECT_PATH: ios/MovieTimeCapsule/MovieTimeCapsule.xcodeproj
+      CONFIGURATION: ${{ inputs.configuration || 'Release' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          xcode-select -p
+
+      - name: Validate project resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "$PROJECT_PATH/project.pbxproj"
+          test -f ios/MovieTimeCapsule/MovieTimeCapsule/Resources/tools/MovieTimeCapsule.html
+          test -f ios/MovieTimeCapsule/MovieTimeCapsule/Resources/tools/movieTimeCapsule.json
+          test -f ios/MovieTimeCapsule/MovieTimeCapsule/Resources/styles.css
+
+      - name: Sync web resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          resources_dir="ios/MovieTimeCapsule/MovieTimeCapsule/Resources"
+          mkdir -p "$resources_dir/tools"
+          cp styles.css "$resources_dir/styles.css"
+          cp tools/MovieTimeCapsule.html "$resources_dir/tools/MovieTimeCapsule.html"
+          cp tools/movieTimeCapsule.json "$resources_dir/tools/movieTimeCapsule.json"
+
+      - name: Build unsigned app
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/ipad-derived-data" "$RUNNER_TEMP/Payload"
+          xcodebuild \
+            -project "$PROJECT_PATH" \
+            -scheme "$APP_SCHEME" \
+            -configuration "$CONFIGURATION" \
+            -sdk iphoneos \
+            -destination "generic/platform=iOS" \
+            -derivedDataPath "$RUNNER_TEMP/ipad-derived-data" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            clean build
+
+      - name: Package unsigned IPA
+        shell: bash
+        run: |
+          set -euo pipefail
+          app_path="$RUNNER_TEMP/ipad-derived-data/Build/Products/${CONFIGURATION}-iphoneos/MovieTimeCapsule.app"
+          test -d "$app_path"
+          mkdir -p "$RUNNER_TEMP/Payload"
+          cp -R "$app_path" "$RUNNER_TEMP/Payload/"
+          (cd "$RUNNER_TEMP" && /usr/bin/zip -qry "$GITHUB_WORKSPACE/TimeCapsule-iPad-unsigned.ipa" Payload)
+          shasum -a 256 "$GITHUB_WORKSPACE/TimeCapsule-iPad-unsigned.ipa" > "$GITHUB_WORKSPACE/TimeCapsule-iPad-unsigned.ipa.sha256"
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: TimeCapsule-iPad-${{ github.run_number }}
+          path: |
+            TimeCapsule-iPad-unsigned.ipa
+            TimeCapsule-iPad-unsigned.ipa.sha256
+          if-no-files-found: error
+          retention-days: 14

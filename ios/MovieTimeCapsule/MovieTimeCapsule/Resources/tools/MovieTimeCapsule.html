@@ -1,0 +1,3582 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark" style="color-scheme: dark;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影视剧观影存储时间胶囊 - 工具箱</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Host+Grotesk:wght@400;500;600;700&family=Fragment+Mono&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13"></script>
+    <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.7.11/dist/shaka-player.compiled.min.js"></script>
+    <style>
+        .tool-container {
+            max-width: 1240px;
+            margin: 5rem auto;
+            padding: 0 1.5rem 2rem;
+        }
+
+        /* ========== 顶部：标题 + 爱奇艺风格搜索栏 ========== */
+        .tool-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.5rem 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-family: var(--ds-font-display);
+            font-size: 2.1rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .brand-text {
+            font-family: "ZCOOL KuaiLe", var(--ds-font-display);
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 0.06em;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, .18);
+            text-shadow:
+                0 1px 0 rgba(0, 0, 0, .35),
+                0 0 24px rgba(77, 107, 254, .35);
+        }
+
+        .brand-sub {
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            opacity: .92;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-pill);
+            padding: 0.35rem 0.35rem 0.35rem 1.1rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            width: min(480px, 100%);
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--ds-brand);
+            box-shadow: 0 0 0 3px rgba(77, 107, 254, .15);
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 0.95rem;
+            font-family: var(--ds-font-sans);
+            color: var(--ds-text-primary);
+            outline: none;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--ds-text-placeholder);
+        }
+
+        .search-bar button {
+            background: var(--ds-brand);
+            color: #fff;
+            border: none;
+            border-radius: var(--ds-radius-pill);
+            padding: 0.55rem 1.5rem;
+            font-size: 0.92rem;
+            font-weight: 600;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .search-bar button:hover {
+            background: #3f5eea;
+        }
+
+        .search-bar button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        /* ========== 分类导航（爱奇艺风格频道栏） ========== */
+        .category-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding: 0.7rem 0.2rem 1rem;
+            background: var(--ds-bg-page);
+            /* 无边框无阴影，直接融入页面背景；筛选区不跟随滚动 */
+            margin-bottom: 1.5rem;
+        }
+
+        .cat-tab {
+            padding: 0.4rem 1.1rem;
+            border: none;
+            border-radius: var(--ds-radius-pill);
+            background: transparent;
+            color: var(--gray-500);
+            font-size: 0.92rem;
+            font-weight: 500;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .cat-tab:hover {
+            color: var(--ds-text-primary);
+            background: var(--ds-bg-surface-1);
+        }
+
+        .cat-tab.active {
+            background: transparent;
+            color: #fff;
+            position: relative;
+        }
+
+        .cat-tab.active::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 3px;
+            transform: translateX(-50%);
+            width: 45%;
+            min-width: 18px;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--ds-brand-light);
+            box-shadow:
+                0 0 6px 1px var(--ds-brand),
+                0 0 14px 3px rgba(77, 107, 254, .45);
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 18px;
+            background: var(--ds-border-strong);
+            margin: 0 0.4rem;
+        }
+
+        /* 二级分类筛选（爱奇艺风格：每行一个分类 + 蓝色标签） */
+        .nav-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-row.secondary {
+            padding-top: 0.7rem;
+            margin-top: 0.7rem;
+            border-top: 1px solid var(--ds-border-subtle);
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.45rem;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-size: 0.82rem;
+            color: var(--ds-brand-light);
+            min-width: 44px;
+            font-weight: 700;
+            font-family: var(--ds-font-sans);
+            letter-spacing: 0.05em;
+            padding-top: 0.28rem;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        /* 题材可能很多：3 行 × 12 列网格，超出向下滚动；与"题材"标签同行、标签对齐到首行 */
+        #genre-tabs {
+            flex: 1;
+            min-width: 0;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 0.4rem;
+            max-height: calc(3 * 36px + 2 * 0.5rem + 0.4rem);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0.2rem 0.3rem 0.4rem 0;
+            scrollbar-width: thin;
+        }
+
+        #genre-tabs .filter-tab {
+            width: 100%;
+            text-align: center;
+            padding: 0.3rem 0.3rem;
+            font-size: 0.78rem;
+        }
+
+        @media (max-width: 1100px) {
+            #genre-tabs { grid-template-columns: repeat(8, 1fr); }
+        }
+        @media (max-width: 768px) {
+            #genre-tabs { grid-template-columns: repeat(5, 1fr); }
+        }
+
+        .filter-tab {
+            padding: 0.28rem 0.85rem;
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-pill);
+            background: var(--ds-bg-surface-1);
+            color: var(--gray-600);
+            font-size: 0.8rem;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--ds-border-hover);
+            color: var(--ds-text-primary);
+        }
+
+        .filter-tab.active {
+            background: rgba(77, 107, 254, .12);
+            border: 1px solid rgba(103, 153, 254, .18);
+            border-radius: var(--ds-radius-pill);
+            color: #5b9dff;
+            font-weight: 700;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, .08),
+                0 2px 8px rgba(77, 107, 254, .18);
+        }
+
+        .nav-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .ghost-btn {
+            padding: 0.45rem 1rem;
+            background: transparent;
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-pill);
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .ghost-btn:hover {
+            border-color: var(--ds-border-hover);
+            color: var(--ds-text-primary);
+            background: var(--ds-bg-surface-1);
+        }
+
+        /* ========== 搜索结果 ========== */
+        .search-results {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .saved-search-box {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-pill);
+            padding: 0.35rem 0.9rem;
+            color: var(--gray-500);
+            transition: var(--transition);
+        }
+
+        .saved-search-box:focus-within {
+            border-color: var(--ds-brand);
+        }
+
+        .saved-search-box input {
+            border: none;
+            background: transparent;
+            color: var(--ds-text-primary);
+            font-size: 0.85rem;
+            font-family: var(--ds-font-sans);
+            outline: none;
+            width: 230px;
+        }
+
+        .saved-search-box input::placeholder {
+            color: var(--gray-500);
+        }
+
+        @media (max-width: 768px) {
+            .saved-search-box { width: 100%; }
+            .saved-search-box input { width: 100%; }
+        }
+
+        .section-label h2 {
+            font-family: var(--ds-font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .section-tip {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--gray-500);
+            margin-left: 0.4rem;
+            white-space: nowrap;
+        }
+
+        .search-status {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .search-status.error {
+            color: var(--danger-color);
+        }
+
+        /* ========== 海报卡片（爱奇艺风格） ========== */
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.1rem;
+        }
+
+        .poster-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            transition: var(--transition);
+        }
+
+        .poster-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+        }
+
+        .poster-wrap {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            background: var(--ds-bg-surface-3);
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .poster-wrap::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 55%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .82) 100%);
+            pointer-events: none;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .poster-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .poster-bottom {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            padding: 0.5rem 0.55rem 0.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+            font-size: 0.78rem;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .poster-bottom .card-type {
+            background: rgba(77, 107, 254, .9);
+            color: #fff;
+            padding: 0.1rem 0.45rem;
+            border-radius: 3px;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+
+        .poster-bottom .card-date {
+            font-size: 0.72rem;
+            opacity: .9;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+        }
+
+        /* 平台徽章（海报右上角，仿爱奇艺独播位置） */
+        .platform-badge {
+            position: absolute;
+            top: 0.4rem;
+            right: 0.4rem;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+            z-index: 5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+            letter-spacing: 0.02em;
+        }
+
+        /* 卡片悬停大图效果（爱奇艺风格） */
+        .poster-card-hover {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, .82) 0%, rgba(0, 0, 0, .96) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0.7rem 0.65rem 0.6rem;
+            opacity: 0;
+            transition: opacity .22s ease;
+            z-index: 4;
+            color: #fff;
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .poster-card:hover .poster-card-hover {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .hover-top {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .hover-title {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .hover-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .hover-tags .tag {
+            background: rgba(255, 255, 255, .18);
+            color: #fff;
+            font-size: 0.68rem;
+            padding: 0.08rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        .hover-meta {
+            font-size: 0.74rem;
+            opacity: .85;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .hover-desc {
+            font-size: 0.78rem;
+            line-height: 1.55;
+            opacity: .8;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .hover-bottom {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+        }
+
+        .hover-btn {
+            border: none;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            font-family: var(--ds-font-sans);
+            padding: 0.5rem 0.8rem;
+        }
+
+        .hover-btn.primary {
+            background: var(--ds-brand);
+            color: #fff;
+            flex: 1;
+        }
+
+        .hover-btn.primary:hover {
+            background: #3f5eea;
+        }
+
+        .hover-btn.primary:disabled {
+            background: var(--ds-bg-surface-3);
+            color: var(--gray-500);
+            cursor: default;
+        }
+
+        .hover-btn.danger {
+            background: rgba(255, 95, 87, .9);
+            color: #fff;
+            flex: 0 0 auto;
+            width: 38px;
+            padding: 0.5rem 0.5rem;
+        }
+
+        .hover-btn.danger:hover {
+            background: #ff5f57;
+        }
+
+        .hover-btn:active:not(:disabled) {
+            transform: scale(0.96);
+        }
+
+        .poster-bottom .card-badge {
+            position: absolute;
+            top: -1.8rem;
+            right: 0.4rem;
+            background: var(--ds-brand);
+            color: #fff;
+            font-size: 0.65rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .poster-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, .72) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity .25s ease;
+            z-index: 3;
+        }
+
+        .poster-card:hover .poster-overlay {
+            opacity: 1;
+        }
+
+        .card-btn {
+            padding: 0.45rem 1.1rem;
+            background: var(--ds-brand);
+            color: #fff;
+            border: none;
+            border-radius: var(--ds-radius-pill);
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
+        }
+
+        .card-btn:hover {
+            background: #3f5eea;
+            transform: scale(1.04);
+        }
+
+        .card-btn.danger {
+            background: rgba(255, 95, 87, .9);
+        }
+
+        .card-btn.danger:hover {
+            background: #ff5f57;
+        }
+
+        .card-btn.recorded {
+            background: var(--ds-bg-surface-3);
+            color: var(--gray-500);
+            cursor: default;
+            box-shadow: none;
+        }
+
+        .poster-info {
+            /* 无背景无边框，标题信息直接贴在海报下方，保持轻量 */
+            padding: 0.45rem 0.2rem 0;
+        }
+
+        .poster-title {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .poster-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            flex-wrap: wrap;
+            font-size: 0.76rem;
+            color: var(--gray-500);
+            margin-top: 0.2rem;
+        }
+
+        .poster-meta .tag {
+            background: transparent;
+            border: none;
+            padding: 0;
+            border-radius: 0;
+            font-size: 0.72rem;
+            color: var(--gray-500);
+        }
+
+        .date-edit {
+            border: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-page);
+            color: var(--gray-600);
+            border-radius: 6px;
+            padding: 0.1rem 0.35rem;
+            font-size: 0.76rem;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            max-width: 118px;
+        }
+
+        /* 评价与观影次数 */
+        .rate-row {
+            gap: 0.15rem;
+            margin-top: 0.35rem;
+        }
+
+        .rate-btn,
+        .tv-btn,
+        .undo-btn {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 0.15rem 0.3rem;
+            font-size: 0.82rem;
+            color: var(--gray-400);
+            font-family: var(--ds-font-sans);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.15rem;
+        }
+
+        .rate-btn:hover {
+            color: var(--danger-color);
+        }
+
+        .rate-btn.active {
+            color: var(--danger-color);
+        }
+
+        .rate-btn.done.active,
+        .rate-btn[data-done].active {
+            color: var(--success-color);
+        }
+
+        .tv-btn {
+            color: var(--ds-brand-light);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .tv-btn:hover {
+            color: var(--ds-brand);
+            transform: scale(1.1);
+        }
+
+        .tv-btn span {
+            font-size: 0.75rem;
+            margin-left: 0.1rem;
+        }
+
+        .undo-btn {
+            font-size: 0.72rem;
+            color: var(--gray-300);
+        }
+
+        .undo-btn:hover {
+            color: var(--gray-500);
+        }
+
+        .count-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.1rem;
+            margin-left: 0.35rem;
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 3.5rem 1rem;
+            color: var(--gray-400);
+            border: 1px dashed var(--ds-border-strong);
+            border-radius: var(--ds-radius-panel);
+            margin-top: 0.5rem;
+        }
+
+        .current-list-count {
+            margin-top: 0.8rem;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .empty-state i {
+            font-size: 2.6rem;
+            margin-bottom: 0.75rem;
+            color: var(--ds-brand-light);
+            opacity: .6;
+        }
+
+        .empty-state p {
+            font-size: 0.95rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ========== 手动添加表单 ========== */
+        .manual-form {
+            display: grid;
+            grid-template-columns: 1.4fr 0.7fr 0.7fr 0.9fr 0.9fr 1fr auto;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-panel);
+            box-shadow: var(--shadow-sm);
+            align-items: center;
+        }
+
+        .manual-form input,
+        .manual-form select {
+            padding: 0.6rem 0.85rem;
+            background: var(--ds-bg-page);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: var(--ds-radius-input);
+            font-size: 0.9rem;
+            font-family: var(--ds-font-sans);
+            color: var(--ds-text-primary);
+            transition: var(--transition);
+        }
+
+        .manual-form input:focus,
+        .manual-form select:focus {
+            outline: none;
+            border-color: var(--ds-brand);
+            box-shadow: 0 0 0 3px rgba(77, 107, 254, .15);
+        }
+
+        .manual-form select {
+            cursor: pointer;
+        }
+
+        .tip {
+            font-size: 0.78rem;
+            color: var(--gray-500);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .category-nav {
+                position: static;
+                gap: 0.3rem;
+            }
+
+            .nav-actions {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .manual-form {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .poster-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 0.8rem;
+            }
+        }
+
+        /* 自动同步提示 */
+        #sync-toast {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 300;
+            padding: 0.55rem 1rem;
+            border-radius: var(--ds-radius-pill);
+            font-size: 0.82rem;
+            font-family: var(--ds-font-sans);
+            color: #fff;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .3s ease, transform .3s ease;
+            pointer-events: none;
+        }
+
+        #sync-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #sync-toast.ok {
+            background: var(--success-color);
+        }
+
+        #sync-toast.err {
+            background: var(--danger-color);
+        }
+
+        /* ========== 详情弹窗（小红书风格） ========== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 1.5rem;
+            animation: modalFade .2s ease;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal {
+            position: relative;
+            background: var(--ds-bg-page);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+            width: 100%;
+            max-width: 880px;
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: modalSlide .25s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(20px) scale(0.98); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .45);
+            color: #fff;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, .7);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            height: min(72vh, 540px);
+            max-height: 88vh;
+        }
+
+        .modal-image {
+            flex: 0 0 42%;
+            background: var(--ds-bg-surface-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-side {
+            flex: 1;
+            min-width: 0;
+            padding: 1.75rem 1.75rem 1.5rem;
+            overflow-y: auto;
+            scrollbar-gutter: stable;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-title {
+            font-family: var(--ds-font-display);
+            font-size: 1.55rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .modal-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.7rem;
+            font-size: 0.88rem;
+            color: var(--gray-500);
+        }
+
+        .modal-meta .tag {
+            background: var(--ds-bg-surface-3);
+            border: 1px solid var(--ds-border-subtle);
+            padding: 0.15rem 0.7rem;
+            border-radius: var(--ds-radius-pill);
+            font-size: 0.82rem;
+            color: var(--gray-600);
+        }
+
+        .modal-desc {
+            margin-top: 1.1rem;
+            font-size: 0.96rem;
+            line-height: 1.75;
+            color: var(--gray-600);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .modal-extra {
+            margin-top: 1.2rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid var(--ds-border-subtle);
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .modal-field {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+        }
+
+        .modal-field label {
+            color: var(--gray-500);
+            min-width: 70px;
+        }
+
+        .modal-field .value {
+            color: var(--ds-text-primary);
+        }
+
+        .modal-field input[type=date],
+        .modal-field select {
+            border: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            color: var(--ds-text-primary);
+            border-radius: 8px;
+            padding: 0.35rem 0.6rem;
+            font-size: 0.88rem;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+        }
+
+        /* 深色主题：标签文字颜色修正（保持无背景轻量风格） */
+        [data-theme="dark"] .poster-meta .tag {
+            background: transparent;
+            color: rgba(255, 255, 255, .78);
+            border-color: transparent;
+        }
+        [data-theme="dark"] select,
+        [data-theme="dark"] .modal-field select {
+            color-scheme: dark;
+        }
+        [data-theme="dark"] select option,
+        [data-theme="dark"] .modal-field select option {
+            background: #1f1f23;
+            color: #fff;
+        }
+
+        .modal-actions {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+        }
+
+        .modal-actions .card-btn,
+        .modal-actions .ghost-btn {
+            padding: 0.55rem 1rem;
+            white-space: nowrap;
+        }
+
+        /* 弹窗右下角：评价与观影次数 */
+        .modal-rate {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid var(--ds-border-subtle);
+        }
+
+        .modal-edit-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal-edit-panel .edit-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .edit-form {
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            gap: 0.55rem 0.8rem;
+            align-items: center;
+        }
+
+        .edit-form label {
+            font-size: 0.82rem;
+            color: var(--gray-500);
+            text-align: right;
+        }
+
+        .edit-form input,
+        .edit-form select,
+        .edit-form textarea {
+            padding: 0.45rem 0.65rem;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: 8px;
+            color: var(--ds-text-primary);
+            font-size: 0.86rem;
+            font-family: var(--ds-font-sans);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .edit-form input:focus,
+        .edit-form select:focus,
+        .edit-form textarea:focus {
+            border-color: var(--ds-brand);
+        }
+
+        .edit-form textarea {
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .modal-rate .rate-btn,
+        .modal-rate .tv-btn,
+        .modal-rate .undo-btn {
+            border: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            border-radius: var(--ds-radius-pill);
+            padding: 0.45rem 0.9rem;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: var(--transition);
+        }
+
+        .modal-rate .rate-btn:hover {
+            color: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+
+        .modal-rate .rate-btn.active {
+            color: #fff;
+            background: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+
+        .modal-rate .rate-btn.done.active {
+            background: var(--warning-color);
+            border-color: var(--warning-color);
+            color: #fff;
+        }
+
+        .modal-rate .tv-btn {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .modal-rate .tv-btn:hover {
+            background: var(--ds-brand);
+            border-color: var(--ds-brand);
+            color: #fff;
+        }
+
+        .modal-rate .tv-btn span {
+            font-size: 0.85rem;
+        }
+
+        .modal-rate .undo-btn:hover {
+            color: var(--ds-text-primary);
+            border-color: var(--ds-border-hover);
+        }
+
+        /* ========== 播放演示模式（纯前端效果） ========== */
+        .modal-body .modal-image,
+        .modal-body .modal-side {
+            transition: flex-basis .38s ease;
+        }
+
+        .modal-body.playing .modal-image {
+            flex: 0 0 62%;
+            display: block;
+            background: #000;
+        }
+
+        .modal-body.playing .modal-side {
+            flex: 1;
+            padding: 1.1rem 1.1rem 1rem;
+        }
+
+        .modal-body.playing .modal-side > :not(.modal-play-panel) {
+            display: none;
+        }
+
+        .modal-play-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            animation: playPanelIn .35s ease;
+        }
+
+        @keyframes playPanelIn {
+            from { opacity: 0; transform: translateX(16px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .modal-copyright {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            padding: 0.55rem 1rem;
+            border-top: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            letter-spacing: 0.02em;
+            animation: copyrightIn .4s ease;
+        }
+
+        @keyframes copyrightIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-play-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .play-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .play-header h3 {
+            font-family: var(--ds-font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ds-text-primary);
+        }
+
+        .play-episodes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+            gap: 0.45rem;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 0.2rem;
+        }
+
+        .ep-btn {
+            border: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            color: var(--gray-600);
+            border-radius: 6px;
+            padding: 0.4rem 0.3rem;
+            font-size: 0.78rem;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ep-btn:hover {
+            border-color: var(--ds-border-hover);
+            color: var(--ds-text-primary);
+        }
+
+        .ep-btn.active {
+            background: var(--ds-brand);
+            border-color: var(--ds-brand);
+            color: #fff;
+        }
+
+        #ep-add {
+            align-self: flex-start;
+        }
+
+        .ep-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0.7rem;
+            background: var(--ds-bg-surface-1);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: 10px;
+            animation: playPanelIn .3s ease;
+        }
+
+        .ep-form input {
+            width: 100%;
+            padding: 0.5rem 0.7rem;
+            background: var(--ds-bg-page);
+            border: 1px solid var(--ds-border-subtle);
+            border-radius: 8px;
+            color: var(--ds-text-primary);
+            font-size: 0.85rem;
+            font-family: var(--ds-font-sans);
+            outline: none;
+        }
+
+        .ep-form input:focus {
+            border-color: var(--ds-brand);
+        }
+
+        .ep-form-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .ep-form-actions .hover-btn {
+            flex: 1;
+            padding: 0.5rem 0.8rem;
+        }
+
+        .ep-edit {
+            font-size: 0.7rem;
+            margin-left: 0.25rem;
+            opacity: .6;
+        }
+
+        .ep-edit:hover {
+            opacity: 1;
+        }
+
+        /* 已看过标记 */
+        .ep-btn.watched {
+            border-color: var(--success-color);
+            background: rgba(60, 179, 113, .12);
+            color: var(--success-color);
+        }
+
+        .ep-btn.watched .ep-check {
+            opacity: 1;
+            color: var(--success-color);
+        }
+
+        .ep-check {
+            font-size: 0.7rem;
+            margin-left: 0.25rem;
+            opacity: .4;
+        }
+
+        .ep-check:hover {
+            opacity: 1;
+            color: var(--ds-brand);
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+            border-radius: 0;
+            animation: videoIn .45s ease;
+        }
+
+        @keyframes videoIn {
+            from { opacity: 0; transform: scale(1.04); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .play-tip {
+            font-size: 0.78rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .modal-copyright {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            padding: 0.55rem 1rem;
+            border-top: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 640px) {
+            .modal-body {
+                flex-direction: column;
+                overflow-y: auto;
+            }
+            .modal-image {
+                flex: none;
+                width: 100%;
+                max-height: 55vh;
+            }
+            .modal-side {
+                padding: 1.25rem 1.25rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Xiaolizi0v0's BLOG</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">首页</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">关于我</a></li>
+                <li class="nav-item"><a href="../index.html#skills" class="nav-link">技能</a></li>
+                <li class="nav-item"><a href="../index.html#projects" class="nav-link">项目</a></li>
+                <li class="nav-item"><a href="../index.html#education" class="nav-link">教育</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link active">工具箱</a></li>
+                <li class="nav-item"><a href="../notes.html" class="nav-link">学习笔记</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">联系</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="tool-container">
+            <!-- 顶部：标题 + 搜索栏 -->
+            <div class="tool-header">
+                <div class="brand">
+                    <span class="brand-text"><span class="brand-sub">影视剧观影存储</span>时间胶囊</span>
+                </div>
+                <div class="search-bar">
+                    <input id="search-input" type="text" placeholder="搜你想看的影视剧，如：肖申克的救赎" autocomplete="off">
+                    <button id="search-btn"><i class="fas fa-search"></i> 搜索</button>
+                </div>
+            </div>
+            <div class="tip" style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
+                <span>数据来自百度百科（JSONP 加载，无需代理），含海报缩略图。</span>
+                <button class="ghost-btn" id="proxy-btn" style="padding:0.15rem 0.6rem;font-size:0.75rem;"><i class="fas fa-cloud"></i> <span id="proxy-state">开启同名词条搜索（Cloudflare Worker）</span></button>
+            </div>
+
+            <!-- 分类导航 -->
+            <div class="category-nav" id="category-nav">
+                <div class="nav-row">
+                    <button class="cat-tab active" data-cat="all">全部</button>
+                    <button class="cat-tab" data-cat="movie">电影</button>
+                    <button class="cat-tab" data-cat="tv">电视剧</button>
+                    <button class="cat-tab" data-cat="variety">综艺</button>
+                    <button class="cat-tab" data-cat="anime">动漫</button>
+                    <div class="nav-actions">
+                        <button class="ghost-btn" id="toggle-manual"><i class="fas fa-plus"></i> 手动添加</button>
+                        <button class="ghost-btn" id="export-btn"><i class="fas fa-download"></i> 导出</button>
+                        <button class="ghost-btn" id="import-btn"><i class="fas fa-upload"></i> 导入</button>
+                        <input type="file" id="import-file" accept=".json,application/json" hidden>
+                        <button class="ghost-btn" id="gh-sync-btn"><i class="fab fa-github"></i> GitHub同步</button>
+                    </div>
+                </div>
+                <div class="nav-row secondary">
+                    <div class="filter-group">
+                        <span class="filter-label">题材</span>
+                        <div class="filter-tabs" id="genre-tabs"></div>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">平台</span>
+                        <div class="filter-tabs" id="platform-tabs"></div>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">年代</span>
+                        <div class="filter-tabs" id="era-tabs"></div>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">地区</span>
+                        <div class="filter-tabs" id="region-tabs"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 搜索结果 -->
+            <div id="search-results" class="search-results hidden">
+                <div class="section-label">
+                    <span id="search-status" class="search-status"></span>
+                    <button class="ghost-btn" id="close-search"><i class="fas fa-times"></i> 关闭结果</button>
+                </div>
+                <div class="poster-grid" id="results-grid"></div>
+            </div>
+
+            <!-- 手动添加表单 -->
+            <div id="manual-form" class="manual-form hidden">
+                <input id="m-title" type="text" placeholder="名称（必填）">
+                <input id="m-year" type="text" placeholder="年份，如 1994">
+                <select id="m-type">
+                    <option value="movie">电影</option>
+                    <option value="tv">电视剧</option>
+                    <option value="variety">综艺</option>
+                    <option value="anime">动漫</option>
+                </select>
+                <input id="m-genre" type="text" placeholder="类型，如 剧情 犯罪">
+                <select id="m-platform">
+                    <option value="">观看平台</option>
+                    <option value="影院">影院</option>
+                    <option value="爱奇艺">爱奇艺</option>
+                    <option value="腾讯">腾讯</option>
+                    <option value="优酷">优酷</option>
+                    <option value="B站">B站</option>
+                    <option value="芒果TV">芒果TV</option>
+                    <option value="其他">其他</option>
+                </select>
+                <input id="m-note" type="text" placeholder="备注（可选）">
+                <button class="card-btn" id="m-save">保存</button>
+            </div>
+
+            <!-- 已存片单 -->
+            <div class="saved-section">
+                <div class="section-label">
+                    <h2><i class="fas fa-film"></i> 我的片单 <span class="count-badge" id="saved-count">0</span><span class="section-tip">2026-08-22之前的观影数据未全部收入！</span></h2>
+                    <div class="saved-search-box">
+                        <i class="fas fa-search"></i>
+                        <input id="saved-search" type="text" placeholder="搜索片名/年份/类型/平台/地区" autocomplete="off">
+                    </div>
+                </div>
+                <div class="poster-grid" id="saved-list"></div>
+                <div class="current-list-count" id="current-list-count">当前片单：0 部</div>
+                <div id="empty-state" class="empty-state">
+                    <i class="fas fa-film"></i>
+                    <p>还没有记录，搜索并添加你的第一部影视剧吧！</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 详情弹窗（小红书风格） -->
+    <div class="modal-overlay hidden" id="detail-modal">
+        <div class="modal">
+            <button class="modal-close" id="modal-close" title="关闭"><i class="fas fa-times"></i></button>
+            <div class="modal-body" id="modal-body">
+                <div class="modal-image" id="modal-image"></div>
+                <div class="modal-side">
+                    <h2 class="modal-title" id="modal-title"></h2>
+                    <div class="modal-meta" id="modal-meta"></div>
+                    <div class="modal-desc" id="modal-desc"></div>
+                    <div class="modal-extra" id="modal-extra"></div>
+                    <div class="modal-actions" id="modal-actions"></div>
+                    <div class="modal-rate" id="modal-rate"></div>
+
+                    <!-- 编辑面板 -->
+                    <div class="modal-edit-panel hidden" id="modal-edit-panel">
+                        <h3 class="edit-title">编辑记录</h3>
+                        <div class="edit-form">
+                            <label>标题</label>
+                            <input type="text" id="edit-title" autocomplete="off">
+                            <label>年份</label>
+                            <input type="text" id="edit-year" autocomplete="off">
+                            <label>类型</label>
+                            <select id="edit-type">
+                                <option value="movie">电影</option>
+                                <option value="tv">电视剧</option>
+                                <option value="variety">综艺</option>
+                                <option value="anime">动漫</option>
+                            </select>
+                            <label>地区</label>
+                            <input type="text" id="edit-region" autocomplete="off">
+                            <label>题材</label>
+                            <input type="text" id="edit-genre" autocomplete="off" placeholder="多个用空格分隔">
+                            <label>平台</label>
+                            <select id="edit-platform"></select>
+                            <label>观看日期</label>
+                            <input type="date" id="edit-watchedDate">
+                            <label>海报图 URL</label>
+                            <input type="text" id="edit-img" autocomplete="off">
+                            <label>百科链接</label>
+                            <input type="text" id="edit-url" autocomplete="off">
+                            <label>简介</label>
+                            <textarea id="edit-desc" rows="4"></textarea>
+                            <label>备注</label>
+                            <textarea id="edit-note" rows="2"></textarea>
+                        </div>
+                        <div class="modal-actions" style="padding-top:1rem;">
+                            <button class="card-btn" id="edit-save"><i class="fas fa-check"></i> 保存</button>
+                            <button class="ghost-btn" id="edit-cancel"><i class="fas fa-times"></i> 取消</button>
+                        </div>
+                    </div>
+
+                    <!-- 播放演示面板（点击"播放演示"后显示） -->
+                    <div class="modal-play-panel hidden" id="modal-play-panel">
+                        <div class="play-header">
+                            <h3 id="play-title"></h3>
+                            <button class="ghost-btn" id="play-exit"><i class="fas fa-arrow-left"></i> 返回详情</button>
+                        </div>
+                        <div class="play-episodes" id="play-episodes"></div>
+                        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+                            <button class="ghost-btn" id="ep-add"><i class="fas fa-plus"></i> 添加集数</button>
+                            <button class="ghost-btn" id="ep-import"><i class="fas fa-file-import"></i> 导入JSON</button>
+                            <input type="file" id="ep-import-file" accept=".json,application/json" hidden>
+                        </div>
+                        <div class="ep-form hidden" id="ep-form">
+                            <input id="ep-title" type="text" placeholder="集标题，如：第25集 / 番外篇" autocomplete="off">
+                            <input id="ep-url" type="text" placeholder="视频地址（.m3u8 或 .mp4）" autocomplete="off">
+                            <div class="ep-form-actions">
+                                <button class="hover-btn primary" id="ep-save"><i class="fas fa-check"></i> 保存</button>
+                                <button class="ghost-btn" id="ep-cancel"><i class="fas fa-times"></i> 取消</button>
+                            </div>
+                        </div>
+                        <div class="play-tip"><i class="fas fa-info-circle"></i> 演示模式：使用公开授权的测试片源；自定义集可填自己的 m3u8/mp4 地址。</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-copyright hidden" id="modal-copyright">
+                本页面内容仅供学习使用，不能对外传播。
+            </div>
+        </div>
+    </div>
+
+    <!-- GitHub 同步弹窗 -->
+    <div class="modal-overlay hidden" id="gh-modal">
+        <div class="modal" style="max-width: 480px; height: auto;">
+            <button class="modal-close" id="gh-close" title="关闭"><i class="fas fa-times"></i></button>
+            <div class="modal-body" style="height: auto; flex-direction: column; max-height: 88vh; overflow-y: auto;">
+                <div style="padding: 1.4rem 1.4rem 1.2rem;">
+                    <h2 class="modal-title" style="font-size: 1.2rem; margin-bottom: 0.5rem;">GitHub 数据同步</h2>
+                    <div class="modal-meta" style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+                        片单数据默认保存在浏览器 localStorage。GitHub Pages 是纯静态托管，页面无法直接写入仓库文件，因此通过 GitHub REST API 把数据以 JSON 文件提交到仓库，实现跨设备同步。
+                    </div>
+                    <div class="modal-field" style="margin-bottom: 0.6rem;">
+                        <label>仓库</label>
+                        <div class="value" id="gh-repo-label"></div>
+                    </div>
+                    <div class="modal-field" style="margin-bottom: 0.6rem;">
+                        <label>文件名</label>
+                        <div class="value" id="gh-file-label"></div>
+                    </div>
+                    <label style="display:block;font-size:0.82rem;color:var(--gray-500);margin-bottom:0.35rem;">Personal Access Token（需 repo 写权限）</label>
+                    <input type="password" id="gh-token" placeholder="ghp_xxxx..." autocomplete="off"
+                        style="width:100%;padding:0.55rem 0.8rem;background:var(--ds-bg-page);border:1px solid var(--ds-border-subtle);border-radius:8px;color:var(--ds-text-primary);font-size:0.9rem;font-family:var(--ds-font-sans);">
+                    <div class="play-tip" style="margin-top:0.45rem;">
+                        获取方式：GitHub → Settings → Developer settings → Personal access tokens → 勾选 repo 权限生成。Token 仅保存在浏览器本地，不会上传其它地方。
+                    </div>
+                    <div class="modal-actions" style="margin-top:1rem; padding-top:1rem;">
+                        <button class="card-btn" id="gh-save-btn"><i class="fas fa-upload"></i> 保存到仓库</button>
+                        <button class="card-btn" id="gh-load-btn"><i class="fas fa-download"></i> 从仓库加载</button>
+                    </div>
+                    <div class="play-tip" id="gh-status" style="margin-top:0.7rem;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cloudflare Worker 代理配置弹窗 -->
+    <div class="modal-overlay hidden" id="proxy-modal">
+        <div class="modal" style="max-width: 460px; height: auto;">
+            <button class="modal-close" id="proxy-close" title="关闭"><i class="fas fa-times"></i></button>
+            <div style="padding: 1.4rem 1.4rem 1.2rem;">
+                <h2 class="modal-title" style="font-size: 1.15rem; margin-bottom: 0.5rem;">同名词条搜索代理</h2>
+                <div class="modal-meta" style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.9rem;">
+                    启用后，搜索一个名称即可列出所有同名影视词条（如"英雄"→ 电视剧/电影/动漫）。<br>
+                    推荐使用<b>本地代理</b>（仓库 <code>worker-proxy/local-proxy.js</code>，运行 <code>node local-proxy.js</code>），
+                    地址填 <code>http://127.0.0.1:25100</code>。
+                </div>
+                <div class="play-tip" id="proxy-status" style="margin-bottom: 0.9rem; padding: 0.5rem 0.7rem; background: var(--ds-bg-surface-1); border-radius: 8px;"></div>
+                <label style="display:block;font-size:0.82rem;color:var(--gray-500);margin-bottom:0.35rem;">Cloudflare Worker 域名</label>
+                <input type="text" id="proxy-input" placeholder="https://xxx.workers.dev" autocomplete="off"
+                    style="width:100%;padding:0.55rem 0.8rem;background:var(--ds-bg-page);border:1px solid var(--ds-border-subtle);border-radius:8px;color:var(--ds-text-primary);font-size:0.9rem;font-family:var(--ds-font-sans);">
+                <div class="modal-actions" style="flex-direction: column; align-items: stretch; gap: 0.6rem; padding-top: 0.8rem;">
+                    <button class="card-btn" id="proxy-start"><i class="fas fa-play"></i> 一键启动本地代理</button>
+                    <button class="card-btn" id="proxy-set"><i class="fas fa-paste"></i> 保存并启用</button>
+                    <button class="card-btn" id="proxy-deploy"><i class="fas fa-terminal"></i> 查看本地代理使用说明</button>
+                    <button class="card-btn danger" id="proxy-off"><i class="fas fa-power-off"></i> 关闭代理</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 我的个人博客. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ===================== 数据存储 =====================
+        const STORAGE_KEY = 'movieTimeCapsule';
+        const DELETED_KEY = STORAGE_KEY + ':deleted';
+
+        function recordKey(id) {
+            return id === undefined || id === null ? '' : String(id);
+        }
+
+        function recordUpdatedAt(rec) {
+            const value = Number(rec && (rec.updatedAt || rec.timestamp));
+            return Number.isFinite(value) ? value : 0;
+        }
+
+        function loadDeletedRecords() {
+            try {
+                const data = JSON.parse(localStorage.getItem(DELETED_KEY) || '{}');
+                const result = {};
+                if (Array.isArray(data)) {
+                    data.forEach(item => {
+                        if (!item || item.id === undefined || item.id === null) return;
+                        const at = Number(item.deletedAt || item.updatedAt || item.timestamp);
+                        if (Number.isFinite(at) && at > 0) result[recordKey(item.id)] = at;
+                    });
+                } else if (data && typeof data === 'object') {
+                    Object.keys(data).forEach(id => {
+                        const at = Number(data[id]);
+                        if (Number.isFinite(at) && at > 0) result[recordKey(id)] = at;
+                    });
+                }
+                return result;
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function loadRecords() {
+            try {
+                const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                const list = Array.isArray(data) ? data : (data && data.records);
+                return Array.isArray(list) ? list.filter(rec => rec && !rec._deleted) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        let syncTimer = null;
+
+        // 每次修改都会调用：写 localStorage 并触发自动同步（1.5s 防抖）
+        function saveRecords(list) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+            localStorage.setItem(DELETED_KEY, JSON.stringify(deletedRecords));
+            if (syncTimer) clearTimeout(syncTimer);
+            syncTimer = setTimeout(autoSyncToRepo, 1500);
+        }
+
+        // ========== GitHub 写入：串行队列 + sha 冲突自动重试 ==========
+        let ghWriteQueue = Promise.resolve();
+
+        // 统一写入函数：串行执行；先 GET 拿 sha，文件存在直接带 sha 更新，不存在则创建
+        // 返回 { ok: boolean, error?: string }
+        function ghWrite(owner, repo, pat, content, message) {
+            const task = ghWriteQueue.then(async () => {
+                let lastErr = '';
+                const put = (sha) => fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    method: 'PUT',
+                    cache: 'no-store',
+                    headers: { 'Content-Type': 'application/json', Authorization: `token ${pat}` },
+                    body: JSON.stringify({
+                        message,
+                        content: b64Encode(content),
+                        ...(sha ? { sha } : {})
+                    })
+                });
+                // 取当前 sha；加 no-store 防 304（304 无响应体且 ok=false）
+                const getSha = async () => {
+                    const meta = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                        cache: 'no-store',
+                        headers: { Authorization: `token ${pat}` }
+                    });
+                    if (meta.ok) return (await meta.json()).sha;
+                    if (meta.status === 304) {
+                        // 兜底：304 时 GitHub 的 ETag 就是 sha（去掉引号）
+                        const etag = meta.headers.get('etag');
+                        if (etag) return etag.replace(/^"|"$/g, '');
+                    }
+                    return null;
+                };
+
+                // 1. 文件存在则带 sha 更新；不存在（sha 为 null）则创建
+                let sha = await getSha();
+                let res = await put(sha);
+                if (res.ok) return { ok: true, error: '' };
+                try { lastErr = (await res.json()).message || ('HTTP ' + res.status); } catch (e) { lastErr = 'HTTP ' + res.status; }
+
+                // 2. 422/409（文件已存在但 sha 缺失/过期）→ 无条件重取 sha 再试一次
+                if (res.status === 422 || res.status === 409) {
+                    try {
+                        sha = await getSha();
+                        res = await put(sha);
+                        if (res.ok) return { ok: true, error: '' };
+                        try { lastErr = (await res.json()).message || ('HTTP ' + res.status); } catch (e) { lastErr = 'HTTP ' + res.status; }
+                    } catch (e) {
+                        lastErr = '重试异常：' + e.message;
+                    }
+                }
+                return { ok: false, error: lastErr };
+            });
+            ghWriteQueue = task.catch(() => ({ ok: false, error: '同步队列异常' }));
+            return task;
+        }
+
+        // 兼容旧版数组格式，同时读取删除标记。
+        function parseRepoData(data) {
+            const list = Array.isArray(data) ? data : (data && Array.isArray(data.records) ? data.records : []);
+            const deleted = {};
+            const rawDeleted = Array.isArray(data) ? null : (data && (data.deleted || data.deletedRecords));
+            const addDeleted = (id, value) => {
+                const at = Number(value);
+                if (id !== undefined && id !== null && Number.isFinite(at) && at > 0) {
+                    deleted[recordKey(id)] = Math.max(deleted[recordKey(id)] || 0, at);
+                }
+            };
+            if (Array.isArray(rawDeleted)) {
+                rawDeleted.forEach(item => {
+                    if (!item) return;
+                    addDeleted(item.id, item.deletedAt || item.updatedAt || item.timestamp);
+                });
+            } else if (rawDeleted && typeof rawDeleted === 'object') {
+                Object.keys(rawDeleted).forEach(id => addDeleted(id, rawDeleted[id]));
+            }
+            const active = [];
+            list.forEach(rec => {
+                if (!rec || rec.id === undefined || rec.id === null) return;
+                if (rec._deleted) {
+                    addDeleted(rec.id, rec.deletedAt || rec.updatedAt || rec.timestamp);
+                } else if (rec.title) {
+                    active.push(rec);
+                }
+            });
+            return { records: active, deleted };
+        }
+
+        function buildRepoData() {
+            const deleted = Object.assign({}, deletedRecords);
+            return Object.keys(deleted).length
+                ? { version: 2, records: records.slice(), deleted }
+                : records.slice();
+        }
+
+        // 把仓库拉取的记录和删除标记合并进本地 records。
+        // 删除时间晚于或等于记录更新时间时，以删除为准；新版本记录可以重新恢复。
+        function mergeRepoRecords(repoData) {
+            const state = Array.isArray(repoData) ? parseRepoData(repoData) : (repoData && Array.isArray(repoData.records) ? repoData : parseRepoData(repoData));
+            let merged = 0;
+
+            Object.keys(state.deleted || {}).forEach(id => {
+                const at = Number(state.deleted[id]);
+                if (at > (deletedRecords[id] || 0)) {
+                    deletedRecords[id] = at;
+                    merged++;
+                }
+            });
+
+            const before = records.length;
+            records = records.filter(rec => {
+                const deletedAt = deletedRecords[recordKey(rec.id)] || 0;
+                return !(deletedAt && deletedAt >= recordUpdatedAt(rec));
+            });
+            merged += before - records.length;
+
+            state.records.forEach(rec => {
+                if (!rec || rec.id === undefined || rec.id === null || !rec.title) return;
+                const id = recordKey(rec.id);
+                const remoteUpdatedAt = recordUpdatedAt(rec) || Date.now();
+                if ((deletedRecords[id] || 0) >= remoteUpdatedAt) return;
+
+                const normalized = Object.assign({ watchedDate: nowDateStr(), timestamp: Date.now() }, rec);
+                if (!normalized.updatedAt) normalized.updatedAt = remoteUpdatedAt;
+                const idx = records.findIndex(local => recordKey(local.id) === id);
+                if (idx < 0) {
+                    records.push(normalized);
+                    delete deletedRecords[id];
+                    merged++;
+                } else if (remoteUpdatedAt > recordUpdatedAt(records[idx])) {
+                    normalized.timestamp = records[idx].timestamp || normalized.timestamp;
+                    records[idx] = Object.assign({}, records[idx], normalized);
+                    delete deletedRecords[id];
+                    merged++;
+                }
+            });
+            return merged;
+        }
+
+        function deleteRecordById(id) {
+            const key = recordKey(id);
+            if (!key) return false;
+            const before = records.length;
+            records = records.filter(rec => recordKey(rec.id) !== key);
+            deletedRecords[key] = Date.now();
+            saveRecords(records);
+            return records.length !== before;
+        }
+
+        // 自动把 records 推送到仓库（需已配置 gh_pat）
+        // 多设备安全：先拉取仓库当前内容合并到本地，再推送合并后的全量，避免互相覆盖
+        async function autoSyncToRepo() {
+            const pat = localStorage.getItem('gh_pat');
+            if (!pat) return;
+            const { owner, repo } = ghRepoInfo();
+
+            // 1. 先拉取仓库内容并合并到本地
+            try {
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
+                    headers: Object.assign({ Accept: 'application/vnd.github.raw' }, { Authorization: `token ${pat}` })
+                });
+                if (res.ok) {
+                    const d = JSON.parse(await res.text());
+                    const merged = mergeRepoRecords(parseRepoData(d));
+                    if (merged > 0) {
+                        // 直接写 localStorage，不触发 saveRecords 以避免再次调度自动同步形成循环
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+                        localStorage.setItem(DELETED_KEY, JSON.stringify(deletedRecords));
+                        renderSaved();
+                    }
+                }
+            } catch (e) {
+                // 拉取失败不阻塞后续推送
+            }
+
+            // 2. 推送合并后的全量到仓库
+            try {
+                const r = await ghWrite(owner, repo, pat, JSON.stringify(buildRepoData(), null, 2), '自动同步影视剧片单数据');
+                showSyncToast(r.ok, r.error);
+            } catch (e) {
+                showSyncToast(false);
+            }
+        }
+
+        function showSyncToast(ok, err) {
+            let t = document.getElementById('sync-toast');
+            if (!t) {
+                t = document.createElement('div');
+                t.id = 'sync-toast';
+                document.body.appendChild(t);
+            }
+            t.textContent = ok ? '已自动同步到仓库' : ('自动同步失败：' + (err || '未配置 Token'));
+            t.className = 'show ' + (ok ? 'ok' : 'err');
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => t.classList.remove('show'), 4000);
+        }
+
+        function nowDateStr() {
+            const d = new Date();
+            const pad = n => String(n).padStart(2, '0');
+            return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+        }
+
+        // ===================== 百度百科搜索（JSONP 加载，无需 CORS/代理） =====================
+        function extractYear(s) {
+            const m = s.match(/(?:19|20)\d{2}/);
+            return m ? m[0] : '';
+        }
+
+        function detectType(s) {
+            // 强影视信号优先：条目本身是影视时，即使简介提到"改编自漫画/小说"也应识别为影视
+            // 综艺
+            if (/综艺|真人秀|脱口秀|选秀|访谈节目/.test(s)) return 'variety';
+            // 动画电影归为电影，纯动画/动漫归为动漫
+            if (/动画电影/.test(s)) return 'movie';
+            if (/动画|动漫|番剧/.test(s)) return 'anime';
+            // 电视剧（补充韩剧常用的月火剧/水木剧等播出类型，避免被判为 other）
+            if (/电视剧|电视连续剧|连续剧|网络剧|网剧|剧集|韩剧|月火剧|水木剧|金土剧|周末剧|日日剧|迷你剧|短剧|(?:执导|主演)的[\u4e00-\u9fa5]{0,10}?剧(?![一-龥])/.test(s)) return 'tv';
+            // 电影
+            if (/(?:执导|主演)的[\u4e00-\u9fa5]{0,10}?片|电影|影片|纪录片/.test(s)) return 'movie';
+            // 都没有影视信号 → 再看是否小说/漫画等非影视条目
+            if (/创作.{0,8}?(小说|漫画)|系列小说|轻小说|长篇漫画|(?:是|为|属于).{0,8}?(小说|漫画)/.test(s)) return 'other';
+            // 都不匹配 → 非影视，过滤掉
+            return 'other';
+        }
+
+        // 从百科信息卡中提取类型（如：犯罪 剧情）
+        function extractGenre(d) {
+            const card = d.card || [];
+            // 兼容不同类型卡片的字段名：类型 / 作品类型 / 节目类型 / 影片类型 …
+            const entry = card.find(c => /类型$/.test(c.name || ''));
+            if (!entry || !entry.value || !entry.value[0]) return '';
+            // 去掉 <sup>上标引用</sup>、<a>标签及残留标签
+            const raw = entry.value[0]
+                .replace(/<sup[^>]*>[\s\S]*?<\/sup>/g, '')
+                .replace(/<[^>]*>/g, '')
+                .replace(/\s+/g, ' ');
+            const parts = raw.split(/[、，,]/).map(s => s.trim()).filter(Boolean);
+            return parts.slice(0, 3).join(' ');
+        }
+
+        // 把类型字符串渲染成独立的小徽章标签
+        function genreChips(g) {
+            if (!g) return '';
+            return g.split(/[\s、，,\/／]+/).filter(Boolean)
+                .map(x => `<span class="tag">${x}</span>`).join('');
+        }
+
+        // 平台名 → 统一标准平台
+        const PLATFORM_MAP = {
+            '爱奇艺': '爱奇艺',
+            'iqiyi': '爱奇艺',
+            '腾讯视频': '腾讯',
+            '腾讯': '腾讯',
+            '优酷网': '优酷',
+            '优酷': '优酷',
+            'bilibili': 'B站',
+            '哔哩哔哩': 'B站',
+            '芒果tv': '芒果TV',
+            '芒果': '芒果TV',
+            '电影院': '影院',
+            '院线': '影院',
+            '影院': '影院'
+        };
+
+        // 从百科信息卡中提取观看平台（在线播放平台 / 网络播放平台 / 播出平台 …）
+        function extractPlatform(d) {
+            const card = d.card || [];
+            const entry = card.find(c => /平台$/.test(c.name || ''));
+            if (!entry || !entry.value || !entry.value[0]) return '';
+            const raw = entry.value[0]
+                .replace(/<sup[^>]*>[\s\S]*?<\/sup>/g, '')
+                .replace(/<[^>]*>/g, '')
+                .replace(/\s+/g, '');
+            const names = raw.split(/[、，,]/).map(s => s.trim()).filter(Boolean);
+            for (const n of names) {
+                const lower = n.toLowerCase();
+                for (const [k, v] of Object.entries(PLATFORM_MAP)) {
+                    const kl = k.toLowerCase();
+                    if (lower.includes(kl) || kl.includes(lower)) return v;
+                }
+            }
+            return names.length ? '其他' : '';
+        }
+
+        // 制片地区 → 统一地区分类
+        const REGION_MAP = {
+            '中国内地': '国产',
+            '中国大陆': '国产',
+            '内地': '国产',
+            '中国香港': '港台',
+            '香港': '港台',
+            '中国台湾': '港台',
+            '台湾': '港台',
+            '澳门': '港台',
+            '日本': '日韩',
+            '韩国': '日韩',
+            '美国': '欧美',
+            '英国': '欧美',
+            '法国': '欧美',
+            '德国': '欧美',
+            '加拿大': '欧美',
+            '澳大利亚': '欧美',
+            '意大利': '欧美',
+            '西班牙': '欧美',
+            '俄罗斯': '欧美',
+            '印度': '其他',
+            '泰国': '其他',
+            '其他': '其他'
+        };
+
+        // 从百科信息卡中提取地区（制片地区 / 地区 …）
+        function extractRegion(d) {
+            const card = d.card || [];
+            const entry = card.find(c => /地区$/.test(c.name || ''));
+            if (!entry || !entry.value || !entry.value[0]) return '';
+            const raw = entry.value[0]
+                .replace(/<sup[^>]*>[\s\S]*?<\/sup>/g, '')
+                .replace(/<[^>]*>/g, '')
+                .replace(/\s+/g, '');
+            const names = raw.split(/[、，,]/).map(s => s.trim()).filter(Boolean);
+            for (const n of names) {
+                if (REGION_MAP[n]) return REGION_MAP[n];
+                for (const [k, v] of Object.entries(REGION_MAP)) {
+                    if (n.includes(k)) return v;
+                }
+            }
+            return names.length ? '其他' : '';
+        }
+
+        // 生成百度 CDN 缩略图 URL（限宽 300px）
+        function thumbnailize(imgUrl) {
+            if (!imgUrl) return '';
+            const base = imgUrl.split('?')[0];
+            return base + '?x-bce-process=image/resize,w_300,limit_1/format,f_auto';
+        }
+
+        // JSONP 加载器：通过 <script> 标签请求，绕过 CORS 限制
+        function jsonp(url, cbParam, timeout, charset) {
+            return new Promise((resolve, reject) => {
+                const cb = 'bkcb' + Date.now() + Math.floor(Math.random() * 1000);
+                const script = document.createElement('script');
+                if (charset) script.charset = charset;
+                const timer = setTimeout(() => {
+                    delete window[cb];
+                    script.remove();
+                    reject(new Error('请求超时'));
+                }, timeout || 12000);
+                window[cb] = (data) => {
+                    clearTimeout(timer);
+                    delete window[cb];
+                    script.remove();
+                    resolve(data);
+                };
+                script.onerror = () => {
+                    clearTimeout(timer);
+                    delete window[cb];
+                    script.remove();
+                    reject(new Error('加载失败'));
+                };
+                script.src = url + '&' + cbParam + '=' + cb;
+                document.head.appendChild(script);
+            });
+        }
+
+        // 搜索百度百科词条（建议词 + 用户原始输入 精确匹配，再逐个查详情）
+        async function searchBaidu(keyword) {
+            // 优先走 Cloudflare Worker 代理：能返回同名词条全列表（一个输入 → 多个同名影视条目）
+            const proxyList = await searchBaiduViaProxy(keyword);
+            if (proxyList && proxyList.length > 0) return proxyList;
+
+            const userInput = keyword.trim();
+
+            // 1. 获取建议词（该接口返回 GBK 编码，强制按 GBK 解码）
+            const sug = await jsonp(
+                'https://suggestion.baidu.com/su?wd=' + encodeURIComponent(userInput) + '&prod=baike',
+                'cb',
+                12000,
+                'gbk'
+            );
+            // 把用户原始输入也作为一个候选（精确匹配），与建议词合并去重
+            const candidates = [...new Set([userInput, ...((sug && sug.s) || [])])].slice(0, 6);
+
+            // 2. 并行查询每个词条详情（含海报、年份、类型、简介）
+            const list = await Promise.all(candidates.map(async name => {
+                try {
+                    const d = await jsonp(
+                        'https://baike.baidu.com/api/openapi/BaikeLemmaCardApi?scope=103&format=json&appid=379020'
+                            + '&bk_key=' + encodeURIComponent(name) + '&bk_length=300',
+                        'callback'
+                    );
+                    if (!d || !d.title) return null;
+                    const text = (d.desc || '') + ' ' + (d.abstract || '');
+                    const type = detectType(text);
+                    return {
+                        id: 'baike-' + d.id,
+                        title: d.title,
+                        year: extractYear(text),
+                        type: type,
+                        url: d.url || 'https://baike.baidu.com/item/' + encodeURIComponent(d.title),
+                        img: thumbnailize(d.image),
+                        genre: extractGenre(d),
+                        platform: extractPlatform(d),
+                        region: extractRegion(d),
+                        sub_title: '',
+                        desc: (d.abstract || d.desc || '').slice(0, 140)
+                    };
+                } catch (e) {
+                    return null;
+                }
+            }));
+
+            // 过滤：1) 字段缺失 2) 非影视词条（如文化术语、耐火砖、方言等）
+            // 同时按 id 去重（同一个词条被建议词+用户输入重复加入）
+            const seen = new Set();
+            return list.filter(Boolean).filter(r => {
+                if (r.type === 'other') return false;
+                if (seen.has(r.id)) return false;
+                seen.add(r.id);
+                return true;
+            });
+        }
+
+        // 通过本地代理（JSONP 格式）调用百度 searchui/suggest，拿到同名词条全列表（card API 格式）
+        async function searchBaiduViaProxy(keyword) {
+            const proxy = localStorage.getItem('baike_proxy');
+            const on = localStorage.getItem('baike_proxy_on') === '1';
+            if (!proxy || !on) return null;   // 未配置或已停用，返回 null 走原逻辑
+            try {
+                const target = 'https://baike.baidu.com/api/searchui/suggest?wd=' + encodeURIComponent(keyword.trim());
+                const data = await jsonp(proxy + '?url=' + encodeURIComponent(target), 'callback', 60000);
+                const items = (data && data.list) || [];
+
+                // classify 关键词判定影视
+                const VIDEO_CLASS = /影视|电影|电视剧|动漫|动画|综艺|纪录片|网剧|剧集/;
+                const NON_VIDEO_CLASS = /音乐|图书|书刊|小说|游戏|软件|人物|植物|化学|歌曲|专辑|漫画|运动|奖项/;
+
+                // 代理返回的是 card API 格式，直接复用现有解析器
+                const result = items.map(item => {
+                    const text = (item.desc || '') + ' ' + (item.abstract || '');
+                    const cls = (item.classify || []).join(' ');
+                    let type;
+                    if (cls) {
+                        if (VIDEO_CLASS.test(cls) && !NON_VIDEO_CLASS.test(cls)) {
+                            type = detectType(text);
+                            if (type === 'other') type = cls.includes('动漫') || cls.includes('动画') ? 'anime'
+                                : cls.includes('综艺') ? 'variety' : 'movie';
+                        } else if (NON_VIDEO_CLASS.test(cls)) {
+                            return null;   // 明确非影视
+                        } else {
+                            type = detectType(text);
+                        }
+                    } else {
+                        type = detectType(text);
+                    }
+                    if (type === 'other') return null;
+                    return {
+                        id: 'baike-' + item.id,
+                        // 完整词条名优先（如"迷墙（英国1982年...电影）"），否则用基础名
+                        title: item.fullTitle || item.title,
+                        year: item.year || extractYear(text),
+                        type: type,
+                        url: item.url || 'https://baike.baidu.com/item/' + encodeURIComponent(item.title) + '/' + item.id,
+                        img: thumbnailize(item.image),
+                        genre: item.genre || '',
+                        platform: item.platform || '',
+                        region: item.region || '',
+                        sub_title: '',
+                        desc: (item.abstract || item.desc || '').slice(0, 140)
+                    };
+                }).filter(Boolean);
+
+                // 按 id 去重
+                const seen = new Set();
+                return result.filter(r => {
+                    if (seen.has(r.id)) return false;
+                    seen.add(r.id);
+                    return true;
+                });
+            } catch (e) {
+                return null;   // 代理失败回退原逻辑
+            }
+        }
+
+        async function searchMovies(keyword) {
+            const list = await searchBaidu(keyword);
+            if (list.length === 0) {
+                throw new Error('未找到影视词条（百度百科默认词条非影视已过滤）。若为动漫/剧集，可尝试更精确名称或直接手动添加。');
+            }
+            return list;
+        }
+
+        // ===================== 页面逻辑 =====================
+        let deletedRecords = loadDeletedRecords();
+        let records = loadRecords();
+        let currentCat = 'all';        // all / movie / tv / variety / anime
+        let currentGenre = '';         // 题材（二级）
+        let currentPlatform = '';      // 平台（二级）
+        let currentEra = '';           // 年代（二级）
+        let currentRegion = '';        // 地区（二级）
+        let currentSearch = "";       // 片单文字搜索
+
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const searchStatus = document.getElementById('search-status');
+        const searchResults = document.getElementById('search-results');
+        const resultsGrid = document.getElementById('results-grid');
+        const savedList = document.getElementById('saved-list');
+        const emptyState = document.getElementById('empty-state');
+        const savedCount = document.getElementById('saved-count');
+        const currentListCount = document.getElementById('current-list-count');
+        const genreTabs = document.getElementById('genre-tabs');
+        const platformTabs = document.getElementById('platform-tabs');
+        const eraTabs = document.getElementById('era-tabs');
+        const regionTabs = document.getElementById('region-tabs');
+
+        // 平台可选项
+        const PLATFORMS = ['影院', '爱奇艺', '腾讯', '优酷', 'B站', '芒果TV', '其他'];
+        // 平台品牌色（用于右上角平台徽章背景）
+        const PLATFORM_COLORS = {
+            '爱奇艺': '#00be06',
+            '腾讯': '#ff7e00',
+            '优酷': '#00a8ff',
+            'B站': '#fb7299',
+            '芒果TV': '#ff5500',
+            '影院': '#6b7280',
+            '其他': '#6b7280'
+        };
+        // 年代区间
+        const ERAS = ['2020后', '2010s', '2000s', '更早'];
+        // 地区分类
+        const REGIONS = ['国产', '港台', '日韩', '欧美', '其他'];
+
+        function typeName(t) {
+            return { movie: '电影', tv: '电视剧', variety: '综艺', anime: '动漫', other: '其他' }[t] || '电影';
+        }
+
+        function eraOf(year) {
+            const y = parseInt(year);
+            if (!y) return '';
+            if (y >= 2020) return '2020后';
+            if (y >= 2010) return '2010s';
+            if (y >= 2000) return '2000s';
+            return '更早';
+        }
+
+        // 海报加载失败时替换为占位图标
+        function posterError(el) {
+            el.onerror = null;
+            const holder = document.createElement('div');
+            holder.className = 'poster-wrap';
+            holder.style.cssText = 'display:flex;align-items:center;justify-content:center;color:var(--gray-400);aspect-ratio:3/4;';
+            holder.innerHTML = '<i class="fas fa-film" style="font-size:2.2rem;"></i>';
+            el.parentNode.replaceChild(holder, el);
+        }
+
+        // 详情弹窗（小红书风格）：mode = 'result' / 'saved'
+        const modalEl = document.getElementById('detail-modal');
+
+        function openModal(data, mode) {
+            const recorded = records.some(r => r.id === String(data.id));
+
+            document.getElementById('modal-title').textContent = data.title || '未命名';
+            const metaEl = document.getElementById('modal-meta');
+            metaEl.innerHTML = `
+                <span class="tag">${typeName(data.type)}</span>
+                ${data.year ? `<span>${data.year}</span>` : ''}
+                ${data.region ? `<span>${data.region}</span>` : ''}
+                ${genreChips(data.genre)}
+            `;
+
+            const imgWrap = document.getElementById('modal-image');
+            if (data.img) {
+                imgWrap.innerHTML = `<img src="${data.img}" alt="${data.title}" referrerpolicy="no-referrer" onerror="posterError(this)">`;
+            } else {
+                imgWrap.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);width:100%;height:100%;"><i class="fas fa-film" style="font-size:4rem;"></i></div>';
+            }
+
+            const descEl = document.getElementById('modal-desc');
+            descEl.textContent = data.desc || data.sub_title || '暂无简介';
+            descEl.style.display = data.desc || data.sub_title ? '' : 'none';
+
+            // 评价与观影次数区（仅已存记录显示，右下角）
+            document.getElementById('modal-rate').innerHTML = '';
+
+            const extraEl = document.getElementById('modal-extra');
+            const extraParts = [];
+            if (mode === 'saved') {
+                extraParts.push(`<div class="modal-field"><label>观看日期</label><input type="date" id="modal-date" value="${data.watchedDate || ''}"></div>`);
+                const platformOpts = ['<option value="">未设置</option>']
+                    .concat(PLATFORMS.map(p => `<option value="${p}" ${p === (data.platform || '') ? 'selected' : ''}>${p}</option>`));
+                extraParts.push(`<div class="modal-field"><label>观看平台</label><select id="modal-platform">${platformOpts.join('')}</select></div>`);
+                if (data.note) extraParts.push(`<div class="modal-field"><label>备注</label><div class="value">${data.note}</div></div>`);
+            }
+            extraEl.innerHTML = extraParts.join('');
+            extraEl.style.display = extraParts.length ? '' : 'none';
+
+            const actEl = document.getElementById('modal-actions');
+            const baike = data.url ? `<a class="ghost-btn" href="${data.url}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> 查看百科</a>` : '';
+            if (mode === 'result') {
+                actEl.innerHTML = `
+                    <button class="card-btn ${recorded ? 'recorded' : ''}" id="modal-record-btn" ${recorded ? 'disabled' : ''}>
+                        ${recorded ? '已记录' : '记录观看'}
+                    </button>
+                    ${baike}
+                `;
+                if (!recorded) {
+                    document.getElementById('modal-record-btn').addEventListener('click', () => {
+                        addRecord({
+                            id: String(data.id),
+                            title: data.title || '未知作品',
+                            year: data.year || '',
+                            type: data.type === 'tv' ? 'tv' : (data.type === 'variety' ? 'variety' : (data.type === 'anime' ? 'anime' : 'movie')),
+                            url: data.url || '',
+                            img: data.img || '',
+                            genre: data.genre || '',
+                            platform: data.platform || '',
+                            region: data.region || '',
+                            sub_title: data.sub_title || '',
+                            desc: data.desc || ''
+                        });
+                        const btn = document.getElementById('modal-record-btn');
+                        btn.classList.add('recorded');
+                        btn.textContent = '已记录';
+                        btn.disabled = true;
+                    });
+                }
+            } else {
+                // saved
+                actEl.innerHTML = `
+                    ${baike}
+                    <button class="card-btn" id="modal-play"><i class="fas fa-play"></i> 播放演示</button>
+                    <button class="card-btn" id="modal-edit-btn"><i class="fas fa-pen"></i> 编辑</button>
+                    <button class="card-btn danger" id="modal-delete-btn"><i class="fas fa-trash-alt"></i> 删除记录</button>
+                `;
+                document.getElementById('modal-play').addEventListener('click', () => enterPlayMode(data));
+                document.getElementById('modal-edit-btn').addEventListener('click', () => enterEditMode(data));
+                const dateInput = document.getElementById('modal-date');
+                if (dateInput) {
+                    dateInput.addEventListener('change', () => {
+                        data.watchedDate = dateInput.value;
+                        data.updatedAt = Date.now();
+                        saveRecords(records);
+                    });
+                }
+                const platformInput = document.getElementById('modal-platform');
+                if (platformInput) {
+                    platformInput.addEventListener('change', () => {
+                        data.platform = platformInput.value;
+                        data.updatedAt = Date.now();
+                        saveRecords(records);
+                        renderSaved();
+                    });
+                }
+
+                // 右下角：点赞 / 拉完了 / 观影次数 + 撤回
+                const rateEl = document.getElementById('modal-rate');
+                rateEl.innerHTML = `
+                    <button class="rate-btn ${data.liked ? 'active' : ''}" id="modal-like" title="点赞"><i class="fas fa-heart"></i> 点赞</button>
+                    <button class="rate-btn done ${data.done ? 'active' : ''}" id="modal-done" title="拉完了（不好看）"><i class="fas fa-thumbs-down"></i> 拉完了</button>
+                    <button class="undo-btn" id="modal-dec" title="撤回一次观影次数"><i class="fas fa-undo"></i> 撤回</button>
+                    <button class="tv-btn" id="modal-inc" title="点击增加一次观影次数"><i class="fas fa-tv"></i> <span id="modal-count">${data.count || 1}</span></button>
+                `;
+                document.getElementById('modal-like').addEventListener('click', () => {
+                    data.liked = data.liked ? 0 : 1;
+                    if (data.liked) data.done = 0;   // 与"拉完了"互斥
+                    data.updatedAt = Date.now();
+                    saveRecords(records);
+                    document.getElementById('modal-like').classList.toggle('active', !!data.liked);
+                    document.getElementById('modal-done').classList.toggle('active', !!data.done);
+                });
+                document.getElementById('modal-done').addEventListener('click', () => {
+                    data.done = data.done ? 0 : 1;
+                    if (data.done) data.liked = 0;   // 与"点赞"互斥
+                    data.updatedAt = Date.now();
+                    saveRecords(records);
+                    document.getElementById('modal-like').classList.toggle('active', !!data.liked);
+                    document.getElementById('modal-done').classList.toggle('active', !!data.done);
+                });
+                document.getElementById('modal-inc').addEventListener('click', () => {
+                    data.count = (data.count || 1) + 1;
+                    data.updatedAt = Date.now();
+                    saveRecords(records);
+                    document.getElementById('modal-count').textContent = data.count;
+                });
+                document.getElementById('modal-dec').addEventListener('click', () => {
+                    data.count = Math.max(1, (data.count || 1) - 1);
+                    data.updatedAt = Date.now();
+                    saveRecords(records);
+                    document.getElementById('modal-count').textContent = data.count;
+                });
+
+                document.getElementById('modal-delete-btn').addEventListener('click', () => {
+                    if (confirm('确定删除这条观影记录吗？')) {
+                        deleteRecordById(data.id);
+                        closeModal();
+                        renderSaved();
+                    }
+                });
+            }
+
+            modalEl.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            exitPlayMode();
+            exitEditMode();
+            modalEl.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // ========== 编辑记录 ==========
+        function enterEditMode(data) {
+            const viewIds = ['modal-title', 'modal-meta', 'modal-desc', 'modal-extra', 'modal-actions', 'modal-rate'];
+            viewIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            document.getElementById('modal-edit-panel').classList.remove('hidden');
+
+            document.getElementById('edit-title').value = data.title || '';
+            document.getElementById('edit-year').value = data.year || '';
+            document.getElementById('edit-type').value = data.type || 'movie';
+            document.getElementById('edit-region').value = data.region || '';
+            document.getElementById('edit-genre').value = data.genre || '';
+            document.getElementById('edit-watchedDate').value = data.watchedDate || '';
+            document.getElementById('edit-img').value = data.img || '';
+            document.getElementById('edit-url').value = data.url || '';
+            document.getElementById('edit-desc').value = data.desc || data.sub_title || '';
+            document.getElementById('edit-note').value = data.note || '';
+
+            const platSel = document.getElementById('edit-platform');
+            platSel.innerHTML = ['<option value="">未设置</option>']
+                .concat(PLATFORMS.map(p => `<option value="${p}" ${p === (data.platform || '') ? 'selected' : ''}>${p}</option>`))
+                .join('');
+
+            document.getElementById('edit-save').onclick = () => saveEdit(data);
+            document.getElementById('edit-cancel').onclick = () => exitEditMode();
+        }
+
+        function exitEditMode() {
+            document.getElementById('modal-edit-panel').classList.add('hidden');
+            const viewIds = ['modal-title', 'modal-meta', 'modal-desc', 'modal-extra', 'modal-actions', 'modal-rate'];
+            viewIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = '';
+            });
+            // 恢复简介区默认 display
+            const descEl = document.getElementById('modal-desc');
+            if (descEl) descEl.style.display = descEl.textContent ? '' : 'none';
+        }
+
+        function saveEdit(data) {
+            const idx = records.findIndex(r => r.id === data.id);
+            if (idx < 0) return;
+            records[idx] = Object.assign({}, records[idx], {
+                title: document.getElementById('edit-title').value.trim() || data.title,
+                year: document.getElementById('edit-year').value.trim(),
+                type: document.getElementById('edit-type').value,
+                region: document.getElementById('edit-region').value.trim(),
+                genre: document.getElementById('edit-genre').value.trim(),
+                platform: document.getElementById('edit-platform').value,
+                watchedDate: document.getElementById('edit-watchedDate').value,
+                img: document.getElementById('edit-img').value.trim(),
+                url: document.getElementById('edit-url').value.trim(),
+                desc: document.getElementById('edit-desc').value.trim(),
+                note: document.getElementById('edit-note').value.trim(),
+                updatedAt: Date.now()
+            });
+            saveRecords(records);
+            renderSaved();
+            exitEditMode();
+            openModal(records[idx], 'saved');
+        }
+
+        // ========== 播放演示（纯前端效果，公开授权测试片源） ==========
+        const DEMO_EPS = ['BigBuckBunny', 'ElephantsDream', 'ForBiggerBlazes', 'ForBiggerEscapes', 'ForBiggerFun', 'ForBiggerJoyrides'];
+        const DEMO_BASE = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/';
+
+        function enterPlayMode(data) {
+            const body = document.getElementById('modal-body');
+            const imgWrap = document.getElementById('modal-image');
+            // 保存原海报，返回详情时恢复
+            imgWrap.dataset.original = imgWrap.innerHTML;
+            body.classList.add('playing');
+            imgWrap.innerHTML = `<video class="video-player" controls poster="${data.img || ''}"></video>`;
+            buildPlayPanel(data);
+            document.getElementById('modal-copyright').classList.remove('hidden');
+            document.getElementById('modal-play-panel').classList.remove('hidden');
+        }
+
+        function exitPlayMode() {
+            const body = document.getElementById('modal-body');
+            if (body) body.classList.remove('playing');
+            const c = document.getElementById('modal-copyright');
+            if (c) c.classList.add('hidden');
+            const p = document.getElementById('modal-play-panel');
+            if (p) p.classList.add('hidden');
+            cleanupPlayer();   // 销毁 shaka / hls 实例并暂停
+            const v = document.querySelector('.video-player');
+            if (v) { v.pause(); }
+            // 恢复原海报（不再停留在播放视口）
+            const imgWrap = document.getElementById('modal-image');
+            if (imgWrap && imgWrap.dataset.original) {
+                imgWrap.innerHTML = imgWrap.dataset.original;
+                delete imgWrap.dataset.original;
+            }
+        }
+
+        // 自定义集（保存到记录的 eps 数组里，随记录同步到仓库）
+        let editingEpIndex = -1;
+        let playData = null;
+        // 默认测试视频地址（m3u8），添加集数时预填，可改成你自己的
+        const DEFAULT_TEST_URL = 'index.m3u8';
+
+        function buildPlayPanel(data) {
+            playData = data;
+            const epContainer = document.getElementById('play-episodes');
+            document.getElementById('play-title').textContent = data.title || '';
+            document.getElementById('ep-form').classList.add('hidden');
+            epContainer.innerHTML = '';
+
+            const eps = data.eps || [];
+
+            // 默认没有任何集数，只有用户通过"添加集数"添加的自定义集
+            if (eps.length === 0) {
+                const hint = document.createElement('div');
+                hint.className = 'play-tip';
+                hint.style.gridColumn = '1 / -1';
+                hint.style.padding = '0.5rem 0';
+                hint.innerHTML = '<i class="fas fa-plus-circle"></i> 暂无集数，点击下方「添加集数」添加你自己的视频';
+                epContainer.appendChild(hint);
+                return;
+            }
+
+            eps.forEach((ep, idx) => {
+                const b = document.createElement('button');
+                b.className = 'ep-btn' + (idx === 0 ? ' active' : '') + (ep.watched ? ' watched' : '');
+                const checkIcon = ep.watched
+                    ? '<i class="fas fa-check-circle ep-check" title="已看过，点击取消"></i>'
+                    : '<i class="fas fa-circle ep-check" title="标记为已看过"></i>';
+                b.innerHTML = `<span>${ep.title}</span>${checkIcon}<i class="fas fa-pencil-alt ep-edit" title="修改视频地址"></i>`;
+                b.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('ep-edit')) {
+                        editingEpIndex = idx;
+                        document.getElementById('ep-title').value = ep.title;
+                        document.getElementById('ep-url').value = ep.url;
+                        document.getElementById('ep-form').classList.remove('hidden');
+                        return;
+                    }
+                    if (e.target.classList.contains('ep-check')) {
+                        // 标记/取消已看过
+                        ep.watched = !ep.watched;
+                        playData.updatedAt = Date.now();
+                        saveRecords(records);   // 写本地并自动同步仓库
+                        buildPlayPanel(playData);
+                        return;
+                    }
+                    epContainer.querySelectorAll('.ep-btn').forEach(x => x.classList.remove('active'));
+                    b.classList.add('active');
+                    playVideo(ep.url);
+                });
+                epContainer.appendChild(b);
+            });
+
+            // 有集数时默认播放第一集
+            playVideo(eps[0].url);
+        }
+
+        function playVideo(url) {
+            const v = document.querySelector('.video-player');
+            if (!v) return;
+            // 彻底清理旧的播放器实例与媒体状态，避免缓冲残留
+            cleanupPlayer();
+            v.pause();
+            v.removeAttribute('src');
+            v.load();
+
+            if (url.endsWith('.m3u8')) {
+                // 首选 Shaka Player（独立 HLS 实现，音频解码更稳定）
+                if (window.shaka && shaka.Player.isBrowserSupported()) {
+                    try {
+                        shaka.polyfill();
+                        const player = new shaka.Player();
+                        v.shakaPlayer = player;
+                        player.attach(v).then(() => {
+                            return player.load(url);
+                        }).then(() => {
+                            v.play().catch(() => {});
+                        }).catch(() => {
+                            // Shaka 失败降级 hls.js
+                            fallbackHls(v, url);
+                        });
+                        // 致命错误自动恢复：记住进度 seek 回去，限制重载次数避免从头播
+                        let shakaRetry = 0;
+                        player.addEventListener('error', (e) => {
+                            const data = e.detail || {};
+                            if (data.severity !== shaka.util.Error.Severity.CRITICAL) return;
+                            if (shakaRetry >= 2) { player.destroy(); return; }
+                            shakaRetry++;
+                            const resumeTime = v.currentTime || 0;
+                            player.load(url).then(() => {
+                                // 重载后会从头，把进度恢复到出错前
+                                if (resumeTime > 1 && v.duration && resumeTime < v.duration) {
+                                    v.currentTime = resumeTime;
+                                }
+                                v.play().catch(() => {});
+                            }).catch(() => {
+                                fallbackHls(v, url);
+                            });
+                        });
+                        return;
+                    } catch (e) {
+                        fallbackHls(v, url);
+                        return;
+                    }
+                }
+                fallbackHls(v, url);
+                return;
+            }
+
+            // 普通 mp4 等直接原生播放
+            v.src = url;
+            v.play().catch(() => {});
+        }
+
+        function cleanupPlayer() {
+            const v = document.querySelector('.video-player');
+            if (!v) return;
+            if (v.shakaPlayer) {
+                try { v.shakaPlayer.destroy(); } catch (e) {}
+                v.shakaPlayer = null;
+            }
+            if (v.hls) {
+                try { v.hls.destroy(); } catch (e) {}
+                v.hls = null;
+            }
+        }
+
+        function fallbackHls(v, url) {
+            if (!window.Hls || !Hls.isSupported()) {
+                v.src = url;
+                v.play().catch(() => {});
+                return;
+            }
+            const hls = new Hls({
+                lowLatencyMode: false,
+                maxBufferLength: 30,
+                maxMaxBufferLength: 600,
+                backBufferLength: 90,
+                enableWorker: false
+            });
+            hls.loadSource(url);
+            hls.attachMedia(v);
+            v.hls = hls;
+            hls.on(Hls.Events.MANIFEST_PARSED, () => v.play().catch(() => {}));
+            hls.on(Hls.Events.ERROR, (evt, data) => {
+                if (!data.fatal) return;
+                if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                    hls.startLoad();
+                } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+                    hls.recoverMediaError();
+                } else {
+                    hls.destroy();
+                }
+            });
+        }
+
+        document.getElementById('play-exit').addEventListener('click', exitPlayMode);
+
+        // 添加 / 编辑自定义集
+        document.getElementById('ep-add').addEventListener('click', () => {
+            editingEpIndex = -1;
+            document.getElementById('ep-title').value = '';
+            document.getElementById('ep-url').value = DEFAULT_TEST_URL;
+            document.getElementById('ep-form').classList.remove('hidden');
+        });
+
+        document.getElementById('ep-cancel').addEventListener('click', () => {
+            document.getElementById('ep-form').classList.add('hidden');
+            editingEpIndex = -1;
+        });
+
+        // 导入集数 JSON（格式：{ type:"m3u8_video_folder", videos:[{title,url}] }）
+        document.getElementById('ep-import').addEventListener('click', () => {
+            document.getElementById('ep-import-file').click();
+        });
+
+        document.getElementById('ep-import-file').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                try {
+                    const data = JSON.parse(reader.result);
+                    const videos = Array.isArray(data) ? data : (Array.isArray(data.videos) ? data.videos : null);
+                    if (!videos) {
+                        alert('JSON 格式不正确：需要 { videos: [...] } 或直接是数组');
+                        return;
+                    }
+                    if (!playData) { alert('请先进入播放模式再导入'); return; }
+                    if (!playData.eps) playData.eps = [];
+                    let added = 0, updated = 0;
+                    videos.forEach(v => {
+                        if (!v || typeof v !== 'object') return;
+                        const title = (v.title || '').toString().trim();
+                        const url = (v.url || '').toString().trim();
+                        if (!title && !url) return;
+                        const ep = { title: title || ('集数 ' + (playData.eps.length + 1)), url: url || DEFAULT_TEST_URL };
+                        // 同 title 已存在 → 替换 url；否则新增
+                        const idx = playData.eps.findIndex(x => x.title === ep.title);
+                        if (idx >= 0) {
+                            playData.eps[idx].url = ep.url;
+                            updated++;
+                        } else {
+                            playData.eps.push(ep);
+                            added++;
+                        }
+                    });
+                    if (added > 0 || updated > 0) {
+                        playData.updatedAt = Date.now();
+                        saveRecords(records);   // 写本地并自动同步仓库
+                        buildPlayPanel(playData);
+                        alert(`导入完成：新增 ${added} 条，更新 ${updated} 条`);
+                    } else {
+                        alert('未解析到有效的集数数据');
+                    }
+                } catch (err) {
+                    alert('JSON 文件解析失败：' + err.message);
+                }
+            };
+            reader.readAsText(file);
+            e.target.value = '';
+        });
+
+        document.getElementById('ep-save').addEventListener('click', () => {
+            const title = document.getElementById('ep-title').value.trim();
+            const url = document.getElementById('ep-url').value.trim();
+            if (!title || !url) {
+                alert('请填写集标题和视频地址');
+                return;
+            }
+            if (!playData) return;
+            if (!playData.eps) playData.eps = [];
+            const isEdit = editingEpIndex >= 0;
+            if (isEdit) {
+                // 保留原有的 watched 标记
+                playData.eps[editingEpIndex] = Object.assign({}, playData.eps[editingEpIndex], { title, url });
+            } else {
+                playData.eps.push({ title, url });
+            }
+            playData.updatedAt = Date.now();
+            editingEpIndex = -1;
+            saveRecords(records);   // 写 localStorage 并自动同步到仓库
+            buildPlayPanel(playData);
+            // 播放刚保存/编辑的自定义集
+            playVideo(url);
+        });
+
+        // 点击遮罩关闭、ESC 关闭
+        modalEl.addEventListener('click', (e) => {
+            if (e.target === modalEl) closeModal();
+        });
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) closeModal();
+        });
+
+        // ========== 分类过滤 ==========
+        function filteredRecords() {
+            return records.filter(r => {
+                if (currentCat !== 'all' && (r.type || '') !== currentCat) return false;
+                if (currentGenre && currentGenre !== '') {
+                    const g = (r.genre || '').split(/[\s、，,\/／]+/).filter(Boolean);
+                    if (!g.includes(currentGenre)) return false;
+                }
+                if (currentPlatform && currentPlatform !== '') {
+                    if ((r.platform || '') !== currentPlatform) return false;
+                }
+                if (currentEra && currentEra !== '') {
+                    if (eraOf(r.year) !== currentEra) return false;
+                }
+                if (currentRegion && currentRegion !== '') {
+                    if ((r.region || '') !== currentRegion) return false;
+                }
+                if (currentSearch && currentSearch !== '') {
+                    const hay = [r.title, r.year, r.genre, r.platform, r.region, r.note, r.desc, r.sub_title]
+                        .filter(Boolean).join(' ').toLowerCase();
+                    if (!hay.includes(currentSearch)) return false;
+                }
+                return true;
+            });
+        }
+
+        // 题材筛选（动态生成，含所有记录中出现过的题材）
+        function renderGenreTabs() {
+            const genres = [...new Set(records.flatMap(r => (r.genre || '').split(/[\s、，,/／]+/).filter(Boolean)))];
+            genreTabs.innerHTML =
+                `<button class="filter-tab ${currentGenre === '' ? 'active' : ''}" data-g="__all">全部</button>` +
+                genres.map(g =>
+                    `<button class="filter-tab ${g === currentGenre ? 'active' : ''}" data-g="${g}">${g}</button>`
+                ).join('');
+            genreTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentGenre = tab.dataset.g === '__all' ? '' : tab.dataset.g;
+                    renderGenreTabs();
+                    renderSaved();
+                });
+            });
+        }
+
+        // 平台筛选（固定选项）
+        function renderPlatformTabs() {
+            platformTabs.innerHTML =
+                `<button class="filter-tab ${currentPlatform === '' ? 'active' : ''}" data-p="__all">全部</button>` +
+                PLATFORMS.map(p =>
+                    `<button class="filter-tab ${p === currentPlatform ? 'active' : ''}" data-p="${p}">${p}</button>`
+                ).join('');
+            platformTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentPlatform = tab.dataset.p === '__all' ? '' : tab.dataset.p;
+                    renderPlatformTabs();
+                    renderSaved();
+                });
+            });
+        }
+
+        // 年代筛选（固定选项）
+        function renderEraTabs() {
+            eraTabs.innerHTML =
+                `<button class="filter-tab ${currentEra === '' ? 'active' : ''}" data-e="__all">全部</button>` +
+                ERAS.map(e =>
+                    `<button class="filter-tab ${e === currentEra ? 'active' : ''}" data-e="${e}">${e}</button>`
+                ).join('');
+            eraTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentEra = tab.dataset.e === '__all' ? '' : tab.dataset.e;
+                    renderEraTabs();
+                    renderSaved();
+                });
+            });
+        }
+
+        // 地区筛选（固定选项）
+        function renderRegionTabs() {
+            regionTabs.innerHTML =
+                `<button class="filter-tab ${currentRegion === '' ? 'active' : ''}" data-r="__all">全部</button>` +
+                REGIONS.map(r =>
+                    `<button class="filter-tab ${r === currentRegion ? 'active' : ''}" data-r="${r}">${r}</button>`
+                ).join('');
+            regionTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentRegion = tab.dataset.r === '__all' ? '' : tab.dataset.r;
+                    renderRegionTabs();
+                    renderSaved();
+                });
+            });
+        }
+
+        // ========== 渲染已存片单（爱奇艺风格海报墙） ==========
+        function renderSaved() {
+            renderGenreTabs();
+            renderPlatformTabs();
+            renderEraTabs();
+            renderRegionTabs();
+            // 同步搜索输入框的实际值到 currentSearch（防止状态与输入不同步）
+            const searchEl = document.getElementById('saved-search');
+            if (searchEl) {
+                const v = searchEl.value.trim().toLowerCase();
+                if (v !== currentSearch) {
+                    currentSearch = v;
+                }
+            }
+            const list = filteredRecords();
+            list.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+            savedCount.textContent = records.length;
+            currentListCount.textContent = `当前片单：${list.length} 部`;
+
+            if (records.length === 0) {
+                savedList.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            emptyState.classList.add('hidden');
+
+            if (list.length === 0) {
+                savedList.innerHTML = `<div class="empty-state" style="grid-column:1/-1;border:none;">
+                    <i class="fas fa-search"></i><p>${currentSearch ? `未找到与「${currentSearch}」匹配的记录` : '当前分类下没有记录'}</p></div>`;
+                return;
+            }
+
+            savedList.innerHTML = list.map((r) => `
+                <div class="poster-card" data-mid="${r.id}">
+                    <div class="poster-wrap">
+                        ${r.img
+                            ? `<img class="poster-img" src="${r.img}" alt="${r.title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
+                            : `<div style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);width:100%;height:100%;"><i class="fas fa-film" style="font-size:2.2rem;"></i></div>`}
+                        <div class="poster-bottom">
+                            <span class="card-type">${typeName(r.type)}</span>
+                            <span class="card-date">${r.watchedDate || ''}</span>
+                        </div>
+                        ${r.platform ? `<span class="platform-badge" style="background:${PLATFORM_COLORS[r.platform] || '#6B7280'}">${r.platform}</span>` : ''}
+                        <div class="poster-card-hover" onclick="event.stopPropagation()">
+                            <div class="hover-top">
+                                <div class="hover-title">${r.title || '未命名'}</div>
+                                <div class="hover-tags">
+                                    <span class="tag">${typeName(r.type)}</span>
+                                    ${r.year ? `<span class="tag">${r.year}</span>` : ''}
+                                    ${r.region ? `<span class="tag">${r.region}</span>` : ''}
+                                    ${r.platform ? `<span class="tag">${r.platform}</span>` : ''}
+                                </div>
+                                ${(r.desc || r.note) ? `<div class="hover-desc">${r.desc || ('备注：' + r.note)}</div>` : ''}
+                            </div>
+                            <div class="hover-bottom">
+                                <button class="hover-btn primary" data-detail="${r.id}">查看详情</button>
+                                <button class="hover-btn danger" data-hover-del="${r.id}" title="删除"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="poster-info">
+                        <div class="poster-title" title="${r.title}">${r.title || '未命名'}</div>
+                        <div class="poster-meta">
+                            ${r.year ? `<span>${r.year}</span>` : ''}
+                            ${r.region ? `<span>${r.region}</span>` : ''}
+                            ${genreChips(r.genre)}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 卡片点击打开弹窗
+            savedList.querySelectorAll('.poster-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = card.dataset.mid;
+                    const rec = records.find(r => r.id === id);
+                    if (rec) openModal(rec, 'saved');
+                });
+            });
+
+            // 悬停层：查看详情
+            savedList.querySelectorAll('[data-detail]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.detail;
+                    const rec = records.find(r => r.id === id);
+                    if (rec) openModal(rec, 'saved');
+                });
+            });
+
+            // 悬停层：删除
+            savedList.querySelectorAll('[data-hover-del]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = btn.dataset.hoverDel;
+                    if (confirm('确定删除这条观影记录吗？')) {
+                        deleteRecordById(id);
+                        renderSaved();
+                    }
+                });
+            });
+
+            // 修改观看日期
+            savedList.querySelectorAll('.date-edit').forEach(inp => {
+                inp.addEventListener('change', () => {
+                    const id = inp.dataset.date;
+                    const rec = records.find(r => r.id === id);
+                    if (rec) {
+                        rec.watchedDate = inp.value;
+                        rec.updatedAt = Date.now();
+                        saveRecords(records);
+                    }
+                });
+            });
+        }
+
+        // ========== 渲染搜索结果（爱奇艺风格海报墙） ==========
+        function renderResults(list) {
+            if (!list.length) {
+                resultsGrid.innerHTML = '';
+                searchResults.classList.add('hidden');
+                searchStatus.textContent = '没有找到相关词条，可手动添加。';
+                searchStatus.className = 'search-status error';
+                return;
+            }
+            searchResults.classList.remove('hidden');
+            searchStatus.className = 'search-status';
+            searchStatus.textContent = `找到 ${list.length} 条结果（百度百科）`;
+
+            resultsGrid.innerHTML = list.map((item, idx) => {
+                const recorded = records.some(r => r.id === String(item.id));
+                return `
+                <div class="poster-card" data-modal-idx="${idx}">
+                    <div class="poster-wrap">
+                        ${item.img
+                            ? `<img class="poster-img" src="${item.img}" alt="${item.title}" loading="lazy" referrerpolicy="no-referrer" onerror="posterError(this)">`
+                            : `<div style="display:flex;align-items:center;justify-content:center;color:var(--gray-400);width:100%;height:100%;"><i class="fas fa-film" style="font-size:2.2rem;"></i></div>`}
+                        <div class="poster-bottom">
+                            <span class="card-type">${typeName(item.type)}</span>
+                            <span class="card-date">${item.year || ''}</span>
+                        </div>
+                        ${item.platform ? `<span class="platform-badge" style="background:${PLATFORM_COLORS[item.platform] || '#6B7280'}">${item.platform}</span>` : ''}
+                        <div class="poster-card-hover" onclick="event.stopPropagation()">
+                            <div class="hover-top">
+                                <div class="hover-title">${item.title}</div>
+                                <div class="hover-tags">
+                                    <span class="tag">${typeName(item.type)}</span>
+                                    ${item.year ? `<span class="tag">${item.year}</span>` : ''}
+                                    ${item.region ? `<span class="tag">${item.region}</span>` : ''}
+                                    ${item.platform ? `<span class="tag">${item.platform}</span>` : ''}
+                                </div>
+                                ${item.desc ? `<div class="hover-desc">${item.desc}</div>` : ''}
+                            </div>
+                            <div class="hover-bottom">
+                                <button class="hover-btn primary" data-record="${idx}" ${recorded ? 'disabled' : ''}>${recorded ? '已记录' : '记录观看'}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="poster-info">
+                        <div class="poster-title" title="${item.title}">${item.title}</div>
+                        <div class="poster-meta">
+                            ${item.region ? `<span>${item.region}</span>` : ''}
+                            ${genreChips(item.genre)}
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            // 卡片点击打开弹窗
+            resultsGrid.querySelectorAll('.poster-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const i = parseInt(card.dataset.modalIdx);
+                    openModal(list[i], 'result');
+                });
+            });
+
+            resultsGrid.querySelectorAll('[data-record]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (btn.disabled) return;
+                    const item = list[parseInt(btn.dataset.record)];
+                    addRecord({
+                        id: String(item.id),
+                        title: item.title || '未知作品',
+                        year: item.year || '',
+                        type: item.type === 'tv' ? 'tv' : (item.type === 'variety' ? 'variety' : (item.type === 'anime' ? 'anime' : 'movie')),
+                        url: item.url || '',
+                        img: item.img || '',
+                        genre: item.genre || '',
+                        platform: item.platform || '',
+                        region: item.region || '',
+                        sub_title: item.sub_title || '',
+                        desc: item.desc || ''
+                    });
+                    btn.textContent = '已记录';
+                    btn.disabled = true;
+                });
+            });
+        }
+
+        function addRecord(rec) {
+            const record = Object.assign({
+                id: 'manual-' + Date.now(),
+                title: '',
+                year: '',
+                type: 'movie',
+                url: '',
+                img: '',
+                genre: '',
+                platform: '',
+                region: '',
+                sub_title: '',
+                desc: '',
+                note: '',
+                liked: 0,
+                done: 0,
+                count: 1,
+                eps: [],
+                watchedDate: nowDateStr(),
+                timestamp: Date.now(),
+                updatedAt: Date.now()
+            }, rec);
+            if (!record.watchedDate) record.watchedDate = nowDateStr();
+            if (!record.timestamp) record.timestamp = Date.now();
+            if (!record.updatedAt) record.updatedAt = record.timestamp;
+
+            delete deletedRecords[recordKey(record.id)];
+            if (!records.some(r => recordKey(r.id) === recordKey(record.id))) {
+                records.push(record);
+            }
+            saveRecords(records);
+            renderSaved();
+        }
+
+        // ========== 搜索 ==========
+        async function doSearch() {
+            // 清除零宽空格(U+200B)、零宽连字符(U+200C/D)、BOM(U+FEFF)等不可见字符（复制内容常携带，会导致百度接口编码异常）
+            const keyword = searchInput.value.replace(/[\u200B\u200C\u200D\uFEFF]/g, '').trim();
+            if (!keyword) {
+                searchStatus.textContent = '请输入影视剧名称';
+                searchStatus.className = 'search-status error';
+                return;
+            }
+            searchBtn.disabled = true;
+            searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 搜索中';
+            searchStatus.textContent = '正在搜索百度百科...';
+            searchStatus.className = 'search-status';
+            searchResults.classList.remove('hidden');
+
+            try {
+                const list = await searchMovies(keyword);
+                renderResults(list);
+            } catch (e) {
+                searchResults.classList.remove('hidden');
+                searchStatus.className = 'search-status error';
+                searchStatus.textContent = e.message || '搜索失败';
+                resultsGrid.innerHTML = '';
+                // 搜不到时预填手动添加表单，方便快速记录
+                document.getElementById('m-title').value = keyword;
+            } finally {
+                searchBtn.disabled = false;
+                searchBtn.innerHTML = '<i class="fas fa-search"></i> 搜索';
+            }
+        }
+
+        searchBtn.addEventListener('click', doSearch);
+        searchInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter') doSearch();
+        });
+
+        // ========== Cloudflare Worker 代理配置 ==========
+        // 说明：api.cloudflare.com 拒绝浏览器跨域（无 CORS 头），无法前端直接部署。
+        // 因此提供"复制代码 + 打开新建页手动部署"的流程，部署后粘贴域名启用。
+
+        function updateProxyState() {
+            const proxy = localStorage.getItem('baike_proxy');
+            const on = localStorage.getItem('baike_proxy_on') === '1';
+            const el = document.getElementById('proxy-state');
+            if (el) el.textContent = proxy
+                ? (on ? '同名词条搜索已开启（' + proxy + '）' : '同名词条搜索已停用（保留 ' + proxy + '）')
+                : '开启同名词条搜索（Cloudflare Worker）';
+            const st = document.getElementById('proxy-status');
+            if (st) {
+                st.innerHTML = proxy
+                    ? (on
+                        ? '<i class="fas fa-check-circle" style="color:var(--success-color)"></i> 已启用：<code>' + proxy + '</code>'
+                        : '<i class="fas fa-pause-circle" style="color:var(--gray-500)"></i> 已停用（地址保留：<code>' + proxy + '</code>）')
+                    : '<i class="fas fa-info-circle" style="color:var(--gray-500)"></i> 当前未配置';
+            }
+        }
+
+        function openProxyModal() {
+            // 预填当前已保存的域名
+            document.getElementById('proxy-input').value = localStorage.getItem('baike_proxy') || '';
+            updateProxyState();
+            document.getElementById('proxy-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeProxyModal() {
+            document.getElementById('proxy-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('proxy-btn').addEventListener('click', openProxyModal);
+        document.getElementById('proxy-close').addEventListener('click', closeProxyModal);
+        document.getElementById('proxy-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeProxyModal();
+        });
+
+        // 一键启动本地代理：检测是否已运行，未运行则引导双击脚本
+        document.getElementById('proxy-start').addEventListener('click', async () => {
+            const btn = document.getElementById('proxy-start');
+            const old = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 检测中...';
+            try {
+                const res = await fetch('http://127.0.0.1:25100/?url=' + encodeURIComponent('https://baike.baidu.com/api/searchui/suggest?wd=test'), { cache: 'no-store' });
+                if (res.ok) {
+                    // 代理已运行
+                    document.getElementById('proxy-input').value = 'http://127.0.0.1:25100';
+                    localStorage.setItem('baike_proxy', 'http://127.0.0.1:25100');
+                    localStorage.setItem('baike_proxy_on', '1');
+                    updateProxyState();
+                    closeProxyModal();
+                    alert('本地代理已运行并已启用！\n\n现在搜索任意影视名，即可列出所有同名词条。');
+                } else {
+                    document.getElementById('proxy-input').value = 'http://127.0.0.1:25100';
+                    alert('本地代理未运行。\n\n请双击仓库 worker-proxy 目录下的启动脚本：\n  Windows: start-proxy.bat\n  macOS/Linux: start-proxy.sh\n\n（需先安装 Node.js）\n\n代理启动后，在下方输入框填入 http://127.0.0.1:25100 并点"保存并启用"。');
+                }
+            } catch (e) {
+                document.getElementById('proxy-input').value = 'http://127.0.0.1:25100';
+                alert('本地代理未运行。\n\n请双击仓库 worker-proxy 目录下的启动脚本：\n  Windows: start-proxy.bat\n  macOS/Linux: start-proxy.sh\n\n（需先安装 Node.js）\n\n代理启动后，在下方输入框填入 http://127.0.0.1:25100 并点"保存并启用"。');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = old;
+            }
+        });
+
+        // 保存并启用（读取输入框，留空则关闭）
+        document.getElementById('proxy-set').addEventListener('click', () => {
+            const v = document.getElementById('proxy-input').value.trim().replace(/\/+$/, '');
+            if (v) {
+                localStorage.setItem('baike_proxy', v);
+                localStorage.setItem('baike_proxy_on', '1');
+                updateProxyState();
+                closeProxyModal();
+            } else {
+                localStorage.removeItem('baike_proxy');
+                localStorage.removeItem('baike_proxy_on');
+                updateProxyState();
+                closeProxyModal();
+            }
+        });
+
+        // 本地代理使用说明
+        document.getElementById('proxy-deploy').addEventListener('click', () => {
+            alert(
+                '本地代理使用步骤：\n\n'
+                + '1. 电脑需安装 Node.js（https://nodejs.org）\n\n'
+                + '2. 打开终端/命令提示符，进入目录：\n'
+                + '   worker-proxy/\n\n'
+                + '3. 运行：\n'
+                + '   node local-proxy.js\n\n'
+                + '4. 看到"本地代理已启动"后，保持窗口开着\n\n'
+                + '5. 回到本页，在域名输入框粘贴：\n'
+                + '   http://127.0.0.1:25100\n\n'
+                + '6. 点"保存并启用"即可'
+            );
+        });
+
+        // 关闭代理（保留已填写的地址，仅停用）
+        document.getElementById('proxy-off').addEventListener('click', () => {
+            if (confirm('确定停用同名词条搜索代理吗？（已填写的地址会保留）')) {
+                localStorage.setItem('baike_proxy_on', '0');
+                updateProxyState();
+                closeProxyModal();
+            }
+        });
+        updateProxyState();
+
+        // 关闭搜索结果
+        document.getElementById('close-search').addEventListener('click', () => {
+            searchResults.classList.add('hidden');
+            resultsGrid.innerHTML = '';
+        });
+
+        // ========== 分类切换 ==========
+        // 片单文字搜索
+        document.getElementById('saved-search').addEventListener('input', (e) => {
+            currentSearch = e.target.value.trim().toLowerCase();
+            renderSaved();
+        });
+
+        document.getElementById('category-nav').addEventListener('click', e => {
+            const tab = e.target.closest('.cat-tab');
+            if (!tab) return;
+            currentCat = tab.dataset.cat;
+            currentGenre = '';
+            currentPlatform = '';
+            currentEra = '';
+            currentRegion = '';
+            document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t === tab));
+            renderSaved();
+        });
+
+        // ========== 手动添加 ==========
+        document.getElementById('toggle-manual').addEventListener('click', () => {
+            document.getElementById('manual-form').classList.toggle('hidden');
+        });
+
+        document.getElementById('m-save').addEventListener('click', () => {
+            const title = document.getElementById('m-title').value.trim();
+            if (!title) {
+                alert('请填写名称');
+                return;
+            }
+            addRecord({
+                id: 'manual-' + Date.now(),
+                title: title,
+                year: document.getElementById('m-year').value.trim(),
+                type: document.getElementById('m-type').value,
+                genre: document.getElementById('m-genre').value.trim(),
+                platform: document.getElementById('m-platform').value,
+                note: document.getElementById('m-note').value.trim()
+            });
+            document.getElementById('m-title').value = '';
+            document.getElementById('m-year').value = '';
+            document.getElementById('m-genre').value = '';
+            document.getElementById('m-platform').value = '';
+            document.getElementById('m-note').value = '';
+            document.getElementById('manual-form').classList.add('hidden');
+        });
+
+        // ========== 导出 / 导入 JSON ==========
+        document.getElementById('export-btn').addEventListener('click', () => {
+            const blob = new Blob([JSON.stringify(records, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `观影时间胶囊_${nowDateStr()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('import-btn').addEventListener('click', () => {
+            document.getElementById('import-file').click();
+        });
+
+        document.getElementById('import-file').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                try {
+                    const data = JSON.parse(reader.result);
+                    const list = parseRepoData(data).records;
+                    let added = 0, updated = 0;
+                    list.forEach(rec => {
+                        if (!rec || !rec.title) return;
+                        if (!rec.id) rec.id = 'manual-' + Date.now() + '-' + added;
+                        delete deletedRecords[recordKey(rec.id)];
+                        const exist = records.find(r => recordKey(r.id) === recordKey(rec.id));
+                        if (!exist) {
+                            records.push(Object.assign({
+                                watchedDate: nowDateStr(),
+                                timestamp: Date.now(),
+                                updatedAt: Date.now()
+                            }, rec));
+                            added++;
+                        } else if ((rec.updatedAt || 0) > (exist.updatedAt || 0)) {
+                            // 导入的记录更新，保留其修改时间，用导入版本覆盖
+                            const idx = records.indexOf(exist);
+                            records[idx] = Object.assign({}, exist, rec);
+                            records[idx].timestamp = exist.timestamp || records[idx].timestamp;
+                            updated++;
+                        }
+                    });
+                    saveRecords(records);
+                    renderSaved();
+                    alert(`导入完成：新增 ${added} 条，更新 ${updated} 条`);
+                } catch (err) {
+                    alert('JSON 文件解析失败');
+                }
+            };
+            reader.readAsText(file);
+            e.target.value = '';
+        });
+
+        // ========== GitHub 数据同步 ==========
+        // 从页面域名推导仓库信息：xxx.github.io → owner=xxx, repo=xxx.github.io
+        function ghRepoInfo() {
+            const host = location.hostname;
+            let owner = 'xiaolizi0v0';
+            let repo = 'xiaolizi0v0.github.io';
+            const m = host.match(/^([^.]+)\.github\.io$/);
+            if (m) { owner = m[1]; repo = m[1] + '.github.io'; }
+            else if (host === 'localhost' || host === '127.0.0.1') { /* 本地调试用默认值 */ }
+            return { owner, repo };
+        }
+        const GH_PATH = 'tools/movieTimeCapsule.json';
+
+        function ghModal(show) {
+            const el = document.getElementById('gh-modal');
+            if (show) {
+                const { owner, repo } = ghRepoInfo();
+                document.getElementById('gh-repo-label').textContent = `${owner}/${repo}`;
+                document.getElementById('gh-file-label').textContent = GH_PATH;
+                document.getElementById('gh-token').value = localStorage.getItem('gh_pat') || '';
+                document.getElementById('gh-status').textContent = '';
+                el.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                el.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.getElementById('gh-sync-btn').addEventListener('click', () => ghModal(true));
+        document.getElementById('gh-close').addEventListener('click', () => ghModal(false));
+        document.getElementById('gh-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) ghModal(false);
+        });
+
+        function ghStatus(msg, ok) {
+            const el = document.getElementById('gh-status');
+            el.textContent = msg;
+            el.style.color = ok ? 'var(--success-color)' : 'var(--danger-color)';
+        }
+
+        // base64（支持中文）
+        function b64Encode(str) {
+            return btoa(unescape(encodeURIComponent(str)));
+        }
+
+        // 保存片单 JSON 到仓库（保存前先合并仓库数据，避免本地缺的记录被覆盖丢失）
+        document.getElementById('gh-save-btn').addEventListener('click', async () => {
+            const pat = document.getElementById('gh-token').value.trim();
+            if (!pat) { ghStatus('请先填写 Personal Access Token', false); return; }
+            localStorage.setItem('gh_pat', pat);
+            const { owner, repo } = ghRepoInfo();
+
+            // 1. 先获取当前文件 sha（用默认 JSON Accept，返回元数据含 sha）
+            let sha = null;
+            let repoData = [];
+            try {
+                const metaRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
+                    headers: { Authorization: `token ${pat}` }
+                });
+                if (metaRes.ok) sha = (await metaRes.json()).sha;
+                // 用 raw Accept 拉取文件原文用于合并比对
+                const rawRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
+                    headers: Object.assign({ Accept: 'application/vnd.github.raw' }, { Authorization: `token ${pat}` })
+                });
+                if (rawRes.ok) {
+                    repoData = JSON.parse(await rawRes.text());
+                }
+            } catch (e) {}
+
+            // 2. 合并仓库数据到本地（复用与自动同步一致的逻辑）
+            const merged = mergeRepoRecords(repoData);
+
+            // 3. 若合并了仓库数据，保存到本地并提示
+            let mergedMsg = '';
+            if (merged > 0) {
+                saveRecords(records);
+                renderSaved();
+                mergedMsg = `（已合并仓库中本地缺失/更新的 ${merged} 条记录）`;
+                ghStatus(`保存前已合并仓库数据 ${merged} 条...`, true);
+            }
+
+            const content = JSON.stringify(buildRepoData(), null, 2);
+
+            // 4. 执行覆盖保存（走统一串行写入，sha 冲突自动重试）
+            ghStatus('正在保存到仓库...' + mergedMsg, true);
+            const wr = await ghWrite(owner, repo, pat, content, '更新影视剧片单数据');
+            if (wr.ok) {
+                ghStatus('已保存到仓库' + mergedMsg, true);
+            } else {
+                ghStatus('保存失败：' + (wr.error || '写入被拒绝'), false);
+            }
+        });
+
+        // 从仓库加载片单 JSON 并合并
+        document.getElementById('gh-load-btn').addEventListener('click', async () => {
+            const pat = document.getElementById('gh-token').value.trim();
+            const { owner, repo } = ghRepoInfo();
+            ghStatus('正在从仓库加载...', true);
+            try {
+                const headers = pat ? { Authorization: `token ${pat}` } : {};
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
+                    headers: Object.assign({ Accept: 'application/vnd.github.raw' }, headers)
+                });
+                if (!res.ok) {
+                    ghStatus('加载失败：仓库中可能还没有该文件（' + res.status + '）', false);
+                    return;
+                }
+                const data = JSON.parse(await res.text());
+                const before = records.length;
+                const merged = mergeRepoRecords(data);
+                saveRecords(records);
+                renderSaved();
+                const removed = Math.max(0, before - records.length);
+                ghStatus(`加载完成：同步变更 ${merged} 条${removed ? `，删除 ${removed} 条` : ''}`, true);
+            } catch (e) {
+                ghStatus('加载失败：' + e.message, false);
+            }
+        });
+
+        // ========== 导航菜单切换 ==========
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }));
+        }
+
+        // ========== 初始化：仓库为唯一数据源，无 token/读取失败时回退 localStorage ==========
+        renderSaved();
+        (async function initFromRepo() {
+            const pat = localStorage.getItem('gh_pat');
+            if (!pat) return;   // 未配置 token，仅用本地
+            try {
+                const { owner, repo } = ghRepoInfo();
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${GH_PATH}`, {
+                    cache: 'no-store',
+                    headers: { Accept: 'application/vnd.github.raw', Authorization: `token ${pat}` }
+                });
+                if (!res.ok) return;
+                const data = JSON.parse(await res.text());
+                const state = parseRepoData(data);
+                if (state.records.length === 0 && Object.keys(state.deleted).length === 0) return;
+                mergeRepoRecords(state);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+                localStorage.setItem(DELETED_KEY, JSON.stringify(deletedRecords));
+                renderSaved();
+                showSyncToast(true);
+            } catch (e) {
+                // 读取失败，回退本地缓存
+            }
+        })();
+    </script>
+</body>
+</html>
