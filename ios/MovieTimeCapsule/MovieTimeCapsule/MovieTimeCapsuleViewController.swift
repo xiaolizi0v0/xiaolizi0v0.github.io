@@ -35,7 +35,7 @@ final class MovieTimeCapsuleViewController: UIViewController, WKNavigationDelega
     private func loadBundledPage() {
         guard let bundleURL = Bundle.main.resourceURL else { return }
 
-        let pageURL = bundleURL.appendingPathComponent("Resources/tools/MovieTimeCapsule.html")
+        let pageURL = bundleURL.appendingPathComponent("tools/MovieTimeCapsule.html")
         guard FileManager.default.fileExists(atPath: pageURL.path) else { return }
 
         webView.loadFileURL(pageURL, allowingReadAccessTo: bundleURL)

@@ -87,6 +87,10 @@ jobs:
           test -d "$app_path"
           test -f "$plist_path"
           test -f "$executable_path"
+          test ! -e "$app_path/Resources"
+          test -f "$app_path/styles.css"
+          test -f "$app_path/tools/MovieTimeCapsule.html"
+          test -f "$app_path/tools/movieTimeCapsule.json"
           /usr/bin/plutil -lint "$plist_path"
           bundle_id="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$plist_path")"
           test "$bundle_id" = "com.xiaolizi.timecapsule.ipad"
@@ -114,16 +118,16 @@ jobs:
           app_path="$RUNNER_TEMP/ipad-derived-data/Build/Products/${CONFIGURATION}-iphoneos/MovieTimeCapsule.app"
           test -d "$app_path"
           mkdir -p "$RUNNER_TEMP/Payload"
-          cp -R "$app_path" "$RUNNER_TEMP/Payload/TimeCapsuleIPad.app"
-          (cd "$RUNNER_TEMP" && /usr/bin/zip -qry "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader-fresh.ipa" Payload)
-          shasum -a 256 "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader-fresh.ipa" > "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader-fresh.ipa.sha256"
+          cp -R "$app_path" "$RUNNER_TEMP/Payload/TimeCapsuleIPadFixed.app"
+          (cd "$RUNNER_TEMP" && /usr/bin/zip -qry "$GITHUB_WORKSPACE/TimeCapsule-iPad-fixed.ipa" Payload)
+          shasum -a 256 "$GITHUB_WORKSPACE/TimeCapsule-iPad-fixed.ipa" > "$GITHUB_WORKSPACE/TimeCapsule-iPad-fixed.ipa.sha256"
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v7
         with:
-          name: TimeCapsule-iPad-iLoader-fresh-${{ github.run_number }}
+          name: TimeCapsule-iPad-fixed-${{ github.run_number }}
           path: |
-            TimeCapsule-iPad-iLoader-fresh.ipa
-            TimeCapsule-iPad-iLoader-fresh.ipa.sha256
+            TimeCapsule-iPad-fixed.ipa
+            TimeCapsule-iPad-fixed.ipa.sha256
           if-no-files-found: error
           retention-days: 14
