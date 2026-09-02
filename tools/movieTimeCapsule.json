@@ -2790,9 +2790,14 @@
           "title": "第04集",
           "url": "https://vip1.lz-cdn.com/20220330/7493_1dab54dc/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第05集",
+          "url": "https://vip1.lz-cdn.com/20220330/7495_e0a92bd4/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1788351606933
+      "updatedAt": 1788351617635
     },
     {
       "watchedDate": "2026-08-22",
