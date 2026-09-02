@@ -19,7 +19,7 @@
       "liked": 1,
       "done": 0,
       "count": 1,
-      "updatedAt": 1788349618448,
+      "updatedAt": 1788352149188,
       "eps": [
         {
           "title": "第06集",
@@ -118,7 +118,8 @@
         },
         {
           "title": "第25集",
-          "url": "https://v.lzcdn27.com/20260902/16381_6135d3c2/2000k/hls/mixed.m3u8"
+          "url": "https://v.lzcdn27.com/20260902/16381_6135d3c2/2000k/hls/mixed.m3u8",
+          "watched": true
         }
       ]
     },
