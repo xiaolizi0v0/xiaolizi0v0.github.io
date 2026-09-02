@@ -96,23 +96,23 @@ jobs:
           /usr/bin/codesign --verify --deep --strict "$app_path"
           /usr/bin/otool -l "$executable_path" | /usr/bin/grep -q LC_CODE_SIGNATURE
 
-      - name: Package re-sign-ready IPA
+      - name: Package re-sign-ready IPA with fresh staging name
         shell: bash
         run: |
           set -euo pipefail
           app_path="$RUNNER_TEMP/ipad-derived-data/Build/Products/${CONFIGURATION}-iphoneos/MovieTimeCapsule.app"
           test -d "$app_path"
           mkdir -p "$RUNNER_TEMP/Payload"
-          cp -R "$app_path" "$RUNNER_TEMP/Payload/"
-          (cd "$RUNNER_TEMP" && /usr/bin/zip -qry "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader.ipa" Payload)
-          shasum -a 256 "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader.ipa" > "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader.ipa.sha256"
+          cp -R "$app_path" "$RUNNER_TEMP/Payload/TimeCapsuleIPad.app"
+          (cd "$RUNNER_TEMP" && /usr/bin/zip -qry "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader-fresh.ipa" Payload)
+          shasum -a 256 "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader-fresh.ipa" > "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader-fresh.ipa.sha256"
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v7
         with:
-          name: TimeCapsule-iPad-iLoader-${{ github.run_number }}
+          name: TimeCapsule-iPad-iLoader-fresh-${{ github.run_number }}
           path: |
-            TimeCapsule-iPad-iLoader.ipa
-            TimeCapsule-iPad-iLoader.ipa.sha256
+            TimeCapsule-iPad-iLoader-fresh.ipa
+            TimeCapsule-iPad-iLoader-fresh.ipa.sha256
           if-no-files-found: error
           retention-days: 14
