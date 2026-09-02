@@ -24,7 +24,7 @@ permissions:
 
 jobs:
   build:
-    name: Build unsigned iPad IPA
+    name: Build iLoader-ready iPad IPA
     runs-on: macos-15
     env:
       APP_SCHEME: MovieTimeCapsule
@@ -75,7 +75,28 @@ jobs:
             CODE_SIGN_IDENTITY="" \
             clean build
 
-      - name: Package unsigned IPA
+      - name: Prepare app for third-party re-signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          app_path="$RUNNER_TEMP/ipad-derived-data/Build/Products/${CONFIGURATION}-iphoneos/MovieTimeCapsule.app"
+          plist_path="$app_path/Info.plist"
+          executable_path="$app_path/MovieTimeCapsule"
+          test -d "$app_path"
+          test -f "$plist_path"
+          test -f "$executable_path"
+          /usr/bin/plutil -lint "$plist_path"
+          bundle_id="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$plist_path")"
+          test "$bundle_id" = "com.xiaolizi.timecapsule.ipad"
+
+          # iLoader/isideload needs a Mach-O code-signature load command that it can replace.
+          # A CODE_SIGNING_ALLOWED=NO build has no LC_CODE_SIGNATURE, so add a temporary
+          # ad-hoc signature. iLoader will replace this signature with the user's profile.
+          /usr/bin/codesign --force --deep --sign - --timestamp=none "$app_path"
+          /usr/bin/codesign --verify --deep --strict "$app_path"
+          /usr/bin/otool -l "$executable_path" | /usr/bin/grep -q LC_CODE_SIGNATURE
+
+      - name: Package re-sign-ready IPA
         shell: bash
         run: |
           set -euo pipefail
@@ -83,15 +104,15 @@ jobs:
           test -d "$app_path"
           mkdir -p "$RUNNER_TEMP/Payload"
           cp -R "$app_path" "$RUNNER_TEMP/Payload/"
-          (cd "$RUNNER_TEMP" && /usr/bin/zip -qry "$GITHUB_WORKSPACE/TimeCapsule-iPad-unsigned.ipa" Payload)
-          shasum -a 256 "$GITHUB_WORKSPACE/TimeCapsule-iPad-unsigned.ipa" > "$GITHUB_WORKSPACE/TimeCapsule-iPad-unsigned.ipa.sha256"
+          (cd "$RUNNER_TEMP" && /usr/bin/zip -qry "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader.ipa" Payload)
+          shasum -a 256 "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader.ipa" > "$GITHUB_WORKSPACE/TimeCapsule-iPad-iLoader.ipa.sha256"
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v7
         with:
-          name: TimeCapsule-iPad-${{ github.run_number }}
+          name: TimeCapsule-iPad-iLoader-${{ github.run_number }}
           path: |
-            TimeCapsule-iPad-unsigned.ipa
-            TimeCapsule-iPad-unsigned.ipa.sha256
+            TimeCapsule-iPad-iLoader.ipa
+            TimeCapsule-iPad-iLoader.ipa.sha256
           if-no-files-found: error
           retention-days: 14
