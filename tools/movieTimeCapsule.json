@@ -2688,9 +2688,14 @@
           "title": "第12集",
           "url": "https://vip1.lz-cdn.com/20220330/7478_ebf5d887/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第13集",
+          "url": "https://vip1.lz-cdn.com/20220330/7479_a63ddc42/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1788351329934
+      "updatedAt": 1788351343411
     },
     {
       "watchedDate": "2026-08-22",
