@@ -1009,8 +1009,14 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
-      "updatedAt": 1787327687767
+      "eps": [
+        {
+          "title": "第06集",
+          "url": "https://v.lzcdn31.com/20260825/10492_45dad961/index.m3u8",
+          "watched": false
+        }
+      ],
+      "updatedAt": 1788354468606
     },
     {
       "watchedDate": "2026-08-21",
