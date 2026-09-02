@@ -2775,9 +2775,14 @@
           "title": "第01集",
           "url": "https://vip1.lz-cdn.com/20220330/7492_e6832e12/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://vip1.lz-cdn.com/20220330/7490_f9769fca/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1788351570038
+      "updatedAt": 1788351584042
     },
     {
       "watchedDate": "2026-08-22",
