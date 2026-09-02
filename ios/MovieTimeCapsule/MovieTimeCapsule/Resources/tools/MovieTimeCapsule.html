@@ -2563,7 +2563,7 @@
             // 保存原海报，返回详情时恢复
             imgWrap.dataset.original = imgWrap.innerHTML;
             body.classList.add('playing');
-            imgWrap.innerHTML = `<video class="video-player" controls poster="${data.img || ''}"></video>`;
+            imgWrap.innerHTML = `<video class="video-player" controls playsinline webkit-playsinline preload="metadata" poster="${data.img || ''}"></video>`;
             buildPlayPanel(data);
             document.getElementById('modal-copyright').classList.remove('hidden');
             document.getElementById('modal-play-panel').classList.remove('hidden');
@@ -2647,21 +2647,53 @@
             playVideo(eps[0].url);
         }
 
+        function isHlsUrl(url) {
+            try {
+                return new URL(String(url || ''), document.baseURI).pathname.toLowerCase().endsWith('.m3u8');
+            } catch (e) {
+                return String(url || '').split(/[?#]/)[0].toLowerCase().endsWith('.m3u8');
+            }
+        }
+
+        function playNativeVideo(v, url, engine) {
+            v.dataset.playbackEngine = engine || 'native';
+            v.src = url;
+            v.load();
+            const playPromise = v.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(() => {});
+            }
+        }
+
         function playVideo(url) {
             const v = document.querySelector('.video-player');
             if (!v) return;
+            url = String(url || '').trim();
+            if (!url) return;
             // 彻底清理旧的播放器实例与媒体状态，避免缓冲残留
             cleanupPlayer();
             v.pause();
             v.removeAttribute('src');
+            delete v.dataset.playbackEngine;
             v.load();
 
-            if (url.endsWith('.m3u8')) {
+            if (isHlsUrl(url)) {
+                // Safari / iPadOS / WKWebView 自带 HLS。优先使用系统播放器，
+                // 避免 file:// 页面经 Shaka / hls.js 请求分片时受到 MSE 或 CORS 限制。
+                const nativeHls = v.canPlayType('application/vnd.apple.mpegurl') ||
+                    v.canPlayType('application/x-mpegURL');
+                const isIPadApp = new URLSearchParams(location.search).get('app') === 'ipad';
+                if (isIPadApp || nativeHls) {
+                    playNativeVideo(v, url, 'native-hls');
+                    return;
+                }
+
                 // 首选 Shaka Player（独立 HLS 实现，音频解码更稳定）
                 if (window.shaka && shaka.Player.isBrowserSupported()) {
                     try {
                         shaka.polyfill();
                         const player = new shaka.Player();
+                        v.dataset.playbackEngine = 'shaka';
                         v.shakaPlayer = player;
                         player.attach(v).then(() => {
                             return player.load(url);
@@ -2700,8 +2732,7 @@
             }
 
             // 普通 mp4 等直接原生播放
-            v.src = url;
-            v.play().catch(() => {});
+            playNativeVideo(v, url, 'native-file');
         }
 
         function cleanupPlayer() {
@@ -2719,8 +2750,7 @@
 
         function fallbackHls(v, url) {
             if (!window.Hls || !Hls.isSupported()) {
-                v.src = url;
-                v.play().catch(() => {});
+                playNativeVideo(v, url, 'native-fallback');
                 return;
             }
             const hls = new Hls({
@@ -2732,6 +2762,7 @@
             });
             hls.loadSource(url);
             hls.attachMedia(v);
+            v.dataset.playbackEngine = 'hls.js';
             v.hls = hls;
             hls.on(Hls.Events.MANIFEST_PARSED, () => v.play().catch(() => {}));
             hls.on(Hls.Events.ERROR, (evt, data) => {
