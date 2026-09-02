@@ -19,7 +19,7 @@
       "liked": 1,
       "done": 0,
       "count": 1,
-      "updatedAt": 1788158132281,
+      "updatedAt": 1788352149188,
       "eps": [
         {
           "title": "第06集",
@@ -104,6 +104,21 @@
         {
           "title": "第22集",
           "url": "https://v.lzcdn27.com/20260831/16286_4fbdc59e/index.m3u8",
+          "watched": true
+        },
+        {
+          "title": "第23集",
+          "url": "https://v.lzcdn27.com/20260901/16337_f1264b40/2000k/hls/mixed.m3u8",
+          "watched": true
+        },
+        {
+          "title": "第24集",
+          "url": "https://v.lzcdn27.com/20260901/16336_deddfc38/2000k/hls/mixed.m3u8",
+          "watched": true
+        },
+        {
+          "title": "第25集",
+          "url": "https://v.lzcdn27.com/20260902/16381_6135d3c2/2000k/hls/mixed.m3u8",
           "watched": true
         }
       ]
@@ -400,9 +415,14 @@
           "title": "第91集",
           "url": "https://v.lzcdn31.com/20260821/10268_84788a4c/2000k/hls/mixed.m3u8",
           "watched": true
+        },
+        {
+          "title": "第92集",
+          "url": "https://v.lzcdn31.com/20260828/10626_bef36ddc/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1787432216620
+      "updatedAt": 1788350170047
     },
     {
       "watchedDate": "2026-08-21",
@@ -2487,8 +2507,109 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
-      "updatedAt": 1787331310133
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://vip.ffzy-play2.com/20230729/54197_bb73d8ee/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://vip.ffzy-play2.com/20230729/54198_d789e2d2/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第03集",
+          "url": "https://vip.ffzy-play2.com/20230729/54199_44fc42c1/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第04集",
+          "url": "https://vip.ffzy-play2.com/20230729/54200_498fed17/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第05集",
+          "url": "https://vip.ffzy-play2.com/20230729/54201_b60d00cf/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第06集",
+          "url": "https://vip.ffzy-play2.com/20230729/54202_edc25159/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第07集",
+          "url": "https://vip.ffzy-play2.com/20230729/54203_e0dca2e3/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第08集",
+          "url": "https://vip.ffzy-play2.com/20230729/54204_3afd98c6/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第09集",
+          "url": "https://vip.ffzy-play2.com/20230729/54205_75fce955/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第10集",
+          "url": "https://vip.ffzy-play2.com/20230729/54206_5a060a13/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第11集",
+          "url": "https://vip.ffzy-play2.com/20230729/54207_b60ab160/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第12集",
+          "url": "https://vip.ffzy-play2.com/20230729/54208_5e1c11e6/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第13集",
+          "url": "https://vip.ffzy-play2.com/20230729/54209_c3c4b0c9/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第14集",
+          "url": "https://vip.ffzy-play2.com/20230729/54210_71d1a95c/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第15集",
+          "url": "https://vip.ffzy-play2.com/20230729/54211_7fc86d1a/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第16集",
+          "url": "https://vip.ffzy-play2.com/20230729/54212_c6823ef1/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第17集",
+          "url": "https://vip.ffzy-play2.com/20230729/54213_2412e489/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第18集",
+          "url": "https://vip.ffzy-play2.com/20230730/54214_4a5ceb09/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第19集",
+          "url": "https://vip.ffzy-play2.com/20230730/54215_94f4a623/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第20集",
+          "url": "https://vip.ffzy-play2.com/20230730/54216_da00ee46/index.m3u8",
+          "watched": false
+        }
+      ],
+      "updatedAt": 1788350777373
     },
     {
       "watchedDate": "2026-08-22",
@@ -2508,8 +2629,129 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
-      "updatedAt": 1787331338598
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://vip1.lz-cdn.com/20220330/7467_62114034/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://vip1.lz-cdn.com/20220330/7468_9a98e6f4/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第03集",
+          "url": "https://vip1.lz-cdn.com/20220330/7469_5d79d6ae/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第04集",
+          "url": "https://vip1.lz-cdn.com/20220330/7470_0921c147/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第05集",
+          "url": "https://vip1.lz-cdn.com/20220330/7471_866807da/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第06集",
+          "url": "https://vip1.lz-cdn.com/20220330/7472_bd925140/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第07集",
+          "url": "https://vip1.lz-cdn.com/20220330/7474_7b996558/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第08集",
+          "url": "https://vip1.lz-cdn.com/20220330/7473_72435adc/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第09集",
+          "url": "https://vip1.lz-cdn.com/20220330/7475_3b413920/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第10集",
+          "url": "https://vip1.lz-cdn.com/20220330/7477_723c75fb/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第11集",
+          "url": "https://vip1.lz-cdn.com/20220330/7476_5a91b649/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第12集",
+          "url": "https://vip1.lz-cdn.com/20220330/7478_ebf5d887/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第13集",
+          "url": "https://vip1.lz-cdn.com/20220330/7479_a63ddc42/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第14集",
+          "url": "https://vip1.lz-cdn.com/20220330/7481_d6aecd01/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第15集",
+          "url": "https://vip1.lz-cdn.com/20220330/7480_ad47ed43/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第16集",
+          "url": "https://vip1.lz-cdn.com/20220330/7482_fc573609/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第17集",
+          "url": "https://vip1.lz-cdn.com/20220330/7483_a242ab7a/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第18集",
+          "url": "https://vip1.lz-cdn.com/20220330/7485_6c47b888/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第19集",
+          "url": "https://vip1.lz-cdn.com/20220330/7484_2f656e83/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第20集",
+          "url": "https://vip1.lz-cdn.com/20220330/7488_6dfc0719/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第21集",
+          "url": "https://vip1.lz-cdn.com/20220330/7489_a8d20a74/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第22集",
+          "url": "https://vip1.lz-cdn.com/20220330/7487_22226904/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第23集",
+          "url": "https://vip1.lz-cdn.com/20220330/7486_101859d0/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第24集",
+          "url": "https://vip1.lz-cdn.com/20220330/7491_24dc32b9/index.m3u8",
+          "watched": false
+        }
+      ],
+      "updatedAt": 1788351481312
     },
     {
       "watchedDate": "2026-08-22",
@@ -2529,8 +2771,129 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
-      "updatedAt": 1787331340268
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://vip1.lz-cdn.com/20220330/7492_e6832e12/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://vip1.lz-cdn.com/20220330/7490_f9769fca/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第03集",
+          "url": "https://vip1.lz-cdn.com/20220330/7494_8f8f210e/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第04集",
+          "url": "https://vip1.lz-cdn.com/20220330/7493_1dab54dc/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第05集",
+          "url": "https://vip1.lz-cdn.com/20220330/7495_e0a92bd4/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第06集",
+          "url": "https://vip1.lz-cdn.com/20220331/7496_a28d208b/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第07集",
+          "url": "https://vip1.lz-cdn.com/20220331/7497_7e1f13fc/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第08集",
+          "url": "https://vip1.lz-cdn.com/20220331/7498_51121803/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第09集",
+          "url": "https://vip1.lz-cdn.com/20220331/7499_99440d3b/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第10集",
+          "url": "https://vip1.lz-cdn.com/20220331/7500_7134cf20/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第11集",
+          "url": "https://vip1.lz-cdn.com/20220331/7501_38788b7d/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第12集",
+          "url": "https://vip1.lz-cdn.com/20220331/7503_4d7c0dcc/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第13集",
+          "url": "https://vip1.lz-cdn.com/20220331/7502_a3cf614e/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第14集",
+          "url": "https://vip1.lz-cdn.com/20220331/7504_f93e5ea6/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第15集",
+          "url": "https://vip1.lz-cdn.com/20220331/7505_70610aa1/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第16集",
+          "url": "https://vip1.lz-cdn.com/20220331/7506_4ca47ea1/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第17集",
+          "url": "https://vip1.lz-cdn.com/20220331/7507_9d7bb783/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第18集",
+          "url": "https://vip1.lz-cdn.com/20220331/7508_47dbe3be/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第19集",
+          "url": "https://vip1.lz-cdn.com/20220331/7510_a49e178b/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第20集",
+          "url": "https://vip1.lz-cdn.com/20220331/7509_6d94a967/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第21集",
+          "url": "https://vip1.lz-cdn.com/20220331/7512_2d485220/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第22集",
+          "url": "https://vip1.lz-cdn.com/20220331/7511_4dbb5901/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第23集",
+          "url": "https://vip1.lz-cdn.com/20220331/7513_e1fc3e7f/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第24集",
+          "url": "https://vip1.lz-cdn.com/20220331/7514_eef4b4b7/index.m3u8",
+          "watched": false
+        }
+      ],
+      "updatedAt": 1788351838708
     },
     {
       "watchedDate": "2026-08-22",
@@ -2550,8 +2913,109 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
-      "updatedAt": 1787331341007
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://vip1.lz-cdn.com/20220330/7447_d6b3b8b3/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://vip1.lz-cdn.com/20220330/7448_7ce70934/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第03集",
+          "url": "https://vip1.lz-cdn.com/20220330/7449_bf848d8f/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第04集",
+          "url": "https://vip1.lz-cdn.com/20220330/7450_1e62e064/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第05集",
+          "url": "https://vip1.lz-cdn.com/20220330/7451_7f5d75fd/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第06集",
+          "url": "https://vip1.lz-cdn.com/20220330/7452_ad5a7395/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第07集",
+          "url": "https://vip1.lz-cdn.com/20220330/7453_03d31e87/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第08集",
+          "url": "https://vip1.lz-cdn.com/20220330/7454_e25c52f8/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第09集",
+          "url": "https://vip1.lz-cdn.com/20220330/7455_52df8c52/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第10集",
+          "url": "https://vip1.lz-cdn.com/20220330/7456_50bca79a/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第11集",
+          "url": "https://vip1.lz-cdn.com/20220330/7457_0efe9745/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第12集",
+          "url": "https://vip1.lz-cdn.com/20220330/7458_0bac0351/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第13集",
+          "url": "https://vip1.lz-cdn.com/20220330/7460_4d5ce16b/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第14集",
+          "url": "https://vip1.lz-cdn.com/20220330/7459_e59f9297/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第15集",
+          "url": "https://vip1.lz-cdn.com/20220330/7461_6f747d1c/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第16集",
+          "url": "https://vip1.lz-cdn.com/20220330/7462_fda8d54b/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第17集",
+          "url": "https://vip1.lz-cdn.com/20220330/7463_23fd6664/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第18集",
+          "url": "https://vip1.lz-cdn.com/20220330/7464_252d83d3/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第19集",
+          "url": "https://vip1.lz-cdn.com/20220330/7465_9e25d7f6/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第20集",
+          "url": "https://vip1.lz-cdn.com/20220330/7466_a483ee0d/index.m3u8",
+          "watched": false
+        }
+      ],
+      "updatedAt": 1788351091089
     },
     {
       "watchedDate": "2026-08-22",
@@ -2571,8 +3035,189 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
-      "updatedAt": 1787331346814
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://vip1.lz-cdn.com/20220331/7515_4dbd880d/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://vip1.lz-cdn.com/20220331/7516_bbc9a636/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第03集",
+          "url": "https://vip1.lz-cdn.com/20220331/7517_d83f2462/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第04集",
+          "url": "https://vip1.lz-cdn.com/20220331/7518_5e73bae2/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第05集",
+          "url": "https://vip1.lz-cdn.com/20220331/7519_f55e8d58/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第06集",
+          "url": "https://vip1.lz-cdn.com/20220331/7522_88d99fe8/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第07集",
+          "url": "https://vip1.lz-cdn.com/20220331/7521_92f48df7/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第08集",
+          "url": "https://vip1.lz-cdn.com/20220331/7520_e7ce482f/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第09集",
+          "url": "https://vip1.lz-cdn.com/20220331/7523_31d3ce83/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第10集",
+          "url": "https://vip1.lz-cdn.com/20220331/7526_6421a89e/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第11集",
+          "url": "https://vip1.lz-cdn.com/20220331/7524_1955cf79/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第12集",
+          "url": "https://vip1.lz-cdn.com/20220331/7525_a66b306d/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第13集",
+          "url": "https://vip1.lz-cdn.com/20220331/7527_555336f9/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第14集",
+          "url": "https://vip1.lz-cdn.com/20220331/7528_8651fe81/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第15集",
+          "url": "https://vip1.lz-cdn.com/20220331/7529_da6f1c8a/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第16集",
+          "url": "https://vip1.lz-cdn.com/20220331/7530_ae176176/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第17集",
+          "url": "https://vip1.lz-cdn.com/20220331/7531_96369059/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第18集",
+          "url": "https://vip1.lz-cdn.com/20220331/7532_42d2c6bf/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第19集",
+          "url": "https://vip1.lz-cdn.com/20220331/7533_c396a8a3/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第20集",
+          "url": "https://vip1.lz-cdn.com/20220331/7535_43a0ce5b/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第21集",
+          "url": "https://vip1.lz-cdn.com/20220331/7534_deb1deb9/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第22集",
+          "url": "https://vip1.lz-cdn.com/20220331/7537_0d69cac7/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第23集",
+          "url": "https://vip1.lz-cdn.com/20220331/7538_b089c25e/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第24集",
+          "url": "https://vip1.lz-cdn.com/20220331/7536_3dfef9a5/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第25集",
+          "url": "https://vip1.lz-cdn.com/20220331/7539_03b845e4/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第26集",
+          "url": "https://vip1.lz-cdn.com/20220331/7541_a996e5ff/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第27集",
+          "url": "https://vip1.lz-cdn.com/20220331/7542_0df1132d/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第28集",
+          "url": "https://vip1.lz-cdn.com/20220331/7540_df940e99/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第29集",
+          "url": "https://vip1.lz-cdn.com/20220331/7543_501231fe/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第30集",
+          "url": "https://vip1.lz-cdn.com/20220331/7545_0c93ec65/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第31集",
+          "url": "https://vip1.lz-cdn.com/20220331/7546_b02011b8/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第32集",
+          "url": "https://vip1.lz-cdn.com/20220331/7544_7e53b9da/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第33集",
+          "url": "https://vip1.lz-cdn.com/20220331/7547_e666ff49/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第34集",
+          "url": "https://vip1.lz-cdn.com/20220331/7548_d21baf92/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第35集",
+          "url": "https://vip1.lz-cdn.com/20220331/7549_f0d33a2b/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第36集",
+          "url": "https://vip1.lz-cdn.com/20220331/7550_11c9426b/index.m3u8",
+          "watched": false
+        }
+      ],
+      "updatedAt": 1788352889220
     },
     {
       "watchedDate": "2026-08-22",
@@ -5224,9 +5869,14 @@
           "title": "第36集",
           "url": "https://v.lzcdn31.com/20260822/10319_ef3923eb/2000k/hls/mixed.m3u8",
           "watched": true
+        },
+        {
+          "title": "第37集",
+          "url": "https://v.lzcdn31.com/20260829/10679_5906c740/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1787470562945
+      "updatedAt": 1788350068679
     },
     {
       "watchedDate": "2026-08-23",
@@ -6911,9 +7561,19 @@
         {
           "title": "第12集",
           "url": "https://v.lzcdn27.com/20260831/16290_30cabfd2/index.m3u8"
+        },
+        {
+          "title": "第13集",
+          "url": "https://vip.ffzy-plays.com/20260901/57717_ff26be27/3000k/hls/mixed.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第14集",
+          "url": "https://vip.ffzy-plays.com/20260902/57749_ebc600e3/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1788259450077
+      "updatedAt": 1788347718408
     },
     {
       "watchedDate": "2026-09-01",
@@ -7008,15 +7668,18 @@
         },
         {
           "title": "第07集",
-          "url": "https://v.lzcdn27.com/20260831/16279_31b76d1b/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260831/16279_31b76d1b/index.m3u8",
+          "watched": true
         },
         {
           "title": "第08集",
-          "url": "https://v.lzcdn27.com/20260831/16280_66984caf/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260831/16280_66984caf/index.m3u8",
+          "watched": true
         },
         {
           "title": "第09集",
-          "url": "https://v.lzcdn27.com/20260901/16331_488d59c2/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260901/16331_488d59c2/index.m3u8",
+          "watched": true
         },
         {
           "title": "第10集",
@@ -7029,9 +7692,29 @@
         {
           "title": "第12集",
           "url": "https://v.lzcdn27.com/20260901/16328_08011e55/index.m3u8"
+        },
+        {
+          "title": "第13集",
+          "url": "https://v.lzcdn27.com/20260902/16371_308b9cac/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第14集",
+          "url": "https://v.lzcdn27.com/20260902/16370_c34b6173/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第15集",
+          "url": "https://v.lzcdn27.com/20260902/16369_b0472078/index.m3u8",
+          "watched": false
+        },
+        {
+          "title": "第16集",
+          "url": "https://v.lzcdn27.com/20260902/16372_1a7edc59/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1788329960488
+      "updatedAt": 1788350396022
     }
   ],
   "deleted": {
