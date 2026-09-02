@@ -2880,9 +2880,14 @@
           "title": "第22集",
           "url": "https://vip1.lz-cdn.com/20220331/7511_4dbb5901/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第23集",
+          "url": "https://vip1.lz-cdn.com/20220331/7513_e1fc3e7f/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1788351816167
+      "updatedAt": 1788351830538
     },
     {
       "watchedDate": "2026-08-22",
