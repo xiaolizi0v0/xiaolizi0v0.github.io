@@ -7066,9 +7066,14 @@
         {
           "title": "第12集",
           "url": "https://v.lzcdn27.com/20260901/16328_08011e55/index.m3u8"
+        },
+        {
+          "title": "第13集",
+          "url": "https://v.lzcdn27.com/20260902/16371_308b9cac/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1788338937975
+      "updatedAt": 1788350224002
     }
   ],
   "deleted": {
