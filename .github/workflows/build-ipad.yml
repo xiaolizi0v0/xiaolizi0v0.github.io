@@ -25,7 +25,7 @@ permissions:
 jobs:
   build:
     name: Build iLoader-ready iPad IPA
-    runs-on: macos-15
+    runs-on: macos-26
     env:
       APP_SCHEME: MovieTimeCapsule
       PROJECT_PATH: ios/MovieTimeCapsule/MovieTimeCapsule.xcodeproj
@@ -34,10 +34,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Show toolchain
+      - name: Select Xcode 26.3 toolchain
         run: |
+          sudo xcode-select -s /Applications/Xcode_26.3.app/Contents/Developer
           xcodebuild -version
           xcode-select -p
+          xcodebuild -showsdks
 
       - name: Validate project resources
         shell: bash
@@ -88,12 +90,21 @@ jobs:
           /usr/bin/plutil -lint "$plist_path"
           bundle_id="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$plist_path")"
           test "$bundle_id" = "com.xiaolizi.timecapsule.ipad"
+          sdk_name="$(/usr/libexec/PlistBuddy -c 'Print :DTSDKName' "$plist_path")"
+          platform_version="$(/usr/libexec/PlistBuddy -c 'Print :DTPlatformVersion' "$plist_path")"
+          case "$sdk_name" in
+            iphoneos26.*) ;;
+            *) echo "Expected an iOS 26 SDK, got: $sdk_name" >&2; exit 1 ;;
+          esac
+          echo "Bundle ID: $bundle_id"
+          echo "SDK: $sdk_name (platform $platform_version)"
 
           # iLoader/isideload needs a Mach-O code-signature load command that it can replace.
           # A CODE_SIGNING_ALLOWED=NO build has no LC_CODE_SIGNATURE, so add a temporary
           # ad-hoc signature. iLoader will replace this signature with the user's profile.
           /usr/bin/codesign --force --deep --sign - --timestamp=none "$app_path"
           /usr/bin/codesign --verify --deep --strict "$app_path"
+          /usr/bin/codesign -dvvv "$app_path" 2>&1
           /usr/bin/otool -l "$executable_path" | /usr/bin/grep -q LC_CODE_SIGNATURE
 
       - name: Package re-sign-ready IPA with fresh staging name

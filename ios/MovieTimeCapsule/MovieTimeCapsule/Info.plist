@@ -48,10 +48,8 @@
 	<array>
 		<string>arm64</string>
 	</array>
-	<key>UIDeviceFamily</key>
-	<array>
-		<integer>2</integer>
-	</array>
+	<key>UILaunchScreen</key>
+	<dict/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
