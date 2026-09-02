@@ -7694,7 +7694,8 @@
         },
         {
           "title": "第10集",
-          "url": "https://v.lzcdn27.com/20260901/16330_be10328a/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260901/16330_be10328a/index.m3u8",
+          "watched": true
         },
         {
           "title": "第11集",
@@ -7725,7 +7726,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1788350396022
+      "updatedAt": 1788363427964
     },
     {
       "id": "baike-34457130",
