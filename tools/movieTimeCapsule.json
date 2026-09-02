@@ -3070,9 +3070,14 @@
           "title": "第07集",
           "url": "https://vip1.lz-cdn.com/20220331/7521_92f48df7/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第08集",
+          "url": "https://vip1.lz-cdn.com/20220331/7520_e7ce482f/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1788352522643
+      "updatedAt": 1788352531421
     },
     {
       "watchedDate": "2026-08-22",
