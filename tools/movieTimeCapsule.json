@@ -7551,7 +7551,8 @@
         },
         {
           "title": "第07集",
-          "url": "https://v.lzcdn27.com/20260828/16165_1fdfd2aa/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260828/16165_1fdfd2aa/index.m3u8",
+          "watched": true
         },
         {
           "title": "第08集",
@@ -7584,7 +7585,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1788347718408
+      "updatedAt": 1788436896405
     },
     {
       "watchedDate": "2026-09-01",
