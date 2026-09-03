@@ -7792,10 +7792,16 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
+      "eps": [
+        {
+          "title": "HD国语版",
+          "url": "https://v.lfthirtytwo.com/20260831/9975_382b3e1a/index.m3u8",
+          "watched": false
+        }
+      ],
       "watchedDate": "2026-09-03",
       "timestamp": 1788403910145,
-      "updatedAt": 1788403917204
+      "updatedAt": 1788403950721
     }
   ],
   "deleted": {
