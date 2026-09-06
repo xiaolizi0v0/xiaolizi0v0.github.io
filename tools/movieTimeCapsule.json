@@ -7915,11 +7915,16 @@
           "title": "第59集",
           "url": "https://vod.feifei-online.com/20240601/187898_58474dac/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第60集",
+          "url": "https://vod.feifei-online.com/20240601/187900_fa325139/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788683097054
+      "updatedAt": 1788683107511
     },
     {
       "watchedDate": "2026-09-01",
