@@ -7990,11 +7990,16 @@
           "title": "第74集",
           "url": "https://vod.feifei-online.com/20240601/187914_156e1c2f/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第75集",
+          "url": "https://vod.feifei-online.com/20240601/187913_ce5133c0/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788683259202
+      "updatedAt": 1788683269067
     },
     {
       "watchedDate": "2026-09-01",
