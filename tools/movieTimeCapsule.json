@@ -7646,11 +7646,16 @@
           "title": "第01集",
           "url": "https://vod.feifei-online.com/20240601/187774_69351e2e/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://vod.feifei-online.com/20240601/187776_55bb363d/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788682057740
+      "updatedAt": 1788682210405
     },
     {
       "watchedDate": "2026-09-01",
