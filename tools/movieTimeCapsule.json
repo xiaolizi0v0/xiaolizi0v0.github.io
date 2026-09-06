@@ -7785,11 +7785,16 @@
           "title": "第33集",
           "url": "https://vod.feifei-online.com/20240601/187807_453be54b/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第34集",
+          "url": "https://vod.feifei-online.com/20240601/187808_eeb2bc4e/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788682761891
+      "updatedAt": 1788682772242
     },
     {
       "watchedDate": "2026-09-01",
