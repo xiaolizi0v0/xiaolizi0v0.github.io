@@ -7940,11 +7940,16 @@
           "title": "第64集",
           "url": "https://vod.feifei-online.com/20240601/187902_e5be8ebe/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第65集",
+          "url": "https://vod.feifei-online.com/20240601/187906_d26e76e1/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788683143039
+      "updatedAt": 1788683151904
     },
     {
       "watchedDate": "2026-09-01",
