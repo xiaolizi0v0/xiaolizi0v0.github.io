@@ -5862,7 +5862,7 @@
         {
           "title": "20260906下-02",
           "url": "https://v.lzcdn28.com/20260906/15364_7045cc76/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "20260906特辑",
@@ -5870,7 +5870,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1788762589098
+      "updatedAt": 1788764612488
     },
     {
       "watchedDate": "2026-08-23",
