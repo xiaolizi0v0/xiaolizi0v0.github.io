@@ -7620,16 +7620,10 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [
-        {
-          "title": "第32集",
-          "url": "https://vod.feifei-online.com/20240601/187806_0ddc9e66/index.m3u8",
-          "watched": false
-        }
-      ],
+      "eps": [],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788758447288
+      "updatedAt": 1788758458623
     },
     {
       "watchedDate": "2026-09-01",
