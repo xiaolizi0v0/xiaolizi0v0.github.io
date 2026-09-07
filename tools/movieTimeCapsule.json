@@ -7637,11 +7637,6 @@
           "watched": false
         },
         {
-          "title": "第26集",
-          "url": "https://vod.feifei-online.com/20240601/187800_3b084b00/index.m3u8",
-          "watched": false
-        },
-        {
           "title": "第29集",
           "url": "https://vod.feifei-online.com/20240601/187801_ffb8c553/index.m3u8",
           "watched": false
@@ -7854,7 +7849,7 @@
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788758141803
+      "updatedAt": 1788758145420
     },
     {
       "watchedDate": "2026-09-01",
