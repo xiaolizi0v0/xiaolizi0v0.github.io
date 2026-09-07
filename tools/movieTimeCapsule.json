@@ -7859,11 +7859,16 @@
           "title": "第03集",
           "url": "https://v.lzcdn27.com/20260903/16459_c93e52b3/2000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第04集",
+          "url": "https://v.lfthirtytwo.com/20260904/10130_7e71b179/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-08",
       "timestamp": 1788802561521,
-      "updatedAt": 1788802688711
+      "updatedAt": 1788802707651
     }
   ],
   "deleted": {
