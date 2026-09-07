@@ -7642,11 +7642,6 @@
           "watched": false
         },
         {
-          "title": "第66集",
-          "url": "https://vod.feifei-online.com/20240601/187905_bd64075f/index.m3u8",
-          "watched": false
-        },
-        {
           "title": "第67集",
           "url": "https://vod.feifei-online.com/20240601/187908_01f40e05/index.m3u8",
           "watched": false
@@ -7669,7 +7664,7 @@
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788758398826
+      "updatedAt": 1788758403370
     },
     {
       "watchedDate": "2026-09-01",
