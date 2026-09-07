@@ -7642,11 +7642,6 @@
           "watched": false
         },
         {
-          "title": "第48集",
-          "url": "https://vod.feifei-online.com/20240601/187887_2bd86e54/index.m3u8",
-          "watched": false
-        },
-        {
           "title": "第49集",
           "url": "https://vod.feifei-online.com/20240601/187889_9c80a8aa/index.m3u8",
           "watched": false
@@ -7759,7 +7754,7 @@
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788758271210
+      "updatedAt": 1788758275949
     },
     {
       "watchedDate": "2026-09-01",
