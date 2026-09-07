@@ -5867,10 +5867,10 @@
         {
           "title": "20260906特辑",
           "url": "https://v.lzcdn28.com/20260906/15370_b4990f52/index.m3u8",
-          "watched": false
+          "watched": true
         }
       ],
-      "updatedAt": 1788764612488
+      "updatedAt": 1788767300778
     },
     {
       "watchedDate": "2026-08-23",
