@@ -7637,11 +7637,6 @@
           "watched": false
         },
         {
-          "title": "第30集",
-          "url": "https://vod.feifei-online.com/20240601/187805_c35b19a4/index.m3u8",
-          "watched": false
-        },
-        {
           "title": "第31集",
           "url": "https://vod.feifei-online.com/20240601/187804_d3c31cea/index.m3u8",
           "watched": false
@@ -7844,7 +7839,7 @@
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788758150208
+      "updatedAt": 1788758159475
     },
     {
       "watchedDate": "2026-09-01",
