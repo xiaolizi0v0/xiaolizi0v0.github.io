@@ -7622,11 +7622,6 @@
       "count": 1,
       "eps": [
         {
-          "title": "第02集",
-          "url": "https://vod.feifei-online.com/20240601/187776_55bb363d/index.m3u8",
-          "watched": false
-        },
-        {
           "title": "第03集",
           "url": "https://vod.feifei-online.com/20240601/187778_22667730/index.m3u8",
           "watched": false
@@ -7969,7 +7964,7 @@
       ],
       "watchedDate": "2026-09-01",
       "timestamp": 1788232199325,
-      "updatedAt": 1788757986832
+      "updatedAt": 1788757989837
     },
     {
       "watchedDate": "2026-09-01",
