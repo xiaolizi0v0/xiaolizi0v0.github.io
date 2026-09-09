@@ -7865,7 +7865,7 @@
         {
           "title": "第04集",
           "url": "https://v.lfthirtytwo.com/20260904/10130_7e71b179/2000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第05集",
@@ -7888,7 +7888,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1788874409082
+      "updatedAt": 1788934256482
     }
   ],
   "deleted": {
