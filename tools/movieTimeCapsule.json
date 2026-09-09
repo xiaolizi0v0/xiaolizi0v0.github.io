@@ -7875,7 +7875,7 @@
         {
           "title": "第06集",
           "url": "https://v.lfthirtytwo.com/20260905/10182_eb394005/2000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第07集",
@@ -7888,7 +7888,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1788937320889
+      "updatedAt": 1788939694219
     }
   ],
   "deleted": {
