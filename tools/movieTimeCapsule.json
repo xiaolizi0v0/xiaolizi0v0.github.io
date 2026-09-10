@@ -1019,9 +1019,14 @@
           "title": "第07集",
           "url": "https://v.lzcdn31.com/20260901/10825_bc1cc46b/index.m3u8",
           "watched": true
+        },
+        {
+          "title": "第08集",
+          "url": "https://v.lzcdn31.com/20260908/11115_26c8b3ca/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1788356572232
+      "updatedAt": 1789025551375
     },
     {
       "watchedDate": "2026-08-21",
