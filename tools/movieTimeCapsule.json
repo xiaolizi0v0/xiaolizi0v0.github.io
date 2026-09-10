@@ -7610,9 +7610,14 @@
           "title": "第15集",
           "url": "https://v.lfthirtytwo.com/20260906/10211_a4e04235/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第16集",
+          "url": "https://v.lfthirtytwo.com/20260904/10115_cdc9a48f/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1789025592993
+      "updatedAt": 1789025613413
     },
     {
       "watchedDate": "2026-09-01",
