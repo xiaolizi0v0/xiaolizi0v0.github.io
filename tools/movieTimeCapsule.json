@@ -8001,11 +8001,16 @@
           "title": "第八季 20260904首映篇",
           "url": "https://v.lzcdn28.com/20260904/15275_d53a2395/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第八季 20260909超前营业",
+          "url": "https://v.lzcdn28.com/20260909/15508_93e20c28/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-11",
       "timestamp": 1789107828215,
-      "updatedAt": 1789107912373
+      "updatedAt": 1789107947374
     }
   ],
   "deleted": {
