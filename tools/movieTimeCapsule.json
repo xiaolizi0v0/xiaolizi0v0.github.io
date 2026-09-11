@@ -8011,11 +8011,16 @@
           "title": "第八季 20260910上",
           "url": "https://v.lzcdn28.com/20260910/15551_def444a9/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第八季 20260910中",
+          "url": "https://v.lzcdn28.com/20260910/15550_7e466cbb/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-11",
       "timestamp": 1789107828215,
-      "updatedAt": 1789107967863
+      "updatedAt": 1789107983742
     }
   ],
   "deleted": {
