@@ -8012,7 +8012,7 @@
         {
           "title": "第八季 20260910上",
           "url": "https://v.lzcdn28.com/20260910/15551_def444a9/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第八季 20260910中",
@@ -8025,7 +8025,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1789113077196
+      "updatedAt": 1789116591451
     }
   ],
   "deleted": {
