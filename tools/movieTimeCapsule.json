@@ -7996,10 +7996,16 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
+      "eps": [
+        {
+          "title": "第八季 20260904首映篇",
+          "url": "https://v.lzcdn28.com/20260904/15275_d53a2395/index.m3u8",
+          "watched": false
+        }
+      ],
       "watchedDate": "2026-09-11",
       "timestamp": 1789107828215,
-      "updatedAt": 1789107828215
+      "updatedAt": 1789107912373
     }
   ],
   "deleted": {
