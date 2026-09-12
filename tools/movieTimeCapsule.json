@@ -7520,8 +7520,6 @@
       "updatedAt": 1787725010765
     },
     {
-      "watchedDate": "2026-08-27",
-      "timestamp": 1787809072830,
       "id": "baike-65619917",
       "title": "金色（2026年徐兵执导的大漠寻金武侠冒险剧）",
       "year": "2026",
@@ -7538,6 +7536,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-08-27",
+      "timestamp": 1787809072830,
       "updatedAt": 1787809089138
     },
     {
@@ -7680,8 +7680,6 @@
       "updatedAt": 1789025692769
     },
     {
-      "watchedDate": "2026-09-01",
-      "timestamp": 1788232199325,
       "id": "baike-1111485",
       "title": "魔幻手机",
       "year": "2008",
@@ -7704,6 +7702,8 @@
           "watched": false
         }
       ],
+      "watchedDate": "2026-09-01",
+      "timestamp": 1788232199325,
       "updatedAt": 1788758648628
     },
     {
@@ -8026,6 +8026,27 @@
         }
       ],
       "updatedAt": 1789125261722
+    },
+    {
+      "id": "baike-33675787",
+      "title": "兰香如故",
+      "year": "2026",
+      "type": "tv",
+      "url": "http://baike.baidu.com/item/%E5%85%B0%E9%A6%99%E5%A6%82%E6%95%85/63111041",
+      "img": "https://bkimg.cdn.bcebos.com/pic/8b82b9014a90f603738d61fc1d4fa41bb051f8194740?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+      "genre": "古装 社会 家庭",
+      "platform": "腾讯",
+      "region": "国产",
+      "sub_title": "",
+      "desc": "《兰香如故》是由中央电视台、腾讯视频、星莲影视出品，黄颖湘、陈丹联合执导，桐华、箫楼担任编剧，刘学义、谭松韵领衔主演，牛骏峰、李梦、郑合惠子、郭柯宇特别出演的古装社会家庭剧，改编自禾晏山小说《兰香缘》，于2026年9月11日在CCTV-8次黄金档、腾讯视频同步首播。该剧讲述了大学",
+      "note": "",
+      "liked": 0,
+      "done": 0,
+      "count": 1,
+      "eps": [],
+      "watchedDate": "2026-09-12",
+      "timestamp": 1789199027743,
+      "updatedAt": 1789199045970
     }
   ],
   "deleted": {
