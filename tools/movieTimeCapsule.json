@@ -7271,7 +7271,8 @@
         },
         {
           "title": "第23集",
-          "url": "https://vip.ffzy-play.com/20221027/5836_3d852b0c/2000k/hls/mixed.m3u8"
+          "url": "https://vip.ffzy-play.com/20221027/5836_3d852b0c/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第24集",
@@ -7312,7 +7313,7 @@
       ],
       "watchedDate": "2026-08-26",
       "timestamp": 1787723818244,
-      "updatedAt": 1788237402042
+      "updatedAt": 1789290159052
     },
     {
       "id": "baike-26824736",
@@ -7520,6 +7521,8 @@
       "updatedAt": 1787725010765
     },
     {
+      "watchedDate": "2026-08-27",
+      "timestamp": 1787809072830,
       "id": "baike-65619917",
       "title": "金色（2026年徐兵执导的大漠寻金武侠冒险剧）",
       "year": "2026",
@@ -7536,8 +7539,6 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-08-27",
-      "timestamp": 1787809072830,
       "updatedAt": 1787809089138
     },
     {
@@ -7680,6 +7681,8 @@
       "updatedAt": 1789025692769
     },
     {
+      "watchedDate": "2026-09-01",
+      "timestamp": 1788232199325,
       "id": "baike-1111485",
       "title": "魔幻手机",
       "year": "2008",
@@ -7702,8 +7705,6 @@
           "watched": false
         }
       ],
-      "watchedDate": "2026-09-01",
-      "timestamp": 1788232199325,
       "updatedAt": 1788758648628
     },
     {
@@ -8028,6 +8029,8 @@
       "updatedAt": 1789125261722
     },
     {
+      "watchedDate": "2026-09-12",
+      "timestamp": 1789199027743,
       "id": "baike-33675787",
       "title": "兰香如故",
       "year": "2026",
@@ -8044,8 +8047,6 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-09-12",
-      "timestamp": 1789199027743,
       "updatedAt": 1789199045970
     }
   ],
