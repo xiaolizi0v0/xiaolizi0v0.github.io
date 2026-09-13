@@ -7276,7 +7276,8 @@
         },
         {
           "title": "第24集",
-          "url": "https://vip.ffzy-play.com/20221027/5837_bc8e0620/2000k/hls/mixed.m3u8"
+          "url": "https://vip.ffzy-play.com/20221027/5837_bc8e0620/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第25集",
@@ -7313,7 +7314,7 @@
       ],
       "watchedDate": "2026-08-26",
       "timestamp": 1787723818244,
-      "updatedAt": 1789290159052
+      "updatedAt": 1789294537798
     },
     {
       "id": "baike-26824736",
