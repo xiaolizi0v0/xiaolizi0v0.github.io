@@ -7618,7 +7618,8 @@
         },
         {
           "title": "第12集",
-          "url": "https://v.lzcdn27.com/20260831/16290_30cabfd2/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260831/16290_30cabfd2/index.m3u8",
+          "watched": true
         },
         {
           "title": "第13集",
@@ -7681,7 +7682,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1789361710839
+      "updatedAt": 1789362920559
     },
     {
       "watchedDate": "2026-09-01",
