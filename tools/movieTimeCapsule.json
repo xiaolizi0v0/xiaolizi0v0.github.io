@@ -7608,7 +7608,8 @@
         },
         {
           "title": "第10集",
-          "url": "https://v.lzcdn27.com/20260829/16204_ec6d9b4c/index.m3u8"
+          "url": "https://v.lzcdn27.com/20260829/16204_ec6d9b4c/index.m3u8",
+          "watched": true
         },
         {
           "title": "第11集",
@@ -7679,7 +7680,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1789025692769
+      "updatedAt": 1789358941437
     },
     {
       "watchedDate": "2026-09-01",
