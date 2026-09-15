@@ -7644,7 +7644,7 @@
         {
           "title": "第17集",
           "url": "https://v.lfthirtytwo.com/20260905/10177_72106e71/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第18集",
@@ -7682,7 +7682,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1789449994431
+      "updatedAt": 1789451159034
     },
     {
       "watchedDate": "2026-09-01",
