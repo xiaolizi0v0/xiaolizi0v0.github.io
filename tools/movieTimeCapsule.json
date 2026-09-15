@@ -7301,7 +7301,8 @@
         },
         {
           "title": "第29集",
-          "url": "https://vip.ffzy-play.com/20221027/5842_a1f430b3/2000k/hls/mixed.m3u8"
+          "url": "https://vip.ffzy-play.com/20221027/5842_a1f430b3/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第30集",
@@ -7318,7 +7319,7 @@
       ],
       "watchedDate": "2026-08-26",
       "timestamp": 1787723818244,
-      "updatedAt": 1789466683739
+      "updatedAt": 1789469309855
     },
     {
       "id": "baike-26824736",
