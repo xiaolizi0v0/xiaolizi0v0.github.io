@@ -8077,10 +8077,16 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
+      "eps": [
+        {
+          "title": "HD中字",
+          "url": "https://v.lfthirtytwo.com/20260831/9968_c3a7e964/2000k/hls/mixed.m3u8",
+          "watched": false
+        }
+      ],
       "watchedDate": "2026-09-18",
       "timestamp": 1789711228885,
-      "updatedAt": 1789711228885
+      "updatedAt": 1789711333322
     }
   ],
   "deleted": {
