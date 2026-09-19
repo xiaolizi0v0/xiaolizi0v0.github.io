@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shader Graph 蓝图模拟器 · Xiaolizi0v0's BLOG</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232b2b2b'/%3E%3Ccircle cx='7' cy='8' r='2.2' fill='%2366d9ef'/%3E%3Ccircle cx='7' cy='16' r='2.2' fill='%23e6db74'/%3E%3Ccircle cx='17' cy='12' r='2.2' fill='%23fd5ff1'/%3E%3Cpath d='M9 8h4a2 2 0 0 1 2 2v0M9 16h4a2 2 0 0 0 2-2v0' stroke='%239aa0a8' stroke-width='1.4' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* ============================================================
+   Shader Graph 蓝图模拟器 —— Unity Shader Graph 深色编辑器风格
+   ============================================================ */
+:root{
+  --bg-app:#1f1f1f;
+  --bg-canvas:#262626;
+  --bg-panel:#333333;
+  --bg-panel-2:#3c3c3c;
+  --bg-node:#424242;
+  --bg-node-title:#303030;
+  --bg-input:#2a2a2a;
+  --border:#4a4a4a;
+  --border-soft:#3d3d3d;
+  --text-1:#e8e8e8;
+  --text-2:#b8b8b8;
+  --text-3:#8a8a8a;
+  --accent:#4da6ff;
+  --accent-soft:rgba(77,166,255,.16);
+  --sticky:#e8c94a;
+  --danger:#e05656;
+  --ok:#7ac74f;
+  /* 端口类型色 */
+  --t-float:#66d9ef;   /* Vector1 青 */
+  --t-v2:#a6e22e;      /* Vector2 绿 */
+  --t-v3:#e6db74;      /* Vector3 黄 */
+  --t-v4:#fd5ff1;      /* Vector4/Color 品红 */
+  --t-bool:#fd971f;    /* Boolean 橙 */
+  --t-tex:#f96b6b;     /* Texture2D 红 */
+  --t-cube:#ffae57;    /* Cubemap */
+  --t-samp:#7386b0;    /* SamplerState */
+  --t-mat:#ae81ff;     /* Matrix 紫 */
+  --t-dyn:#b9c0c8;     /* Dynamic 灰 */
+  /* 节点分类色（标题条） */
+  --c-basic:#5d5d5d;
+  --c-geometry:#8a3b3b;
+  --c-texture:#b1433d;
+  --c-math:#3d74b8;
+  --c-channel:#7a8a3a;
+  --c-procedural:#7a5aa8;
+  --c-artistic:#2f8f83;
+  --c-uv:#a0702f;
+  --c-utility:#5a6a78;
+  --c-master:#6b4a8a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  background:var(--bg-app);color:var(--text-1);font-size:13px;
+  -webkit-font-smoothing:antialiased;user-select:none;
+}
+.mono{font-family:"JetBrains Mono","Consolas",monospace}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#555;border-radius:5px;border:2px solid var(--bg-panel)}
+::-webkit-scrollbar-thumb:hover{background:#6a6a6a}
+
+/* ============ 应用骨架 ============ */
+#app{display:flex;flex-direction:column;height:100vh}
+/* 顶栏 */
+.topbar{
+  height:48px;flex:0 0 48px;background:#222;border-bottom:1px solid #111;
+  display:flex;align-items:center;gap:10px;padding:0 12px;z-index:40;
+  box-shadow:0 2px 10px rgba(0,0,0,.45);
+}
+.topbar .back{
+  display:inline-flex;align-items:center;gap:6px;color:var(--text-2);
+  text-decoration:none;font-size:12px;padding:6px 10px;border-radius:6px;
+  transition:.2s;white-space:nowrap;
+}
+.topbar .back:hover{background:#3a3a3a;color:#fff}
+.brand{display:flex;align-items:center;gap:9px;padding-right:12px;border-right:1px solid #3a3a3a;margin-right:4px;white-space:nowrap}
+.brand svg{width:22px;height:22px}
+.brand b{font-size:14px;font-weight:700;letter-spacing:.3px}
+.brand small{display:block;font-size:10px;color:var(--text-3);font-weight:400}
+.tb-group{display:flex;align-items:center;gap:4px}
+.tb-btn{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:6px;
+  color:var(--text-2);font-size:12.5px;transition:.18s;white-space:nowrap;position:relative;
+}
+.tb-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tb-btn:hover{background:#3a3a3a;color:#fff}
+.tb-btn.active{background:var(--accent-soft);color:var(--accent)}
+.tb-btn.sim-active{background:rgba(122,199,79,.18);color:var(--ok)}
+.tb-sep{width:1px;height:22px;background:#3a3a3a;margin:0 5px}
+.topbar .spacer{flex:1}
+.tb-lesson-name{font-size:12px;color:var(--sticky);font-weight:500;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* 下拉菜单 */
+.menu-pop{
+  position:absolute;top:calc(100% + 6px);left:0;min-width:230px;background:#3a3a3a;
+  border:1px solid #4d4d4d;border-radius:8px;box-shadow:0 12px 32px rgba(0,0,0,.55);
+  padding:5px;z-index:200;display:none;animation:menuIn .16s ease;
+}
+.menu-pop.open{display:block}
+@keyframes menuIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+.menu-item{display:flex;align-items:center;gap:9px;width:100%;padding:8px 10px;border-radius:5px;font-size:12.5px;color:var(--text-1);text-align:left}
+.menu-item:hover{background:#4a4a4a}
+.menu-item .mi-tag{margin-left:auto;font-size:10px;color:var(--text-3)}
+.menu-item .mi-dot{width:7px;height:7px;border-radius:50%;flex:0 0 7px}
+
+/* ============ 三栏布局 ============ */
+.workspace{flex:1;display:flex;min-height:0;position:relative}
+.panel{
+  width:264px;flex:0 0 264px;background:var(--bg-panel);border-right:1px solid #202020;
+  display:flex;flex-direction:column;z-index:20;transition:margin-left .25s ease;
+}
+.panel.right{border-right:none;border-left:1px solid #202020;width:320px;flex-basis:320px}
+.panel.collapsed{margin-left:-264px}
+.panel.right.collapsed{margin-left:0;margin-right:-320px}
+.panel-head{
+  padding:11px 13px;font-size:12px;font-weight:700;letter-spacing:1px;color:var(--text-2);
+  text-transform:uppercase;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;gap:8px;
+}
+.panel-head svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.7}
+.panel-body{flex:1;overflow-y:auto;padding:9px}
+.search-box{padding:9px 9px 4px}
+.search-box input{
+  width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:6px;
+  padding:7px 10px 7px 30px;color:var(--text-1);font-size:12.5px;outline:none;transition:.18s;
+}
+.search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.search-box{position:relative}
+.search-box svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:13px;height:13px;stroke:var(--text-3);fill:none;stroke-width:2}
+
+.lib-cat{margin-bottom:4px}
+.lib-cat-name{
+  display:flex;align-items:center;gap:7px;padding:7px 8px;font-size:11px;font-weight:700;
+  letter-spacing:.6px;color:var(--text-2);cursor:pointer;border-radius:5px;
+}
+.lib-cat-name:hover{background:#3d3d3d}
+.lib-cat-name .chev{margin-left:auto;transition:transform .2s;font-size:9px;color:var(--text-3)}
+.lib-cat.collapsed .chev{transform:rotate(-90deg)}
+.lib-cat-items{overflow:hidden;max-height:2000px;transition:max-height .3s ease}
+.lib-cat.collapsed .lib-cat-items{max-height:0}
+.lib-item{
+  display:flex;align-items:center;gap:8px;padding:6px 8px 6px 20px;border-radius:5px;
+  cursor:pointer;font-size:12.5px;color:var(--text-1);transition:.13s;border:1px solid transparent;
+}
+.lib-item:hover{background:#454545}
+.lib-item .li-dot{width:8px;height:8px;border-radius:2px;flex:0 0 8px}
+.lib-item .li-cn{color:var(--text-3);font-size:10.5px;margin-left:auto;white-space:nowrap}
+.lib-item.dragging{opacity:.5}
+.lib-empty{padding:18px 12px;text-align:center;color:var(--text-3);font-size:12px}
+
+/* ============ 画布 ============ */
+.viewport{flex:1;position:relative;overflow:hidden;background:var(--bg-canvas);min-width:0}
+.viewport.panning{cursor:grabbing}
+.world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+.grid-bg{
+  position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;
+  background-image:radial-gradient(circle, rgba(255,255,255,.10) 1px, transparent 1.4px);
+  background-size:24px 24px;
+}
+#edge-svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+#edge-svg path.edge-hit{stroke:transparent;stroke-width:14px;fill:none;pointer-events:stroke;cursor:pointer}
+#edge-svg path.edge-line{fill:none;stroke-width:2.4px;transition:stroke-width .15s}
+#edge-svg path.edge-flow{fill:none;stroke-width:2.4px;stroke-dasharray:6 12;opacity:.85;animation:flowDash 1.1s linear infinite}
+@keyframes flowDash{to{stroke-dashoffset:-18}}
+#edge-svg g.edge:hover path.edge-line{stroke-width:3.6px}
+#edge-svg g.edge.selected path.edge-line{stroke-width:3.8px}
+#edge-svg path.edge-temp{fill:none;stroke-width:2.4px;stroke-dasharray:5 5;opacity:.9}
+.edge-particle{fill:#fff;filter:drop-shadow(0 0 4px currentColor)}
+
+/* 分组框（课程用，Under The Hood 那种虚线框） */
+.group-frame{
+  position:absolute;border:1.5px dashed rgba(255,255,255,.26);border-radius:10px;
+  pointer-events:none;animation:frameIn .5s ease;
+}
+.group-frame .gf-title{
+  position:absolute;top:-11px;left:18px;background:var(--bg-canvas);padding:0 10px;
+  font-size:13px;color:#cfcfcf;font-weight:500;letter-spacing:.4px;
+}
+@keyframes frameIn{from{opacity:0}to{opacity:1}}
+
+/* 节点 */
+.sg-node{
+  position:absolute;width:196px;background:var(--bg-node);border:1px solid #202020;
+  border-radius:6px;box-shadow:0 3px 10px rgba(0,0,0,.45);cursor:grab;
+  transition:box-shadow .15s,border-color .15s;animation:nodePop .28s cubic-bezier(.2,1.4,.4,1);
+}
+@keyframes nodePop{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:scale(1)}}
+.sg-node.removing{animation:nodeOut .2s ease forwards}
+@keyframes nodeOut{to{opacity:0;transform:scale(.85)}}
+.sg-node:hover{border-color:#5d5d5d}
+.sg-node.selected{border-color:var(--accent);box-shadow:0 0 0 1.5px var(--accent),0 6px 22px rgba(0,0,0,.55)}
+.sg-node.tour-hot{border-color:var(--sticky);box-shadow:0 0 0 2px var(--sticky),0 0 26px rgba(232,201,74,.55);animation:hotPulse 1.1s ease-in-out infinite}
+@keyframes hotPulse{0%,100%{box-shadow:0 0 0 2px var(--sticky),0 0 14px rgba(232,201,74,.35)}50%{box-shadow:0 0 0 2.5px var(--sticky),0 0 30px rgba(232,201,74,.75)}}
+.sg-node.sim-active{border-color:var(--ok);box-shadow:0 0 0 1.5px var(--ok),0 0 22px rgba(122,199,79,.5)}
+.n-title{
+  background:var(--cat,#555);border-radius:5px 5px 0 0;padding:6px 10px 4px;cursor:grab;
+}
+.n-title .nt-en{font-size:12.5px;font-weight:600;color:#fff;letter-spacing:.2px;line-height:1.25}
+.n-title .nt-cn{font-size:10.5px;color:rgba(255,255,255,.82);line-height:1.3}
+.n-body{padding:6px 0 7px;position:relative}
+.ports{display:flex;flex-direction:column;gap:1px}
+.port{
+  position:relative;display:flex;align-items:center;gap:7px;padding:3.4px 10px;
+  font-size:11.5px;color:var(--text-1);cursor:default;
+}
+.port.out{flex-direction:row-reverse}
+.port .dot{
+  width:11px;height:11px;border-radius:50%;flex:0 0 11px;background:var(--pc,#888);
+  border:1.6px solid #1c1c1c;cursor:crosshair;transition:transform .12s,box-shadow .12s;z-index:2;
+}
+.port:hover .dot,..port.can-drop .dot{transform:scale(1.45);box-shadow:0 0 9px var(--pc,#888)}
+.port.bad-drop .dot{background:var(--danger)!Important;box-shadow:0 0 9px var(--danger)}
+.port .pname{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.port .ptype{margin-left:auto;font-size:9.5px;color:var(--text-3);font-family:"JetBrains Mono",monospace}
+.port.out .ptype{margin-left:0;margin-right:auto}
+.n-controls{padding:3px 10px 5px;display:flex;flex-direction:column;gap:5px;border-top:1px solid #333;margin-top:3px}
+.ctrl-row{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-2)}
+.ctrl-row label{flex:0 0 auto;color:var(--text-3)}
+.ctrl-row input[type=number]{
+  width:100%;min-width:0;background:var(--bg-input);border:1px solid #3a3a3a;border-radius:4px;
+  color:var(--text-1);font-size:11px;padding:3px 5px;outline:none;font-family:"JetBrains Mono",monospace;
+}
+.ctrl-row input[type=number]:focus{border-color:var(--accent)}
+.vec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;width:100%}
+.vec-cell{display:flex;align-items:center;gap:3px}
+.vec-cell b{font-size:10px;font-family:"JetBrains Mono",monospace;width:9px}
+.vec-cell input{width:100%;min-width:0;background:var(--bg-input);border:1px solid #3a3a3a;border-radius:4px;color:var(--text-1);font-size:10.5px;padding:3px 4px;outline:none;font-family:"JetBrains Mono",monospace}
+.vec-cell b.ch-x{color:var(--t-float)}.vec-cell b.ch-y{color:var(--t-v2)}.vec-cell b.ch-z{color:var(--t-v3)}.vec-cell b.ch-w{color:var(--t-v4)}
+.n-select{
+  width:100%;background:var(--bg-input);border:1px solid #3a3a3a;border-radius:4px;color:var(--text-1);
+  font-size:10.5px;padding:3px 4px;outline:none;
+}
+.n-slider{display:flex;align-items:center;gap:6px;width:100%}
+.n-slider input[type=range]{flex:1;height:3px;-webkit-appearance:none;background:#555;border-radius:2px;outline:none}
+.n-slider input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:var(--accent);cursor:pointer;border:1px solid #1c1c1c}
+.n-slider span{font-size:10px;font-family:"JetBrains Mono",monospace;color:var(--text-2);min-width:30px;text-align:right}
+.n-check{display:flex;align-items:center;gap:6px;width:100%;font-size:11px;color:var(--text-2)}
+.n-color{display:flex;align-items:center;gap:6px;width:100%}
+.n-color input[type=color]{width:34px;height:22px;border:1px solid #3a3a3a;border-radius:4px;background:none;padding:0;cursor:pointer}
+.n-color .nc-val{font-size:10px;font-family:"JetBrains Mono",monospace;color:var(--text-2)}
+.tex-thumb{
+  width:100%;height:74px;border-radius:4px;border:1px solid #333;image-rendering:auto;
+  background:#222;cursor:pointer;object-fit:cover;display:block;
+}
+.n-live{
+  margin:4px 10px 0;padding:4px 7px;border-radius:4px;background:#2c2c2c;border:1px solid #383838;
+  font-size:10px;font-family:"JetBrains Mono",monospace;color:var(--t-v3);display:none;
+}
+.n-live.show{display:block;animation:liveFlash .5s ease}
+@keyframes liveFlash{0%{background:rgba(122,199,79,.25)}100%{background:#2c2c2c}}
+/* Preview 节点的大预览 */
+.big-preview{margin:5px 10px 2px;width:calc(100% - 20px);height:120px;border-radius:5px;border:1px solid #333;background:#141414;display:block}
+/* 便签（Sticky Note，黄色小纸条，复刻官方文档示例） */
+.sticky{
+  position:absolute;width:190px;background:var(--sticky);color:#2b2410;border-radius:2px;
+  padding:9px 11px;font-size:11px;line-height:1.5;box-shadow:0 4px 12px rgba(0,0,0,.4);
+  cursor:grab;animation:noteIn .3s cubic-bezier(.2,1.3,.4,1);word-break:break-word;
+}
+@keyframes noteIn{from{opacity:0;transform:scale(.8) rotate(-3deg)}to{opacity:1;transform:none}}
+.sticky::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:rgba(0,0,0,.12)}
+.sticky .sn-text{outline:none;min-height:34px;white-space:pre-wrap}
+.sticky .sn-x{
+  position:absolute;top:3px;right:5px;width:16px;height:16px;border-radius:3px;font-size:11px;
+  line-height:16px;text-align:center;color:#5a4a10;opacity:0;transition:.15s;
+}
+.sticky:hover .sn-x{opacity:1}.sticky .sn-x:hover{background:rgba(0,0,0,.15)}
+.sticky.tour-hot{box-shadow:0 0 0 2px #fff,0 0 26px rgba(232,201,74,.9)}
+
+/* 画布角部控件 */
+.vp-controls{
+  position:absolute;right:14px;bottom:14px;display:flex;flex-direction:column;gap:6px;z-index:15;
+}
+.vp-btn{
+  width:34px;height:34px;border-radius:8px;background:rgba(50,50,50,.92);border:1px solid #555;
+  display:flex;align-items:center;justify-content:center;color:#ddd;transition:.15s;
+}
+.vp-btn:hover{background:#4a4a4a;color:#fff}
+.vp-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+.vp-zoom{font-size:11px;font-family:"JetBrains Mono",monospace;text-align:center;color:#bbb;height:24px;line-height:24px}
+.vp-hint{
+  position:absolute;left:14px;bottom:14px;background:rgba(40,40,40,.85);border:1px solid #444;border-radius:8px;
+  padding:7px 12px;font-size:11px;color:#aaa;z-index:15;line-height:1.7;pointer-events:none;transition:opacity .3s;
+}
+.vp-hint b{color:#ddd;font-weight:500}
+
+/* ============ 右侧详情栏 ============ */
+.detail-empty{padding:34px 20px;text-align:center;color:var(--text-3)}
+.detail-empty svg{width:46px;height:46px;stroke:#555;fill:none;stroke-width:1.3;margin-bottom:14px}
+.detail-empty p{font-size:12px;line-height:1.8}
+.detail-scroll{padding:0 14px 24px}
+.dt-head{padding:14px 0 10px;border-bottom:1px solid #2c2c2c;margin-bottom:12px}
+.dt-cat{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:#bbb;background:#444;border-radius:20px;padding:2.5px 10px;margin-bottom:8px}
+.dt-cat i{width:7px;height:7px;border-radius:2px;background:var(--cat)}
+.dt-en{font-size:17px;font-weight:700;line-height:1.25}
+.dt-cn{font-size:13px;color:var(--accent);margin-top:2px;font-weight:500}
+.dt-badges{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+.dt-badge{font-size:10px;padding:2px 8px;border-radius:4px;background:#2c2c2c;color:var(--text-3);border:1px solid #3a3a3a}
+.dt-sec{margin-bottom:15px}
+.dt-sec h4{font-size:11px;letter-spacing:1px;color:var(--text-3);text-transform:uppercase;margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.dt-sec h4::before{content:"";width:3px;height:11px;background:var(--accent);border-radius:2px}
+.dt-sec p{font-size:12.5px;line-height:1.85;color:#cfcfcf}
+.dt-table{width:100%;border-collapse:collapse;font-size:11.5px;table-layout:fixed}
+.dt-table th{background:#2c2c2c;color:var(--text-3);font-weight:500;padding:6px 7px;text-align:left;font-size:10.5px}
+.dt-table td{padding:6px 7px;border-bottom:1px solid #333;vertical-align:top;line-height:1.55;word-break:break-word}
+.dt-table tr:hover td{background:#383838}
+.dt-table .pn{font-family:"JetBrains Mono",monospace;font-size:11px;white-space:nowrap}
+.dt-table .ty{font-family:"JetBrains Mono",monospace;font-size:10px;white-space:nowrap}
+.tchip{display:inline-flex;align-items:center;gap:5px}
+.tchip i{width:8px;height:8px;border-radius:50%;flex:0 0 8px}
+.dt-formula{
+  background:#242424;border:1px solid #383838;border-left:3px solid var(--accent);border-radius:6px;
+  padding:10px 12px;font-family:"JetBrains Mono",monospace;font-size:12px;color:#e6db74;line-height:1.7;
+  overflow-x:auto;white-space:pre;
+}
+.dt-code{
+  background:#1e1e1e;border:1px solid #333;border-radius:6px;padding:10px 12px;
+  font-family:"JetBrains Mono",monospace;font-size:11px;color:#9cdcfe;line-height:1.65;
+  overflow-x:auto;white-space:pre;
+}
+.dt-tip{
+  display:flex;gap:9px;background:rgba(232,201,74,.09);border:1px solid rgba(232,201,74,.32);
+  border-radius:6px;padding:9px 11px;font-size:11.5px;line-height:1.7;color:#e8d89a;margin-bottom:8px;
+}
+.dt-tip svg{flex:0 0 14px;width:14px;height:14px;stroke:var(--sticky);fill:none;stroke-width:1.8;margin-top:2px}
+.dt-doc-link{
+  display:inline-flex;align-items:center;gap:7px;width:100%;justify-content:center;
+  background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent);
+  border-radius:7px;padding:9px;font-size:12px;font-weight:500;transition:.18s;text-decoration:none;
+}
+.dt-doc-link:hover{background:var(--accent);color:#081420}
+.dt-doc-link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8}
+.dt-del{
+  display:inline-flex;align-items:center;gap:7px;width:100%;justify-content:center;margin-top:8px;
+  background:transparent;border:1px solid #6a3a3a;color:#d98080;border-radius:7px;padding:8px;font-size:12px;transition:.18s;
+}
+.dt-del:hover{background:rgba(224,86,86,.15);border-color:var(--danger);color:var(--danger)}
+
+/* ============ 双击空白的快速创建菜单 ============ */
+.quick-menu{
+  position:absolute;z-index:60;width:270px;background:#3c3c3c;border:1px solid #5a5a5a;border-radius:8px;
+  box-shadow:0 16px 44px rgba(0,0,0,.65);padding:6px;display:none;animation:menuIn .14s ease;
+}
+.quick-menu.open{display:block}
+.quick-menu input{
+  width:100%;background:#2a2a2a;border:1px solid #555;border-radius:5px;color:#fff;padding:8px 10px;
+  font-size:12.5px;outline:none;margin-bottom:5px;
+}
+.quick-menu input:focus{border-color:var(--accent)}
+.qm-list{max-height:320px;overflow-y:auto}
+.qm-item{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:5px;cursor:pointer;font-size:12.5px}
+.qm-item.sel,.qm-item:hover{background:#4f4f4f}
+.qm-item .qm-cn{color:var(--text-3);font-size:10.5px;margin-left:auto}
+.qm-empty{padding:14px;text-align:center;color:var(--text-3);font-size:12px}
+
+/* ============ 教学课程导航条 ============ */
+.tour-bar{
+  position:absolute;left:50%;bottom:14px;transform:translateX(-50%);width:min(560px,calc(100% - 200px));
+  background:rgba(42,42,42,.96);border:1px solid #555;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.6);
+  z-index:30;padding:12px 14px;display:none;animation:menuIn .25s ease;
+}
+.tour-bar.open{display:block}
+.tour-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.tour-step-name{font-size:12.5px;font-weight:700;color:var(--sticky)}
+.tour-count{margin-left:auto;font-size:11px;color:var(--text-3);font-family:"JetBrains Mono",monospace}
+.tour-text{font-size:12.5px;line-height:1.8;color:#d5d5d5;min-height:38px}
+.tour-bottom{display:flex;gap:8px;margin-top:10px;align-items:center}
+.tour-btn{
+  padding:6px 14px;border-radius:6px;font-size:12px;background:#4a4a4a;color:#eee;transition:.15s;
+}
+.tour-btn:hover{background:#5a5a5a}
+.tour-btn.primary{background:var(--accent);color:#081420;font-weight:600}
+.tour-btn.primary:hover{filter:brightness(1.12)}
+.tour-btn:disabled{opacity:.35;cursor:not-allowed}
+.tour-progress{flex:1;height:4px;background:#333;border-radius:3px;overflow:hidden;margin:0 6px}
+.tour-progress i{display:block;height:100%;background:var(--sticky);border-radius:3px;transition:width .35s ease}
+.tour-exit{margin-left:auto;font-size:11px;color:var(--text-3);padding:5px 8px;border-radius:5px}
+.tour-exit:hover{color:#fff;background:#4a4a4a}
+
+/* ============ 引导弹窗 / Toast ============ */
+.modal-mask{
+  position:fixed;inset:0;background:rgba(10,10,10,.72);z-index:100;display:none;
+  align-items:center;justify-content:center;backdrop-filter:blur(3px);
+}
+.modal-mask.open{display:flex;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  width:min(560px,92vw);background:#333;border:1px solid #505050;border-radius:14px;padding:26px 28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);animation:nodePop .3s cubic-bezier(.2,1.3,.4,1);
+}
+.modal h3{font-size:19px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.modal .sub{color:var(--text-3);font-size:12px;margin-bottom:18px}
+.guide-step{display:flex;gap:13px;margin-bottom:15px;align-items:flex-start}
+.guide-step .gn{
+  flex:0 0 28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);
+  font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;border:1px solid var(--accent);
+}
+.guide-step b{font-size:13.5px;display:block;margin-bottom:2px}
+.guide-step p{font-size:12px;color:var(--text-2);line-height:1.7}
+.modal-actions{display:flex;gap:10px;margin-top:20px;align-items:center}
+.modal-actions .sp{flex:1}
+.m-btn{padding:9px 20px;border-radius:8px;font-size:13px;font-weight:500}
+.m-btn.ghost{color:var(--text-2)}
+.m-btn.ghost:hover{background:#444}
+.m-btn.primary{background:var(--accent);color:#081420;font-weight:700}
+.m-btn.primary:hover{filter:brightness(1.1)}
+.m-check{font-size:11.5px;color:var(--text-3);display:flex;align-items:center;gap:6px;cursor:pointer}
+.toast-wrap{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{
+  background:#3f3f3f;border:1px solid #5a5a5a;border-radius:8px;padding:9px 16px;font-size:12.5px;
+  box-shadow:0 8px 26px rgba(0,0,0,.5);animation:toastIn .3s ease;display:flex;align-items:center;gap:8px;
+}
+.toast.warn{border-color:#8a6a2a;color:#e8d89a}.toast.err{border-color:#8a3a3a;color:#e09090}
+.toast.ok{border-color:#4a7a3a;color:#a8d98f}
+@keyframes panelFade{from{opacity:.3}to{opacity:1}}
+@keyframes toastIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+
+/* 面板移动端抽屉/关闭按钮 */
+.panel-toggle{display:none}
+.panel-close{display:none}
+
+/* ============ 响应式 ============ */
+@media (max-width:1100px){
+  .panel{position:absolute;top:0;bottom:0;z-index:50;box-shadow:0 0 40px rgba(0,0,0,.6);transition:transform .25s ease}
+  .panel.left{left:0}.panel.right{right:0;border-left:none}
+  .panel.left.collapsed{margin-left:0;display:none}
+  .panel.right.collapsed{margin-left:0;margin-right:0;display:none}
+  .panel{animation:panelFade .2s ease}
+  .panel-close{display:block;position:absolute;top:9px;right:9px;color:var(--text-3);z-index:5;width:24px;height:24px;border-radius:5px}
+  .panel-close:hover{background:#4a4a4a;color:#fff}
+  .panel-toggle{display:inline-flex}
+  .tour-bar{width:calc(100% - 32px);min-width:0}
+  .brand small{display:none}
+  .tb-btn span.lbl{display:none}
+  .tb-btn{padding:7px 9px}
+  .topbar{overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+  .topbar::-webkit-scrollbar{display:none}
+  .topbar>*{flex-shrink:0}
+}
+@media (max-width:560px){
+  .brand b{font-size:12px}
+  .tb-lesson-name{display:none}
+  .vp-hint{display:none}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- ================= 顶栏 ================= -->
+  <header class="topbar">
+    <a class="back" href="index.html" title="返回工具箱">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      工具箱
+    </a>
+    <div class="brand">
+      <svg viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#2b2b2b"/><circle cx="7" cy="8" r="2.2" fill="#66d9ef"/><circle cx="7" cy="16" r="2.2" fill="#e6db74"/><circle cx="17" cy="12" r="2.2" fill="#fd5ff1"/><path d="M9 8h4a2 2 0 0 1 2 2M9 16h4a2 2 0 0 0 2-2" stroke="#9aa0a8" stroke-width="1.4" fill="none"/></svg>
+      <div><b>Shader Graph 蓝图模拟器</b><small>Unity Shader Graph 17.6 · 中文可视化教学</small></div>
+    </div>
+    <div class="tb-group">
+      <button class="tb-btn panel-toggle" id="toggle-lib" title="节点库">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        <span class="lbl">节点库</span>
+      </button>
+      <div style="position:relative">
+        <button class="tb-btn" id="lesson-btn">
+          <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 0 1 2-2h6v18H5a2 2 0 0 1-2-2V5z"/><path d="M21 5a2 2 0 0 0-2-2h-6v18h6a2 2 0 0 0 2-2V5z"/></svg>
+          <span class="lbl">教学课程</span>
+        </button>
+        <div class="menu-pop" id="lesson-menu"></div>
+      </div>
+      <button class="tb-btn" id="btn-sim" title="运行模拟：数据流动效">
+        <svg viewBox="0 0 24 24"><polygon points="7 5 19 12 7 19 7 5"/></svg>
+        <span class="lbl">运行模拟</span>
+      </button>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-group">
+      <button class="tb-btn" id="btn-note" title="添加黄色便签">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v11l-5 5H4z"/><path d="M15 20v-5h5"/></svg>
+        <span class="lbl">便签</span>
+      </button>
+      <button class="tb-btn" id="btn-clear" title="清空画布">
+        <svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
+        <span class="lbl">清空</span>
+      </button>
+    </div>
+    <div class="spacer"></div>
+    <span class="tb-lesson-name" id="lesson-label"></span>
+    <div class="tb-group">
+      <button class="tb-btn panel-toggle" id="toggle-detail" title="节点详情">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        <span class="lbl">详情</span>
+      </button>
+      <button class="tb-btn" id="btn-help" title="使用指引">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7"/><path d="M12 16.5h.01"/></svg>
+        <span class="lbl">帮助</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <!-- ================= 左：节点库 ================= -->
+    <aside class="panel left" id="lib-panel">
+      <button class="panel-close" id="lib-close"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="panel-head">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+        节点库 Node Library
+      </div>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="lib-search" type="text" placeholder="搜索节点（中/英文）…">
+      </div>
+      <div class="panel-body" id="lib-list"></div>
+    </aside>
+
+    <!-- ================= 中：画布 ================= -->
+    <main class="viewport" id="viewport">
+      <div class="grid-bg" id="grid-bg"></div>
+      <div class="world" id="world">
+        <svg id="edge-svg" width="1" height="1"></svg>
+        <div id="group-layer" style="position:absolute;left:0;top:0"></div>
+        <div id="node-layer" style="position:absolute;left:0;top:0"></div>
+        <div id="note-layer" style="position:absolute;left:0;top:0"></div>
+      </div>
+
+      <!-- 双击空白快速创建 -->
+      <div class="quick-menu" id="quick-menu">
+        <input type="text" id="quick-input" placeholder="输入节点名称，如 Dot、纹理、法线…" autocomplete="off">
+        <div class="qm-list" id="quick-list"></div>
+      </div>
+
+      <!-- 课程教学条 -->
+      <div class="tour-bar" id="tour-bar">
+        <div class="tour-top">
+          <span class="tour-step-name" id="tour-name"></span>
+          <span class="tour-count" id="tour-count"></span>
+        </div>
+        <div class="tour-text" id="tour-text"></div>
+        <div class="tour-bottom">
+          <button class="tour-btn" id="tour-prev">上一步</button>
+          <div class="tour-progress"><i id="tour-prog"></i></div>
+          <button class="tour-btn primary" id="tour-next">下一步</button>
+          <button class="tour-exit" id="tour-exit">退出课程</button>
+        </div>
+      </div>
+
+      <!-- 操作提示 -->
+      <div class="vp-hint" id="vp-hint">
+        <b>双击空白</b> 快速创建节点 · 拖拽端口圆点 <b>连线</b> · 点击节点查看 <b>中文详解</b><br>
+        拖空白平移 · 滚轮缩放 · 选中后按 <b>Delete</b> 删除 · 右键画布也可创建节点
+      </div>
+
+      <!-- 缩放控件 -->
+      <div class="vp-controls">
+        <button class="vp-btn" id="zoom-in" title="放大"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="vp-zoom" id="zoom-label">100%</div>
+        <button class="vp-btn" id="zoom-out" title="缩小"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+        <button class="vp-btn" id="zoom-fit" title="框选全部"><svg viewBox="0 0 24 24"><path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4"/></svg></button>
+      </div>
+    </main>
+
+    <!-- ================= 右：节点详情 ================= -->
+    <aside class="panel right" id="detail-panel">
+      <button class="panel-close" id="detail-close"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="panel-head">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        节点详情 Node Details
+      </div>
+      <div class="panel-body" id="detail-body"></div>
+    </aside>
+  </div>
+</div>
+
+<!-- 引导弹窗 -->
+<div class="modal-mask" id="guide-mask">
+  <div class="modal">
+    <h3>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4da6ff" stroke-width="1.7"><circle cx="7" cy="8" r="2.2"/><circle cx="7" cy="16" r="2.2"/><circle cx="17" cy="12" r="2.2"/><path d="M9 8h3a2 2 0 0 1 2 2M9 16h3a2 2 0 0 0 2-2"/></svg>
+      欢迎来到蓝图模拟器
+    </h3>
+    <p class="sub">像在 Unity 里一样搭建 Shader Graph，每个节点都配有中文讲解 —— 专为 Shader Graph 初学者设计。</p>
+    <div class="guide-step"><div class="gn">1</div><div><b>创建节点</b><p>在左侧「节点库」点击/拖拽添加节点；在画布空白处<b>双击</b>（或右键）可快速搜索创建。</p></div></div>
+    <div class="guide-step"><div class="gn">2</div><div><b>连接节点</b><p>按住端口圆点拖到另一个节点的端口即可连线，端口颜色代表数据类型，不兼容的类型无法连接。</p></div></div>
+    <div class="guide-step"><div class="gn">3</div><div><b>看讲解、跑模拟</b><p>点击任意节点，右侧显示它的中文介绍、参数说明与着色器代码；点顶栏「运行模拟」观看数据流动画。</p></div></div>
+    <div class="guide-step"><div class="gn">4</div><div><b>跟着课程学</b><p>顶栏「教学课程」内置官方 Dot Product 文档的 4 个经典示例，分步讲解点积在着色器中的用法。</p></div></div>
+    <div class="modal-actions">
+      <label class="m-check"><input type="checkbox" id="guide-dont"> 不再显示</label>
+      <div class="sp"></div>
+      <button class="m-btn ghost" id="guide-close">自由探索</button>
+      <button class="m-btn primary" id="guide-tour">直接上第一课</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<script>
+/* ============================================================
+   1. 类型系统 & 分类元数据（端口颜色严格复刻 Shader Graph）
+   ============================================================ */
+const TYPES = {
+  float:{label:'Vector 1 (Float)', short:'1',  color:'var(--t-float)', dim:1,  kind:'vec'},
+  v2:   {label:'Vector 2',           short:'2',  color:'var(--t-v2)',    dim:2,  kind:'vec'},
+  v3:   {label:'Vector 3',           short:'3',  color:'var(--t-v3)',    dim:3,  kind:'vec'},
+  v4:   {label:'Vector 4',           short:'4',  color:'var(--t-v4)',    dim:4,  kind:'vec'},
+  dyn:  {label:'Dynamic Vector',     short:'D',  color:'var(--t-dyn)',   dim:0,  kind:'vec'},
+  bool: {label:'Boolean',            short:'B',  color:'var(--t-bool)',  dim:1,  kind:'bool'},
+  tex:  {label:'Texture 2D',         short:'T',  color:'var(--t-tex)',   dim:0,  kind:'tex'},
+  cube: {label:'Cubemap',            short:'C',  color:'var(--t-cube)',  dim:0,  kind:'cube'},
+  samp: {label:'Sampler State',      short:'S',  color:'var(--t-samp)',  dim:0,  kind:'samp'},
+  mat:   {label:'Matrix',           short:'M',  color:'var(--t-mat)',   dim:0,  kind:'mat'}
+};
+const CATS = {
+  basic:     {cn:'常量输入', en:'Input / Basic',      color:'var(--c-basic)'},
+  geometry:  {cn:'几何输入', en:'Input / Geometry',   color:'var(--c-geometry)'},
+  texture:   {cn:'纹理输入', en:'Input / Texture',    color:'var(--c-texture)'},
+  math:      {cn:'数学',     en:'Math',               color:'var(--c-math)'},
+  channel:   {cn:'通道',     en:'Channel',            color:'var(--c-channel)'},
+  procedural:{cn:'程序生成', en:'Procedural',         color:'var(--c-procedural)'},
+  artistic:  {cn:'美术调整', en:'Artistic',           color:'var(--c-artistic)'},
+  uv:        {cn:'UV',       en:'UV',                 color:'var(--c-uv)'},
+  utility:   {cn:'工具',     en:'Utility',            color:'var(--c-utility)'},
+  master:    {cn:'输出',     en:'Master（模拟）',      color:'var(--c-master)'}
+};
+const DOC_BASE = 'https://docs.unity3d.com/Packages/com.unity.shadergraph@17.6/manual/';
+const docUrl = en => DOC_BASE + en.replace(/[^\w\s-]/g,'').trim().replace(/\s+/g,'-') + '-Node.html';
+
+/* ============================================================
+   2. 节点库（中文教学内容，依据 Unity Shader Graph 17.6 官方文档编写）
+   字段：en 英文名 / cn 中文名 / in,out 端口 / ctrl 控件 /
+        desc 简介 / formula 公式 / code 生成代码 / tip 初学提示
+   ============================================================ */
+const NODES = {};
+function N(d){ d.doc = d.slug ? DOC_BASE+d.slug : docUrl(d.en); NODES[d.id]=d; }
+
+/* ---------------- 常量输入 ---------------- */
+N({id:'vec1', en:'Vector 1', cn:'向量 1（标量 Float）', cat:'basic',
+  in:[], out:[{n:'Out',t:'float',cn:'一个浮点数，例如 0.5'}],
+  ctrl:[{k:'x',type:'vec',dim:1,def:[0.5],cn:'数值 X'}],
+  desc:'定义一个 Vector 1，也就是 HLSL 里的 float 标量。它是 Shader Graph 中最基础的数据，像透明度、金属度、平滑度这类「一个数」的参数都用它表示。可以直接在节点上填数，也常作为其他节点的可调参数。',
+  code:'float _Vector1 = 0.5;'});
+N({id:'vec2', en:'Vector 2', cn:'向量 2（float2）', cat:'basic',
+  in:[], out:[{n:'Out',t:'v2',cn:'二维向量 (X, Y)'}],
+  ctrl:[{k:'xy',type:'vec',dim:2,def:[0,0],cn:'X、Y 两个分量'}],
+  desc:'定义一个 Vector 2（float2），包含 X、Y 两个分量。最典型的用途是表示 UV 坐标、平铺（Tiling）和偏移（Offset）。',
+  code:'float2 _Vector2 = float2(0, 0);'});
+N({id:'vec3', en:'Vector 3', cn:'向量 3（float3）', cat:'basic',
+  in:[], out:[{n:'Out',t:'v3',cn:'三维向量 (X, Y, Z)'}],
+  ctrl:[{k:'xyz',type:'vec',dim:3,def:[1,0,0],cn:'X、Y、Z 三个分量'}],
+  desc:'定义一个 Vector 3（float3），包含 X、Y、Z 三个分量。颜色 RGB、法线、方向等「三个数」一组的数据都用它表示，是与 Dot Product（点积）配合最频繁的节点之一。',
+  code:'float3 _Vector3 = float3(1, 0, 0);'});
+N({id:'vec4', en:'Vector 4', cn:'向量 4（float4）', cat:'basic',
+  in:[], out:[{n:'Out',t:'v4',cn:'四维向量 (X, Y, Z, W)'}],
+  ctrl:[{k:'xyzw',type:'vec',dim:4,def:[0,0,0,0],cn:'X、Y、Z、W 四个分量'}],
+  desc:'定义一个 Vector 4（float4）。它可以是带 Alpha 的 RGBA 颜色，也可以是齐次坐标 (X,Y,Z,W)。Sample Texture 2D 的 RGBA 输出就是 Vector 4。',
+  code:'float4 _Vector4 = float4(0, 0, 0, 0);'});
+N({id:'boolean', en:'Boolean', cn:'布尔值（真/假）', cat:'basic',
+  in:[], out:[{n:'Out',t:'bool',cn:'真（true=1）或假（false=0）'}],
+  ctrl:[{k:'v',type:'check',def:false,cn:'勾选为 true，取消为 false'}],
+  desc:'定义一个布尔开关，值只有 true（1）和 false（0）。常用于 Branch（分支）节点做条件判断，例如决定是否开启自发光、是否使用第二套纹理。',
+  code:'bool _Boolean = false;'});
+N({id:'color', en:'Color', cn:'颜色（RGBA）', cat:'basic',
+  in:[], out:[{n:'Out',t:'v4',cn:'RGBA 颜色，每个通道 0~1'}],
+  ctrl:[{k:'c',type:'color',def:[0.8,0.2,0.2,1],cn:'点击色块打开取色器'}],
+  desc:'定义一个 RGBA 颜色参数，本质是 Vector 4，四个通道取值 0~1，分别对应红、绿、蓝、透明度。颜色节点可以暴露为材质属性，在材质面板上直接调色。',
+  tip:'颜色数值是线性的 0~1，不是常见的 0~255。例如纯红 = (1,0,0,1)。',
+  code:'float4 _Color = float4(0.8, 0.2, 0.2, 1);'});
+N({id:'integer', en:'Integer', cn:'整数（Int）', cat:'basic',
+  in:[], out:[{n:'Out',t:'float',cn:'整数值（输出时按浮点数参与运算）'}],
+  ctrl:[{k:'v',type:'int',def:1,cn:'整数'}],
+  desc:'定义一个整数，常用于循环次数、数组下标等需要「整个数」的场合。在以浮点为主的图形运算中，它会自动以浮点数形式参与计算。',
+  code:'int _Integer = 1;'});
+N({id:'slider', en:'Slider', cn:'滑块参数', cat:'basic',
+  in:[], out:[{n:'Out',t:'float',cn:'最小值与最大值之间的一个浮点数'}],
+  ctrl:[{k:'v',type:'slider',def:0.5,min:0,max:1,cn:'拖动在最小/最大值之间取值'}],
+  desc:'定义一个带范围的浮点数参数，在节点上显示为滑块。暴露到材质面板后，美术可以直观地拖动调节（如发光强度、混合比例），而不必改代码。',
+  tip:'在节点标题上右键可选择 Expose，把它暴露到材质 Inspector。',
+  code:'float _Slider = 0.5; // 范围由 Min / Max 决定'});
+N({id:'constant', en:'Constant', cn:'数学常量', cat:'basic',
+  in:[], out:[{n:'Out',t:'float',cn:'下拉选择的内置数学常数'}],
+  ctrl:[{k:'v',type:'select',def:'PI',opts:[['PI','PI 圆周率 ≈ 3.14159'],['TAU','TAU = 2π ≈ 6.28318'],['PHI','PHI 黄金比例 ≈ 1.618'],['E','E 自然对数底 ≈ 2.71828'],['SQRT2','√2 ≈ 1.41421']],cn:'选择内置常数'}],
+  desc:'提供常用数学常数（π、2π、黄金比例、自然对数底 e、√2），无需手动背诵数值。做角度与弧度换算、环形动画时经常用到 π。',
+  code:'float Out = 3.14159265; // PI'});
+
+/* ---------------- 几何输入 ---------------- */
+N({id:'position', en:'Position', cn:'位置', cat:'geometry',
+  in:[], out:[{n:'Out',t:'v3',cn:'当前片元/顶点的位置坐标'}],
+  ctrl:[{k:'space',type:'select',def:'World',opts:[['Object','Object 物体自身空间'],['View','View 观察空间'],['World','World 世界空间'],['Tangent','Tangent 切线空间']],cn:'坐标所在的参考空间'}],
+  desc:'输出网格当前顶点（或片元）的位置坐标。通过 Space 下拉框切换参考空间：Object 是相对模型自身，World 是场景中的绝对位置，View 相对摄像机。常用它做基于高度的渐变、顶部积雪、扫描线等效果。',
+  code:'float3 Out = TransformWorldToObject(i.position); // 依 Space 而定'});
+N({id:'normal', en:'Normal Vector', cn:'法线向量', cat:'geometry',
+  in:[], out:[{n:'Out',t:'v3',cn:'单位法线向量，垂直于表面'}],
+  ctrl:[{k:'space',type:'select',def:'World',opts:[['Object','Object'],['View','View'],['World','World'],['Tangent','Tangent']],cn:'法线所在空间'}],
+  desc:'输出网格表面的法线向量——垂直于表面、长度为 1 的方向向量。它描述表面「朝哪边」，是所有光照计算的基础：Lambert 漫反射就是拿法线与光源方向做点积。Space 一般选 World。',
+  tip:'法线是单位向量，这也是 Dot Product 教程里特别强调「先归一化」的原因。',
+  code:'float3 Out = i.normalWS; // World Space 下的法线'});
+N({id:'tangent', en:'Tangent Vector', cn:'切线向量', cat:'geometry',
+  in:[], out:[{n:'Out',t:'v3',cn:'沿 UV 的 U 方向、与表面相切'}],
+  ctrl:[{k:'space',type:'select',def:'World',opts:[['Object','Object'],['View','View'],['World','World'],['Tangent','Tangent']],cn:'切线所在空间'}],
+  desc:'输出网格的切线向量，它沿 UV 的 U 方向贴着表面延伸，与法线、副切线共同构成切线空间。使用法线贴图（Normal Map）时需要在切线空间中计算。',
+  code:'float3 Out = i.tangentWS;'});
+N({id:'viewdir', en:'View Direction', cn:'视线方向', cat:'geometry',
+  in:[], out:[{n:'Out',t:'v3',cn:'从当前片元指向摄像机的单位向量'}],
+  ctrl:[{k:'space',type:'select',def:'World',opts:[['Object','Object'],['View','View'],['World','World'],['Tangent','Tangent']],cn:'向量所在空间'}],
+  desc:'输出从当前片元指向摄像机的方向向量。它与法线的点积可以得到「表面正对镜头的程度」，菲涅尔效果（边缘发光）、反射、 Rim Light 都依赖它。',
+  formula:'Fresnel = 1 - dot(N, V)',
+  code:'float3 Out = GetCameraPositionWS() - i.positionWS; Out = normalize(Out);'});
+N({id:'mainlight', en:'Main Light Direction', cn:'主光源方向', cat:'geometry',
+  in:[], out:[{n:'Out',t:'v3',cn:'场景主平行光的照射方向（单位向量）'}],
+  desc:'输出场景主方向光（Directional Light）的方向向量，URP 中由主光源数据直接提供。把它与法线做点积就得到最基础的 Lambert 漫反射光照——本工具的「漫反射光照」课程就是它的标准用法。',
+  code:'float3 Out = GetMainLight().direction; // URP'});
+N({id:'screenpos', en:'Screen Position', cn:'屏幕位置', cat:'geometry',
+  in:[], out:[{n:'Out',t:'v4',cn:'屏幕空间坐标，模式不同分量含义不同'}],
+  desc:'输出当前片元在屏幕上的位置。Default 模式下 .xy 是像素坐标、.zw 是用于透视除法的值；Normalized 模式下 .xy 为 0~1 的归一化屏幕 UV。常用于屏幕描边、扫描线、与屏幕坐标相关的特效。',
+  code:'float4 Out = ComputeScreenPos(i.positionCS);'});
+N({id:'vertexcolor', en:'Vertex Color', cn:'顶点色', cat:'geometry',
+  in:[], out:[{n:'Out',t:'v4',cn:'网格顶点上烘焙的 RGBA 颜色'}],
+  desc:'输出模型顶点色（Vertex Colors），即建模软件里画在顶点上的 RGBA 数据。常用于植被摇摆遮罩、地形混合权重、面片渐变等「由美术在网格上画好」的控制信息。',
+  code:'float4 Out = i.color;'});
+N({id:'uv', en:'UV', cn:'UV 坐标', cat:'uv',
+  in:[], out:[{n:'Out',t:'v2',cn:'当前片元的 UV 纹理坐标，通常 0~1'}],
+  ctrl:[{k:'channel',type:'select',def:'UV0',opts:[['UV0','UV0 第一套 UV'],['UV1','UV1 第二套 UV'],['UV2','UV2'],['UV3','UV3']],cn:'使用哪一套 UV'}],
+  desc:'输出网格的 UV 坐标（Vector 2），它把纹理映射到模型表面。UV 是采样纹理、程序噪声的「位置输入」：改 UV 就等于移动/平铺纹理。默认使用第一套 UV0。',
+  code:'float2 Out = i.uv0;'});
+
+/* ---------------- 纹理输入 ---------------- */
+N({id:'texasset', en:'Texture 2D Asset', cn:'2D 纹理资产', cat:'texture',
+  in:[], out:[{n:'Tex',t:'tex',cn:'一张纹理资源本身（不含采样数据）'}],
+  ctrl:[{k:'tex',type:'tex',def:'checker',cn:'选择纹理槽（模拟中提供程序纹理）'}],
+  desc:'定义一个 Texture 2D 类型的纹理资源槽，可以把贴图赋给它。它本身只是「资源引用」，必须接入 Sample Texture 2D 节点才能真正读取像素颜色。常暴露为材质的 BaseMap、NormalMap 属性。',
+  code:'TEXTURE2D(_Texture2DAsset); SAMPLER(sampler_Texture2DAsset);'});
+N({id:'sample2d', en:'Sample Texture 2D', cn:'采样 2D 纹理', cat:'texture',
+  in:[{n:'Texture',t:'tex',cn:'要采样的纹理（接 Texture 2D Asset）'},
+      {n:'UV',t:'v2',cn:'采样坐标，不接则使用模型默认 UV'},
+      {n:'Sampler',t:'samp',cn:'采样器状态（过滤/平铺方式），可留空'}],
+  out:[{n:'RGBA',t:'v4',cn:'采样得到的 RGBA 颜色（Vector 4）'},
+       {n:'R',t:'float',cn:'红色通道'},
+       {n:'G',t:'float',cn:'绿色通道'},
+       {n:'B',t:'float',cn:'蓝色通道'},
+       {n:'A',t:'float',cn:'透明度通道'}],
+  ctrl:[{k:'type',type:'select',def:'Default',opts:[['Default','Default 普通颜色纹理'],['Normal','Normal 法线贴图']],cn:'纹理类型'},
+        {k:'space',type:'select',def:'Tangent',opts:[['Tangent','Tangent 切线空间'],['Object','Object'],['World','World']],cn:'法线贴图的空间（仅 Normal 类型）'},
+        {k:'tex',type:'tex',def:'photo',cn:'内置程序纹理（模拟用）'}],
+  desc:'Shader Graph 中最常用的纹理节点：在指定 UV 处读取纹理颜色。RGBA 输出四个通道打包的 Vector 4，R/G/B/A 分别输出单通道。Type 设为 Normal 时会把贴图按法线贴图解码。「去饱和」课程中用它读取彩色照片再转灰度。',
+  tip:'UV 端口悬空时自动使用网格的默认 UV；只想取一个通道时直接用 R/G/B/A 输出，不必再接 Split。',
+  code:'float4 RGBA = SAMPLE_TEXTURE2D(_Tex, sampler_Tex, uv);\nfloat R = RGBA.r, G = RGBA.g, B = RGBA.b, A = RGBA.a;'});
+N({id:'samplecube', en:'Sample Cubemap', cn:'采样立方体贴图', cat:'texture',
+  in:[{n:'View Direction',t:'v3',cn:'视线方向（用于 LOD 选择，常接 View Direction）'},
+      {n:'Normal',t:'v3',cn:'表面法线，用于计算反射方向'},
+      {n:'Cubemap',t:'cube',cn:'Cubemap 环境贴图资源'},
+      {n:'Sampler',t:'samp',cn:'采样器状态，可留空'}],
+  out:[{n:'Out',t:'v4',cn:'采样得到的环境颜色'},
+       {n:'LOD',t:'float',cn:'当前使用的 Mipmap 层级'}],
+  desc:'根据反射方向对 Cubemap（立方体环境贴图）采样，常用于环境反射、金属反射、天空盒映射。内部会用 Normal 和 View Direction 计算反射向量 R = reflect(-V, N)——「反射向量」课程演示了不使用本节点时如何手工算出同样的结果。',
+  code:'float3 R = reflect(-V, N);\nfloat4 Out = SAMPLE_TEXTURECUBE(_Cubemap, smp, R);'});
+/* ---------------- 数学 Math ---------------- */
+N({id:'add', en:'Add', cn:'加法', cat:'math',
+  in:[{n:'A',t:'dyn',cn:'第一个输入'}, {n:'B',t:'dyn',cn:'第二个输入'}],
+  out:[{n:'Out',t:'dyn',cn:'A 与 B 逐分量相加'}],
+  desc:'逐分量返回 A 加 B。输入是标量就做普通加法；输入是向量则对应分量分别相加（着色器中没有「向量整体相加」之外的开销）。向量与标量相加时，标量会自动广播到每个分量。',
+  formula:'Out = A + B\n例：float3(1,2,3) + float3(4,5,6) = float3(5,7,9)',
+  code:'void Unity_Add_float4(float4 A, float4 B, out float4 Out){\n    Out = A + B;\n}'});
+N({id:'subtract', en:'Subtract', cn:'减法', cat:'math',
+  in:[{n:'A',t:'dyn',cn:'被减数'}, {n:'B',t:'dyn',cn:'减数'}],
+  out:[{n:'Out',t:'dyn',cn:'A 减 B 的结果'}],
+  desc:'逐分量返回 A 减 B。注意顺序：A 是被减数。做「两个方向的差」「颜色相减」时都用它，反射向量的手工推导里就出现了 Subtract。',
+  formula:'Out = A - B',
+  code:'void Unity_Subtract_float4(float4 A, float4 B, out float4 Out){\n    Out = A - B;\n}'});
+N({id:'multiply', en:'Multiply', cn:'乘法', cat:'math',
+  in:[{n:'A',t:'dyn',cn:'第一个输入'}, {n:'B',t:'dyn',cn:'第二个输入'}],
+  out:[{n:'Out',t:'dyn',cn:'逐分量乘积（或矩阵乘法）'}],
+  desc:'逐分量返回 A 乘 B。颜色叠加、缩放向量、强度调节都靠它：例如颜色 × 光照系数。当其中一个是标量时，相当于把向量整体缩放。输入为矩阵时执行矩阵乘法。',
+  formula:'Out = A × B（逐分量）\nfloat3(1,2,3) × 2 = float3(2,4,6)',
+  code:'void Unity_Multiply_float4(float4 A, float4 B, out float4 Out){\n    Out = A * B;\n}'});
+N({id:'divide', en:'Divide', cn:'除法', cat:'math',
+  in:[{n:'A',t:'dyn',cn:'被除数'}, {n:'B',t:'dyn',cn:'除数'}],
+  out:[{n:'Out',t:'dyn',cn:'A 除以 B'}],
+  desc:'逐分量返回 A 除以 B。归一化、求平均值、算比例时使用。注意 B 为 0 会得到未定义结果（通常显示为黑色或异常品红），必要时加保护。',
+  formula:'Out = A / B',
+  code:'void Unity_Divide_float4(float4 A, float4 B, out float4 Out){\n    Out = A / B;\n}'});
+N({id:'dot', en:'Dot Product', cn:'点积（标量积）', cat:'math',
+  in:[{n:'A',t:'dyn',cn:'第一个输入向量'}, {n:'B',t:'dyn',cn:'第二个输入向量'}],
+  out:[{n:'Out',t:'float',cn:'点积结果（标量）'}],
+  desc:'返回两个向量的点积（标量积）：对应分量相乘后全部相加。几何意义上，它等于两向量长度之积再乘以夹角的余弦。对于归一化向量：方向完全相同时返回 1，完全相反返回 -1，互相垂直返回 0。它是光照、灰度化、遮罩选择等无数效果的数学核心，也是本工具教学课程的主角。',
+  formula:'A·B = Ax·Bx + Ay·By + Az·Bz\nA·B = |A||B|·cos(θ)',
+  code:'void Unity_DotProduct_float4(float4 A, float4 B, out float Out){\n    Out = dot(A, B);\n}'});
+N({id:'cross', en:'Cross Product', cn:'叉积（叉乘）', cat:'math',
+  in:[{n:'A',t:'v3',cn:'第一个三维向量'}, {n:'B',t:'v3',cn:'第二个三维向量'}],
+  out:[{n:'Out',t:'v3',cn:'同时垂直于 A、B 的向量'}],
+  desc:'返回两个三维向量的叉积，结果是一个同时垂直于 A 和 B 的新向量，其长度等于 |A||B|sin(θ)。常用来由法线和切线求副切线、构建坐标系，或判断两个方向的左右关系。',
+  formula:'Out = A × B\nOut.x = Ay·Bz − Az·By …',
+  code:'void Unity_CrossProduct_float3(float3 A, float3 B, out float3 Out){\n    Out = cross(A, B);\n}'});
+N({id:'normalize', en:'Normalize', cn:'归一化', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'任意向量'}],
+  out:[{n:'Out',t:'dyn',cn:'方向相同、长度为 1 的向量'}],
+  desc:'保持向量方向不变，把长度缩放为 1（单位向量）。点积的夹角解读只对单位向量成立，所以做光照前通常要先 Normalize 法线和光源方向。',
+  formula:'Out = In / |In|',
+  code:'void Unity_Normalize_float4(float4 In, out float4 Out){\n    Out = normalize(In);\n}'});
+N({id:'length', en:'Length', cn:'长度', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'任意向量'}],
+  out:[{n:'Out',t:'float',cn:'向量的欧氏长度（标量）'}],
+  desc:'返回向量的欧氏长度（模），即 √(x²+y²+z²)。可用于计算到某点的距离、速度大小、渐变遮罩等。',
+  formula:'Out = √(x² + y² + z²)',
+  code:'void Unity_Length_float4(float4 In, out float Out){\n    Out = length(In);\n}'});
+N({id:'distance', en:'Distance', cn:'距离', cat:'math',
+  in:[{n:'A',t:'dyn',cn:'第一个点/向量'}, {n:'B',t:'dyn',cn:'第二个点/向量'}],
+  out:[{n:'Out',t:'float',cn:'A 与 B 之间的距离'}],
+  desc:'返回两个点之间的距离，等价于 Length(A − B)。常用于物体附近的交互效果、距离场、噪声衰减。',
+  formula:'Out = |A − B|',
+  code:'void Unity_Distance_float4(float4 A, float4 B, out float Out){\n    Out = distance(A, B);\n}'});
+N({id:'sine', en:'Sine', cn:'正弦', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'角度值（弧度）'}],
+  out:[{n:'Out',t:'dyn',cn:'正弦值，范围 −1~1'}],
+  desc:'返回输入的正弦值（输入为弧度），结果在 −1~1 之间平滑周期振荡。水波、呼吸光、摆动等一切循环动画几乎都从 Sine 开始。',
+  formula:'Out = sin(In)，周期 2π',
+  code:'void Unity_Sine_float4(float4 In, out float4 Out){\n    Out = sin(In);\n}'});
+N({id:'cosine', en:'Cosine', cn:'余弦', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'角度值（弧度）'}],
+  out:[{n:'Out',t:'dyn',cn:'余弦值，范围 −1~1'}],
+  desc:'返回输入的余弦值。与 Sine 相位相差 1/4 周期，二者配合可做圆周运动（X=cos、Y=sin）。',
+  formula:'Out = cos(In)',
+  code:'void Unity_Cosine_float4(float4 In, out float4 Out){\n    Out = cos(In);\n}'});
+N({id:'saturate', en:'Saturate', cn:'钳制到 0~1', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'任意数值/向量'}],
+  out:[{n:'Out',t:'dyn',cn:'每个分量被限制在 0~1'}],
+  desc:'把每个分量钳制（Clamp）到 0~1 之间：小于 0 变 0，大于 1 变 1。光照结果（如 N·L 背光面为负）几乎都要先 Saturate 再用于颜色，避免负值污染。',
+  formula:'Out = clamp(In, 0, 1)',
+  code:'void Unity_Saturate_float4(float4 In, out float4 Out){\n    Out = saturate(In);\n}'});
+N({id:'clamp', en:'Clamp', cn:'范围钳制', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'输入值'}, {n:'Min',t:'dyn',cn:'最小值'}, {n:'Max',t:'dyn',cn:'最大值'}],
+  out:[{n:'Out',t:'dyn',cn:'限制在 Min~Max 之间的结果'}],
+  desc:'把输入限制在 Min 与 Max 之间。Saturate 是它 Min=0、Max=1 的特例。用于防止参数越界、限制混合比例。',
+  formula:'Out = min(max(In, Min), Max)',
+  code:'void Unity_Clamp_float4(float4 In, float4 Min, float4 Max, out float4 Out){\n    Out = clamp(In, Min, Max);\n}'});
+N({id:'lerp', en:'Lerp', cn:'线性插值', cat:'math',
+  in:[{n:'A',t:'dyn',cn:'T=0 时的值'}, {n:'B',t:'dyn',cn:'T=1 时的值'}, {n:'T',t:'dyn',cn:'插值比例 0~1'}],
+  out:[{n:'Out',t:'dyn',cn:'A、B 之间的混合结果'}],
+  desc:'按比例 T 在 A 与 B 之间线性混合：T=0 取 A，T=1 取 B，T=0.5 取正中间。它是着色器里最常用的「混合器」——混色、混合纹理、Desaturation 内部本质也是 Lerp。',
+  formula:'Out = A + (B − A) × T',
+  code:'void Unity_Lerp_float4(float4 A, float4 B, float4 T, out float4 Out){\n    Out = lerp(A, B, T);\n}'});
+N({id:'remap', en:'Remap', cn:'重映射', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'原始值'},
+      {n:'In Min Max',t:'v2',cn:'输入范围（最小, 最大）'},
+      {n:'Out Min Max',t:'v2',cn:'目标范围（最小, 最大）'}],
+  out:[{n:'Out',t:'dyn',cn:'映射到新范围后的值'}],
+  desc:'把数值从一个区间线性映射到另一个区间，例如把噪声的 −1~1 映射为 0~1，或把高度 0~10 米映射为 0~1 的颜色渐变。注意结果默认不钳制，超出范围会继续外推。',
+  formula:'Out = (In − InMin)/(InMax − InMin) × (OutMax − OutMin) + OutMin',
+  code:'Out = (In - InMinMax.x) / (InMinMax.y - InMinMax.x)\n    * (OutMinMax.y - OutMinMax.x) + OutMinMax.x;'});
+N({id:'power', en:'Power', cn:'幂', cat:'math',
+  in:[{n:'Base',t:'dyn',cn:'底数'}, {n:'Exp',t:'dyn',cn:'指数'}],
+  out:[{n:'Out',t:'dyn',cn:'Base 的 Exp 次方'}],
+  desc:'返回 Base 的 Exp 次方。最典型的用途是高光衰减：对 Fresnel 或半角向量点积取高次幂，让光斑更集中锐利；也用来做伽马校正。',
+  formula:'Out = Base ^ Exp',
+  code:'void Unity_Power_float4(float4 Base, float4 Exp, out float4 Out){\n    Out = pow(Base, Exp);\n}'});
+N({id:'absolute', en:'Absolute', cn:'绝对值', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'输入'}],
+  out:[{n:'Out',t:'dyn',cn:'去掉正负号的结果'}],
+  desc:'逐分量返回绝对值，负数变正。可用于制造对称的折角形渐变、双面差异效果。',
+  formula:'Out = |In|',
+  code:'void Unity_Absolute_float4(float4 In, out float4 Out){\n    Out = abs(In);\n}'});
+N({id:'negate', en:'Negate', cn:'取反', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'输入'}],
+  out:[{n:'Out',t:'dyn',cn:'正变负、负变正'}],
+  desc:'逐分量取反（乘以 −1），翻转方向或数值符号。',
+  formula:'Out = −In',
+  code:'void Unity_Negate_float4(float4 In, out float4 Out){\n    Out = -In;\n}'});
+N({id:'oneminus', en:'One Minus', cn:'一减', cat:'math',
+  in:[{n:'In',t:'dyn',cn:'输入'}],
+  out:[{n:'Out',t:'dyn',cn:'1 − In'}],
+  desc:'逐分量返回 1 减输入。颜色反相、把粗糙度转成光滑度、翻转遮罩（黑变白）时使用，是比 Subtract 更直观的写法。',
+  formula:'Out = 1 − In',
+  code:'void Unity_OneMinus_float4(float4 In, out float4 Out){\n    Out = 1 - In;\n}'});
+
+/* ---------------- 通道 Channel ---------------- */
+N({id:'split', en:'Split', cn:'拆分通道', cat:'channel',
+  in:[{n:'In',t:'dyn',cn:'任意向量（最多拆出 4 个分量）'}],
+  out:[{n:'R',t:'float',cn:'第 1 分量（X / R）'},
+       {n:'G',t:'float',cn:'第 2 分量（Y / G）'},
+       {n:'B',t:'float',cn:'第 3 分量（Z / B）'},
+       {n:'A',t:'float',cn:'第 4 分量（W / A）'}],
+  desc:'把一个向量拆成 R、G、B、A（即 X、Y、Z、W）四个独立标量输出。「Under the Hood」课程展示了：Dot Product 内部其实就是先 Split 出分量、三对 Multiply、再两级 Add。',
+  tip:'R/G/B/A 与 X/Y/Z/W 只是同一组分量的两套命名：颜色用 RGBA，向量用 XYZW。',
+  code:'float R = In.r, G = In.g, B = In.b, A = In.a;'});
+N({id:'combine', en:'Combine', cn:'合并通道', cat:'channel',
+  in:[{n:'R',t:'float',cn:'第 1 分量，默认 0'},
+      {n:'G',t:'float',cn:'第 2 分量，默认 0'},
+      {n:'B',t:'float',cn:'第 3 分量，默认 0'},
+      {n:'A',t:'float',cn:'第 4 分量，默认 0'}],
+  out:[{n:'RGBA',t:'v4',cn:'合并后的 Vector 4'}],
+  desc:'Split 的逆操作：把最多四个标量重新打包成一个 Vector 4。常用于把三个灰度图组合成 RGB 颜色，或手工拼出向量。',
+  code:'float4 RGBA = float4(R, G, B, A);'});
+
+/* ---------------- 程序生成 / 美术 / UV / 工具 / 输出 ---------------- */
+N({id:'noise', en:'Simple Noise', cn:'简单噪声', cat:'procedural',
+  in:[{n:'UV',t:'v2',cn:'采样坐标，不接用默认 UV'},
+      {n:'Scale',t:'float',cn:'噪声频率缩放，越大越细碎'}],
+  out:[{n:'Out',t:'float',cn:'0~1 的灰度噪声值'}],
+  desc:'基于 Value Noise 生成一张随机但连续的灰度噪声图，输出 0~1 的标量。它是程序化纹理的起点：放大做地形起伏，缩小做斑驳污渍，配合 Lerp 混合颜色。Scale 控制频率。',
+  code:'float Out = Unity_SimpleNoise(UV, Scale);'});
+N({id:'checker', en:'Checkerboard', cn:'棋盘格', cat:'procedural',
+  in:[{n:'A',t:'v4',cn:'颜色 A（默认深色）'},
+      {n:'B',t:'v4',cn:'颜色 B（默认浅色）'},
+      {n:'UV',t:'v2',cn:'坐标，不接用默认 UV'}],
+  out:[{n:'Out',t:'v4',cn:'交替的棋盘格颜色'}],
+  desc:'生成国际象棋盘一样的双色交替方格，是检查 UV 是否正确、平铺是否正常的经典调试纹理，也可直接用作地砖等程序化图案。',
+  code:'float checker = floor(UV.x*2)+floor(UV.y*2);\nfloat4 Out = checker % 2 == 0 ? A : B;'});
+N({id:'desat', en:'Desaturation', cn:'去饱和度', cat:'artistic',
+  in:[{n:'In',t:'v4',cn:'输入颜色'},
+      {n:'Range',t:'float',cn:'去色程度：0 原色，1 完全灰度'}],
+  out:[{n:'Out',t:'v4',cn:'去色后的颜色'}],
+  desc:'按 Range 把彩色向灰度混合（0 完全保留原色，1 完全灰度）。内部使用感知亮度权重 gray = 0.212R + 0.715G + 0.072B——这正是「点积用于去饱和」课程的内容：该权重就是一个 Vector 3 与颜色 RGB 的点积。',
+  formula:'gray = dot(In.rgb, float3(0.212, 0.715, 0.072))\nOut = lerp(In, gray, Range)',
+  code:'float gray = dot(In.rgb, float3(0.212, 0.715, 0.072));\nOut = lerp(In, gray, Range);'});
+N({id:'tiling', en:'Tiling And Offset', cn:'平铺与偏移', cat:'uv',
+  in:[{n:'UV',t:'v2',cn:'原始 UV，不接用默认 UV'},
+      {n:'Tiling',t:'v2',cn:'平铺次数 (X, Y)'},
+      {n:'Offset',t:'v2',cn:'偏移量 (U, V)'}],
+  out:[{n:'Out',t:'v2',cn:'变换后的 UV'}],
+  desc:'对 UV 做缩放（Tiling，纹理重复次数）和平移（Offset，滚动纹理）。流动的岩浆、滚动的云朵都靠每帧改变 Offset 实现。',
+  formula:'Out = UV × Tiling + Offset',
+  code:'float2 Out = UV * Tiling + Offset;'});
+N({id:'preview', en:'Preview', cn:'预览', cat:'utility',
+  in:[{n:'In',t:'dyn',cn:'任意要查看的数据'}],
+  out:[],
+  desc:'提供一个更大的实时预览窗口来观察输入数据：标量显示为灰度，向量显示为颜色或受光球体，纹理链显示最终图像。它不改变任何计算结果，是学习和调试时「看见数据」的眼睛。本模拟器中的预览会在「运行模拟」时实时刷新并播放光照动画。',
+  tip:'把任意中间结果接到 Preview 上，是排查 Shader 问题最有效的方法。'});
+N({id:'pbr', en:'PBR Master（教学模拟）', cn:'PBR 主输出节点', cat:'master',
+  in:[{n:'Base Color',t:'v3',cn:'基础色（反照率 Albedo）'},
+      {n:'Normal',t:'v3',cn:'切线空间法线（来自法线贴图）'},
+      {n:'Emission',t:'v3',cn:'自发光颜色'},
+      {n:'Metallic',t:'float',cn:'金属度 0~1：0 电介质，1 金属'},
+      {n:'Smoothness',t:'float',cn:'光滑度 0~1：控制高光锐度'}],
+  out:[],
+  desc:'这是 Shader Graph 主栈（Master Stack）Fragment 阶段的教学简化版：所有计算最终汇总到这里，定义表面的颜色、法线、自发光与 PBR 材质参数。真实 Shader Graph 中它是不可创建的固定 Master Stack，这里用它帮助你理解「数据最终流向哪里」。',
+  tip:'学习路线：先在本模拟器理解每个输入的含义，再到真实 Shader Graph 的 Master Stack 中对照 Fragment 端口。',
+  code:'// 概念示意，URP 中由 PBR 光照函数完成\nSurfaceData.albedo = BaseColor;\nSurfaceData.normalTS = Normal;\nSurfaceData.emission = Emission;\nSurfaceData.metallic = Metallic;\nSurfaceData.smoothness = Smoothness;'});
+/* ============================================================
+   3. 应用状态
+   ============================================================ */
+const state = {
+  nodes:[], edges:[], notes:[], groups:[],
+  sel:null,            // {kind:'node'|'edge'|'note', uid}
+  pan:{x:60,y:30}, zoom:1,
+  sim:false, lesson:null, tourStep:0, tourMap:{},
+  seq:1, dirty:false
+};
+/* 模拟运行期状态（提前声明，避免初始化期暂时性死区） */
+let simOn=false, simStart=0, simRAF=0, pulseTimer=0, particleSvg=null, previewQueued=false;
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const uid = p => p + (state.seq++);
+const nodeByUid = u => state.nodes.find(n=>n.uid===u);
+const defOf = n => NODES[n.id];
+const outPort = (def,name) => (def.out||[]).find(p=>p.n===name);
+const inPort  = (def,name) => (def.in ||[]).find(p=>p.n===name);
+
+/* ============================================================
+   4. 教学课程（复刻 Unity 官方 Dot Product 文档示例图）
+   ============================================================ */
+const LESSONS = [
+{
+  id:'l1', name:'第 1 课 · 认识点积节点',
+  goal:'理解 Dot Product 的输入输出与几何含义',
+  graph:{
+    nodes:[
+      {key:'A', def:'vec3', x:40,  y:110, ctrl:{xyz:[0,1,0]}},
+      {key:'B', def:'vec3', x:40,  y:330, ctrl:{xyz:[0.3,0.95,0]}},
+      {key:'dot', def:'dot', x:340, y:200},
+      {key:'prev', def:'preview', x:640, y:180}
+    ],
+    edges:[
+      {f:'A',fp:'Out',t:'dot',tp:'A'},
+      {f:'B',fp:'Out',t:'dot',tp:'B'},
+      {f:'dot',fp:'Out',t:'prev',tp:'In'}
+    ],
+    notes:[
+      {key:'n1', x:330, y:30, text:'Dot Product 节点\n\n返回两个向量 A、B 的点积（标量）：对应分量相乘后相加。它等于 |A||B|cos(θ)。'},
+      {key:'n2', x:40, y:470, text:'先归一化！\n点积的「夹角解读」只对单位向量成立。Vector 3 节点请保持长度为 1（本示例两个向量都接近单位长度）。'},
+      {key:'n3', x:620, y:360, text:'动手试试：把 B 改成 (0,-1,0)，点积变成 -1；改成 (1,0,0)，点积变成 0。方向关系一目了然。'}
+    ],
+    groups:[{title:'Dot Product Node：点积在做什么', x:10,y:20,w:880,h:560}],
+    camera:{x:0,y:0,zoom:1}
+  },
+  steps:[
+    {t:null, text:'欢迎！这节课用最简单的连线认识 Shader Graph 中最重要的数学节点之一：Dot Product（点积）。画布上的黄色便签是官方文档风格的批注。'},
+    {t:{k:'node',key:'A'}, text:'两个 Vector 3 节点提供输入向量 A 和 B。Vector 3 就是三个浮点数 (X, Y, Z)，既可以表示颜色 RGB，也可以表示方向。点节点上的数字可以直接修改。'},
+    {t:{k:'node',key:'dot'}, text:'Dot Product 有两个动态向量输入 A、B，一个 Float 输出 Out。它把对应分量相乘再相加：A·B = Ax·Bx + Ay·By + Az·Bz。点击该节点可在右侧查看完整中文文档。'},
+    {t:{k:'note',key:'n1'}, text:'几何含义：点积 = 两向量长度之积 × 夹角余弦。所以对单位向量而言，同向 = 1、反向 = -1、垂直 = 0。这正是它能衡量「两个方向有多一致」的原因。'},
+    {t:{k:'node',key:'prev'}, text:'Preview 节点实时显示结果：当前两个向量几乎同向，结果接近 1。点击顶栏「运行模拟」可以看到数据沿连线流动的动画。'},
+    {t:null, text:'小结：点积把「两个方向的关系」压缩成一个数。下一课我们拆开点积，看看它内部到底做了哪些乘法和加法。'}
+  ]
+},
+{
+  id:'l2', name:'第 2 课 · Under the Hood：点积内部',
+  goal:'用 Split/Multiply/Add 手工拼出点积',
+  graph:{
+    nodes:[
+      {key:'n1', def:'normal', x:30,  y:110},
+      {key:'n2', def:'normal', x:30,  y:360},
+      {key:'s1', def:'split',  x:280, y:100},
+      {key:'s2', def:'split',  x:280, y:350},
+      {key:'m1', def:'multiply', x:520, y:80},
+      {key:'m2', def:'multiply', x:520, y:250},
+      {key:'m3', def:'multiply', x:520, y:420},
+      {key:'a1', def:'add', x:760, y:160},
+      {key:'a2', def:'add', x:990, y:290},
+      {key:'prev', def:'preview', x:1230, y:250}
+    ],
+    edges:[
+      {f:'n1',fp:'Out',t:'s1',tp:'In'},
+      {f:'n2',fp:'Out',t:'s2',tp:'In'},
+      {f:'s1',fp:'R',t:'m1',tp:'A'},{f:'s2',fp:'R',t:'m1',tp:'B'},
+      {f:'s1',fp:'G',t:'m2',tp:'A'},{f:'s2',fp:'G',t:'m2',tp:'B'},
+      {f:'s1',fp:'B',t:'m3',tp:'A'},{f:'s2',fp:'B',t:'m3',tp:'B'},
+      {f:'m1',fp:'Out',t:'a1',tp:'A'},{f:'m2',fp:'Out',t:'a1',tp:'B'},
+      {f:'a1',fp:'Out',t:'a2',tp:'A'},{f:'m3',fp:'Out',t:'a2',tp:'B'},
+      {f:'a2',fp:'Out',t:'prev',tp:'In'}
+    ],
+    notes:[
+      {key:'z1', x:20, y:600, text:'Normalized\n两个 Normal Vector 都是单位向量，且这里都指向同一方向，所以点积结果应当恒等于 1。'},
+      {key:'z2', x:700, y:40, text:'点积 = 分量相乘后求和：三组 Multiply 分别计算 X·X、Y·Y、Z·Z，再用两级 Add 加起来。'},
+      {key:'z3', x:1180, y:470, text:'Preview 显示白色（值为 1）：两个向量同向时，点积为 1。这就是 Dot Product 节点内部的完整计算。'}
+    ],
+    groups:[{title:'Under The Hood：手工拼出 Dot Product', x:10,y:30,w:1470,h:560}],
+    camera:{x:0,y:0,zoom:.8}
+  },
+  steps:[
+    {t:null, text:'Dot Product 是黑盒吗？不是。这节课我们用最基础的 Split、Multiply、Add 节点，把点积亲手拼一遍（这正是官方文档的 Under The Hood 示例）。'},
+    {t:{k:'node',key:'n1'}, text:'两个 Normal Vector 节点输出表面法线（单位向量）。Space 保持 World。它们是点积的两个输入向量。'},
+    {t:{k:'node',key:'s1'}, text:'Split 把 Vector 3 拆成 R、G、B 三个标量——也就是向量的 X、Y、Z 分量。两个向量都要拆。'},
+    {t:{k:'node',key:'m1'}, text:'三个 Multiply 节点两两相乘对应分量：X·X、Y·Y、Z·Z。注意青色连线代表 Float（Vector 1）数据。'},
+    {t:{k:'node',key:'a1'}, text:'两级 Add 把三个乘积相加：先加前两个，再加上第三个。这正是 Ax·Bx + Ay·By + Az·Bz。'},
+    {t:{k:'node',key:'prev'}, text:'Preview 呈白色（=1）：两个法线同向，单位向量点积为 1。运行模拟还能看到数据从左到右逐级流动的过程。'},
+    {t:null, text:'理解了这张图，你就真正理解了点积——它不是神秘公式，而是三次乘法加两次加法。下一课看它在图像处理中的经典应用：去饱和。'}
+  ]
+},
+{
+  id:'l3', name:'第 3 课 · 点积用于去饱和（灰度化）',
+  goal:'理解感知亮度权重与 Dot Product 灰度公式',
+  graph:{
+    nodes:[
+      {key:'w', def:'vec3', x:40,  y:40, ctrl:{xyz:[0.212,0.715,0.072]}},
+      {key:'tex', def:'sample2d', x:40, y:240},
+      {key:'dot', def:'dot', x:380, y:210},
+      {key:'prev', def:'preview', x:680, y:190}
+    ],
+    edges:[
+      {f:'w',fp:'Out',t:'dot',tp:'A'},
+      {f:'tex',fp:'RGBA',t:'dot',tp:'B'},
+      {f:'dot',fp:'Out',t:'prev',tp:'In'}
+    ],
+    notes:[
+      {key:'n1', x:300, y:30, text:'这个值使用的是感知亮度权重（Perceptual Weighting）：0.212 R + 0.715 G + 0.072 B。人眼对绿色最敏感、对蓝色最不敏感。'},
+      {key:'n2', x:60, y:520, text:'用点积做去饱和：让颜色 RGB 与权重向量做点积，就得到符合人眼感知的灰度值。Desaturation 节点内部也是这样实现的。'},
+      {key:'n3', x:650, y:420, text:'左侧彩色纹理，经过点积后在 Preview 中变成灰度图。品红色连线表示 Vector 4（RGBA）数据。'}
+    ],
+    groups:[{title:'Dot Product used for Desaturation：彩色转灰度', x:10,y:15,w:900,h:640}],
+    camera:{x:0,y:0,zoom:.9}
+  },
+  steps:[
+    {t:null, text:'如何把一张彩色照片变成灰度图？最「物理正确」的答案不是简单地 (R+G+B)/3，而是点积。'},
+    {t:{k:'node',key:'w'}, text:'Vector 3 = (0.212, 0.715, 0.072)：这是感知亮度权重。人眼对绿光最敏感，所以 G 的权重最大；对蓝光最不敏感，B 的权重最小。'},
+    {t:{k:'node',key:'tex'}, text:'Sample Texture 2D 输出 RGBA（Vector 4，品红色端口）。点积的动态向量端口会自动取其前三个分量 RGB 参与运算。'},
+    {t:{k:'node',key:'dot'}, text:'Dot(A=权重, B=颜色) = 0.212·R + 0.715·G + 0.072·B：一次点积就完成了加权求和，输出一个 Float 灰度值。'},
+    {t:{k:'node',key:'prev'}, text:'Preview 中出现了灰度图像。内置的 Desaturation（去饱和度）节点内部用的就是同一公式——你现在会从原理上使用它了。'},
+    {t:null, text:'拓展：把权重改成 (0.333, 0.333, 0.333) 就是平均灰度；改成 (1,0,0) 就只保留红色通道——这正是下一课「通道选择」的思路。'}
+  ]
+},
+{
+  id:'l4', name:'第 4 课 · 漫反射光照：比较两个向量',
+  goal:'用 N·L 点积实现 Lambert 漫反射',
+  graph:{
+    nodes:[
+      {key:'n', def:'normal', x:40,  y:80},
+      {key:'l', def:'mainlight', x:40, y:330},
+      {key:'dot', def:'dot', x:330, y:200},
+      {key:'sat', def:'saturate', x:600, y:200},
+      {key:'prev', def:'preview', x:870, y:170}
+    ],
+    edges:[
+      {f:'n',fp:'Out',t:'dot',tp:'A'},
+      {f:'l',fp:'Out',t:'dot',tp:'B'},
+      {f:'dot',fp:'Out',t:'sat',tp:'In'},
+      {f:'sat',fp:'Out',t:'prev',tp:'In'}
+    ],
+    notes:[
+      {key:'n1', x:290, y:40, text:'结果为 1：两个向量同向（表面正对光源）\n结果为 0：互相垂直（光掠过表面）\n结果为 -1：方向相反（表面背光）'},
+      {key:'n2', x:560, y:420, text:'Saturate 把负值钳制为 0：背光面不应该出现「负光」，统一按全黑处理。'},
+      {key:'n3', x:830, y:430, text:'这就是漫反射光照（Diffuse Lighting）的核心：Diffuse = saturate(dot(N, L))。点「运行模拟」观察光源转动时球面明暗的变化。'}
+    ],
+    groups:[{title:'Dot Product used to compare two vectors：Lambert 光照', x:10,y:20,w:1120,h:560}],
+    camera:{x:0,y:0,zoom:.85}
+  },
+  steps:[
+    {t:null, text:'点积最伟大的应用：光照。漫反射（Diffuse/Lambert）只需要一个点积就能描述表面接收到多少光。'},
+    {t:{k:'node',key:'n'}, text:'Normal Vector：表面法线 N，描述表面朝向。'},
+    {t:{k:'node',key:'l'}, text:'Main Light Direction：主光源方向 L，描述光从哪个方向照来。'},
+    {t:{k:'node',key:'dot'}, text:'dot(N, L) 衡量表面与光源的对齐程度：正对光 = 1（最亮），掠射 = 0（最暗），背光为负。Preview 球体上你能直接看到这个明暗分布。'},
+    {t:{k:'node',key:'sat'}, text:'Saturate 把负的点积结果钳制为 0——背光面接收不到光，按全黑处理。这是真实 Shader Graph 光照函数里必做的一步。'},
+    {t:{k:'node',key:'prev'}, text:'点击顶栏「运行模拟」：光源方向会绕球体旋转，明暗分界线随之移动——这就是游戏里所有不发光表面最基础的受光方式。'},
+    {t:null, text:'四节课完成！你已经掌握了点积的本质、内部结构、灰度化与光照应用。现在可以清空画布，从左侧节点库自由搭建，或双击空白搜索节点。'}
+  ]
+}
+];
+/* ============================================================
+   5. 程序纹理（无需外部图片，Canvas 生成模拟贴图）
+   ============================================================ */
+function hash2(x,y){ const s=Math.sin(x*127.1+y*311.7)*43758.5453; return s-Math.floor(s); }
+function vnoise(x,y){
+  const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi;
+  const u=xf*xf*(3-2*xf),v=yf*yf*(3-2*yf);
+  const a=hash2(xi,yi),b=hash2(xi+1,yi),c=hash2(xi,yi+1),d=hash2(xi+1,yi+1);
+  return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v;
+}
+function fbm(x,y){ return vnoise(x,y)*.55+vnoise(x*2.1+5,y*2.1+5)*.3+vnoise(x*4.3+9,y*4.3+9)*.15; }
+function drawProcedural(canvas, kind){
+  const w=canvas.width,h=canvas.height,ctx=canvas.getContext('2d');
+  const img=ctx.createImageData(w,h),d=img.data;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const u=x/w,v=y/h,i=(y*w+x)*4;
+    let r=0,g=0,b=0,a=255;
+    if(kind==='checker'){ const c=(Math.floor(u*8)+Math.floor(v*8))%2; r=g=b=c?205:120; }
+    else if(kind==='noise'){ const n=fbm(u*7,v*7); r=g=b=n*255; }
+    else if(kind==='gradient'){ r=u*255; g=v*255; b=(1-u)*255; }
+    else if(kind==='blocks'){ const c=(Math.floor(u*4)+Math.floor(v*4))%2; r=c?220:30; g=b=c?40:20; }
+    else { /* photo：彩色花簇（程序生成，模拟彩色照片） */
+      const n=fbm(u*9+2,v*9);
+      r=40+fbm(u*5,v*5)*60; g=70+n*90; b=30+n*30;
+      const blobs=[[.32,.4,0xff,0x5a,0x3a],[.6,.33,0xff,0xd2,0x4a],[.72,.62,0xd8,0x4a,0xa8],[.25,.68,0xff,0x8c,0x42],[.52,.72,0xf5,0xe5,0x6a],[.8,.25,0x9a,0xd8,0xff]];
+      for(const[bx,by,cr,cg,cb] of blobs){
+        const dx=(u-bx)*1.6,dy=(v-by)*1.6,dist=Math.sqrt(dx*dx+dy*dy);
+        const petal=Math.max(0,1-dist*3.2)*(0.6+0.4*fbm(u*40,v*40));
+        r=r*(1-petal)+cr*petal;g=g*(1-petal)+cg*petal;b=b*(1-petal)+cb*petal;
+      }
+    }
+    d[i]=r;d[i+1]=g;d[i+2]=b;d[i+3]=a;
+  }
+  ctx.putImageData(img,0,0);
+}
+const TEX_KINDS=[['photo','彩色花簇'],['checker','棋盘格'],['noise','灰度噪声'],['gradient','渐变'],['blocks','红色块']];
+
+/* ============================================================
+   6. 节点库面板
+   ============================================================ */
+function renderLibrary(filter=''){
+  const list=$('#lib-list'); list.innerHTML='';
+  const f=filter.trim().toLowerCase();
+  let any=false;
+  Object.keys(CATS).forEach(cat=>{
+    const items=Object.values(NODES).filter(d=>d.cat===cat &&
+      (!f || d.en.toLowerCase().includes(f) || d.cn.toLowerCase().includes(f) || cat.includes(f)));
+    if(!items.length) return; any=true;
+    const wrap=document.createElement('div'); wrap.className='lib-cat'+(f?'':' collapsed');
+    wrap.innerHTML=`<div class="lib-cat-name"><span style="width:9px;height:9px;border-radius:2px;background:${CATS[cat].color}"></span>
+      ${CATS[cat].cn}<span style="color:var(--text-3);font-size:10px">${CATS[cat].en}</span><i class="fas fa-chevron-down chev"></i></div>`;
+    const body=document.createElement('div'); body.className='lib-cat-items';
+    items.forEach(d=>{
+      const el=document.createElement('div'); el.className='lib-item'; el.draggable=true;
+      el.innerHTML=`<span class="li-dot" style="background:${CATS[cat].color}"></span><span>${d.en}</span><span class="li-cn">${d.cn.split('（')[0]}</span>`;
+      el.title=d.cn+' — 点击添加到画布中心，或拖拽到指定位置';
+      el.addEventListener('click',()=>{ const p=screenToWorld(viewportCenter()); addNode(d.id,p.x-98,p.y-40); });
+      el.addEventListener('dragstart',e=>{ e.dataTransfer.setData('text/sgnode',d.id); e.dataTransfer.effectAllowed='copy'; });
+      body.appendChild(el);
+    });
+    wrap.appendChild(body);
+    wrap.querySelector('.lib-cat-name').addEventListener('click',()=>wrap.classList.toggle('collapsed'));
+    list.appendChild(wrap);
+  });
+  if(!any) list.innerHTML='<div class="lib-empty">没有找到匹配的节点</div>';
+}
+
+/* ============================================================
+   7. 节点实例与渲染
+   ============================================================ */
+function defaultCtrl(def){
+  const c={};
+  (def.ctrl||[]).forEach(k=>{ c[k.k]=JSON.parse(JSON.stringify(k.def)); });
+  return c;
+}
+function addNode(defId,x,y,ctrl){
+  const def=NODES[defId]; if(!def) return;
+  const node={uid:uid('n'),id:defId,x,y,ctrl:ctrl||defaultCtrl(def)};
+  state.nodes.push(node);
+  const el=buildNodeEl(node);
+  $('#node-layer').appendChild(el);
+  requestPreviews(); scheduleSave();
+  selectAt({kind:'node',uid:node.uid});
+  return node;
+}
+function removeNode(u){
+  const el=nodeEl(u); if(el){ el.classList.add('removing'); setTimeout(()=>el.remove(),190); }
+  state.edges=state.edges.filter(e=>{ if(e.from===u||e.to===u){ return false; } return true; });
+  state.nodes=state.nodes.filter(n=>n.uid!==u);
+  renderEdges(); requestPreviews(); scheduleSave();
+  if(state.sel&&state.sel.uid===u) selectAt(null);
+}
+function nodeEl(u){ return $('#node-layer').querySelector(`.sg-node[data-uid="${u}"]`); }
+
+function buildNodeEl(node){
+  const def=defOf(node), cat=CATS[def.cat];
+  const el=document.createElement('div');
+  el.className='sg-node'; el.dataset.uid=node.uid;
+  el.style.left=node.x+'px'; el.style.top=node.y+'px';
+  const portsHTML=(ports,dir)=>ports.map(p=>{
+    const tp=TYPES[p.t];
+    return `<div class="port ${dir}" data-pdir="${dir}" data-pname="${p.n}" data-ptype="${p.t}" title="${p.cn}">
+      <span class="dot" style="--pc:${tp.color}"></span>
+      <span class="pname">${p.n}</span><span class="ptype">${tp.short}</span></div>`;
+  }).join('');
+  el.innerHTML=`
+    <div class="n-title" style="--cat:${cat.color};background:${cat.color}">
+      <div class="nt-en">${def.en}</div><div class="nt-cn">${def.cn}</div>
+    </div>
+    <div class="n-body">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div class="ports">${portsHTML(def.in||[],'in')}</div>
+        <div class="ports">${portsHTML(def.out||[],'out')}</div>
+      </div>
+      ${buildControlsHTML(node)}
+      <div class="n-live mono"></div>
+    </div>`;
+  $('#node-layer').appendChild(el);
+  wireControls(node,el);
+  // 特殊：纹理缩略图 / 大预览
+  if(node.id==='sample2d'||node.id==='texasset'){
+    const c=document.createElement('canvas'); c.className='tex-thumb'; c.width=176;c.height=74;
+    el.querySelector('.n-body').insertBefore(c,el.querySelector('.n-live'));
+    c.addEventListener('click',()=>{
+      const idx=TEX_KINDS.findIndex(k=>k[0]===node.ctrl.tex);
+      node.ctrl.tex=TEX_KINDS[(idx+1)%TEX_KINDS.length][0];
+      drawProcedural(c,node.ctrl.tex); requestPreviews(); scheduleSave();
+      toast('已切换纹理：'+TEX_KINDS[(idx+1)%TEX_KINDS.length][1]);
+    });
+    node._thumb=c; drawProcedural(c,node.ctrl.tex);
+  }
+  if(node.id==='preview'){
+    const c=document.createElement('canvas'); c.className='big-preview'; c.width=176;c.height=120;
+    el.querySelector('.n-body').insertBefore(c,el.querySelector('.n-live'));
+    node._preview=c;
+  }
+  attachNodeDrag(node,el);
+  el.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.dot')) return;
+    selectAt({kind:'node',uid:node.uid});
+  });
+  attachPortGestures(node,el);
+  return el;
+}
+function buildControlsHTML(node){
+  const def=defOf(node); if(!def.ctrl||!def.ctrl.length) return '';
+  let h='<div class="n-controls">';
+  def.ctrl.forEach(c=>{
+    const v=node.ctrl[c.k];
+    if(c.type==='vec'){
+      const axes=['x','y','z','w'].slice(0,c.dim);
+      h+=`<div class="vec-grid">${axes.map((ax,i)=>`<div class="vec-cell"><b class="ch-${ax}">${ax.toUpperCase()}</b>
+        <input type="number" step="0.01" data-ck="${c.k}" data-ci="${i}" value="${round3(v[i])}"></div>`).join('')}</div>`;
+    } else if(c.type==='select'){
+      h+=`<select class="n-select" data-ck="${c.k}">${c.opts.map(o=>`<option ${o[0]===v?'selected':''} value="${o[0]}">${o[1]}</option>`).join('')}</select>`;
+    } else if(c.type==='slider'){
+      h+=`<div class="n-slider"><input type="range" min="${c.min}" max="${c.max}" step="0.01" data-ck="${c.k}" value="${v}"><span>${round3(v)}</span></div>`;
+    } else if(c.type==='check'){
+      h+=`<label class="n-check"><input type="checkbox" data-ck="${c.k}" ${v?'checked':''}> ${c.cn}</label>`;
+    } else if(c.type==='color'){
+      const col='#'+v.slice(0,3).map(x=>Math.round(x*255).toString(16).padStart(2,'0')).join('');
+      h+=`<div class="n-color"><input type="color" data-ck="${c.k}" value="${col}"><span class="nc-val">(${v.map(x=>round3(x)).join(', ')})</span></div>`;
+    } else if(c.type==='int'){
+      h+=`<div class="ctrl-row"><input type="number" step="1" data-ck="${c.k}" value="${v}"></div>`;
+    } else if(c.type==='tex'){ /* 缩略图单独渲染，无行内控件 */ }
+  });
+  return h+'</div>';
+}
+function wireControls(node,el){
+  el.querySelectorAll('[data-ck]').forEach(inp=>{
+    const k=inp.dataset.ck, def=defOf(node), cdef=def.ctrl.find(c=>c.k===k);
+    inp.addEventListener('input',()=>{
+      if(cdef.type==='vec'){ const i=+inp.dataset.ci; node.ctrl[k][i]=parseFloat(inp.value)||0; }
+      else if(cdef.type==='slider'){ node.ctrl[k]=parseFloat(inp.value)||0; const s=inp.parentElement.querySelector('span'); if(s)s.textContent=round3(node.ctrl[k]); }
+      else if(cdef.type==='check'){ node.ctrl[k]=inp.checked; }
+      else if(cdef.type==='color'){
+        const hex=inp.value;
+        node.ctrl[k]=[1,3,5,7].map(o=>parseInt(hex.substr(o,2),16)/255);
+        const span=inp.parentElement.querySelector('.nc-val'); if(span) span.textContent='('+node.ctrl[k].map(x=>round3(x)).join(', ')+')';
+      }
+      else if(cdef.type==='int'){ node.ctrl[k]=parseInt(inp.value)||0; }
+      else { node.ctrl[k]=inp.value; }
+      requestPreviews(); scheduleSave();
+    });
+  });
+}
+function round3(x){ return Math.round(x*1000)/1000; }
+
+/* ============================================================
+   8. 连线渲染（SVG 三次贝塞尔，颜色取输出端口类型）
+   ============================================================ */
+const edgeSvg=$('#edge-svg');
+function portDefType(uid,pdir,pname){
+  const d=defOf(nodeByUid(uid)); const list=pdir==='out'?d.out:d.in;
+  const p=(list||[]).find(x=>x.n===pname); return p?p.t:null;
+}
+/* 动态向量端口沿连线推断实际类型（取具体来源中维度最高者） */
+function resolveOutType(uid,pname,memo){
+  const key=uid+'|'+pname; if(memo[key])return memo[key]; memo[key]='dyn';
+  const t=portDefType(uid,'out',pname);
+  if(t&&t!=='dyn'){ memo[key]=t; return t; }
+  const cands=state.edges.filter(e=>e.to===uid)
+    .map(e=>resolveOutType(e.from,e.fp,memo)).filter(x=>x&&x!=='dyn');
+  let pick=cands[0]||'dyn';
+  cands.forEach(c=>{
+    if(TYPES[c].kind==='vec'&&TYPES[pick].kind==='vec'&&TYPES[c].dim>(TYPES[pick].dim||0)) pick=c;
+  });
+  memo[key]=pick; return pick;
+}
+function edgeType(e){
+  const t=resolveOutType(e.from,e.fp,{});
+  if(t&&t!=='dyn') return t;
+  const ip=portDefType(e.to,'in',e.tp); return ip&&ip!=='dyn'?ip:'dyn';
+}
+function portWorld(nodeUid,pdir,pname){
+  const node=nodeByUid(nodeUid), el=nodeEl(nodeUid); if(!el) return {x:0,y:0};
+  const port=el.querySelector(`.port[data-pdir="${pdir}"][data-pname="${pname}"]`);
+  const r=port.getBoundingClientRect(), vp=$('#viewport').getBoundingClientRect();
+  return screenToWorld({x:r.left-vp.left+(pdir==='out'?r.width-4:4), y:r.top-vp.top+r.height/2});
+}
+function bezier(a,b){
+  const dx=Math.max(48,Math.abs(b.x-a.x)*0.55);
+  return `M ${a.x} ${a.y} C ${a.x+dx} ${a.y}, ${b.x-dx} ${b.y}, ${b.x} ${b.y}`;
+}
+function renderEdges(extra){
+  edgeSvg.innerHTML='';
+  state.edges.forEach(e=>{
+    const a=portWorld(e.from,'out',e.fp), b=portWorld(e.to,'in',e.tp);
+    const t=edgeType(e), color=TYPES[t].color;
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','edge'+(state.sel&&state.sel.kind==='edge'&&state.sel.uid===e.uid?' selected':''));
+    g.dataset.uid=e.uid;
+    g.innerHTML=`<path class="edge-hit" d="${bezier(a,b)}"/><path class="edge-line" style="stroke:${color}" d="${bezier(a,b)}"/>
+      <path class="edge-flow" style="stroke:${color}" d="${bezier(a,b)}"/>`;
+    g.addEventListener('pointerdown',ev=>{ ev.stopPropagation(); selectAt({kind:'edge',uid:e.uid}); });
+    g.addEventListener('dblclick',ev=>{ ev.stopPropagation(); removeEdge(e.uid); });
+    edgeSvg.appendChild(g);
+  });
+  if(extra) edgeSvg.appendChild(extra);
+  if(typeof simOn!=='undefined' && simOn) refreshParticles();
+}
+function removeEdge(u){
+  state.edges=state.edges.filter(e=>e.uid!==u);
+  renderEdges(); requestPreviews(); scheduleSave();
+  if(state.sel&&state.sel.uid===u) selectAt(null);
+}
+
+/* ============================================================
+   9. 视口变换：平移 / 缩放
+   ============================================================ */
+const world=$('#world'), vp=$('#viewport');
+function applyTransform(){
+  world.style.transform=`translate(${state.pan.x}px,${state.pan.y}px) scale(${state.zoom})`;
+  const g=$('#grid-bg');
+  g.style.backgroundSize=`${24*state.zoom}px ${24*state.zoom}px`;
+  g.style.backgroundPosition=`${state.pan.x}px ${state.pan.y}px`;
+  $('#zoom-label').textContent=Math.round(state.zoom*100)+'%';
+}
+function screenToWorld(p){ return {x:(p.x-state.pan.x)/state.zoom, y:(p.y-state.pan.y)/state.zoom}; }
+function worldToScreen(p){ return {x:p.x*state.zoom+state.pan.x, y:p.y*state.zoom+state.pan.y}; }
+function viewportCenter(){ const r=vp.getBoundingClientRect(); return {x:r.width/2,y:r.height/2}; }
+function setZoom(z,anchor){
+  const old=state.zoom; z=Math.min(1.6,Math.max(.35,z));
+  if(anchor){ state.pan.x=anchor.x-(anchor.x-state.pan.x)*(z/old); state.pan.y=anchor.y-(anchor.y-state.pan.y)*(z/old); }
+  state.zoom=z; applyTransform(); renderEdges();
+}
+function frameAll(){
+  if(!state.nodes.length){ state.pan={x:60,y:30};state.zoom=1;applyTransform();return; }
+  const r=vp.getBoundingClientRect();
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  state.nodes.forEach(n=>{ const el=nodeEl(n.uid)||{offsetWidth:196,offsetHeight:120};
+    x0=Math.min(x0,n.x);y0=Math.min(y0,n.y);x1=Math.max(x1,n.x+el.offsetWidth);y1=Math.max(y1,n.y+el.offsetHeight); });
+  const z=Math.min(1.1,(r.width-120)/(x1-x0),(r.height-100)/(y1-y0));
+  state.zoom=Math.max(.35,z);
+  state.pan={x:(r.width-(x1-x0)*state.zoom)/2-x0*state.zoom, y:(r.height-(y1-y0)*state.zoom)/2-y0*state.zoom};
+  applyTransform(); renderEdges();
+}
+/* ============================================================
+   10. 节点拖拽移动
+   ============================================================ */
+function attachNodeDrag(node,el){
+  el.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.dot')||e.target.closest('input,select,textarea,option,button,.sn-text')) return;
+    e.preventDefault();
+    const start={x:e.clientX,y:e.clientY,nx:node.x,ny:node.y,moved:false};
+    el.style.zIndex=5;
+    const move=ev=>{
+      const dx=(ev.clientX-start.x)/state.zoom, dy=(ev.clientY-start.y)/state.zoom;
+      if(Math.abs(ev.clientX-start.x)+Math.abs(ev.clientY-start.y)>3) start.moved=true;
+      node.x=start.nx+dx; node.y=start.ny+dy;
+      el.style.left=node.x+'px'; el.style.top=node.y+'px';
+      if(!move._q){ move._q=true; requestAnimationFrame(()=>{renderEdges();move._q=false;}); }
+    };
+    const up=()=>{ window.removeEventListener('pointermove',move); window.removeEventListener('pointerup',up);
+      el.style.zIndex=''; if(start.moved) scheduleSave(); };
+    window.addEventListener('pointermove',move); window.addEventListener('pointerup',up);
+  });
+}
+
+/* ============================================================
+   11. 端口连线（拖出临时贝塞尔，松手吸附）
+   ============================================================ */
+let dragWire=null;
+function canConnect(tOut,tIn){
+  const a=TYPES[tOut],b=TYPES[tIn];
+  if(a.kind==='tex'||b.kind==='tex') return tOut==='tex'&&tIn==='tex';
+  if(a.kind==='cube'||b.kind==='cube') return tOut==='cube'&&tIn==='cube';
+  if(a.kind==='samp'||b.kind==='samp') return tOut==='samp'&&tIn==='samp';
+  if(a.kind==='mat'||b.kind==='mat') return tOut==='mat'&&tIn==='mat';
+  if(tOut==='bool'&&b.kind==='vec') return true;
+  if(a.kind==='vec'&&b.kind==='vec') return true;
+  return false;
+}
+function createsCycle(fromUid,toUid){
+  const stack=[toUid],seen=new Set();
+  while(stack.length){
+    const u=stack.pop(); if(u===fromUid) return true; if(seen.has(u))continue; seen.add(u);
+    state.edges.filter(e=>e.from===u).forEach(e=>stack.push(e.to));
+  }
+  return false;
+}
+function attachPortGestures(node,el){
+  el.querySelectorAll('.port').forEach(portEl=>{
+    portEl.addEventListener('pointerdown',e=>{
+      e.stopPropagation();e.preventDefault();
+      const pdir=portEl.dataset.pdir,pname=portEl.dataset.pname,ptype=portEl.dataset.ptype;
+      // 从输入端口拖出：先断开它已有的连线
+      let removed=null;
+      if(pdir==='in'){
+        const ex=state.edges.find(x=>x.to===node.uid&&x.tp===pname);
+        if(ex){ removed=ex; removeEdge(ex.uid); }
+      }
+      const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('class','edge-temp'); path.style.stroke=TYPES[ptype].color;
+      edgeSvg.appendChild(path);
+      dragWire={path,fromNode:node.uid,pdir,pname,ptype,removed};
+      const move=ev=>{
+        const r=vp.getBoundingClientRect(); const cur=screenToWorld({x:ev.clientX-r.left,y:ev.clientY-r.top});
+        const a=pdir==='out'?portWorld(node.uid,'out',pname):cur;
+        const b=pdir==='out'?cur:portWorld(node.uid,'in',pname);
+        path.setAttribute('d',bezier(a,b));
+        const tgt=document.elementFromPoint(ev.clientX,ev.clientY)?.closest('.port');
+        $$('.port.can-drop,.port.bad-drop').forEach(p=>p.classList.remove('can-drop','bad-drop'));
+        if(tgt){ const tn=tgt.closest('.sg-node');
+          if(tn && tgt.dataset.pdir!==pdir){
+            const ok=tn.dataset.uid!==node.uid && (pdir==='out'
+              ? canConnect(ptype,tgt.dataset.ptype)
+              : canConnect(tgt.dataset.ptype,ptype));
+            tgt.classList.add(ok?'can-drop':'bad-drop');
+          }
+        }
+      };
+      const up=ev=>{
+        window.removeEventListener('pointermove',move); window.removeEventListener('pointerup',up);
+        path.remove(); $$('.port.can-drop,.port.bad-drop').forEach(p=>p.classList.remove('can-drop','bad-drop'));
+        const tgt=document.elementFromPoint(ev.clientX,ev.clientY)?.closest('.port');
+        dragWire=null;
+        if(!tgt){ if(removed) scheduleSave(); return; }
+        const tn=tgt.closest('.sg-node'); if(!tn||tn.dataset.uid===node.uid){ if(removed){} return; }
+        let from,fp,to,tp;
+        if(pdir==='out'){ from=node.uid;fp=pname;to=tn.dataset.uid;tp=tgt.dataset.pname;
+          if(tgt.dataset.pdir!=='in'||!canConnect(ptype,tgt.dataset.ptype)){ rollback(removed);return; } }
+        else { from=tn.dataset.uid;fp=tgt.dataset.pname;to=node.uid;tp=pname;
+          if(tgt.dataset.pdir!=='out'||!canConnect(tgt.dataset.ptype,ptype)){ rollback(removed);return; } }
+        if(createsCycle(from,to)){ toast('不能连接：会形成循环依赖','warn'); rollback(removed); return; }
+        state.edges=state.edges.filter(e=>!(e.to===to&&e.tp===tp));
+        state.edges.push({uid:uid('e'),from,fp,to,tp});
+        renderEdges(); requestPreviews(); scheduleSave();
+        selectAt({kind:'node',uid:to});
+      };
+      window.addEventListener('pointermove',move); window.addEventListener('pointerup',up);
+    });
+  });
+}
+function rollback(e){ if(!e)return; state.edges.push(e); renderEdges(); requestPreviews(); scheduleSave(); }
+
+/* ============================================================
+   12. 画布平移 / 滚轮缩放 / 拖入节点
+   ============================================================ */
+vp.addEventListener('pointerdown',e=>{
+  if(e.target.closest('.sg-node,.sticky,.quick-menu,.tour-bar,.vp-controls')) return;
+  if(e.button===2) return;
+  const start={x:e.clientX,y:e.clientY,px:state.pan.x,py:state.pan.y,moved:false};
+  vp.classList.add('panning');
+  const move=ev=>{
+    const dx=ev.clientX-start.x,dy=ev.clientY-start.y;
+    if(Math.abs(dx)+Math.abs(dy)>4) start.moved=true;
+    state.pan.x=start.px+dx; state.pan.y=start.py+dy; applyTransform();
+    if(!move._q){move._q=true;requestAnimationFrame(()=>{renderEdges();move._q=false;});}
+  };
+  const up=()=>{ window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',up);
+    vp.classList.remove('panning'); if(!start.moved) selectAt(null); };
+  window.addEventListener('pointermove',move); window.addEventListener('pointerup',up);
+});
+vp.addEventListener('wheel',e=>{
+  e.preventDefault();
+  const r=vp.getBoundingClientRect();
+  setZoom(state.zoom*(e.deltaY<0?1.1:0.9),{x:e.clientX-r.left,y:e.clientY-r.top});
+},{passive:false});
+vp.addEventListener('dragover',e=>{e.preventDefault();});
+vp.addEventListener('drop',e=>{
+  e.preventDefault();
+  const id=e.dataTransfer.getData('text/sgnode'); if(!id) return;
+  const r=vp.getBoundingClientRect(),p=screenToWorld({x:e.clientX-r.left,y:e.clientY-r.top});
+  addNode(id,p.x-98,p.y-30);
+});
+$('#zoom-in').addEventListener('click',()=>setZoom(state.zoom*1.15,viewportCenter()));
+$('#zoom-out').addEventListener('click',()=>setZoom(state.zoom/1.15,viewportCenter()));
+$('#zoom-fit').addEventListener('click',frameAll);
+
+/* ============================================================
+   13. 双击 / 右键空白：快速创建菜单
+   ============================================================ */
+const qm=$('#quick-menu'), qInput=$('#quick-input'), qList=$('#quick-list');
+let qmPos=null,qmSel=0,qmItems=[];
+function openQuick(screenP,worldP){
+  qmPos=worldP; qm.style.left=Math.min(screenP.x,vp.clientWidth-285)+'px';
+  qm.style.top=Math.min(screenP.y,vp.clientHeight-360)+'px';
+  qm.classList.add('open'); qInput.value=''; qmSel=0; renderQuick('');
+  setTimeout(()=>qInput.focus(),0);
+}
+function closeQuick(){ qm.classList.remove('open'); }
+function renderQuick(f){
+  const q=f.trim().toLowerCase();
+  qmItems=Object.values(NODES).filter(d=>!q||d.en.toLowerCase().includes(q)||d.cn.toLowerCase().includes(q)).slice(0,40);
+  qList.innerHTML=qmItems.length?qmItems.map((d,i)=>
+    `<div class="qm-item ${i===qmSel?'sel':''}" data-i="${i}"><span class="li-dot" style="background:${CATS[d.cat].color}"></span>${d.en}<span class="qm-cn">${d.cn.split('（')[0]}</span></div>`)
+    :'<div class="qm-empty">没有匹配的节点</div>';
+  qList.querySelectorAll('.qm-item').forEach(it=>it.addEventListener('click',()=>placeQuick(+it.dataset.i)));
+}
+function placeQuick(i){
+  const d=qmItems[i]; if(!d)return;
+  addNode(d.id,qmPos.x-98,qmPos.y-30); closeQuick();
+}
+qInput.addEventListener('input',()=>{qmSel=0;renderQuick(qInput.value);});
+qInput.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'){e.preventDefault();qmSel=Math.min(qmSel+1,qmItems.length-1);renderQuick(qInput.value);}
+  if(e.key==='ArrowUp'){e.preventDefault();qmSel=Math.max(qmSel-1,0);renderQuick(qInput.value);}
+  if(e.key==='Enter'){e.preventDefault();placeQuick(qmSel);}
+  if(e.key==='Escape')closeQuick();
+});
+vp.addEventListener('dblclick',e=>{
+  if(e.target.closest('.sg-node,.sticky,.vp-controls,.tour-bar'))return;
+  const r=vp.getBoundingClientRect(); const sp={x:e.clientX-r.left,y:e.clientY-r.top};
+  openQuick(sp,screenToWorld(sp));
+});
+vp.addEventListener('contextmenu',e=>{
+  if(e.target.closest('.sg-node,.sticky,.vp-controls,.tour-bar'))return;
+  e.preventDefault();
+  const r=vp.getBoundingClientRect(); const sp={x:e.clientX-r.left,y:e.clientY-r.top};
+  openQuick(sp,screenToWorld(sp));
+});
+vp.addEventListener('pointerdown',e=>{ if(!e.target.closest('.quick-menu')) closeQuick(); },true);
+
+/* ============================================================
+   14. 便签（Sticky Notes）与分组框
+   ============================================================ */
+function addNote(x,y,text){
+  const note={uid:uid('nt'),x,y,text:text||'双击此处编辑便签内容'};
+  state.notes.push(note); renderNote(note); scheduleSave(); return note;
+}
+function renderNote(note){
+  const el=document.createElement('div'); el.className='sticky'; el.dataset.uid=note.uid;
+  el.style.left=note.x+'px'; el.style.top=note.y+'px';
+  el.innerHTML=`<div class="sn-x" title="删除便签">✕</div><div class="sn-text"></div>`;
+  el.querySelector('.sn-text').textContent=note.text;
+  $('#note-layer').appendChild(el);
+  const txt=el.querySelector('.sn-text');
+  el.querySelector('.sn-x').addEventListener('click',e=>{e.stopPropagation();removeNote(note.uid);});
+  txt.addEventListener('dblclick',()=>{txt.contentEditable='true';txt.focus();});
+  txt.addEventListener('blur',()=>{txt.contentEditable='false';note.text=txt.textContent;scheduleSave();});
+  el.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.sn-x,.sn-text[contenteditable="true"]'))return;
+    selectAt({kind:'note',uid:note.uid});
+    const start={x:e.clientX,y:e.clientY,nx:note.x,ny:note.y};
+    const move=ev=>{note.x=start.nx+(ev.clientX-start.x)/state.zoom;note.y=start.ny+(ev.clientY-start.y)/state.zoom;
+      el.style.left=note.x+'px';el.style.top=note.y+'px';};
+    const up=()=>{window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',up);scheduleSave();};
+    window.addEventListener('pointermove',move);window.addEventListener('pointerup',up);
+  });
+}
+function removeNote(u){ state.notes=state.notes.filter(n=>n.uid!==u); const el=$(`.sticky[data-uid="${u}"]`); if(el)el.remove(); scheduleSave(); }
+function renderGroups(){
+  const layer=$('#group-layer'); layer.innerHTML='';
+  state.groups.forEach(g=>{
+    const el=document.createElement('div'); el.className='group-frame';
+    el.style.left=g.x+'px';el.style.top=g.y+'px';el.style.width=g.w+'px';el.style.height=g.h+'px';
+    el.innerHTML=`<div class="gf-title">${g.title}</div>`; layer.appendChild(el);
+  });
+}
+
+/* ============================================================
+   15. 选择 & 删除
+   ============================================================ */
+function selectAt(sel){
+  state.sel=sel;
+  $$('.sg-node.selected,.edge.selected,.sticky.selected').forEach(el=>{
+    el.classList.remove('selected'); if(el.classList.contains('sticky'))el.style.outline='';
+  });
+  if(sel){
+    if(sel.kind==='node'){ const el=nodeEl(sel.uid); if(el)el.classList.add('selected'); openPanel('detail'); }
+    if(sel.kind==='edge'){ const g=edgeSvg.querySelector(`.edge[data-uid="${sel.uid}"]`); if(g)g.classList.add('selected'); openPanel('detail'); }
+    if(sel.kind==='note'){ const el=$(`.sticky[data-uid="${sel.uid}"]`); if(el){el.classList.add('selected');el.style.outline='2px solid #fff';} openPanel('detail'); }
+  }
+  renderDetail();
+}
+window.addEventListener('keydown',e=>{
+  if(e.target.matches('input,textarea,select')||e.target.isContentEditable) return;
+  if((e.key==='Delete'||e.key==='Backspace')&&state.sel){
+    if(state.sel.kind==='node')removeNode(state.sel.uid);
+    if(state.sel.kind==='edge')removeEdge(state.sel.uid);
+    if(state.sel.kind==='note')removeNote(state.sel.uid);
+  }
+});
+$('#btn-clear').addEventListener('click',()=>{
+  if(!state.nodes.length&&!state.notes.length) return;
+  if(confirm('确定清空当前画布吗？（可之后重新打开教学课程恢复示例）')) clearGraph();
+});
+$('#btn-note').addEventListener('click',()=>{ const p=screenToWorld(viewportCenter()); addNote(p.x-95,p.y-60); });
+function clearGraph(){
+  state.nodes=[];state.edges=[];state.notes=[];state.groups=[];state.lesson=null;
+  $('#node-layer').innerHTML='';$('#note-layer').innerHTML='';renderEdges();renderGroups();
+  selectAt(null); $('#lesson-label').textContent=''; scheduleSave();
+}
+/* ============================================================
+   16. 右侧详情栏（节点中文文档）
+   ============================================================ */
+function typeChip(t){ const m=TYPES[t]; return `<span class="tchip" style="color:${m.color}"><i style="background:${m.color}"></i>${m.label}</span>`; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function renderDetail(){
+  const body=$('#detail-body');
+  const sel=state.sel;
+  if(!sel){ body.innerHTML=defaultDetail(); return; }
+  if(sel.kind==='edge'){ const e=state.edges.find(x=>x.uid===sel.uid); if(!e){body.innerHTML=defaultDetail();return;}
+    const fn=nodeByUid(e.from),tn=nodeByUid(e.to);
+    body.innerHTML=`<div class="detail-scroll">
+      <div class="dt-head"><div class="dt-cat"><i style="background:${TYPES[edgeType(e)].color}"></i>连线 Connection</div>
+      <div class="dt-en">${defOf(fn).en} <span style="color:#888">·</span> ${e.fp}</div>
+      <div class="dt-cn" style="margin-top:6px">↓ 连接到 ↓</div>
+      <div class="dt-en" style="font-size:14px">${defOf(tn).en} <span style="color:#888">·</span> ${e.tp}</div>
+      <div class="dt-badges"><span class="dt-badge">${typeChip(edgeType(e))}</span></div></div>
+      <div class="dt-sec"><h4>说明</h4><p>连线把上游节点的输出数据传给下游节点的输入端口。端口颜色表示数据类型：青色 Float、绿色 Vector2、黄色 Vector3、品红 Vector4、红色纹理。双击连线可快速删除。</p></div>
+      <button class="dt-del" id="dt-del-edge">删除这条连线</button></div>`;
+    $('#dt-del-edge').addEventListener('click',()=>removeEdge(e.uid));
+    return;
+  }
+  if(sel.kind==='note'){
+    body.innerHTML=`<div class="detail-scroll"><div class="dt-head"><div class="dt-cat" style="--cat:var(--sticky)"><i style="background:var(--sticky)"></i>便签 Sticky Note</div>
+      <div class="dt-en">黄色批注</div></div>
+      <div class="dt-sec"><h4>用法</h4><p>便签用于在图上记录思路，与 Unity 官方文档示例图中的黄色纸条一致。<br><br>· <b>双击便签</b>编辑文字<br>· 按住可拖动位置<br>· 点击右上角 ✕ 或选中后按 Delete 删除<br>· 顶栏「便签」按钮可新建</p></div></div>`;
+    return;
+  }
+  const node=state.nodes.find(n=>n.uid===sel.uid); if(!node){body.innerHTML=defaultDetail();return;}
+  const d=defOf(node), cat=CATS[d.cat];
+  const portRows=(ports,dir)=>ports.map(p=>`<tr>
+      <td class="pn" style="color:${TYPES[p.t].color}">${p.n}</td>
+      <td class="ty">${dir==='in'?'输入':'输出'}<br>${typeChip(p.t)}</td>
+      <td>${esc(p.cn)}</td></tr>`).join('');
+  const paramRows=(d.ctrl||[]).filter(c=>c.type!=='tex').map(c=>`<tr>
+      <td class="pn">${esc(c.k)}</td><td class="ty">${ctrlTypeName(c.type)}</td><td>${esc(c.cn)}</td></tr>`).join('');
+  body.innerHTML=`<div class="detail-scroll">
+    <div class="dt-head">
+      <div class="dt-cat" style="--cat:${cat.color}"><i style="background:${cat.color}"></i>${cat.cn} · ${cat.en}</div>
+      <div class="dt-en">${d.en}</div>
+      <div class="dt-cn">${d.cn}</div>
+      <div class="dt-badges">
+        <span class="dt-badge">输入 ${(d.in||[]).length}</span>
+        <span class="dt-badge">输出 ${(d.out||[]).length}</span>
+        ${d.ctrl&&d.ctrl.length?'<span class="dt-badge">含参数控件</span>':''}
+      </div>
+    </div>
+    <div class="dt-sec"><h4>节点介绍</h4><p>${esc(d.desc)}</p></div>
+    ${d.tip?`<div class="dt-tip"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg><span>${esc(d.tip)}</span></div>`:''}
+    ${(d.in||[]).length||(d.out||[]).length?`<div class="dt-sec"><h4>端口参数详解</h4>
+      <table class="dt-table"><colgroup><col style="width:22%"><col style="width:30%"><col style="width:48%"></colgroup>
+      <thead><tr><th>端口</th><th>方向 / 类型</th><th>中文说明</th></tr></thead>
+      <tbody>${portRows(d.in||[],'in')}${portRows(d.out||[],'out')}</tbody></table></div>`:''}
+    ${paramRows?`<div class="dt-sec"><h4>节点内参数</h4>
+      <table class="dt-table"><colgroup><col style="width:22%"><col style="width:28%"><col style="width:50%"></colgroup>
+      <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead><tbody>${paramRows}</tbody></table></div>`:''}
+    ${d.formula?`<div class="dt-sec"><h4>数学公式</h4><div class="dt-formula">${esc(d.formula)}</div></div>`:''}
+    ${d.code?`<div class="dt-sec"><h4>生成的 HLSL 代码</h4><div class="dt-code">${esc(d.code)}</div></div>`:''}
+    <a class="dt-doc-link" href="${d.doc}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M14 4h6v16H4V4h6"/><path d="M14 4v5h6"/></svg>
+      查看 Unity 17.6 官方英文文档</a>
+    <button class="dt-del" id="dt-del-node"><i class="fas fa-trash-alt" style="font-size:11px"></i> 删除该节点（Delete）</button>
+  </div>`;
+  $('#dt-del-node').addEventListener('click',()=>removeNode(node.uid));
+}
+function ctrlTypeName(t){return {vec:'Vector 向量',select:'下拉选择',slider:'滑块范围',check:'布尔开关',color:'RGBA 颜色',int:'整数',tex:'纹理'}[t]||t;}
+function defaultDetail(){
+  return `<div class="detail-empty">
+    <svg viewBox="0 0 24 24"><circle cx="7" cy="8" r="2.2"/><circle cx="7" cy="16" r="2.2"/><circle cx="17" cy="12" r="2.2"/><path d="M9 8h3a2 2 0 0 1 2 2M9 16h3a2 2 0 0 0 2-2"/></svg>
+    <p><b style="color:#ccc">点击任意节点</b><br>这里会显示它的中文介绍、<br>每个端口与参数的含义、<br>数学公式和生成的着色器代码。</p>
+    <p style="margin-top:16px">新手建议从顶栏「教学课程」<br>的第 1 课开始。</p>
+  </div>`;
+}
+
+/* ============================================================
+   17. 面板开关 / 节点库搜索
+   ============================================================ */
+function openPanel(p){
+  if(window.innerWidth<=1100) return; // 小屏幕面板为抽屉，不自动展开遮挡画布
+  if(p==='detail') $('#detail-panel').classList.remove('collapsed');
+  if(p==='lib') $('#lib-panel').classList.remove('collapsed');
+}
+$('#toggle-lib').addEventListener('click',()=>$('#lib-panel').classList.toggle('collapsed'));
+$('#toggle-detail').addEventListener('click',()=>$('#detail-panel').classList.toggle('collapsed'));
+$('#lib-close').addEventListener('click',()=>$('#lib-panel').classList.add('collapsed'));
+$('#detail-close').addEventListener('click',()=>$('#detail-panel').classList.add('collapsed'));
+$('#lib-search').addEventListener('input',e=>renderLibrary(e.target.value));
+
+/* ============================================================
+   18. 教学课程菜单与分步导览
+   ============================================================ */
+function buildLessonMenu(){
+  const menu=$('#lesson-menu');
+  menu.innerHTML=LESSONS.map(l=>`<button class="menu-item" data-id="${l.id}">
+    <span class="mi-dot" style="background:var(--sticky)"></span>${l.name}<span class="mi-tag">${l.steps.length} 步</span></button>`).join('')
+    +`<button class="menu-item" id="menu-free"><span class="mi-dot" style="background:var(--accent)"></span>空白画布自由搭建</button>`;
+  menu.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>{menu.classList.remove('open');loadLesson(b.dataset.id);}));
+  $('#menu-free').addEventListener('click',()=>{menu.classList.remove('open');clearGraph();frameAll();});
+}
+$('#lesson-btn').addEventListener('click',e=>{e.stopPropagation();$('#lesson-menu').classList.toggle('open');});
+document.addEventListener('click',e=>{ if(!e.target.closest('#lesson-btn,#lesson-menu')) $('#lesson-menu').classList.remove('open'); });
+
+function loadLesson(id){
+  const L=LESSONS.find(x=>x.id===id); if(!L)return;
+  clearGraph();
+  state.lesson=id; $('#lesson-label').textContent=L.name;
+  const map={};
+  L.graph.nodes.forEach(spec=>{ const n=addNode(spec.def,spec.x,spec.y,spec.ctrl?JSON.parse(JSON.stringify(spec.ctrl)):null); map[spec.key]=n.uid; });
+  L.graph.edges.forEach(spec=>{
+    state.edges.push({uid:uid('e'),from:map[spec.f],fp:spec.fp,to:map[spec.t],tp:spec.tp});
+  });
+  L.graph.notes.forEach(spec=>{ const n=addNote(spec.x,spec.y,spec.text); map[spec.key]=n.uid; });
+  state.groups=L.graph.groups.map(g=>({...g}));
+  state.tourMap=map;
+  renderGroups(); renderEdges(); requestPreviews();
+  state.tourStep=0;
+  $('#tour-bar').classList.add('open');
+  requestAnimationFrame(()=>{ frameAll(); showTourStep(); });
+  toast('已载入：'+L.name,'ok');
+}
+function showTourStep(){
+  const L=LESSONS.find(x=>x.id===state.lesson); if(!L)return;
+  const i=state.tourStep, step=L.steps[i];
+  $$('.tour-hot').forEach(el=>el.classList.remove('tour-hot'));
+  $('#tour-name').textContent=L.name+' · '+L.goal;
+  $('#tour-count').textContent=(i+1)+' / '+L.steps.length;
+  $('#tour-text').textContent=step.text;
+  $('#tour-prog').style.width=((i+1)/L.steps.length*100)+'%';
+  $('#tour-prev').disabled=i===0;
+  $('#tour-next').textContent=i===L.steps.length-1?'完成':'下一步';
+  if(step.t){
+    const u=state.tourMap[step.t.key];
+    if(step.t.k==='node'){ const el=nodeEl(u); if(el){el.classList.add('tour-hot');frameObject(el);selectAt({kind:'node',uid:u});} }
+    if(step.t.k==='note'){ const el=$(`.sticky[data-uid="${u}"]`); if(el){el.classList.add('tour-hot');frameObject(el);selectAt({kind:'note',uid:u});} }
+  }
+}
+function frameObject(el){
+  const r=vp.getBoundingClientRect(), er=el.getBoundingClientRect(), vr=vp.getBoundingClientRect();
+  const cx=(er.left+er.width/2-vr.left), cy=(er.top+er.height/2-vr.top);
+  const z=state.zoom;
+  state.pan.x += r.width/2-cx; state.pan.y += r.height/2-cy;
+  applyTransform(); renderEdges();
+}
+$('#tour-prev').addEventListener('click',()=>{state.tourStep=Math.max(0,state.tourStep-1);showTourStep();});
+$('#tour-next').addEventListener('click',()=>{
+  const L=LESSONS.find(x=>x.id===state.lesson);
+  if(state.tourStep>=L.steps.length-1){ $('#tour-bar').classList.remove('open'); $$('.tour-hot').forEach(el=>el.classList.remove('tour-hot')); toast('课程完成，现在可以自由修改画布上的节点','ok'); return; }
+  state.tourStep++; showTourStep();
+});
+$('#tour-exit').addEventListener('click',()=>{$('#tour-bar').classList.remove('open');$$('.tour-hot').forEach(el=>el.classList.remove('tour-hot'));});
+
+/* ============================================================
+   19. Toast / 引导弹窗
+   ============================================================ */
+function toast(msg,kind=''){
+  const t=document.createElement('div'); t.className='toast '+kind; t.textContent=msg;
+  $('#toast-wrap').appendChild(t);
+  setTimeout(()=>{t.style.transition='opacity .4s';t.style.opacity='0';setTimeout(()=>t.remove(),400);},2600);
+}
+$('#btn-help').addEventListener('click',()=>$('#guide-mask').classList.add('open'));
+$('#guide-close').addEventListener('click',()=>{ $('#guide-mask').classList.remove('open'); if($('#guide-dont').checked)localStorage.setItem('sg-guide-seen','1'); });
+$('#guide-tour').addEventListener('click',()=>{ $('#guide-mask').classList.remove('open'); localStorage.setItem('sg-guide-seen','1'); loadLesson('l1'); });
+
+/* ============================================================
+   20. 自动保存 / 恢复
+   ============================================================ */
+let saveTimer=null;
+function scheduleSave(){ state.dirty=true; clearTimeout(saveTimer); saveTimer=setTimeout(saveGraph,500); }
+function saveGraph(){
+  try{
+    const data={nodes:state.nodes.map(n=>({uid:n.uid,id:n.id,x:n.x,y:n.y,ctrl:n.ctrl})),
+      edges:state.edges,notes:state.notes,groups:state.groups,lesson:state.lesson,seq:state.seq};
+    localStorage.setItem('sg-blueprint-v1',JSON.stringify(data));
+  }catch(err){/* 存储不可用时静默 */}
+}
+function restoreGraph(){
+  try{
+    const raw=localStorage.getItem('sg-blueprint-v1'); if(!raw)return false;
+    const data=JSON.parse(raw); if(!data||!data.nodes||!data.nodes.length)return false;
+    state.seq=data.seq||1;
+    data.nodes.forEach(n=>{ state.nodes.push(n); buildNodeEl(n); });
+    state.edges=data.edges||[]; state.notes=data.notes||[]; state.groups=data.groups||[];
+    state.notes.forEach(renderNote); renderGroups(); renderEdges(); requestPreviews();
+    if(data.lesson){ const L=LESSONS.find(x=>x.id===data.lesson); if(L)$('#lesson-label').textContent=L.name; }
+    return true;
+  }catch(err){ return false; }
+}
+
+/* ============================================================
+   21. 初始化
+   ============================================================ */
+renderLibrary();
+buildLessonMenu();
+applyTransform();
+if(window.innerWidth<=1100){ $('#lib-panel').classList.add('collapsed'); $('#detail-panel').classList.add('collapsed'); }
+(function init(){
+  const hash=location.hash;
+  const restored = hash.includes('noguide') ? false : restoreGraph();
+  requestAnimationFrame(()=>{ renderEdges(); frameAll(); });
+  if(!restored){
+    const m=hash.match(/lesson=([\w-]+)/);
+    if(m && LESSONS.some(L=>L.id===m[1])){
+      loadLesson(m[1]);
+      if(hash.includes('notour')) $('#tour-bar').classList.remove('open');
+    }else{
+      loadLesson('l1');                          // 首次进入：载入第 1 课画布
+      $('#tour-bar').classList.remove('open');   // 但不强制开始导览
+      $$('.tour-hot').forEach(el=>el.classList.remove('tour-hot'));
+    }
+  }
+  if(!localStorage.getItem('sg-guide-seen') && !navigator.webdriver && !hash.includes('noguide')) $('#guide-mask').classList.add('open');
+  if(hash.includes('sim')) setTimeout(()=>setSim(true),900);
+  const sm=hash.match(/sel=([\w-]+)/);
+  if(sm) requestAnimationFrame(()=>{ const t=state.nodes.find(n=>n.id===sm[1]); if(t) selectAt({kind:'node',uid:t.uid}); });
+})();
+/* ============================================================
+   22. 轻量着色器求值器（教学级：常量传播 + 逐像素求值）
+   ============================================================ */
+const GEOM_IDS=['position','normal','tangent','viewdir','mainlight','screenpos','vertexcolor'];
+const TEX_IDS=['sample2d','samplecube','noise','checker','uv'];
+function inEdge(node,p){ return state.edges.find(e=>e.to===node.uid&&e.tp===p); }
+function cast(v,dim){
+  if(!dim||!v) return v||[0];
+  const o=[]; for(let i=0;i<dim;i++) o.push(i<v.length?v[i]:(i===3?1:0)); return o;
+}
+function vmax(a,b){ return a.length>=b.length?a:b; }
+function binop(A,B,f){
+  const n=Math.max(A.length,B.length),o=[];
+  for(let i=0;i<n;i++){ const a=A[i]!==undefined?A[i]:(A.length===1?A[0]:0), b=B[i]!==undefined?B[i]:(B.length===1?B[0]:0); o.push(f(a,b)); }
+  return o;
+}
+function uni(v,f){ return v.map(f); }
+function fract(x){x=x%1;return x<0?x+1:x;}
+function texPixel(kind,u,v){
+  if(kind==='checker'){ const c=(Math.floor(fract(u)*8)+Math.floor(fract(v)*8))%2; const g=c?205:120; return [g,g,g]; }
+  if(kind==='noise'){ const n=fbm(fract(u)*7,fract(v)*7); return [n*255,n*255,n*255]; }
+  if(kind==='gradient'){ return [fract(u)*255,fract(v)*255,(1-fract(u))*255]; }
+  if(kind==='blocks'){ const c=(Math.floor(fract(u)*4)+Math.floor(fract(v)*4))%2; return c?[220,40,40]:[30,20,20]; }
+  // photo
+  const n=fbm(u*9+2,v*9);
+  let r=40+fbm(u*5,v*5)*60,g=70+n*90,b=30+n*30;
+  const blobs=[[.32,.4,255,90,58],[.6,.33,255,210,74],[.72,.62,216,74,168],[.25,.68,255,140,66],[.52,.72,245,229,106],[.8,.25,154,216,255]];
+  for(const[bx,by,cr,cg,cb] of blobs){
+    const dx=(u-bx)*1.6,dy=(v-by)*1.6,dist=Math.sqrt(dx*dx+dy*dy);
+    const petal=Math.max(0,1-dist*3.2)*(0.6+0.4*fbm(u*40,v*40));
+    r=r*(1-petal)+cr*petal;g=g*(1-petal)+cg*petal;b=b*(1-petal)+cb*petal;
+  }
+  return [r,g,b];
+}
+function sampleTex(kind,u,v){ const c=texPixel(kind,fract(u),fract(v)); return [c[0]/255,c[1]/255,c[2]/255,1]; }
+
+function evalPort(srcNode,port,ctx,memo){
+  if(!memo[srcNode.uid]) memo[srcNode.uid]=computeNode(srcNode,ctx,memo);
+  const m=memo[srcNode.uid];
+  if(port in m) return m[port];
+  // 只有一个输出时直接取 Out
+  if('Out' in m) return m.Out;
+  if('RGBA' in m) return m.RGBA;
+  return [0,0,0,1];
+}
+function getIn(node,p,dflt,ctx,memo){
+  const e=inEdge(node,p);
+  if(!e) return dflt;
+  const src=nodeByUid(e.from); let v=evalPort(src,e.fp,ctx,memo);
+  const ip=inPort(defOf(node),p);
+  if(ip){ const dim=TYPES[ip.t].dim; if(dim>0) v=cast(v,dim); }
+  return v;
+}
+function computeNode(node,ctx,memo){
+  const id=node.id,c=node.ctrl,O={};
+  switch(id){
+    case 'vec1': return {Out:[c.x[0]]};
+    case 'vec2': return {Out:[c.xy[0],c.xy[1]]};
+    case 'vec3': return {Out:[c.xyz[0],c.xyz[1],c.xyz[2]]};
+    case 'vec4': return {Out:[c.xyzw[0],c.xyzw[1],c.xyzw[2],c.xyzw[3]]};
+    case 'boolean': return {Out:[c.v?1:0]};
+    case 'color': return {Out:c.c.slice()};
+    case 'integer': return {Out:[c.v]};
+    case 'slider': return {Out:[c.v]};
+    case 'constant': { const M={PI:Math.PI,TAU:Math.PI*2,PHI:1.6180339,E:Math.E,SQRT2:Math.SQRT2}; return {Out:[M[c.v]]}; }
+    case 'position': { const N=ctx.N; return {Out:c.space==='Object'?[N[0]*.5,N[1]*.5,N[2]*.5]:N.slice()}; }
+    case 'normal': {
+      if(c.space==='Tangent'){ const x=ctx.uv[0]*2-1,y=1-ctx.uv[1]*2,z=Math.sqrt(Math.max(0,1-x*x-y*y)); return {Out:[x,y,z]}; }
+      return {Out:ctx.N.slice()};
+    }
+    case 'tangent': return {Out:[1,0,0]};
+    case 'viewdir': return {Out:ctx.V.slice()};
+    case 'mainlight': return {Out:ctx.L.slice()};
+    case 'screenpos': return {Out:[ctx.uv[0],ctx.uv[1],0,1]};
+    case 'vertexcolor': return {Out:[1,1,1,1]};
+    case 'uv': return {Out:[ctx.uv[0],ctx.uv[1],0,0]};
+    case 'texasset': return {Tex:null};
+    case 'sample2d': case 'samplecube': {
+      if(id==='samplecube'){
+        const N=getIn(node,'Normal',ctx.N,ctx,memo),V=getIn(node,'View Direction',ctx.V,ctx,memo);
+        let R=[V[0]-2*N[0]*(N[0]*V[0]+N[1]*V[1]+N[2]*V[2]), V[1]-2*N[1]*(N[0]*V[0]+N[1]*V[1]+N[2]*V[2]), V[2]-2*N[2]*(N[0]*V[0]+N[1]*V[1]+N[2]*V[2])];
+        const t=(R[1]*.5+.5), grid=(Math.abs(Math.sin(R[0]*9))<.08||Math.abs(Math.sin(R[2]*9))<.08)?.12:0;
+        const col=[.25+t*.5+grid,.32+t*.55+grid,.45+t*.6+grid,1];
+        return {Out:col,LOD:[0]};
+      }
+      const uv=getIn(node,'UV',[ctx.uv[0],ctx.uv[1]],ctx,memo);
+      let kind=c.tex;
+      const te=inEdge(node,'Texture'); if(te){ const sn=nodeByUid(te.from); if(sn.id==='texasset') kind=sn.ctrl.tex; }
+      let rgba=sampleTex(kind,uv[0],uv[1]);
+      if(c.type==='Normal'){ rgba=[rgba[1]*.5+.5, rgba[0]*.4+.3, 1,1]; }
+      return {RGBA:rgba,R:[rgba[0]],G:[rgba[1]],B:[rgba[2]],A:[rgba[3]]};
+    }
+    case 'add': return {Out:binop(getIn(node,'A',[0],ctx,memo),getIn(node,'B',[0],ctx,memo),(a,b)=>a+b)};
+    case 'subtract': return {Out:binop(getIn(node,'A',[0],ctx,memo),getIn(node,'B',[0],ctx,memo),(a,b)=>a-b)};
+    case 'multiply': return {Out:binop(getIn(node,'A',[1],ctx,memo),getIn(node,'B',[1],ctx,memo),(a,b)=>a*b)};
+    case 'divide': return {Out:binop(getIn(node,'A',[0],ctx,memo),getIn(node,'B',[1],ctx,memo),(a,b)=>a/b)};
+    case 'dot': { const A=getIn(node,'A',[0,0,0],ctx,memo),B=getIn(node,'B',[0,0,0],ctx,memo);
+      const n=Math.max(A.length,B.length);let s=0;
+      for(let i=0;i<n;i++) s+=(A[i]||0)*(B[i]||0); return {Out:[s]}; }
+    case 'cross': { const A=getIn(node,'A',[0,0,0],ctx,memo),B=getIn(node,'B',[0,0,0],ctx,memo);
+      return {Out:[A[1]*B[2]-A[2]*B[1],A[2]*B[0]-A[0]*B[2],A[0]*B[1]-A[1]*B[0]]}; }
+    case 'normalize': { const V=getIn(node,'In',[0,0,1],ctx,memo); const l=Math.hypot(...V)||1; return {Out:V.map(x=>x/l)}; }
+    case 'length': { const V=getIn(node,'In',[0],ctx,memo); return {Out:[Math.hypot(...V)]}; }
+    case 'distance': { const V=binop(getIn(node,'A',[0],ctx,memo),getIn(node,'B',[0],ctx,memo),(a,b)=>a-b); return {Out:[Math.hypot(...V)]}; }
+    case 'sine': return {Out:uni(getIn(node,'In',[0],ctx,memo),Math.sin)};
+    case 'cosine': return {Out:uni(getIn(node,'In',[0],ctx,memo),Math.cos)};
+    case 'absolute': return {Out:uni(getIn(node,'In',[0],ctx,memo),Math.abs)};
+    case 'negate': return {Out:uni(getIn(node,'In',[0],ctx,memo),x=>-x)};
+    case 'oneminus': return {Out:uni(getIn(node,'In',[0],ctx,memo),x=>1-x)};
+    case 'saturate': return {Out:uni(getIn(node,'In',[0],ctx,memo),x=>Math.min(1,Math.max(0,x)))};
+    case 'clamp': return {Out:binop(binop(getIn(node,'In',[0],ctx,memo),getIn(node,'Min',[0],ctx,memo),(a,b)=>Math.max(a,b)),getIn(node,'Max',[1],ctx,memo),(a,b)=>Math.min(a,b))};
+    case 'lerp': { const A=getIn(node,'A',[0],ctx,memo),B=getIn(node,'B',[1],ctx,memo),T=getIn(node,'T',[.5],ctx,memo);
+      const tv=T[0]||0; return {Out:binop(A,B,(a,b)=>a+(b-a)*tv)}; }
+    case 'power': return {Out:binop(getIn(node,'Base',[1],ctx,memo),getIn(node,'Exp',[1],ctx,memo),Math.pow)};
+    case 'remap': { const V=getIn(node,'In',[0],ctx,memo),im=getIn(node,'In Min Max',[0,1],ctx,memo),om=getIn(node,'Out Min Max',[0,1],ctx,memo);
+      return {Out:V.map(x=>(x-im[0])/((im[1]-im[0])||1)*(om[1]-om[0])+om[0])}; }
+    case 'split': { const V=getIn(node,'In',[0,0,0,1],ctx,memo); return {R:[V[0]||0],G:[V[1]||0],B:[V[2]||0],A:[V[3]!==undefined?V[3]:1]}; }
+    case 'combine': { const r=getIn(node,'R',[0],ctx,memo)[0],g=getIn(node,'G',[0],ctx,memo)[0],b=getIn(node,'B',[0],ctx,memo)[0],a=getIn(node,'A',[1],ctx,memo)[0]; return {RGBA:[r,g,b,a]}; }
+    case 'noise': { const uv=getIn(node,'UV',[ctx.uv[0],ctx.uv[1]],ctx,memo),s=getIn(node,'Scale',[10],ctx,memo)[0]; const n=fbm(uv[0]*s,uv[1]*s); return {Out:[n,n,n,1]}; }
+    case 'checker': { const uv=getIn(node,'UV',[ctx.uv[0],ctx.uv[1]],ctx,memo),A=getIn(node,'A',[.23,.23,.23,1],ctx,memo),B=getIn(node,'B',[.82,.82,.82,1],ctx,memo);
+      const k=(Math.floor(fract(uv[0])*2)+Math.floor(fract(uv[1])*2))%2; return {Out:(k?B:A).slice()}; }
+    case 'desat': { const col=getIn(node,'In',[.5,.5,.5,1],ctx,memo),rng=getIn(node,'Range',[1],ctx,memo)[0];
+      const gray=col[0]*.212+col[1]*.715+col[2]*.072;
+      return {Out:[col[0]+(gray-col[0])*rng,col[1]+(gray-col[1])*rng,col[2]+(gray-col[2])*rng,col[3]!==undefined?col[3]:1]}; }
+    case 'tiling': { const uv=getIn(node,'UV',[ctx.uv[0],ctx.uv[1]],ctx,memo),t=getIn(node,'Tiling',[1,1],ctx,memo),o=getIn(node,'Offset',[0,0],ctx,memo);
+      return {Out:[uv[0]*t[0]+o[0],uv[1]*t[1]+o[1],0,0]}; }
+    default: return {Out:[0,0,0,1]};
+  }
+}
+/* 上游依赖收集 */
+function upstream(u,set){ set=set||new Set(); if(set.has(u))return set; set.add(u);
+  state.edges.filter(e=>e.to===u).forEach(e=>upstream(e.from,set)); return set; }
+
+/* ============================================================
+   23. Preview 节点渲染（球面受光 / 纹理光栅 / 常量色块）
+   ============================================================ */
+function requestPreviews(){ if(previewQueued)return; previewQueued=true; requestAnimationFrame(()=>{previewQueued=false;renderPreviews();updateLiveValues();}); }
+function renderPreviews(){
+  state.nodes.filter(n=>n.id==='preview').forEach(n=>{
+    const cv=n._preview; if(!cv)return;
+    const e=inEdge(n,'In');
+    const ctx2d=cv.getContext('2d');
+    ctx2d.fillStyle='#141414';ctx2d.fillRect(0,0,cv.width,cv.height);
+    if(!e){ ctx2d.fillStyle='#555';ctx2d.font='11px "JetBrains Mono"';ctx2d.textAlign='center';
+      ctx2d.fillText('未连接输入',cv.width/2,cv.height/2); return; }
+    const src=nodeByUid(e.from);
+    const deps=upstream(src.uid);
+    const hasTex=[...deps].some(x=>TEX_IDS.includes(nodeByUid(x).id));
+    const hasGeom=[...deps].some(x=>GEOM_IDS.includes(nodeByUid(x).id));
+    const off=document.createElement('canvas');
+    if(hasTex&&!hasGeom){ off.width=88;off.height=60; rasterQuad(off,src,e.fp);
+      ctx2d.imageSmoothingEnabled=false; ctx2d.drawImage(off,0,0,cv.width,cv.height); }
+    else if(hasGeom){ off.width=76;off.height=76; rasterSphere(off,src,e.fp);
+      ctx2d.imageSmoothingEnabled=true;
+      const s=Math.min(cv.width,cv.height);
+      ctx2d.drawImage(off,(cv.width-s)/2,(cv.height-s)/2,s,s); }
+    else { rasterConst(cv,src,e.fp); }
+  });
+}
+function makeCtx(u,v,L){ return {uv:[u,v],N:[0,0,1],V:[0,0,1],L:L||currentLight()}; }
+function currentLight(){ const t=simStart? (performance.now()-simStart)/1000:0.6;
+  const a=t*0.9; const L=[Math.cos(a)*.9,.35,Math.sin(a)*.9]; const l=Math.hypot(...L); return [L[0]/l,L[1]/l,L[2]/l]; }
+function valToRGB(v){
+  let r,g,b,a=1;
+  if(v.length===1){r=g=b=v[0];}
+  else if(v.length===2){r=v[0];g=v[1];b=0;}
+  else {r=v[0];g=v[1];b=v[2];a=v[3]!==undefined?v[3]:1;}
+  const cl=x=>Math.max(0,Math.min(255,Math.round(x*255)));
+  // Alpha 混合到棋盘背景
+  if(a<1){ return [cl(r*.6+.12),cl(g*.6+.12),cl(b*.6+.12)]; }
+  return [cl(r),cl(g),cl(b)];
+}
+function rasterQuad(cv,src,port){
+  const w=cv.width,h=cv.height,img=cv.getContext('2d').createImageData(w,h),d=img.data;
+  const L=currentLight();
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const u=x/(w-1),v=1-y/(h-1);
+    let val; try{val=evalPort(src,port,{uv:[u,v],N:[0,0,1],V:[0,0,1],L},{});}catch(err){val=[0,0,0,1];}
+    const [r,g,b]=valToRGB(val),i=(y*w+x)*4; d[i]=r;d[i+1]=g;d[i+2]=b;d[i+3]=255;
+  }
+  cv.getContext('2d').putImageData(img,0,0);
+}
+function rasterSphere(cv,src,port){
+  const w=cv.width,h=cv.height,img=cv.getContext('2d').createImageData(w,h),d=img.data;
+  const cx=w/2,cy=h/2,R=Math.min(w,h)*.46,L=currentLight();
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const nx=(x-cx)/R,ny=-(y-cy)/R,i=(y*w+x)*4;
+    const r2=nx*nx+ny*ny;
+    if(r2>1){ d[i]=18;d[i+1]=18;d[i+2]=18;d[i+3]=255; continue; }
+    const nz=Math.sqrt(1-r2);
+    let val; try{val=evalPort(src,port,{uv:[x/w,1-y/h],N:[nx,ny,nz],V:[0,0,1],L},{});}catch(err){val=[0];}
+    // 简单球面明暗，帮助观察方向类数据
+    let [r,g,b]=valToRGB(val);
+    const shade=.55+.45*Math.max(0,nz*.35+.65);
+    r=Math.round(r*shade);g=Math.round(g*shade);b=Math.round(b*shade);
+    d[i]=r;d[i+1]=g;d[i+2]=b;d[i+3]=255;
+  }
+  cv.getContext('2d').putImageData(img,0,0);
+}
+function rasterConst(cv,src,port){
+  let val; try{val=evalPort(src,port,makeCtx(.5,.5),{});}catch(err){val=[0,0,0,1];}
+  const [r,g,b]=valToRGB(val),w=cv.width,h=cv.height;
+  const ctx=cv.getContext('2d'),img=ctx.createImageData(w,h),d=img.data;
+  for(let i=0;i<w*h;i++){d[i*4]=r;d[i*4+1]=g;d[i*4+2]=b;d[i*4+3]=255;}
+  ctx.putImageData(img,0,0);
+  // 数值标签（直接画在最终尺寸上，避免放大模糊）
+  const lum=(r*0.212+g*0.715+b*0.072)/255;
+  ctx.fillStyle=lum>.5?'rgba(0,0,0,.62)':'rgba(255,255,255,.85)';
+  ctx.font='12px "JetBrains Mono",Consolas,monospace';ctx.textAlign='center';
+  const txt='('+val.map(x=>round3(x)).slice(0,4).join(', ')+')';
+  ctx.fillText(txt,w/2,h-10);
+}
+
+/* ============================================================
+   24. 节点实时数值标签
+   ============================================================ */
+function updateLiveValues(){
+  state.nodes.forEach(n=>{
+    const el=nodeEl(n.uid); if(!el)return; const live=el.querySelector('.n-live'); if(!live)return;
+    const d=defOf(n); if(!d.out||!d.out.length){live.classList.remove('show');return;}
+    const deps=upstream(n.uid);
+    const symbolic=[...deps].some(x=>GEOM_IDS.includes(nodeByUid(x).id)||TEX_IDS.includes(nodeByUid(x).id));
+    if(symbolic){ live.classList.remove('show'); live.textContent=''; return; }
+    try{
+      const memo={}; const m=computeNode(n,makeCtx(.5,.5),memo);
+      const parts=Object.keys(m).slice(0,2).map(k=>{
+        const v=m[k]; return k+'='+(Array.isArray(v)?'('+v.map(x=>round3(x)).join(',')+')':round3(v));
+      });
+      live.textContent=parts.join('  '); live.classList.add('show');
+    }catch(err){live.classList.remove('show');}
+  });
+}
+
+/* ============================================================
+   25. 运行模拟：数据流粒子 + 节点逐级点亮 + 光照动画
+   ============================================================ */
+const NS='http://www.w3.org/2000/svg';
+function ensureParticleLayer(){
+  if(particleSvg)return;
+  particleSvg=document.createElementNS(NS,'svg');
+  particleSvg.setAttribute('width','1');particleSvg.setAttribute('height','1');
+  particleSvg.style.cssText='position:absolute;left:0;top:0;overflow:visible;pointer-events:none';
+  particleSvg.id='particle-svg'; world.appendChild(particleSvg);
+}
+function depthOf(u,memo){
+  if(memo[u]!==undefined)return memo[u];
+  const ins=state.edges.filter(e=>e.to===u);
+  memo[u]=ins.length?Math.max(...ins.map(e=>depthOf(e.from,memo)+1)):0;
+  return memo[u];
+}
+function refreshParticles(){
+  ensureParticleLayer(); particleSvg.innerHTML='';
+  if(!simOn)return;
+  const memo={};
+  state.edges.forEach(e=>{
+    const a=portWorld(e.from,'out',e.fp),b=portWorld(e.to,'in',e.tp),d=bezier(a,b);
+    const depth=depthOf(e.from,memo), color=TYPES[edgeType(e)].color;
+    for(let k=0;k<2;k++){
+      const c=document.createElementNS(NS,'circle');
+      c.setAttribute('r',k?2.2:3.2);c.setAttribute('fill','#fff');c.setAttribute('class','edge-particle');
+      c.style.color=color;c.style.filter=`drop-shadow(0 0 4px ${color})`;
+      const am=document.createElementNS(NS,'animateMotion');
+      am.setAttribute('path',d);am.setAttribute('dur',(1.3+depth*.18)+'s');
+      am.setAttribute('repeatCount','indefinite');
+      am.setAttribute('begin',(-depth*.22-k*.65)+'s');
+      c.appendChild(am); particleSvg.appendChild(c);
+    }
+  });
+}
+function simFrame(){
+  renderPreviews();
+  return simOn;
+}
+function setSim(on){
+  simOn=on; state.sim=on;
+  $('#btn-sim').classList.toggle('sim-active',on);
+  $('#btn-sim').querySelector('.lbl').textContent=on?'停止模拟':'运行模拟';
+  ensureParticleLayer();
+  if(on){
+    simStart=performance.now();
+    refreshParticles();
+    const memo={};
+    state.nodes.forEach(n=>depthOf(n.uid,memo));
+    const pulse=()=>{
+      if(!simOn)return;
+      state.nodes.forEach(n=>{
+        const depth=memo[n.uid]||0;
+        setTimeout(()=>{ const el=nodeEl(n.uid); if(el&&simOn){el.classList.add('sim-active');setTimeout(()=>el.classList.remove('sim-active'),520);} },depth*190);
+      });
+      pulseTimer=setTimeout(pulse,Math.max(1600,Object.keys(memo).length*190+700));
+    };
+    pulse();
+    const loop=()=>{ if(!simOn){cancelAnimationFrame(simRAF);return;} simFrame(); simRAF=requestAnimationFrame(loop); };
+    simRAF=requestAnimationFrame(loop);
+    toast('模拟运行中：光点沿连线传递，Preview 实时刷新','ok');
+  }else{
+    clearTimeout(pulseTimer); cancelAnimationFrame(simRAF);
+    particleSvg.innerHTML='';
+    $$('.sim-active').forEach(el=>el.classList.remove('sim-active'));
+    renderPreviews();
+  }
+}
+$('#btn-sim').addEventListener('click',()=>setSim(!simOn));
+/*JS_MARKER*/
+</script>
+</body>
+</html>

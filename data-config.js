@@ -31,6 +31,16 @@ const dataConfig = {
       category: "other",
       date: "2026-08-20",
       cover: "https://images.unsplash.com/photo-1558435186-d31d126391fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      id: "4",
+      title: "Shader Graph 蓝图模拟器",
+      icon: "fas fa-project-diagram",
+      description: "Unity Shader Graph 中文可视化教学：像官方编辑器一样创建/连线节点，节点详情栏含中文介绍、端口参数、公式与HLSL代码，内置点积官方示例课程与数据流动效",
+      file: "ShaderGraphBlueprint.html",
+      category: "code",
+      date: "2026-09-19",
+      cover: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     }
   ],
   //笔记
