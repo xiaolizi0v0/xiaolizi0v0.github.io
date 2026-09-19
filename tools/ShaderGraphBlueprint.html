@@ -420,6 +420,106 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 @keyframes panelFade{from{opacity:.3}to{opacity:1}}
 @keyframes toastIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
 
+/* ===== Master Stack（Vertex / Fragment 块堆栈） ===== */
+.sg-node.sg-master{width:282px;background:transparent;border:none;box-shadow:none;padding:0;overflow:visible}
+.sg-node.sg-master.sel{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px}
+.sg-master .m-block .port{padding:0;flex:0 0 auto}
+.sg-master.sel{outline:2px solid var(--accent);outline-offset:0;border-radius:8px}
+.m-stack{background:#383838;border:1px solid #2c2c2c;border-radius:8px;overflow:visible;box-shadow:0 3px 14px rgba(0,0,0,.35)}
+.m-stack-head{border-radius:7px 7px 0 0;background:#383838;position:relative;z-index:1}
+.m-block:last-child{border-radius:0 0 7px 7px}
+.m-stack+.m-stack{margin-top:16px}
+.m-stack-head{font-size:12px;color:#c9c9c9;padding:8px 11px 6px;letter-spacing:.2px}
+.m-block{position:relative;display:flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;font-size:11.5px;border-top:1px solid #2e2e2e;min-height:30px}
+.m-block:hover{background:#3f3f3f}
+.m-block .pname{flex:1;color:#d6d6d6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-block .ptype{color:#8a8a8a;font-family:'JetBrains Mono',monospace;font-size:10px;flex-shrink:0}
+.m-block .m-widget{flex-shrink:0;display:flex;align-items:center;gap:4px}
+.m-block.connected .m-widget{display:none}
+.m-num{display:flex;align-items:center;gap:3px;background:#2a2a2a;border:1px solid #3d3d3d;border-radius:4px;padding:1px 4px}
+.m-num .x{font-size:9px;color:#888;font-family:'JetBrains Mono',monospace}
+.m-num input{width:40px;background:none;border:none;outline:none;color:#ddd;font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:1px 0}
+.m-swatch{width:30px;height:15px;border:1px solid #1f1f1f;border-radius:3px;cursor:pointer;padding:0}
+.m-hdr{font-size:9.5px;padding:2px 6px;background:#2a2a2a;border:1px solid #3d3d3d;border-radius:3px;color:#bbb;line-height:1.2}
+.space-chip{position:absolute;right:calc(100% + 16px);top:50%;transform:translateY(-50%);background:#4a4a4a;border:1px solid #565656;border-radius:4px;font-size:9.5px;color:#d0d0d0;padding:2px 7px;white-space:nowrap;pointer-events:none}
+.space-chip::after{content:'';position:absolute;left:100%;top:50%;width:16px;height:1px;background:#666}
+.m-stack-link{position:absolute;left:50%;transform:translateX(-50%);width:14px;height:16px}
+.m-stack-link svg{width:14px;height:16px}
+
+/* 属性节点（Blackboard 引用）绿色标题 */
+.sg-node.prop .n-title{background:#5e8f3a}
+
+/* ===== 左栏 tabs（节点库 / Blackboard） ===== */
+.lib-tabs{display:flex;gap:5px;padding:9px 10px 0}
+.lib-tab{flex:1;padding:6px 4px;font-size:11.5px;border-radius:6px;background:#2c2c2c;color:#9a9a9a;cursor:pointer;text-align:center;border:1px solid transparent;user-select:none}
+.lib-tab:hover{color:#ddd}
+.lib-tab.active{background:#454545;color:#fff;border-color:#555}
+.lib-body{flex:1;display:flex;flex-direction:column;min-height:0}
+.bb-body{display:none;padding:10px;overflow-y:auto;flex:1;min-height:0}
+#lib-panel.show-bb .lib-body{display:none}
+#lib-panel.show-bb .bb-body{display:block}
+.bb-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.bb-head .ttl{font-size:12px;color:#ccc}
+.bb-add{width:24px;height:24px;border-radius:5px;background:#3d3d3d;color:#ddd;font-size:15px;line-height:1;cursor:pointer;position:relative}
+.bb-add:hover{background:#4a4a4a}
+.bb-menu{position:absolute;right:0;top:27px;z-index:30;width:150px;background:#3d3d3d;border:1px solid #555;border-radius:8px;box-shadow:0 8px 26px rgba(0,0,0,.5);padding:5px;display:none}
+.bb-menu.open{display:block}
+.bb-menu button{display:block;width:100%;text-align:left;padding:6px 9px;font-size:11.5px;border-radius:5px;color:#ddd}
+.bb-menu button:hover{background:#4d4d4d}
+.bb-item{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;cursor:grab;background:#333;border:1px solid #3d3d3d;margin-bottom:6px}
+.bb-item:hover{border-color:var(--accent)}
+.bb-item .bb-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.bb-item .bb-name{flex:1;font-size:11.5px;color:#ddd;outline:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bb-item .bb-type{font-size:9.5px;color:#888;font-family:'JetBrains Mono',monospace}
+.bb-item .bb-del{color:#888;font-size:12px;padding:2px 4px;border-radius:4px}
+.bb-item .bb-del:hover{color:#ff8080;background:#4a3030}
+.bb-hint{font-size:10.5px;color:#777;line-height:1.7;margin-top:6px}
+
+/* ===== Main Preview 浮动窗口 ===== */
+.main-preview{position:absolute;top:14px;right:14px;width:224px;
+  transition:width .18s ease}background:#333;border:1px solid #4a4a4a;border-radius:10px;z-index:12;box-shadow:0 8px 30px rgba(0,0,0,.45);overflow:hidden}
+.mp-head{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid #424242}
+.mp-head .ttl{flex:1;font-size:11.5px;color:#ccc}
+.mp-mesh{display:flex;gap:3px}
+.mp-mesh button{width:23px;height:21px;border-radius:4px;background:#2c2c2c;color:#999;font-size:10px;display:flex;align-items:center;justify-content:center}
+.mp-mesh button.on{background:var(--accent);color:#fff}
+.mp-mesh button:hover:not(.on){color:#ddd}
+.mp-canvas{display:block;width:100%;height:190px;background:#212121;cursor:grab;touch-action:none}
+@media(max-width:1100px){.main-preview{width:190px;right:14px}.mp-canvas{height:140px}.mp-sec{padding:7px 8px}}
+.mp-canvas:active{cursor:grabbing}
+.main-preview.collapsed .mp-canvas,.main-preview.collapsed .mp-sec{display:none}
+.main-preview.auto-empty .mp-canvas,.main-preview.auto-empty .mp-sec{display:none}
+.main-preview.auto-empty{width:172px}
+#mp-collapse:hover{color:#ddd}
+.mp-sec{border-top:1px solid #424242;padding:9px 11px;font-size:11px}
+.mp-sec .sec-ttl{color:#aaa;font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.mp-btn{width:100%;padding:7px;border-radius:6px;font-size:11px;margin-bottom:6px;cursor:pointer}
+.mp-btn.primary{background:var(--accent);color:#fff}
+.mp-btn.primary:hover{background:#3d95e8}
+.mp-btn.ghost{background:#3d3d3d;color:#ccc}
+.mp-btn.ghost:hover{background:#484848}
+.mp-btn:disabled{opacity:.4;cursor:default}
+.mp-mat{display:flex;align-items:center;gap:8px;font-size:11px;color:#ccc;margin-bottom:7px}
+.mp-mat .mat-ball{width:26px;height:26px;border-radius:50%;flex-shrink:0;border:1px solid #555}
+.mp-mat .mat-meta{flex:1;min-width:0}
+.mp-mat .mat-meta b{display:block;font-size:11px;color:#ddd}
+.mp-mat .mat-meta span{font-size:9.5px;color:#888}
+.mp-prop{display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.mp-prop label{flex:1;font-size:10.5px;color:#bbb;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mp-prop input[type=number]{width:52px;background:#2a2a2a;border:1px solid #3d3d3d;border-radius:4px;color:#ddd;font-size:10.5px;padding:3px 5px;font-family:'JetBrains Mono',monospace}
+.mp-cube-scene{display:flex;align-items:center;gap:9px;margin-top:4px}
+.mp-cube-scene svg{flex-shrink:0}
+.mp-cube-scene .txt{font-size:10px;color:#999;line-height:1.5}
+.mp-toggle-ok{color:#7ec96f}
+
+/* 教程动作提示 */
+.tour-act{margin:9px 0 4px;padding:7px 10px;border-radius:7px;background:rgba(77,166,255,.12);border:1px solid rgba(77,166,255,.4);font-size:12px;color:#9cc8f5;line-height:1.55}
+.tour-act.done{background:rgba(126,201,111,.12);border-color:rgba(126,201,111,.45);color:#9ad98f}
+.tour-help{margin-top:7px}
+.tour-help button{font-size:11px;color:#9cc8f5;text-decoration:underline;background:none;cursor:pointer}
+@keyframes hotPulse{0%,100%{box-shadow:0 0 0 0 rgba(77,166,255,.55)}50%{box-shadow:0 0 0 5px rgba(77,166,255,0)}}
+.tour-pulse{animation:hotPulse 1.1s infinite;border-radius:7px;z-index:15}
+
 /* 面板移动端抽屉/关闭按钮 */
 .panel-toggle{display:none}
 .panel-close{display:none}
@@ -480,6 +580,10 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
     </div>
     <div class="tb-sep"></div>
     <div class="tb-group">
+      <button class="tb-btn" id="btn-save" title="保存 Shader Graph 资产（模拟 Unity 的 Save Asset）">
+        <svg viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5z"/><path d="M8 3v5h7M8 21v-7h8v7"/><path d="M15 3v5"/></svg>
+        <span class="lbl">保存资产</span>
+      </button>
       <button class="tb-btn" id="btn-note" title="添加黄色便签">
         <svg viewBox="0 0 24 24"><path d="M4 4h16v11l-5 5H4z"/><path d="M15 20v-5h5"/></svg>
         <span class="lbl">便签</span>
@@ -511,11 +615,18 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
         节点库 Node Library
       </div>
-      <div class="search-box">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-        <input id="lib-search" type="text" placeholder="搜索节点（中/英文）…">
+      <div class="lib-tabs">
+        <button class="lib-tab active" id="tab-lib">节点库</button>
+        <button class="lib-tab" id="tab-bb">Blackboard</button>
       </div>
-      <div class="panel-body" id="lib-list"></div>
+      <div class="lib-body">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="lib-search" type="text" placeholder="搜索节点（中/英文）…">
+        </div>
+        <div class="panel-body" id="lib-list"></div>
+      </div>
+      <div class="bb-body" id="bb-body"></div>
     </aside>
 
     <!-- ================= 中：画布 ================= -->
@@ -541,6 +652,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
           <span class="tour-count" id="tour-count"></span>
         </div>
         <div class="tour-text" id="tour-text"></div>
+        <div class="tour-act" id="tour-act" style="display:none"></div>
         <div class="tour-bottom">
           <button class="tour-btn" id="tour-prev">上一步</button>
           <div class="tour-progress"><i id="tour-prog"></i></div>
@@ -553,6 +665,24 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
       <div class="vp-hint" id="vp-hint">
         <b>双击空白</b> 快速创建节点 · 拖拽端口圆点 <b>连线</b> · 点击节点查看 <b>中文详解</b><br>
         拖空白平移 · 滚轮缩放 · 选中后按 <b>Delete</b> 删除 · 右键画布也可创建节点
+      </div>
+
+      <!-- Main Preview 主预览（材质球 + 材质 Inspector 模拟） -->
+      <div class="main-preview" id="main-preview">
+        <div class="mp-head">
+          <span class="ttl">Main Preview</span>
+          <div class="mp-mesh" id="mp-mesh">
+            <button data-mesh="sphere" class="on" title="球体 Sphere">球</button>
+            <button data-mesh="cube" title="立方体 Cube">方</button>
+            <button data-mesh="plane" title="平面 Plane">面</button>
+          </div>
+          <button id="mp-collapse" title="收起 / 展开 Main Preview" style="width:20px;height:20px;border-radius:4px;background:#2c2c2c;color:#999;font-size:12px;line-height:1;flex:0 0 auto">−</button>
+        </div>
+        <canvas class="mp-canvas" id="mp-canvas" width="300" height="230"></canvas>
+        <div class="mp-sec" id="mp-inspector">
+          <div class="sec-ttl">材质 Inspector（模拟）</div>
+          <div id="mp-body"></div>
+        </div>
       </div>
 
       <!-- 缩放控件 -->
@@ -587,7 +717,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
     <div class="guide-step"><div class="gn">1</div><div><b>创建节点</b><p>在左侧「节点库」点击/拖拽添加节点；在画布空白处<b>双击</b>（或右键）可快速搜索创建。</p></div></div>
     <div class="guide-step"><div class="gn">2</div><div><b>连接节点</b><p>按住端口圆点拖到另一个节点的端口即可连线，端口颜色代表数据类型，不兼容的类型无法连接。</p></div></div>
     <div class="guide-step"><div class="gn">3</div><div><b>看讲解、跑模拟</b><p>点击任意节点，右侧显示它的中文介绍、参数说明与着色器代码；点顶栏「运行模拟」观看数据流动画。</p></div></div>
-    <div class="guide-step"><div class="gn">4</div><div><b>跟着课程学</b><p>顶栏「教学课程」内置官方 Dot Product 文档的 4 个经典示例，分步讲解点积在着色器中的用法。</p></div></div>
+    <div class="guide-step"><div class="gn">4</div><div><b>跟着课程学</b><p>「教学课程」第 0 课复刻官方入门教程「我的第一个 Shader Graph」（可动手操作），另有 Dot Product 文档的 4 个经典示例课。</p></div></div>
     <div class="modal-actions">
       <label class="m-check"><input type="checkbox" id="guide-dont"> 不再显示</label>
       <div class="sp"></div>
@@ -929,25 +1059,46 @@ N({id:'preview', en:'Preview', cn:'预览', cat:'utility',
   out:[],
   desc:'提供一个更大的实时预览窗口来观察输入数据：标量显示为灰度，向量显示为颜色或受光球体，纹理链显示最终图像。它不改变任何计算结果，是学习和调试时「看见数据」的眼睛。本模拟器中的预览会在「运行模拟」时实时刷新并播放光照动画。',
   tip:'把任意中间结果接到 Preview 上，是排查 Shader 问题最有效的方法。'});
-N({id:'pbr', en:'PBR Master（教学模拟）', cn:'PBR 主输出节点', cat:'master',
+N({id:'pbr', en:'PBR Master（旧版占位）', cn:'PBR 主输出节点', cat:'master', lib:false,
   in:[{n:'Base Color',t:'v3',cn:'基础色（反照率 Albedo）'},
       {n:'Normal',t:'v3',cn:'切线空间法线（来自法线贴图）'},
       {n:'Emission',t:'v3',cn:'自发光颜色'},
       {n:'Metallic',t:'float',cn:'金属度 0~1：0 电介质，1 金属'},
       {n:'Smoothness',t:'float',cn:'光滑度 0~1：控制高光锐度'}],
   out:[],
-  desc:'这是 Shader Graph 主栈（Master Stack）Fragment 阶段的教学简化版：所有计算最终汇总到这里，定义表面的颜色、法线、自发光与 PBR 材质参数。真实 Shader Graph 中它是不可创建的固定 Master Stack，这里用它帮助你理解「数据最终流向哪里」。',
-  tip:'学习路线：先在本模拟器理解每个输入的含义，再到真实 Shader Graph 的 Master Stack 中对照 Fragment 端口。',
-  code:'// 概念示意，URP 中由 PBR 光照函数完成\nSurfaceData.albedo = BaseColor;\nSurfaceData.normalTS = Normal;\nSurfaceData.emission = Emission;\nSurfaceData.metallic = Metallic;\nSurfaceData.smoothness = Smoothness;'});
+  desc:'旧版教学占位节点，已被 Master Stack 取代。',
+  tip:'请使用节点库「输出 Master」分类中的 Master Stack。'});
+N({id:'master', en:'Master Stack', cn:'Master Stack 主堆栈', cat:'master', lib:false,
+  in:[{n:'Position',t:'v3',cn:'顶点位置（Vertex 块）',stage:'vertex',space:'Object Space'},
+      {n:'NormalV',t:'v3',cn:'顶点法线（Vertex 块）',stage:'vertex',space:'Object Space'},
+      {n:'Tangent',t:'v3',cn:'顶点切线（Vertex 块）',stage:'vertex',space:'Object Space'},
+      {n:'Base Color',t:'v3',cn:'基础色（Fragment 块）',stage:'fragment',def:[.5,.5,.5],widget:'color'},
+      {n:'NormalTS',t:'v3',cn:'法线（切线空间）（Fragment 块）',stage:'fragment',space:'Tangent Space'},
+      {n:'Metallic',t:'float',cn:'金属度（Fragment 块）',stage:'fragment',def:0,widget:'num'},
+      {n:'Smoothness',t:'float',cn:'光滑度（Fragment 块）',stage:'fragment',def:.5,widget:'num'},
+      {n:'Emission',t:'v3',cn:'自发光 HDR（Fragment 块）',stage:'fragment',def:[0,0,0],widget:'emission'},
+      {n:'Ambient Occlusion',t:'float',cn:'环境光遮蔽（Fragment 块）',stage:'fragment',def:1,widget:'num'}],
+  out:[],
+  desc:'Master Stack 是 Shader Graph 的终点，定义着色器的最终输出。它由两个堆栈组成：Vertex（顶点阶段：Position 位置、Normal 法线、Tangent 切线）与 Fragment（片元阶段：Base Color 基础色、Normal 法线、Metallic 金属度、Smoothness 光滑度、Emission 自发光、Ambient Occlusion 环境光遮蔽）。把其他节点连到这些 Block（块）上，就等于在写顶点/片元着色器的最终输出。右上角 Main Preview 的材质球会实时反映 Fragment 块的结果。',
+  tip:'入门第一步：创建 Color 节点，把 Out 连到 Base Color，Main Preview 球立刻变色；金属度=0 是塑料/石头等电介质，=1 是金属；光滑度越高高光越锐利。',
+  code:'// Vertex 阶段\nout.position = TransformObjectToHClip(Position);\nout.normalWS = TransformObjectToWorldNormal(NormalV);\n// Fragment 阶段（URP Lit）\nSurfaceData.albedo   = BaseColor;\nSurfaceData.normalTS = NormalTS;\nSurfaceData.metallic = Metallic;\nSurfaceData.smoothness = Smoothness;\nSurfaceData.emission  = Emission;\nSurfaceData.occlusion = AmbientOcclusion;',
+  slug:'Master-Stack-Node.html'});
+N({id:'prop', en:'Property', cn:'Blackboard 属性（引用）', cat:'basic', lib:false,
+  in:[],
+  out:[{n:'Out',t:'dyn',cn:'属性值'}],
+  desc:'Blackboard 属性节点：引用在 Blackboard（黑板）中定义的属性。属性会暴露到材质的 Inspector 检视面板中，让使用者无需打开 Shader Graph 就能调整颜色、数值等参数。在左侧切换到 Blackboard 面板，点属性即可把它添加到画布。',
+  tip:'在「材质 Inspector」（Main Preview 窗口内）修改属性值，画布上所有引用该属性的节点会同步更新——这正是属性与普通节点的区别。'});
 /* ============================================================
    3. 应用状态
    ============================================================ */
 const state = {
-  nodes:[], edges:[], notes:[], groups:[],
+  nodes:[], edges:[], notes:[], groups:[], props:[],
   sel:null,            // {kind:'node'|'edge'|'note', uid}
   pan:{x:60,y:30}, zoom:1,
-  sim:false, lesson:null, tourStep:0, tourMap:{},
-  seq:1, dirty:false
+  sim:false, lesson:null, tourStep:0, tourMap:{}, tourDone:{},
+  seq:1, dirty:false, material:null, applied:false, mesh:'sphere',
+  bbTab:'lib',         // lib | bb
+  actFlags:{}          // 教程动作检测标志
 };
 /* 模拟运行期状态（提前声明，避免初始化期暂时性死区） */
 let simOn=false, simStart=0, simRAF=0, pulseTimer=0, particleSvg=null, previewQueued=false;
@@ -963,6 +1114,32 @@ const inPort  = (def,name) => (def.in ||[]).find(p=>p.n===name);
    4. 教学课程（复刻 Unity 官方 Dot Product 文档示例图）
    ============================================================ */
 const LESSONS = [
+{
+  id:'l0', name:'第 0 课 · 我的第一个 Shader Graph（官方入门）',
+  goal:'复刻官方教程：Color → Base Color，保存、建材质、赋给 Cube、用属性调色',
+  graph:{
+    nodes:[ {key:'ms', def:'master', x:780, y:30} ],
+    edges:[],
+    notes:[ {key:'tip', x:40, y:30, text:'官方教程《我的第一个 Shader Graph》\n\n右侧是 Master Stack（Vertex / Fragment），右上角是 Main Preview 材质球。\n按下面课程条的提示亲手操作；卡住可点「帮我完成这一步」。'} ],
+    groups:[]
+  },
+  steps:[
+    {t:null, text:'这节课 1:1 复刻 Unity 官方中文教程《我的第一个 Shader Graph》：新建图形时，画布右侧固定存在 Master Stack（Vertex 顶点堆栈 + Fragment 片元堆栈），右上角是 Main Preview 材质球，它会实时显示着色结果。'},
+    {t:{k:'node',key:'ms'}, text:'Fragment 堆栈的第一个块 Base Color（基础色）决定物体表面颜色；它默认是灰色 (0.5,0.5,0.5)，所以材质球初始为灰色。Vertex 堆栈的 Position/Normal/Tangent 是顶点阶段输出，入门阶段不用动。'},
+    {t:null, act:{type:'add',def:'color'}, actLabel:'在画布空白处【双击】（或按【空格键】）打开 Create Node 菜单，输入 color，回车创建一个 Color 节点。'},
+    {t:null, act:{type:'connect',from:'color',fp:'Out',tp:'Base Color'}, actLabel:'按住 Color 节点的 Out 端口，拖到 Fragment 堆栈的 Base Color 块上松开，完成连线。'},
+    {t:null, text:'注意看 Main Preview：3D 球立刻变成黑色——因为 Color 节点默认是黑色 (0,0,0,1)。「连接更新主预览」，这就是 Shader Graph 的实时反馈。'},
+    {t:null, act:{type:'color',def:'color',key:'c',rgb:[1,0,0,1]}, actLabel:'点击 Color 节点上的黑色颜色条，在拾色器里选纯红（R=1, G=0, B=0，即 #FF0000）。'},
+    {t:null, text:'材质球瞬间变成红色！节点上的任何修改都会实时更新 Main Preview。接下来按 Unity 的流程保存资产。'},
+    {t:null, act:{type:'click',target:'save'}, actLabel:'点击顶栏的【保存资产】按钮（真实 Unity 中是窗口左上角 Save Asset；直接关闭窗口时也会弹窗询问 Save / Don’t Save）。'},
+    {t:null, act:{type:'create-material'}, actLabel:'在右上角 Main Preview 面板的「材质 Inspector」区，点击【用当前 Shader Graph 创建材质】（对应 Assets > Create > Material，并把 Shader 指定为 Shader Graphs/New Shader Graph）。'},
+    {t:null, act:{type:'apply-cube'}, actLabel:'点击【把材质拖到场景 Cube】（对应把材质拖到 Cube 的 Mesh Renderer > Materials > Element 0），观察立方体变红。'},
+    {t:null, act:{type:'add-prop',ptype:'color'}, actLabel:'打开左侧【Blackboard】标签页，点右上角【+】，选择【Color】创建一个颜色属性。属性会暴露到材质 Inspector，让别人不用打开 Shader Graph 就能调色。'},
+    {t:null, act:{type:'connect-prop'}, actLabel:'单击 Blackboard 里的 Color 属性，把它放进画布；再把它的 Out 连到 Base Color（会自动替换掉原来 Color 节点的直连）。'},
+    {t:null, act:{type:'inspector-color'}, actLabel:'在 Main Preview 的材质 Inspector 里直接修改 Color 属性的颜色——不碰画布，材质球和 Cube 同步变色。这就是「属性」的价值。'},
+    {t:null, text:'恭喜，你完成了官方第一个 Shader Graph：创建节点 → 连接 Block → Main Preview 实时预览 → 保存 → 创建材质 → 赋给场景物体 → 用 Blackboard 属性暴露参数。接下来推荐学习「第 1 课 · 认识点积节点」。'}
+  ]
+},
 {
   id:'l1', name:'第 1 课 · 认识点积节点',
   goal:'理解 Dot Product 的输入输出与几何含义',
@@ -1152,7 +1329,7 @@ function renderLibrary(filter=''){
   const f=filter.trim().toLowerCase();
   let any=false;
   Object.keys(CATS).forEach(cat=>{
-    const items=Object.values(NODES).filter(d=>d.cat===cat &&
+    const items=Object.values(NODES).filter(d=>d.lib!==false&&d.cat===cat &&
       (!f || d.en.toLowerCase().includes(f) || d.cn.toLowerCase().includes(f) || cat.includes(f)));
     if(!items.length) return; any=true;
     const wrap=document.createElement('div'); wrap.className='lib-cat'+(f?'':' collapsed');
@@ -1182,17 +1359,33 @@ function defaultCtrl(def){
   (def.ctrl||[]).forEach(k=>{ c[k.k]=JSON.parse(JSON.stringify(k.def)); });
   return c;
 }
-function addNode(defId,x,y,ctrl){
+function masterDefaults(){
+  const c={};
+  NODES.master.in.forEach(p=>{ if(p.def!==undefined) c[p.n]=Array.isArray(p.def)?p.def.slice():p.def; });
+  return c;
+}
+function addNode(defId,x,y,ctrl,opts){
   const def=NODES[defId]; if(!def) return;
+  if(defId==='master'){
+    const _mp=$('#main-preview'); if(_mp)_mp.classList.remove('auto-empty');
+    const ex=state.nodes.find(n=>n.id==='master');
+    if(ex){ toast('每幅 Shader Graph 只有一个 Master Stack，已为你定位','warn');
+      const eel=nodeEl(ex.uid); if(eel){selectAt({kind:'node',uid:ex.uid});frameObject(eel);} return ex; }
+    if(!ctrl) ctrl=masterDefaults();
+  }
+  if(defId==='prop'&&!ctrl) ctrl={pid:null};
   const node={uid:uid('n'),id:defId,x,y,ctrl:ctrl||defaultCtrl(def)};
   state.nodes.push(node);
   const el=buildNodeEl(node);
   $('#node-layer').appendChild(el);
   requestPreviews(); scheduleSave();
-  selectAt({kind:'node',uid:node.uid});
+  if(!opts||!opts.silent) selectAt({kind:'node',uid:node.uid});
+  checkTourAction();
   return node;
 }
 function removeNode(u){
+  const nn=nodeByUid(u);
+  if(nn&&nn.id==='master'){ toast('Master Stack 是着色器的固定终点，不能删除','warn'); return; }
   const el=nodeEl(u); if(el){ el.classList.add('removing'); setTimeout(()=>el.remove(),190); }
   state.edges=state.edges.filter(e=>{ if(e.from===u||e.to===u){ return false; } return true; });
   state.nodes=state.nodes.filter(n=>n.uid!==u);
@@ -1202,6 +1395,8 @@ function removeNode(u){
 function nodeEl(u){ return $('#node-layer').querySelector(`.sg-node[data-uid="${u}"]`); }
 
 function buildNodeEl(node){
+  if(node.id==='master') return buildMasterEl(node);
+  if(node.id==='prop') return buildPropEl(node);
   const def=defOf(node), cat=CATS[def.cat];
   const el=document.createElement('div');
   el.className='sg-node'; el.dataset.uid=node.uid;
@@ -1289,7 +1484,7 @@ function wireControls(node,el){
       }
       else if(cdef.type==='int'){ node.ctrl[k]=parseInt(inp.value)||0; }
       else { node.ctrl[k]=inp.value; }
-      requestPreviews(); scheduleSave();
+      requestPreviews(); scheduleSave(); checkTourAction();
     });
   });
 }
@@ -1300,7 +1495,9 @@ function round3(x){ return Math.round(x*1000)/1000; }
    ============================================================ */
 const edgeSvg=$('#edge-svg');
 function portDefType(uid,pdir,pname){
-  const d=defOf(nodeByUid(uid)); const list=pdir==='out'?d.out:d.in;
+  const _n=nodeByUid(uid);
+  if(_n&&_n.id==='prop'&&pdir==='out'){ const p=getProp(_n.ctrl.pid); return p?PROP_TYPE[p.type]:'dyn'; }
+  const d=defOf(_n); const list=pdir==='out'?d.out:d.in;
   const p=(list||[]).find(x=>x.n===pname); return p?p.t:null;
 }
 /* 动态向量端口沿连线推断实际类型（取具体来源中维度最高者） */
@@ -1346,6 +1543,7 @@ function renderEdges(extra){
     edgeSvg.appendChild(g);
   });
   if(extra) edgeSvg.appendChild(extra);
+  if(typeof updateMasterConnected==='function') updateMasterConnected();
   if(typeof simOn!=='undefined' && simOn) refreshParticles();
 }
 function removeEdge(u){
@@ -1381,7 +1579,9 @@ function frameAll(){
     x0=Math.min(x0,n.x);y0=Math.min(y0,n.y);x1=Math.max(x1,n.x+el.offsetWidth);y1=Math.max(y1,n.y+el.offsetHeight); });
   const z=Math.min(1.1,(r.width-120)/(x1-x0),(r.height-100)/(y1-y0));
   state.zoom=Math.max(.35,z);
-  state.pan={x:(r.width-(x1-x0)*state.zoom)/2-x0*state.zoom, y:(r.height-(y1-y0)*state.zoom)/2-y0*state.zoom};
+  const bias=(r.width>1100&&state.nodes.some(n=>n.id==='master'))?0.42:0.5;
+  const cx=r.width*bias, cy=r.height*0.52;
+  state.pan={x:cx-(x0+(x1-x0)/2)*state.zoom, y:cy-(y0+(y1-y0)/2)*state.zoom};
   applyTransform(); renderEdges();
 }
 /* ============================================================
@@ -1475,7 +1675,7 @@ function attachPortGestures(node,el){
         state.edges=state.edges.filter(e=>!(e.to===to&&e.tp===tp));
         state.edges.push({uid:uid('e'),from,fp,to,tp});
         renderEdges(); requestPreviews(); scheduleSave();
-        selectAt({kind:'node',uid:to});
+        selectAt({kind:'node',uid:to}); checkTourAction();
       };
       window.addEventListener('pointermove',move); window.addEventListener('pointerup',up);
     });
@@ -1531,7 +1731,7 @@ function openQuick(screenP,worldP){
 function closeQuick(){ qm.classList.remove('open'); }
 function renderQuick(f){
   const q=f.trim().toLowerCase();
-  qmItems=Object.values(NODES).filter(d=>!q||d.en.toLowerCase().includes(q)||d.cn.toLowerCase().includes(q)).slice(0,40);
+  qmItems=Object.values(NODES).filter(d=>d.lib!==false&&(!q||d.en.toLowerCase().includes(q)||d.cn.toLowerCase().includes(q))).slice(0,40);
   qList.innerHTML=qmItems.length?qmItems.map((d,i)=>
     `<div class="qm-item ${i===qmSel?'sel':''}" data-i="${i}"><span class="li-dot" style="background:${CATS[d.cat].color}"></span>${d.en}<span class="qm-cn">${d.cn.split('（')[0]}</span></div>`)
     :'<div class="qm-empty">没有匹配的节点</div>';
@@ -1615,6 +1815,11 @@ function selectAt(sel){
 }
 window.addEventListener('keydown',e=>{
   if(e.target.matches('input,textarea,select')||e.target.isContentEditable) return;
+  if(e.code==='Space'&&!qm.classList.contains('open')){
+    e.preventDefault();
+    const _r=vp.getBoundingClientRect(),_c={x:_r.width/2,y:_r.height/2};
+    openQuick(_c,screenToWorld(_c)); return;
+  }
   if((e.key==='Delete'||e.key==='Backspace')&&state.sel){
     if(state.sel.kind==='node')removeNode(state.sel.uid);
     if(state.sel.kind==='edge')removeEdge(state.sel.uid);
@@ -1623,13 +1828,22 @@ window.addEventListener('keydown',e=>{
 });
 $('#btn-clear').addEventListener('click',()=>{
   if(!state.nodes.length&&!state.notes.length) return;
-  if(confirm('确定清空当前画布吗？（可之后重新打开教学课程恢复示例）')) clearGraph();
+  if(confirm('确定清空当前画布吗？（将得到一张含 Master Stack 的空白 Shader Graph）')) blankGraph();
 });
 $('#btn-note').addEventListener('click',()=>{ const p=screenToWorld(viewportCenter()); addNote(p.x-95,p.y-60); });
 function clearGraph(){
-  state.nodes=[];state.edges=[];state.notes=[];state.groups=[];state.lesson=null;
+  state.nodes=[];state.edges=[];state.notes=[];state.groups=[];state.props=[];
+  state.material=null;state.applied=false;state.actFlags={};state.lesson=null;
   $('#node-layer').innerHTML='';$('#note-layer').innerHTML='';renderEdges();renderGroups();
+  if(typeof renderBlackboard==='function'){ renderBlackboard();renderInspector();renderMainPreview(); }
   selectAt(null); $('#lesson-label').textContent=''; scheduleSave();
+}
+function blankGraph(){
+  clearGraph();
+  const r=vp.getBoundingClientRect();
+  const p=screenToWorld({x:r.width*0.62,y:r.height*0.42});
+  addNode('master',p.x-126,p.y-170,masterDefaults(),{silent:true});
+  selectAt(null); renderEdges(); requestPreviews(); scheduleSave();
 }
 /* ============================================================
    16. 右侧详情栏（节点中文文档）
@@ -1728,7 +1942,7 @@ function buildLessonMenu(){
     <span class="mi-dot" style="background:var(--sticky)"></span>${l.name}<span class="mi-tag">${l.steps.length} 步</span></button>`).join('')
     +`<button class="menu-item" id="menu-free"><span class="mi-dot" style="background:var(--accent)"></span>空白画布自由搭建</button>`;
   menu.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>{menu.classList.remove('open');loadLesson(b.dataset.id);}));
-  $('#menu-free').addEventListener('click',()=>{menu.classList.remove('open');clearGraph();frameAll();});
+  $('#menu-free').addEventListener('click',()=>{menu.classList.remove('open');blankGraph();frameAll();});
 }
 $('#lesson-btn').addEventListener('click',e=>{e.stopPropagation();$('#lesson-menu').classList.toggle('open');});
 document.addEventListener('click',e=>{ if(!e.target.closest('#lesson-btn,#lesson-menu')) $('#lesson-menu').classList.remove('open'); });
@@ -1736,6 +1950,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest('#lesson-btn,#lesson
 function loadLesson(id){
   const L=LESSONS.find(x=>x.id===id); if(!L)return;
   clearGraph();
+  state.tourDone={}; state.actFlags={};
   state.lesson=id; $('#lesson-label').textContent=L.name;
   const map={};
   L.graph.nodes.forEach(spec=>{ const n=addNode(spec.def,spec.x,spec.y,spec.ctrl?JSON.parse(JSON.stringify(spec.ctrl)):null); map[spec.key]=n.uid; });
@@ -1766,6 +1981,7 @@ function showTourStep(){
     if(step.t.k==='node'){ const el=nodeEl(u); if(el){el.classList.add('tour-hot');frameObject(el);selectAt({kind:'node',uid:u});} }
     if(step.t.k==='note'){ const el=$(`.sticky[data-uid="${u}"]`); if(el){el.classList.add('tour-hot');frameObject(el);selectAt({kind:'note',uid:u});} }
   }
+  if(typeof updateTourAction==='function') updateTourAction();
 }
 function frameObject(el){
   const r=vp.getBoundingClientRect(), er=el.getBoundingClientRect(), vr=vp.getBoundingClientRect();
@@ -1792,7 +2008,7 @@ function toast(msg,kind=''){
 }
 $('#btn-help').addEventListener('click',()=>$('#guide-mask').classList.add('open'));
 $('#guide-close').addEventListener('click',()=>{ $('#guide-mask').classList.remove('open'); if($('#guide-dont').checked)localStorage.setItem('sg-guide-seen','1'); });
-$('#guide-tour').addEventListener('click',()=>{ $('#guide-mask').classList.remove('open'); localStorage.setItem('sg-guide-seen','1'); loadLesson('l1'); });
+$('#guide-tour').addEventListener('click',()=>{ $('#guide-mask').classList.remove('open'); localStorage.setItem('sg-guide-seen','1'); loadLesson('l0'); });
 
 /* ============================================================
    20. 自动保存 / 恢复
@@ -1802,7 +2018,8 @@ function scheduleSave(){ state.dirty=true; clearTimeout(saveTimer); saveTimer=se
 function saveGraph(){
   try{
     const data={nodes:state.nodes.map(n=>({uid:n.uid,id:n.id,x:n.x,y:n.y,ctrl:n.ctrl})),
-      edges:state.edges,notes:state.notes,groups:state.groups,lesson:state.lesson,seq:state.seq};
+      edges:state.edges,notes:state.notes,groups:state.groups,lesson:state.lesson,seq:state.seq,
+      props:state.props,material:state.material,applied:state.applied,mesh:state.mesh};
     localStorage.setItem('sg-blueprint-v1',JSON.stringify(data));
   }catch(err){/* 存储不可用时静默 */}
 }
@@ -1811,9 +2028,15 @@ function restoreGraph(){
     const raw=localStorage.getItem('sg-blueprint-v1'); if(!raw)return false;
     const data=JSON.parse(raw); if(!data||!data.nodes||!data.nodes.length)return false;
     state.seq=data.seq||1;
-    data.nodes.forEach(n=>{ state.nodes.push(n); buildNodeEl(n); });
+    state.props=data.props||[]; state.material=data.material||null; state.applied=!!data.applied;
+    if(data.mesh) state.mesh=data.mesh;
+    data.nodes.forEach(n=>{ if(n.id==='pbr'){ n.id='master'; n.ctrl=masterDefaults(); }
+      if(n.id==='master'&&!n.ctrl) n.ctrl=masterDefaults();
+      state.nodes.push(n); buildNodeEl(n); });
     state.edges=data.edges||[]; state.notes=data.notes||[]; state.groups=data.groups||[];
-    state.notes.forEach(renderNote); renderGroups(); renderEdges(); requestPreviews();
+    state.notes.forEach(renderNote); renderGroups();
+    if(typeof renderBlackboard==='function'){ renderBlackboard();renderInspector(); }
+    renderEdges(); requestPreviews();
     if(data.lesson){ const L=LESSONS.find(x=>x.id===data.lesson); if(L)$('#lesson-label').textContent=L.name; }
     return true;
   }catch(err){ return false; }
@@ -1826,7 +2049,7 @@ renderLibrary();
 buildLessonMenu();
 applyTransform();
 if(window.innerWidth<=1100){ $('#lib-panel').classList.add('collapsed'); $('#detail-panel').classList.add('collapsed'); }
-(function init(){
+function __init(){
   const hash=location.hash;
   const restored = hash.includes('noguide') ? false : restoreGraph();
   requestAnimationFrame(()=>{ renderEdges(); frameAll(); });
@@ -1836,16 +2059,29 @@ if(window.innerWidth<=1100){ $('#lib-panel').classList.add('collapsed'); $('#det
       loadLesson(m[1]);
       if(hash.includes('notour')) $('#tour-bar').classList.remove('open');
     }else{
-      loadLesson('l1');                          // 首次进入：载入第 1 课画布
+      loadLesson('l0');                          // 首次进入：载入官方入门课画布
       $('#tour-bar').classList.remove('open');   // 但不强制开始导览
       $$('.tour-hot').forEach(el=>el.classList.remove('tour-hot'));
     }
   }
   if(!localStorage.getItem('sg-guide-seen') && !navigator.webdriver && !hash.includes('noguide')) $('#guide-mask').classList.add('open');
   if(hash.includes('sim')) setTimeout(()=>setSim(true),900);
+  const mm=hash.match(/mesh=(sphere|cube|plane)/);
+  if(mm){ state.mesh=mm[1];
+    $('#mp-mesh').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.mesh===mm[1])); }
   const sm=hash.match(/sel=([\w-]+)/);
   if(sm) requestAnimationFrame(()=>{ const t=state.nodes.find(n=>n.id===sm[1]); if(t) selectAt({kind:'node',uid:t.uid}); });
-})();
+  if(hash.includes('auto=1')){
+    let ticks=0;
+    const iv=setInterval(()=>{
+      ticks++; if(ticks>60){clearInterval(iv);return;}
+      const L=state.lesson?LESSONS.find(x=>x.id===state.lesson):null, step=L&&L.steps[state.tourStep];
+      if(!step){clearInterval(iv);return;}
+      if(step.act&&!state.tourDone[state.tourStep]){ doAction(step.act); }
+      else if(!step.act&&state.tourStep<L.steps.length-1){ state.tourStep++; showTourStep(); }
+    },850);
+  }
+}
 /* ============================================================
    22. 轻量着色器求值器（教学级：常量传播 + 逐像素求值）
    ============================================================ */
@@ -1972,6 +2208,9 @@ function computeNode(node,ctx,memo){
       return {Out:[col[0]+(gray-col[0])*rng,col[1]+(gray-col[1])*rng,col[2]+(gray-col[2])*rng,col[3]!==undefined?col[3]:1]}; }
     case 'tiling': { const uv=getIn(node,'UV',[ctx.uv[0],ctx.uv[1]],ctx,memo),t=getIn(node,'Tiling',[1,1],ctx,memo),o=getIn(node,'Offset',[0,0],ctx,memo);
       return {Out:[uv[0]*t[0]+o[0],uv[1]*t[1]+o[1],0,0]}; }
+    case 'prop': { const p=getProp(node.ctrl.pid); if(!p) return {Out:[0,0,0,1]};
+      if(p.type==='bool') return {Out:[p.value?1:0]};
+      return {Out:(p.value||[]).slice()}; }
     default: return {Out:[0,0,0,1]};
   }
 }
@@ -1982,7 +2221,7 @@ function upstream(u,set){ set=set||new Set(); if(set.has(u))return set; set.add(
 /* ============================================================
    23. Preview 节点渲染（球面受光 / 纹理光栅 / 常量色块）
    ============================================================ */
-function requestPreviews(){ if(previewQueued)return; previewQueued=true; requestAnimationFrame(()=>{previewQueued=false;renderPreviews();updateLiveValues();}); }
+function requestPreviews(){ if(previewQueued)return; previewQueued=true; requestAnimationFrame(()=>{previewQueued=false;renderPreviews();updateLiveValues();if(typeof renderMainPreview==='function')renderMainPreview();if(typeof renderInspector==='function')renderInspector();}); }
 function renderPreviews(){
   state.nodes.filter(n=>n.id==='preview').forEach(n=>{
     const cv=n._preview; if(!cv)return;
@@ -2149,6 +2388,495 @@ function setSim(on){
   }
 }
 $('#btn-sim').addEventListener('click',()=>setSim(!simOn));
+/* ============================================================
+   26. Master Stack / Blackboard / Main Preview / 入门课交互
+   ============================================================ */
+
+/* ---------- 颜色工具 ---------- */
+function clampNum(x,a,b){ return Math.max(a,Math.min(b,x)); }
+function rgbHex(v){ const h=x=>Math.round(clampNum(x,0,1)*255).toString(16).padStart(2,'0'); return '#'+h(v[0])+h(v[1])+h(v[2]); }
+function hexRgb(hex,n){ const a=[1,3,5].map(o=>parseInt(hex.substr(o,2),16)/255); if(n===4)a.push(1); return a; }
+function rgbCss(v){ return 'rgb('+Math.round(v[0]*255)+','+Math.round(v[1]*255)+','+Math.round(v[2]*255)+')'; }
+function norm3(v){ const l=Math.hypot(v[0],v[1],v[2])||1; return [v[0]/l,v[1]/l,v[2]/l]; }
+function dot3(a,b){ return a[0]*b[0]+a[1]*b[1]+a[2]*b[2]; }
+function rotVec(v,rx,ry){
+  let x=v[0],y=v[1],z=v[2];
+  const cy=Math.cos(ry),sy=Math.sin(ry);
+  let t=x*cy+z*sy; z=-x*sy+z*cy; x=t;
+  const cx=Math.cos(rx),sx=Math.sin(rx);
+  t=y*cx-z*sx; z=y*sx+z*cx; y=t;
+  return [x,y,z];
+}
+
+/* ---------- Blackboard 属性 ---------- */
+const PROP_DEFS=[
+  ['color','Color','颜色',[0.8,0.8,0.8,1]],
+  ['v1','Vector 1','向量 1',[0]],
+  ['v2','Vector 2','向量 2',[0,0]],
+  ['v3','Vector 3','向量 3',[0,0,0]],
+  ['v4','Vector 4','向量 4',[0,0,0,0]],
+  ['bool','Boolean','布尔',false]
+];
+const PROP_TYPE={color:'v4',v1:'float',v2:'v2',v3:'v3',v4:'v4',bool:'bool'};
+const PROP_LABEL={color:'Color',v1:'Vector1',v2:'Vector2',v3:'Vector3',v4:'Vector4',bool:'Boolean'};
+function getProp(pid){ return state.props.find(p=>p.pid===pid); }
+function propColor(p){ return TYPES[PROP_TYPE[p.type]].color; }
+function addProp(type){
+  const def=PROP_DEFS.find(d=>d[0]===type);
+  const same=state.props.filter(p=>p.type===type).length;
+  const name=def[1]+(same?(' '+same):'');
+  const p={pid:uid('p'),type,name,value:Array.isArray(def[3])?def[3].slice():def[3]};
+  state.props.push(p); renderBlackboard(); renderInspector(); scheduleSave();
+  toast('已在 Blackboard 添加属性：'+name,'ok'); checkTourAction(); return p;
+}
+function deleteProp(pid){
+  state.nodes.filter(n=>n.id==='prop'&&n.ctrl.pid===pid).forEach(n=>removeNode(n.uid));
+  state.props=state.props.filter(p=>p.pid!==pid);
+  renderBlackboard(); renderInspector(); scheduleSave();
+}
+function switchBB(which){
+  state.bbTab=which;
+  $('#lib-panel').classList.remove('collapsed');
+  $('#lib-panel').classList.toggle('show-bb',which==='bb');
+  $('#tab-lib').classList.toggle('active',which==='lib');
+  $('#tab-bb').classList.toggle('active',which==='bb');
+}
+function renderBlackboard(){
+  const body=$('#bb-body'); if(!body)return;
+  let h='<div class="bb-head"><span class="ttl">Blackboard 黑板（属性）</span>'
+    +'<div class="bb-add" id="bb-add" title="添加属性">+<span class="bb-menu" id="bb-menu">'
+    +PROP_DEFS.map(d=>'<button type="button" data-t="'+d[0]+'">'+d[1]+' <span style="color:#888">'+d[2]+'</span></button>').join('')
+    +'</span></div></div><div id="bb-list">';
+  if(!state.props.length) h+='<div class="bb-hint">还没有属性。点右上角 + 创建（例如 Color）。<br><br>属性会暴露到材质 Inspector：其他人不用打开 Shader Graph 也能调颜色、数值等参数。</div>';
+  state.props.forEach(p=>{
+    h+='<div class="bb-item" data-pid="'+p.pid+'"><span class="bb-dot" style="background:'+propColor(p)+'"></span>'
+      +'<span class="bb-name" title="双击重命名">'+esc(p.name)+'</span>'
+      +'<span class="bb-type">'+PROP_LABEL[p.type]+'</span>'
+      +'<button type="button" class="bb-del" title="删除属性">✕</button></div>';
+  });
+  h+='</div><div class="bb-hint">单击属性：放入画布生成属性节点<br>双击名称：重命名</div>';
+  body.innerHTML=h;
+  $('#bb-add').addEventListener('click',e=>{ e.stopPropagation(); $('#bb-menu').classList.toggle('open'); });
+  body.querySelectorAll('#bb-menu button').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); $('#bb-menu').classList.remove('open'); addProp(b.dataset.t); }));
+  body.querySelectorAll('.bb-item').forEach(item=>{
+    const pid=item.dataset.pid;
+    let clickTimer=null;
+    item.addEventListener('click',e=>{
+      if(e.target.closest('.bb-del')||e.target.classList.contains('bb-name'))return;
+      clickTimer=setTimeout(()=>{ spawnPropNode(pid); },260);
+    });
+    item.addEventListener('dblclick',e=>{ clearTimeout(clickTimer); });
+    item.querySelector('.bb-del').addEventListener('click',e=>{ e.stopPropagation(); deleteProp(pid); });
+    const nm=item.querySelector('.bb-name');
+    nm.addEventListener('dblclick',e=>{ e.stopPropagation(); nm.contentEditable='true'; nm.focus(); });
+    nm.addEventListener('blur',()=>{
+      nm.contentEditable='false';
+      const p=getProp(pid); if(p){ p.name=nm.textContent.trim()||p.name; renderBlackboard(); renderInspector();
+        state.nodes.filter(n=>n.id==='prop'&&n.ctrl.pid===pid).forEach(n=>{ const el=nodeEl(n.uid); if(el)renderPropEl(n,el,p); });
+        scheduleSave(); }
+    });
+  });
+}
+function spawnPropNode(pid){
+  const m=masterNode();
+  const cnt=state.nodes.filter(n=>n.id==='prop').length;
+  let x,y;
+  if(m){ x=m.x-300; y=m.y+180+cnt*40; } else { const p=screenToWorld(viewportCenter()); x=p.x-100; y=p.y; }
+  addNode('prop',x,y,{pid});
+}
+
+/* ---------- 属性节点 ---------- */
+function buildPropEl(node){
+  const el=document.createElement('div');
+  el.className='sg-node prop'; el.dataset.uid=node.uid;
+  el.style.left=node.x+'px'; el.style.top=node.y+'px';
+  $('#node-layer').appendChild(el);
+  renderPropEl(node,el,getProp(node.ctrl.pid));
+  attachNodeDrag(node,el);
+  el.addEventListener('pointerdown',e=>{ if(e.target.closest('.dot'))return; selectAt({kind:'node',uid:node.uid}); });
+  return el;
+}
+function renderPropEl(node,el,p){
+  if(!p){ el.innerHTML='<div class="n-title" style="background:#5e8f3a"><div class="nt-en">（属性已删除）</div></div>'; return; }
+  el.dataset.pid=p.pid;
+  const t=PROP_TYPE[p.type], tp=TYPES[t];
+  let widget='';
+  if(p.type==='color'){
+    widget='<div class="n-controls"><div class="n-color"><input type="color" value="'+rgbHex(p.value)+'"><span class="nc-val">('+p.value.slice(0,3).map(round3).join(', ')+')</span></div></div>';
+  }else if(p.type==='bool'){
+    widget='<div class="n-controls"><label class="n-check"><input type="checkbox" '+(p.value?'checked':'')+'> '+esc(p.name)+'</label></div>';
+  }else{
+    const dim={v1:1,v2:2,v3:3,v4:4}[p.type], axes=['x','y','z','w'].slice(0,dim);
+    widget='<div class="n-controls"><div class="vec-grid">'+axes.map((ax,i)=>
+      '<div class="vec-cell"><b class="ch-'+ax+'">'+ax.toUpperCase()+'</b><input type="number" step="0.01" data-ci="'+i+'" value="'+round3(p.value[i]||0)+'"></div>').join('')+'</div></div>';
+  }
+  el.innerHTML='<div class="n-title" style="background:#5e8f3a"><div class="nt-en">'+esc(p.name)+'</div><div class="nt-cn">属性 · '+PROP_LABEL[p.type]+'</div></div>'
+    +'<div class="n-body"><div style="display:flex;justify-content:flex-end"><div class="ports">'
+    +'<div class="port out" data-pdir="out" data-pname="Out" data-ptype="'+t+'" title="属性 '+esc(p.name)+'">'
+    +'<span class="dot" style="--pc:'+tp.color+'"></span><span class="pname">Out</span><span class="ptype">'+tp.short+'</span></div>'
+    +'</div></div>'+widget+'<div class="n-live mono"></div></div>';
+  const col=el.querySelector('input[type=color]');
+  if(col) col.addEventListener('input',()=>{ p.value=hexRgb(col.value,4); syncProp(p.pid,false);
+    const sp=col.parentElement.querySelector('.nc-val'); if(sp)sp.textContent='('+p.value.slice(0,3).map(round3).join(', ')+')'; });
+  const chk=el.querySelector('input[type=checkbox]');
+  if(chk) chk.addEventListener('input',()=>{ p.value=chk.checked; syncProp(p.pid,false); });
+  el.querySelectorAll('.vec-cell input').forEach(inp=>inp.addEventListener('input',()=>{
+    p.value[+inp.dataset.ci]=parseFloat(inp.value)||0; syncProp(p.pid,false); }));
+  attachPortGestures(node,el);
+}
+function syncProp(pid,rebuildInspector){
+  state.nodes.filter(n=>n.id==='prop'&&n.ctrl.pid===pid).forEach(n=>{ const el=nodeEl(n.uid); if(el)renderPropEl(n,el,getProp(pid)); });
+  if(rebuildInspector!==false) renderInspector();
+  requestPreviews(); scheduleSave();
+  state.actFlags.inspectorColor=1; checkTourAction();
+}
+
+/* ---------- Master Stack 元素 ---------- */
+const MASTER_DISP={NormalV:'Normal',NormalTS:'Normal (Tangent Space)'};
+function masterNode(){ return state.nodes.find(n=>n.id==='master'); }
+function buildMasterEl(node){
+  const def=NODES.master;
+  const el=document.createElement('div');
+  el.className='sg-node sg-master'; el.dataset.uid=node.uid;
+  el.style.left=node.x+'px'; el.style.top=node.y+'px';
+  const stages=[['vertex','Vertex'],['fragment','Fragment']];
+  let html='';
+  stages.forEach(([stage,label],si)=>{
+    html+='<div class="m-stack" data-stage="'+stage+'"><div class="m-stack-head">'+label+'</div>';
+    def.in.filter(p=>p.stage===stage).forEach(p=>{
+      const tp=TYPES[p.t];
+      html+='<div class="m-block" data-block="'+p.n+'">'
+        +'<div class="port in" data-pdir="in" data-pname="'+p.n+'" data-ptype="'+p.t+'" title="'+p.cn+'"><span class="dot" style="--pc:'+tp.color+'"></span></div>'
+        +(p.space?'<span class="space-chip">'+p.space+'</span>':'')
+        +'<span class="pname">'+(p.disp||MASTER_DISP[p.n]||p.n)+'</span><span class="ptype">('+tp.short+')</span>'
+        +'<span class="m-widget">'+masterWidget(node,p)+'</span></div>';
+    });
+    html+='</div>';
+    if(si===0) html+='<div class="m-stack-link"><svg viewBox="0 0 14 16"><polyline points="7,0 7,8 2,8 2,16" fill="none" stroke="#8a8a8a" stroke-width="1.4"/><circle cx="7" cy="0" r="2.2" fill="#777"/><circle cx="2" cy="16" r="2.2" fill="#777"/></svg></div>';
+  });
+  el.innerHTML=html;
+  $('#node-layer').appendChild(el);
+  wireMasterWidgets(node,el);
+  attachNodeDrag(node,el);
+  el.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.dot')||e.target.closest('input,label,button'))return;
+    selectAt({kind:'node',uid:node.uid});
+  });
+  attachPortGestures(node,el);
+  return el;
+}
+function masterWidget(node,p){
+  const v=(node.ctrl&&node.ctrl[p.n]!==undefined)?node.ctrl[p.n]:p.def;
+  if(p.widget==='color') return '<label class="m-swatch" style="background:'+rgbCss(v)+'" title="点击取色"><input type="color" value="'+rgbHex(v)+'" style="display:none"></label>';
+  if(p.widget==='emission') return '<span class="m-hdr">HDR</span><label class="m-swatch" style="background:'+rgbCss(v)+'"><input type="color" value="'+rgbHex(v)+'" style="display:none"></label>';
+  if(p.widget==='num') return '<span class="m-num"><span class="x">X</span><input type="number" step="0.01" value="'+round3(v)+'"></span>';
+  return '';
+}
+function wireMasterWidgets(node,el){
+  const def=NODES.master;
+  el.querySelectorAll('.m-block').forEach(row=>{
+    const pname=row.dataset.block, p=def.in.find(x=>x.n===pname);
+    const num=row.querySelector('.m-num input');
+    if(num) num.addEventListener('input',()=>{ node.ctrl[pname]=parseFloat(num.value)||0; requestPreviews();scheduleSave();checkTourAction(); });
+    const col=row.querySelector('input[type=color]');
+    if(col) col.addEventListener('input',()=>{ node.ctrl[pname]=hexRgb(col.value,3);
+      const sw=row.querySelector('.m-swatch'); if(sw)sw.style.background=rgbCss(node.ctrl[pname]);
+      requestPreviews();scheduleSave();checkTourAction(); });
+  });
+}
+function updateMasterConnected(){
+  state.nodes.filter(n=>n.id==='master').forEach(m=>{
+    const el=nodeEl(m.uid); if(!el)return;
+    NODES.master.in.forEach(p=>{
+      const row=el.querySelector('.m-block[data-block="'+p.n+'"]'); if(row)row.classList.toggle('connected',!!inEdge(m,p.n));
+    });
+  });
+}
+function masterVal(m,pname,ctx,memo){
+  const e=inEdge(m,pname);
+  if(!e){ const p=NODES.master.in.find(x=>x.n===pname);
+    let v=(m.ctrl&&m.ctrl[pname]!==undefined)?m.ctrl[pname]:p.def;
+    return Array.isArray(v)?v.slice():[v]; }
+  let v=evalPort(nodeByUid(e.from),e.fp,ctx,memo);
+  return Array.isArray(v)?v:[v];
+}
+
+/* ---------- Main Preview PBR 材质球 ---------- */
+const mpCanvas=$('#mp-canvas'); mpCanvas.width=160; mpCanvas.height=124;
+const MP_LIGHT=norm3([-0.42,0.72,0.55]);
+let mpRot={x:0.24,y:0.6}, mpDrag=null;
+function masterShadeAt(m,N,uv,memo){
+  const ctx={uv:uv||[.5,.5],N:N.slice(),V:[0,0,1],L:MP_LIGHT};
+  let base=masterVal(m,'Base Color',ctx,memo); base=[base[0],base[1],base[2]].map(x=>(x===undefined||x===null||isNaN(x))?.5:x);
+  const metallic=clampNum((masterVal(m,'Metallic',ctx,memo)[0]),0,1);
+  const smooth=clampNum((masterVal(m,'Smoothness',ctx,memo)[0]),0,1);
+  let em=masterVal(m,'Emission',ctx,memo); em=[em[0],em[1],em[2]].map(x=>(x===undefined||x===null||isNaN(x))?0:x);
+  const ao=clampNum(masterVal(m,'Ambient Occlusion',ctx,memo)[0],0,1.2);
+  const ne=inEdge(m,'NormalTS');
+  if(ne){
+    let nv; try{ nv=evalPort(nodeByUid(ne.from),ne.fp,ctx,memo); }catch(err){ nv=[.5,.5,1]; }
+    const nx=(nv[0]||.5)*2-1, ny=(nv[1]||.5)*2-1, nz=(nv[2]===undefined?1:nv[2]);
+    N=norm3([nx,ny,nz]);
+  }
+  const ndl=Math.max(0,dot3(N,MP_LIGHT));
+  const H=norm3([MP_LIGHT[0],MP_LIGHT[1],MP_LIGHT[2]+1]);
+  const spec=Math.pow(Math.max(0,dot3(N,H)),6+smooth*smooth*220);
+  const amb=.29+.13*Math.max(0,N[1]);
+  const out=[];
+  for(let i=0;i<3;i++){
+    let c=base[i]*(amb+ndl*(0.92-metallic*0.62))
+      + spec*(metallic?base[i]:1)*(0.22+0.6*smooth)
+      + em[i];
+    c*=ao; c=c/(1+c)*1.12; // 简单色调映射
+    out.push(Math.round(clampNum(c,0,1)*255));
+  }
+  return out;
+}
+function renderMainPreview(){
+  if(!mpCanvas)return;
+  const cv=mpCanvas, w=cv.width, h=cv.height, ctx=cv.getContext('2d');
+  ctx.fillStyle='#212121'; ctx.fillRect(0,0,w,h);
+  const m=masterNode();
+  const panel=$('#main-preview');
+  if(!m){ panel.classList.add('auto-empty'); return; }
+  panel.classList.remove('auto-empty');
+  const img=ctx.createImageData(w,h), d=img.data;
+  if(state.mesh==='sphere'){
+    const cx=w/2, cy=h/2+2, R=Math.min(w,h)*.43;
+    for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+      const nx=(x-cx)/R, ny=-(y-cy)/R, i=(y*w+x)*4, r2=nx*nx+ny*ny;
+      if(r2>1){ d[i]=26;d[i+1]=26;d[i+2]=26;d[i+3]=255; continue; }
+      const nz=Math.sqrt(1-r2), N=rotVec([nx,ny,nz],mpRot.x,mpRot.y);
+      const c=masterShadeAt(m,N,[x/w,1-y/h],{});
+      d[i]=c[0];d[i+1]=c[1];d[i+2]=c[2];d[i+3]=255;
+    }
+    ctx.putImageData(img,0,0);
+  } else if(state.mesh==='cube'){
+    ctx.putImageData(img,0,0);
+    const S=Math.min(w,h)*.86;
+    const P=(px,py)=>[w/2+(px-32)/64*S, h/2+(py-32)/64*S*0.92+3];
+    const faces=[
+      {pts:[[32,5],[59,18],[32,31],[5,18]], N:[0,1,0]},
+      {pts:[[5,18],[32,31],[32,60],[5,47]], N:norm3([-1,0,1])},
+      {pts:[[59,18],[32,31],[32,60],[59,47]], N:norm3([1,0,1])}
+    ];
+    faces.forEach(f=>{
+      const N=rotVec(f.N,mpRot.x,mpRot.y), visible=N[2]>0;
+      const c=visible?masterShadeAt(m,N,[.5,.5],{}):[48,48,48];
+      ctx.fillStyle='rgb('+c.join(',')+')'; ctx.strokeStyle='#161616';ctx.lineWidth=1;
+      ctx.beginPath(); f.pts.forEach((pt,i)=>{ const q=P(pt[0],pt[1]); if(i)ctx.lineTo(q[0],q[1]); else ctx.moveTo(q[0],q[1]); });
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+    });
+  } else {
+    const N=rotVec([0,0,1],mpRot.x,mpRot.y);
+    const c=masterShadeAt(m,N,[.5,.5],{});
+    const rw=w*.66, rh=h*.5, x0=(w-rw)/2, y0=(h-rh)/2;
+    ctx.fillStyle='rgb('+c.join(',')+')'; ctx.fillRect(x0,y0,rw,rh);
+    ctx.strokeStyle='#161616';ctx.strokeRect(x0,y0,rw,rh);
+  }
+}
+$('#mp-mesh').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+  state.mesh=b.dataset.mesh;
+  $('#mp-mesh').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+  renderMainPreview();
+}));
+mpCanvas.addEventListener('pointerdown',e=>{ mpCanvas.setPointerCapture(e.pointerId); mpDrag={x:e.clientX,y:e.clientY,rx:mpRot.x,ry:mpRot.y}; });
+mpCanvas.addEventListener('pointermove',e=>{ if(!mpDrag)return;
+  mpRot.y=mpDrag.ry+(e.clientX-mpDrag.x)*.012; mpRot.x=clampNum(mpDrag.rx+(e.clientY-mpDrag.y)*.012,-1.3,1.3); });
+mpCanvas.addEventListener('pointerup',()=>mpDrag=null);
+mpCanvas.addEventListener('pointercancel',()=>mpDrag=null);
+let mpLast=0;
+function mpLoop(t){
+  requestAnimationFrame(mpLoop);
+  if(document.hidden)return;
+  if(!mpDrag) mpRot.y+=0.004;
+  if(t-mpLast>40){ renderMainPreview(); mpLast=t; }
+}
+function masterShadeColor(){ const m=masterNode(); if(!m)return [.5,.5,.5];
+  const N=norm3(rotVec([0,.28,.96],mpRot.x,mpRot.y));
+  return masterShadeAt(m,N,[.5,.5],{}).map(x=>x/255); }
+function cubeSvg(c){
+  const L=x=>Math.round(clampNum(x,0,1)*255);
+  const col=k=>'rgb('+L(c[0]*k)+','+L(c[1]*k)+','+L(c[2]*k)+')';
+  return '<svg width="58" height="58" viewBox="0 0 64 64">'
+    +'<polygon points="32,5 59,18 32,31 5,18" fill="'+col(1.12)+'"/>'
+    +'<polygon points="5,18 32,31 32,60 5,47" fill="'+col(0.8)+'"/>'
+    +'<polygon points="59,18 32,31 32,60 59,47" fill="'+col(0.6)+'"/>'
+    +'</svg>';
+}
+
+/* ---------- 材质 Inspector 模拟 ---------- */
+function renderInspector(){
+  const body=$('#mp-body'); if(!body)return;
+  if(!state.material){
+    body.innerHTML='<div class="bb-hint" style="margin:0 0 8px">保存图形后，用着色器创建材质，再把材质赋给场景中的物体。</div>'
+      +'<button type="button" class="mp-btn primary" id="mp-create-mat">用当前 Shader Graph 创建材质</button>';
+    $('#mp-create-mat').addEventListener('click',createMaterial);
+    return;
+  }
+  const shade=masterShadeColor();
+  const ball='radial-gradient(circle at 34% 30%, '+rgbCss(shade.map(x=>Math.min(1,x*1.4)))+', '+rgbCss(shade.map(x=>x*0.5))+')';
+  let h='<div class="mp-mat"><span class="mat-ball" style="background:'+ball+'"></span>'
+    +'<span class="mat-meta"><b>New Material</b><span>Shader Graphs / New Shader Graph</span></span></div>';
+  if(!state.props.length) h+='<div class="bb-hint" style="margin:0 0 8px">在 Blackboard 创建的属性会显示在这里，可直接调参。</div>';
+  state.props.forEach(p=>{ h+=inspectorPropRow(p); });
+  const cc=state.applied?shade:[.5,.5,.5];
+  h+='<div class="mp-cube-scene">'+cubeSvg(cc)
+    +'<span class="txt"><b style="color:#ccc">Cube</b><br>Mesh Renderer → Materials<br>→ Element 0<br>'
+    +(state.applied?'<span class="mp-toggle-ok">已应用 New Material ✓</span>':'尚未赋予材质')+'</span></div>';
+  if(!state.applied) h+='<button type="button" class="mp-btn ghost" id="mp-apply" style="margin-top:8px">把材质拖到场景 Cube</button>';
+  body.innerHTML=h;
+  body.querySelectorAll('.mp-prop').forEach(row=>{
+    const p=getProp(row.dataset.pid); if(!p)return;
+    const ci=row.querySelector('input[type=color]');
+    if(ci){ ci.addEventListener('input',()=>{ p.value=hexRgb(ci.value,4); syncProp(p.pid,false); });
+      ci.addEventListener('change',()=>renderInspector()); }
+    const ck=row.querySelector('input[type=checkbox]');
+    if(ck) ck.addEventListener('input',()=>{ p.value=ck.checked; syncProp(p.pid,false); renderInspector(); });
+    row.querySelectorAll('input[type=number]').forEach(inp=>inp.addEventListener('input',()=>{
+      p.value[+inp.dataset.ci]=parseFloat(inp.value)||0; syncProp(p.pid,false); }));
+  });
+  const ap=$('#mp-apply'); if(ap) ap.addEventListener('click',applyMaterial);
+}
+function inspectorPropRow(p){
+  let inner='';
+  if(p.type==='color') inner='<input type="color" value="'+rgbHex(p.value)+'">';
+  else if(p.type==='bool') inner='<input type="checkbox" '+(p.value?'checked':'')+'>';
+  else { const dim={v1:1,v2:2,v3:3,v4:4}[p.type], axes=['X','Y','Z','W'].slice(0,dim);
+    inner='<span style="display:flex;gap:3px">'+axes.map((ax,i)=>
+      '<input type="number" step="0.1" data-ci="'+i+'" value="'+round3(p.value[i]||0)+'" style="width:38px">').join('')+'</span>'; }
+  return '<div class="mp-prop" data-pid="'+p.pid+'"><label>'+esc(p.name)+'</label>'+inner+'</div>';
+}
+function createMaterial(){
+  if(state.material)return;
+  state.material={name:'New Material'};
+  renderInspector(); renderMainPreview(); scheduleSave();
+  toast('已创建材质 New Material，Shader 已绑定为 Shader Graphs/New Shader Graph','ok');
+  checkTourAction();
+}
+function applyMaterial(){
+  if(!state.material) createMaterial();
+  state.applied=true; renderInspector(); renderMainPreview(); scheduleSave();
+  toast('材质已拖放到 Cube：Mesh Renderer > Materials > Element 0','ok');
+  checkTourAction();
+}
+function saveAsset(){
+  saveGraph(); state.dirty=false;
+  toast('已保存 Shader Graph 资产（模拟 Save Asset）','ok');
+  state.actFlags.save=1; checkTourAction();
+}
+$('#btn-save').addEventListener('click',saveAsset);
+
+/* ---------- 入门课：动作检测 / 引导 / 帮我完成 ---------- */
+function actionSatisfied(a){
+  const m=masterNode();
+  switch(a.type){
+    case 'add': return !!state.nodes.find(n=>n.id===a.def);
+    case 'connect': return m&&!!state.edges.find(e=>{ const sn=nodeByUid(e.from);
+      return sn&&sn.id===a.from&&e.fp===a.fp&&e.to===m.uid&&e.tp===a.tp; });
+    case 'color': { const n=state.nodes.find(x=>x.id===a.def); if(!n)return false;
+      const v=n.ctrl[a.key||'c']; return v&&Math.abs(v[0]-a.rgb[0])<.18&&Math.abs(v[1]-a.rgb[1])<.18&&Math.abs(v[2]-a.rgb[2])<.18; }
+    case 'click': return !!state.actFlags[a.target];
+    case 'create-material': return !!state.material;
+    case 'apply-cube': return !!state.applied;
+    case 'add-prop': return !!state.props.find(p=>p.type===a.ptype);
+    case 'connect-prop': return m&&!!state.edges.find(e=>{ const sn=nodeByUid(e.from);
+      return sn&&sn.id==='prop'&&e.to===m.uid&&e.tp==='Base Color'; });
+    case 'inspector-color': return !!state.actFlags.inspectorColor;
+  }
+  return false;
+}
+function checkTourAction(){
+  if(!state.lesson)return;
+  const L=LESSONS.find(x=>x.id===state.lesson); if(!L)return;
+  const step=L.steps[state.tourStep];
+  if(!step||!step.act||state.tourDone[state.tourStep])return;
+  if(actionSatisfied(step.act)){
+    state.tourDone[state.tourStep]=1;
+    toast('该步骤操作完成 ✓','ok'); updateTourAction();
+    const idx=state.tourStep;
+    if(idx<L.steps.length-1) setTimeout(()=>{ if(state.tourStep===idx&&state.tourDone[idx]){ state.tourStep++; showTourStep(); } },850);
+  }
+}
+function tourPulseSelector(a){
+  switch(a.type){
+    case 'save': return '#btn-save';
+    case 'create-material': return '#mp-create-mat';
+    case 'apply-cube': return '#mp-apply';
+    case 'add-prop': return '#tab-bb';
+    case 'inspector-color': return '#mp-inspector';
+    case 'connect': case 'connect-prop': return '.m-block[data-block="Base Color"]';
+    default: return null;
+  }
+}
+function updateTourAction(){
+  const box=$('#tour-act'); if(!box)return;
+  $$('.tour-pulse').forEach(el=>el.classList.remove('tour-pulse'));
+  const L=LESSONS.find(x=>x.id===state.lesson), step=L&&L.steps[state.tourStep];
+  if(!step||!step.act){ box.style.display='none'; return; }
+  const done=!!state.tourDone[state.tourStep];
+  box.className='tour-act'+(done?' done':'');
+  box.innerHTML=(done?'✓ 已完成：':'请操作：')+step.actLabel
+    +(done?'':'<div class="tour-help"><button type="button" id="tour-do">帮我完成这一步</button></div>');
+  box.style.display='block';
+  const btn=$('#tour-do'); if(btn)btn.addEventListener('click',()=>doAction(step.act));
+  if(!done){
+    if(step.act.type==='color'){ const n=state.nodes.find(x=>x.id===step.act.def); const el=n&&nodeEl(n.uid); if(el)el.classList.add('tour-pulse'); }
+    else { const sel=tourPulseSelector(step.act); if(sel){ const el=document.querySelector(sel); if(el)el.classList.add('tour-pulse'); } }
+  }
+}
+function doAction(a){
+  switch(a.type){
+    case 'add': { const p=screenToWorld({x:vp.clientWidth*0.3, y:vp.clientHeight*0.4}); addNode(a.def,p.x-98,p.y-30); break; }
+    case 'connect': { const sn=state.nodes.find(n=>n.id===a.from), m=masterNode(); if(!sn||!m)break;
+      state.edges=state.edges.filter(e=>!(e.to===m.uid&&e.tp===a.tp));
+      state.edges.push({uid:uid('e'),from:sn.uid,fp:a.fp,to:m.uid,tp:a.tp});
+      renderEdges(); requestPreviews(); scheduleSave(); checkTourAction(); break; }
+    case 'color': { const n=state.nodes.find(x=>x.id===a.def); if(!n)break;
+      n.ctrl[a.key||'c']=a.rgb.slice();
+      const el=nodeEl(n.uid);
+      const inp=el&&el.querySelector('input[type=color]');
+      if(inp){ inp.value=rgbHex(n.ctrl.c); const sp=inp.parentElement.querySelector('.nc-val');
+        if(sp)sp.textContent='('+n.ctrl.c.map(round3).join(', ')+')'; }
+      requestPreviews(); scheduleSave(); checkTourAction(); break; }
+    case 'click': if(a.target==='save') saveAsset(); break;
+    case 'create-material': createMaterial(); break;
+    case 'apply-cube': applyMaterial(); break;
+    case 'add-prop': switchBB('bb'); addProp(a.ptype); break;
+    case 'connect-prop': {
+      let pr=state.props.find(x=>x.type==='color'); if(!pr){ switchBB('bb'); pr=addProp('color'); }
+      const m=masterNode();
+      let pn=state.nodes.find(n=>n.id==='prop'&&n.ctrl.pid===pr.pid);
+      if(!pn){
+        const col=state.nodes.find(n=>n.id==='color');
+        if(col){ col.x=50; col.y=40; const ce=nodeEl(col.uid); if(ce){ce.style.left='50px';ce.style.top='40px';} }
+        pn=addNode('prop', m.x-310, m.y+(col?230:180), {pid:pr.pid}, {silent:true});
+      }
+      state.edges=state.edges.filter(e=>!(e.to===m.uid&&e.tp==='Base Color'));
+      state.edges.push({uid:uid('e'),from:pn.uid,fp:'Out',to:m.uid,tp:'Base Color'});
+      renderEdges(); requestPreviews(); scheduleSave(); checkTourAction(); break;
+    }
+    case 'inspector-color': { const p=state.props.find(x=>x.type==='color'); if(!p)break;
+      p.value=[1,0.55,0.1,1]; syncProp(p.pid,true); break; }
+  }
+}
+
+/* ---------- 面板 tab / 菜单关闭 ---------- */
+$('#mp-collapse').addEventListener('click',()=>{
+  const p=$('#main-preview'); p.classList.toggle('collapsed');
+  $('#mp-collapse').textContent=p.classList.contains('collapsed')?'+':'−';
+});
+$('#tab-lib').addEventListener('click',()=>switchBB('lib'));
+$('#tab-bb').addEventListener('click',()=>{ switchBB('bb'); checkTourAction(); });
+document.addEventListener('click',e=>{ if(!e.target.closest('#bb-add,#bb-menu')){ const m=$('#bb-menu'); if(m)m.classList.remove('open'); } });
+
+/* ---------- 初始化新系统 ---------- */
+renderBlackboard();
+renderInspector();
+updateMasterConnected();
+renderMainPreview();
+requestAnimationFrame(mpLoop);
+__init();
 /*JS_MARKER*/
 </script>
 </body>
