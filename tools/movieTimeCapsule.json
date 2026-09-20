@@ -2542,7 +2542,7 @@
         {
           "title": "第03集",
           "url": "https://vip.ffzy-play2.com/20230729/54199_44fc42c1/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第04集",
@@ -2630,7 +2630,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1789885539958
+      "updatedAt": 1789888401890
     },
     {
       "watchedDate": "2026-08-22",
