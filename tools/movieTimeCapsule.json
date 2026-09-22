@@ -8158,11 +8158,16 @@
           "title": "第01集",
           "url": "https://vip.lz-cdn14.com/20230719/26965_0dc9abde/2000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://vip.lz-cdn14.com/20230719/26964_980a6e71/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-23",
       "timestamp": 1790095977180,
-      "updatedAt": 1790096095528
+      "updatedAt": 1790096122892
     }
   ],
   "deleted": {
