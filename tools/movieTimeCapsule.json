@@ -8178,11 +8178,16 @@
           "title": "第05集",
           "url": "https://vip.lz-cdn14.com/20230809/28092_2c39ae4b/2000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第06集",
+          "url": "https://vip.lz-cdn14.com/20230816/28313_bb36a81f/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-23",
       "timestamp": 1790095977180,
-      "updatedAt": 1790096187490
+      "updatedAt": 1790096207567
     }
   ],
   "deleted": {
