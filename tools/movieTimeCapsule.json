@@ -8198,11 +8198,16 @@
           "title": "第09集",
           "url": "https://v.cdnlz14.com/20230906/29117_cb92cb10/2000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第10集",
+          "url": "https://v.cdnlz14.com/20230913/29357_6a9cb12e/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-23",
       "timestamp": 1790095977180,
-      "updatedAt": 1790096262499
+      "updatedAt": 1790096280645
     }
   ],
   "deleted": {
