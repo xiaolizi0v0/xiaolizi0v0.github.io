@@ -41,6 +41,16 @@ const dataConfig = {
       category: "code",
       date: "2026-09-19",
       cover: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      id: "5",
+      title: "Jev赛马事务所",
+      icon: "fas fa-horse-head",
+      description: "赛马娘风格训练与竞速模拟：一批六匹赛马由一次 Jev API 请求分别规划跑法，训练速度、耐力、力量、根性与智力，参加不同距离赛事。",
+      file: "JevUmaRacing.html",
+      category: "other",
+      date: "2026-09-23",
+      cover: "https://images.unsplash.com/photo-1534307678495-0c6dcb8f0c25?auto=format&fit=crop&w=900&q=80"
     }
   ],
   //笔记
