@@ -1,5 +1,5 @@
 /**
- * 百度百科同名词条搜索 - 浏览器代理（Node.js，无需 npm 依赖）
+ * 博客工具共享本地代理：百度百科搜索 + Jev API（Node.js，无需 npm 依赖）
  *
  * 原理：百度对脚本/服务器请求（curl、Node fetch、数据中心 IP）实施安全验证，
  *      但真实浏览器指纹能通过。本脚本用系统已安装的 Chrome/Edge 无头模式
@@ -342,11 +342,55 @@ async function handleSuggest(wd) {
 // ========== HTTP 服务 ==========
 const server = http.createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+  res.setHeader('Access-Control-Max-Age', '86400');
   if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
 
   const url = new URL(req.url, 'http://localhost');
+  if (url.pathname === '/health' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ ok: true, service: 'local-proxy' }));
+    return;
+  }
+  if (url.pathname === '/jev' && req.method === 'POST') {
+    const authorization = req.headers.authorization || '';
+    if (!/^Bearer\s+\S+$/i.test(authorization)) {
+      res.writeHead(401, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ error: '缺少有效的 Jev Bearer API Key' }));
+      return;
+    }
+    try {
+      const chunks = [];
+      let size = 0;
+      for await (const chunk of req) {
+        size += chunk.length;
+        if (size > 32768) {
+          res.writeHead(413, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ error: '请求体超过 32 KiB 限制' }));
+          return;
+        }
+        chunks.push(chunk);
+      }
+      const body = Buffer.concat(chunks).toString('utf8');
+      JSON.parse(body);
+      const upstream = await fetch('https://www.jevai.org/api/v1/decisions', {
+        method: 'POST',
+        headers: { Authorization: authorization, 'Content-Type': 'application/json', Accept: 'application/json' },
+        body
+      });
+      const payload = await upstream.text();
+      res.writeHead(upstream.status, {
+        'Content-Type': upstream.headers.get('content-type') || 'application/json; charset=utf-8',
+        'Cache-Control': 'no-store'
+      });
+      res.end(payload);
+    } catch (error) {
+      res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ error: 'Jev API 转发失败: ' + error.message }));
+    }
+    return;
+  }
   const target = url.searchParams.get('url');
   if (!target) {
     res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
@@ -418,7 +462,7 @@ killPortOccupier(PORT).then(killed => {
   if (killed) console.log('[清理] 已关闭占用端口 ' + PORT + ' 的残留代理进程');
   server.listen(PORT, '127.0.0.1', () => {
     console.log('========================================');
-    console.log('  浏览器代理已启动 (无头 Chrome/Edge)');
+    console.log('  博客工具共享代理已启动 (百科 + Jev)');
     console.log('  浏览器: ' + (BROWSER ? BROWSER : '未找到（请安装 Chrome/Edge）'));
     console.log('  代理地址: http://127.0.0.1:' + PORT);
     console.log('========================================');

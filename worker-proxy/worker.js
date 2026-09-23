@@ -1,16 +1,17 @@
 /**
- * 百度百科同名词条搜索代理（完整版）
+ * 博客工具共享代理：百度百科搜索 + Jev API
  *
  * 用途：百度百科的 searchui/suggest 接口（返回同名词条全列表）无 CORS 头，
  *      纯静态前端无法跨域调用。本 Worker 作为转发代理，加上 CORS 头返回给前端。
  *
- * 增强：searchui/suggest 接口本身返回不全，额外抓取词条页 HTML 提取完整 lemmas 数组。
+ * Jev：POST /jev 固定转发至官方决策 API，传递用户 Bearer Key 并处理 POST/CORS。
+ * 百度百科：额外抓取词条页 HTML 提取完整同名词条列表。
  *
  * 部署方式：
  *   1. 打开 https://dash.cloudflare.com/?to=/:account/workers/new
  *   2. 新建 Worker，粘贴本代码，点 Deploy
  *   3. 得到域名 https://xxxx.workers.dev
- *   4. 在工具页面的"开启代理"弹窗中输入框粘贴该域名，点"保存并启用"
+ *   4. 在需要使用代理的工具页面填入该域名并启用代理
  */
 
 const HEADERS = {
@@ -26,10 +27,19 @@ const HEADERS = {
 
 export default {
   async fetch(request) {
+    const url = new URL(request.url);
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: 204, headers: corsHeaders() });
+    }
+    if (url.pathname === '/health' && request.method === 'GET') {
+      return jsonResponse({ ok: true, service: 'worker-proxy' });
+    }
+    if (url.pathname === '/jev' && request.method === 'POST') {
+      return forwardJev(request);
+    }
     if (request.method !== 'GET') {
       return jsonResponse({ error: 'Method Not Allowed' }, 405);
     }
-    const url = new URL(request.url);
     const target = url.searchParams.get('url');
     if (!target) {
       return jsonResponse({ error: '缺少 url 参数' }, 400);
@@ -62,6 +72,46 @@ export default {
     }
   }
 };
+
+// 固定转发目标，避免把 Worker 变成任意 URL 的开放代理。
+async function forwardJev(request) {
+  const authorization = request.headers.get('Authorization') || '';
+  if (!/^Bearer\s+\S+$/i.test(authorization)) {
+    return jsonResponse({ error: '缺少有效的 Jev Bearer API Key' }, 401);
+  }
+  const body = await request.text();
+  if (new TextEncoder().encode(body).length > 32768) {
+    return jsonResponse({ error: '请求体超过 32 KiB 限制' }, 413);
+  }
+  try {
+    JSON.parse(body);
+  } catch {
+    return jsonResponse({ error: '请求体必须是有效 JSON' }, 400);
+  }
+  try {
+    const upstream = await fetch('https://www.jevai.org/api/v1/decisions', {
+      method: 'POST',
+      headers: { Authorization: authorization, 'Content-Type': 'application/json', Accept: 'application/json' },
+      body
+    });
+    const payload = await upstream.text();
+    return new Response(payload, {
+      status: upstream.status,
+      headers: { ...corsHeaders(), 'Content-Type': upstream.headers.get('Content-Type') || 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
+    });
+  } catch (error) {
+    return jsonResponse({ error: 'Jev API 转发失败: ' + error.message }, 502);
+  }
+}
+
+function corsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Authorization, Content-Type',
+    'Access-Control-Max-Age': '86400'
+  };
+}
 
 // 合并 suggest 结果与词条页 HTML 里的完整同名词条列表
 async function handleSuggest(target) {
@@ -145,6 +195,6 @@ async function handleSuggest(target) {
 function jsonResponse(obj, status) {
   return new Response(JSON.stringify(obj), {
     status: status,
-    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' }
+    headers: { ...corsHeaders(), 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
   });
 }

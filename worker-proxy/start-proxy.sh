@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 影视剧观影时间胶囊 - 本地代理 (macOS / Linux)
+# 博客工具共享代理（百科 + Jev）(macOS / Linux)
 # 双击或运行本脚本：只启动本地代理服务
 
 cd "$(dirname "$0")"
