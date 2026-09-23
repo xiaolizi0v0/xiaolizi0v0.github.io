@@ -7363,7 +7363,8 @@
         },
         {
           "title": "第05集",
-          "url": "https://vip.ffzy-play.com/20221027/5789_df273a18/2000k/hls/mixed.m3u8"
+          "url": "https://vip.ffzy-play.com/20221027/5789_df273a18/2000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "第06集",
@@ -7468,7 +7469,7 @@
       ],
       "watchedDate": "2026-08-26",
       "timestamp": 1787723872693,
-      "updatedAt": 1790150800410
+      "updatedAt": 1790153240061
     },
     {
       "id": "baike-481335",
