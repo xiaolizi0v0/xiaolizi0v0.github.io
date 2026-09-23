@@ -380,10 +380,16 @@ const server = http.createServer(async (req, res) => {
         body
       });
       const payload = await upstream.text();
-      res.writeHead(upstream.status, {
+      const responseHeaders = {
         'Content-Type': upstream.headers.get('content-type') || 'application/json; charset=utf-8',
         'Cache-Control': 'no-store'
-      });
+      };
+      const retryAfter = upstream.headers.get('retry-after');
+      if (retryAfter) {
+        responseHeaders['Retry-After'] = retryAfter;
+        responseHeaders['Access-Control-Expose-Headers'] = 'Retry-After';
+      }
+      res.writeHead(upstream.status, responseHeaders);
       res.end(payload);
     } catch (error) {
       res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' });

@@ -95,9 +95,19 @@ async function forwardJev(request) {
       body
     });
     const payload = await upstream.text();
+    const retryAfter = upstream.headers.get('Retry-After');
+    const responseHeaders = {
+      ...corsHeaders(),
+      'Content-Type': upstream.headers.get('Content-Type') || 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store'
+    };
+    if (retryAfter) {
+      responseHeaders['Retry-After'] = retryAfter;
+      responseHeaders['Access-Control-Expose-Headers'] = 'Retry-After';
+    }
     return new Response(payload, {
       status: upstream.status,
-      headers: { ...corsHeaders(), 'Content-Type': upstream.headers.get('Content-Type') || 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
+      headers: responseHeaders
     });
   } catch (error) {
     return jsonResponse({ error: 'Jev API 转发失败: ' + error.message }, 502);
