@@ -7535,8 +7535,6 @@
       "updatedAt": 1787725010765
     },
     {
-      "watchedDate": "2026-08-27",
-      "timestamp": 1787809072830,
       "id": "baike-65619917",
       "title": "金色（2026年徐兵执导的大漠寻金武侠冒险剧）",
       "year": "2026",
@@ -7553,6 +7551,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-08-27",
+      "timestamp": 1787809072830,
       "updatedAt": 1787809089138
     },
     {
@@ -7698,8 +7698,6 @@
       "updatedAt": 1789451159034
     },
     {
-      "watchedDate": "2026-09-01",
-      "timestamp": 1788232199325,
       "id": "baike-1111485",
       "title": "魔幻手机",
       "year": "2008",
@@ -7722,6 +7720,8 @@
           "watched": false
         }
       ],
+      "watchedDate": "2026-09-01",
+      "timestamp": 1788232199325,
       "updatedAt": 1788758648628
     },
     {
@@ -8051,8 +8051,6 @@
       "updatedAt": 1789719097788
     },
     {
-      "watchedDate": "2026-09-12",
-      "timestamp": 1789199027743,
       "id": "baike-33675787",
       "title": "兰香如故",
       "year": "2026",
@@ -8069,6 +8067,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-09-12",
+      "timestamp": 1789199027743,
       "updatedAt": 1789199045970
     },
     {
@@ -8241,6 +8241,27 @@
         }
       ],
       "updatedAt": 1790097933786
+    },
+    {
+      "id": "baike-68973933",
+      "title": "我不是大师（2026年杨磊执导的民国悬疑剧）",
+      "year": "2026",
+      "type": "movie",
+      "url": "https://baike.baidu.com/item/%E6%88%91%E4%B8%8D%E6%98%AF%E5%A4%A7%E5%B8%88/68973933",
+      "img": "https://bkimg.cdn.bcebos.com/pic/0eb30f2442a7d933c895852bd116c61373f08202ab6c?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+      "genre": "民国、悬疑",
+      "platform": "爱奇艺",
+      "region": "国产",
+      "sub_title": "",
+      "desc": "《我不是大师》是由腾讯视频、爱奇艺、复星东仑出品，野草影业、浙版传媒、广易影业、老有影视联合出品，杨磊执导，杨哲编剧，李现、李一桐领衔主演，刘冠麟、吴刚、果靖霖特别出演，海一天、梁天、岳旸、杨一威等出演的民国悬疑剧。剧情简介：该剧改编自易之的小说《我是个算命先生》，讲述江浙富少上",
+      "note": "",
+      "liked": 0,
+      "done": 0,
+      "count": 1,
+      "eps": [],
+      "watchedDate": "2026-09-24",
+      "timestamp": 1790254252325,
+      "updatedAt": 1790254252325
     }
   ],
   "deleted": {
