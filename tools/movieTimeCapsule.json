@@ -8288,7 +8288,7 @@
         {
           "title": "20260821上",
           "url": "https://v.lzcdn28.com/20260821/14624_304fabf2/2000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "20260821下",
@@ -8353,7 +8353,7 @@
       ],
       "watchedDate": "2026-09-25",
       "timestamp": 1790322411744,
-      "updatedAt": 1790332827938
+      "updatedAt": 1790334837273
     }
   ],
   "deleted": {
