@@ -8339,11 +8339,16 @@
           "title": "20260925上",
           "url": "https://v.lzcdn28.com/20260925/16190_503471a7/2000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "20260925下",
+          "url": "https://v.lzcdn28.com/20260925/16189_573c55ac/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-25",
       "timestamp": 1790322411744,
-      "updatedAt": 1790322650340
+      "updatedAt": 1790322661604
     }
   ],
   "deleted": {
