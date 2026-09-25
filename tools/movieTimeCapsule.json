@@ -8348,12 +8348,12 @@
         {
           "title": "20260814上",
           "url": "https://v.lzcdn28.com/20260814/14279_bed67309/2000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         }
       ],
       "watchedDate": "2026-09-25",
       "timestamp": 1790322411744,
-      "updatedAt": 1790322672071
+      "updatedAt": 1790331405069
     }
   ],
   "deleted": {
