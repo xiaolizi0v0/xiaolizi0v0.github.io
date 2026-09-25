@@ -8303,7 +8303,7 @@
         {
           "title": "20260828下",
           "url": "https://v.lzcdn28.com/20260828/14953_6fc57a7e/2000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "20260904上",
@@ -8353,7 +8353,7 @@
       ],
       "watchedDate": "2026-09-25",
       "timestamp": 1790322411744,
-      "updatedAt": 1790338639495
+      "updatedAt": 1790340973171
     }
   ],
   "deleted": {
