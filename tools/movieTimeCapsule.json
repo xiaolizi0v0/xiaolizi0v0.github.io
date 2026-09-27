@@ -5967,7 +5967,7 @@
         {
           "title": "第40集",
           "url": "https://v.lzcdn31.com/20260919/11603_e010fcbc/2000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第41集",
@@ -5977,7 +5977,7 @@
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787430055073,
-      "updatedAt": 1790514231911
+      "updatedAt": 1790522330548
     },
     {
       "id": "baike-35977696",
