@@ -6024,12 +6024,12 @@
         {
           "title": "第11集",
           "url": "https://v.lzcdn31.com/20260924/11848_c4edd7a0/2000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         }
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787430287694,
-      "updatedAt": 1790511899851
+      "updatedAt": 1790512957399
     },
     {
       "watchedDate": "2026-08-24",
