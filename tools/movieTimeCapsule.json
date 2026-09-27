@@ -8109,11 +8109,16 @@
           "title": "第八季 20260918",
           "url": "https://v.lzcdn28.com/20260918/15896_d86d1f1b/2000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第八季 20260925上",
+          "url": "https://v.lzcdn28.com/20260925/16185_2baabf3a/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-11",
       "timestamp": 1789107828215,
-      "updatedAt": 1790509695560
+      "updatedAt": 1790509738694
     },
     {
       "watchedDate": "2026-09-12",
