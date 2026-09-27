@@ -5935,9 +5935,14 @@
           "title": "第38集",
           "url": "https://v.lzcdn31.com/20260905/10995_e5a3a9f1/index.m3u8",
           "watched": true
+        },
+        {
+          "title": "第39集",
+          "url": "https://v.lzcdn31.com/20260912/11267_5e65d026/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1789198052825
+      "updatedAt": 1790509518927
     },
     {
       "watchedDate": "2026-08-23",
