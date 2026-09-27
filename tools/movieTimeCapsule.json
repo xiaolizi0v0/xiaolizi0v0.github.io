@@ -433,11 +433,16 @@
           "title": "第95集",
           "url": "https://v.lzcdn31.com/20260918/11560_f7f2238b/2000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第96集",
+          "url": "https://v.lzcdn31.com/20260925/11883_088159df/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-08-21",
       "timestamp": 1787302733371,
-      "updatedAt": 1790509623888
+      "updatedAt": 1790509632360
     },
     {
       "id": "baike-8410531",
