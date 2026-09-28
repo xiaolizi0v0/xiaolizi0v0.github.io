@@ -1079,6 +1079,104 @@
             transform: translateY(-1px);
         }
 
+        /* AutoGen 协同调度控制条 */
+        .autogen-control-bar {
+            background: var(--qq-header-bg);
+            border-bottom: 1px solid var(--qq-line);
+            padding: 6px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            gap: 10px;
+            font-size: 12px;
+            z-index: 5;
+        }
+
+        .autogen-modes-wrap {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 6px;
+            padding: 2px;
+        }
+
+        [data-theme="dark"] .autogen-modes-wrap {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .autogen-mode-btn {
+            padding: 4px 10px;
+            border-radius: 5px;
+            border: none;
+            background: transparent;
+            color: var(--qq-text-secondary);
+            font-size: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.15s ease;
+        }
+
+        .autogen-mode-btn:hover {
+            color: var(--qq-text-main);
+        }
+
+        .autogen-mode-btn.active {
+            background: var(--qq-blue);
+            color: #ffffff;
+            font-weight: 500;
+            box-shadow: 0 1px 4px rgba(18, 183, 245, 0.35);
+        }
+
+        .autogen-live-status {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            color: var(--qq-blue);
+            font-weight: 500;
+            font-size: 12px;
+            background: rgba(18, 183, 245, 0.1);
+            padding: 3px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(18, 183, 245, 0.25);
+        }
+
+        .autogen-live-status.active {
+            display: flex;
+        }
+
+        .btn-autogen-action {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--qq-line);
+            background: var(--qq-window-bg);
+            color: var(--qq-text-main);
+            font-size: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-autogen-action:hover {
+            border-color: var(--qq-blue);
+            color: var(--qq-blue);
+            background: rgba(18, 183, 245, 0.06);
+        }
+
+        .btn-autogen-stop {
+            background: #ef4444 !important;
+            border-color: #ef4444 !important;
+            color: #ffffff !important;
+            padding: 2px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+        }
+
         .empty-model-placeholder {
             padding: 24px;
             text-align: center;
@@ -1222,6 +1320,27 @@
                         <span><strong>群公告：</strong>欢迎使用大模型群聊工作台！请先在右侧或顶部「模型设置」中配置您的局域网大模型（如 vLLM）或在线 API。配置与聊天记录保存在本地浏览器中。</span>
                     </div>
                     <button class="qq-action-btn" style="width: 22px; height: 22px; font-size: 11px;" onclick="this.parentElement.style.display='none'"><i class="fas fa-times"></i></button>
+                </div>
+
+                <!-- AutoGen 协同调度控制条 -->
+                <div class="autogen-control-bar" id="autogenControlBar">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-weight: 600; color: var(--qq-text-secondary); font-size: 11px;"><i class="fas fa-network-wired" style="color:var(--qq-blue);"></i> 协同模式:</span>
+                        <div class="autogen-modes-wrap" id="autogenModeSelector">
+                            <button class="autogen-mode-btn active" data-mode="manual" title="由用户随时自由发言或@指定角色"><i class="fas fa-comments"></i> 自由群聊</button>
+                            <button class="autogen-mode-btn" data-mode="auto_moderator" title="由AI群管家阅读全局上下文，智能判定下一位发言专家"><i class="fas fa-robot"></i> 智能主持</button>
+                            <button class="autogen-mode-btn" data-mode="round_robin" title="所有活跃角色按序依次发表观点并继承前人论述"><i class="fas fa-sync-alt"></i> 轮流接力</button>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div class="autogen-live-status" id="autogenLiveStatus">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span id="autogenStatusText">正在协同调度...</span>
+                            <button class="btn-autogen-action btn-autogen-stop" id="stopOrchestratorBtn" title="立即终止本次流转"><i class="fas fa-stop"></i> 停止</button>
+                        </div>
+                        <button class="btn-autogen-action" id="openDebateModalBtn" title="配置正反方角色，发起红蓝多轮辩论交锋"><i class="fas fa-balance-scale" style="color:#ef4444;"></i> 发起辩论</button>
+                        <button class="btn-autogen-action" id="openSummaryModalBtn" title="由大模型提炼整场群聊的会议决策纪要"><i class="fas fa-clipboard-list" style="color:var(--qq-blue);"></i> 会议纪要</button>
+                    </div>
                 </div>
 
                 <!-- 消息滚动列表 -->
@@ -1483,6 +1602,103 @@
         </div>
     </div>
 
+    <!-- 红蓝多智能体对抗辩论弹窗 (AutoGen Debate) -->
+    <div class="modal-overlay" id="debateModalOverlay">
+        <div class="cors-modal-content" style="width: 580px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h3 style="font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-balance-scale" style="color: #ef4444;"></i> 发起红蓝多智能体辩论 (Debate Arena)
+                </h3>
+                <button class="qq-action-btn" id="closeDebateModalBtn"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div style="font-size: 12px; color: var(--qq-text-secondary); margin-bottom: 12px; background: rgba(239, 68, 68, 0.08); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.2);">
+                ⚖️ <b>AutoGen 对抗辩论机制</b>：正反方角色将基于同一辩题多轮交锋、指出对方论证漏洞并积极抗辩，最后由中立裁判输出终审判词与权衡报告。
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">辩论主题 / 研讨命题</label>
+                <textarea class="form-control-input" id="debateTopicInput" style="height: 60px; resize: vertical;" placeholder="例如：在当前团队业务规模下，微服务架构与单体模块化架构的取舍分析"></textarea>
+            </div>
+
+            <div class="form-group" style="margin-top: 8px;">
+                <label class="form-label" style="display: flex; justify-content: space-between;">
+                    <span>经典推荐辩题</span>
+                    <span style="font-size: 11px; color: var(--qq-text-muted); font-weight: normal;">点击快速载入</span>
+                </label>
+                <div class="preset-chips-wrap" id="debateTopicChips">
+                    <button type="button" class="preset-chip-btn" data-topic="在企业级开发中，微服务架构 vs 单体模块化架构的利弊权衡与选型建议">🏗️ 微服务 vs 单体架构</button>
+                    <button type="button" class="preset-chip-btn" data-topic="大模型私有化本地端侧部署 vs 公有云大模型API调用的性价比与安全性辩论">🚀 本地大模型 vs 云端API</button>
+                    <button type="button" class="preset-chip-btn" data-topic="在敏捷软件工程中，严格坚持测试驱动开发（TDD）的ROI投入产出比是否划算">🧪 TDD严格测试 vs 敏捷迭代</button>
+                    <button type="button" class="preset-chip-btn" data-topic="高并发后端系统选型：Go语言 vs Rust语言生态在工程落地维度的优缺点对比">⚡ Go vs Rust 后端选型</button>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
+                <div class="form-group">
+                    <label class="form-label" style="color: #ef4444;"><i class="fas fa-flag"></i> 🔴 正方发言角色</label>
+                    <select class="form-control-select" id="debateProSelect"></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="color: #8b5cf6;"><i class="fas fa-flag"></i> 🔵 反方发言角色</label>
+                    <select class="form-control-select" id="debateConSelect"></select>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
+                <div class="form-group">
+                    <label class="form-label" style="color: var(--qq-blue);"><i class="fas fa-gavel"></i> ⚖️ 中立裁判 / 结辩角色</label>
+                    <select class="form-control-select" id="debateJudgeSelect"></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">对抗辩论轮数</label>
+                    <select class="form-control-select" id="debateRoundsSelect">
+                        <option value="1">1 轮对抗 + 裁判总结 (快速)</option>
+                        <option value="2" selected>2 轮对抗 + 裁判终审 (推荐)</option>
+                        <option value="3">3 轮深度交锋 + 裁判终审</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
+                <button class="btn-qq-close" id="cancelDebateBtn">取消</button>
+                <button class="btn-qq-send-main" id="startDebateBtn" style="background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 4px;">
+                    <i class="fas fa-fire"></i> 开始红蓝交锋
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 智能会议与决策纪要弹窗 -->
+    <div class="modal-overlay" id="summaryModalOverlay">
+        <div class="cors-modal-content" style="width: 700px; max-height: 85vh;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h3 style="font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-clipboard-list" style="color: var(--qq-blue);"></i> 智能会议与决策纪要 (AI Minutes)
+                </h3>
+                <button class="qq-action-btn" id="closeSummaryModalBtn"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div id="summaryLoadingState" style="text-align: center; padding: 36px 20px; display: none;">
+                <i class="fas fa-spinner fa-spin" style="font-size: 28px; color: var(--qq-blue);"></i>
+                <p style="margin-top: 12px; font-size: 13px; color: var(--qq-text-secondary);">大模型正在深度解析群聊上下文，提炼核心论点、分歧点与最终决策...</p>
+            </div>
+
+            <div id="summaryResultContent" style="display: none;">
+                <div style="background: rgba(0, 0, 0, 0.03); border: 1px solid var(--qq-line); border-radius: 8px; padding: 16px; max-height: 52vh; overflow-y: auto; font-size: 13px; line-height: 1.6;" class="markdown-body" id="summaryMarkdownBody">
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+                    <button class="btn-subtle-pill" id="regenerateSummaryBtn"><i class="fas fa-redo"></i> 重新提炼</button>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn-subtle-pill" id="copySummaryBtn"><i class="far fa-copy"></i> 复制纪要</button>
+                        <button class="btn-qq-send-main" id="exportSummaryMdBtn" style="border-radius: 4px;"><i class="fas fa-download"></i> 导出 Markdown</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 浮动 Toast 提示 -->
     <div class="qq-toast" id="qqToast">
         <i class="fas fa-info-circle"></i>
@@ -1734,6 +1950,8 @@
         let isStreaming = false;
         let abortController = null;
         let currentEditingModel = null;
+        let orchestratorRunning = false;
+        let lastGeneratedSummary = '';
 
         const $ = id => document.getElementById(id);
 
@@ -1932,11 +2150,14 @@
                             </div>
                         </div>
                     `;
+                } else if (msg.role === 'system_notice') {
+                    row.className = 'qq-system-notice-row';
+                    row.innerHTML = `<div class="qq-time-divider" style="margin: 10px 0;"><span class="qq-time-pill" style="background: rgba(59, 130, 246, 0.1); color: var(--qq-blue); border: 1px solid rgba(59, 130, 246, 0.2); max-width: 90%; white-space: normal; padding: 6px 14px; text-align: center; border-radius: 12px; line-height: 1.5; font-size: 12px;">${msg.content}</span></div>`;
                 } else {
                     row.className = 'qq-message-row';
                     row.innerHTML = `
-                        <div class="qq-msg-avatar" style="background: #10b981;">
-                            <i class="fas fa-robot"></i>
+                        <div class="qq-msg-avatar" style="background: ${msg.avatarColor || '#10b981'};">
+                            <i class="fas ${msg.avatarIcon || 'fa-robot'}"></i>
                         </div>
                         <div class="qq-msg-content-wrap">
                             <div class="qq-msg-header">
@@ -1962,85 +2183,108 @@
         }
 
         // ==========================================================================
-        // 发送与流式调用核心逻辑
+        // AutoGen 系统通知与协同调度控制 (Blackboard & Turn-taking)
         // ==========================================================================
-        async function handleSendMessage() {
-            const textarea = $('chatInput');
-            const text = textarea.value.trim();
-            if (!text || isStreaming) return;
-
-            const activeModels = getActiveGroupModels();
-            if (activeModels.length === 0) {
-                showToast('群内暂无模型！请先在「模型设置」中添加并启用模型', 'fa-exclamation-triangle');
-                openSettingsModal();
-                return;
-            }
-
-            textarea.value = '';
-
-            const timeStr = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-
-            // 存入聊天历史
-            chatMessages.push({ role: 'user', content: text, time: timeStr });
-            saveHistory();
-
-            appendUserMessage(text, timeStr);
-
-            // 解析提及
-            let targetModels = [];
-            if (text.includes('@所有人') || text.includes('@all')) {
-                targetModels = [...activeModels];
-            } else {
-                targetModels = activeModels.filter(m => 
-                    text.includes(`@${m.name}`) || 
-                    text.includes(`@${m.model}`) || 
-                    text.includes(`@${m.id}`)
-                );
-            }
-
-            if (targetModels.length === 0) {
-                targetModels = [activeModels[0]];
-            }
-
-            isStreaming = true;
-            abortController = new AbortController();
-
-            for (const model of targetModels) {
-                try {
-                    await streamModelResponse(model, text, timeStr);
-                } catch (err) {
-                    console.error('调用异常:', err);
-                    appendModelError(model, err);
-                }
-            }
-
-            isStreaming = false;
-        }
-
-        function appendUserMessage(content, timeStr) {
+        function appendSystemNotice(content, saveToHist = true) {
             const container = $('messagesContainer');
             const row = document.createElement('div');
-            row.className = 'qq-message-row user-row';
-            row.innerHTML = `
-                <div class="qq-msg-avatar" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="qq-msg-content-wrap">
-                    <div class="qq-msg-header">
-                        <span style="color: var(--qq-text-muted); font-size: 11px;">${timeStr}</span>
-                        <span class="qq-badge qq-badge-owner">群主</span>
-                        <span class="qq-msg-name">我</span>
-                    </div>
-                    <div class="qq-bubble">
-                        ${escapeHtml(content).replace(/\n/g, '<br>')}
-                    </div>
-                </div>
-            `;
+            row.className = 'qq-system-notice-row';
+            row.innerHTML = `<div class="qq-time-divider" style="margin: 10px 0;"><span class="qq-time-pill" style="background: rgba(59, 130, 246, 0.1); color: var(--qq-blue); border: 1px solid rgba(59, 130, 246, 0.2); max-width: 90%; white-space: normal; padding: 6px 14px; text-align: center; border-radius: 12px; line-height: 1.5; font-size: 12px;">${content}</span></div>`;
             container.appendChild(row);
             container.scrollTop = container.scrollHeight;
+
+            if (saveToHist) {
+                chatMessages.push({
+                    role: 'system_notice',
+                    content: content,
+                    time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
+                });
+                saveHistory();
+            }
         }
 
-        async function streamModelResponse(model, userPrompt, timeStr) {
+        function updateOrchestratorUI(running, statusText = '') {
+            orchestratorRunning = running;
+            const liveStatus = $('autogenLiveStatus');
+            const statusLabel = $('autogenStatusText');
+            if (running) {
+                liveStatus.classList.add('active');
+                if (statusText) statusLabel.textContent = statusText;
+            } else {
+                liveStatus.classList.remove('active');
+                statusLabel.textContent = '就绪';
+            }
+        }
+
+        function stopOrchestrator() {
+            if (!orchestratorRunning && !isStreaming) return;
+            orchestratorRunning = false;
+            isStreaming = false;
+            if (abortController) {
+                try { abortController.abort(); } catch (e) {}
+            }
+            updateOrchestratorUI(false);
+            appendSystemNotice('⏹️ <strong>用户手动终止了协同调度与生成流程</strong>');
+            showToast('已停止协同调度', 'fa-stop');
+        }
+
+        // 格式化黑板历史（为每个智能体注入全局多角色发言记忆）
+        function formatBlackboardHistory(limit = 12) {
+            const recent = chatMessages
+                .filter(m => m.role === 'user' || m.role === 'assistant')
+                .slice(-limit);
+            if (recent.length === 0) return '';
+            return recent.map(m => {
+                if (m.role === 'user') {
+                    return `【我 (群主)】:\n${m.content}`;
+                } else {
+                    const roleBadge = m.badge ? ` (${m.badge})` : '';
+                    return `【${m.modelName || '专家'}${roleBadge}】:\n${m.content}`;
+                }
+            }).join('\n\n');
+        }
+
+        // 简单非流式单次调用（用于 AutoGen Moderator 裁决或 JSON 决策）
+        async function callLLMSimple(model, messages, timeoutMs = 45000) {
+            const targetEndpoint = model.baseUrl.replace(/\/+$/, '') + '/chat/completions';
+            const finalRequestUrl = getProxiedUrl(targetEndpoint, model.proxyMode, model.customProxyUrl);
+            const headers = { 'Content-Type': 'application/json' };
+            if (model.apiKey) headers['Authorization'] = `Bearer ${model.apiKey}`;
+
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+            try {
+                const response = await fetch(finalRequestUrl, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify({
+                        model: model.model || model.id,
+                        messages: messages,
+                        temperature: model.temperature ?? 0.3,
+                        stream: false
+                    }),
+                    signal: controller.signal
+                });
+                clearTimeout(timer);
+
+                if (!response.ok) {
+                    const errBody = await response.text().catch(() => '');
+                    throw new Error(`HTTP ${response.status}: ${errBody || response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data.choices?.[0]?.message?.content || '';
+            } catch (err) {
+                clearTimeout(timer);
+                throw err;
+            }
+        }
+
+        // ==========================================================================
+        // 核心流式响应生成 (支持黑板上下文 Blackboard Injection)
+        // ==========================================================================
+        async function streamModelResponse(model, userPrompt, timeStr, contextHistory = null) {
             const container = $('messagesContainer');
             const row = document.createElement('div');
             row.className = 'qq-message-row';
@@ -2052,7 +2296,7 @@
                 <div class="qq-msg-content-wrap">
                     <div class="qq-msg-header">
                         <span class="qq-msg-name">${escapeHtml(model.name)}</span>
-                        <span class="qq-badge qq-badge-lan">${escapeHtml(model.badge || '局域网模型')}</span>
+                        <span class="qq-badge qq-badge-lan">${escapeHtml(model.badge || '模型')}</span>
                         <span style="color: var(--qq-text-muted); font-size: 11px;">${timeStr}</span>
                     </div>
                     <div class="qq-bubble">
@@ -2084,13 +2328,18 @@
             const cleanedPrompt = userPrompt.replace(/@[^\s]+/g, '').trim() || userPrompt;
 
             const messagesPayload = [];
-            if (model.rolePrompt) {
-                messagesPayload.push({ role: 'system', content: model.rolePrompt });
+            let systemContent = model.rolePrompt || '你是一名专业的群聊成员，请遵守你的身份设定，发表条理清晰的高质量观点。';
+            if (contextHistory) {
+                systemContent += `\n\n【群聊黑板与历史研讨上下文】\n以下是群内近期的发言与论述记录，请充分参考并紧扣上下文，发表符合你身份的见解，注意切勿重复他人已表达的常识：\n${contextHistory}`;
             }
+
+            messagesPayload.push({ role: 'system', content: systemContent });
             messagesPayload.push({ role: 'user', content: cleanedPrompt });
 
             const headers = { 'Content-Type': 'application/json', 'Accept': 'text/event-stream' };
             if (model.apiKey) headers['Authorization'] = `Bearer ${model.apiKey}`;
+
+            abortController = new AbortController();
 
             try {
                 const response = await fetch(finalRequestUrl, {
@@ -2115,6 +2364,10 @@
                 let buffer = '';
 
                 while (true) {
+                    if (!orchestratorRunning && (state.collabMode === 'round_robin' || state.collabMode === 'auto_moderator')) {
+                        reader.cancel();
+                        break;
+                    }
                     const { done, value } = await reader.read();
                     if (done) break;
 
@@ -2157,6 +2410,8 @@
                     role: 'assistant',
                     modelId: model.id,
                     modelName: model.name,
+                    avatarColor: model.avatarColor,
+                    avatarIcon: model.avatarIcon,
                     underlyingModel: model.model || model.id,
                     providerName: model.providerName,
                     badge: model.badge,
@@ -2166,13 +2421,488 @@
                 });
                 saveHistory();
 
+                return fullText;
+
             } catch (err) {
                 if (err.name === 'AbortError') {
                     textContainer.innerHTML = marked.parse(fullText + '\n\n*(生成中止)*');
+                    return fullText;
                 } else {
                     throw err;
                 }
             }
+        }
+
+        // ==========================================================================
+        // 模式 1：轮流接力模式 (Round Robin Turn-taking)
+        // ==========================================================================
+        async function runRoundRobin(userPrompt, timeStr, activeModels) {
+            updateOrchestratorUI(true, `轮流接力: 共 ${activeModels.length} 位角色准备依次发言...`);
+            appendSystemNotice(`🔄 <strong>【轮流接力模式启动】</strong>共 ${activeModels.length} 位角色将依次发言，共享研讨黑板并继承前序观点。`);
+
+            for (let i = 0; i < activeModels.length; i++) {
+                if (!orchestratorRunning) break;
+                const model = activeModels[i];
+                updateOrchestratorUI(true, `轮流接力 (${i + 1}/${activeModels.length}): 【${model.name}】发言中...`);
+
+                const blackboard = formatBlackboardHistory(12);
+                const roundPrompt = `【轮流接力研讨】\n群主议题：${userPrompt}\n你是第 ${i + 1} 位发言的专家（共 ${activeModels.length} 位），角色身份为【${model.badge || model.name}】。\n请结合你的专业定位，参考此前群内发言的研讨记录，提出你的延伸观点、技术落地建议或补充批判。`;
+
+                try {
+                    isStreaming = true;
+                    await streamModelResponse(model, roundPrompt, timeStr, blackboard);
+                } catch (err) {
+                    console.error('接力调用异常:', err);
+                    appendModelError(model, err);
+                } finally {
+                    isStreaming = false;
+                }
+
+                if (i < activeModels.length - 1 && orchestratorRunning) {
+                    await new Promise(r => setTimeout(r, 600));
+                }
+            }
+
+            if (orchestratorRunning) {
+                appendSystemNotice('🎉 <strong>轮流接力已完成一轮深度研讨！</strong>您可以继续追问或切换至其他协同模式。');
+            }
+            updateOrchestratorUI(false);
+        }
+
+        // ==========================================================================
+        // 模式 2：智能主持模式 (Auto-Moderator / Group Chat Manager)
+        // ==========================================================================
+        async function runAutoModerator(userPrompt, timeStr, activeModels) {
+            const moderatorModel = activeModels.find(m => 
+                (m.badge && (m.badge.includes('主持') || m.badge.includes('管家'))) || 
+                (m.name && (m.name.includes('主持') || m.name.includes('管家')))
+            ) || activeModels[0];
+
+            updateOrchestratorUI(true, `智能主持: 由【${moderatorModel.name}】担任群管家调度发言...`);
+            appendSystemNotice(`🤖 <strong>【智能主持模式启动】</strong>由 <strong>【${escapeHtml(moderatorModel.name)}】</strong> 担任 Group Chat Manager，动态把控研讨方向并点名各领域专家。`);
+
+            const maxTurns = Math.min(activeModels.length * 2, 4);
+
+            for (let turn = 1; turn <= maxTurns; turn++) {
+                if (!orchestratorRunning) break;
+                updateOrchestratorUI(true, `第 ${turn}/${maxTurns} 轮: 主持人【${moderatorModel.name}】正在评估研讨进度...`);
+
+                const blackboard = formatBlackboardHistory(14);
+                const candidatesDesc = activeModels.map(m => `- ID: "${m.id}", 角色名: "${m.name}", 身份: "${m.badge || '模型'}"`).join('\n');
+
+                const decisionPrompt = `你是一名敏锐专业的技术群聊主持人 (Group Chat Moderator)。
+群主提问/议题：${userPrompt}
+
+群内可供指派发言的候选角色列表：
+${candidatesDesc}
+
+群内当前研讨黑板记录：
+${blackboard}
+
+请对当前的讨论进行评估：
+1. 若讨论仍需进一步深入、需要特定专家提供独到见解，请选出最适合下一位发言的角色，并拟定一句简明扼要的引导提问（20字以内）。
+2. 若观点已经充分展开、达成共识，或者议题已得到完整解答，请输出 decision 为 "TERMINATE"。
+
+请严格按以下 JSON 格式返回，切勿包含其他多余字句：
+{
+  "decision": "NEXT", 
+  "targetModelId": "候选角色ID",
+  "steeringQuestion": "引导该专家切入的问题",
+  "reason": "为何选他的理由"
+}`;
+
+                let decisionData = null;
+                try {
+                    const responseStr = await callLLMSimple(moderatorModel, [
+                        { role: 'system', content: '你是一名严谨的主持人，必须直接输出合法 JSON，不要输出 Markdown 标签。' },
+                        { role: 'user', content: decisionPrompt }
+                    ]);
+
+                    const cleanJson = responseStr.replace(/```json/g, '').replace(/```/g, '').trim();
+                    decisionData = JSON.parse(cleanJson);
+                } catch (e) {
+                    console.warn('智能主持解析失败，启用保底轮转策略:', e);
+                    decisionData = {
+                        decision: 'NEXT',
+                        targetModelId: activeModels[(turn - 1) % activeModels.length].id,
+                        steeringQuestion: '请从您的专业视角对当前议题给出建议与补充',
+                        reason: '按顺序轮转'
+                    };
+                }
+
+                if (!orchestratorRunning) break;
+
+                if (decisionData.decision === 'TERMINATE') {
+                    appendSystemNotice(`🏁 <strong>智能主持判定达成共识：</strong>${escapeHtml(decisionData.reason || '研讨已达成充分共识，讨论圆满结束。')}`);
+                    break;
+                }
+
+                const target = activeModels.find(m => m.id === decisionData.targetModelId) || activeModels[(turn - 1) % activeModels.length];
+
+                appendSystemNotice(`🤖 <strong>主持人指派【${escapeHtml(target.name)}】发言：</strong> <em>“${escapeHtml(decisionData.steeringQuestion || '请发表专业意见')}”</em><br><small style="color:var(--qq-text-muted);">理由：${escapeHtml(decisionData.reason || '深入论证')}</small>`);
+
+                updateOrchestratorUI(true, `智能主持: 【${target.name}】正在解答主持人引导提问...`);
+
+                const steeringPrompt = `【智能主持调度】\n研讨议题：${userPrompt}\n主持人引导方向：${decisionData.steeringQuestion || '请发表专业意见'}\n请立足你的角色身份【${target.badge || target.name}】，针对主持人的引导做出深度回答。`;
+
+                try {
+                    isStreaming = true;
+                    await streamModelResponse(target, steeringPrompt, timeStr, blackboard);
+                } catch (err) {
+                    console.error('主持指派调用异常:', err);
+                    appendModelError(target, err);
+                } finally {
+                    isStreaming = false;
+                }
+
+                if (turn < maxTurns && orchestratorRunning) {
+                    await new Promise(r => setTimeout(r, 600));
+                }
+            }
+
+            if (orchestratorRunning) {
+                appendSystemNotice('🎉 <strong>智能主持研讨流程结束！</strong>可点击上方「会议纪要」自动提炼讨论决策报告。');
+            }
+            updateOrchestratorUI(false);
+        }
+
+        // ==========================================================================
+        // 模式 3：红蓝对抗辩论赛 (Debate Arena)
+        // ==========================================================================
+        function openDebateModal() {
+            const activeModels = getActiveGroupModels();
+            if (activeModels.length === 0) {
+                showToast('群内暂无模型，请先添加模型！', 'fa-exclamation-triangle');
+                openSettingsModal();
+                return;
+            }
+
+            const proSelect = $('debateProSelect');
+            const conSelect = $('debateConSelect');
+            const judgeSelect = $('debateJudgeSelect');
+
+            const optionsHtml = activeModels.map(m => 
+                `<option value="${m.id}">${escapeHtml(m.name)} [${escapeHtml(m.badge || m.model)}]</option>`
+            ).join('');
+
+            proSelect.innerHTML = optionsHtml;
+            conSelect.innerHTML = optionsHtml;
+            judgeSelect.innerHTML = optionsHtml;
+
+            if (activeModels.length >= 2) {
+                proSelect.selectedIndex = 0;
+                conSelect.selectedIndex = 1;
+                judgeSelect.selectedIndex = activeModels.length >= 3 ? 2 : 0;
+            }
+
+            $('debateModalOverlay').classList.add('active');
+        }
+
+        async function runDebate(topic, proId, conId, judgeId, rounds) {
+            const activeModels = getActiveGroupModels();
+            const proModel = activeModels.find(m => m.id === proId) || activeModels[0];
+            const conModel = activeModels.find(m => m.id === conId) || (activeModels[1] || activeModels[0]);
+            const judgeModel = activeModels.find(m => m.id === judgeId) || (activeModels[2] || activeModels[0]);
+
+            if (!proModel || !conModel || !judgeModel) {
+                showToast('辩论角色配置异常，请重试', 'fa-exclamation-triangle');
+                return;
+            }
+
+            orchestratorRunning = true;
+            updateOrchestratorUI(true, '红蓝对抗辩论 Arena 进行中...');
+
+            const timeStr = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+
+            appendSystemNotice(`⚖️ <strong>【红蓝对抗 Arena 辩论赛正式启动】</strong><br>
+                <b>辩题：</b>${escapeHtml(topic)}<br>
+                🔴 正方辩手：<strong>${escapeHtml(proModel.name)}</strong> [${escapeHtml(proModel.badge || '正方')}]<br>
+                🔵 反方辩手：<strong>${escapeHtml(conModel.name)}</strong> [${escapeHtml(conModel.badge || '反方')}]<br>
+                ⚖️ 中立裁判：<strong>${escapeHtml(judgeModel.name)}</strong> [${escapeHtml(judgeModel.badge || '裁判')}]<br>
+                共进行 <strong>${rounds}</strong> 轮对抗交锋与裁判终审
+            `);
+
+            for (let r = 1; r <= rounds; r++) {
+                if (!orchestratorRunning) break;
+
+                // 1. 正方发言
+                updateOrchestratorUI(true, `红蓝对抗 第 ${r}/${rounds} 轮 · 🔴 正方【${proModel.name}】立论中...`);
+                appendSystemNotice(`🔴 <strong>第 ${r}/${rounds} 轮 · 正方【${escapeHtml(proModel.name)}】发言立论：</strong>`);
+
+                let blackboard = formatBlackboardHistory(12);
+                let proPrompt = `【辩论赛·红蓝对抗】\n辩题：${topic}\n你是【正方】辩手。\n当前是第 ${r} 轮发言（共 ${rounds} 轮）。\n请根据你的正方立场发表立论，或针对反方的反驳进行有力回击。必须列举逻辑证据、实战经验与理论支撑，坚决捍卫正方观点！`;
+
+                try {
+                    isStreaming = true;
+                    await streamModelResponse(proModel, proPrompt, timeStr, blackboard);
+                } catch (err) {
+                    console.error('正方调用异常:', err);
+                    appendModelError(proModel, err);
+                } finally {
+                    isStreaming = false;
+                }
+
+                if (!orchestratorRunning) break;
+                await new Promise(res => setTimeout(res, 600));
+
+                // 2. 反方发言
+                updateOrchestratorUI(true, `红蓝对抗 第 ${r}/${rounds} 轮 · 🔵 反方【${conModel.name}】抗辩反驳中...`);
+                appendSystemNotice(`🔵 <strong>第 ${r}/${rounds} 轮 · 反方【${escapeHtml(conModel.name)}】抗辩反驳：</strong>`);
+
+                blackboard = formatBlackboardHistory(12);
+                let conPrompt = `【辩论赛·红蓝对抗】\n辩题：${topic}\n你是【反方】辩手。\n当前是第 ${r} 轮发言（共 ${rounds} 轮）。\n请仔细审视正方刚才提出的核心论据，精准指出其逻辑漏洞、边界盲区或落地风险，并从反方立场提供更优、更务实的反驳论点！`;
+
+                try {
+                    isStreaming = true;
+                    await streamModelResponse(conModel, conPrompt, timeStr, blackboard);
+                } catch (err) {
+                    console.error('反方调用异常:', err);
+                    appendModelError(conModel, err);
+                } finally {
+                    isStreaming = false;
+                }
+
+                if (r < rounds && orchestratorRunning) {
+                    await new Promise(res => setTimeout(res, 600));
+                }
+            }
+
+            // 3. 裁判终审
+            if (orchestratorRunning) {
+                updateOrchestratorUI(true, `⚖️ 裁判【${judgeModel.name}】正在进行终审判词与权衡总结...`);
+                appendSystemNotice(`⚖️ <strong>裁判【${escapeHtml(judgeModel.name)}】终审判词与落地权衡：</strong>`);
+
+                const blackboard = formatBlackboardHistory(16);
+                const judgePrompt = `【辩论赛·终审评判与决策建议】\n辩题：${topic}\n你是本次对抗赛的【中立裁判兼技术仲裁专家】。双方已经历了 ${rounds} 轮交锋。\n请客观公正复盘：\n1. 正方核心论据的优势与薄弱点；\n2. 反方反驳的精彩之处与片面性；\n3. 综合裁决：哪一方的论证更为扎实有力？在真实业务场景中应如何进行理性权衡 (Trade-off)？\n4. 给出最终的技术/业务落地指导方针。`;
+
+                try {
+                    isStreaming = true;
+                    await streamModelResponse(judgeModel, judgePrompt, timeStr, blackboard);
+                } catch (err) {
+                    console.error('裁判调用异常:', err);
+                    appendModelError(judgeModel, err);
+                } finally {
+                    isStreaming = false;
+                }
+
+                appendSystemNotice('🎉 <strong>本场红蓝对抗辩论圆满结束！</strong>您可以点击上方「会议纪要」一键提炼整场辩论的权威决策报告。');
+            }
+
+            updateOrchestratorUI(false);
+        }
+
+        // ==========================================================================
+        // 模式 4：智能会议决策纪要提炼 (AI Meeting Minutes)
+        // ==========================================================================
+        async function generateMeetingMinutes() {
+            const activeModels = getActiveGroupModels();
+            if (activeModels.length === 0) {
+                showToast('群内暂无模型，请先添加模型！', 'fa-exclamation-triangle');
+                return;
+            }
+
+            const validMsgs = chatMessages.filter(m => m.role === 'user' || m.role === 'assistant');
+            if (validMsgs.length < 2) {
+                showToast('当前群聊消息过少，请先进行探讨或辩论后再提炼纪要！', 'fa-info-circle');
+                return;
+            }
+
+            // 打开弹窗并展示加载中
+            $('summaryModalOverlay').classList.add('active');
+            $('summaryLoadingState').style.display = 'block';
+            $('summaryResultContent').style.display = 'none';
+
+            const summaryModel = activeModels[0]; // 默认使用群内首选模型提炼
+
+            const fullHistoryText = validMsgs.map(m => {
+                const sender = m.role === 'user' ? '【我 (群主)】' : `【${m.modelName || '模型'} (${m.badge || '专家'})】`;
+                return `${sender}:\n${m.content}`;
+            }).join('\n\n---\n\n');
+
+            const prompt = `你是一名专业的高级技术与商业决策秘书。请根据以下大模型群聊研讨的完整对话记录，提炼一份专业、结构严密、格式清晰的【群聊会议与决策纪要 (Meeting Minutes)】。
+
+必须严格遵循以下 Markdown 结构输出：
+# 📋 群聊研讨与决策纪要
+- **研讨主题**：提炼本次讨论的核心议题与背景
+- **参会角色**：列出发言的角色名单及专业身份
+- **核心论点汇总**：按角色/立场提炼关键观点与论据
+- **分歧与博弈点**：记录讨论中出现的不同观点碰撞或权衡取舍 (Trade-offs)
+- **最终共识与落地决策**：形成的明确结论、技术选型或行动方案
+- **后续待办事项 (Action Items)**：清晰的下一步任务列表 (附责任角色建议)
+
+以下是完整群聊记录：
+${fullHistoryText}`;
+
+            lastGeneratedSummary = '';
+            const markdownBody = $('summaryMarkdownBody');
+            markdownBody.innerHTML = '';
+
+            const targetEndpoint = summaryModel.baseUrl.replace(/\/+$/, '') + '/chat/completions';
+            const finalRequestUrl = getProxiedUrl(targetEndpoint, summaryModel.proxyMode, summaryModel.customProxyUrl);
+            const headers = { 'Content-Type': 'application/json', 'Accept': 'text/event-stream' };
+            if (summaryModel.apiKey) headers['Authorization'] = `Bearer ${summaryModel.apiKey}`;
+
+            const controller = new AbortController();
+
+            try {
+                const response = await fetch(finalRequestUrl, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify({
+                        model: summaryModel.model || summaryModel.id,
+                        messages: [
+                            { role: 'system', content: '你是一名专业精炼的会议速记秘书。输出结构清晰的 Markdown 纪要。' },
+                            { role: 'user', content: prompt }
+                        ],
+                        temperature: 0.3,
+                        stream: true
+                    }),
+                    signal: controller.signal
+                });
+
+                if (!response.ok) {
+                    const errBody = await response.text().catch(() => '');
+                    throw new Error(`HTTP ${response.status}: ${errBody || response.statusText}`);
+                }
+
+                $('summaryLoadingState').style.display = 'none';
+                $('summaryResultContent').style.display = 'block';
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder('utf-8');
+                let buffer = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop();
+
+                    for (const line of lines) {
+                        const trimmed = line.trim();
+                        if (!trimmed || trimmed.startsWith(':')) continue;
+
+                        if (trimmed.startsWith('data:')) {
+                            const dataStr = trimmed.slice(5).trim();
+                            if (dataStr === '[DONE]') break;
+
+                            try {
+                                const parsed = JSON.parse(dataStr);
+                                const delta = parsed.choices?.[0]?.delta?.content || '';
+                                if (delta) {
+                                    lastGeneratedSummary += delta;
+                                    markdownBody.innerHTML = marked.parse(lastGeneratedSummary);
+                                }
+                            } catch (e) {}
+                        }
+                    }
+                }
+
+                markdownBody.innerHTML = marked.parse(lastGeneratedSummary || '（纪要生成完毕）');
+                applyCodeHighlight(markdownBody);
+
+            } catch (err) {
+                console.error('提炼纪要异常:', err);
+                $('summaryLoadingState').style.display = 'none';
+                $('summaryResultContent').style.display = 'block';
+                markdownBody.innerHTML = `<p style="color:#ef4444;"><i class="fas fa-exclamation-triangle"></i> 提炼纪要失败: ${escapeHtml(err.message)}</p>`;
+            }
+        }
+
+        // ==========================================================================
+        // 发送消息核心入口 (根据 state.collabMode 路由调度)
+        // ==========================================================================
+        async function handleSendMessage() {
+            const textarea = $('chatInput');
+            const text = textarea.value.trim();
+            if (!text || isStreaming || orchestratorRunning) return;
+
+            const activeModels = getActiveGroupModels();
+            if (activeModels.length === 0) {
+                showToast('群内暂无模型！请先在「模型设置」中添加并启用模型', 'fa-exclamation-triangle');
+                openSettingsModal();
+                return;
+            }
+
+            textarea.value = '';
+
+            const timeStr = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+
+            // 存入聊天历史
+            chatMessages.push({ role: 'user', content: text, time: timeStr });
+            saveHistory();
+
+            appendUserMessage(text, timeStr);
+
+            // 分流处理协同模式
+            if (state.collabMode === 'round_robin') {
+                orchestratorRunning = true;
+                await runRoundRobin(text, timeStr, activeModels);
+                return;
+            }
+
+            if (state.collabMode === 'auto_moderator') {
+                orchestratorRunning = true;
+                await runAutoModerator(text, timeStr, activeModels);
+                return;
+            }
+
+            // 自由群聊模式 (manual)
+            let targetModels = [];
+            if (text.includes('@所有人') || text.includes('@all')) {
+                targetModels = [...activeModels];
+            } else {
+                targetModels = activeModels.filter(m => 
+                    text.includes(`@${m.name}`) || 
+                    text.includes(`@${m.model}`) || 
+                    text.includes(`@${m.id}`)
+                );
+            }
+
+            if (targetModels.length === 0) {
+                targetModels = [activeModels[0]];
+            }
+
+            isStreaming = true;
+            abortController = new AbortController();
+
+            const blackboard = formatBlackboardHistory(8);
+
+            for (const model of targetModels) {
+                try {
+                    await streamModelResponse(model, text, timeStr, blackboard);
+                } catch (err) {
+                    console.error('调用异常:', err);
+                    appendModelError(model, err);
+                }
+            }
+
+            isStreaming = false;
+        }
+
+        function appendUserMessage(content, timeStr) {
+            const container = $('messagesContainer');
+            const row = document.createElement('div');
+            row.className = 'qq-message-row user-row';
+            row.innerHTML = `
+                <div class="qq-msg-avatar" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="qq-msg-content-wrap">
+                    <div class="qq-msg-header">
+                        <span style="color: var(--qq-text-muted); font-size: 11px;">${timeStr}</span>
+                        <span class="qq-badge qq-badge-owner">群主</span>
+                        <span class="qq-msg-name">我</span>
+                    </div>
+                    <div class="qq-bubble">
+                        ${escapeHtml(content).replace(/\n/g, '<br>')}
+                    </div>
+                </div>
+            `;
+            container.appendChild(row);
+            container.scrollTop = container.scrollHeight;
         }
 
         function appendModelError(model, err) {
@@ -2949,8 +3679,99 @@
             showToast('已复制内容到剪贴板', 'fa-check');
         };
 
+        // ==========================================================================
+        // AutoGen 模式切换与弹窗交互事件监听
+        // ==========================================================================
+        // 模式切换
+        $('autogenModeSelector').querySelectorAll('.autogen-mode-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (orchestratorRunning) {
+                    showToast('当前有协同任务正在执行，请先点击停止！', 'fa-exclamation-circle');
+                    return;
+                }
+                $('autogenModeSelector').querySelectorAll('.autogen-mode-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.collabMode = btn.getAttribute('data-mode') || 'manual';
+                saveConfig();
+
+                const modeNames = {
+                    manual: '💬 自由群聊模式（支持@指定专家或@所有人）',
+                    auto_moderator: '🤖 智能主持模式（由AI群管家动态把控发言）',
+                    round_robin: '🔄 轮流接力模式（所有活跃角色依次发表见解）'
+                };
+                showToast(`已切换为：${modeNames[state.collabMode] || state.collabMode}`);
+            });
+        });
+
+        // 停止协同调度
+        $('stopOrchestratorBtn').addEventListener('click', stopOrchestrator);
+
+        // 红蓝对抗辩论弹窗与流程
+        $('openDebateModalBtn').addEventListener('click', openDebateModal);
+        $('closeDebateModalBtn').addEventListener('click', () => $('debateModalOverlay').classList.remove('active'));
+        $('cancelDebateBtn').addEventListener('click', () => $('debateModalOverlay').classList.remove('active'));
+
+        $('debateTopicChips').querySelectorAll('.preset-chip-btn').forEach(chip => {
+            chip.addEventListener('click', () => {
+                $('debateTopicInput').value = chip.getAttribute('data-topic');
+            });
+        });
+
+        $('startDebateBtn').addEventListener('click', () => {
+            const topic = $('debateTopicInput').value.trim();
+            if (!topic) {
+                alert('请输入或选择辩论研讨主题！');
+                $('debateTopicInput').focus();
+                return;
+            }
+            const proId = $('debateProSelect').value;
+            const conId = $('debateConSelect').value;
+            const judgeId = $('debateJudgeSelect').value;
+            const rounds = parseInt($('debateRoundsSelect').value) || 2;
+
+            $('debateModalOverlay').classList.remove('active');
+            runDebate(topic, proId, conId, judgeId, rounds);
+        });
+
+        // 会议与决策纪要弹窗
+        $('openSummaryModalBtn').addEventListener('click', generateMeetingMinutes);
+        $('closeSummaryModalBtn').addEventListener('click', () => $('summaryModalOverlay').classList.remove('active'));
+        $('regenerateSummaryBtn').addEventListener('click', generateMeetingMinutes);
+
+        $('copySummaryBtn').addEventListener('click', () => {
+            if (!lastGeneratedSummary) {
+                showToast('暂无纪要可复制');
+                return;
+            }
+            navigator.clipboard.writeText(lastGeneratedSummary);
+            showToast('已复制会议纪要到剪贴板', 'fa-check');
+        });
+
+        $('exportSummaryMdBtn').addEventListener('click', () => {
+            if (!lastGeneratedSummary) {
+                showToast('暂无纪要可导出');
+                return;
+            }
+            const blob = new Blob([lastGeneratedSummary], { type: 'text/markdown;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `群聊决策纪要_${new Date().toISOString().slice(0, 10)}.md`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('已导出 Markdown 决策纪要');
+        });
+
         // 页面初始化
         function initPage() {
+            // 恢复协同模式高亮
+            state.collabMode = state.collabMode || 'manual';
+            const activeModeBtn = $('autogenModeSelector').querySelector(`.autogen-mode-btn[data-mode="${state.collabMode}"]`);
+            if (activeModeBtn) {
+                $('autogenModeSelector').querySelectorAll('.autogen-mode-btn').forEach(b => b.classList.remove('active'));
+                activeModeBtn.classList.add('active');
+            }
+
             renderGroupMembers();
             renderMessages();
         }
