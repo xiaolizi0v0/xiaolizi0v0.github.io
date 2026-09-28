@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI+大模型讨论群 · QQ群聊工作台</title>
+    <title>AI+耐材料讨论群 · 大模型QQ群聊</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2312b7f5' d='M12 2C6.48 2 2 6.48 2 12c0 2.85 1.2 5.41 3.12 7.24-.13.98-.67 2.37-1.74 3.42 1.62.18 3.52-.39 4.8-1.42 1.18.5 2.47.76 3.82.76 5.52 0 10-4.48 10-10S17.52 2 12 2z'/%3E%3Ccircle cx='8.5' cy='11.5' r='1.5' fill='%23fff'/%3E%3Ccircle cx='15.5' cy='11.5' r='1.5' fill='%23fff'/%3E%3C/svg%3E">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&family=PingFang+SC&family=Microsoft+YaHei&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <style>
         :root {
-            --qq-bg-page: #ebedf2;
+            --qq-bg-page: #f4f5f8;
             --qq-window-bg: #f4f5f8;
             --qq-window-border: #d0d4dc;
             --qq-header-bg: #f3f4f7;
@@ -27,23 +27,15 @@
             --qq-text-muted: #8f959e;
             --qq-blue: #12b7f5;
             --qq-blue-hover: #0ea6e0;
-            --qq-blue-active: #098fc2;
             --qq-send-bg: #0099ff;
             --qq-send-hover: #0088ee;
-            --qq-badge-owner: #ff9800;
-            --qq-badge-admin: #2196f3;
-            --qq-badge-bot: #9c27b0;
-            --qq-input-bg: #ffffff;
             --qq-line: #e3e5e9;
-            --qq-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-            --qq-radius-bubble: 10px;
-            --qq-radius-window: 10px;
             --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
             --font-mono: "JetBrains Mono", Consolas, Monaco, monospace;
         }
 
         [data-theme="dark"] {
-            --qq-bg-page: #101114;
+            --qq-bg-page: #18191d;
             --qq-window-bg: #1c1d22;
             --qq-window-border: #2a2c34;
             --qq-header-bg: #1e1f25;
@@ -59,53 +51,31 @@
             --qq-blue-hover: #48c4ff;
             --qq-send-bg: #0d84ea;
             --qq-send-hover: #2293f7;
-            --qq-input-bg: #202228;
             --qq-line: #2b2e38;
-            --qq-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background: var(--qq-bg-page);
-            color: var(--qq-text-main);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        /* 页面完全填满浏览器 (Edge-to-Edge) */
+        html, body {
+            width: 100%;
+            height: 100%;
             overflow: hidden;
+            background: var(--qq-window-bg);
+            color: var(--qq-text-main);
+            font-family: var(--font-family);
             user-select: none;
-            transition: background 0.3s ease;
         }
 
-        /* 主 QQ 窗口容器 */
+        /* 主 QQ 聊天页面窗口：填满 100vw 与 100vh */
         .qq-window {
-            width: 1260px;
-            max-width: 98vw;
-            height: 860px;
-            max-height: 96vh;
-            background: var(--qq-window-bg);
-            border: 1px solid var(--qq-window-border);
-            border-radius: var(--qq-radius-window);
-            box-shadow: var(--qq-shadow);
+            width: 100vw;
+            height: 100vh;
             display: flex;
             flex-direction: column;
+            background: var(--qq-window-bg);
             overflow: hidden;
             position: relative;
-        }
-
-        .qq-window.fullscreen {
-            width: 100vw;
-            max-width: 100vw;
-            height: 100vh;
-            max-height: 100vh;
-            border-radius: 0;
-            border: none;
         }
 
         /* 顶部导航标题栏 (QQ 风格) */
@@ -118,6 +88,7 @@
             justify-content: space-between;
             padding: 0 16px;
             flex-shrink: 0;
+            z-index: 10;
         }
 
         .qq-group-info {
@@ -155,6 +126,11 @@
             font-weight: 700;
             color: var(--qq-text-main);
             letter-spacing: 0.2px;
+            cursor: pointer;
+        }
+
+        .qq-group-name:hover {
+            color: var(--qq-blue);
         }
 
         .qq-member-count {
@@ -200,6 +176,7 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
+            text-decoration: none;
         }
 
         .qq-action-btn:hover {
@@ -229,6 +206,7 @@
             gap: 6px;
             transition: all 0.2s;
             margin-right: 8px;
+            text-decoration: none;
         }
 
         .btn-tag-pill:hover {
@@ -236,15 +214,16 @@
             color: var(--qq-blue);
         }
 
-        /* 窗口主内容区：左右分栏 (聊天区 + 成员列表) */
+        /* 窗口主内容区 (左右撑满) */
         .qq-main-body {
             display: flex;
             flex: 1;
             overflow: hidden;
-            position: relative;
+            width: 100%;
+            height: calc(100vh - 52px);
         }
 
-        /* 左侧聊天交互主栏 */
+        /* 左侧聊天主交互栏 */
         .qq-chat-column {
             flex: 1;
             display: flex;
@@ -252,9 +231,9 @@
             background: var(--qq-chat-bg);
             position: relative;
             min-width: 0;
+            height: 100%;
         }
 
-        /* 顶部群公告条 */
         .qq-notice-bar {
             background: rgba(18, 183, 245, 0.08);
             border-bottom: 1px solid rgba(18, 183, 245, 0.18);
@@ -265,6 +244,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 10px;
+            flex-shrink: 0;
         }
 
         .qq-notice-text {
@@ -276,40 +256,26 @@
             text-overflow: ellipsis;
         }
 
-        .qq-notice-text i {
-            color: var(--qq-blue);
-        }
+        .qq-notice-text i { color: var(--qq-blue); }
 
-        /* 聊天消息流区域 */
+        /* 聊天消息流 */
         .qq-messages-container {
             flex: 1;
             overflow-y: auto;
-            padding: 16px 20px;
+            padding: 20px 24px;
             display: flex;
             flex-direction: column;
             gap: 16px;
             user-select: text;
         }
 
-        .qq-messages-container::-webkit-scrollbar {
-            width: 6px;
-        }
-
+        .qq-messages-container::-webkit-scrollbar { width: 6px; }
         .qq-messages-container::-webkit-scrollbar-thumb {
             background: rgba(0, 0, 0, 0.15);
             border-radius: 3px;
         }
 
-        [data-theme="dark"] .qq-messages-container::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        /* 时间戳居中条 */
-        .qq-time-divider {
-            text-align: center;
-            margin: 4px 0;
-        }
-
+        .qq-time-divider { text-align: center; margin: 4px 0; }
         .qq-time-pill {
             display: inline-block;
             font-size: 11px;
@@ -319,11 +285,8 @@
             border-radius: 12px;
         }
 
-        [data-theme="dark"] .qq-time-pill {
-            background: rgba(255, 255, 255, 0.06);
-        }
+        [data-theme="dark"] .qq-time-pill { background: rgba(255, 255, 255, 0.06); }
 
-        /* 消息行 */
         .qq-message-row {
             display: flex;
             gap: 12px;
@@ -331,9 +294,7 @@
             position: relative;
         }
 
-        .qq-message-row.user-row {
-            flex-direction: row-reverse;
-        }
+        .qq-message-row.user-row { flex-direction: row-reverse; }
 
         .qq-msg-avatar {
             width: 40px;
@@ -346,8 +307,6 @@
             color: #fff;
             flex-shrink: 0;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-            cursor: pointer;
         }
 
         .qq-msg-content-wrap {
@@ -356,11 +315,8 @@
             flex-direction: column;
         }
 
-        .qq-message-row.user-row .qq-msg-content-wrap {
-            align-items: flex-end;
-        }
+        .qq-message-row.user-row .qq-msg-content-wrap { align-items: flex-end; }
 
-        /* 发送者名称与头衔行 */
         .qq-msg-header {
             display: flex;
             align-items: center;
@@ -369,12 +325,8 @@
             font-size: 12px;
         }
 
-        .qq-msg-name {
-            font-weight: 600;
-            color: var(--qq-text-secondary);
-        }
+        .qq-msg-name { font-weight: 600; color: var(--qq-text-secondary); }
 
-        /* QQ 头衔徽章：群主、管理员、智能体、局域网模型等 */
         .qq-badge {
             font-size: 10px;
             padding: 1px 6px;
@@ -389,53 +341,22 @@
             border: 1px solid #ffe0b2;
         }
 
-        .qq-badge-admin {
-            background: #e3f2fd;
-            color: #1565c0;
-            border: 1px solid #bbdefb;
-        }
-
         .qq-badge-lan {
             background: #e8f5e9;
             color: #2e7d32;
             border: 1px solid #c8e6c9;
         }
 
-        .qq-badge-cloud {
-            background: #f3e5f5;
-            color: #6a1b9a;
-            border: 1px solid #e1bee7;
+        .qq-badge-admin {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #bbdefb;
         }
 
-        [data-theme="dark"] .qq-badge-owner {
-            background: #3e2723;
-            color: #ffb74d;
-            border-color: #5d4037;
-        }
-
-        [data-theme="dark"] .qq-badge-admin {
-            background: #0d47a1;
-            color: #90caf9;
-            border-color: #1976d2;
-        }
-
-        [data-theme="dark"] .qq-badge-lan {
-            background: #1b5e20;
-            color: #a5d6a7;
-            border-color: #2e7d32;
-        }
-
-        [data-theme="dark"] .qq-badge-cloud {
-            background: #4a148c;
-            color: #ce93d8;
-            border-color: #6a1b9a;
-        }
-
-        /* QQ 消息气泡 */
         .qq-bubble {
             background: var(--qq-bubble-ai);
             border: 1px solid var(--qq-bubble-border);
-            border-radius: var(--qq-radius-bubble);
+            border-radius: 10px;
             padding: 12px 16px;
             font-size: 14px;
             line-height: 1.6;
@@ -451,11 +372,8 @@
             border-top-right-radius: 2px;
         }
 
-        .qq-message-row:not(.user-row) .qq-bubble {
-            border-top-left-radius: 2px;
-        }
+        .qq-message-row:not(.user-row) .qq-bubble { border-top-left-radius: 2px; }
 
-        /* 消息悬浮操作栏 */
         .qq-bubble-actions {
             position: absolute;
             top: -26px;
@@ -470,9 +388,7 @@
             z-index: 10;
         }
 
-        .qq-bubble:hover .qq-bubble-actions {
-            display: flex;
-        }
+        .qq-bubble:hover .qq-bubble-actions { display: flex; }
 
         .qq-bubble-action-btn {
             background: none;
@@ -482,7 +398,6 @@
             color: var(--qq-text-secondary);
             font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
         .qq-bubble-action-btn:hover {
@@ -490,25 +405,14 @@
             color: var(--qq-text-main);
         }
 
-        /* 气泡内 Markdown 样式与排版 */
-        .qq-bubble p {
-            margin-bottom: 8px;
-        }
-
-        .qq-bubble p:last-child {
-            margin-bottom: 0;
-        }
-
+        .qq-bubble p { margin-bottom: 8px; }
+        .qq-bubble p:last-child { margin-bottom: 0; }
         .qq-bubble code {
             font-family: var(--font-mono);
             font-size: 12px;
             background: rgba(0, 0, 0, 0.05);
             padding: 2px 5px;
             border-radius: 4px;
-        }
-
-        [data-theme="dark"] .qq-bubble code {
-            background: rgba(255, 255, 255, 0.1);
         }
 
         .qq-bubble pre {
@@ -524,12 +428,6 @@
             line-height: 1.5;
         }
 
-        .qq-bubble pre code {
-            background: transparent;
-            padding: 0;
-            color: inherit;
-        }
-
         .pre-copy-btn {
             position: absolute;
             top: 6px;
@@ -541,39 +439,8 @@
             border-radius: 4px;
             font-size: 11px;
             cursor: pointer;
-            transition: background 0.2s;
         }
 
-        .pre-copy-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .qq-bubble blockquote {
-            border-left: 3px solid var(--qq-blue);
-            padding-left: 10px;
-            margin: 8px 0;
-            color: var(--qq-text-secondary);
-        }
-
-        .qq-bubble table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 8px 0;
-            font-size: 13px;
-        }
-
-        .qq-bubble th, .qq-bubble td {
-            border: 1px solid var(--qq-line);
-            padding: 6px 10px;
-            text-align: left;
-        }
-
-        .qq-bubble th {
-            background: rgba(0, 0, 0, 0.03);
-            font-weight: 600;
-        }
-
-        /* 模型响应耗时与 Token 统计小脚标 */
         .qq-bubble-footer {
             margin-top: 8px;
             padding-top: 6px;
@@ -585,7 +452,6 @@
             color: var(--qq-text-muted);
         }
 
-        /* 打字动画光标 */
         .typing-cursor {
             display: inline-block;
             width: 6px;
@@ -596,36 +462,18 @@
             animation: blink 0.8s infinite;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* 正在输入的等待状态指示条 */
-        .qq-typing-status-pill {
-            align-self: flex-start;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            color: var(--qq-text-secondary);
-            background: var(--qq-bubble-ai);
-            border: 1px solid var(--qq-bubble-border);
-            border-radius: 16px;
-            padding: 6px 14px;
-            margin-bottom: 4px;
-        }
-
-        /* 底部 QQ 输入框控制区域 (工具条 + 多行输入 + 发送按钮) */
+        /* 底部输入框 */
         .qq-chat-input-panel {
             background: var(--qq-window-bg);
             border-top: 1px solid var(--qq-line);
             display: flex;
             flex-direction: column;
             position: relative;
+            flex-shrink: 0;
         }
 
-        /* 工具栏图标行 (🙂 ✂️ 📁 🖼️ ✉️ 🎙️ 🕒 ⚙️ 🌐) */
         .qq-input-toolbar {
             height: 42px;
             display: flex;
@@ -648,7 +496,6 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.18s;
-            position: relative;
         }
 
         .toolbar-btn:hover {
@@ -656,21 +503,6 @@
             color: var(--qq-blue);
         }
 
-        [data-theme="dark"] .toolbar-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .toolbar-spacer {
-            flex: 1;
-        }
-
-        .toolbar-tip {
-            font-size: 11px;
-            color: var(--qq-text-muted);
-            margin-right: 6px;
-        }
-
-        /* 文本输入区域 */
         .qq-input-textarea-wrap {
             padding: 6px 18px 4px;
             position: relative;
@@ -678,8 +510,8 @@
 
         .qq-chat-textarea {
             width: 100%;
-            height: 88px;
-            max-height: 160px;
+            height: 96px;
+            max-height: 180px;
             border: none;
             outline: none;
             resize: none;
@@ -690,79 +522,6 @@
             color: var(--qq-text-main);
         }
 
-        .qq-chat-textarea::placeholder {
-            color: var(--qq-text-muted);
-            font-size: 13px;
-        }
-
-        /* @ 提及自动补全浮动窗口 */
-        .at-mention-menu {
-            position: absolute;
-            bottom: calc(100% + 4px);
-            left: 20px;
-            width: 280px;
-            background: var(--qq-window-bg);
-            border: 1px solid var(--qq-line);
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 100;
-        }
-
-        .at-mention-menu.show {
-            display: flex;
-        }
-
-        .at-menu-header {
-            padding: 8px 12px;
-            font-size: 11px;
-            color: var(--qq-text-muted);
-            border-bottom: 1px solid var(--qq-line);
-            background: var(--qq-header-bg);
-        }
-
-        .at-menu-list {
-            max-height: 220px;
-            overflow-y: auto;
-            padding: 4px;
-        }
-
-        .at-menu-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 7px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: background 0.15s;
-        }
-
-        .at-menu-item:hover, .at-menu-item.selected {
-            background: rgba(18, 183, 245, 0.12);
-            color: var(--qq-blue);
-        }
-
-        .at-item-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #fff;
-        }
-
-        .at-item-badge {
-            font-size: 10px;
-            margin-left: auto;
-            color: var(--qq-text-muted);
-        }
-
-        /* 底部发送按钮栏 (QQ 经典「关闭」+「发送 ∨」组合) */
         .qq-input-bottom-actions {
             height: 48px;
             display: flex;
@@ -780,12 +539,6 @@
             color: var(--qq-text-secondary);
             font-size: 13px;
             cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-qq-close:hover {
-            background: rgba(0, 0, 0, 0.05);
-            color: var(--qq-text-main);
         }
 
         .btn-qq-send-group {
@@ -803,14 +556,6 @@
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-qq-send-main:hover {
-            background: var(--qq-send-hover);
         }
 
         .btn-qq-send-dropdown {
@@ -821,65 +566,17 @@
             color: #ffffff;
             font-size: 11px;
             cursor: pointer;
-            transition: background 0.2s;
         }
 
-        .btn-qq-send-dropdown:hover {
-            background: var(--qq-send-hover);
-        }
-
-        /* 发送设置下拉菜单 */
-        .send-mode-dropdown {
-            position: absolute;
-            bottom: 48px;
-            right: 18px;
-            background: var(--qq-window-bg);
-            border: 1px solid var(--qq-line);
-            border-radius: 6px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            display: none;
-            flex-direction: column;
-            padding: 4px;
-            z-index: 100;
-            width: 190px;
-        }
-
-        .send-mode-dropdown.show {
-            display: flex;
-        }
-
-        .send-mode-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            font-size: 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            color: var(--qq-text-main);
-        }
-
-        .send-mode-item:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        [data-theme="dark"] .send-mode-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .send-mode-item.active {
-            color: var(--qq-blue);
-            font-weight: 600;
-        }
-
-        /* 右侧「群聊成员」侧边栏 (严格复刻图 1) */
+        /* 右侧「群聊成员」侧边栏 */
         .qq-members-sidebar {
-            width: 250px;
+            width: 260px;
             background: var(--qq-sidebar-bg);
             border-left: 1px solid var(--qq-line);
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
+            height: 100%;
         }
 
         .qq-members-header {
@@ -892,24 +589,7 @@
             font-size: 13px;
             font-weight: 600;
             color: var(--qq-text-secondary);
-        }
-
-        .qq-search-member-box {
-            padding: 8px 12px;
-            border-bottom: 1px solid var(--qq-line);
-            display: flex;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.02);
-            gap: 8px;
-        }
-
-        .qq-search-member-box input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            font-size: 12px;
-            color: var(--qq-text-main);
-            outline: none;
+            flex-shrink: 0;
         }
 
         .qq-members-list {
@@ -927,22 +607,11 @@
             padding: 8px 16px;
             cursor: pointer;
             transition: background 0.15s;
-            position: relative;
         }
 
-        .qq-member-item:hover {
-            background: rgba(0, 0, 0, 0.04);
-        }
+        .qq-member-item:hover { background: rgba(0, 0, 0, 0.04); }
 
-        [data-theme="dark"] .qq-member-item:hover {
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .qq-member-avatar-wrap {
-            position: relative;
-            flex-shrink: 0;
-        }
-
+        .qq-member-avatar-wrap { position: relative; flex-shrink: 0; }
         .qq-member-avatar {
             width: 32px;
             height: 32px;
@@ -963,20 +632,6 @@
             border-radius: 50%;
             border: 2px solid var(--qq-sidebar-bg);
             background: #28c840;
-        }
-
-        .qq-member-status-dot.idle {
-            background: #9e9e9e;
-        }
-
-        .qq-member-status-dot.typing {
-            background: var(--qq-blue);
-            animation: pulse 1s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.9); }
-            100% { transform: scale(1.3); }
         }
 
         .qq-member-meta {
@@ -1008,14 +663,23 @@
             white-space: nowrap;
         }
 
-        /* 侧边栏底部快速配置模型按钮 */
-        .qq-sidebar-footer {
-            padding: 10px 14px;
-            border-top: 1px solid var(--qq-line);
+        /* 侧边栏无模型空状态卡片 */
+        .empty-members-card {
+            margin: 16px 12px;
+            padding: 16px 12px;
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px dashed var(--qq-line);
+            border-radius: 8px;
+            text-align: center;
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 6px;
         }
+
+        .empty-members-card i { font-size: 24px; color: var(--qq-text-muted); }
+        .empty-members-card p { font-size: 13px; font-weight: 600; color: var(--qq-text-secondary); }
+        .empty-members-card small { font-size: 11px; color: var(--qq-text-muted); line-height: 1.4; }
 
         .btn-sidebar-add-model {
             width: 100%;
@@ -1031,11 +695,16 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
+            margin-top: 6px;
             transition: all 0.2s;
         }
 
-        .btn-sidebar-add-model:hover {
-            background: rgba(18, 183, 245, 0.14);
+        .btn-sidebar-add-model:hover { background: rgba(18, 183, 245, 0.14); }
+
+        .qq-sidebar-footer {
+            padding: 10px 14px;
+            border-top: 1px solid var(--qq-line);
+            flex-shrink: 0;
         }
 
         /* ==========================================================================
@@ -1044,7 +713,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.65);
             backdrop-filter: blur(4px);
             display: none;
             align-items: center;
@@ -1052,9 +721,7 @@
             z-index: 1000;
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .model-settings-modal {
             width: 860px;
@@ -1072,7 +739,6 @@
             font-family: var(--font-family);
         }
 
-        /* 模型设置弹窗顶部 */
         .settings-header {
             padding: 18px 24px 14px;
             display: flex;
@@ -1081,17 +747,8 @@
             border-bottom: 1px solid #282a32;
         }
 
-        .settings-header h2 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 4px;
-        }
-
-        .settings-header p {
-            font-size: 13px;
-            color: #9ca3af;
-        }
+        .settings-header h2 { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
+        .settings-header p { font-size: 13px; color: #9ca3af; }
 
         .settings-top-actions {
             display: flex;
@@ -1110,12 +767,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-refresh-icon:hover {
-            color: #fff;
-            border-color: #4b5563;
         }
 
         .btn-add-provider {
@@ -1130,11 +781,6 @@
             align-items: center;
             gap: 6px;
             cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-add-provider:hover {
-            background: #e5e7eb;
         }
 
         .btn-modal-close-icon {
@@ -1148,18 +794,8 @@
             cursor: pointer;
         }
 
-        .btn-modal-close-icon:hover {
-            color: #ffffff;
-        }
+        .settings-body { display: flex; flex: 1; overflow: hidden; }
 
-        /* 设置主体左右分栏 */
-        .settings-body {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        /* 左侧供应商分类与列表 (图 4 风格) */
         .settings-sidebar {
             width: 230px;
             background: #17181c;
@@ -1180,11 +816,7 @@
             letter-spacing: 0.5px;
         }
 
-        .provider-nav-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+        .provider-nav-list { display: flex; flex-direction: column; gap: 4px; }
 
         .provider-nav-item {
             display: flex;
@@ -1196,19 +828,10 @@
             color: #d1d5db;
             cursor: pointer;
             transition: all 0.15s;
-            position: relative;
         }
 
-        .provider-nav-item:hover {
-            background: #23252d;
-            color: #ffffff;
-        }
-
-        .provider-nav-item.active {
-            background: #282b35;
-            color: #ffffff;
-            font-weight: 600;
-        }
+        .provider-nav-item:hover { background: #23252d; color: #ffffff; }
+        .provider-nav-item.active { background: #282b35; color: #ffffff; font-weight: 600; }
 
         .provider-icon-badge {
             width: 22px;
@@ -1233,7 +856,6 @@
         .dot-orange { background: #f59e0b; }
         .dot-red { background: #ef4444; }
 
-        /* 右侧配置面板 (图 3、图 4 风格) */
         .settings-detail-pane {
             flex: 1;
             overflow-y: auto;
@@ -1244,7 +866,6 @@
             background: #1e1f24;
         }
 
-        /* 供应商顶部名称与主开关 */
         .provider-header-row {
             display: flex;
             align-items: center;
@@ -1253,17 +874,8 @@
             border-bottom: 1px solid #2d3039;
         }
 
-        .provider-title-wrap {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .provider-main-icon {
-            font-size: 20px;
-            color: #9ca3af;
-        }
-
+        .provider-title-wrap { display: flex; align-items: center; gap: 10px; }
+        .provider-main-icon { font-size: 20px; color: #9ca3af; }
         .provider-name-input {
             background: transparent;
             border: 1px solid transparent;
@@ -1281,13 +893,8 @@
             background: #252830;
         }
 
-        .provider-ctrl-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .provider-ctrl-actions { display: flex; align-items: center; gap: 12px; }
 
-        /* 现代化开关 Toggle Switch */
         .toggle-switch {
             position: relative;
             display: inline-block;
@@ -1295,19 +902,11 @@
             height: 24px;
         }
 
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
         .switch-slider {
             position: absolute;
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             background-color: #374151;
             transition: .3s;
             border-radius: 24px;
@@ -1325,34 +924,16 @@
             border-radius: 50%;
         }
 
-        input:checked + .switch-slider {
-            background-color: #ffffff;
-        }
-
+        input:checked + .switch-slider { background-color: #ffffff; }
         input:checked + .switch-slider:before {
             transform: translateX(20px);
             background-color: #111827;
         }
 
-        /* 表单输入组 */
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-label { font-size: 13px; font-weight: 500; color: #d1d5db; }
 
-        .form-label {
-            font-size: 13px;
-            font-weight: 500;
-            color: #d1d5db;
-        }
-
-        .form-input-box {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
+        .form-input-box { position: relative; display: flex; align-items: center; }
         .form-control-input, .form-control-select {
             width: 100%;
             background: #282b34;
@@ -1362,7 +943,6 @@
             color: #f3f4f6;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
             font-family: inherit;
         }
 
@@ -1381,37 +961,11 @@
             font-size: 14px;
         }
 
-        /* 局域网跨域与 Mixed Content 警示条 */
-        .mixed-content-warning {
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px solid rgba(245, 158, 11, 0.35);
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 12px;
-            color: #fbbf24;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            line-height: 1.5;
-        }
-
-        .mixed-content-warning a {
-            color: #60a5fa;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        /* 模型列表卡片组 (图 4 风格) */
         .models-section-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-top: 6px;
-        }
-
-        .models-section-actions {
-            display: flex;
-            gap: 8px;
         }
 
         .btn-subtle-pill {
@@ -1426,19 +980,9 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            transition: all 0.2s;
         }
 
-        .btn-subtle-pill:hover {
-            border-color: #4b5563;
-            background: #323642;
-        }
-
-        .model-cards-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .model-cards-container { display: flex; flex-direction: column; gap: 8px; }
 
         .model-card-item {
             background: #252830;
@@ -1448,19 +992,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: border-color 0.2s;
         }
 
-        .model-card-item:hover {
-            border-color: #4b5563;
-        }
-
-        .model-card-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .model-card-left { display: flex; align-items: center; gap: 10px; }
         .model-card-name {
             font-weight: 600;
             font-size: 13px;
@@ -1477,11 +1011,7 @@
             font-family: var(--font-mono);
         }
 
-        .model-card-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .model-card-actions { display: flex; align-items: center; gap: 12px; }
 
         .model-action-icon-btn {
             background: none;
@@ -1489,31 +1019,29 @@
             color: #9ca3af;
             font-size: 14px;
             cursor: pointer;
-            transition: color 0.15s;
         }
 
-        .model-action-icon-btn:hover {
-            color: #ffffff;
+        .model-action-icon-btn:hover { color: #ffffff; }
+        .model-action-icon-btn.btn-test:hover { color: #60a5fa; }
+        .model-action-icon-btn.btn-delete:hover { color: #ef4444; }
+
+        .empty-model-placeholder {
+            padding: 24px;
+            text-align: center;
+            border: 1px dashed #374151;
+            border-radius: 8px;
+            color: #9ca3af;
+            font-size: 13px;
         }
 
-        .model-action-icon-btn.btn-test:hover {
-            color: #60a5fa;
-        }
-
-        .model-action-icon-btn.btn-delete:hover {
-            color: #ef4444;
-        }
-
-        /* ==========================================================================
-           跨域与局域网网络诊断助手弹窗
-           ========================================================================== */
+        /* 跨域诊断助手 Modal */
         .cors-modal-content {
             width: 760px;
             max-width: 95vw;
             background: var(--qq-window-bg);
             border: 1px solid var(--qq-line);
             border-radius: 12px;
-            box-shadow: var(--qq-shadow);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
             padding: 24px;
             max-height: 88vh;
             overflow-y: auto;
@@ -1535,17 +1063,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .cors-guide-card p, .cors-guide-card ol {
-            font-size: 13px;
-            color: var(--qq-text-secondary);
-            line-height: 1.6;
-        }
-
-        .cors-guide-card ol {
-            margin-left: 20px;
-            margin-top: 6px;
         }
 
         .code-snippet-box {
@@ -1571,7 +1088,6 @@
             font-size: 11px;
         }
 
-        /* 提示 Toast */
         .qq-toast {
             position: fixed;
             bottom: 24px;
@@ -1596,27 +1112,11 @@
             transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
-
-        /* 响应式适配 */
-        @media (max-width: 900px) {
-            .qq-members-sidebar {
-                display: none;
-            }
-            .qq-members-sidebar.mobile-open {
-                display: flex;
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                z-index: 50;
-                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- QQ 客户端主体窗口 -->
+    <!-- QQ 客户端主体窗口 (撑满浏览器) -->
     <div class="qq-window" id="qqWindow">
         <!-- 窗口标题栏 -->
         <header class="qq-titlebar">
@@ -1626,18 +1126,21 @@
                 </div>
                 <div class="qq-group-titles">
                     <div class="qq-group-name-wrap">
-                        <span class="qq-group-name" id="groupTitleText">AI+耐材料讨论群</span>
-                        <span class="qq-member-count" id="groupMemberCountBadge">(6)</span>
+                        <span class="qq-group-name" id="groupTitleText" title="点击可修改群名">AI+耐材料讨论群</span>
+                        <span class="qq-member-count" id="groupMemberCountBadge">(1)</span>
                     </div>
                     <div class="qq-group-subtext">
                         <span class="status-dot-active"></span>
-                        <span id="activeModelSummary">4 个模型在群 · 支持@多人协同</span>
+                        <span id="activeModelSummary">暂无模型在群 · 点击「模型设置」添加</span>
                     </div>
                 </div>
             </div>
 
             <!-- 顶部操作按钮 -->
             <div class="qq-window-actions">
+                <a class="btn-tag-pill" href="../tools/index.html" title="返回博客工具箱">
+                    <i class="fas fa-arrow-left"></i> 返回工具箱
+                </a>
                 <button class="btn-tag-pill" id="openSettingsBtn" title="模型设置">
                     <i class="fas fa-sliders-h"></i> 模型设置
                 </button>
@@ -1650,12 +1153,8 @@
                 <button class="qq-action-btn" title="语音通话"><i class="fas fa-phone-alt"></i></button>
                 <button class="qq-action-btn" title="视频通话"><i class="fas fa-video"></i></button>
                 <button class="qq-action-btn" title="屏幕共享"><i class="fas fa-desktop"></i></button>
-                <button class="qq-action-btn" title="应用矩阵"><i class="fas fa-th-large"></i></button>
-                <button class="qq-action-btn" id="toggleMembersBtn" title="群成员列表"><i class="fas fa-user-friends"></i></button>
-                <div style="width: 1px; height: 16px; background: var(--qq-line); margin: 0 4px;"></div>
-                <button class="qq-action-btn" id="minimizeBtn" title="最小化"><i class="fas fa-minus"></i></button>
-                <button class="qq-action-btn" id="maximizeBtn" title="最大化/还原"><i class="far fa-square"></i></button>
-                <a class="qq-action-btn btn-close" href="../tools/index.html" title="返回博客工具箱"><i class="fas fa-times"></i></a>
+                <button class="qq-action-btn" id="fullscreenBtn" title="网页全屏"><i class="fas fa-expand"></i></button>
+                <a class="qq-action-btn btn-close" href="../tools/index.html" title="返回工具箱"><i class="fas fa-times"></i></a>
             </div>
         </header>
 
@@ -1663,65 +1162,29 @@
         <main class="qq-main-body">
             <!-- 左侧聊天交互栏 -->
             <section class="qq-chat-column">
-                <!-- 顶部群公告条 -->
                 <div class="qq-notice-bar">
                     <div class="qq-notice-text">
                         <i class="fas fa-bullhorn"></i>
-                        <span><strong>群公告：</strong>欢迎来到多大模型协同群聊！支持通过 @ 提问特定模型（如 @qwen3.8-27b），或输入 @所有人 开启多智能体讨论。</span>
+                        <span><strong>群公告：</strong>欢迎使用大模型群聊工作台！请先在右侧或顶部「模型设置」中配置您的局域网大模型（如 vLLM）或在线 API。配置与聊天记录保存在本地浏览器中。</span>
                     </div>
                     <button class="qq-action-btn" style="width: 22px; height: 22px; font-size: 11px;" onclick="this.parentElement.style.display='none'"><i class="fas fa-times"></i></button>
                 </div>
 
                 <!-- 消息滚动列表 -->
                 <div class="qq-messages-container" id="messagesContainer">
-                    <div class="qq-time-divider">
-                        <span class="qq-time-pill" id="initialTimePill">今天 16:06</span>
-                    </div>
-
-                    <!-- 欢迎引导消息 -->
-                    <div class="qq-message-row">
-                        <div class="qq-msg-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="qq-msg-content-wrap">
-                            <div class="qq-msg-header">
-                                <span class="qq-msg-name">群管家 · System</span>
-                                <span class="qq-badge qq-badge-admin">管理员</span>
-                                <span style="color: var(--qq-text-muted); font-size: 11px;">16:06</span>
-                            </div>
-                            <div class="qq-bubble">
-                                <p>🎉 欢迎加入 <strong>AI+大模型讨论群</strong>！</p>
-                                <p>本群由你担任 <strong>群主</strong>，右侧列表为当前在群的各类大模型（包括本地局域网部署的 <code>vLLM / Ollama</code> 与公网大模型）。</p>
-                                <ul>
-                                    <li>💡 <strong>单模型提问</strong>：输入框输入 <code>@模型名 你的问题</code></li>
-                                    <li>🚀 <strong>全员讨论</strong>：输入 <code>@所有人 你们怎么看这个方案？</code></li>
-                                    <li>⚙️ <strong>添加/修改模型</strong>：点击顶部 <strong>「模型设置」</strong>（配置 Base URL、API Key 与提示词）</li>
-                                    <li>🌐 <strong>局域网跨域问题</strong>：已贴心内置一键代理转发与混合内容解决教学，点击顶部 <strong>「跨域助手」</strong> 即可查看！</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- 消息由 JS 从 localStorage 动态恢复 -->
                 </div>
 
                 <!-- 底部输入区域 -->
                 <div class="qq-chat-input-panel">
-                    <!-- 工具条 -->
                     <div class="qq-input-toolbar">
                         <button class="toolbar-btn" id="emojiBtn" title="表情"><i class="far fa-smile"></i></button>
                         <button class="toolbar-btn" id="snippetBtn" title="快捷提示词模板"><i class="fas fa-cut"></i></button>
                         <button class="toolbar-btn" id="fileAttachBtn" title="导入文件/代码"><i class="far fa-folder"></i></button>
-                        <button class="toolbar-btn" id="imgAttachBtn" title="发送图片"><i class="far fa-image"></i></button>
-                        <button class="toolbar-btn" id="voiceBtn" title="语音输入"><i class="fas fa-microphone"></i></button>
                         <button class="toolbar-btn" id="clearChatBtn" title="清空聊天记录"><i class="far fa-trash-alt"></i></button>
                         <button class="toolbar-btn" id="exportChatBtn" title="导出聊天记录"><i class="far fa-clock"></i></button>
-                        <div class="toolbar-spacer"></div>
-                        <span class="toolbar-tip" id="mentionTip">输入 @ 唤出模型列表</span>
-                    </div>
-
-                    <!-- @ 自动提示菜单 -->
-                    <div class="at-mention-menu" id="atMentionMenu">
-                        <div class="at-menu-header">提及群成员 (按上下键选择，Enter 确认)</div>
-                        <div class="at-menu-list" id="atMenuList"></div>
+                        <div style="flex: 1;"></div>
+                        <span style="font-size: 11px; color: var(--qq-text-muted);" id="mentionTip">输入 @ 可指定模型或@所有人</span>
                     </div>
 
                     <!-- 多行文本输入框 -->
@@ -1729,33 +1192,16 @@
                         <textarea class="qq-chat-textarea" id="chatInput" placeholder="输入消息，可输入 @ 指定模型，按 Enter 发送..."></textarea>
                     </div>
 
-                    <!-- 发送按钮与发送设置下拉 -->
+                    <!-- 发送按钮 -->
                     <div class="qq-input-bottom-actions">
                         <button class="btn-qq-close" id="clearInputBtn">关闭</button>
                         <div class="btn-qq-send-group">
                             <button class="btn-qq-send-main" id="sendBtn">
                                 <span>发送</span>
                             </button>
-                            <button class="btn-qq-send-dropdown" id="sendDropdownBtn">
+                            <button class="btn-qq-send-dropdown" id="sendDropdownBtn" title="发送选项">
                                 <i class="fas fa-chevron-down"></i>
                             </button>
-                        </div>
-                    </div>
-
-                    <!-- 发送快捷键选择菜单 -->
-                    <div class="send-mode-dropdown" id="sendModeDropdown">
-                        <div class="send-mode-item active" data-mode="enter">
-                            <i class="fas fa-check" style="font-size: 11px;"></i>
-                            <span>按 Enter 键发送消息</span>
-                        </div>
-                        <div class="send-mode-item" data-mode="ctrl_enter">
-                            <i class="fas fa-check" style="font-size: 11px; opacity: 0;"></i>
-                            <span>按 Ctrl+Enter 发送消息</span>
-                        </div>
-                        <div style="height: 1px; background: var(--qq-line); margin: 3px 0;"></div>
-                        <div class="send-mode-item" id="debateModeTrigger">
-                            <i class="fas fa-comments"></i>
-                            <span>多模型接力辩论模式</span>
                         </div>
                     </div>
                 </div>
@@ -1764,17 +1210,12 @@
             <!-- 右侧「群聊成员」侧边栏 (参照图 1) -->
             <aside class="qq-members-sidebar" id="membersSidebar">
                 <div class="qq-members-header">
-                    <span>群聊成员 <strong id="memberCountText">6</strong></span>
-                    <button class="qq-action-btn" id="searchMemberToggleBtn" style="width: 24px; height: 24px; font-size: 12px;"><i class="fas fa-search"></i></button>
-                </div>
-
-                <div class="qq-search-member-box" id="memberSearchBox" style="display: none;">
-                    <i class="fas fa-search" style="font-size: 12px; color: var(--qq-text-muted);"></i>
-                    <input type="text" id="memberSearchInput" placeholder="搜索群成员...">
+                    <span>群聊成员 <strong id="memberCountText">1</strong></span>
+                    <button class="qq-action-btn" id="openSettingsQuickBtn" title="设置与添加模型"><i class="fas fa-cog"></i></button>
                 </div>
 
                 <div class="qq-members-list" id="membersList">
-                    <!-- 动态渲染群成员 -->
+                    <!-- 动态渲染真实配置的模型成员 -->
                 </div>
 
                 <div class="qq-sidebar-footer">
@@ -1791,40 +1232,34 @@
          ========================================================================== -->
     <div class="modal-overlay" id="settingsModalOverlay">
         <div class="model-settings-modal">
-            <!-- 弹窗顶栏 -->
             <div class="settings-header">
                 <div>
                     <h2>模型设置</h2>
                     <p>管理自定义模型供应商，配置后可在聊天时选择使用。</p>
                 </div>
                 <div class="settings-top-actions">
-                    <button class="btn-refresh-icon" id="refreshSettingsBtn" title="刷新"><i class="fas fa-sync-alt"></i></button>
+                    <button class="btn-refresh-icon" id="refreshSettingsBtn" title="刷新状态"><i class="fas fa-sync-alt"></i></button>
                     <button class="btn-add-provider" id="addProviderBtn"><i class="fas fa-plus"></i> 添加供应商</button>
                     <button class="btn-modal-close-icon" id="closeSettingsModalBtn"><i class="fas fa-times"></i></button>
                 </div>
             </div>
 
-            <!-- 主分栏 -->
             <div class="settings-body">
-                <!-- 左侧供应商列表 -->
+                <!-- 左侧供应商列表 (复刻图 4 分组) -->
                 <div class="settings-sidebar">
-                    <div>
-                        <div class="provider-category-title">常用供应商</div>
-                        <div class="provider-nav-list" id="presetProviderNavList">
-                            <!-- 预设供应商 -->
-                        </div>
+                    <div id="zhipuGroupSection">
+                        <div class="provider-category-title">智谱</div>
+                        <div class="provider-nav-list" id="zhipuProviderNavList"></div>
                     </div>
-                    <div>
+                    <div id="customGroupSection" style="margin-top: 10px;">
                         <div class="provider-category-title">自定义供应商</div>
-                        <div class="provider-nav-list" id="customProviderNavList">
-                            <!-- 自定义供应商 (如 vllm, ollama) -->
-                        </div>
+                        <div class="provider-nav-list" id="customProviderNavList"></div>
                     </div>
                 </div>
 
                 <!-- 右侧当前供应商配置面板 -->
                 <div class="settings-detail-pane" id="providerDetailPane">
-                    <!-- 动态注入供应商配置内容 -->
+                    <!-- 动态加载 -->
                 </div>
             </div>
         </div>
@@ -1849,10 +1284,10 @@
             <div class="cors-guide-card">
                 <h4><i class="fas fa-bolt"></i> 方案一：启动仓库自带的本地代理（最稳定·支持流式，推荐）</h4>
                 <p>仓库内已自带原生 Node.js 流式转发代理脚本，可一键转发局域网请求并追加完整 CORS 跨域头：</p>
-                <ol>
+                <ol style="margin-left: 20px; font-size: 13px; color: var(--qq-text-secondary); margin-top: 6px;">
                     <li>在本地项目根目录的 <code>worker-proxy/</code> 文件夹中；</li>
-                    <li>双击运行 <strong><code>start-proxy.bat</code></strong>（无需额外安装任何依赖）；</li>
-                    <li>代理服务启动在 <code>http://127.0.0.1:25100</code>。在「模型设置」中勾选 <strong>「使用本地代理转发」</strong> 即可畅通无阻！</li>
+                    <li>双击运行 <strong><code>start-proxy.bat</code></strong>；</li>
+                    <li>代理服务启动在 <code>http://127.0.0.1:25100</code>。在「模型设置」中将代理模式选为 <strong>「本地代理转发」</strong> 即可畅通无阻！</li>
                 </ol>
                 <div class="code-snippet-box">
                     <span>双击运行：worker-proxy/start-proxy.bat</span>
@@ -1863,30 +1298,12 @@
             <div class="cors-guide-card">
                 <h4><i class="fas fa-shield-alt"></i> 方案二：浏览器设置放行混合内容（无需启动任何代理）</h4>
                 <p>直接告诉浏览器放行当前 GitHub.io 网站的不安全 HTTP 资源请求：</p>
-                <ol>
-                    <li>点击浏览器顶部地址栏最左侧的 🔒 <strong>图标</strong>（或「查看网站信息」）；</li>
+                <ol style="margin-left: 20px; font-size: 13px; color: var(--qq-text-secondary); margin-top: 6px;">
+                    <li>点击浏览器顶部地址栏最左侧的 🔒 <strong>图标</strong>；</li>
                     <li>点击 <strong>「网站设置 (Site settings)」</strong>；</li>
                     <li>在权限列表中找到 <strong>「不安全内容 (Insecure content)」</strong>，由「屏蔽」改为 <strong>「允许 (Allow)」</strong>；</li>
                     <li>回到本网页按 <code>F5</code> 刷新，即可直接直连局域网 <code>http://10.21.1.45:...</code>！</li>
                 </ol>
-            </div>
-
-            <div class="cors-guide-card">
-                <h4><i class="fas fa-terminal"></i> 方案三：命令行启动免安全检查浏览器</h4>
-                <p>快捷复制以下命令运行 Chrome，彻底解除混合内容与跨域检查：</p>
-                <div class="code-snippet-box">
-                    <span>chrome.exe --disable-web-security --user-data-dir="C:/ChromeDev"</span>
-                    <button class="btn-mini-copy" onclick="navigator.clipboard.writeText('chrome.exe --disable-web-security --user-data-dir=\"C:/ChromeDev\"'); showToast('已复制命令');">复制</button>
-                </div>
-            </div>
-
-            <div class="cors-guide-card">
-                <h4><i class="fas fa-server"></i> 局域网模型服务端 CORS 参数检查</h4>
-                <p>确保您的局域网大模型服务允许跨域请求：</p>
-                <ul style="margin-left: 20px; font-size: 13px; color: var(--qq-text-secondary); margin-top: 4px;">
-                    <li><strong>vLLM 启动参数</strong>：增加 <code>--allowed-origins "*"</code></li>
-                    <li><strong>Ollama 环境变量</strong>：Windows 设置 <code>OLLAMA_ORIGINS="*"</code> 后运行 <code>ollama serve</code></li>
-                </ul>
             </div>
         </div>
     </div>
@@ -1905,13 +1322,13 @@
             </div>
 
             <div class="form-group" style="margin-top: 12px;">
-                <label class="form-label">群内身份标签 (如 管理员、代码专家、辩论员)</label>
+                <label class="form-label">群内身份标签 (如 局域网大模型、管理员、代码专家)</label>
                 <input type="text" class="form-control-input" id="personaRoleInput">
             </div>
 
             <div class="form-group" style="margin-top: 12px;">
                 <label class="form-label">系统人设 Prompt (System Prompt)</label>
-                <textarea class="form-control-input" id="personaPromptInput" style="height: 100px; resize: vertical;" placeholder="例如：你是一位材料学教授，说话严谨，回答附带专业公式与分析思路..."></textarea>
+                <textarea class="form-control-input" id="personaPromptInput" style="height: 100px; resize: vertical;" placeholder="例如：你是一位材料学专家，说话严谨，回答附带专业分析..."></textarea>
             </div>
 
             <div class="form-group" style="margin-top: 12px;">
@@ -1933,167 +1350,132 @@
     </div>
 
     <!-- ==========================================================================
-         核心 JavaScript 逻辑模块
+         核心 JavaScript 业务逻辑与持久化系统
          ========================================================================== -->
     <script>
     (() => {
-        // 本地持久化存储 Key
-        const STORAGE_CONFIG_KEY = 'llm_group_chat_config_v2';
-        const STORAGE_HISTORY_KEY = 'llm_group_chat_history_v2';
+        // 使用干净版本 Key，确保用户初次使用绝不预填任何虚构模型
+        const STORAGE_CONFIG_KEY = 'qq_chat_agent_config_clean_v4';
+        const STORAGE_HISTORY_KEY = 'qq_chat_agent_history_clean_v4';
 
-        // 默认预设供应商与模型数据（包含局域网 vLLM 示例、Ollama、公网模型）
-        const defaultState = {
-            activeProviderId: 'vllm_local',
-            sendMode: 'enter', // 'enter' | 'ctrl_enter'
+        // 默认供应商架构（复刻图 4，初始严格 models: [] 空列表）
+        const initialConfig = {
+            groupTitle: 'AI+耐材料讨论群',
+            activeProviderId: 'vllm_custom',
+            sendMode: 'enter',
             providers: [
                 {
-                    id: 'vllm_local',
+                    id: 'vllm_custom',
                     name: 'vllm',
-                    type: 'custom',
                     category: 'custom',
                     enabled: true,
                     status: 'green',
                     baseUrl: 'http://10.21.1.45:26199/v1',
                     apiFormat: 'chat_completions',
                     apiKey: '',
-                    proxyMode: 'local', // 'direct' | 'local' | 'custom'
-                    customProxyUrl: '',
-                    models: [
-                        {
-                            id: 'qwen3.8-27b',
-                            name: 'qwen3.8-27b',
-                            context: '262.1K',
-                            badge: '局域网大模型',
-                            rolePrompt: '你是由局域网 vLLM 驱动的开源高智能助手 Qwen。你在技术讨论群中扮演博学、严谨的专家，输出结构清晰并带有 Markdown 代码块。',
-                            temperature: 0.7,
-                            enabled: true,
-                            avatarColor: '#10b981',
-                            avatarIcon: 'fa-microchip'
-                        }
-                    ]
-                },
-                {
-                    id: 'ollama_local',
-                    name: 'Ollama',
-                    type: 'custom',
-                    category: 'custom',
-                    enabled: true,
-                    status: 'green',
-                    baseUrl: 'http://127.0.0.1:11434/v1',
-                    apiFormat: 'chat_completions',
-                    apiKey: 'ollama',
                     proxyMode: 'local',
                     customProxyUrl: '',
-                    models: [
-                        {
-                            id: 'llama3.1:8b',
-                            name: 'llama3.1:8b',
-                            context: '128K',
-                            badge: '本地轻量',
-                            rolePrompt: '你是运行在本地 Ollama 的 Meta Llama 3.1 模型，专注敏捷响应和逻辑分析。',
-                            temperature: 0.6,
-                            enabled: true,
-                            avatarColor: '#f59e0b',
-                            avatarIcon: 'fa-brain'
-                        }
-                    ]
+                    models: [] // 用户尚未添加模型，严格默认为空！
                 },
                 {
-                    id: 'deepseek_cloud',
-                    name: 'DeepSeek',
-                    type: 'preset',
-                    category: 'cloud',
-                    enabled: true,
+                    id: 'new_custom',
+                    name: '新供应商',
+                    category: 'custom',
+                    enabled: false,
                     status: 'orange',
-                    baseUrl: 'https://api.deepseek.com/v1',
+                    baseUrl: '',
                     apiFormat: 'chat_completions',
                     apiKey: '',
                     proxyMode: 'direct',
                     customProxyUrl: '',
-                    models: [
-                        {
-                            id: 'deepseek-chat',
-                            name: 'DeepSeek-V3',
-                            context: '64K',
-                            badge: '群管理员',
-                            rolePrompt: '你是深度求索（DeepSeek）开发的 DeepSeek-V3 大模型，逻辑严密，代码能力强大。',
-                            temperature: 0.7,
-                            enabled: true,
-                            avatarColor: '#0ea5e9',
-                            avatarIcon: 'fa-atom'
-                        },
-                        {
-                            id: 'deepseek-reasoner',
-                            name: 'DeepSeek-R1',
-                            context: '64K',
-                            badge: '深度推理',
-                            rolePrompt: '你是 DeepSeek-R1 深度思考推理模型，擅长展示详细的逻辑推理链条。',
-                            temperature: 0.6,
-                            enabled: true,
-                            avatarColor: '#6366f1',
-                            avatarIcon: 'fa-lightbulb'
-                        }
-                    ]
+                    models: []
                 },
                 {
-                    id: 'siliconflow_cloud',
-                    name: 'SiliconFlow (硅基流动)',
-                    type: 'preset',
-                    category: 'cloud',
-                    enabled: true,
+                    id: 'zhipu_zai',
+                    name: 'Z.ai',
+                    category: 'zhipu',
+                    enabled: false,
                     status: 'orange',
-                    baseUrl: 'https://api.siliconflow.cn/v1',
+                    baseUrl: 'https://open.bigmodel.cn/api/paas/v4',
                     apiFormat: 'chat_completions',
                     apiKey: '',
                     proxyMode: 'direct',
                     customProxyUrl: '',
-                    models: [
-                        {
-                            id: 'Qwen/Qwen2.5-7B-Instruct',
-                            name: 'Qwen2.5-7B',
-                            context: '32K',
-                            badge: '云端开源',
-                            rolePrompt: '你是托管在硅基流动云端 API 的通义千问模型。',
-                            temperature: 0.7,
-                            enabled: true,
-                            avatarColor: '#8b5cf6',
-                            avatarIcon: 'fa-cloud'
-                        }
-                    ]
+                    models: []
+                },
+                {
+                    id: 'zhipu_start',
+                    name: 'Start Plan',
+                    category: 'zhipu',
+                    enabled: false,
+                    status: 'orange',
+                    baseUrl: '',
+                    apiFormat: 'chat_completions',
+                    apiKey: '',
+                    proxyMode: 'direct',
+                    customProxyUrl: '',
+                    models: []
                 }
             ]
         };
 
-        // 加载或初始化配置
+        // 1. 读取或初始化配置 (严格从 localStorage 加载)
         let state = (() => {
             try {
+                // 如果存在历史残留旧版本缓存，清理旧版本假数据
+                localStorage.removeItem('llm_group_chat_config_v2');
+                localStorage.removeItem('qq_chat_agent_config_clean_v3');
+                
                 const saved = localStorage.getItem(STORAGE_CONFIG_KEY);
                 if (saved) {
                     const parsed = JSON.parse(saved);
-                    return { ...defaultState, ...parsed };
+                    if (parsed && Array.isArray(parsed.providers)) {
+                        return parsed;
+                    }
                 }
             } catch (e) {
-                console.warn('读取配置失败，使用默认配置', e);
+                console.warn('读取本地模型配置失败', e);
             }
-            return defaultState;
+            return JSON.parse(JSON.stringify(initialConfig));
         })();
 
-        function saveState() {
+        // 保存配置到 localStorage
+        function saveConfig() {
             try {
                 localStorage.setItem(STORAGE_CONFIG_KEY, JSON.stringify(state));
             } catch (e) {
-                console.error('保存配置失败', e);
+                console.error('持久化配置失败', e);
             }
         }
 
-        // 当前选中的人设编辑模型缓存
-        let currentEditingModel = null;
+        // 2. 读取或初始化聊天记录
+        let chatMessages = (() => {
+            try {
+                const saved = localStorage.getItem(STORAGE_HISTORY_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed)) return parsed;
+                }
+            } catch (e) {
+                console.warn('读取聊天记录失败', e);
+            }
+            return [];
+        })();
+
+        function saveHistory() {
+            try {
+                localStorage.setItem(STORAGE_HISTORY_KEY, JSON.stringify(chatMessages));
+            } catch (e) {
+                console.error('持久化聊天记录失败', e);
+            }
+        }
+
         let isStreaming = false;
         let abortController = null;
+        let currentEditingModel = null;
 
         const $ = id => document.getElementById(id);
 
-        // 提示信息 Toast
         function showToast(msg, icon = 'fa-info-circle') {
             const toast = $('qqToast');
             const toastMsg = $('toastMsg');
@@ -2101,28 +1483,17 @@
             toastMsg.textContent = msg;
             toast.classList.add('show');
             clearTimeout(showToast.timer);
-            showToast.timer = setTimeout(() => toast.classList.remove('show'), 3200);
+            showToast.timer = setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // 核心：请求 URL 组装与跨域/代理处理
-        function getProxiedUrl(targetUrl, proxyMode, customProxy) {
-            if (proxyMode === 'local') {
-                return `http://127.0.0.1:25100/proxy?url=${encodeURIComponent(targetUrl)}`;
-            } else if (proxyMode === 'custom' && customProxy) {
-                return customProxy.replace('{url}', encodeURIComponent(targetUrl))
-                                  .replace('%s', encodeURIComponent(targetUrl)) + 
-                       (customProxy.includes('?') ? '&' : '?') + `url=${encodeURIComponent(targetUrl)}`;
-            }
-            return targetUrl;
-        }
-
+        // 计算当前所有处于启用状态的模型
         function getActiveGroupModels() {
-            const list = [];
+            const activeList = [];
             state.providers.forEach(p => {
                 if (!p.enabled) return;
-                p.models.forEach(m => {
+                (p.models || []).forEach(m => {
                     if (m.enabled) {
-                        list.push({
+                        activeList.push({
                             ...m,
                             providerId: p.id,
                             providerName: p.name,
@@ -2135,23 +1506,39 @@
                     }
                 });
             });
-            return list;
+            return activeList;
         }
 
-        // 渲染群成员列表（右侧侧边栏）
-        function renderGroupMembers(filterText = '') {
+        // 计算转发代理后的 URL
+        function getProxiedUrl(targetUrl, proxyMode, customProxy) {
+            if (proxyMode === 'local') {
+                return `http://127.0.0.1:25100/proxy?url=${encodeURIComponent(targetUrl)}`;
+            } else if (proxyMode === 'custom' && customProxy) {
+                return customProxy.replace('{url}', encodeURIComponent(targetUrl)) + 
+                       (customProxy.includes('?') ? '&' : '?') + `url=${encodeURIComponent(targetUrl)}`;
+            }
+            return targetUrl;
+        }
+
+        // ==========================================================================
+        // 渲染右侧「群聊成员」列表
+        // ==========================================================================
+        function renderGroupMembers() {
             const listEl = $('membersList');
             const activeModels = getActiveGroupModels();
-            const totalCount = activeModels.length + 1; // +1 用户自己
+            const totalMembers = activeModels.length + 1; // +1 用户自己
 
-            $('groupMemberCountBadge').textContent = `(${totalCount})`;
-            $('memberCountText').textContent = totalCount;
-            $('activeModelSummary').textContent = `${activeModels.length} 个模型在群 · 支持@多人协同`;
+            $('groupMemberCountBadge').textContent = `(${totalMembers})`;
+            $('memberCountText').textContent = totalMembers;
+            $('groupTitleText').textContent = state.groupTitle || 'AI+耐材料讨论群';
 
-            let html = '';
+            if (activeModels.length === 0) {
+                $('activeModelSummary').textContent = '暂无模型在群 · 点击「添加模型」';
+            } else {
+                $('activeModelSummary').textContent = `${activeModels.length} 个模型在群 · 支持@多人协同`;
+            }
 
-            // 群主：用户自己
-            html += `
+            let html = `
                 <div class="qq-member-item" onclick="insertAtMention('所有人')">
                     <div class="qq-member-avatar-wrap">
                         <div class="qq-member-avatar" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
@@ -2169,36 +1556,44 @@
                 </div>
             `;
 
-            const filtered = activeModels.filter(m => 
-                !filterText || 
-                m.name.toLowerCase().includes(filterText.toLowerCase()) || 
-                m.badge.toLowerCase().includes(filterText.toLowerCase())
-            );
-
-            filtered.forEach(m => {
-                const isLan = m.baseUrl.includes('10.') || m.baseUrl.includes('192.168.') || m.baseUrl.includes('127.0.0.1') || m.baseUrl.includes('localhost');
-                const badgeClass = isLan ? 'qq-badge-lan' : 'qq-badge-cloud';
+            if (activeModels.length === 0) {
                 html += `
-                    <div class="qq-member-item" data-model-id="${m.id}" data-provider-id="${m.providerId}">
-                        <div class="qq-member-avatar-wrap">
-                            <div class="qq-member-avatar" style="background: ${m.avatarColor || '#10b981'};">
-                                <i class="fas ${m.avatarIcon || 'fa-robot'}"></i>
-                            </div>
-                            <div class="qq-member-status-dot" id="memberDot_${m.id}"></div>
-                        </div>
-                        <div class="qq-member-meta">
-                            <div class="qq-member-name-row">
-                                <span class="qq-member-name" title="${m.name}">${m.name}</span>
-                                <span class="qq-badge ${badgeClass}">${m.badge || '模型'}</span>
-                            </div>
-                            <span class="qq-member-desc">${m.providerName} · ${m.context}</span>
-                        </div>
-                        <button class="qq-action-btn" title="修改群名片与提示词" style="width: 22px; height: 22px; font-size: 11px; margin-left: 2px;" onclick="event.stopPropagation(); openPersonaModal('${m.providerId}', '${m.id}')">
-                            <i class="fas fa-pen"></i>
+                    <div class="empty-members-card">
+                        <i class="fas fa-robot"></i>
+                        <p>群内暂无大模型</p>
+                        <small>您还没有添加任何模型成员。点击下方按钮前往添加配置。</small>
+                        <button class="btn-sidebar-add-model" onclick="openSettingsModal()">
+                            <i class="fas fa-sliders-h"></i> 打开模型设置
                         </button>
                     </div>
                 `;
-            });
+            } else {
+                activeModels.forEach(m => {
+                    const isLan = m.baseUrl.includes('10.') || m.baseUrl.includes('192.168.') || m.baseUrl.includes('127.0.0.1');
+                    const badgeClass = isLan ? 'qq-badge-lan' : 'qq-badge-admin';
+
+                    html += `
+                        <div class="qq-member-item" data-model-id="${m.id}" data-provider-id="${m.providerId}">
+                            <div class="qq-member-avatar-wrap">
+                                <div class="qq-member-avatar" style="background: ${m.avatarColor || '#10b981'};">
+                                    <i class="fas ${m.avatarIcon || 'fa-microchip'}"></i>
+                                </div>
+                                <div class="qq-member-status-dot" id="memberDot_${m.id}"></div>
+                            </div>
+                            <div class="qq-member-meta">
+                                <div class="qq-member-name-row">
+                                    <span class="qq-member-name" title="${m.name}">${m.name}</span>
+                                    <span class="qq-badge ${badgeClass}">${m.badge || '模型'}</span>
+                                </div>
+                                <span class="qq-member-desc">${m.providerName} · ${m.context || '128K'}</span>
+                            </div>
+                            <button class="qq-action-btn" title="编辑人设" style="width: 22px; height: 22px; font-size: 11px; margin-left: 2px;" onclick="event.stopPropagation(); openPersonaModal('${m.providerId}', '${m.id}')">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                        </div>
+                    `;
+                });
+            }
 
             listEl.innerHTML = html;
 
@@ -2210,97 +1605,117 @@
             });
         }
 
-        // @ 自动补全菜单逻辑
-        const atMenu = $('atMentionMenu');
-        const atList = $('atMenuList');
-        let selectedAtIndex = 0;
-        let atCandidates = [];
-
-        function showAtMenu() {
-            const activeModels = getActiveGroupModels();
-            atCandidates = [
-                { id: '所有人', name: '所有人 (全员协同响应)', icon: 'fa-bullhorn', color: '#ff9800', badge: '全员讨论' },
-                ...activeModels.map(m => ({
-                    id: m.name,
-                    name: m.name,
-                    icon: m.avatarIcon || 'fa-robot',
-                    color: m.avatarColor || '#10b981',
-                    badge: m.badge
-                }))
-            ];
-
-            selectedAtIndex = 0;
-            renderAtList();
-            atMenu.classList.add('show');
-        }
-
-        function hideAtMenu() {
-            atMenu.classList.remove('show');
-        }
-
-        function renderAtList() {
-            atList.innerHTML = atCandidates.map((c, i) => `
-                <div class="at-menu-item ${i === selectedAtIndex ? 'selected' : ''}" data-index="${i}">
-                    <div class="at-item-avatar" style="background: ${c.color};">
-                        <i class="fas ${c.icon}"></i>
-                    </div>
-                    <span>@${c.name}</span>
-                    <span class="at-item-badge">${c.badge}</span>
-                </div>
-            `).join('');
-
-            atList.querySelectorAll('.at-menu-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const idx = parseInt(item.getAttribute('data-index'), 10);
-                    selectAtCandidate(idx);
-                });
-            });
-        }
-
-        function selectAtCandidate(idx) {
-            const candidate = atCandidates[idx];
-            if (!candidate) return;
-
-            const textarea = $('chatInput');
-            const val = textarea.value;
-            const cursorPos = textarea.selectionStart;
-
-            const lastAtIndex = val.lastIndexOf('@', cursorPos - 1);
-            if (lastAtIndex !== -1) {
-                const newVal = val.slice(0, lastAtIndex) + `@${candidate.id} ` + val.slice(cursorPos);
-                textarea.value = newVal;
-                textarea.focus();
-                const newPos = lastAtIndex + candidate.id.length + 2;
-                textarea.setSelectionRange(newPos, newPos);
-            }
-            hideAtMenu();
-        }
-
         window.insertAtMention = function(name) {
             const textarea = $('chatInput');
             textarea.value = `@${name} ` + textarea.value;
             textarea.focus();
         };
 
-        // 消息发送与流式响应调度
+        // ==========================================================================
+        // 渲染与管理聊天消息历史 (本地持久化)
+        // ==========================================================================
+        function renderMessages() {
+            const container = $('messagesContainer');
+            if (chatMessages.length === 0) {
+                container.innerHTML = `
+                    <div class="qq-time-divider"><span class="qq-time-pill">今天 16:06</span></div>
+                    <div class="qq-message-row">
+                        <div class="qq-msg-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="qq-msg-content-wrap">
+                            <div class="qq-msg-header">
+                                <span class="qq-msg-name">群管家 · System</span>
+                                <span class="qq-badge qq-badge-admin">管理员</span>
+                                <span style="color: var(--qq-text-muted); font-size: 11px;">16:06</span>
+                            </div>
+                            <div class="qq-bubble">
+                                <p>🎉 欢迎使用 <strong>大模型群聊工作台</strong>！</p>
+                                <p>当前群内暂未配置模型。请点击右上角 <strong>「模型设置」</strong>（或右侧「添加新模型」），录入您的局域网大模型（如 <code>http://10.21.1.45:26199/v1</code> 的 <code>qwen3.8-27b</code>）或在线 API。</p>
+                                <p>配置与聊天数据将完全保存在您的本地浏览器中，刷新不会丢失！</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `<div class="qq-time-divider"><span class="qq-time-pill">聊天历史记录</span></div>`;
+
+            chatMessages.forEach(msg => {
+                const row = document.createElement('div');
+                if (msg.role === 'user') {
+                    row.className = 'qq-message-row user-row';
+                    row.innerHTML = `
+                        <div class="qq-msg-avatar" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="qq-msg-content-wrap">
+                            <div class="qq-msg-header">
+                                <span style="color: var(--qq-text-muted); font-size: 11px;">${msg.time || ''}</span>
+                                <span class="qq-badge qq-badge-owner">群主</span>
+                                <span class="qq-msg-name">我</span>
+                            </div>
+                            <div class="qq-bubble">
+                                ${escapeHtml(msg.content).replace(/\n/g, '<br>')}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    row.className = 'qq-message-row';
+                    row.innerHTML = `
+                        <div class="qq-msg-avatar" style="background: #10b981;">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="qq-msg-content-wrap">
+                            <div class="qq-msg-header">
+                                <span class="qq-msg-name">${escapeHtml(msg.modelName || '大模型')}</span>
+                                <span class="qq-badge qq-badge-lan">${escapeHtml(msg.badge || '模型')}</span>
+                                <span style="color: var(--qq-text-muted); font-size: 11px;">${msg.time || ''}</span>
+                            </div>
+                            <div class="qq-bubble">
+                                <div class="qq-bubble-actions">
+                                    <button class="qq-bubble-action-btn" title="复制回答" onclick="copyBubbleText(this)"><i class="far fa-copy"></i></button>
+                                </div>
+                                <div class="bubble-text-content">${marked.parse(msg.content)}</div>
+                                ${msg.stats ? `<div class="qq-bubble-footer"><span class="stat-info">${escapeHtml(msg.stats)}</span><span>${escapeHtml(msg.providerName || '')}</span></div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }
+                container.appendChild(row);
+                applyCodeHighlight(row);
+            });
+
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // ==========================================================================
+        // 发送与流式调用核心逻辑
+        // ==========================================================================
         async function handleSendMessage() {
             const textarea = $('chatInput');
             const text = textarea.value.trim();
             if (!text || isStreaming) return;
 
-            textarea.value = '';
-            hideAtMenu();
-
-            const timeStr = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-
-            appendUserMessage(text, timeStr);
-
             const activeModels = getActiveGroupModels();
             if (activeModels.length === 0) {
-                appendSystemError('当前群内没有启用的模型。请点击顶部「模型设置」添加并启用模型！');
+                showToast('群内暂无模型！请先在「模型设置」中添加并启用模型', 'fa-exclamation-triangle');
+                openSettingsModal();
                 return;
             }
 
+            textarea.value = '';
+
+            const timeStr = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+
+            // 存入聊天历史
+            chatMessages.push({ role: 'user', content: text, time: timeStr });
+            saveHistory();
+
+            appendUserMessage(text, timeStr);
+
+            // 解析提及
             let targetModels = [];
             if (text.includes('@所有人') || text.includes('@all')) {
                 targetModels = [...activeModels];
@@ -2319,7 +1734,7 @@
                 try {
                     await streamModelResponse(model, text, timeStr);
                 } catch (err) {
-                    console.error('模型请求失败:', err);
+                    console.error('调用异常:', err);
                     appendModelError(model, err);
                 }
             }
@@ -2352,33 +1767,27 @@
 
         async function streamModelResponse(model, userPrompt, timeStr) {
             const container = $('messagesContainer');
-            const dot = $(`memberDot_${model.id}`);
-            if (dot) dot.className = 'qq-member-status-dot typing';
-
             const row = document.createElement('div');
             row.className = 'qq-message-row';
-            const isLan = model.baseUrl.includes('10.') || model.baseUrl.includes('192.168.') || model.baseUrl.includes('127.0.0.1');
-            const badgeClass = isLan ? 'qq-badge-lan' : 'qq-badge-cloud';
 
             row.innerHTML = `
                 <div class="qq-msg-avatar" style="background: ${model.avatarColor || '#10b981'};">
-                    <i class="fas ${model.avatarIcon || 'fa-robot'}"></i>
+                    <i class="fas ${model.avatarIcon || 'fa-microchip'}"></i>
                 </div>
                 <div class="qq-msg-content-wrap">
                     <div class="qq-msg-header">
-                        <span class="qq-msg-name">${model.name}</span>
-                        <span class="qq-badge ${badgeClass}">${model.badge || '智能体'}</span>
+                        <span class="qq-msg-name">${escapeHtml(model.name)}</span>
+                        <span class="qq-badge qq-badge-lan">${escapeHtml(model.badge || '局域网模型')}</span>
                         <span style="color: var(--qq-text-muted); font-size: 11px;">${timeStr}</span>
                     </div>
                     <div class="qq-bubble">
                         <div class="qq-bubble-actions">
                             <button class="qq-bubble-action-btn" title="复制回答" onclick="copyBubbleText(this)"><i class="far fa-copy"></i></button>
-                            <button class="qq-bubble-action-btn" title="重新生成" onclick="retryModel(this, '${model.id}')"><i class="fas fa-redo"></i></button>
                         </div>
                         <div class="bubble-text-content"><span class="typing-cursor"></span></div>
                         <div class="qq-bubble-footer" style="display: none;">
                             <span class="stat-info"></span>
-                            <span class="model-provider-tag">${model.providerName} · ${model.id}</span>
+                            <span>${escapeHtml(model.providerName)} · ${escapeHtml(model.id)}</span>
                         </div>
                     </div>
                 </div>
@@ -2397,7 +1806,6 @@
 
             const targetEndpoint = model.baseUrl.replace(/\/+$/, '') + '/chat/completions';
             const finalRequestUrl = getProxiedUrl(targetEndpoint, model.proxyMode, model.customProxyUrl);
-
             const cleanedPrompt = userPrompt.replace(/@[^\s]+/g, '').trim() || userPrompt;
 
             const messagesPayload = [];
@@ -2406,13 +1814,8 @@
             }
             messagesPayload.push({ role: 'user', content: cleanedPrompt });
 
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'text/event-stream'
-            };
-            if (model.apiKey) {
-                headers['Authorization'] = `Bearer ${model.apiKey}`;
-            }
+            const headers = { 'Content-Type': 'application/json', 'Accept': 'text/event-stream' };
+            if (model.apiKey) headers['Authorization'] = `Bearer ${model.apiKey}`;
 
             try {
                 const response = await fetch(finalRequestUrl, {
@@ -2461,30 +1864,38 @@
                                     textContainer.innerHTML = marked.parse(fullText) + '<span class="typing-cursor"></span>';
                                     container.scrollTop = container.scrollHeight;
                                 }
-                            } catch (e) {
-                                // 忽略单行解析错误
-                            }
+                            } catch (e) {}
                         }
                     }
                 }
 
-                textContainer.innerHTML = marked.parse(fullText || '（模型返回了空回复）');
+                textContainer.innerHTML = marked.parse(fullText || '（模型已响应）');
                 applyCodeHighlight(textContainer);
 
                 const elapsedSec = ((Date.now() - startTime) / 1000).toFixed(1);
-                const speed = (tokenCount / Math.max(0.1, elapsedSec)).toFixed(0);
-
+                const statText = `⏱️ ${elapsedSec}s · ${tokenCount} tokens`;
                 footer.style.display = 'flex';
-                statInfo.textContent = `⏱️ ${elapsedSec}s · ${tokenCount} tokens · 约 ${speed} tok/s`;
+                statInfo.textContent = statText;
+
+                // 持久化助手消息
+                chatMessages.push({
+                    role: 'assistant',
+                    modelId: model.id,
+                    modelName: model.name,
+                    providerName: model.providerName,
+                    badge: model.badge,
+                    content: fullText,
+                    time: timeStr,
+                    stats: statText
+                });
+                saveHistory();
 
             } catch (err) {
                 if (err.name === 'AbortError') {
-                    textContainer.innerHTML = marked.parse(fullText + '\n\n*(生成已手动中止)*');
+                    textContainer.innerHTML = marked.parse(fullText + '\n\n*(生成中止)*');
                 } else {
                     throw err;
                 }
-            } finally {
-                if (dot) dot.className = 'qq-member-status-dot';
             }
         }
 
@@ -2493,31 +1904,24 @@
             const row = document.createElement('div');
             row.className = 'qq-message-row';
 
-            const isMixedContent = window.location.protocol === 'https:' && model.baseUrl.startsWith('http://');
-
-            let hint = '';
-            if (isMixedContent) {
-                hint = `
-                    <div style="margin-top: 8px; padding: 8px 12px; background: rgba(245, 158, 11, 0.15); border-radius: 6px; font-size: 12px; color: #fbbf24;">
-                        <strong>⚠️ 诊断建议</strong>：当前在 GitHub Pages (HTTPS) 页面访问 HTTP 局域网被阻断。
-                        <br>请点击顶部 <strong>「跨域助手」</strong> 启动本地代理 <code>start-proxy.bat</code>，或在浏览器中放行「不安全内容」。
+            const isMixed = window.location.protocol === 'https:' && model.baseUrl.startsWith('http://');
+            let advice = '';
+            if (isMixed) {
+                advice = `
+                    <div style="margin-top: 6px; padding: 6px 10px; background: rgba(245, 158, 11, 0.15); border-radius: 6px; font-size: 11px; color: #fbbf24;">
+                        ⚠️ 检测到在 GitHub Pages (HTTPS) 访问 HTTP 局域网被浏览器拦截。<br>
+                        请点击顶部「跨域助手」启动本地代理 <code>start-proxy.bat</code>，或在浏览器地址栏锁图标允许「不安全内容」。
                     </div>
                 `;
             }
 
             row.innerHTML = `
-                <div class="qq-msg-avatar" style="background: #ef4444;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
+                <div class="qq-msg-avatar" style="background: #ef4444;"><i class="fas fa-exclamation"></i></div>
                 <div class="qq-msg-content-wrap">
-                    <div class="qq-msg-header">
-                        <span class="qq-msg-name">${model.name}</span>
-                        <span class="qq-badge" style="background:#fee2e2;color:#dc2626;">调用失败</span>
-                    </div>
+                    <div class="qq-msg-header"><span class="qq-msg-name">${escapeHtml(model.name)}</span><span class="qq-badge" style="background:#fee2e2;color:#dc2626;">失败</span></div>
                     <div class="qq-bubble" style="border-color: #fca5a5;">
-                        <p style="color: #ef4444; font-weight: 600;">调用失败: ${escapeHtml(err.message)}</p>
-                        <p style="font-size: 12px; color: var(--qq-text-secondary); margin-top: 4px;">请求地址: <code>${escapeHtml(model.baseUrl)}</code></p>
-                        ${hint}
+                        <p style="color: #ef4444; font-size: 13px;">${escapeHtml(err.message)}</p>
+                        ${advice}
                     </div>
                 </div>
             `;
@@ -2525,18 +1929,8 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        function appendSystemError(msg) {
-            const container = $('messagesContainer');
-            const div = document.createElement('div');
-            div.className = 'qq-typing-status-pill';
-            div.style.color = '#ef4444';
-            div.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${escapeHtml(msg)}`;
-            container.appendChild(div);
-            container.scrollTop = container.scrollHeight;
-        }
-
         function escapeHtml(str) {
-            return String(str).replace(/[&<>"']/g, m => ({
+            return String(str || '').replace(/[&<>"']/g, m => ({
                 '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
             }[m]));
         }
@@ -2558,7 +1952,9 @@
             });
         }
 
-        // 模型设置面板（复刻图 3、图 4）
+        // ==========================================================================
+        // 模型设置面板（参照图 3、图 4 完美复刻）
+        // ==========================================================================
         function openSettingsModal() {
             $('settingsModalOverlay').classList.add('active');
             renderSettingsProvidersList();
@@ -2567,43 +1963,44 @@
 
         function closeSettingsModal() {
             $('settingsModalOverlay').classList.remove('active');
-            saveState();
+            saveConfig();
             renderGroupMembers();
         }
 
         function renderSettingsProvidersList() {
-            const presetList = $('presetProviderNavList');
+            const zhipuList = $('zhipuProviderNavList');
             const customList = $('customProviderNavList');
 
-            let presetHtml = '';
+            let zhipuHtml = '';
             let customHtml = '';
 
             state.providers.forEach(p => {
                 const isActive = p.id === state.activeProviderId;
                 const dotClass = p.status === 'green' ? 'dot-green' : p.status === 'red' ? 'dot-red' : 'dot-orange';
-                const icon = p.id.includes('vllm') ? 'fa-cube' : p.id.includes('ollama') ? 'fa-terminal' : 'fa-brain';
+                const icon = p.id.includes('vllm') ? 'fa-cube' : p.name.includes('Z.ai') ? 'fa-bolt' : 'fa-box';
 
                 const itemHtml = `
                     <div class="provider-nav-item ${isActive ? 'active' : ''}" onclick="switchActiveProvider('${p.id}')">
                         <div class="provider-icon-badge"><i class="fas ${icon}"></i></div>
-                        <span>${p.name}</span>
+                        <span>${escapeHtml(p.name)}</span>
                         <div class="provider-status-dot ${dotClass}"></div>
                     </div>
                 `;
 
-                if (p.category === 'cloud' || p.type === 'preset') {
-                    presetHtml += itemHtml;
+                if (p.category === 'zhipu') {
+                    zhipuHtml += itemHtml;
                 } else {
                     customHtml += itemHtml;
                 }
             });
 
-            presetList.innerHTML = presetHtml;
+            zhipuList.innerHTML = zhipuHtml;
             customList.innerHTML = customHtml;
         }
 
         window.switchActiveProvider = function(id) {
             state.activeProviderId = id;
+            saveConfig();
             renderSettingsProvidersList();
             renderActiveProviderDetail();
         };
@@ -2616,8 +2013,7 @@
                 return;
             }
 
-            const isHttpsPage = window.location.protocol === 'https:';
-            const isHttpLAN = provider.baseUrl.startsWith('http://');
+            const models = provider.models || [];
 
             pane.innerHTML = `
                 <div class="provider-header-row">
@@ -2634,21 +2030,11 @@
                     </div>
                 </div>
 
-                <!-- Base URL -->
+                <!-- Base URL (复刻图 4) -->
                 <div class="form-group">
                     <label class="form-label">Base URL</label>
                     <input type="text" class="form-control-input" value="${escapeHtml(provider.baseUrl)}" placeholder="https://api.example.com/v1" onchange="updateProviderField('${provider.id}', 'baseUrl', this.value)">
                 </div>
-
-                ${isHttpsPage && isHttpLAN ? `
-                    <div class="mixed-content-warning">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 16px; margin-top: 2px;"></i>
-                        <div>
-                            <strong>检测到在 HTTPS 页面访问 HTTP 局域网地址。</strong>
-                            浏览器会默认阻断混合内容。建议在下方开启 <strong>「本地代理转发」</strong>，或参阅 <a onclick="openCorsModal()">跨域与局域网助手</a>。
-                        </div>
-                    </div>
-                ` : ''}
 
                 <!-- API 格式 (复刻图 3) -->
                 <div class="form-group">
@@ -2657,7 +2043,6 @@
                         <option value="chat_completions" ${provider.apiFormat === 'chat_completions' ? 'selected' : ''}>Chat Completions (/chat/completions)</option>
                         <option value="anthropic_messages" ${provider.apiFormat === 'anthropic_messages' ? 'selected' : ''}>Anthropic Messages (/v1/messages)</option>
                         <option value="responses" ${provider.apiFormat === 'responses' ? 'selected' : ''}>Responses (/responses)</option>
-                        <option value="ollama_native" ${provider.apiFormat === 'ollama_native' ? 'selected' : ''}>Ollama Native (/api/chat)</option>
                     </select>
                 </div>
 
@@ -2665,50 +2050,46 @@
                 <div class="form-group">
                     <label class="form-label">API Key</label>
                     <div class="form-input-box">
-                        <input type="password" id="apiKeyInput_${provider.id}" class="form-control-input" value="${escapeHtml(provider.apiKey)}" placeholder="••••••••" onchange="updateProviderField('${provider.id}', 'apiKey', this.value)">
+                        <input type="password" id="apiKeyInput_${provider.id}" class="form-control-input" value="${escapeHtml(provider.apiKey)}" placeholder="••••••" onchange="updateProviderField('${provider.id}', 'apiKey', this.value)">
                         <button class="password-toggle-btn" onclick="togglePasswordVisibility('apiKeyInput_${provider.id}', this)"><i class="far fa-eye"></i></button>
                     </div>
                 </div>
 
                 <!-- 代理与跨域模式选择 -->
                 <div class="form-group">
-                    <label class="form-label">跨域 / 代理转发模式</label>
-                    <select class="form-control-select" onchange="updateProviderField('${provider.id}', 'proxyMode', this.value); renderActiveProviderDetail();">
+                    <label class="form-label">跨域与代理转发</label>
+                    <select class="form-control-select" onchange="updateProviderField('${provider.id}', 'proxyMode', this.value)">
+                        <option value="local" ${provider.proxyMode === 'local' ? 'selected' : ''}>本地代理转发 (http://127.0.0.1:25100 · 穿透局域网推荐)</option>
                         <option value="direct" ${provider.proxyMode === 'direct' ? 'selected' : ''}>直连模式 (Direct Fetch)</option>
-                        <option value="local" ${provider.proxyMode === 'local' ? 'selected' : ''}>本地代理转发 (http://127.0.0.1:25100 · 完美穿透局域网)</option>
-                        <option value="custom" ${provider.proxyMode === 'custom' ? 'selected' : ''}>自定义代理 (Custom CORS Proxy)</option>
                     </select>
                 </div>
 
-                ${provider.proxyMode === 'custom' ? `
-                    <div class="form-group">
-                        <label class="form-label">自定义代理 URL 模板</label>
-                        <input type="text" class="form-control-input" value="${escapeHtml(provider.customProxyUrl || '')}" placeholder="https://cors-proxy.workers.dev/?url=" onchange="updateProviderField('${provider.id}', 'customProxyUrl', this.value)">
-                    </div>
-                ` : ''}
-
-                <!-- 模型列表区块 (图 4 风格) -->
+                <!-- 模型列表 (复刻图 4) -->
                 <div>
                     <div class="models-section-header">
-                        <label class="form-label" style="font-weight: 600;">模型列表 (${provider.models.length})</label>
-                        <div class="models-section-actions">
-                            <button class="btn-subtle-pill" onclick="fetchModelsFromServer('${provider.id}')"><i class="fas fa-cloud-download-alt"></i> 拉取模型列表</button>
+                        <label class="form-label" style="font-weight: 600;">模型列表 (${models.length})</label>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn-subtle-pill" onclick="fetchModelsFromServer('${provider.id}')"><i class="fas fa-cloud-download-alt"></i> 拉取模型</button>
                             <button class="btn-subtle-pill" onclick="addNewModelToProvider('${provider.id}')"><i class="fas fa-plus"></i> 添加模型</button>
                         </div>
                     </div>
 
                     <div class="model-cards-container" style="margin-top: 10px;">
-                        ${provider.models.map(m => `
+                        ${models.length === 0 ? `
+                            <div class="empty-model-placeholder">
+                                暂无模型，点击右上角「+ 添加模型」或「拉取模型」
+                            </div>
+                        ` : models.map(m => `
                             <div class="model-card-item">
                                 <div class="model-card-left">
                                     <span class="model-card-name">${escapeHtml(m.name)}</span>
-                                    <span class="model-context-badge">${escapeHtml(m.context || '32K')}</span>
+                                    <span class="model-context-badge">${escapeHtml(m.context || '262.1K')}</span>
                                 </div>
                                 <div class="model-card-actions">
-                                    <button class="model-action-icon-btn btn-test" title="测试连通性" onclick="testModelConnection('${provider.id}', '${m.id}', this)"><i class="fas fa-link"></i></button>
-                                    <button class="model-action-icon-btn" title="编辑人设与系统提示词" onclick="openPersonaModal('${provider.id}', '${m.id}')"><i class="fas fa-pen"></i></button>
+                                    <button class="model-action-icon-btn btn-test" title="测试连接" onclick="testModelConnection('${provider.id}', '${m.id}', this)"><i class="fas fa-link"></i></button>
+                                    <button class="model-action-icon-btn" title="编辑人设" onclick="openPersonaModal('${provider.id}', '${m.id}')"><i class="fas fa-pen"></i></button>
                                     <button class="model-action-icon-btn btn-delete" title="删除模型" onclick="deleteModelFromProvider('${provider.id}', '${m.id}')"><i class="fas fa-trash-alt"></i></button>
-                                    <label class="toggle-switch" style="transform: scale(0.8); margin-left: 4px;">
+                                    <label class="toggle-switch" style="transform: scale(0.8); margin-left: 4px;" title="是否在群聊中启用">
                                         <input type="checkbox" ${m.enabled ? 'checked' : ''} onchange="toggleModelEnabled('${provider.id}', '${m.id}', this.checked)">
                                         <span class="switch-slider"></span>
                                     </label>
@@ -2736,7 +2117,7 @@
             const p = state.providers.find(x => x.id === id);
             if (p) {
                 p.name = val.trim() || p.name;
-                saveState();
+                saveConfig();
                 renderSettingsProvidersList();
             }
         };
@@ -2745,7 +2126,7 @@
             const p = state.providers.find(x => x.id === id);
             if (p) {
                 p[field] = val;
-                saveState();
+                saveConfig();
             }
         };
 
@@ -2753,7 +2134,7 @@
             const p = state.providers.find(x => x.id === id);
             if (p) {
                 p.enabled = checked;
-                saveState();
+                saveConfig();
                 renderSettingsProvidersList();
                 renderGroupMembers();
             }
@@ -2761,13 +2142,13 @@
 
         window.deleteProvider = function(id) {
             if (state.providers.length <= 1) {
-                showToast('至少保留一个供应商', 'fa-exclamation-triangle');
+                showToast('至少保留一个供应商');
                 return;
             }
-            if (confirm('确认删除该供应商及其所有模型吗？')) {
+            if (confirm('确认删除此供应商吗？')) {
                 state.providers = state.providers.filter(p => p.id !== id);
                 state.activeProviderId = state.providers[0].id;
-                saveState();
+                saveConfig();
                 renderSettingsProvidersList();
                 renderActiveProviderDetail();
                 renderGroupMembers();
@@ -2775,49 +2156,52 @@
             }
         };
 
-        window.toggleModelEnabled = function(providerId, modelId, checked) {
+        window.addNewModelToProvider = function(providerId) {
+            const name = prompt('请输入模型名称 (例如 qwen3.8-27b):', 'qwen3.8-27b');
+            if (!name) return;
+            const context = prompt('请输入上下文窗口大小 (例如 262.1K):', '262.1K') || '128K';
+
             const p = state.providers.find(x => x.id === providerId);
             if (p) {
-                const m = p.models.find(x => x.id === modelId);
-                if (m) {
-                    m.enabled = checked;
-                    saveState();
-                    renderGroupMembers();
-                }
+                if (!Array.isArray(p.models)) p.models = [];
+                p.models.push({
+                    id: name.trim(),
+                    name: name.trim(),
+                    context: context.trim(),
+                    badge: '局域网模型',
+                    rolePrompt: `你是 ${name.trim()} 大模型，请在群聊中友好、专业地解答问题。`,
+                    temperature: 0.7,
+                    enabled: true,
+                    avatarColor: '#10b981',
+                    avatarIcon: 'fa-microchip'
+                });
+                saveConfig();
+                renderActiveProviderDetail();
+                renderGroupMembers();
+                showToast(`已添加模型 ${name} 并保存在本地！`, 'fa-check');
             }
         };
 
         window.deleteModelFromProvider = function(providerId, modelId) {
             const p = state.providers.find(x => x.id === providerId);
             if (p) {
-                p.models = p.models.filter(m => m.id !== modelId);
-                saveState();
+                p.models = (p.models || []).filter(m => m.id !== modelId);
+                saveConfig();
                 renderActiveProviderDetail();
                 renderGroupMembers();
                 showToast('已删除模型');
             }
         };
 
-        window.addNewModelToProvider = function(providerId) {
-            const name = prompt('请输入新模型名称 (例如 qwen2.5-72b 或 deepseek-chat):');
-            if (!name) return;
+        window.toggleModelEnabled = function(providerId, modelId, checked) {
             const p = state.providers.find(x => x.id === providerId);
             if (p) {
-                p.models.push({
-                    id: name.trim(),
-                    name: name.trim(),
-                    context: '128K',
-                    badge: '新模型',
-                    rolePrompt: `你是 ${name.trim()} 模型，请友好专业地协助用户解答问题。`,
-                    temperature: 0.7,
-                    enabled: true,
-                    avatarColor: '#10b981',
-                    avatarIcon: 'fa-robot'
-                });
-                saveState();
-                renderActiveProviderDetail();
-                renderGroupMembers();
-                showToast('模型添加成功！');
+                const m = (p.models || []).find(x => x.id === modelId);
+                if (m) {
+                    m.enabled = checked;
+                    saveConfig();
+                    renderGroupMembers();
+                }
             }
         };
 
@@ -2825,7 +2209,7 @@
             const p = state.providers.find(x => x.id === providerId);
             if (!p) return;
 
-            showToast('正在从服务端拉取模型列表...', 'fa-spinner fa-spin');
+            showToast('正在从服务端拉取模型...', 'fa-spinner fa-spin');
             const targetUrl = p.baseUrl.replace(/\/+$/, '') + '/models';
             const finalUrl = getProxiedUrl(targetUrl, p.proxyMode, p.customProxyUrl);
 
@@ -2839,46 +2223,47 @@
                 const list = data.data || data.models || [];
 
                 if (!Array.isArray(list) || list.length === 0) {
-                    showToast('未拉取到模型列表，请确认地址格式');
+                    showToast('未检测到模型列表');
                     return;
                 }
 
-                let addedCount = 0;
+                if (!Array.isArray(p.models)) p.models = [];
+                let added = 0;
                 list.forEach(item => {
-                    const modelId = typeof item === 'string' ? item : item.id || item.name;
-                    if (modelId && !p.models.some(m => m.id === modelId)) {
+                    const mId = typeof item === 'string' ? item : item.id || item.name;
+                    if (mId && !p.models.some(m => m.id === mId)) {
                         p.models.push({
-                            id: modelId,
-                            name: modelId,
+                            id: mId,
+                            name: mId,
                             context: '128K',
-                            badge: '自检模型',
-                            rolePrompt: `你是 ${modelId}，请专业、清晰地回答群友提问。`,
+                            badge: '自建模型',
+                            rolePrompt: `你是 ${mId} 大模型。`,
                             temperature: 0.7,
                             enabled: true,
-                            avatarColor: '#3b82f6',
+                            avatarColor: '#10b981',
                             avatarIcon: 'fa-microchip'
                         });
-                        addedCount++;
+                        added++;
                     }
                 });
 
                 p.status = 'green';
-                saveState();
+                saveConfig();
                 renderActiveProviderDetail();
                 renderSettingsProvidersList();
                 renderGroupMembers();
-                showToast(`成功同步 ${list.length} 个模型（新增 ${addedCount} 个）`, 'fa-check');
+                showToast(`已拉取到 ${list.length} 个模型（新增 ${added} 个）`, 'fa-check');
             } catch (err) {
                 console.error(err);
                 p.status = 'red';
                 renderSettingsProvidersList();
-                showToast(`拉取失败: ${err.message}。请检查地址或代理`, 'fa-exclamation-triangle');
+                showToast(`拉取失败: ${err.message}`, 'fa-exclamation-triangle');
             }
         };
 
         window.testModelConnection = async function(providerId, modelId, btn) {
             const p = state.providers.find(x => x.id === providerId);
-            const m = p?.models.find(x => x.id === modelId);
+            const m = (p?.models || []).find(x => x.id === modelId);
             if (!p || !m) return;
 
             const icon = btn.querySelector('i');
@@ -2898,8 +2283,7 @@
                     body: JSON.stringify({
                         model: m.id,
                         messages: [{ role: 'user', content: 'hi' }],
-                        max_tokens: 5,
-                        stream: false
+                        max_tokens: 5
                     })
                 });
 
@@ -2910,6 +2294,7 @@
                 }
 
                 p.status = 'green';
+                saveConfig();
                 renderSettingsProvidersList();
                 icon.className = 'fas fa-check';
                 icon.style.color = '#10b981';
@@ -2918,24 +2303,19 @@
 
             } catch (err) {
                 p.status = 'red';
+                saveConfig();
                 renderSettingsProvidersList();
                 icon.className = 'fas fa-times';
                 icon.style.color = '#ef4444';
-                console.error(err);
-
-                const isHttps = window.location.protocol === 'https:';
-                if (isHttps && p.baseUrl.startsWith('http://')) {
-                    alert(`【连接失败 - 触发浏览器 Mixed Content 拦截】\n\n您正在 GitHub Pages (HTTPS) 访问 HTTP 局域网服务 ${p.baseUrl}。\n\n解决办法：\n1. 在「跨域助手」中启动本地代理 start-proxy.bat 并切换到本地代理模式；\n2. 或在地址栏锁图标允许「不安全内容」后刷新网页。`);
-                } else {
-                    alert(`【模型测试失败】\n\n原因: ${err.message}\n目标: ${finalUrl}\n\n请检查服务端是否已启动、端口与模型名是否正确。`);
-                }
+                alert(`【模型测试失败】\n\n原因: ${err.message}\n目标: ${finalUrl}\n\n若是 HTTPS 访问 HTTP 局域网，请点击「跨域助手」启动本地代理或放行不安全内容。`);
                 setTimeout(() => { icon.className = 'fas fa-link'; icon.style.color = ''; }, 3000);
             }
         };
 
+        // 人设编辑 Modal
         window.openPersonaModal = function(providerId, modelId) {
             const p = state.providers.find(x => x.id === providerId);
-            const m = p?.models.find(x => x.id === modelId);
+            const m = (p?.models || []).find(x => x.id === modelId);
             if (!m) return;
 
             currentEditingModel = { providerId, modelId };
@@ -2955,13 +2335,13 @@
         $('savePersonaBtn').addEventListener('click', () => {
             if (!currentEditingModel) return;
             const p = state.providers.find(x => x.id === currentEditingModel.providerId);
-            const m = p?.models.find(x => x.id === currentEditingModel.modelId);
+            const m = (p?.models || []).find(x => x.id === currentEditingModel.modelId);
             if (m) {
                 m.name = $('personaNickInput').value.trim() || m.name;
-                m.badge = $('personaRoleInput').value.trim() || '成员';
+                m.badge = $('personaRoleInput').value.trim() || '模型';
                 m.rolePrompt = $('personaPromptInput').value.trim();
                 m.temperature = parseFloat($('personaTempInput').value) || 0.7;
-                saveState();
+                saveConfig();
                 renderGroupMembers();
                 renderActiveProviderDetail();
                 showToast('已更新模型群名片与提示词！');
@@ -2972,68 +2352,79 @@
         $('cancelPersonaBtn').addEventListener('click', closePersonaModal);
         $('closePersonaModalBtn').addEventListener('click', closePersonaModal);
 
-        window.openCorsModal = function() {
-            $('corsModalOverlay').classList.add('active');
-        };
-
-        function closeCorsModal() {
-            $('corsModalOverlay').classList.remove('active');
-        }
-
+        // 跨域助手 Modal
+        function openCorsModal() { $('corsModalOverlay').classList.add('active'); }
+        function closeCorsModal() { $('corsModalOverlay').classList.remove('active'); }
         $('openCorsBtn').addEventListener('click', openCorsModal);
         $('closeCorsModalBtn').addEventListener('click', closeCorsModal);
 
+        // 顶部与侧边栏按钮事件
         $('openSettingsBtn').addEventListener('click', openSettingsModal);
+        $('openSettingsQuickBtn').addEventListener('click', openSettingsModal);
         $('closeSettingsModalBtn').addEventListener('click', closeSettingsModal);
         $('quickAddMemberBtn').addEventListener('click', openSettingsModal);
 
         $('addProviderBtn').addEventListener('click', () => {
-            const name = prompt('请输入新供应商名称 (如 本地vLLM 或 自建API):', '新供应商');
+            const name = prompt('请输入新供应商名称:', '新供应商');
             if (!name) return;
-            const newId = 'provider_' + Date.now();
+            const newId = 'custom_' + Date.now();
             state.providers.push({
                 id: newId,
                 name: name.trim(),
-                type: 'custom',
                 category: 'custom',
                 enabled: true,
                 status: 'orange',
-                baseUrl: 'http://127.0.0.1:8000/v1',
+                baseUrl: '',
                 apiFormat: 'chat_completions',
                 apiKey: '',
                 proxyMode: 'local',
                 customProxyUrl: '',
-                models: [
-                    {
-                        id: 'model-1',
-                        name: '默认模型',
-                        context: '32K',
-                        badge: '智能体',
-                        rolePrompt: '你是一位得力的大模型助手。',
-                        temperature: 0.7,
-                        enabled: true,
-                        avatarColor: '#10b981',
-                        avatarIcon: 'fa-robot'
-                    }
-                ]
+                models: []
             });
             state.activeProviderId = newId;
-            saveState();
+            saveConfig();
             renderSettingsProvidersList();
             renderActiveProviderDetail();
-            renderGroupMembers();
         });
 
-        $('searchMemberToggleBtn').addEventListener('click', () => {
-            const box = $('memberSearchBox');
-            box.style.display = box.style.display === 'none' ? 'flex' : 'none';
-            if (box.style.display === 'flex') $('memberSearchInput').focus();
+        // 切换群名
+        $('groupTitleText').addEventListener('click', () => {
+            const newTitle = prompt('修改群名称:', state.groupTitle || 'AI+耐材料讨论群');
+            if (newTitle) {
+                state.groupTitle = newTitle.trim();
+                saveConfig();
+                $('groupTitleText').textContent = state.groupTitle;
+                showToast('已修改群名称');
+            }
         });
 
-        $('memberSearchInput').addEventListener('input', (e) => {
-            renderGroupMembers(e.target.value.trim());
+        // 清空与导出聊天
+        $('clearChatBtn').addEventListener('click', () => {
+            if (confirm('确认清空所有群聊记录吗？')) {
+                chatMessages = [];
+                localStorage.removeItem(STORAGE_HISTORY_KEY);
+                renderMessages();
+                showToast('聊天记录已清空');
+            }
         });
 
+        $('exportChatBtn').addEventListener('click', () => {
+            let content = `# ${state.groupTitle || '大模型群聊'} 聊天记录导出\n\n`;
+            chatMessages.forEach(m => {
+                const sender = m.role === 'user' ? '我 (群主)' : `${m.modelName} [${m.badge}]`;
+                content += `### ${sender} (${m.time || ''})\n${m.content}\n\n---\n\n`;
+            });
+            const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `群聊记录_${new Date().toISOString().slice(0, 10)}.md`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('已导出 Markdown 聊天记录');
+        });
+
+        // 深浅色主题
         $('themeToggleBtn').addEventListener('click', () => {
             const doc = document.documentElement;
             const isDark = doc.getAttribute('data-theme') === 'dark';
@@ -3043,63 +2434,23 @@
             $('hljs-light-theme').disabled = !isDark;
         });
 
-        $('maximizeBtn').addEventListener('click', () => {
-            $('qqWindow').classList.toggle('fullscreen');
+        // 全屏按钮
+        $('fullscreenBtn').addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
         });
 
+        // 输入与快捷键
         const textarea = $('chatInput');
         textarea.addEventListener('keydown', (e) => {
-            if (atMenu.classList.contains('show')) {
-                if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    selectedAtIndex = (selectedAtIndex + 1) % atCandidates.length;
-                    renderAtList();
-                    return;
-                } else if (e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    selectedAtIndex = (selectedAtIndex - 1 + atCandidates.length) % atCandidates.length;
-                    renderAtList();
-                    return;
-                } else if (e.key === 'Enter') {
-                    e.preventDefault();
-                    selectAtCandidate(selectedAtIndex);
-                    return;
-                } else if (e.key === 'Escape') {
-                    hideAtMenu();
-                    return;
-                }
-            }
-
-            if (state.sendMode === 'enter') {
-                if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
-                    e.preventDefault();
-                    handleSendMessage();
-                }
-            } else {
-                if (e.key === 'Enter' && e.ctrlKey) {
-                    e.preventDefault();
-                    handleSendMessage();
-                }
-            }
-        });
-
-        textarea.addEventListener('input', (e) => {
-            const val = textarea.value;
-            const cursorPos = textarea.selectionStart;
-            const prevChar = val.slice(cursorPos - 1, cursorPos);
-            if (prevChar === '@') {
-                showAtMenu();
-            } else if (!val.includes('@')) {
-                hideAtMenu();
-            }
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('#atMentionMenu') && !e.target.closest('#chatInput')) {
-                hideAtMenu();
-            }
-            if (!e.target.closest('#sendDropdownBtn') && !e.target.closest('#sendModeDropdown')) {
-                $('sendModeDropdown').classList.remove('show');
+            if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
+                e.preventDefault();
+                handleSendMessage();
             }
         });
 
@@ -3109,77 +2460,15 @@
             textarea.focus();
         });
 
-        $('sendDropdownBtn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            $('sendModeDropdown').classList.toggle('show');
-        });
-
-        document.querySelectorAll('.send-mode-item[data-mode]').forEach(item => {
-            item.addEventListener('click', () => {
-                const mode = item.getAttribute('data-mode');
-                state.sendMode = mode;
-                document.querySelectorAll('.send-mode-item[data-mode]').forEach(el => {
-                    const active = el.getAttribute('data-mode') === mode;
-                    el.classList.toggle('active', active);
-                    el.querySelector('i').style.opacity = active ? '1' : '0';
-                });
-                $('sendModeDropdown').classList.remove('show');
-                showToast(mode === 'enter' ? '已设置为 Enter 发送' : '已设置为 Ctrl+Enter 发送');
-            });
-        });
-
-        $('debateModeTrigger').addEventListener('click', () => {
-            $('sendModeDropdown').classList.remove('show');
-            textarea.value = '@所有人 请针对【当前技术方案的优缺点】展开辩论，各自阐述论点并给出反驳理由。';
-            textarea.focus();
-            showToast('已载入全员辩论议题');
-        });
-
-        $('clearChatBtn').addEventListener('click', () => {
-            if (confirm('确认清空当前群聊窗口中的消息记录吗？')) {
-                const container = $('messagesContainer');
-                container.innerHTML = `
-                    <div class="qq-time-divider"><span class="qq-time-pill">聊天记录已清空</span></div>
-                `;
-                showToast('已清空聊天记录');
-            }
-        });
-
-        $('exportChatBtn').addEventListener('click', () => {
-            let content = '# AI+大模型讨论群 聊天记录导出\n\n';
-            document.querySelectorAll('.qq-message-row').forEach(row => {
-                const name = row.querySelector('.qq-msg-name')?.textContent || '发言人';
-                const time = row.querySelector('.qq-msg-header span:last-child')?.textContent || '';
-                const text = row.querySelector('.bubble-text-content')?.innerText || row.querySelector('.qq-bubble')?.innerText || '';
-                content += `### ${name} (${time})\n${text}\n\n---\n\n`;
-            });
-
-            const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `QQ大模型群聊记录_${new Date().toISOString().slice(0, 10)}.md`;
-            a.click();
-            URL.revokeObjectURL(url);
-            showToast('已导出 Markdown 聊天记录');
-        });
-
         $('emojiBtn').addEventListener('click', () => {
-            const emojis = ['😀', '😄', '🚀', '🔥', '💡', '👍', '👏', '🤖', '🎉', '💻', '🤔', '👀', '💯', '✨'];
-            const chosen = emojis[Math.floor(Math.random() * emojis.length)];
-            textarea.value += chosen;
+            const emojis = ['😀', '🚀', '🔥', '💡', '👍', '🤖', '🎉', '💻', '🤔', '💯'];
+            textarea.value += emojis[Math.floor(Math.random() * emojis.length)];
             textarea.focus();
         });
 
         $('snippetBtn').addEventListener('click', () => {
-            const prompts = [
-                '@所有人 请从架构设计、性能优化和安全性三个维度对我的方案进行代码评审：\n```python\n# 请在此粘贴代码\n```',
-                '@所有人 请就【大模型端侧部署与云端调用】各自提出核心优势与痛点。',
-                '@所有人 请协助头脑风暴一个具有创新性的跨平台 AI 工具产品方案。'
-            ];
-            textarea.value = prompts[Math.floor(Math.random() * prompts.length)];
+            textarea.value = '@所有人 请从不同角度分析当前技术方案的优缺点，并给出优化建议。';
             textarea.focus();
-            showToast('已插入快捷提示词');
         });
 
         $('fileAttachBtn').addEventListener('click', () => {
@@ -3208,21 +2497,10 @@
             showToast('已复制内容到剪贴板', 'fa-check');
         };
 
-        window.retryModel = function(btn, modelId) {
-            const activeModels = getActiveGroupModels();
-            const model = activeModels.find(m => m.id === modelId);
-            if (!model) return;
-            const lastUserMsg = [...document.querySelectorAll('.qq-message-row.user-row')].pop();
-            const prompt = lastUserMsg ? lastUserMsg.querySelector('.qq-bubble').innerText : '继续回答';
-            streamModelResponse(model, prompt, new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }));
-        };
-
+        // 页面初始化
         function initPage() {
             renderGroupMembers();
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('settings') === '1') {
-                openSettingsModal();
-            }
+            renderMessages();
         }
 
         initPage();
