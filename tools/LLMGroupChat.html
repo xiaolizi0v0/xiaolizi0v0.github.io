@@ -1023,7 +1023,61 @@
 
         .model-action-icon-btn:hover { color: #ffffff; }
         .model-action-icon-btn.btn-test:hover { color: #60a5fa; }
+        .model-action-icon-btn.btn-clone:hover { color: #10b981; }
         .model-action-icon-btn.btn-delete:hover { color: #ef4444; }
+
+        .model-card-subinfo {
+            font-size: 11px;
+            color: #9ca3af;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 3px;
+        }
+
+        .model-backend-tag {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-family: var(--font-mono);
+        }
+
+        .preset-chips-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+            margin-bottom: 10px;
+        }
+
+        .preset-chip-btn {
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--qq-line);
+            border-radius: 14px;
+            color: var(--qq-text-main);
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        [data-theme="dark"] .preset-chip-btn {
+            background: #252830;
+            border-color: #374151;
+            color: #d1d5db;
+        }
+
+        .preset-chip-btn:hover {
+            background: var(--qq-blue) !important;
+            border-color: var(--qq-blue) !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
 
         .empty-model-placeholder {
             padding: 24px;
@@ -1310,28 +1364,43 @@
 
     <!-- 成员设定与提示词编辑弹窗 -->
     <div class="modal-overlay" id="personaModalOverlay">
-        <div class="cors-modal-content" style="width: 520px;">
+        <div class="cors-modal-content" style="width: 540px;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
                 <h3 style="font-size: 16px;"><i class="fas fa-user-edit" style="color: var(--qq-blue);"></i> 编辑模型人设与群名片</h3>
                 <button class="qq-action-btn" id="closePersonaModalBtn"><i class="fas fa-times"></i></button>
             </div>
 
             <div class="form-group">
-                <label class="form-label">群内昵称 / 显示名称</label>
-                <input type="text" class="form-control-input" id="personaNickInput">
+                <label class="form-label">底层接口模型标识 (API Model ID)</label>
+                <input type="text" class="form-control-input" id="personaModelInput" placeholder="例如 qwen3.8-27b">
+                <small style="font-size: 11px; color: var(--qq-text-muted); margin-top: 3px; display: block;">发送给接口调用的真实模型名</small>
             </div>
 
-            <div class="form-group" style="margin-top: 12px;">
-                <label class="form-label">群内身份标签 (如 局域网大模型、管理员、代码专家)</label>
-                <input type="text" class="form-control-input" id="personaRoleInput">
+            <div class="form-group" style="margin-top: 10px;">
+                <label class="form-label" style="display: flex; justify-content: space-between;">
+                    <span>快捷套用人设模板</span>
+                    <span style="font-size: 11px; color: var(--qq-text-muted); font-weight: normal;">点击快速切换</span>
+                </label>
+                <div class="preset-chips-wrap" id="personaPresetChips"></div>
             </div>
 
-            <div class="form-group" style="margin-top: 12px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
+                <div class="form-group">
+                    <label class="form-label">群内昵称 / 显示名称</label>
+                    <input type="text" class="form-control-input" id="personaNickInput">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">群内身份标签</label>
+                    <input type="text" class="form-control-input" id="personaRoleInput">
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
                 <label class="form-label">系统人设 Prompt (System Prompt)</label>
                 <textarea class="form-control-input" id="personaPromptInput" style="height: 100px; resize: vertical;" placeholder="例如：你是一位材料学专家，说话严谨，回答附带专业分析..."></textarea>
             </div>
 
-            <div class="form-group" style="margin-top: 12px;">
+            <div class="form-group" style="margin-top: 10px;">
                 <label class="form-label">采样温度 Temperature (0.0 ~ 1.5)</label>
                 <input type="number" class="form-control-input" id="personaTempInput" step="0.1" min="0" max="2" value="0.7">
             </div>
@@ -1339,6 +1408,77 @@
             <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
                 <button class="btn-qq-close" id="cancelPersonaBtn">取消</button>
                 <button class="btn-qq-send-main" id="savePersonaBtn" style="border-radius: 4px;">保存人设</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加模型角色到本群弹窗 -->
+    <div class="modal-overlay" id="addRoleModalOverlay">
+        <div class="cors-modal-content" style="width: 560px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h3 style="font-size: 16px;"><i class="fas fa-robot" style="color: var(--qq-blue);"></i> 添加模型角色到群聊</h3>
+                <button class="qq-action-btn" id="closeAddRoleModalBtn"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div style="font-size: 12px; color: var(--qq-text-secondary); margin-bottom: 14px; background: rgba(59, 130, 246, 0.08); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                💡 <b>支持同一个模型多次添加</b>：同一个底层模型（如 <code>qwen3.8-27b</code>）可配置为不同的群成员角色（如架构师、产品经理、辩友），在群聊中协同发言或辩论！
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">所属供应商</label>
+                <select class="form-control-select" id="addRoleProviderSelect"></select>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+                <label class="form-label">底层模型服务标识 (API Model ID)</label>
+                <input type="text" class="form-control-input" id="addRoleModelInput" list="existingModelDatalist" placeholder="例如 qwen3.8-27b">
+                <datalist id="existingModelDatalist"></datalist>
+                <small style="font-size: 11px; color: var(--qq-text-muted); margin-top: 3px; display: block;">发送给接口调用的模型名称，可输入新模型或点选已有模型</small>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+                <label class="form-label" style="display: flex; justify-content: space-between;">
+                    <span>快捷选择角色预设</span>
+                    <span style="font-size: 11px; color: var(--qq-text-muted); font-weight: normal;">点击自动填入人设与 Prompt</span>
+                </label>
+                <div class="preset-chips-wrap" id="addRolePresetChips"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
+                <div class="form-group">
+                    <label class="form-label">群内昵称 / 显示名称</label>
+                    <input type="text" class="form-control-input" id="addRoleNickInput" placeholder="例如 架构专家 · Qwen">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">群内头衔标签</label>
+                    <input type="text" class="form-control-input" id="addRoleBadgeInput" placeholder="例如 架构师">
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+                <label class="form-label">系统人设 Prompt (System Prompt)</label>
+                <textarea class="form-control-input" id="addRolePromptInput" style="height: 85px; resize: vertical;" placeholder="设定此角色的专业定位、职责或辩论立场..."></textarea>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
+                <div class="form-group">
+                    <label class="form-label">上下文窗口</label>
+                    <input type="text" class="form-control-input" id="addRoleContextInput" value="128K">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">采样温度 Temperature</label>
+                    <input type="number" class="form-control-input" id="addRoleTempInput" step="0.1" min="0" max="2" value="0.7">
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 18px;">
+                <button class="btn-subtle-pill" type="button" id="jumpToSettingsBtn" style="border: none; background: transparent; color: var(--qq-blue);">
+                    <i class="fas fa-cog"></i> 完整供应商配置
+                </button>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-qq-close" id="cancelAddRoleBtn">取消</button>
+                    <button class="btn-qq-send-main" id="confirmAddRoleBtn" style="border-radius: 4px;">添加到本群</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1419,10 +1559,131 @@
             ]
         };
 
+        // 8 类精选多样化角色人设预设，支持同一个大模型一键分饰多角
+        const PRESET_ROLES = [
+            {
+                key: 'architect',
+                icon: '🏗️',
+                name: '架构专家',
+                badge: '架构师',
+                prompt: '你是一名世界级系统架构师。在群聊讨论中，请站在高内聚低耦合、高可用、高扩展性与微服务架构的视角给出深度分析与技术决策，敢于指出方案中的技术债务与潜在瓶颈。',
+                temp: 0.6,
+                color: '#3b82f6',
+                avatarIcon: 'fa-cubes'
+            },
+            {
+                key: 'pm',
+                icon: '💼',
+                name: '产品总监',
+                badge: '产品经理',
+                prompt: '你是一名经验敏锐、注重用户价值与商业闭环的产品总监。在群聊讨论中，请聚焦用户痛点、体验流程、ROI投入产出比与MVP可行性，多从用户视角和实际落地考量提出质疑与建议。',
+                temp: 0.7,
+                color: '#f59e0b',
+                avatarIcon: 'fa-briefcase'
+            },
+            {
+                key: 'reviewer',
+                icon: '🔍',
+                name: '代码审查员',
+                badge: '代码审查',
+                prompt: '你是一名极为严苛的代码审计专家。在群聊中关注代码规范、安全漏洞、边界异常、资源泄露与并发安全，提供详尽的代码改进示例和最佳实践建议。',
+                temp: 0.3,
+                color: '#10b981',
+                avatarIcon: 'fa-code'
+            },
+            {
+                key: 'debate_pro',
+                icon: '⚖️',
+                name: '辩论正方',
+                badge: '正方一辩',
+                prompt: '你是一名逻辑缜密、立论清晰的辩论赛正方辩手。在群聊议题中坚定维护正方立场，多角度列举有力论据、事实与逻辑推演，积极反驳反方观点。',
+                temp: 0.8,
+                color: '#ef4444',
+                avatarIcon: 'fa-balance-scale'
+            },
+            {
+                key: 'debate_con',
+                icon: '🥊',
+                name: '辩论反方',
+                badge: '反方一辩',
+                prompt: '你是一名思维敏捷、针锋相对的辩论赛反方辩手。在群聊议题中坚持反方立场，善于抓住正方逻辑漏洞、举出反例并进行有力质辩，阐述反方核心主张。',
+                temp: 0.8,
+                color: '#8b5cf6',
+                avatarIcon: 'fa-fist-raised'
+            },
+            {
+                key: 'tester',
+                icon: '🧪',
+                name: '极限测试员',
+                badge: 'QA专家',
+                prompt: '你是一名专门挖掘极限边界条件与异常场景的资深QA专家。在群聊中善于提出极端输入、并发死锁、断网丢包等破坏性测试用例，确保系统的健壮性。',
+                temp: 0.5,
+                color: '#ec4899',
+                avatarIcon: 'fa-vial'
+            },
+            {
+                key: 'scholar',
+                icon: '🎓',
+                name: '理论学者',
+                badge: '学者',
+                prompt: '你是一名严谨的前沿科研人员。在群聊讨论中擅长引用学术论文、数学公式、理论原理和底层基础，给出有据可循的权威见解。',
+                temp: 0.4,
+                color: '#06b6d4',
+                avatarIcon: 'fa-graduation-cap'
+            },
+            {
+                key: 'assistant',
+                icon: '🤖',
+                name: '智能助手',
+                badge: 'AI助手',
+                prompt: '你是一名全能的人工智能群聊助手，语气热情温和，提供条理分明、清晰易懂的高质量回答。',
+                temp: 0.7,
+                color: '#14b8a6',
+                avatarIcon: 'fa-robot'
+            }
+        ];
+
+        const AVATAR_PALETTE = [
+            { color: '#3b82f6', icon: 'fa-cubes' },
+            { color: '#10b981', icon: 'fa-code' },
+            { color: '#f59e0b', icon: 'fa-briefcase' },
+            { color: '#ef4444', icon: 'fa-balance-scale' },
+            { color: '#8b5cf6', icon: 'fa-fist-raised' },
+            { color: '#ec4899', icon: 'fa-vial' },
+            { color: '#06b6d4', icon: 'fa-graduation-cap' },
+            { color: '#6366f1', icon: 'fa-brain' },
+            { color: '#14b8a6', icon: 'fa-robot' }
+        ];
+
+        function getRandomAvatarStyle() {
+            return AVATAR_PALETTE[Math.floor(Math.random() * AVATAR_PALETTE.length)];
+        }
+
+        // 迁移配置：确保每个角色都具备独立的 id (实例) 和关联的 model (底层API名)
+        function migrateConfigState(cfg) {
+            if (!cfg || !Array.isArray(cfg.providers)) return cfg;
+            const seenIds = new Set();
+            cfg.providers.forEach(p => {
+                if (!Array.isArray(p.models)) p.models = [];
+                p.models.forEach(m => {
+                    if (!m.model) m.model = m.id || m.name || 'default-model';
+                    if (!m.id || seenIds.has(m.id)) {
+                        m.id = 'role_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+                    }
+                    seenIds.add(m.id);
+                    if (!m.avatarColor) {
+                        const style = getRandomAvatarStyle();
+                        m.avatarColor = style.color;
+                        m.avatarIcon = style.icon;
+                    }
+                });
+            });
+            return cfg;
+        }
+
         // 1. 读取或初始化配置 (严格从 localStorage 加载)
         let state = (() => {
             try {
-                // 如果存在历史残留旧版本缓存，清理旧版本假数据
                 localStorage.removeItem('llm_group_chat_config_v2');
                 localStorage.removeItem('qq_chat_agent_config_clean_v3');
                 
@@ -1430,13 +1691,13 @@
                 if (saved) {
                     const parsed = JSON.parse(saved);
                     if (parsed && Array.isArray(parsed.providers)) {
-                        return parsed;
+                        return migrateConfigState(parsed);
                     }
                 }
             } catch (e) {
                 console.warn('读取本地模型配置失败', e);
             }
-            return JSON.parse(JSON.stringify(initialConfig));
+            return migrateConfigState(JSON.parse(JSON.stringify(initialConfig)));
         })();
 
         // 保存配置到 localStorage
@@ -1535,7 +1796,7 @@
             if (activeModels.length === 0) {
                 $('activeModelSummary').textContent = '暂无模型在群 · 点击「添加模型」';
             } else {
-                $('activeModelSummary').textContent = `${activeModels.length} 个模型在群 · 支持@多人协同`;
+                $('activeModelSummary').textContent = `${activeModels.length} 个角色在群 · 支持@多人协同辩论`;
             }
 
             let html = `
@@ -1551,7 +1812,7 @@
                             <span class="qq-member-name">我 (你)</span>
                             <span class="qq-badge qq-badge-owner">群主</span>
                         </div>
-                        <span class="qq-member-desc">点击可快捷提及</span>
+                        <span class="qq-member-desc">点击可快捷提及 @所有人</span>
                     </div>
                 </div>
             `;
@@ -1560,11 +1821,16 @@
                 html += `
                     <div class="empty-members-card">
                         <i class="fas fa-robot"></i>
-                        <p>群内暂无大模型</p>
-                        <small>您还没有添加任何模型成员。点击下方按钮前往添加配置。</small>
-                        <button class="btn-sidebar-add-model" onclick="openSettingsModal()">
-                            <i class="fas fa-sliders-h"></i> 打开模型设置
-                        </button>
+                        <p>群内暂无角色模型</p>
+                        <small>您还没有添加任何角色。一个大模型可分饰多个不同角色（如架构师、产品经理、辩友）！</small>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px; width: 100%;">
+                            <button class="btn-sidebar-add-model" onclick="openAddRoleModal(state.activeProviderId)">
+                                <i class="fas fa-plus"></i> 添加新角色到本群
+                            </button>
+                            <button class="btn-sidebar-add-model" style="background: transparent; border: 1px solid var(--qq-line); color: var(--qq-text-secondary);" onclick="openSettingsModal()">
+                                <i class="fas fa-sliders-h"></i> 打开模型设置
+                            </button>
+                        </div>
                     </div>
                 `;
             } else {
@@ -1573,7 +1839,7 @@
                     const badgeClass = isLan ? 'qq-badge-lan' : 'qq-badge-admin';
 
                     html += `
-                        <div class="qq-member-item" data-model-id="${m.id}" data-provider-id="${m.providerId}">
+                        <div class="qq-member-item" data-model-id="${m.id}" data-member-name="${escapeHtml(m.name)}" data-provider-id="${m.providerId}">
                             <div class="qq-member-avatar-wrap">
                                 <div class="qq-member-avatar" style="background: ${m.avatarColor || '#10b981'};">
                                     <i class="fas ${m.avatarIcon || 'fa-microchip'}"></i>
@@ -1582,14 +1848,19 @@
                             </div>
                             <div class="qq-member-meta">
                                 <div class="qq-member-name-row">
-                                    <span class="qq-member-name" title="${m.name}">${m.name}</span>
-                                    <span class="qq-badge ${badgeClass}">${m.badge || '模型'}</span>
+                                    <span class="qq-member-name" title="${escapeHtml(m.name)}">${escapeHtml(m.name)}</span>
+                                    <span class="qq-badge ${badgeClass}">${escapeHtml(m.badge || '模型')}</span>
                                 </div>
-                                <span class="qq-member-desc">${m.providerName} · ${m.context || '128K'}</span>
+                                <span class="qq-member-desc">${escapeHtml(m.providerName)} · 底层: ${escapeHtml(m.model || m.id)}</span>
                             </div>
-                            <button class="qq-action-btn" title="编辑人设" style="width: 22px; height: 22px; font-size: 11px; margin-left: 2px;" onclick="event.stopPropagation(); openPersonaModal('${m.providerId}', '${m.id}')">
-                                <i class="fas fa-pen"></i>
-                            </button>
+                            <div style="display: flex; gap: 2px;">
+                                <button class="qq-action-btn" title="复制/派生新角色（复用此模型）" style="width: 22px; height: 22px; font-size: 11px;" onclick="event.stopPropagation(); cloneModelRole('${m.providerId}', '${m.id}')">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                                <button class="qq-action-btn" title="编辑人设" style="width: 22px; height: 22px; font-size: 11px;" onclick="event.stopPropagation(); openPersonaModal('${m.providerId}', '${m.id}')">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            </div>
                         </div>
                     `;
                 });
@@ -1597,10 +1868,10 @@
 
             listEl.innerHTML = html;
 
-            listEl.querySelectorAll('.qq-member-item[data-model-id]').forEach(item => {
+            listEl.querySelectorAll('.qq-member-item[data-member-name]').forEach(item => {
                 item.addEventListener('click', () => {
-                    const mid = item.getAttribute('data-model-id');
-                    insertAtMention(mid);
+                    const name = item.getAttribute('data-member-name');
+                    insertAtMention(name);
                 });
             });
         }
@@ -1720,7 +1991,11 @@
             if (text.includes('@所有人') || text.includes('@all')) {
                 targetModels = [...activeModels];
             } else {
-                targetModels = activeModels.filter(m => text.includes(`@${m.name}`) || text.includes(`@${m.id}`));
+                targetModels = activeModels.filter(m => 
+                    text.includes(`@${m.name}`) || 
+                    text.includes(`@${m.model}`) || 
+                    text.includes(`@${m.id}`)
+                );
             }
 
             if (targetModels.length === 0) {
@@ -1787,7 +2062,7 @@
                         <div class="bubble-text-content"><span class="typing-cursor"></span></div>
                         <div class="qq-bubble-footer" style="display: none;">
                             <span class="stat-info"></span>
-                            <span>${escapeHtml(model.providerName)} · ${escapeHtml(model.id)}</span>
+                            <span>${escapeHtml(model.providerName)} · 底层: ${escapeHtml(model.model || model.id)}</span>
                         </div>
                     </div>
                 </div>
@@ -1822,7 +2097,7 @@
                     method: 'POST',
                     headers: headers,
                     body: JSON.stringify({
-                        model: model.id,
+                        model: model.model || model.id,
                         messages: messagesPayload,
                         temperature: model.temperature ?? 0.7,
                         stream: true
@@ -1882,6 +2157,7 @@
                     role: 'assistant',
                     modelId: model.id,
                     modelName: model.name,
+                    underlyingModel: model.model || model.id,
                     providerName: model.providerName,
                     badge: model.badge,
                     content: fullText,
@@ -2064,31 +2340,48 @@
                     </select>
                 </div>
 
-                <!-- 模型列表 (复刻图 4) -->
+                <!-- 模型与角色列表 (复刻图 4 · 支持一个模型分饰多角) -->
                 <div>
                     <div class="models-section-header">
-                        <label class="form-label" style="font-weight: 600;">模型列表 (${models.length})</label>
+                        <div>
+                            <label class="form-label" style="font-weight: 600; margin-bottom: 2px;">群聊角色与模型列表 (${models.length})</label>
+                            <span style="font-size: 11px; color: var(--qq-text-muted);">一个底层大模型可添加多次，扮演架构师、辩手等不同人物</span>
+                        </div>
                         <div style="display: flex; gap: 8px;">
                             <button class="btn-subtle-pill" onclick="fetchModelsFromServer('${provider.id}')"><i class="fas fa-cloud-download-alt"></i> 拉取模型</button>
-                            <button class="btn-subtle-pill" onclick="addNewModelToProvider('${provider.id}')"><i class="fas fa-plus"></i> 添加模型</button>
+                            <button class="btn-subtle-pill" onclick="openAddRoleModal('${provider.id}')"><i class="fas fa-plus"></i> 添加角色/模型</button>
                         </div>
                     </div>
 
                     <div class="model-cards-container" style="margin-top: 10px;">
                         ${models.length === 0 ? `
                             <div class="empty-model-placeholder">
-                                暂无模型，点击右上角「+ 添加模型」或「拉取模型」
+                                暂无角色模型，点击右上角「+ 添加角色/模型」或「拉取模型」
                             </div>
                         ` : models.map(m => `
                             <div class="model-card-item">
                                 <div class="model-card-left">
-                                    <span class="model-card-name">${escapeHtml(m.name)}</span>
-                                    <span class="model-context-badge">${escapeHtml(m.context || '262.1K')}</span>
+                                    <div class="qq-msg-avatar" style="width: 32px; height: 32px; font-size: 13px; background: ${m.avatarColor || '#10b981'}; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0;">
+                                        <i class="fas ${m.avatarIcon || 'fa-microchip'}"></i>
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                                            <span class="model-card-name">${escapeHtml(m.name)}</span>
+                                            <span class="qq-badge qq-badge-lan" style="font-size: 10px; padding: 1px 6px;">${escapeHtml(m.badge || '模型')}</span>
+                                            <span class="model-context-badge">${escapeHtml(m.context || '128K')}</span>
+                                        </div>
+                                        <div class="model-card-subinfo">
+                                            <span>底层API模型:</span>
+                                            <span class="model-backend-tag">${escapeHtml(m.model || m.id)}</span>
+                                            ${m.rolePrompt ? '<span style="color:var(--qq-text-muted); font-size:11px;">· 专属Prompt</span>' : ''}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="model-card-actions">
-                                    <button class="model-action-icon-btn btn-test" title="测试连接" onclick="testModelConnection('${provider.id}', '${m.id}', this)"><i class="fas fa-link"></i></button>
-                                    <button class="model-action-icon-btn" title="编辑人设" onclick="openPersonaModal('${provider.id}', '${m.id}')"><i class="fas fa-pen"></i></button>
-                                    <button class="model-action-icon-btn btn-delete" title="删除模型" onclick="deleteModelFromProvider('${provider.id}', '${m.id}')"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="model-action-icon-btn btn-test" title="测试接口连接" onclick="testModelConnection('${provider.id}', '${m.id}', this)"><i class="fas fa-link"></i></button>
+                                    <button class="model-action-icon-btn btn-clone" title="派生/复制新角色（复用此底层模型，扮演新角色）" onclick="cloneModelRole('${provider.id}', '${m.id}')"><i class="far fa-copy"></i></button>
+                                    <button class="model-action-icon-btn" title="编辑人设与模型" onclick="openPersonaModal('${provider.id}', '${m.id}')"><i class="fas fa-pen"></i></button>
+                                    <button class="model-action-icon-btn btn-delete" title="删除角色" onclick="deleteModelFromProvider('${provider.id}', '${m.id}')"><i class="fas fa-trash-alt"></i></button>
                                     <label class="toggle-switch" style="transform: scale(0.8); margin-left: 4px;" title="是否在群聊中启用">
                                         <input type="checkbox" ${m.enabled ? 'checked' : ''} onchange="toggleModelEnabled('${provider.id}', '${m.id}', this.checked)">
                                         <span class="switch-slider"></span>
@@ -2156,30 +2449,36 @@
             }
         };
 
-        window.addNewModelToProvider = function(providerId) {
-            const name = prompt('请输入模型名称 (例如 qwen3.8-27b):', 'qwen3.8-27b');
-            if (!name) return;
-            const context = prompt('请输入上下文窗口大小 (例如 262.1K):', '262.1K') || '128K';
-
+        // 核心功能：复制/派生已有模型为全新人设角色（复用底层模型，分饰多角）
+        window.cloneModelRole = function(providerId, modelId) {
             const p = state.providers.find(x => x.id === providerId);
-            if (p) {
-                if (!Array.isArray(p.models)) p.models = [];
-                p.models.push({
-                    id: name.trim(),
-                    name: name.trim(),
-                    context: context.trim(),
-                    badge: '局域网模型',
-                    rolePrompt: `你是 ${name.trim()} 大模型，请在群聊中友好、专业地解答问题。`,
-                    temperature: 0.7,
-                    enabled: true,
-                    avatarColor: '#10b981',
-                    avatarIcon: 'fa-microchip'
-                });
-                saveConfig();
-                renderActiveProviderDetail();
-                renderGroupMembers();
-                showToast(`已添加模型 ${name} 并保存在本地！`, 'fa-check');
-            }
+            const m = (p?.models || []).find(x => x.id === modelId);
+            if (!p || !m) return;
+
+            const newId = 'role_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+            const style = getRandomAvatarStyle();
+            const cloned = {
+                id: newId,
+                model: m.model || m.id, // 核心：保持完全一致的底层模型名！
+                name: `${m.name} (角色2)`,
+                badge: '新角色',
+                context: m.context || '128K',
+                rolePrompt: m.rolePrompt || `你是基于 ${m.model || m.id} 的新角色，请友好专业地参与群聊。`,
+                temperature: m.temperature ?? 0.7,
+                enabled: true,
+                avatarColor: style.color,
+                avatarIcon: style.icon
+            };
+
+            p.models.push(cloned);
+            saveConfig();
+            renderActiveProviderDetail();
+            renderGroupMembers();
+            showToast(`已成功复制派生新角色！正在打开人设编辑...`, 'fa-copy');
+
+            setTimeout(() => {
+                openPersonaModal(providerId, newId);
+            }, 250);
         };
 
         window.deleteModelFromProvider = function(providerId, modelId) {
@@ -2189,7 +2488,7 @@
                 saveConfig();
                 renderActiveProviderDetail();
                 renderGroupMembers();
-                showToast('已删除模型');
+                showToast('已删除角色');
             }
         };
 
@@ -2204,6 +2503,145 @@
                 }
             }
         };
+
+        // 渲染人设模板快捷芯片
+        function renderPresetChips(containerId, onSelect) {
+            const container = $(containerId);
+            if (!container) return;
+            container.innerHTML = PRESET_ROLES.map(r => `
+                <button type="button" class="preset-chip-btn" data-key="${r.key}">
+                    <span>${r.icon}</span> <span>${r.name}</span>
+                </button>
+            `).join('');
+
+            container.querySelectorAll('.preset-chip-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const key = btn.getAttribute('data-key');
+                    const preset = PRESET_ROLES.find(x => x.key === key);
+                    if (preset && typeof onSelect === 'function') {
+                        onSelect(preset);
+                    }
+                });
+            });
+        }
+
+        // 打开「添加模型角色到本群」弹窗（支持多角色配置）
+        window.openAddRoleModal = function(preferredProviderId, defaultModelName) {
+            const modal = $('addRoleModalOverlay');
+            if (!modal) return;
+
+            const targetProviderId = preferredProviderId || state.activeProviderId;
+            const provSelect = $('addRoleProviderSelect');
+            provSelect.innerHTML = state.providers.map(p => `
+                <option value="${p.id}" ${p.id === targetProviderId ? 'selected' : ''}>${escapeHtml(p.name)} (${p.baseUrl ? p.baseUrl.replace('http://', '').replace('https://', '') : '未填URL'})</option>
+            `).join('');
+
+            function refreshModelOptions(pId) {
+                const prov = state.providers.find(x => x.id === pId);
+                const datalist = $('existingModelDatalist');
+                const modelInput = $('addRoleModelInput');
+                
+                const existing = (prov?.models || []).map(m => m.model || m.id);
+                const uniqueModels = [...new Set(existing.filter(Boolean))];
+                datalist.innerHTML = uniqueModels.map(m => `<option value="${escapeHtml(m)}"></option>`).join('');
+
+                if (defaultModelName) {
+                    modelInput.value = defaultModelName;
+                } else if (uniqueModels.length > 0) {
+                    modelInput.value = uniqueModels[0];
+                } else if (prov?.id.includes('vllm')) {
+                    modelInput.value = 'qwen3.8-27b';
+                } else {
+                    modelInput.value = '';
+                }
+
+                // 初始填充默认模板
+                applyPresetToInputs(PRESET_ROLES[0]);
+            }
+
+            function applyPresetToInputs(preset) {
+                const modelVal = $('addRoleModelInput').value.trim() || '大模型';
+                const shortModel = modelVal.split('/').pop().split(':')[0];
+                $('addRoleNickInput').value = `${preset.name} · ${shortModel}`;
+                $('addRoleBadgeInput').value = preset.badge;
+                $('addRolePromptInput').value = preset.prompt;
+                $('addRoleTempInput').value = preset.temp;
+            }
+
+            renderPresetChips('addRolePresetChips', preset => {
+                applyPresetToInputs(preset);
+            });
+
+            provSelect.onchange = () => refreshModelOptions(provSelect.value);
+            $('addRoleModelInput').oninput = () => {
+                // 如果用户还没改过昵称，自动同步模型名后缀
+                const currentNick = $('addRoleNickInput').value;
+                if (!currentNick || currentNick.includes('·')) {
+                    const shortModel = ($('addRoleModelInput').value.trim() || '大模型').split('/').pop().split(':')[0];
+                    const prefix = currentNick.split('·')[0].trim() || '角色';
+                    $('addRoleNickInput').value = `${prefix} · ${shortModel}`;
+                }
+            };
+
+            refreshModelOptions(targetProviderId);
+            modal.classList.add('active');
+        };
+
+        window.closeAddRoleModal = function() {
+            $('addRoleModalOverlay').classList.remove('active');
+        };
+
+        // 提交添加新角色
+        $('confirmAddRoleBtn').addEventListener('click', () => {
+            const providerId = $('addRoleProviderSelect').value;
+            const modelName = $('addRoleModelInput').value.trim();
+            if (!modelName) {
+                showToast('请输入底层模型服务标识 (如 qwen3.8-27b)', 'fa-exclamation-triangle');
+                $('addRoleModelInput').focus();
+                return;
+            }
+
+            const p = state.providers.find(x => x.id === providerId);
+            if (!p) return;
+
+            const nick = $('addRoleNickInput').value.trim() || modelName;
+            const badge = $('addRoleBadgeInput').value.trim() || '局域网模型';
+            const prompt = $('addRolePromptInput').value.trim() || `你是 ${nick}，请专业、耐心地回答群聊问题。`;
+            const context = $('addRoleContextInput').value.trim() || '128K';
+            const temp = parseFloat($('addRoleTempInput').value) || 0.7;
+
+            const newId = 'role_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+            const style = getRandomAvatarStyle();
+
+            if (!Array.isArray(p.models)) p.models = [];
+            p.models.push({
+                id: newId,
+                model: modelName, // 底层真实调用模型名
+                name: nick,       // 角色群名片
+                badge: badge,     // 身份标签
+                context: context,
+                rolePrompt: prompt,
+                temperature: temp,
+                enabled: true,
+                avatarColor: style.color,
+                avatarIcon: style.icon
+            });
+
+            p.enabled = true; // 确保供应商已启用
+            saveConfig();
+            renderActiveProviderDetail();
+            renderSettingsProvidersList();
+            renderGroupMembers();
+            closeAddRoleModal();
+            showToast(`已成功将【${nick}】加入本群！`, 'fa-check');
+        });
+
+        $('cancelAddRoleBtn').addEventListener('click', closeAddRoleModal);
+        $('closeAddRoleModalBtn').addEventListener('click', closeAddRoleModal);
+        $('jumpToSettingsBtn').addEventListener('click', () => {
+            closeAddRoleModal();
+            openSettingsModal();
+        });
 
         window.fetchModelsFromServer = async function(providerId) {
             const p = state.providers.find(x => x.id === providerId);
@@ -2231,17 +2669,19 @@
                 let added = 0;
                 list.forEach(item => {
                     const mId = typeof item === 'string' ? item : item.id || item.name;
-                    if (mId && !p.models.some(m => m.id === mId)) {
+                    if (mId && !p.models.some(m => (m.model || m.id) === mId)) {
+                        const style = getRandomAvatarStyle();
                         p.models.push({
-                            id: mId,
+                            id: 'role_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+                            model: mId,
                             name: mId,
                             context: '128K',
                             badge: '自建模型',
-                            rolePrompt: `你是 ${mId} 大模型。`,
+                            rolePrompt: `你是 ${mId} 大模型，请在群聊中解答问题。`,
                             temperature: 0.7,
                             enabled: true,
-                            avatarColor: '#10b981',
-                            avatarIcon: 'fa-microchip'
+                            avatarColor: style.color,
+                            avatarIcon: style.icon
                         });
                         added++;
                     }
@@ -2281,7 +2721,7 @@
                     method: 'POST',
                     headers,
                     body: JSON.stringify({
-                        model: m.id,
+                        model: m.model || m.id, // 底层真实模型
                         messages: [{ role: 'user', content: 'hi' }],
                         max_tokens: 5
                     })
@@ -2312,17 +2752,28 @@
             }
         };
 
-        // 人设编辑 Modal
+        // 人设与模型编辑 Modal
         window.openPersonaModal = function(providerId, modelId) {
             const p = state.providers.find(x => x.id === providerId);
             const m = (p?.models || []).find(x => x.id === modelId);
             if (!m) return;
 
             currentEditingModel = { providerId, modelId };
+            $('personaModelInput').value = m.model || m.id;
             $('personaNickInput').value = m.name || '';
             $('personaRoleInput').value = m.badge || '';
             $('personaPromptInput').value = m.rolePrompt || '';
             $('personaTempInput').value = m.temperature ?? 0.7;
+
+            renderPresetChips('personaPresetChips', preset => {
+                const modelVal = $('personaModelInput').value.trim() || '大模型';
+                const shortModel = modelVal.split('/').pop().split(':')[0];
+                $('personaNickInput').value = `${preset.name} · ${shortModel}`;
+                $('personaRoleInput').value = preset.badge;
+                $('personaPromptInput').value = preset.prompt;
+                $('personaTempInput').value = preset.temp;
+                showToast(`已套用【${preset.name}】模板`);
+            });
 
             $('personaModalOverlay').classList.add('active');
         };
@@ -2337,6 +2788,7 @@
             const p = state.providers.find(x => x.id === currentEditingModel.providerId);
             const m = (p?.models || []).find(x => x.id === currentEditingModel.modelId);
             if (m) {
+                if ($('personaModelInput')) m.model = $('personaModelInput').value.trim() || m.model || m.id;
                 m.name = $('personaNickInput').value.trim() || m.name;
                 m.badge = $('personaRoleInput').value.trim() || '模型';
                 m.rolePrompt = $('personaPromptInput').value.trim();
@@ -2344,7 +2796,7 @@
                 saveConfig();
                 renderGroupMembers();
                 renderActiveProviderDetail();
-                showToast('已更新模型群名片与提示词！');
+                showToast('已更新模型群名片与提示词！', 'fa-check');
             }
             closePersonaModal();
         });
@@ -2362,7 +2814,7 @@
         $('openSettingsBtn').addEventListener('click', openSettingsModal);
         $('openSettingsQuickBtn').addEventListener('click', openSettingsModal);
         $('closeSettingsModalBtn').addEventListener('click', closeSettingsModal);
-        $('quickAddMemberBtn').addEventListener('click', openSettingsModal);
+        $('quickAddMemberBtn').addEventListener('click', () => openAddRoleModal(state.activeProviderId));
 
         $('addProviderBtn').addEventListener('click', () => {
             const name = prompt('请输入新供应商名称:', '新供应商');
