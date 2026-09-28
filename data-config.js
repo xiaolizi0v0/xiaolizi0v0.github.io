@@ -51,6 +51,16 @@ const dataConfig = {
       category: "other",
       date: "2026-09-23",
       cover: "https://images.unsplash.com/photo-1534307678495-0c6dcb8f0c25?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      id: "6",
+      title: "QQ 风格大模型群聊",
+      icon: "fab fa-qq",
+      description: "QQ聊天界面风格的大模型多智能体群聊工作台：支持多模型协同讨论、局域网大模型(vLLM/Ollama)与公网模型接入、模型设置管理及跨域代理支持",
+      file: "LLMGroupChat.html",
+      category: "code",
+      date: "2026-09-28",
+      cover: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
     }
   ],
   //笔记

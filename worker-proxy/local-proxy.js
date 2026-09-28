@@ -342,15 +342,71 @@ async function handleSuggest(wd) {
 // ========== HTTP 服务 ==========
 const server = http.createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Private-Network', 'true');
   res.setHeader('Access-Control-Max-Age', '86400');
   if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
 
   const url = new URL(req.url, 'http://localhost');
   if (url.pathname === '/health' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-    res.end(JSON.stringify({ ok: true, service: 'local-proxy' }));
+    res.end(JSON.stringify({ ok: true, service: 'local-proxy', llmProxy: true }));
+    return;
+  }
+
+  // 大模型通用流式转发代理接口：支持局域网 vLLM / Ollama 以及公网模型的 SSE 流式与普通响应
+  if (url.pathname === '/proxy') {
+    const targetUrl = url.searchParams.get('url');
+    if (!targetUrl) {
+      res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ error: '缺少 url 参数' }));
+      return;
+    }
+
+    try {
+      const chunks = [];
+      for await (const chunk of req) {
+        chunks.push(chunk);
+      }
+      const reqBody = chunks.length > 0 ? Buffer.concat(chunks) : undefined;
+
+      const upstreamHeaders = {};
+      if (req.headers.authorization) upstreamHeaders['Authorization'] = req.headers.authorization;
+      if (req.headers['content-type']) upstreamHeaders['Content-Type'] = req.headers['content-type'];
+      if (req.headers.accept) upstreamHeaders['Accept'] = req.headers.accept;
+
+      const upstream = await fetch(targetUrl, {
+        method: req.method,
+        headers: upstreamHeaders,
+        body: req.method !== 'GET' && req.method !== 'HEAD' ? reqBody : undefined
+      });
+
+      const responseHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Private-Network': 'true',
+        'Content-Type': upstream.headers.get('content-type') || 'application/json; charset=utf-8',
+        'Cache-Control': 'no-cache'
+      };
+
+      res.writeHead(upstream.status, responseHeaders);
+
+      if (upstream.body) {
+        const reader = upstream.body.getReader();
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          res.write(value);
+        }
+      }
+      res.end();
+    } catch (err) {
+      if (!res.headersSent) {
+        res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' });
+      }
+      res.end(JSON.stringify({ error: 'LLM 代理转发失败: ' + err.message }));
+    }
     return;
   }
   if (url.pathname === '/jev' && req.method === 'POST') {
@@ -468,11 +524,12 @@ killPortOccupier(PORT).then(killed => {
   if (killed) console.log('[清理] 已关闭占用端口 ' + PORT + ' 的残留代理进程');
   server.listen(PORT, '127.0.0.1', () => {
     console.log('========================================');
-    console.log('  博客工具共享代理已启动 (百科 + Jev)');
+    console.log('  博客工具共享代理已启动 (百科 + Jev + 大模型群聊)');
     console.log('  浏览器: ' + (BROWSER ? BROWSER : '未找到（请安装 Chrome/Edge）'));
-    console.log('  代理地址: http://127.0.0.1:' + PORT);
+    console.log('  代理服务: http://127.0.0.1:' + PORT);
+    console.log('  大模型转发: http://127.0.0.1:' + PORT + '/proxy?url=<目标地址>');
     console.log('========================================');
-    console.log('  在博客页面输入框粘贴上述地址并保存启用');
+    console.log('  在大模型群聊页面开启本地代理即可无阻穿透局域网大模型');
     console.log('  提示：保持本窗口开着，Ctrl+C 停止');
   });
 });
