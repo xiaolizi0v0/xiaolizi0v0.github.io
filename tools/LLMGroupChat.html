@@ -522,6 +522,117 @@
             color: var(--qq-text-main);
         }
 
+        #mentionTip {
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+
+        #mentionTip:hover {
+            color: var(--qq-blue) !important;
+            text-decoration: underline;
+        }
+
+        /* QQ 风格 @ 提及自动补全浮层 */
+        .mention-dropdown-popup {
+            position: absolute;
+            bottom: calc(100% - 6px);
+            left: 18px;
+            width: 320px;
+            max-height: 260px;
+            background: var(--qq-card-bg, #ffffff);
+            border: 1px solid var(--qq-line);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+            animation: mentionFadeIn 0.15s ease-out;
+        }
+
+        @keyframes mentionFadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mention-dropdown-popup.show {
+            display: flex;
+        }
+
+        .mention-popup-header {
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--qq-text-muted);
+            background: rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid var(--qq-line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mention-popup-list {
+            overflow-y: auto;
+            max-height: 210px;
+            padding: 4px 0;
+        }
+
+        .mention-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 12px;
+            cursor: pointer;
+            transition: background 0.12s;
+        }
+
+        .mention-item:hover, .mention-item.active {
+            background: rgba(0, 153, 255, 0.1);
+        }
+
+        .mention-item-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .mention-item-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mention-item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .mention-item-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--qq-text-main);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .mention-item-desc {
+            font-size: 11px;
+            color: var(--qq-text-muted);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
         .qq-input-bottom-actions {
             height: 48px;
             display: flex;
@@ -1362,6 +1473,14 @@
 
                     <!-- 多行文本输入框 -->
                     <div class="qq-input-textarea-wrap">
+                        <!-- QQ 风格 @ 提及自动补全浮层 -->
+                        <div class="mention-dropdown-popup" id="mentionDropdownPopup">
+                            <div class="mention-popup-header">
+                                <span><i class="fas fa-at" style="color:var(--qq-blue);"></i> 选择提醒角色</span>
+                                <span style="font-weight:normal; font-size:10px;">↑↓选择 Enter确认 Esc关闭</span>
+                            </div>
+                            <div class="mention-popup-list" id="mentionPopupList"></div>
+                        </div>
                         <textarea class="qq-chat-textarea" id="chatInput" placeholder="输入消息，可输入 @ 指定模型，按 Enter 发送..."></textarea>
                     </div>
 
@@ -3627,18 +3746,228 @@ ${fullHistoryText}`;
             }
         });
 
+        // ==========================================================================
+        // QQ 风格 @ 提及自动补全浮层交互逻辑 (输入 @ 实时显示提醒)
+        // ==========================================================================
+        let mentionCandidates = [];
+        let mentionSelectedIndex = 0;
+        let currentMentionMatch = null;
+
+        function getMentionMatch(el) {
+            const pos = el.selectionStart;
+            const text = el.value.slice(0, pos);
+            const match = text.match(/@([^\s@]*)$/);
+            if (!match) return null;
+            return {
+                startPos: match.index,
+                endPos: pos,
+                query: match[1].toLowerCase()
+            };
+        }
+
+        function updateMentionDropdown() {
+            const el = $('chatInput');
+            const match = getMentionMatch(el);
+            const popup = $('mentionDropdownPopup');
+            const list = $('mentionPopupList');
+
+            if (!match) {
+                popup.classList.remove('show');
+                currentMentionMatch = null;
+                return;
+            }
+
+            currentMentionMatch = match;
+            const activeModels = getActiveGroupModels();
+            const query = match.query;
+
+            const allCandidates = [
+                {
+                    id: '__all__',
+                    name: '所有人',
+                    displayName: '@所有人',
+                    badge: '全员广播',
+                    desc: '呼叫群内所有角色依次协同回复',
+                    avatarColor: 'linear-gradient(135deg, #ec4899, #8b5cf6)',
+                    avatarIcon: 'fa-users'
+                },
+                ...activeModels.map(m => ({
+                    id: m.id,
+                    name: m.name,
+                    displayName: `@${m.name}`,
+                    badge: m.badge || '模型',
+                    desc: `${m.providerName} · 底层: ${m.model || m.id}`,
+                    avatarColor: m.avatarColor || '#10b981',
+                    avatarIcon: m.avatarIcon || 'fa-microchip'
+                }))
+            ];
+
+            mentionCandidates = allCandidates.filter(c => {
+                if (!query) return true;
+                return c.name.toLowerCase().includes(query) ||
+                       (c.badge && c.badge.toLowerCase().includes(query)) ||
+                       (c.desc && c.desc.toLowerCase().includes(query));
+            });
+
+            if (mentionCandidates.length === 0) {
+                popup.classList.remove('show');
+                return;
+            }
+
+            mentionSelectedIndex = 0;
+            renderMentionCandidates();
+            popup.classList.add('show');
+        }
+
+        function renderMentionCandidates() {
+            const list = $('mentionPopupList');
+            let html = '';
+            mentionCandidates.forEach((c, idx) => {
+                const isActive = idx === mentionSelectedIndex;
+                html += `
+                    <div class="mention-item ${isActive ? 'active' : ''}" data-index="${idx}">
+                        <div class="mention-item-avatar" style="background: ${c.avatarColor};">
+                            <i class="fas ${c.avatarIcon}"></i>
+                        </div>
+                        <div class="mention-item-info">
+                            <div class="mention-item-row">
+                                <span class="mention-item-name">${escapeHtml(c.displayName)}</span>
+                                <span class="qq-badge" style="font-size: 10px; padding: 1px 6px;">${escapeHtml(c.badge)}</span>
+                            </div>
+                            <span class="mention-item-desc">${escapeHtml(c.desc)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            list.innerHTML = html;
+
+            list.querySelectorAll('.mention-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const idx = parseInt(item.getAttribute('data-index'), 10);
+                    selectMentionCandidate(idx);
+                });
+                item.addEventListener('mouseenter', () => {
+                    mentionSelectedIndex = parseInt(item.getAttribute('data-index'), 10);
+                    updateMentionActiveHighlight();
+                });
+            });
+
+            ensureMentionVisible();
+        }
+
+        function updateMentionActiveHighlight() {
+            const items = $('mentionPopupList').querySelectorAll('.mention-item');
+            items.forEach((item, idx) => {
+                if (idx === mentionSelectedIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            ensureMentionVisible();
+        }
+
+        function ensureMentionVisible() {
+            const list = $('mentionPopupList');
+            const activeItem = list.querySelector('.mention-item.active');
+            if (activeItem) {
+                const listTop = list.scrollTop;
+                const listBottom = listTop + list.clientHeight;
+                const itemTop = activeItem.offsetTop;
+                const itemBottom = itemTop + activeItem.clientHeight;
+
+                if (itemTop < listTop) {
+                    list.scrollTop = itemTop;
+                } else if (itemBottom > listBottom) {
+                    list.scrollTop = itemBottom - list.clientHeight;
+                }
+            }
+        }
+
+        function selectMentionCandidate(index) {
+            const candidate = mentionCandidates[index];
+            if (!candidate || !currentMentionMatch) return;
+
+            const textarea = $('chatInput');
+            const text = textarea.value;
+            const before = text.slice(0, currentMentionMatch.startPos);
+            const after = text.slice(currentMentionMatch.endPos);
+
+            const insertText = `@${candidate.name} `;
+            textarea.value = before + insertText + after;
+
+            const newCursorPos = before.length + insertText.length;
+            textarea.setSelectionRange(newCursorPos, newCursorPos);
+            textarea.focus();
+
+            $('mentionDropdownPopup').classList.remove('show');
+            currentMentionMatch = null;
+        }
+
         // 输入与快捷键
         const textarea = $('chatInput');
+
+        textarea.addEventListener('input', () => {
+            updateMentionDropdown();
+        });
+
+        textarea.addEventListener('click', () => {
+            updateMentionDropdown();
+        });
+
         textarea.addEventListener('keydown', (e) => {
+            const popup = $('mentionDropdownPopup');
+            const isPopupOpen = popup.classList.contains('show');
+
+            if (isPopupOpen) {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    mentionSelectedIndex = (mentionSelectedIndex + 1) % mentionCandidates.length;
+                    updateMentionActiveHighlight();
+                    return;
+                }
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    mentionSelectedIndex = (mentionSelectedIndex - 1 + mentionCandidates.length) % mentionCandidates.length;
+                    updateMentionActiveHighlight();
+                    return;
+                }
+                if (e.key === 'Enter' || e.key === 'Tab') {
+                    e.preventDefault();
+                    selectMentionCandidate(mentionSelectedIndex);
+                    return;
+                }
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    popup.classList.remove('show');
+                    return;
+                }
+            }
+
             if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
                 e.preventDefault();
                 handleSendMessage();
             }
         });
 
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#mentionDropdownPopup') && e.target !== $('chatInput') && e.target !== $('mentionTip')) {
+                $('mentionDropdownPopup').classList.remove('show');
+            }
+        });
+
+        $('mentionTip').addEventListener('click', () => {
+            const textarea = $('chatInput');
+            textarea.value += '@';
+            textarea.focus();
+            updateMentionDropdown();
+        });
+
         $('sendBtn').addEventListener('click', handleSendMessage);
         $('clearInputBtn').addEventListener('click', () => {
             textarea.value = '';
+            $('mentionDropdownPopup').classList.remove('show');
             textarea.focus();
         });
 
