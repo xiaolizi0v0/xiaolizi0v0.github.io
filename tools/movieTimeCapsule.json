@@ -8474,11 +8474,6 @@
           "watched": false
         },
         {
-          "title": "20260916上",
-          "url": "https://v.lzcdn28.com/20260916/15808_3bd0c4e4/2000k/hls/mixed.m3u8",
-          "watched": false
-        },
-        {
           "title": "20260916下",
           "url": "https://v.lzcdn28.com/20260916/15807_5ee557f0/2000k/hls/mixed.m3u8",
           "watched": false
@@ -8506,7 +8501,7 @@
       ],
       "watchedDate": "2026-09-30",
       "timestamp": 1790768921776,
-      "updatedAt": 1790771027444
+      "updatedAt": 1790771031638
     }
   ],
   "deleted": {
