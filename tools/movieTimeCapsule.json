@@ -8502,11 +8502,16 @@
           "title": "20260819上",
           "url": "https://v.lzcdn28.com/20260819/14515_7a7b6142/2000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "20260819下",
+          "url": "https://v.lzcdn28.com/20260819/14514_74f6aaf3/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-30",
       "timestamp": 1790768921776,
-      "updatedAt": 1790769192207
+      "updatedAt": 1790769207293
     }
   ],
   "deleted": {
