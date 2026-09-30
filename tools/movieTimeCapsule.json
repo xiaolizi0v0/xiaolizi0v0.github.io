@@ -8476,11 +8476,6 @@
           "watched": true
         },
         {
-          "title": "20260812上",
-          "url": "https://v.lzcdn28.com/20260812/14153_2392808d/2000k/hls/mixed.m3u8",
-          "watched": false
-        },
-        {
           "title": "20260812下",
           "url": "https://v.lzcdn28.com/20260812/14155_65b5d731/2000k/hls/mixed.m3u8",
           "watched": false
@@ -8556,7 +8551,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1790772020980
+      "updatedAt": 1790772023382
     }
   ],
   "deleted": {
