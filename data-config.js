@@ -3,6 +3,16 @@ const dataConfig = {
  //工具
   tools: [
     {
+      id: "7",
+      title: "裂潮：霓虹清场",
+      icon: "fas fa-gamepad",
+      description: "原创手机端 2D 横版动作割草：三名英雄、三章首领、六种觉醒武器、局内构筑与永久强化。支持多指触控、键盘、无尽挑战和本地存档。",
+      file: "NeonReaping.html",
+      category: "other",
+      date: "2026-09-30",
+      cover: "neon-reaping/cover.svg"
+    },
+    {
       id: "1",
       title: "OCR英文识别工具",
       icon: "fas fa-file-alt",

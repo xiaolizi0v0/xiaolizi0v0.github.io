@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#101015">
+  <meta name="description" content="裂潮：霓虹清场。原创横版动作割草，三名英雄、三章首领、武器觉醒、永久养成与无尽挑战。手机和电脑均可直接游玩。">
+  <title>裂潮：霓虹清场 · Xiaolizi 的游戏工具</title>
+  <link rel="stylesheet" href="neon-reaping/game.css">
+</head>
+<body>
+  <canvas id="world" aria-label="裂潮游戏战场"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <main id="lobby" class="screen">
+    <header class="topbar"><a href="index.html" class="back">↖ 工具箱</a><span class="wordmark">RIFT / RIOT</span><div class="wallet">◈ <b id="wallet">0</b></div><button data-action="settings" class="icon" aria-label="设置">⚙</button></header>
+    <div class="lobby-layout">
+      <section class="intro"><div class="kicker"><i></i> SIDE-SCROLLING / SURVIVOR ACTION</div><h1>裂<span>潮</span><small>霓虹清场</small></h1><div class="title-strike"></div><p class="tagline">冲进人潮。<br>把整条街变成你的连击。</p><div class="hero-sign"><span id="heroIndex">01</span><div><b id="heroName">零刃</b><small id="heroStyle">近战 / 三段连斩</small></div><span class="hero-line"></span></div><div class="hero-switch" id="heroSwitch"></div><div class="hero-note" id="heroNote"></div></section>
+      <section class="deployment"><div class="panel-caption">DEPLOYMENT <span>出战准备 / <b>单人行动</b></span></div><div id="chapters" class="chapters"></div><div class="difficulty"><span>危险等级</span><div id="difficulties"></div></div><div class="brief" id="brief"></div><button id="start" class="launch">开始清场 <span>→</span><small>ENTER THE RIFT</small></button><button id="resume" class="resume hidden">↻ 继续上次行动</button><div class="quick-nav"><button data-action="meta">↗ 强化</button><button data-action="missions">◇ 任务</button><button data-action="achievements">✦ 成就</button><button data-action="help">⌘ 操作</button></div><div class="lobby-footer"><span id="record">最高连击 0 / 累计击杀 0</span><span>本地存档 · 无需联网</span></div></section>
+    </div>
+    <footer class="ticker"><b>BREAK THE LIMIT</b><span>三位英雄 / 六种觉醒武器 / 三章首领 / 无尽生存</span><span>原创画面 · 触控与键盘</span></footer>
+  </main>
+  <section id="hud" class="hidden" aria-label="战斗信息与操作">
+    <div class="hud-top"><div class="pilot"><div class="portrait" id="portrait">刃</div><div class="vitals"><div class="pilot-name"><b id="pilotName">零刃</b><span id="level">LV.1</span></div><div class="hp-track"><i id="hpFill"></i><span id="hpText"></span></div><div class="xp-track"><i id="xpFill"></i></div></div></div><div class="wave-info"><b id="waveText">WAVE 01 / 06</b><span id="objective">清场 0 / 20</span><small id="clock">00:00</small></div><div class="hud-actions"><button id="autoBtn" class="icon" title="自动攻击">AUTO</button><button id="bagBtn" class="icon" aria-label="查看构筑">▦</button><button id="soundBtn" class="icon" aria-label="音效开关">♫</button><button id="fullBtn" class="icon" aria-label="全屏">⛶</button><button id="pauseBtn" class="icon" aria-label="暂停">Ⅱ</button></div></div>
+    <div id="bossHud" class="boss-hud hidden"><b id="bossName"></b><div><i id="bossFill"></i></div></div>
+    <div class="run-currency">◈ <b id="runCoins">0</b> <span>本局补给币</span></div><div class="combo-display" id="combo"></div><div class="wave-banner" id="banner"></div>
+    <div class="controls"><div class="move-area" id="joystick" aria-label="左右移动摇杆"><span class="joystick-label">MOVE</span><div class="stick-base"><div id="stick"></div></div><span class="stick-arrows">◀　▶</span></div><button data-control="drop" class="action drop" aria-label="从平台下落"><b>↓</b><span>下落 · S</span></button><div class="combat-controls"><button data-control="heal" class="action heal" aria-label="治疗"><b>✚</b><span>治疗 <em id="healCount">2</em></span><i></i></button><button data-control="ult" class="action ultimate" aria-label="大招"><b>✦</b><span>超载 <em id="ultPercent">0%</em></span><i></i></button><button data-control="skill" class="action skill" aria-label="专属技能"><b>◈</b><span>技能 · U</span><i></i></button><button data-control="dash" class="action dash" aria-label="闪避"><b>»</b><span>闪避 · L</span><i></i></button><button data-control="jump" class="action jump" aria-label="跳跃"><b>↑</b><span>跳跃 · K</span><i></i></button><button data-control="attack" class="action attack" aria-label="普攻"><b>╱</b><span>攻击 · J</span><i></i></button></div></div><div class="keyboard-tip">A / D 移动　J 攻击　K 跳跃　S 下落　L 闪避　U 技能　I 超载　H 治疗</div>
+  </section>
+  <div id="overlay" class="overlay hidden"><section class="modal" id="modal" role="dialog" aria-modal="true" aria-label="游戏菜单"></section></div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="neon-reaping/data.js"></script>
+  <script src="neon-reaping/game.js"></script>
+</body>
+</html>

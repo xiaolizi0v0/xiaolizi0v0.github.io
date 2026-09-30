@@ -1074,6 +1074,7 @@
 
             toolsGrid.innerHTML = filteredTools.map((tool, i) => `
                 <div class="tool-card" data-tool-id="${tool.id}">
+                    ${tool.id === '7' ? '<div class="card-media"><img src="neon-reaping/cover.svg" alt="裂潮：霓虹清场，荧光绿与紫色横版动作游戏" loading="lazy"></div>' : ''}
                     <div class="card-body">
                         <p class="card-title"><a href="#" onclick="event.stopPropagation(); openTool('${tool.id}')">${tool.title}</a></p>
                         <p class="card-date">${formatDate(tool.date)}</p>
@@ -1119,6 +1120,7 @@
 
             toolsGrid.innerHTML = tools.map((tool, i) => `
                 <div class="tool-card" data-tool-id="${tool.id}">
+                    ${tool.id === '7' ? '<div class="card-media"><img src="neon-reaping/cover.svg" alt="裂潮：霓虹清场，荧光绿与紫色横版动作游戏" loading="lazy"></div>' : ''}
                     <div class="card-body">
                         <p class="card-title"><a href="#" onclick="event.stopPropagation(); openTool('${tool.id}')">${tool.title}</a></p>
                         <p class="card-date">${formatDate(tool.date)}</p>
@@ -1387,14 +1389,16 @@
             // 清除URL参数
             const newUrl = new URL(window.location);
             newUrl.searchParams.delete('tool');
-            window.history.pushState({}, '', newUrl);
+            window.history.replaceState({}, '', newUrl);
 
             // 切换视图
             document.getElementById('notes-list').style.display = 'block';
-            document.getElementById('tool-content').style.display = 'none';
+            const toolContent = document.getElementById('tool-content');
+            if (toolContent) toolContent.style.display = 'none';
             
             // 隐藏功能导航栏
-            document.getElementById('toc-navbar').style.display = 'none';
+            const tocNavbar = document.getElementById('toc-navbar');
+            if (tocNavbar) tocNavbar.style.display = 'none';
             
             // 恢复页面标题
             document.title = '工具箱 - 个人博客';
