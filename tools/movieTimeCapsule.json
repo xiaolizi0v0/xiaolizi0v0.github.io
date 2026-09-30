@@ -8522,11 +8522,16 @@
           "title": "20260902上",
           "url": "https://v.lzcdn28.com/20260902/15178_941e69cd/2000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "20260902下",
+          "url": "https://v.lzcdn28.com/20260902/15177_75707c79/2000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-30",
       "timestamp": 1790768921776,
-      "updatedAt": 1790769271324
+      "updatedAt": 1790769300427
     }
   ],
   "deleted": {
