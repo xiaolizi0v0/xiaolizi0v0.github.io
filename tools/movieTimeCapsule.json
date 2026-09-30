@@ -8477,7 +8477,8 @@
         },
         {
           "title": "20290729下",
-          "url": "https://cdn.yzzy28-play.com/20260729/32739_878beb27/3000k/hls/mixed.m3u8"
+          "url": "https://cdn.yzzy28-play.com/20260729/32739_878beb27/3000k/hls/mixed.m3u8",
+          "watched": true
         },
         {
           "title": "20260805上",
@@ -8552,7 +8553,7 @@
           "url": "https://cdn.vvvip-plays33.cc/20260930/20507_d3dc22ad/3000k/hls/mixed.m3u8"
         }
       ],
-      "updatedAt": 1790772096067
+      "updatedAt": 1790777548329
     }
   ],
   "deleted": {
