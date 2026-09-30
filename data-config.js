@@ -3,6 +3,16 @@ const dataConfig = {
  //工具
   tools: [
     {
+      id: "8",
+      title: "回路暴走",
+      icon: "fas fa-gamepad",
+      description: "俯视角原创肉鸽割草：八向走位织线、闭环清算、夺弹返还与原位回声。三角色、三首领、24 个构筑协议、永久养成及手机多指操作。",
+      file: "CircuitRiot.html",
+      category: "other",
+      date: "2026-09-30",
+      cover: "circuit-riot/lobby-art.png"
+    },
+    {
       id: "7",
       title: "裂潮：霓虹清场",
       icon: "fas fa-gamepad",

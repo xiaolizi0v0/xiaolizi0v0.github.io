@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#15161c"><title>回路暴走 · CIRCUIT RIOT</title><link rel="stylesheet" href="circuit-riot/game.css"></head>
+<body><main id="shell">
+<canvas id="arena" aria-label="俯视角回路战场"></canvas>
+<section id="lobby">
+ <div class="poster"></div><div class="noise"></div><a class="back" href="index.html">↖ 工具页</a><span class="edition">TOP DOWN / ROGUELITE / 02</span>
+ <div class="lobby-main"><div class="eyebrow">把城市剪成你的形状</div><h1>回路<span>暴走</span></h1><div class="wordmark">CIRCUIT <b>RIOT</b> <i>↯</i></div><p class="pitch">走位织线 · 圈住敌群 · 夺走弹幕<br>让上一秒的你，清算下一秒的战场。</p>
+ <div id="heroes" class="hero-tabs"></div><div id="hero-info"></div>
+ <div class="mission"><label>行动区域<select id="map"></select></label><label>封锁等级<select id="difficulty"></select></label><label class="endless"><input id="endless" type="checkbox"> 无尽剪辑</label></div><p id="map-info" class="muted"></p>
+ <div class="start-row"><button id="start" class="primary">开始剪辑 <span>↗</span></button><button id="continue" class="outline" hidden>续接行动 ↻</button></div><button id="training" class="text-button">第一次？进入 6 步实战训练 →</button>
+ </div><div class="lobby-nav"><button data-menu="meta">义体工坊 <small id="wallet"></small></button><button data-menu="achievements">城市档案</button><button data-menu="guide">规则研究</button><button data-menu="settings">设置 ◉</button></div><div class="ticker">MOVE IS YOUR WEAPON　/　没有固定射击方向　/　轨迹决定清算边界　/　REWRITE THE CITY</div>
+</section>
+<section id="hud" hidden>
+ <div class="topbar"><div class="portrait" id="portrait">刃</div><div class="vitals"><strong id="hp-label"></strong><div class="bar hp"><i id="hp-bar"></i></div><div class="bar energy"><i id="energy-bar"></i></div><small id="energy-label"></small></div><div class="waveinfo"><strong id="wave-label"></strong><small id="wave-progress"></small><div class="bar"><i id="wave-bar"></i></div></div><div class="top-actions"><button id="bag" aria-label="查看构筑">▦</button><button id="sound" aria-label="音效开关">♪</button><button id="fullscreen" aria-label="全屏">⛶</button><button id="pause" aria-label="暂停">Ⅱ</button></div></div>
+ <div class="exp"><i id="xp-bar"></i><span id="level"></span></div><div id="bossbar" hidden><strong></strong><div class="bar"><i></i></div></div>
+ <div id="objective"><b>01</b><span>移动织线，再收线清算</span></div><div id="tutorial" hidden></div><div id="notice" role="status"></div>
+ <div class="bottom-readout"><span id="preview"></span><button id="auto">自动收线 OFF</button></div>
+ <div id="joystick" aria-label="二维移动摇杆"><div class="joy-ring"></div><div id="stick"></div><span>移动 · 织线</span></div>
+ <div id="actions"><button data-action="echo" class="action echo"><b>◷</b><span>回声</span><small>U</small></button><button data-action="rewind" class="action rewind"><b>≪</b><span>倒带</span><small>L</small></button><button data-action="heal" class="action heal"><b>✚</b><span>治疗</span><small>H</small></button><button data-action="overload" class="action overload"><b>ϟ</b><span>超载</span><small>I</small></button><button data-action="dash" class="action dash"><b>»</b><span>闪避</span><small>K</small></button><button data-action="seal" class="action seal"><b>△</b><span>收线清算</span><small>J / SPACE</small></button></div>
+ <div class="keyboard-hint">WASD / 方向键移动　·　J 收线　K 闪避　U 回声　L 倒带　I 超载　H 治疗</div>
+</section>
+<section id="modal" hidden><div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-header"><span id="modal-kicker"></span><button id="close" aria-label="关闭">×</button></div><h2 id="modal-title"></h2><p id="modal-sub"></p><div id="modal-body"></div><div id="modal-footer"></div></div></section>
+<div id="storage-warning" hidden>浏览器无法保存，本次仍可游玩；进度仅保留在当前页面。</div>
+</main><script src="circuit-riot/data.js"></script><script src="circuit-riot/engine.js"></script><script src="circuit-riot/save.js"></script><script src="circuit-riot/render.js"></script><script src="circuit-riot/app.js"></script></body></html>

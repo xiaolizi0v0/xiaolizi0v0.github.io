@@ -1,0 +1,7 @@
+# 回路暴走美术资产
+
+采用 imagegen 内置工具生成原创大厅海报，参考用户提供的截图的炭灰底、荧光斜切、紫青配色与潮流动漫质感。未使用截图角色或商标。成品：`tools/circuit-riot/lobby-art.png`。战场、角色动画、HUD 与特效均使用代码绘制，不依赖海报假扮游戏画面。
+
+## 最终提示词
+
+Use case: stylized-concept. Asset: original game lobby hero poster for CIRCUIT RIOT, landscape 1536x1024. Reference image is ONLY visual style inspiration: charcoal gray, acid lime lightning slashes, saturated purple and cyan, aggressive angular graffiti composition, bold sharp cel-shaded anime techwear, polished game key art. Create ORIGINAL three adult urban circuit weavers: foreground silver-haired athletic woman in black cropped techwear and lime panels wielding a wrist spool with a cutting neon THREAD forming a huge geometric CLOSED TRIANGLE around abstract small enemy silhouettes seen from above; behind her purple-haired man with reflective prism gauntlets manipulating captured cyan bullet beads; third masked dark-haired woman controlling violet ghost loops. Dynamic distinct identities, no guns. Crucial story is drawing shapes on a TOP DOWN battlefield, not side scrolling. Dark industrial city seen in tilted top-down perspective, triangular acid-lime path crossing diagonally, purple ghost copy. Right 65 percent detailed characters and motion, left 35 percent dark charcoal quiet negative space for real HTML interface overlay. No text, no logos, no UI, no watermarks, no copied reference characters. Energetic premium illustrated art, sharp silhouettes, controlled saturated colors, faint halftone and graffiti scratch accents.
