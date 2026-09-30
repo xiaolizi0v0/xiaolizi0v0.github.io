@@ -8532,11 +8532,16 @@
           "title": "20260909上",
           "url": "https://cdn.yzzy31-play.com/20260909/25441_16f0fd52/3000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "20260909下",
+          "url": "https://cdn.yzzy31-play.com/20260909/25442_3478a1d3/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-30",
       "timestamp": 1790768921776,
-      "updatedAt": 1790771374055
+      "updatedAt": 1790771412284
     }
   ],
   "deleted": {
