@@ -8502,11 +8502,16 @@
           "title": "20260819上",
           "url": "https://cdn.yzzy30-play.com/20260819/58340_304eca22/3000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "20260819下",
+          "url": "https://cdn.yzzy30-play.com/20260819/58341_435f8506/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-30",
       "timestamp": 1790768921776,
-      "updatedAt": 1790771213868
+      "updatedAt": 1790771244016
     }
   ],
   "deleted": {
