@@ -8527,11 +8527,16 @@
           "title": "20260902下",
           "url": "https://player.yzzyvip-35.com/20260902/15501_649ecbcd/3000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "20260909上",
+          "url": "https://cdn.yzzy31-play.com/20260909/25441_16f0fd52/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-30",
       "timestamp": 1790768921776,
-      "updatedAt": 1790771333006
+      "updatedAt": 1790771374055
     }
   ],
   "deleted": {
