@@ -8552,11 +8552,16 @@
           "title": "20260923上",
           "url": "https://cdn.yzzy30-play.com/20260923/59355_683efd99/3000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "20260923下",
+          "url": "https://cdn.yzzy30-play.com/20260923/59356_36ef936d/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-09-30",
       "timestamp": 1790768921776,
-      "updatedAt": 1790771471226
+      "updatedAt": 1790771492368
     }
   ],
   "deleted": {
