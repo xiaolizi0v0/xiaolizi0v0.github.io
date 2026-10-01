@@ -3,6 +3,16 @@ const dataConfig = {
  //工具
   tools: [
     {
+      id: "9",
+      title: "劫速街区 3D",
+      icon: "fas fa-car",
+      description: "Blender 原创车模的 3D 赛车肉鸽：尾流换速、漂移蓄电与共享加速轨。24 张赛道、三车三城、六站锦标赛、24 种改件、永久研究和手机多指操作。",
+      file: "VelocityHeist.html",
+      category: "other",
+      date: "2026-10-01",
+      cover: "velocity-heist/lobby-art.png"
+    },
+    {
       id: "8",
       title: "回路暴走",
       icon: "fas fa-gamepad",

@@ -1,0 +1,518 @@
+{
+  "checks": 23,
+  "summaries": [
+    {
+      "style": "draft",
+      "seed": "maps-draft-0",
+      "city": 0,
+      "stage": 6,
+      "won": true,
+      "reason": "城市冠军",
+      "time": 226,
+      "records": [
+        [
+          1,
+          1,
+          32
+        ],
+        [
+          2,
+          1,
+          38
+        ],
+        [
+          3,
+          1,
+          35
+        ],
+        [
+          4,
+          1,
+          35
+        ],
+        [
+          5,
+          1,
+          33
+        ],
+        [
+          6,
+          1,
+          53
+        ]
+      ],
+      "hp": 125,
+      "build": {
+        "motor": 3,
+        "torque": 2,
+        "antenna": 3,
+        "bank": 4,
+        "clutch": 2,
+        "combo": 2,
+        "magnet": 2,
+        "regen": 1,
+        "relay": 1
+      },
+      "stats": {
+        "swaps": 17,
+        "drift": 329.4672136652305,
+        "rails": 14,
+        "ownRails": 17,
+        "otherRails": 45,
+        "overtakes": 39,
+        "nitros": 76,
+        "shields": 2,
+        "advanced": 1,
+        "collisions": 182,
+        "draftSeconds": 85.0400000000021,
+        "bestLap": 14.792292604524217
+      },
+      "ticks": 6130
+    },
+    {
+      "style": "rail",
+      "seed": "maps-rail-0",
+      "city": 0,
+      "stage": 6,
+      "won": true,
+      "reason": "城市冠军",
+      "time": 181,
+      "records": [
+        [
+          1,
+          1,
+          37
+        ],
+        [
+          2,
+          2,
+          27
+        ],
+        [
+          3,
+          1,
+          30
+        ],
+        [
+          4,
+          1,
+          25
+        ],
+        [
+          5,
+          1,
+          25
+        ],
+        [
+          6,
+          1,
+          38
+        ]
+      ],
+      "hp": 116,
+      "build": {
+        "length": 3,
+        "motor": 4,
+        "bank": 2,
+        "combo": 4,
+        "payout": 3,
+        "width": 2,
+        "private": 1,
+        "launch": 1,
+        "antenna": 1
+      },
+      "stats": {
+        "swaps": 11,
+        "drift": 3912.200767798996,
+        "rails": 16,
+        "ownRails": 31,
+        "otherRails": 80,
+        "overtakes": 38,
+        "nitros": 55,
+        "shields": 0,
+        "advanced": 1,
+        "collisions": 93,
+        "draftSeconds": 58.51999999999893,
+        "bestLap": 10.516260577713199
+      },
+      "ticks": 5017
+    },
+    {
+      "style": "drift",
+      "seed": "maps-drift-0",
+      "city": 0,
+      "stage": 6,
+      "won": true,
+      "reason": "城市冠军",
+      "time": 215,
+      "records": [
+        [
+          1,
+          1,
+          41
+        ],
+        [
+          2,
+          2,
+          37
+        ],
+        [
+          3,
+          1,
+          33
+        ],
+        [
+          4,
+          1,
+          33
+        ],
+        [
+          5,
+          1,
+          28
+        ],
+        [
+          6,
+          1,
+          43
+        ]
+      ],
+      "hp": 157,
+      "build": {
+        "magnet": 3,
+        "tires": 4,
+        "reclaim": 3,
+        "motor": 4,
+        "regen": 3,
+        "cooling": 4,
+        "coldFire": 1,
+        "combo": 4,
+        "slingshot": 1,
+        "length": 4,
+        "armour": 1
+      },
+      "stats": {
+        "swaps": 11,
+        "drift": 4128.420006293389,
+        "rails": 3,
+        "ownRails": 5,
+        "otherRails": 10,
+        "overtakes": 40,
+        "nitros": 128,
+        "shields": 2,
+        "advanced": 2,
+        "collisions": 146,
+        "draftSeconds": 66.35999999999918,
+        "bestLap": 12.028929563397323
+      },
+      "ticks": 5888
+    },
+    {
+      "style": "survive",
+      "seed": "maps-survive-1",
+      "city": 1,
+      "stage": 6,
+      "won": true,
+      "reason": "城市冠军",
+      "time": 229,
+      "records": [
+        [
+          1,
+          1,
+          40
+        ],
+        [
+          2,
+          2,
+          35
+        ],
+        [
+          3,
+          1,
+          38
+        ],
+        [
+          4,
+          1,
+          36
+        ],
+        [
+          5,
+          1,
+          34
+        ],
+        [
+          6,
+          1,
+          47
+        ]
+      ],
+      "hp": 263,
+      "build": {
+        "supply": 3,
+        "motor": 3,
+        "armour": 4,
+        "regen": 3,
+        "phoenix": 1,
+        "repair": 2
+      },
+      "stats": {
+        "swaps": 14,
+        "drift": 1384.4146371532386,
+        "rails": 2,
+        "ownRails": 6,
+        "otherRails": 3,
+        "overtakes": 37,
+        "nitros": 74,
+        "shields": 6,
+        "advanced": 1,
+        "collisions": 146,
+        "draftSeconds": 67.71999999999939,
+        "bestLap": 14.58853546846301
+      },
+      "ticks": 6217
+    },
+    {
+      "style": "drift",
+      "seed": "audit-drift",
+      "city": 0,
+      "stage": 10,
+      "won": false,
+      "reason": "模拟主动封存",
+      "time": 333,
+      "records": [
+        [
+          1,
+          1,
+          38
+        ],
+        [
+          2,
+          1,
+          36
+        ],
+        [
+          3,
+          2,
+          38
+        ],
+        [
+          4,
+          1,
+          34
+        ],
+        [
+          5,
+          1,
+          31
+        ],
+        [
+          6,
+          1,
+          46
+        ],
+        [
+          7,
+          1,
+          28
+        ],
+        [
+          8,
+          1,
+          31
+        ],
+        [
+          9,
+          1,
+          29
+        ],
+        [
+          10,
+          1,
+          22
+        ]
+      ],
+      "hp": 101,
+      "build": {
+        "tires": 4,
+        "reclaim": 3,
+        "cooling": 4,
+        "magnet": 3,
+        "combo": 4,
+        "coldFire": 1,
+        "regen": 3,
+        "payout": 3,
+        "supply": 3,
+        "bank": 4,
+        "motor": 4,
+        "slingshot": 1,
+        "toll": 1,
+        "launch": 4,
+        "torque": 4,
+        "length": 4,
+        "repair": 1
+      },
+      "stats": {
+        "swaps": 14,
+        "drift": 8741.13306158553,
+        "rails": 12,
+        "ownRails": 18,
+        "otherRails": 40,
+        "overtakes": 71,
+        "nitros": 217,
+        "shields": 2,
+        "advanced": 3,
+        "collisions": 196,
+        "draftSeconds": 91.64000000000313,
+        "bestLap": 9.609079858991738
+      },
+      "ticks": 9159
+    }
+  ],
+  "atlasResults": [
+    {
+      "map": "sky-loop",
+      "seed": "atlas-sky-loop-0",
+      "place": 3,
+      "time": 40.32006829482712
+    },
+    {
+      "map": "sky-chicane",
+      "seed": "atlas-sky-chicane-0",
+      "place": 1,
+      "time": 36.64536594161127
+    },
+    {
+      "map": "sky-triangle",
+      "seed": "atlas-sky-triangle-0",
+      "place": 1,
+      "time": 34.23525460658933
+    },
+    {
+      "map": "sky-diamond",
+      "seed": "atlas-sky-diamond-0",
+      "place": 1,
+      "time": 36.93991777310762
+    },
+    {
+      "map": "sky-kidney",
+      "seed": "atlas-sky-kidney-0",
+      "place": 1,
+      "time": 35.55390249963349
+    },
+    {
+      "map": "sky-step",
+      "seed": "atlas-sky-step-0",
+      "place": 1,
+      "time": 34.67087878400727
+    },
+    {
+      "map": "sky-trapezoid",
+      "seed": "atlas-sky-trapezoid-1",
+      "place": 1,
+      "time": 37.72828151522648
+    },
+    {
+      "map": "sky-u",
+      "seed": "atlas-sky-u-0",
+      "place": 1,
+      "time": 32.66471827191659
+    },
+    {
+      "map": "dock-square",
+      "seed": "atlas-dock-square-1",
+      "place": 1,
+      "time": 38.00009438209401
+    },
+    {
+      "map": "dock-channel",
+      "seed": "atlas-dock-channel-0",
+      "place": 1,
+      "time": 36.74450714346561
+    },
+    {
+      "map": "dock-hook",
+      "seed": "atlas-dock-hook-0",
+      "place": 1,
+      "time": 31.60731802654253
+    },
+    {
+      "map": "dock-double",
+      "seed": "atlas-dock-double-0",
+      "place": 1,
+      "time": 39.19524123523185
+    },
+    {
+      "map": "dock-crane",
+      "seed": "atlas-dock-crane-0",
+      "place": 1,
+      "time": 35.2363599937507
+    },
+    {
+      "map": "dock-cargo",
+      "seed": "atlas-dock-cargo-0",
+      "place": 1,
+      "time": 35.01530880211903
+    },
+    {
+      "map": "dock-basin",
+      "seed": "atlas-dock-basin-0",
+      "place": 1,
+      "time": 39.8600681379317
+    },
+    {
+      "map": "dock-lock",
+      "seed": "atlas-dock-lock-0",
+      "place": 1,
+      "time": 36.55434901730943
+    },
+    {
+      "map": "rain-ring",
+      "seed": "atlas-rain-ring-0",
+      "place": 1,
+      "time": 40.433566850310214
+    },
+    {
+      "map": "rain-boulevard",
+      "seed": "atlas-rain-boulevard-0",
+      "place": 1,
+      "time": 37.95109277453285
+    },
+    {
+      "map": "rain-crescent",
+      "seed": "atlas-rain-crescent-0",
+      "place": 1,
+      "time": 33.191448289587186
+    },
+    {
+      "map": "rain-grid",
+      "seed": "atlas-rain-grid-0",
+      "place": 1,
+      "time": 38.30511994246373
+    },
+    {
+      "map": "rain-zig",
+      "seed": "atlas-rain-zig-0",
+      "place": 1,
+      "time": 42.458084538485046
+    },
+    {
+      "map": "rain-park",
+      "seed": "atlas-rain-park-0",
+      "place": 1,
+      "time": 36.3915192705805
+    },
+    {
+      "map": "rain-viaduct",
+      "seed": "atlas-rain-viaduct-0",
+      "place": 1,
+      "time": 39.570008822476396
+    },
+    {
+      "map": "rain-harbor",
+      "seed": "atlas-rain-harbor-0",
+      "place": 1,
+      "time": 37.1738792428534
+    }
+  ]
+}
