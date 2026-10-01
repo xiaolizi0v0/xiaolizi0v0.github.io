@@ -8613,10 +8613,16 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
+      "eps": [
+        {
+          "title": "HD国语",
+          "url": "https://cdn.yzzy31-play.com/20261001/26892_daa845e7/3000k/hls/mixed.m3u8",
+          "watched": false
+        }
+      ],
       "watchedDate": "2026-10-01",
       "timestamp": 1790848923591,
-      "updatedAt": 1790848923591
+      "updatedAt": 1790849038953
     }
   ],
   "deleted": {
