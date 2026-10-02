@@ -1,0 +1,31 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),C=require('./commissions.js'),D=require('./reference-content.js');
+const raw=JSON.parse(fs.readFileSync(__dirname+'/full-earned-profile.json','utf8'));let now=raw.clock;const g=C.Game.restore(raw.state,{clock:()=>now});assert.ok(g);const run={clock:()=>now,wait(ms){now+=ms;g.tick()}},baseline={coins:g.s.coins,energy:g.s.energy,orders:g.s.stats.orders},held=new Map(),receipts=[];let produced=0,waited=0,energyBuys=0;
+function checkpoint(){const h=C.Game.restore(g.serialize(),{clock:run.clock});assert.ok(h,'genuine checkpoint valid');g.s=h.s}
+function wait(ms){run.wait(ms);waited+=ms}
+function remember(chain,level,fn){const old=held.get(chain);held.set(chain,old===undefined?level:Math.min(old,level));try{return fn()}finally{if(old===undefined)held.delete(chain);else held.set(chain,old)}}
+function match(i,chain,level){return i&&!i.web&&!i.bubble&&!i.used&&!i.path&&i.chain===chain&&i.level===level}
+function find(chain,level){return g.s.board.findIndex(i=>match(i,chain,level))}
+function tidyGoods(){let more=true;while(more){more=false;for(let n=0;n<g.unlocked;n++){const a=g.s.board[n];if(!a||a.web||a.bubble||a.used||a.path||C.producer(a)!==undefined||a.chain==='partsbox'||a.level>=C.itemDef(a).max||held.has(a.chain)&&a.level>=held.get(a.chain)||a.chain==='flower'&&a.level>=5)continue;const j=g.s.board.findIndex((b,k)=>k!==n&&k<g.unlocked&&match(b,a.chain,a.level));if(j>=0){assert.ok(g.move(n,j).ok);more=true;break}}}}
+function space(count=2){let guard=0;g.tick();for(let n=0;n<g.unlocked;n++)if(g.s.board[n]?.bubble)assert.ok(g.bubble(n,false));tidyGoods();while(g.s.board.slice(0,g.unlocked).filter(i=>!i).length<count){assert.ok(++guard<200);const n=g.s.board.findIndex(i=>i&&!i.web&&!i.bubble&&!i.used&&!i.path&&C.producer(i)===undefined&&i.chain!=='partsbox'&&!held.has(i.chain));if(n>=0){assert.ok(g.sell(n,true));continue}const p=g.s.board.findIndex(i=>i&&C.producer(i)!==undefined&&!i.web&&!i.bubble);assert.ok(p>=0,'space recoverable by actual producer parking');assert.ok(g.parkProducer(p))}}
+function activate(family){let best=g.producerItems(family).sort((a,b)=>b.level-a.level)[0];assert.ok(best,'earned active family '+family);let n=g.s.board.findIndex(i=>i?.uid===best.uid);if(n>=0)return n;space();n=g.s.inventory.findIndex(i=>i.uid===best.uid);if(n>=0)assert.ok(g.retrieve(n));else assert.ok(g.claimInbox(g.s.inbox.findIndex(i=>i.uid===best.uid)));return g.s.board.findIndex(i=>i?.uid===best.uid)}
+function ready(){g.tick();if(g.s.energy<2){if(g.buy('energy'))energyBuys++;else wait(40000)}}
+function produceFamily(family){let guard=0;for(;;){assert.ok(++guard<300);space();ready();const result=g.produce(activate(family));if(result.ok){produced++;return result.index}assert.match(result.reason,/储量|体力|棋盘已满/);if(!result.reason.includes('棋盘已满'))wait(20000)}}
+function acquire(chain,level){return remember(chain,level,()=>{let guard=0;while(find(chain,level)<0){assert.ok(++guard<60000,'real acquisition '+chain+':'+level);space();if(find(chain,level)>=0)break;const stored=g.s.inventory.findIndex(i=>match(i,chain,level));if(stored>=0){assert.ok(g.retrieve(stored));break}
+ if(chain==='cloth'){remember('needle',4,()=>{let n=g.s.board.findIndex(i=>i?.chain==='needle'&&i.level===4&&!i.web&&!i.bubble);if(n<0)n=acquire('needle',4);space();const r=g.produce(n);if(!r.ok)assert.match(r.reason,/棋盘已满/)});continue}
+ if(chain==='cord'){let n=acquire('needle',4);remember('needle',4,()=>{while(g.s.board[n]?.chain==='needle'){space();const r=g.produce(n);if(!r.ok)assert.match(r.reason,/棋盘已满/)}});continue}
+ if(chain==='petal'){remember('flower',5,()=>{let n=find('flower',5);if(n<0)n=acquire('flower',5);space();wait(45000);if(g.s.board[n]?.autoStock){const r=g.produce(n);if(!r.ok)assert.match(r.reason,/棋盘已满/)} });continue}
+ if(chain==='perfume'){const n=acquire('petal',4);space();const r=g.produce(n);if(!r.ok)assert.match(r.reason,/棋盘已满/);continue}
+ if(chain==='toy'){let n=g.s.board.findIndex(i=>i?.chain==='glass'&&i.level===5&&!i.web&&!i.bubble&&!i.path);if(n<0)n=acquire('glass',5);remember('glass',5,()=>{space();const r=g.produce(n);if(!r.ok)assert.match(r.reason,/棋盘已满/)});continue}
+ const family=chain==='needle'?0:D.byChain[chain].generator;assert.ok(Number.isInteger(family));g.setDouble(level>1);produceFamily(family);
+ }return find(chain,level)})}
+
+for(let tier=0;tier<3;tier++){
+ g.tick();if(g.commissionStatus().daily>=3)wait(86400000);
+ const offer=g.commissionOffers()[tier];assert.ok(offer);assert.ok(g.acceptCommission(offer.id));checkpoint();
+ const [a,b]=offer.requirements;remember(a.chain,a.level,()=>remember(b.chain,b.level,()=>{acquire(a.chain,a.level);acquire(b.chain,b.level)}));assert.ok(g.canDeliver(offer.requirements));checkpoint();
+ if(tier===0)fs.writeFileSync(__dirname+'/commission-ready-profile.json',JSON.stringify({provenance:'Normal earned full profile plus actual production/merges and legitimate contract acceptance. Before first master delivery.',clock:now,state:g.serialize()},null,2));
+ const counts=offer.requirements.map(r=>g.owned(r)),coins=g.s.coins;assert.ok(g.deliverCommission(offer.id));assert.equal(g.deliverCommission(offer.id),false);assert.equal(g.s.coins,coins+offer.reward.coins);offer.requirements.forEach((r,k)=>assert.equal(g.owned(r),counts[k]-1));checkpoint();receipts.push({tier,requirements:offer.requirements,reward:offer.reward,completed:g.commissionStatus().completed});console.log('EARNED commission tier '+tier+' '+offer.requirements.map(r=>r.chain+':'+r.level).join(' + '));
+}
+assert.equal(g.commissionStatus().daily,3);assert.deepEqual(g.commissionOffers(),[]);
+const result={checked:new Date().toISOString(),source:raw.provenance,baseline,receipts,produced,waitedSeconds:waited/1000,legalEnergyPurchases:energyBuys,coins:g.s.coins,completed:g.commissionStatus().completed,daily:g.commissionStatus().daily,scope:'Actual existing earned resources and ordinary production only, no injected items or resources. Virtual waiting is not human playtime.'};fs.writeFileSync(__dirname+'/commission-playthrough-results.json',JSON.stringify(result,null,2));fs.writeFileSync(__dirname+'/commission-earned-profile.json',JSON.stringify({provenance:result.scope,clock:now,state:g.serialize()},null,2));console.log(JSON.stringify(result));

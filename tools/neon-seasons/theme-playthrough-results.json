@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "source": "earned 72-renovation campaign plus normal first-theme completion",
+  "collections": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "additionalRounds": [
+    {
+      "theme": 1,
+      "name": "月光潮汐舞台",
+      "nodes": 12,
+      "dig": 12,
+      "dinner": 10,
+      "fishScore": 600,
+      "additionalProductions": 2192
+    },
+    {
+      "theme": 2,
+      "name": "枫叶邮局小街",
+      "nodes": 12,
+      "dig": 12,
+      "dinner": 10,
+      "fishScore": 600,
+      "additionalProductions": 2124
+    },
+    {
+      "theme": 3,
+      "name": "星雪围炉夜",
+      "nodes": 12,
+      "dig": 12,
+      "dinner": 10,
+      "fishScore": 600,
+      "additionalProductions": 2200
+    }
+  ],
+  "additionalProductions": 6516,
+  "recoveryWaitSeconds": 170940,
+  "boughtEnergy": 0,
+  "mapObjectVariants": 96,
+  "nextTheme": 0
+}

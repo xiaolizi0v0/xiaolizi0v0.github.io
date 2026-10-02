@@ -1,0 +1,23 @@
+{
+  "reason": "Built-in imagegen returned usage_limit_reached for eight atlases. These story slots use existing generated illustrations as shared memories until their independent art is available. No SVG substitutes or copied reference-game assets.",
+  "memory": {
+    "8": ["district-3", 1], "9": ["district-5", 2],
+    "10": ["activity-2", 2], "11": ["district-3", 3],
+    "12": ["district-8", 0], "13": ["activity-6", 3],
+    "14": ["district-10", 3], "15": ["district-11", 2],
+    "16": ["district-12", 0], "17": ["district-12", 1],
+    "18": ["district-7", 3], "19": ["activity-12", 1],
+    "20": ["activity-13", 3], "21": ["activity-9", 0],
+    "22": ["activity-14", 3], "23": ["prologue-endings", 3]
+  },
+  "event": {
+    "32": ["activity-13", 3], "33": ["activity-6", 1],
+    "34": ["activity-5", 2], "35": ["activity-3", 3],
+    "36": ["island-1-0", 0], "37": ["activity-4", 2],
+    "38": ["activity-12", 1], "39": ["district-13", 1],
+    "40": ["activity-12", 1], "41": ["district-14", 3],
+    "42": ["district-13", 0], "43": ["activity-14", 3],
+    "44": ["district-13", 2], "45": ["island-0-2", 1],
+    "46": ["island-1-2", 1], "47": ["activity-4", 1]
+  }
+}

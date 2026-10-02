@@ -24,3 +24,65 @@
 @media(max-width:699px){.topbar{padding-right:100px;min-height:98px;align-items:flex-start}.top-actions{position:absolute;right:12px;top:14px;display:grid;grid-template-columns:repeat(2,44px);gap:4px}.top-actions button{width:44px;height:44px}.waveinfo{position:absolute;left:12px;top:76px;width:calc(100% - 120px);display:block;text-align:left}.waveinfo small{margin-top:2px}.waveinfo .bar{display:none}.exp{margin-top:4px}#objective{top:144px}#speedometer{top:139px}#preview{top:185px}.bottom-readout{left:12px;transform:none;bottom:12px}#auto{min-height:44px;min-width:120px}#tutorial{top:27%}}
 @media(min-width:700px) and (max-height:500px){.lobby-nav{position:relative;bottom:auto;left:0;right:0;padding:0 6vw 42px}.lobby-main{padding-bottom:10px}.lobby-nav button{min-height:44px}#car-info{font-size:10px;min-height:34px;line-height:1.55}#city-info{font-size:9px;min-height:24px}.top-actions button{width:44px;height:44px}}
 @media(max-width:359px){#auto{width:110px;min-width:110px}}
+
+/* Flight-style racing controls: unscaled touch targets in both orientations. */
+#hud{--race-blue:#50c8ff;--race-glass:#0c2036b8}
+#hud .topbar{background:linear-gradient(#081526cc,transparent);border-bottom:0}
+#hud .top-actions button{border-radius:12px;background:var(--race-glass);border:1px solid #a1e7ff55}
+#hud #objective b,#hud #speedometer b{color:#fff;text-shadow:0 2px 12px #36b9ff99}
+#hud #objective{background:transparent}#hud #speedometer{width:142px}#hud #speedometer b{font-size:52px}
+#hud #actions{width:232px;height:208px;right:24px;bottom:84px;transform:none;pointer-events:none}
+#hud .action{pointer-events:auto;border:1px solid #b5e8ff8c;border-radius:50%;background:linear-gradient(145deg,#255d829e,#0b274ce0);color:#eafaff;box-shadow:inset 0 0 18px #45a9ff30,0 4px 16px #0004;touch-action:none}
+#hud .action span{font-size:11px}#hud .action small{font-size:9px;color:#c1e7ff}#hud .action b{font-size:28px}
+#hud .action.drift{right:0;bottom:0;width:96px;height:96px;border:2px solid #75d8ff;font-size:13px;background:linear-gradient(145deg,#3782bea0,#093458de)}
+#hud .action.small{right:114px;bottom:2px;width:78px;height:78px;border:2px solid #70ddff}
+#hud .action.nitro{right:12px;bottom:119px;width:78px;height:78px;border:2px solid #b6dfff;background:linear-gradient(145deg,#447bc3ba,#23418cdd)}
+#hud .action.ready{background:linear-gradient(145deg,#72e5ffb0,#258df8dd);box-shadow:0 0 22px #2bcaff88,inset 0 0 14px #fff6;color:#fff}
+#hud .action.held{background:#6ae6ff88;box-shadow:0 0 22px #2bcaff88}
+#hud .action.swap,#hud .action.rail,#hud .action.shield,#hud .action.repair{position:fixed;bottom:318px;top:auto;width:52px;height:52px;border-radius:14px}
+#hud .action.swap{right:198px}#hud .action.rail{right:140px}#hud .action.shield{right:82px}#hud .action.repair{right:24px}
+#hud .action.swap b,#hud .action.rail b,#hud .action.shield b,#hud .action.repair b{font-size:18px}
+#hud .action.swap small,#hud .action.rail small,#hud .action.shield small,#hud .action.repair small{font-size:8px}
+#hud .action.brake{position:fixed;left:126px;right:auto;bottom:182px;width:52px;height:52px}
+#steering{position:absolute;left:24px;bottom:92px;display:flex;gap:10px;touch-action:none;margin-bottom:env(safe-area-inset-bottom)}
+#steering button{width:68px;height:68px;border-radius:19px;border:1px solid #acdbff8a;background:#173c64bb;color:#ecfaff;font-size:28px;touch-action:none}
+#steering button.held{background:#45c8ff99;box-shadow:0 0 18px #45c8ff66}
+html[data-steering=buttons] #joystick{display:none}html[data-steering=joystick] #steering{display:none}
+html[data-steering=joystick] #hud .action.brake{left:174px}
+#hud #joystick{bottom:92px;left:24px}#hud #auto{position:fixed;left:24px;bottom:260px;min-height:44px;background:var(--race-glass);border-radius:10px;color:#aee5ff}
+#nitro-gauge{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:min(380px,calc(100% - 32px));height:40px;display:flex;align-items:center;gap:10px;border-radius:14px;background:#0c2035cd;padding:8px 12px;border:1px solid #6acaff55;box-sizing:border-box}
+.nitro-slots{display:flex;gap:5px}.nitro-slots i{display:block;width:16px;height:25px;border-radius:5px;border:1px solid #7dbbff88;background:#151f34;transform:skew(-10deg)}.nitro-slots i.filled{background:linear-gradient(#dff9ff,#258dfb);box-shadow:0 0 10px #409eff77}
+.gas-meter{height:7px;flex:1;background:#a9d8ff20;border-radius:8px;overflow:hidden}.gas-meter i{display:block;height:100%;background:linear-gradient(90deg,#4976ff,#64e2ff);box-shadow:0 0 9px #64e2ff}
+#gas-label{font-size:10px;white-space:nowrap;color:#c9eeff}#boost-readout{position:absolute;left:50%;top:32%;transform:translateX(-50%) skew(-7deg);font-size:24px;font-weight:900;letter-spacing:2px;color:#91e7ff;text-shadow:0 0 18px #139bff,2px 2px #071b32;pointer-events:none}
+#hud #countdown{font-size:76px;color:#fff;white-space:nowrap;text-shadow:0 0 22px #38b7ff}#hud #countdown.start-window{color:#a3faff}
+#hud .bottom-readout{pointer-events:none;position:static;transform:none}#hud #auto{pointer-events:auto}#hud #preview{position:absolute;left:20px;top:174px;right:auto;max-width:430px;background:#0a1c30b0;border-radius:8px;padding:6px 10px;font-size:10px}
+#hud .keyboard-hint{display:none}
+@media(max-width:699px){
+ #hud #actions{width:180px;height:178px;right:10px;bottom:80px;transform:none}
+ #hud .action.drift{width:84px;height:84px;right:0;bottom:0}#hud .action.small{width:72px;height:72px;right:94px;bottom:2px}#hud .action.nitro{width:72px;height:72px;right:0;bottom:101px}
+ #hud .action.swap,#hud .action.rail,#hud .action.shield,#hud .action.repair{width:44px;height:44px;bottom:auto;top:284px}
+ #hud .action.swap{right:60px}#hud .action.rail{right:10px}#hud .action.shield{right:60px;top:334px}#hud .action.repair{right:10px;top:334px}
+ #hud .action.swap b,#hud .action.rail b,#hud .action.shield b,#hud .action.repair b{font-size:15px}#hud .action.swap span,#hud .action.rail span,#hud .action.shield span,#hud .action.repair span{font-size:9px}
+ #hud .action.brake{left:72px;bottom:159px;width:50px;height:50px}
+ #steering{left:12px;bottom:94px;gap:8px}#steering button{width:51px;height:56px;border-radius:16px;font-size:25px}
+ #hud #joystick{left:12px;bottom:94px;width:104px;height:104px}#hud #joystick #stick{left:28px;top:28px}#hud #joystick span{display:none}
+ html[data-steering=joystick] #hud .action.brake{left:128px;bottom:184px}
+ #hud #auto{left:12px;bottom:218px;width:110px;min-width:110px;font-size:10px}
+ #hud #speedometer{width:110px;top:136px}#hud #speedometer b{font-size:40px}#hud #preview{left:12px;top:185px;font-size:9px;max-width:calc(100% - 24px)}#boost-readout{left:12px;top:226px;transform:skew(-7deg);font-size:16px;letter-spacing:1px}
+ #nitro-gauge{bottom:20px;height:40px;width:calc(100% - 24px);gap:8px}#gas-label{font-size:9px}#hud #countdown{font-size:34px}#hud #tutorial{top:274px;left:12px;right:120px;width:auto;font-size:10px;padding:10px 12px;line-height:1.55}#hud #tutorial b{font-size:12px}
+}
+@media(max-width:699px) and (max-height:720px){#hud .action.swap,#hud .action.rail,#hud .action.shield,#hud .action.repair{top:auto;bottom:270px}#hud .action.swap{right:160px}#hud .action.rail{right:110px}#hud .action.shield{right:60px}#hud .action.repair{right:10px}#hud #tutorial{top:220px;right:115px;max-height:100px;overflow:auto}}
+@media(max-height:500px){
+ #hud #actions{width:220px;height:164px;right:18px;bottom:62px;transform:none}
+ #hud .action.drift{width:84px;height:84px;right:0;bottom:0}#hud .action.small{width:68px;height:68px;right:100px;bottom:0}#hud .action.nitro{width:66px;height:66px;right:0;bottom:96px}
+ #hud .action.swap,#hud .action.rail,#hud .action.shield,#hud .action.repair{bottom:72px;top:auto;left:auto;width:44px;height:44px}
+ #hud .action.swap{right:224px;bottom:72px}#hud .action.rail{right:224px;bottom:124px}#hud .action.shield{right:276px;bottom:72px}#hud .action.repair{right:276px;bottom:124px}
+ #hud .action.brake{left:162px;bottom:80px;width:48px;height:48px}
+ #steering{left:20px;bottom:70px;gap:8px}#steering button{width:56px;height:56px}#hud #joystick{left:20px;bottom:65px;width:104px;height:104px}#hud #auto{left:20px;bottom:14px;width:110px;min-width:110px}
+ html[data-steering=joystick] #hud .action.brake{left:162px;bottom:80px}
+ #nitro-gauge{width:320px;bottom:12px;height:36px}#boost-readout{top:32%;left:50%;transform:translateX(-50%) skew(-7deg);font-size:20px}#hud #tutorial{top:105px;left:150px;right:235px;width:auto;max-height:108px;font-size:10px;padding:8px;line-height:1.4}#hud #tutorial b{font-size:11px}#hud #countdown{font-size:44px}#hud #speedometer{top:88px;width:105px}#hud #speedometer b{font-size:34px}#hud #preview{top:110px;left:20px;max-width:240px}
+}
+
+.classic-entry{border-top:1px solid #ffffff26;margin-top:14px;padding-top:12px}.classic-entry>span{color:#c1ff35;font-size:10px;letter-spacing:2px}.classic-entry>p{font-size:12px;color:#b6becd;margin:7px 0 10px}.classic-entry .text-button{margin-top:5px}
+html[data-race-mode=sprint] #hud .vitals,html[data-race-mode=sprint] #hud .exp,html[data-race-mode=sprint] #hud #bag,html[data-race-mode=sprint] #hud .action.swap,html[data-race-mode=sprint] #hud .action.rail,html[data-race-mode=sprint] #hud .action.shield,html[data-race-mode=sprint] #hud .action.repair,html[data-race-mode=sprint] #hud .heat,html[data-race-mode=sprint] #hud #heat-label{display:none}
+html[data-race-mode=sprint] #hud .waveinfo{flex:1}html[data-race-mode=sprint] #hud .keyboard-hint{font-size:0}html[data-race-mode=sprint] #hud .keyboard-hint:after{content:'A/D 转向　SHIFT 漂移　F 小喷　SPACE 氮气　P 暂停';font-size:11px}

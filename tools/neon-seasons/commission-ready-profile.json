@@ -1,0 +1,3516 @@
+{
+  "provenance": "Normal earned full profile plus actual production/merges and legitimate contract acceptance. Before first master delivery.",
+  "clock": 1798429460002,
+  "state": {
+    "version": 2,
+    "seed": "72-renovations",
+    "rng": 3545207974,
+    "created": 1790812800000,
+    "stamp": 1798429460002,
+    "energyStamp": 1798429460002,
+    "uid": 238146,
+    "energy": 3449,
+    "coins": 417761,
+    "gems": 287,
+    "stars": 0,
+    "xp": 1268,
+    "level": 95,
+    "progress": 64,
+    "ready": false,
+    "weather": 0,
+    "board": [
+      {
+        "uid": 229632,
+        "chain": "producer14",
+        "level": 7,
+        "web": false,
+        "charge": 2,
+        "chargeStamp": 1798429460000
+      },
+      {
+        "uid": 227910,
+        "chain": "producer4",
+        "level": 7,
+        "web": false,
+        "charge": 36,
+        "chargeStamp": 1798429460002
+      },
+      {
+        "uid": 238114,
+        "chain": "star",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 238113,
+        "chain": "star",
+        "level": 3,
+        "web": false
+      },
+      null,
+      null,
+      {
+        "uid": 238103,
+        "chain": "star",
+        "level": 5,
+        "web": false
+      },
+      {
+        "uid": 234632,
+        "chain": "producer15",
+        "level": 7,
+        "web": false,
+        "charge": 36,
+        "chargeStamp": 1798429460002
+      },
+      {
+        "uid": 236041,
+        "chain": "petal",
+        "level": 1,
+        "web": false
+      },
+      null,
+      {
+        "uid": 236018,
+        "chain": "toy",
+        "level": 8,
+        "web": false
+      },
+      null,
+      {
+        "uid": 228735,
+        "chain": "soup",
+        "level": 6,
+        "web": false
+      },
+      {
+        "uid": 219962,
+        "chain": "pan",
+        "level": 6,
+        "web": false
+      },
+      null,
+      {
+        "uid": 226010,
+        "chain": "ceramic",
+        "level": 6,
+        "web": false
+      },
+      {
+        "uid": 220964,
+        "chain": "circuit",
+        "level": 6,
+        "web": false
+      },
+      {
+        "uid": 234226,
+        "chain": "paper",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 234100,
+        "chain": "fire",
+        "level": 7,
+        "web": false
+      },
+      {
+        "uid": 234152,
+        "chain": "shell",
+        "level": 7,
+        "web": false
+      },
+      {
+        "uid": 227577,
+        "chain": "signal",
+        "level": 7,
+        "web": false
+      },
+      {
+        "uid": 228422,
+        "chain": "petal",
+        "level": 4,
+        "web": false,
+        "left": 2,
+        "used": true
+      },
+      {
+        "uid": 224161,
+        "chain": "paper",
+        "level": 8,
+        "web": false
+      },
+      {
+        "uid": 221256,
+        "chain": "ink",
+        "level": 6,
+        "web": false
+      },
+      {
+        "uid": 220675,
+        "chain": "wood",
+        "level": 6,
+        "web": false
+      },
+      {
+        "uid": 223444,
+        "chain": "cord",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 221041,
+        "chain": "solar",
+        "level": 6,
+        "web": false
+      },
+      {
+        "uid": 226286,
+        "chain": "lamp",
+        "level": 5,
+        "web": false
+      },
+      {
+        "uid": 213901,
+        "chain": "shell",
+        "level": 6,
+        "web": false,
+        "path": "message",
+        "left": 2,
+        "used": true,
+        "nextAt": 1796328805000
+      },
+      null,
+      {
+        "uid": 219083,
+        "chain": "scarf",
+        "level": 6,
+        "web": false,
+        "path": "warm",
+        "left": 2,
+        "used": true,
+        "nextAt": 1796451310000
+      },
+      {
+        "uid": 214731,
+        "chain": "vinyl",
+        "level": 6,
+        "web": false,
+        "path": "ticket",
+        "left": 2,
+        "used": true,
+        "nextAt": 1796347110000
+      },
+      {
+        "uid": 215167,
+        "chain": "rope",
+        "level": 6,
+        "web": false,
+        "path": "chime",
+        "left": 2,
+        "used": true,
+        "nextAt": 1796352055000
+      },
+      {
+        "uid": 216903,
+        "chain": "book",
+        "level": 6,
+        "web": false,
+        "path": "voice",
+        "left": 2,
+        "used": true,
+        "nextAt": 1796400660000
+      },
+      {
+        "uid": 217318,
+        "chain": "photo",
+        "level": 6,
+        "web": false,
+        "path": "memory",
+        "left": 2,
+        "used": true,
+        "nextAt": 1796401705000
+      },
+      {
+        "uid": 222242,
+        "chain": "coffee",
+        "level": 6,
+        "web": false
+      },
+      {
+        "uid": 219922,
+        "chain": "clock",
+        "level": 6,
+        "web": false,
+        "path": "key",
+        "left": 2,
+        "used": true,
+        "nextAt": 1796469915000
+      },
+      {
+        "uid": 1719,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 1499,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 3051,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 3017,
+        "chain": "cord",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 15994,
+        "chain": "cord",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 224374,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 4476,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 42915,
+        "chain": "tea",
+        "level": 8,
+        "web": false
+      },
+      {
+        "uid": 16574,
+        "chain": "tool",
+        "level": 11,
+        "web": false
+      },
+      {
+        "uid": 2336,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 238145,
+        "chain": "lens",
+        "level": 8,
+        "web": false
+      },
+      {
+        "uid": 32741,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      null,
+      {
+        "uid": 2728,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 3024,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 2799,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 2916,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 3821,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 4293,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 3271,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 3544,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 48101,
+        "chain": "coffee",
+        "level": 10,
+        "web": false
+      },
+      {
+        "uid": 66602,
+        "chain": "rope",
+        "level": 10,
+        "web": false
+      },
+      {
+        "uid": 224167,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      },
+      null,
+      {
+        "uid": 37070,
+        "chain": "petal",
+        "level": 4,
+        "web": false
+      }
+    ],
+    "inventory": [
+      {
+        "uid": 223113,
+        "chain": "flower",
+        "level": 5,
+        "web": false,
+        "autoStock": 3,
+        "autoStamp": 1798429460002
+      },
+      {
+        "uid": 213071,
+        "chain": "flower",
+        "level": 6,
+        "web": false,
+        "autoStock": 0,
+        "autoStamp": 1796315150000,
+        "path": "bloomlight",
+        "left": 2,
+        "used": true,
+        "nextAt": 1796315180000
+      },
+      {
+        "uid": 43480,
+        "chain": "flower",
+        "level": 7,
+        "web": false,
+        "autoStock": 3,
+        "autoStamp": 1798429460002
+      },
+      {
+        "uid": 43182,
+        "chain": "flower",
+        "level": 10,
+        "web": false,
+        "autoStock": 3,
+        "autoStamp": 1798429460002
+      },
+      {
+        "uid": 37637,
+        "chain": "flower",
+        "level": 11,
+        "web": false,
+        "autoStock": 3,
+        "autoStamp": 1798429460002
+      }
+    ],
+    "capacity": 36,
+    "inbox": [
+      {
+        "uid": 9001,
+        "chain": "producer0",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 8998,
+        "chain": "producer0",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1796469900000
+      },
+      {
+        "uid": 8966,
+        "chain": "producer0",
+        "level": 6,
+        "web": false,
+        "charge": 26,
+        "chargeStamp": 1796469900000
+      },
+      {
+        "uid": 32395,
+        "chain": "producer1",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 53854,
+        "chain": "producer3",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 53851,
+        "chain": "producer3",
+        "level": 3,
+        "web": false
+      },
+      {
+        "uid": 220088,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 221102,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 221395,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 221437,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 221978,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 222019,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 222184,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 222207,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 222263,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 222534,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 222578,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 222632,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 222906,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 222930,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 223197,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 223232,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 223507,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 223614,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 223847,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 224024,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 224274,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 224501,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 224643,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 224664,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 224819,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 224933,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 225082,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 225170,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 225193,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 225259,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 225337,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 225426,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 225485,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 225525,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 225576,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 225697,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 225765,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 225911,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 225981,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 226231,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 226249,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 226266,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 226296,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 226376,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 226501,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 226642,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 226774,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 226885,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 227363,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 227443,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 227481,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 227572,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 227631,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 227658,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 227704,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 227735,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 227786,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 227819,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 227857,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 227935,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 227967,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 228006,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 228080,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 228225,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 228256,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 228448,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 228512,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 228746,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 228827,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 228863,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 228920,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 228974,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 229017,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 229048,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 229100,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 229178,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 229277,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 229313,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 229354,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 229385,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 229444,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 229477,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 229496,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 229532,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 229560,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 229824,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 230060,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 14
+      },
+      {
+        "uid": 230098,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 230227,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 230290,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 230311,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 230467,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 230508,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 230555,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 230601,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 230631,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 230665,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 230701,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 230719,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 14
+      },
+      {
+        "uid": 230774,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 230964,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 231019,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 231095,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 231162,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 231189,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 231217,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 231237,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 231404,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 231512,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 231567,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 231596,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 231644,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 231664,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 231690,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 14
+      },
+      {
+        "uid": 231722,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 231750,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 231801,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 231838,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 231936,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 231985,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 232009,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 232077,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 232295,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 232318,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 232365,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 232496,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 232528,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 232606,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 232676,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 232703,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 232791,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 232804,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 232825,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 232875,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 232942,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 232983,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 233006,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 233037,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 233093,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 233105,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 233155,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 233218,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 233276,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 233301,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 233486,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 233538,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 233597,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 233643,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 233683,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 233703,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 233735,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 233795,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 233857,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 233879,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 32392,
+        "chain": "producer1",
+        "level": 7,
+        "web": false,
+        "charge": 34,
+        "chargeStamp": 1796659280000
+      },
+      {
+        "uid": 233902,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 233940,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 221026,
+        "chain": "producer2",
+        "level": 7,
+        "web": false,
+        "charge": 29,
+        "chargeStamp": 1796659280000
+      },
+      {
+        "uid": 233953,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 227133,
+        "chain": "producer11",
+        "level": 7,
+        "web": false,
+        "charge": 23,
+        "chargeStamp": 1796659280000
+      },
+      {
+        "uid": 234057,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 234092,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 224368,
+        "chain": "producer13",
+        "level": 7,
+        "web": false,
+        "charge": 27,
+        "chargeStamp": 1796659560000
+      },
+      {
+        "uid": 234128,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 226170,
+        "chain": "producer12",
+        "level": 7,
+        "web": false,
+        "charge": 33,
+        "chargeStamp": 1796659560000
+      },
+      {
+        "uid": 223289,
+        "chain": "producer8",
+        "level": 7,
+        "web": false,
+        "charge": 35,
+        "chargeStamp": 1796660280000
+      },
+      {
+        "uid": 234269,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 234543,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 220998,
+        "chain": "producer5",
+        "level": 7,
+        "web": false,
+        "charge": 35,
+        "chargeStamp": 1796665600000
+      },
+      {
+        "uid": 227191,
+        "chain": "producer9",
+        "level": 7,
+        "web": false,
+        "charge": 35,
+        "chargeStamp": 1796666160000
+      },
+      {
+        "uid": 53844,
+        "chain": "producer3",
+        "level": 7,
+        "web": false,
+        "charge": 35,
+        "chargeStamp": 1796666240000
+      },
+      {
+        "uid": 234584,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 32268,
+        "chain": "producer1",
+        "level": 7,
+        "web": false,
+        "charge": 35,
+        "chargeStamp": 1796666320000
+      },
+      {
+        "uid": 225882,
+        "chain": "producer7",
+        "level": 7,
+        "web": false,
+        "charge": 32,
+        "chargeStamp": 1796666320000
+      },
+      {
+        "uid": 223747,
+        "chain": "producer6",
+        "level": 7,
+        "web": false,
+        "charge": 31,
+        "chargeStamp": 1796666320000
+      },
+      {
+        "uid": 230374,
+        "chain": "producer10",
+        "level": 7,
+        "web": false,
+        "charge": 31,
+        "chargeStamp": 1796666320000
+      },
+      {
+        "uid": 8905,
+        "chain": "producer0",
+        "level": 7,
+        "web": false,
+        "charge": 35,
+        "chargeStamp": 1796666400000
+      },
+      {
+        "uid": 236035,
+        "chain": "tool",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 236036,
+        "chain": "coffee",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 236037,
+        "chain": "rope",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 236038,
+        "chain": "soda",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 236039,
+        "chain": "paper",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 236040,
+        "chain": "photo",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 236042,
+        "chain": "tool",
+        "level": 4,
+        "web": false
+      }
+    ],
+    "tools": {
+      "scissors": 49,
+      "joker": 21,
+      "hourglass": 3,
+      "packs": 592
+    },
+    "generators": [
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1798429460002,
+        "focus": null
+      }
+    ],
+    "neighbors": [
+      {
+        "id": "order-234621",
+        "slot": 0,
+        "npc": 2,
+        "requirements": [
+          {
+            "chain": "scarf",
+            "level": 4,
+            "qty": 1
+          }
+        ],
+        "reward": {
+          "coins": 81,
+          "xp": 30
+        },
+        "title": "熟客的日常"
+      },
+      {
+        "id": "order-22",
+        "slot": 1,
+        "npc": 1,
+        "requirements": [
+          {
+            "chain": "tool",
+            "level": 2,
+            "qty": 1
+          }
+        ],
+        "reward": {
+          "coins": 39,
+          "xp": 24
+        },
+        "title": "街区预约单"
+      },
+      {
+        "id": "order-23",
+        "slot": 2,
+        "npc": 4,
+        "requirements": [
+          {
+            "chain": "tool",
+            "level": 3,
+            "qty": 1
+          }
+        ],
+        "reward": {
+          "coins": 53,
+          "xp": 27
+        },
+        "title": "认真做的礼物"
+      }
+    ],
+    "rerollAt": [
+      0,
+      0,
+      0
+    ],
+    "decor": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "decorOwned": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0
+      ]
+    ],
+    "discovered": [
+      "producer0:5",
+      "producer0:1",
+      "tool:1",
+      "wood:1",
+      "flower:1",
+      "tool:2",
+      "wood:2",
+      "flower:2",
+      "tool:3",
+      "needle:1",
+      "tool:4",
+      "needle:2",
+      "wood:3",
+      "tool:5",
+      "needle:3",
+      "wood:4",
+      "tool:6",
+      "needle:4",
+      "cloth:1",
+      "cloth:2",
+      "cloth:3",
+      "cord:1",
+      "wood:5",
+      "wood:6",
+      "tool:7",
+      "producer1:5",
+      "fruit:1",
+      "flower:3",
+      "fruit:2",
+      "tea:1",
+      "tea:2",
+      "flower:4",
+      "fruit:3",
+      "tea:3",
+      "flower:5",
+      "petal:1",
+      "tea:4",
+      "petal:2",
+      "flower:6",
+      "petal:3",
+      "petal:4",
+      "tea:5",
+      "cord:2",
+      "tool:8",
+      "flower:7",
+      "tea:6",
+      "flower:8",
+      "cord:3",
+      "wood:7",
+      "tool:9",
+      "tea:7",
+      "flower:9",
+      "tea:8",
+      "producer2:5",
+      "coffee:2",
+      "cord:4",
+      "coffee:3",
+      "pastry:3",
+      "flower:10",
+      "coffee:4",
+      "pastry:2",
+      "coffee:5",
+      "producer3:5",
+      "circuit:2",
+      "circuit:3",
+      "circuit:4",
+      "vinyl:2",
+      "circuit:5",
+      "vinyl:3",
+      "circuit:6",
+      "vinyl:4",
+      "pastry:4",
+      "producer4:5",
+      "rope:2",
+      "rope:3",
+      "glass:2",
+      "shell:2",
+      "shell:3",
+      "rope:4",
+      "rope:5",
+      "glass:3",
+      "shell:4",
+      "circuit:7",
+      "producer5:5",
+      "banner:2",
+      "music:2",
+      "music:3",
+      "music:4",
+      "rope:6",
+      "glass:4",
+      "lamp:2",
+      "lamp:3",
+      "coffee:6",
+      "banner:3",
+      "producer6:5",
+      "soda:2",
+      "soda:3",
+      "float:2",
+      "float:3",
+      "float:4",
+      "lamp:4",
+      "soda:4",
+      "rope:7",
+      "banner:4",
+      "cloth:4",
+      "producer7:5",
+      "solar:2",
+      "fan:2",
+      "solar:3",
+      "solar:4",
+      "solar:5",
+      "fan:3",
+      "solar:6",
+      "fan:4",
+      "producer8:5",
+      "paper:2",
+      "paper:3",
+      "paper:4",
+      "wood:8",
+      "ink:2",
+      "soda:5",
+      "book:2",
+      "book:3",
+      "book:4",
+      "producer9:5",
+      "pan:2",
+      "pan:3",
+      "table:2",
+      "soup:2",
+      "soup:3",
+      "table:3",
+      "pan:4",
+      "table:4",
+      "pan:5",
+      "ink:3",
+      "soup:4",
+      "producer10:5",
+      "photo:2",
+      "photo:3",
+      "photo:4",
+      "display:2",
+      "producer11:5",
+      "signal:2",
+      "fruit:4",
+      "signal:3",
+      "map:2",
+      "map:3",
+      "signal:4",
+      "producer12:5",
+      "gear:2",
+      "clock:2",
+      "scarf:2",
+      "ink:4",
+      "producer13:5",
+      "fire:2",
+      "fire:3",
+      "ceramic:2",
+      "snow:2",
+      "snow:3",
+      "ceramic:3",
+      "fire:4",
+      "clock:3",
+      "gear:3",
+      "gear:4",
+      "scarf:3",
+      "scarf:4",
+      "clock:4",
+      "display:3",
+      "display:4",
+      "ceramic:4",
+      "producer14:5",
+      "lens:2",
+      "star:2",
+      "lens:3",
+      "lens:4",
+      "producer15:5",
+      "battery:2",
+      "beacon:2",
+      "beacon:3",
+      "beacon:4",
+      "partsbox:1",
+      "producer0:2",
+      "producer0:3",
+      "producer0:4",
+      "producer0:6",
+      "partsbox:2",
+      "producer0:7",
+      "tool:10",
+      "tool:11",
+      "wood:9",
+      "tool:12",
+      "wood:10",
+      "wood:11",
+      "wood:12",
+      "cloth:5",
+      "cloth:6",
+      "cloth:7",
+      "cloth:8",
+      "cloth:9",
+      "cloth:10",
+      "cloth:11",
+      "cloth:12",
+      "producer1:1",
+      "producer1:2",
+      "producer1:3",
+      "producer1:4",
+      "producer1:6",
+      "producer1:7",
+      "tea:9",
+      "fruit:5",
+      "fruit:6",
+      "flower:11",
+      "fruit:7",
+      "flower:12",
+      "tea:10",
+      "tea:11",
+      "fruit:8",
+      "tea:12",
+      "fruit:9",
+      "fruit:10",
+      "fruit:11",
+      "fruit:12",
+      "producer2:1",
+      "producer2:2",
+      "producer2:3",
+      "producer2:4",
+      "producer2:6",
+      "coffee:1",
+      "pastry:5",
+      "coffee:7",
+      "pastry:6",
+      "coffee:8",
+      "coffee:9",
+      "coffee:10",
+      "pastry:7",
+      "coffee:11",
+      "coffee:12",
+      "pastry:1",
+      "pastry:8",
+      "pastry:9",
+      "pastry:10",
+      "pastry:11",
+      "pastry:12",
+      "producer3:1",
+      "producer3:2",
+      "producer3:3",
+      "producer3:4",
+      "producer3:6",
+      "producer3:7",
+      "circuit:1",
+      "circuit:8",
+      "vinyl:5",
+      "circuit:9",
+      "vinyl:6",
+      "vinyl:7",
+      "circuit:10",
+      "vinyl:8",
+      "circuit:11",
+      "vinyl:9",
+      "circuit:12",
+      "vinyl:1",
+      "vinyl:10",
+      "vinyl:11",
+      "vinyl:12",
+      "producer4:1",
+      "producer4:2",
+      "producer4:3",
+      "producer4:4",
+      "producer4:6",
+      "glass:1",
+      "rope:1",
+      "shell:5",
+      "rope:8",
+      "shell:6",
+      "rope:9",
+      "shell:7",
+      "rope:10",
+      "glass:5",
+      "rope:11",
+      "rope:12",
+      "shell:1",
+      "shell:8",
+      "shell:9",
+      "glass:6",
+      "shell:10",
+      "shell:11",
+      "shell:12",
+      "glass:7",
+      "glass:8",
+      "glass:9",
+      "glass:10",
+      "glass:11",
+      "glass:12",
+      "producer5:1",
+      "producer5:2",
+      "producer5:3",
+      "producer5:4",
+      "producer5:6",
+      "music:1",
+      "music:5",
+      "music:6",
+      "banner:5",
+      "music:7",
+      "banner:6",
+      "music:8",
+      "music:9",
+      "music:10",
+      "music:11",
+      "music:12",
+      "banner:1",
+      "lamp:5",
+      "banner:7",
+      "lamp:6",
+      "banner:8",
+      "banner:9",
+      "banner:10",
+      "banner:11",
+      "banner:12",
+      "lamp:1",
+      "lamp:7",
+      "lamp:8",
+      "lamp:9",
+      "lamp:10",
+      "lamp:11",
+      "lamp:12",
+      "producer6:1",
+      "producer6:2",
+      "producer6:3",
+      "producer6:4",
+      "producer6:6",
+      "soda:1",
+      "soda:6",
+      "soda:7",
+      "float:5",
+      "soda:8",
+      "float:6",
+      "float:7",
+      "soda:9",
+      "float:8",
+      "soda:10",
+      "soda:11",
+      "soda:12",
+      "float:1",
+      "float:9",
+      "float:10",
+      "float:11",
+      "float:12",
+      "producer7:2",
+      "producer7:3",
+      "producer7:4",
+      "producer7:1",
+      "producer7:6",
+      "solar:1",
+      "fan:5",
+      "solar:7",
+      "fan:6",
+      "solar:8",
+      "fan:7",
+      "solar:9",
+      "solar:10",
+      "solar:11",
+      "solar:12",
+      "fan:1",
+      "fan:8",
+      "fan:9",
+      "fan:10",
+      "fan:11",
+      "fan:12",
+      "producer8:1",
+      "producer8:2",
+      "producer8:3",
+      "producer8:4",
+      "producer8:6",
+      "ink:1",
+      "paper:1",
+      "paper:5",
+      "paper:6",
+      "ink:5",
+      "ink:6",
+      "paper:7",
+      "book:5",
+      "paper:8",
+      "ink:7",
+      "paper:9",
+      "paper:10",
+      "paper:11",
+      "paper:12",
+      "ink:8",
+      "ink:9",
+      "ink:10",
+      "ink:11",
+      "ink:12",
+      "book:1",
+      "book:6",
+      "book:7",
+      "book:8",
+      "book:9",
+      "book:10",
+      "book:11",
+      "book:12",
+      "producer9:1",
+      "producer9:2",
+      "producer9:3",
+      "producer9:4",
+      "producer9:6",
+      "pan:1",
+      "soup:5",
+      "pan:6",
+      "pan:7",
+      "soup:6",
+      "pan:8",
+      "table:5",
+      "pan:9",
+      "pan:10",
+      "pan:11",
+      "pan:12",
+      "table:1",
+      "soup:1",
+      "soup:7",
+      "table:6",
+      "soup:8",
+      "soup:9",
+      "soup:10",
+      "soup:11",
+      "soup:12",
+      "table:7",
+      "table:8",
+      "table:9",
+      "table:10",
+      "table:11",
+      "table:12",
+      "producer10:2",
+      "producer10:3",
+      "producer10:4",
+      "producer10:1",
+      "producer10:6",
+      "photo:1",
+      "photo:5",
+      "photo:6",
+      "display:5",
+      "photo:7",
+      "photo:8",
+      "display:6",
+      "photo:9",
+      "display:7",
+      "photo:10",
+      "display:8",
+      "photo:11",
+      "photo:12",
+      "display:1",
+      "display:9",
+      "display:10",
+      "display:11",
+      "display:12",
+      "producer11:1",
+      "producer11:2",
+      "producer11:3",
+      "producer11:4",
+      "producer11:6",
+      "signal:1",
+      "signal:5",
+      "map:4",
+      "signal:6",
+      "map:5",
+      "signal:7",
+      "map:6",
+      "signal:8",
+      "map:7",
+      "signal:9",
+      "signal:10",
+      "signal:11",
+      "signal:12",
+      "map:1",
+      "map:8",
+      "map:9",
+      "map:10",
+      "map:11",
+      "map:12",
+      "producer12:1",
+      "producer12:2",
+      "producer12:3",
+      "producer12:4",
+      "producer12:6",
+      "gear:1",
+      "gear:5",
+      "clock:5",
+      "gear:6",
+      "clock:6",
+      "gear:7",
+      "scarf:5",
+      "gear:8",
+      "clock:7",
+      "gear:9",
+      "scarf:6",
+      "gear:10",
+      "gear:11",
+      "gear:12",
+      "scarf:1",
+      "clock:1",
+      "clock:8",
+      "clock:9",
+      "clock:10",
+      "clock:11",
+      "clock:12",
+      "scarf:7",
+      "scarf:8",
+      "scarf:9",
+      "scarf:10",
+      "scarf:11",
+      "scarf:12",
+      "producer13:2",
+      "producer13:3",
+      "producer13:4",
+      "producer13:1",
+      "producer13:6",
+      "fire:1",
+      "fire:5",
+      "fire:6",
+      "snow:4",
+      "snow:5",
+      "fire:7",
+      "ceramic:5",
+      "ceramic:6",
+      "fire:8",
+      "fire:9",
+      "snow:6",
+      "ceramic:7",
+      "fire:10",
+      "fire:11",
+      "fire:12",
+      "ceramic:1",
+      "ceramic:8",
+      "ceramic:9",
+      "ceramic:10",
+      "ceramic:11",
+      "ceramic:12",
+      "snow:1",
+      "snow:7",
+      "snow:8",
+      "snow:9",
+      "snow:10",
+      "snow:11",
+      "snow:12",
+      "producer14:2",
+      "producer14:3",
+      "producer14:4",
+      "star:1",
+      "lens:1",
+      "star:3",
+      "lens:5",
+      "star:4",
+      "lens:6",
+      "star:5",
+      "lens:7",
+      "lens:8",
+      "star:6",
+      "lens:9",
+      "star:7",
+      "lens:10",
+      "lens:11",
+      "lens:12",
+      "star:8",
+      "star:9",
+      "star:10",
+      "star:11",
+      "star:12",
+      "producer15:1",
+      "producer15:2",
+      "producer15:3",
+      "producer15:4",
+      "battery:1",
+      "battery:3",
+      "battery:4",
+      "battery:5",
+      "battery:6",
+      "beacon:5",
+      "battery:7",
+      "battery:8",
+      "beacon:6",
+      "battery:9",
+      "beacon:7",
+      "battery:10",
+      "battery:11",
+      "beacon:8",
+      "battery:12",
+      "beacon:1",
+      "beacon:9",
+      "beacon:10",
+      "beacon:11",
+      "beacon:12",
+      "bloomlight:1",
+      "bloomlight:2",
+      "bloomlight:3",
+      "bloomlight:4",
+      "bloomlight:5",
+      "bloomlight:6",
+      "message:1",
+      "message:2",
+      "message:3",
+      "message:4",
+      "message:5",
+      "message:6",
+      "ticket:1",
+      "ticket:2",
+      "ticket:3",
+      "ticket:4",
+      "ticket:5",
+      "ticket:6",
+      "chime:1",
+      "chime:2",
+      "chime:3",
+      "chime:4",
+      "chime:5",
+      "chime:6",
+      "voice:1",
+      "voice:2",
+      "voice:3",
+      "voice:4",
+      "voice:5",
+      "voice:6",
+      "memory:1",
+      "memory:2",
+      "memory:3",
+      "memory:4",
+      "memory:5",
+      "memory:6",
+      "warm:1",
+      "warm:2",
+      "warm:3",
+      "warm:4",
+      "warm:5",
+      "warm:6",
+      "key:1",
+      "key:2",
+      "key:3",
+      "key:4",
+      "key:5",
+      "key:6",
+      "producer14:1",
+      "producer15:6",
+      "producer5:7",
+      "producer2:7",
+      "producer14:6",
+      "producer8:7",
+      "producer6:7",
+      "producer13:7",
+      "producer7:7",
+      "producer12:7",
+      "producer11:7",
+      "producer9:7",
+      "producer4:7",
+      "producer14:7",
+      "producer10:7",
+      "producer15:7",
+      "perfume:1",
+      "toy:1",
+      "toy:2",
+      "toy:3",
+      "toy:4",
+      "toy:5",
+      "toy:6",
+      "toy:7",
+      "toy:8",
+      "nightdrink:1",
+      "nightmusic:1",
+      "nightdrink:2",
+      "nightmusic:2",
+      "nightdrink:3",
+      "nightmusic:3",
+      "nightdrink:4",
+      "nightmusic:4",
+      "nightdrink:5",
+      "nightmusic:5",
+      "nightdrink:6",
+      "nightmusic:6",
+      "nightdrink:7",
+      "nightmusic:7",
+      "nightdrink:8",
+      "nightmusic:8"
+    ],
+    "recipes": [
+      "bloomlight",
+      "message",
+      "ticket",
+      "chime",
+      "voice",
+      "memory",
+      "warm",
+      "key"
+    ],
+    "clues": [
+      "倒写的票根",
+      "空白植株标签",
+      "断电记录",
+      "写给明天的歌单",
+      "被剪的录音",
+      "两版撤离图",
+      "未寄的合照",
+      "停在 00:04 的表"
+    ],
+    "choices": {
+      "3": 0,
+      "7": 0,
+      "11": 0,
+      "15": 0,
+      "19": 0,
+      "23": 0,
+      "27": 0,
+      "31": 0,
+      "35": 0,
+      "39": 0,
+      "43": 0,
+      "47": 0,
+      "51": 0,
+      "55": 0,
+      "59": 0,
+      "63": 0
+    },
+    "read": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "pendingScene": null,
+    "bonds": [
+      16,
+      110,
+      108,
+      100,
+      111,
+      107
+    ],
+    "bondClaims": [
+      "0:3",
+      "0:6",
+      "0:10",
+      "1:3",
+      "1:6",
+      "1:10",
+      "2:3",
+      "2:6",
+      "2:10",
+      "3:3",
+      "3:6",
+      "3:10",
+      "4:3",
+      "4:6",
+      "4:10",
+      "5:3",
+      "5:6",
+      "5:10"
+    ],
+    "ending": "tomorrow",
+    "endReward": true,
+    "pass": 231509,
+    "passClaims": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "achievementClaims": [
+      "merge",
+      "merge2",
+      "orders",
+      "build",
+      "build2",
+      "secret",
+      "secret2",
+      "catalog",
+      "master",
+      "games",
+      "album",
+      "friend"
+    ],
+    "album": [
+      5,
+      15,
+      6,
+      9,
+      12,
+      21,
+      19,
+      14,
+      13,
+      3,
+      23,
+      4,
+      0,
+      8,
+      10,
+      1,
+      18,
+      2,
+      16,
+      22,
+      7,
+      17,
+      20,
+      11
+    ],
+    "dust": 0,
+    "pity": 0,
+    "albumClaims": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "albumFull": true,
+    "signCount": 8,
+    "signedDay": "2026-12-14",
+    "energyBuys": 0,
+    "stats": {
+      "merges": 66617,
+      "produced": 159481,
+      "orders": 1564,
+      "built": 64,
+      "recipes": 8,
+      "discovered": 679,
+      "maxItems": 1087,
+      "games": 16,
+      "cards": 24,
+      "bondRewards": 18,
+      "highItems": 3755
+    },
+    "day": "2026-12-28",
+    "week": "2026-12-28",
+    "daily": {
+      "base": {
+        "merges": 66575,
+        "orders": 1564,
+        "games": 16,
+        "built": 64,
+        "highItems": 3751
+      },
+      "claims": []
+    },
+    "weekly": {
+      "base": {
+        "merges": 66575,
+        "orders": 1564,
+        "games": 16,
+        "built": 64,
+        "highItems": 3751
+      },
+      "claims": []
+    },
+    "arcadeRewards": {},
+    "arcadeBest": {
+      "0": 27,
+      "1": 23,
+      "2": 27,
+      "3": 86
+    },
+    "arcade": {
+      "type": 3,
+      "seed": "2026-12-08-236034",
+      "done": true,
+      "score": 78,
+      "grade": 3,
+      "won": true,
+      "paused": false,
+      "board": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        0
+      ],
+      "moves": 22,
+      "shuffle": [
+        8,
+        7,
+        6,
+        3,
+        4,
+        7,
+        6,
+        3,
+        4,
+        1,
+        0,
+        3,
+        4,
+        5,
+        2,
+        1,
+        4,
+        7,
+        8,
+        5,
+        2,
+        1,
+        0,
+        3
+      ],
+      "id": "arcade-236034",
+      "trial": false,
+      "credited": true,
+      "rewarded": true
+    },
+    "night": {
+      "round": 2,
+      "started": 1797824600001,
+      "endAt": 1798429400001,
+      "ended": true,
+      "path": "music",
+      "energy": 80,
+      "energyStamp": 1798429460002,
+      "stock": 30,
+      "genStamp": 1798429456001,
+      "board": [
+        {
+          "uid": 238046,
+          "chain": "nightdrink",
+          "level": 1,
+          "web": false
+        },
+        {
+          "uid": 238047,
+          "chain": "nightdrink",
+          "level": 1,
+          "web": false
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "score": 4420,
+      "tokens": 820,
+      "order": 12,
+      "buys": 8,
+      "claimed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "best": 4420
+    },
+    "sold": {
+      "item": {
+        "uid": 235749,
+        "chain": "rope",
+        "level": 8,
+        "web": false
+      },
+      "price": 38
+    },
+    "npcOrders": [
+      0,
+      316,
+      310,
+      291,
+      329,
+      318
+    ],
+    "homeProgress": 8,
+    "homeStyles": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "homeOwned": [
+      [
+        0,
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "world": "island",
+    "doubleEnergy": true,
+    "sourceGranted": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "decorClaims": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "sideProgress": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "sideRead": [
+      "0:1",
+      "0:2",
+      "0:3",
+      "1:1",
+      "1:2",
+      "1:3",
+      "2:1",
+      "2:2",
+      "2:3",
+      "3:1",
+      "3:2",
+      "3:3",
+      "4:1",
+      "4:2",
+      "4:3",
+      "5:1",
+      "5:2",
+      "5:3",
+      "6:1",
+      "6:2",
+      "6:3",
+      "7:1",
+      "7:2",
+      "7:3"
+    ],
+    "sceneHomeRead": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "activity": {
+      "round": 2,
+      "theme": 1,
+      "started": 1791483060000,
+      "endAt": 1792087860000,
+      "ended": true,
+      "tokens": 18423,
+      "productions": 18423,
+      "picks": 4617,
+      "bait": 1157,
+      "food": 9711,
+      "nodes": 0,
+      "nodeClaims": [],
+      "digLayer": 0,
+      "digBoard": [
+        {
+          "hp": 0,
+          "kind": "entrance",
+          "open": true
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "chest",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "tool",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "dust",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "tool",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "chest",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "dust",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "tool",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "chest",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "exit",
+          "open": false
+        }
+      ],
+      "digClaimed": [],
+      "fishBoard": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "fishScore": 0,
+      "fishClaims": [],
+      "fishing": null,
+      "dinner": 0,
+      "dinnerAt": 1791483060000,
+      "dinnerClaimed": [],
+      "bestFish": 30
+    },
+    "activityCollections": [
+      0
+    ],
+    "activityCards": [
+      0,
+      1,
+      2,
+      3,
+      8,
+      19,
+      59,
+      53,
+      25,
+      14,
+      43,
+      58,
+      31,
+      42,
+      11,
+      39,
+      54,
+      22,
+      28,
+      45,
+      4,
+      7,
+      16,
+      46,
+      32,
+      6,
+      5,
+      30,
+      17,
+      29,
+      35,
+      40,
+      49,
+      51,
+      37,
+      9,
+      10,
+      57,
+      26,
+      36,
+      27,
+      12,
+      13,
+      47,
+      15,
+      23,
+      21,
+      34,
+      44,
+      18,
+      50,
+      20,
+      48,
+      55,
+      24,
+      52,
+      33,
+      38,
+      41,
+      56
+    ],
+    "activityDust": 5,
+    "activityPacks": 191,
+    "activityPity": 0,
+    "activityAlbumClaims": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "fishCollection": [
+      17,
+      1,
+      21,
+      16,
+      12,
+      4,
+      5,
+      22,
+      0,
+      6,
+      20,
+      13,
+      18,
+      14,
+      23,
+      2,
+      9,
+      7,
+      8,
+      10,
+      15,
+      3,
+      19,
+      11
+    ],
+    "dinnerRounds": 0,
+    "commissions": {
+      "completed": 0,
+      "day": "2026-12-28",
+      "daily": 0,
+      "nonce": 0,
+      "rerollAt": 0,
+      "active": {
+        "sequence": 0,
+        "family": 14,
+        "tier": 0,
+        "level": 8
+      }
+    }
+  }
+}

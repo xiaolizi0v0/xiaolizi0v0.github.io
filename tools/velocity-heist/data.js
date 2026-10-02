@@ -3,7 +3,7 @@ version:1,
 cars:[
  {id:'needle',name:'穿针',alias:'NEEDLE / 01',color:'#c1ff35',hp:125,speed:292,grip:1,lock:.85,drift:1,armour:1,group:'draft',desc:'尾流连接速度更快。跟入、拉出、换速，把对手的优势变成你的下一次超车。'},
  {id:'iron',name:'铁壳',alias:'IRONCLAD / 02',color:'#aa55ff',hp:175,speed:280,grip:.95,lock:1,drift:1,armour:.75,group:'survive',desc:'车体更耐撞，碰撞损伤降低 25%，撞车后损速更小。用重量守住路线，再铺一条自己的加速轨。'},
- {id:'crosswind',name:'侧风',alias:'CROSSWIND / 03',color:'#47e6f2',hp:135,speed:287,grip:1.18,lock:1,drift:1.35,armour:1,group:'drift',desc:'抓地更好，漂移电量收益提高 35%。热量也是资源，连续出弯建立速度优势。'}
+ {id:'crosswind',name:'侧风',alias:'CROSSWIND / 03',color:'#47e6f2',hp:135,speed:287,grip:1.18,lock:1,drift:1.35,armour:1,group:'drift',desc:'抓地更好，漂移集气与电量收益提高 35%。热量也是资源，连续出弯建立速度优势。'}
 ],
 cities:[
  {name:'高架断层',tag:'SKYLINE / 01',color:'#c1ff35',boss:'换道王',bossType:'block',width:140,rain:false,shape:.12,desc:'废弃高架与危险捷径。换道王会预告并封住一段车道。'},
@@ -29,7 +29,7 @@ upgrades:[
  {id:'launch',name:'弹射轨面',glyph:'↥',group:'rail',max:4,desc:'共享路轨提供的加速提高 18。对手同样能使用。'},
  {id:'tires',name:'侧向抓地',glyph:'◎',group:'drift',max:4,desc:'抓地 +0.14，改善弯道损速与横向惯性。'},
  {id:'cooling',name:'液冷循环',glyph:'❄',group:'drift',max:4,desc:'热量散去速度额外 +3 / 秒。'},
- {id:'reclaim',name:'漂移回收',glyph:'↻',group:'drift',max:3,desc:'漂移电量收益 +25%。技术路线收益继续叠加。'},
+ {id:'reclaim',name:'漂移回收',glyph:'↻',group:'drift',max:3,desc:'漂移电量收益 +25%，集气效率 +12%。技术路线继续叠加。'},
  {id:'magnet',name:'货箱接收',glyph:'⬡',group:'drift',max:3,desc:'拾取横向范围 +20，资料获取 +10%。'},
  {id:'combo',name:'连续甩尾',glyph:'≈',group:'drift',max:4,desc:'每积累 45 漂移距离额外获得 3 资料与 3 维修币。'},
  {id:'armour',name:'活性车壳',glyph:'✚',group:'survive',max:4,desc:'最大车体 +22，立即修复 22，损伤降低 8%。'},
@@ -39,7 +39,7 @@ upgrades:[
  {id:'relay',name:'连锁劫速',glyph:'⇉',group:'draft',max:1,requires:{antenna:2,clutch:2},desc:'换速后获得 1.2 秒护盾；接下来 3 秒新连接只需 0.35 秒。'},
  {id:'private',name:'私有快线',glyph:'▰',group:'rail',max:1,requires:{width:2,length:2},desc:'自己使用路轨的加速额外 +50%，并获得短暂护盾；对手仍可使用基础加速。'},
  {id:'toll',name:'路权税务',glyph:'¤',group:'rail',max:1,requires:{payout:2,bank:2},desc:'对手使用你的路轨时额外为你提供 15 电量和 12 维修币。'},
- {id:'coldFire',name:'冷焰引擎',glyph:'♨',group:'drift',max:1,requires:{cooling:2,reclaim:2},desc:'热量高于 55 时，喷射只消耗 10 电量；高热仍需要散去。'},
+ {id:'coldFire',name:'冷焰引擎',glyph:'♨',group:'drift',max:1,requires:{cooling:2,reclaim:2},desc:'热量高于 55 时，氮气延长至 3.2 秒并降低 12 热量。仍消耗一管氮气。'},
  {id:'slingshot',name:'出弯弹弓',glyph:'↯',group:'drift',max:1,requires:{tires:2,motor:2},desc:'结束一段超过 25 距离的漂移，获得 1.4 秒喷射和 8 电量。'},
  {id:'phoenix',name:'不死底盘',glyph:'✹',group:'survive',max:1,requires:{armour:2,regen:2},desc:'本局第一次致命撞击改为恢复 35% 车体，并获得 4 秒护盾。'}
 ],

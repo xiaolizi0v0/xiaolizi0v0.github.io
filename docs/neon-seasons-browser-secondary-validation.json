@@ -1,0 +1,58 @@
+{
+  "checked": "2026-10-01T11:35:58.038Z",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "garden": {
+    "persistedMode": "water",
+    "pausedSteps": 7,
+    "restoredSteps": 7,
+    "score": 27,
+    "grade": 3,
+    "rewardCountBefore": 1,
+    "rewardCountAfter": 2,
+    "repeatButtonDisabled": true
+  },
+  "night": {
+    "recycledChain": "nightdrink",
+    "level": 1,
+    "scoreBefore": 41,
+    "scoreAfter": 42,
+    "tokensBefore": 41,
+    "tokensAfter": 42,
+    "cellFreed": 1
+  },
+  "originalProfileRestored": true,
+  "nonRecoveryClockDifferences": [],
+  "recoveryClockPaths": [
+    "stamp",
+    "energyStamp",
+    "board.0.chargeStamp",
+    "board.1.chargeStamp",
+    "generators.0.stamp",
+    "generators.1.stamp",
+    "generators.2.stamp",
+    "generators.3.stamp",
+    "generators.4.stamp",
+    "generators.5.stamp",
+    "generators.6.stamp",
+    "generators.7.stamp",
+    "generators.8.stamp",
+    "generators.9.stamp",
+    "generators.10.stamp",
+    "generators.11.stamp",
+    "generators.12.stamp",
+    "generators.13.stamp",
+    "generators.14.stamp",
+    "generators.15.stamp",
+    "night.energyStamp",
+    "night.genStamp"
+  ],
+  "screenshots": [
+    "v2-garden-restored.png",
+    "v2-garden-reward.png",
+    "v2-night-recycle.png"
+  ],
+  "scope": "Actual UI garden and low-tier night recycling only; other rewards verified by normal resource driver, not claimed as full UI acceptance."
+}

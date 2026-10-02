@@ -1,0 +1,12 @@
+{
+  "checked": "2026-10-01T18:13:49.181Z",
+  "passed": [
+    "legacy earned profile stays unchanged and menu reads consume no RNG or UID",
+    "three distinct unlocked families, ordinary materials, exact highest 8/10/12 grades",
+    "missing materials refuse atomically; accepted contract survives actual serialize/restore",
+    "fixture delivery uses board plus warehouse once; stale button cannot claim twice",
+    "three-per-day cap, accepted contract carries across day, cancellation consumes no items",
+    "strict save guards refuse corrupt family, tier, sequence, reward, limits and future day"
+  ],
+  "scope": "Boundary fixtures explicitly labelled; genuine resource playthrough is separate."
+}

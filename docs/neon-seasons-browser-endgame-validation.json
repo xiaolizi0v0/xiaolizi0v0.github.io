@@ -1,0 +1,81 @@
+{
+  "checked": "2026-10-01T12:59:20.184Z",
+  "earnedProfile": "full-earned-profile.json: normal 72 renovations and 679 discoveries",
+  "import": "Official visible JSON textarea and confirmation",
+  "endings": [
+    "restore",
+    "archive",
+    "tomorrow"
+  ],
+  "screenshotFiles": [
+    "v2-ending-restore-phone.png",
+    "v2-ending-archive-phone.png",
+    "v2-ending-tomorrow-phone.png",
+    "v2-ending-320.png",
+    "v2-project63-phone.png"
+  ],
+  "assets": "All three endings are distinct panels in generated prologue-endings.png. Last project uses generated district-15.png. Home opening uses generated home-1.png; loaded 1536x1024.",
+  "viewportChecks": {
+    "phone": [
+      390,
+      844
+    ],
+    "small": [
+      320,
+      640
+    ],
+    "landscape": [
+      844,
+      390
+    ],
+    "smallFooterBottom": 593.703125,
+    "landscapeFooterBottom": 359,
+    "overflow": false,
+    "landscapeTextReached": true
+  },
+  "repeatReward": {
+    "before": {
+      "ending": "tomorrow",
+      "endReward": true,
+      "coins": 417760,
+      "energy": 3541,
+      "gems": 287,
+      "activityPacks": 191,
+      "joker": 21,
+      "packs": 592
+    },
+    "after": {
+      "ending": "tomorrow",
+      "endReward": true,
+      "coins": 417760,
+      "energy": 3541,
+      "gems": 287,
+      "joker": 21,
+      "packs": 592,
+      "activityPacks": 191
+    },
+    "unchanged": true,
+    "scope": "Already-rewarded genuine profile. First ever reward was not independently checked in the UI this turn."
+  },
+  "restoration": {
+    "ignoredRecoveryKeys": [
+      "stamp",
+      "energyStamp",
+      "chargeStamp",
+      "genStamp"
+    ],
+    "differences": [],
+    "coins": 229,
+    "energy": 464,
+    "renovations": 11,
+    "pausedArcadeType": 3,
+    "pausedArcadeMoves": 0
+  },
+  "loading": "Live loaded state ready and pseudo-element hidden verified. New error hint implemented; forced network error and throttled placeholder appearance not tested.",
+  "fixed": [
+    "Book ratio now all registered items:679/679",
+    "Last chapter accurately says all endings can be re-read, no false independent read-history claim",
+    "Generated image loading / error text"
+  ],
+  "remaining": "32 independently generated scenes, first ever ending reward live UI, remaining late pages, full item art and touch/drag checks"
+}

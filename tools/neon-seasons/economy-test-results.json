@@ -1,0 +1,15 @@
+{
+  "checked": "2026-10-01T08:44:35.833Z",
+  "checks": 7,
+  "transactions": 992,
+  "passed": [
+    "six daily meals charge exact offers, reject seventh atomically and reset by local day",
+    "insufficient coins and inherited property shop IDs cannot change state",
+    "old same-day unlimited meal count remains loadable, does not grant six additional meals",
+    "actual purchased joker and scissors transactions cannot exceed selling the original goods",
+    "new resale and original-price legacy buyback survive saves without minting coins",
+    "max producers fill board and max warehouse: free parking restores play without deleting or duplicating items",
+    "parking is limited to unblocked producer parts and instances, invalid requests are inert"
+  ],
+  "scope": "Fixtures cover limits, transactions and all-max-producer deadlock. Normal 72 renovations and 528-item runs are separate."
+}

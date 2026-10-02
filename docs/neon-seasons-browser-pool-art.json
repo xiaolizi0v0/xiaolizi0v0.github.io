@@ -1,0 +1,760 @@
+{
+  "date": "2026-10-02",
+  "renderings": 480,
+  "revisedBodies": 288,
+  "batchBodies": 96,
+  "script": "ordinary-art.js?v=6",
+  "catalog": [
+    {
+      "chain": "soda",
+      "items": [
+        {
+          "family": "soda",
+          "level": 1,
+          "name": "汽水糖",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 2,
+          "name": "糖浆",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 3,
+          "name": "玻璃汽水",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 4,
+          "name": "冰镇汽水",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 5,
+          "name": "彩虹汽水",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 6,
+          "name": "夏日饮品组",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 7,
+          "name": "泳池冰桶",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 8,
+          "name": "汽水礼盒",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 9,
+          "name": "水果汽水壶",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 10,
+          "name": "双层冰饮桶",
+          "shapeElements": 23,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 11,
+          "name": "六人的汽水盘",
+          "shapeElements": 25,
+          "valid": true
+        },
+        {
+          "family": "soda",
+          "level": 12,
+          "name": "永夏庆典饮",
+          "shapeElements": 15,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "float",
+      "items": [
+        {
+          "family": "float",
+          "level": 1,
+          "name": "橡胶片",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 2,
+          "name": "气嘴",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 3,
+          "name": "小浮板",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 4,
+          "name": "泳圈",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 5,
+          "name": "泳池玩具",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 6,
+          "name": "双人浮排",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 7,
+          "name": "遮阳水垫",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 8,
+          "name": "泳具收纳篮",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 9,
+          "name": "小鲸鱼浮排",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 10,
+          "name": "双层救生圈",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 11,
+          "name": "四季游泳组",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "family": "float",
+          "level": 12,
+          "name": "夏夜漂浮鲸",
+          "shapeElements": 11,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "solar",
+      "items": [
+        {
+          "family": "solar",
+          "level": 1,
+          "name": "硅片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 2,
+          "name": "小电片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 3,
+          "name": "太阳电池",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 4,
+          "name": "太阳能板",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 5,
+          "name": "便携充电板",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 6,
+          "name": "屋顶光能架",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 7,
+          "name": "折叠太阳板",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 8,
+          "name": "双面光能板",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 9,
+          "name": "日光储能箱",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 10,
+          "name": "四季光能组",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 11,
+          "name": "六片日光阵",
+          "shapeElements": 31,
+          "valid": true
+        },
+        {
+          "family": "solar",
+          "level": 12,
+          "name": "永续日光芯",
+          "shapeElements": 4,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "fan",
+      "items": [
+        {
+          "family": "fan",
+          "level": 1,
+          "name": "风扇叶",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 2,
+          "name": "小扇叶组",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 3,
+          "name": "手持风扇",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 4,
+          "name": "桌面风扇",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 5,
+          "name": "落地风扇",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 6,
+          "name": "循环风机",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 7,
+          "name": "双叶风机",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 8,
+          "name": "折叠凉风扇",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 9,
+          "name": "双向循环扇",
+          "shapeElements": 17,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 10,
+          "name": "静音塔扇",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 11,
+          "name": "四季凉风组",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "family": "fan",
+          "level": 12,
+          "name": "温柔季风机",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "paper",
+      "items": [
+        {
+          "family": "paper",
+          "level": 1,
+          "name": "纸屑",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 2,
+          "name": "纸片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 3,
+          "name": "牛皮纸",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 4,
+          "name": "印刷纸",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 5,
+          "name": "彩色纸卷",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 6,
+          "name": "四季信纸",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 7,
+          "name": "海报纸箱",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 8,
+          "name": "古法纸帘",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 9,
+          "name": "手抄花纸",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 10,
+          "name": "折叠纸屏",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 11,
+          "name": "四季纸卷",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "family": "paper",
+          "level": 12,
+          "name": "记忆书写笺",
+          "shapeElements": 6,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "ink",
+      "items": [
+        {
+          "family": "ink",
+          "level": 1,
+          "name": "炭粉",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 2,
+          "name": "墨滴",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 3,
+          "name": "小墨瓶",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 4,
+          "name": "印刷油墨",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 5,
+          "name": "彩墨组",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 6,
+          "name": "不褪色油墨",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 7,
+          "name": "手工墨盒",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 8,
+          "name": "风叶油墨箱",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 9,
+          "name": "六色墨瓶",
+          "shapeElements": 32,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 10,
+          "name": "双层调色盒",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 11,
+          "name": "四季印色组",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "family": "ink",
+          "level": 12,
+          "name": "不褪的明天",
+          "shapeElements": 11,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "book",
+      "items": [
+        {
+          "family": "book",
+          "level": 1,
+          "name": "书页",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 2,
+          "name": "书签页",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 3,
+          "name": "小册子",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 4,
+          "name": "装订书",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 5,
+          "name": "旧日笔记",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 6,
+          "name": "四季手账",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 7,
+          "name": "站长日志",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 8,
+          "name": "街区故事集",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 9,
+          "name": "烫金故事册",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 10,
+          "name": "四季纪念册",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 11,
+          "name": "共同档案集",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "book",
+          "level": 12,
+          "name": "完整时光册",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "pan",
+      "items": [
+        {
+          "family": "pan",
+          "level": 1,
+          "name": "锅铆钉",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 2,
+          "name": "木勺",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 3,
+          "name": "小平底锅",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 4,
+          "name": "汤锅",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 5,
+          "name": "陶砂锅",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 6,
+          "name": "共享厨具组",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 7,
+          "name": "厨房工具架",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 8,
+          "name": "双耳炖锅",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 9,
+          "name": "铜底炒锅",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 10,
+          "name": "六人的锅具组",
+          "shapeElements": 28,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 11,
+          "name": "四季厨具箱",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "family": "pan",
+          "level": 12,
+          "name": "明日家宴锅",
+          "shapeElements": 15,
+          "valid": true
+        }
+      ]
+    }
+  ],
+  "saveComparison": {
+    "ignoredNaturalClockKeys": [
+      "stamp",
+      "energyStamp",
+      "chargeStamp",
+      "genStamp"
+    ],
+    "diffs": [],
+    "coins": 268,
+    "energy": 461
+  },
+  "breakpoints": [
+    {
+      "dialogWidth": 366,
+      "footerBottom": 596.15625,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "dialogWidth": 296,
+      "footerBottom": 544.15625,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "bodyHeight": 144,
+      "bodyScroll": 144,
+      "dialogWidth": 690,
+      "footerBottom": 346.140625,
+      "scrollWidth": 844,
+      "width": 844
+    }
+  ],
+  "previewSizeChecks": [
+    88,
+    38
+  ],
+  "remainingAdvancedBodies": 144,
+  "browserLogs": []
+}

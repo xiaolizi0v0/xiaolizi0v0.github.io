@@ -1,0 +1,14 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const [key,originalPath]=process.argv.slice(2),plan=require('./neon-seasons-story-image-prompts.json');
+if(!plan.jobs.some(j=>j.key===key)||!originalPath)throw Error('Known planned atlas and generated original path required');
+const b=fs.readFileSync(originalPath);
+if(b.subarray(0,8).toString('hex')!=='89504e470d0a1a0a'||b.readUInt32BE(16)!==1536||b.readUInt32BE(20)!==1024)throw Error('Expected generated PNG atlas, 1536x1024');
+const projectPath='tools/neon-seasons/assets/story/'+key+'.png',target=path.resolve(__dirname,'..',projectPath);
+fs.copyFileSync(originalPath,target);
+const recordPath=path.join(__dirname,'neon-seasons-story-image-generation-record.json'),record=JSON.parse(fs.readFileSync(recordPath,'utf8'));
+record.assets=record.assets.filter(a=>a.key!==key);record.assets.push({key,originalPath,mode:'imagegen generation with character/style references',projectPath});
+const pending=plan.jobs.filter(j=>!fs.existsSync(path.resolve(__dirname,'../tools/neon-seasons/assets/story/'+j.key+'.png')));
+record.note=pending.length?`${pending.length*4} slots temporarily reuse generated illustrations; ${pending.length} planned atlases remain. Built-in generation continued after quota reset; no paid API fallback used.`:'All 52 planned atlases, 208 independent scenes generated with built-in imagegen and registered; no shared scene placeholders or paid API fallback.';
+fs.writeFileSync(recordPath,JSON.stringify(record,null,2)+'\n');
+process.stdout.write(execFileSync(process.execPath,[path.join(__dirname,'neon-seasons-story-image-register.cjs')],{encoding:'utf8'}));

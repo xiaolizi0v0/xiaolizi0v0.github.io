@@ -1,0 +1,112 @@
+{
+  "checked": "2026-10-01T11:44:02.988Z",
+  "checks": 4,
+  "passed": [
+    "all 16 families keep their category weights; same-season adds exactly eight points to tier two",
+    "paired genuine RNG production changes only eligible tier-one drops, never categories or tier three",
+    "weather switching preserves resources and RNG, respects story lock, survives valid save restoration",
+    "free containers and independent night generation do not inherit main weather tier bonuses"
+  ],
+  "distribution": [
+    {
+      "family": 0,
+      "level": 5,
+      "draws": 2000,
+      "changed": 179,
+      "matchingWeatherTiers": [
+        1821,
+        179,
+        0
+      ]
+    },
+    {
+      "family": 0,
+      "level": 6,
+      "draws": 2000,
+      "changed": 154,
+      "matchingWeatherTiers": [
+        1267,
+        733,
+        0
+      ]
+    },
+    {
+      "family": 0,
+      "level": 7,
+      "draws": 2000,
+      "changed": 154,
+      "matchingWeatherTiers": [
+        1267,
+        477,
+        256
+      ]
+    },
+    {
+      "family": 4,
+      "level": 5,
+      "draws": 2000,
+      "changed": 179,
+      "matchingWeatherTiers": [
+        1821,
+        179,
+        0
+      ]
+    },
+    {
+      "family": 4,
+      "level": 6,
+      "draws": 2000,
+      "changed": 154,
+      "matchingWeatherTiers": [
+        1267,
+        733,
+        0
+      ]
+    },
+    {
+      "family": 4,
+      "level": 7,
+      "draws": 2000,
+      "changed": 154,
+      "matchingWeatherTiers": [
+        1267,
+        477,
+        256
+      ]
+    },
+    {
+      "family": 15,
+      "level": 5,
+      "draws": 2000,
+      "changed": 179,
+      "matchingWeatherTiers": [
+        1821,
+        179,
+        0
+      ]
+    },
+    {
+      "family": 15,
+      "level": 6,
+      "draws": 2000,
+      "changed": 154,
+      "matchingWeatherTiers": [
+        1267,
+        733,
+        0
+      ]
+    },
+    {
+      "family": 15,
+      "level": 7,
+      "draws": 2000,
+      "changed": 154,
+      "matchingWeatherTiers": [
+        1267,
+        477,
+        256
+      ]
+    }
+  ],
+  "scope": "Explicit fixtures for rates, boundaries and paired 18000 draws per weather; fresh valid save round trip. Campaign reachability is separately checked by reference-tests.cjs."
+}

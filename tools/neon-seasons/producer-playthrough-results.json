@@ -1,0 +1,188 @@
+{
+  "checked": "2026-10-01T12:30:27.358Z",
+  "source": "Continues the actual earned 72-renovation / 528-item profile. No resource, fragment, progress or discovery injection.",
+  "baseline": {
+    "coins": 313557,
+    "orders": 540,
+    "produced": 149182,
+    "discovered": 638
+  },
+  "producerLevels": 112,
+  "auxiliaryLevels": 23,
+  "families": [
+    {
+      "family": 0,
+      "orders": 0
+    },
+    {
+      "family": 1,
+      "orders": 0
+    },
+    {
+      "family": 3,
+      "orders": 0
+    },
+    {
+      "family": 5,
+      "orders": 72
+    },
+    {
+      "family": 2,
+      "orders": 76
+    },
+    {
+      "family": 8,
+      "orders": 260
+    },
+    {
+      "family": 6,
+      "orders": 292
+    },
+    {
+      "family": 13,
+      "orders": 328
+    },
+    {
+      "family": 7,
+      "orders": 424
+    },
+    {
+      "family": 12,
+      "orders": 440
+    },
+    {
+      "family": 11,
+      "orders": 508
+    },
+    {
+      "family": 9,
+      "orders": 512
+    },
+    {
+      "family": 4,
+      "orders": 568
+    },
+    {
+      "family": 14,
+      "orders": 688
+    },
+    {
+      "family": 10,
+      "orders": 728
+    },
+    {
+      "family": 15,
+      "orders": 1024
+    }
+  ],
+  "additionalOrders": 1024,
+  "produced": 10253,
+  "waitedSeconds": 231500,
+  "energyPurchases": 18,
+  "crateMerges": 0,
+  "boxClicks": 279,
+  "coins": 403006,
+  "level": 95,
+  "currentHighest": [
+    {
+      "family": 0,
+      "levels": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "family": 1,
+      "levels": [
+        7,
+        7
+      ]
+    },
+    {
+      "family": 2,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 3,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 4,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 5,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 6,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 7,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 8,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 9,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 10,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 11,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 12,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 13,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 14,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 15,
+      "levels": [
+        7
+      ]
+    }
+  ],
+  "remaining": "Full 679 collection additionally needs the independently verified 16 night tiers; icon checks are separate from real play."
+}

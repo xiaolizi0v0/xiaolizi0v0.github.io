@@ -1,0 +1,81 @@
+{
+  "checked": "2026-10-01T13:16:45.214Z",
+  "source": "Normal main story, 528-item collection, all 112 producer and 23 auxiliary levels, full secondary rewards and 16 night tiers. No injected resources.",
+  "baseline": {
+    "coins": 417760,
+    "energy": 3541,
+    "orders": 1564
+  },
+  "receipts": [
+    {
+      "tier": 0,
+      "requirements": [
+        {
+          "chain": "lens",
+          "level": 8,
+          "qty": 1
+        },
+        {
+          "chain": "star",
+          "level": 5,
+          "qty": 1
+        }
+      ],
+      "reward": {
+        "coins": 1310,
+        "energy": 50,
+        "xp": 240
+      },
+      "completed": 1
+    },
+    {
+      "tier": 1,
+      "requirements": [
+        {
+          "chain": "pastry",
+          "level": 10,
+          "qty": 1
+        },
+        {
+          "chain": "coffee",
+          "level": 7,
+          "qty": 1
+        }
+      ],
+      "reward": {
+        "coins": 1690,
+        "energy": 80,
+        "xp": 290
+      },
+      "completed": 2
+    },
+    {
+      "tier": 2,
+      "requirements": [
+        {
+          "chain": "photo",
+          "level": 12,
+          "qty": 1
+        },
+        {
+          "chain": "display",
+          "level": 9,
+          "qty": 1
+        }
+      ],
+      "reward": {
+        "coins": 2070,
+        "energy": 100,
+        "xp": 340
+      },
+      "completed": 3
+    }
+  ],
+  "produced": 1517,
+  "waitedSeconds": 7060,
+  "legalEnergyPurchases": 0,
+  "coins": 423398,
+  "completed": 3,
+  "daily": 3,
+  "scope": "Actual existing earned resources and ordinary production only, no injected items or resources. Virtual waiting is not human playtime."
+}

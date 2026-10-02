@@ -1,0 +1,22 @@
+{
+  "checks": 26,
+  "summary": {
+    "seed": "full-tests",
+    "operations": 151305,
+    "waitHours": 280.79,
+    "elapsedHours": 280.79,
+    "progress": 64,
+    "level": 82,
+    "coins": 374126,
+    "energy": 390,
+    "merges": 72957,
+    "produced": 73719,
+    "discovered": 542,
+    "recipes": 8,
+    "claims": 12
+  },
+  "allStoryItems": 528,
+  "mainProjects": 64,
+  "arcadeTypes": 4,
+  "nightOrders": 12
+}

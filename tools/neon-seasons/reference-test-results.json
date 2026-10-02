@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "checked": "2026-10-01T18:09:41.107Z",
+  "checks": 19,
+  "passed": [
+    "7x9 board holds producer + fragments; fresh save accepted",
+    "fragment merge, producer merge and per-instance recharge",
+    "full board refuses production without consuming energy/stock/RNG",
+    "producer cannot be sold, bought-upgraded, or modified with scissors/joker",
+    "orders consume goods, give coins, no build star/material gate",
+    "automatic flower emission blocks safely, accumulates capped offline and manual remote release",
+    "needle container emits eight cloth then leaves cord, started containers cannot merge/tool",
+    "petals -> perfume -> glass, timed emission validates space before consuming",
+    "boxes merge only same family, produce fragments, opened boxes cannot merge again",
+    "eight side source containers have origin, cooldown, residue and unique three-stage reward",
+    "malformed producer/container/UID/save data rejected",
+    "legacy migration retains all goods/progress/inventory and records pre-migration backup",
+    "complete all 8 home + 64 island renovations through normal coin-order play, every checkpoint restorable",
+    "decoration styles add value once and double energy always emits at least level two",
+    "full season event resource loop: 12 island nodes, 12 dig layers and 10 dinner courses from genuine campaign drops",
+    "fishing timing/merges: all 24 fish tiers and six awards without injected bait or catches",
+    "all 15 four-card activity albums reachable with earned packs, pity and duplicate crafting; each reward unique",
+    "expired activities preserve unclaimed state, settle only after explicit restart, retain collections",
+    "activity save rejects invalid board/resources/card claims and out-of-range fishing phases"
+  ],
+  "campaign": {
+    "home": 8,
+    "island": 64,
+    "orders": 540,
+    "produced": 5218,
+    "waitedSeconds": 65440,
+    "coins": 32804,
+    "level": 39
+  },
+  "remaining": "art polish and exact item correspondence, all-theme rounds, full collection reachability and complete mobile playability audit"
+}

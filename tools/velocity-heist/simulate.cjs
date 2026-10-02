@@ -16,14 +16,15 @@ function drive(g,style){const p=g.p,curv=g.track.curvature(p.s),mod=(s,n)=>(s%n+
  if(doDrift)lane+=Math.sin(g.raceTime*2.8)*26;
  const drift=doDrift&&Math.abs(p.lane-lane)>6;
  const strength=drift?220:180,damp=(drift?1.7:5)*g.grip*(D.cities[g.city].rain?.88:1);
- const steer=Math.max(-1,Math.min(1,((lane-p.lane)*5-p.latV*1.5+curv*p.v*p.v*.1+p.lane*(drift?.3:1.25))/strength));
+ const steer=Math.max(-1,Math.min(1,((lane-p.lane)*5-p.latV*1.5-Math.sin(p.yaw)*p.v*.16+curv*p.v*p.v*.1+p.lane*(drift?.3:1.25))/strength));
+ if(p.smallCharges>0&&p.smallWindow>0&&!p.drifting){if(p.nitroCards>0&&!p.boostSequence.endsWith('C')&&!p.boostSequence.endsWith('CW')&&p.boost===0)g.nitro();g.smallBurst()}
  if(p.hp<g.maxHp*.5)g.repair();
  if(style==='survive'&&p.energy>60&&g.rivals.some(e=>Math.abs(g.track.delta(e.s,p.s))<80&&Math.abs(e.lane-p.lane)<40))g.shield();
- if(p.heat<85&&p.energy>28&&!warning){if(style==='rail'&&p.energy>=g.railCost()&&p.railCd===0)g.rail();else if(p.nitroCd===0)g.nitro()}
+ if(p.heat<85&&p.energy>28&&!warning){if(style==='rail'&&p.energy>=g.railCost()&&p.railCd===0)g.rail();else if(p.nitroCd===0&&p.smallWindow===0)g.nitro()}
  if(p.energy>90&&p.railCd===0)g.rail();
  return {steer,drift,throttle:true,assist:1};
 }
-function run(style,seed='audit-'+style,city=0,endless=false,maxStage=6,map=null){const g=new Game({seed,car:style==='survive'?1:style==='drift'?2:0,city,endless,map});let ticks=0;while(!['result','trainingDone'].includes(g.phase)&&ticks++<120000){if(g.phase==='upgrade'){const choice=choose(g,style);if(!plans[style].includes(choice)&&g.rerolls>0){g.reroll();continue}g.selectUpgrade(choice)}else if(g.phase==='garage'){g.buy('free');if(g.p.hp<g.maxHp*.7)g.buy('repair');g.buy('upgrade');if(g.phase==='garage'){if(g.p.heals<2)g.buy('kit');g.buy('battery');g.buy('coolant');g.offerRoutes()}}else if(g.phase==='event'){g.chooseEvent(g.eventChoices.includes('leak')?'leak':g.eventChoices.includes('rush')?'rush':'refuse')}else if(g.phase==='route'){g.chooseRoute(style==='drift'?'tech':g.p.hp<g.maxHp*.75?'safe':style==='rail'?'fast':'safe')}else{g.update(.04,g.phase==='playing'?drive(g,style):{});g.drain()}if(endless&&g.stage>=maxStage&&g.phase==='garage')g.finish(false,'模拟主动封存')}
+function run(style,seed='audit-'+style,city=0,endless=false,maxStage=6,map=null){const g=new Game({seed,car:style==='survive'?1:style==='drift'?2:0,city,endless,map});let ticks=0;while(!['result','trainingDone'].includes(g.phase)&&ticks++<120000){if(g.phase==='upgrade'){const choice=choose(g,style);if(!plans[style].includes(choice)&&g.rerolls>0){g.reroll();continue}g.selectUpgrade(choice)}else if(g.phase==='garage'){g.buy('free');if(g.p.hp<g.maxHp*.7)g.buy('repair');g.buy('upgrade');if(g.phase==='garage'){if(g.p.heals<2)g.buy('kit');g.buy('battery');g.buy('coolant');g.offerRoutes()}}else if(g.phase==='event'){g.chooseEvent(g.eventChoices.includes('leak')?'leak':g.eventChoices.includes('rush')?'rush':'refuse')}else if(g.phase==='route'){g.chooseRoute(style==='drift'?'tech':g.p.hp<g.maxHp*.75?'safe':style==='rail'?'fast':'safe')}else{if(g.phase==='countdown'&&g.countdown<.4)g.startBoost();g.update(.04,g.phase==='playing'?drive(g,style):{});g.drain()}if(endless&&g.stage>=maxStage&&g.phase==='garage')g.finish(false,'模拟主动封存')}
  return {g,summary:{style,seed,city,stage:g.stage,won:!!g.won,reason:g.reason,time:Math.round(g.totalTime),records:g.records.map(r=>[r.stage,r.place,Math.round(r.time)]),hp:Math.round(g.p.hp),build:g.build,stats:g.stats,ticks}}}
 if(require.main===module){for(const s of Object.keys(plans))console.log(JSON.stringify(run(s).summary))}
 module.exports={run,drive,choose};

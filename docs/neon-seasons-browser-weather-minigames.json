@@ -1,0 +1,181 @@
+{
+  "checked": "2026-10-01T11:59:34.765Z",
+  "weather": {
+    "sourceFamily": 0,
+    "producerLevel": 6,
+    "displayedTierOdds": {
+      "1": 64,
+      "2": 36
+    },
+    "matchingSeason": true
+  },
+  "puzzle": {
+    "visibleStartBoard": [
+      3,
+      6,
+      8,
+      1,
+      0,
+      2,
+      4,
+      7,
+      5
+    ],
+    "steps": 14,
+    "score": 86,
+    "grade": 3,
+    "pauseReloadAtStep": 8,
+    "trial": true
+  },
+  "postal": {
+    "visibleStart": 24,
+    "exit": 0,
+    "route": [
+      19,
+      14,
+      9,
+      4,
+      3,
+      2,
+      7,
+      12,
+      17,
+      22,
+      21,
+      20,
+      15,
+      10,
+      5,
+      0
+    ],
+    "mailCount": 5,
+    "steps": 16,
+    "remaining": 2,
+    "score": 27,
+    "grade": 3,
+    "pauseReloadAtStep": 8,
+    "restoredMailCount": 3,
+    "trial": true,
+    "phone390": {
+      "minimumCell": 61.59375
+    },
+    "phone320": {
+      "minimumCell": 47.59375,
+      "noHorizontalOverflow": true
+    }
+  },
+  "rhythm": {
+    "pointer": {
+      "inputs": 10,
+      "hits": 9,
+      "perfect": 9,
+      "score": 21,
+      "grade": 2,
+      "observedLightPositions": [
+        47.6742,
+        48.4398,
+        47.6684,
+        46.114,
+        47.6626,
+        46.1082,
+        46.1082,
+        46.1024,
+        46.1024,
+        46.0966
+      ]
+    },
+    "keyboard": {
+      "inputs": 10,
+      "hits": 10,
+      "perfect": 10,
+      "score": 23,
+      "grade": 3,
+      "observedLightPositions": [
+        49.9884,
+        49.9884,
+        48.4398,
+        49.9826,
+        48.4282,
+        49.9768,
+        48.4282,
+        50.7424,
+        49.1938,
+        49.9594
+      ],
+      "feedback": [
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 1/10"
+        },
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 2/10"
+        },
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 3/10"
+        },
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 4/10"
+        },
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 5/10"
+        },
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 6/10"
+        },
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 7/10"
+        },
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 8/10"
+        },
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 9/10"
+        },
+        {
+          "feedback": "PERFECT",
+          "status": "练习 · 未解锁季节奖励命中 10/10"
+        }
+      ]
+    },
+    "judgmentWindowsUnchanged": true,
+    "trial": true,
+    "pauseButtonDisablesHit": true,
+    "scope": "Real visible DOM cue and input APIs; not injected elapsed/index. Pointer test is 9/10, not highest-grade phone proof or device-latency benchmark."
+  },
+  "resources": {
+    "before": {
+      "coins": 229,
+      "energy": 464,
+      "games": 1,
+      "arcadeRewards": {
+        "0": 1
+      }
+    },
+    "afterAllPractice": {
+      "coins": 229,
+      "energy": 464,
+      "games": 1,
+      "arcadeRewards": {
+        "0": 1
+      }
+    }
+  },
+  "originalProfileRestored": true,
+  "nonRecoveryClockDifferences": [],
+  "screenshots": [
+    "v2-weather-odds.png",
+    "v2-puzzle-practice.png",
+    "v2-postal-320.png",
+    "v2-postal-result.png",
+    "v2-rhythm-pointer.png",
+    "v2-rhythm-keyboard.png"
+  ]
+}

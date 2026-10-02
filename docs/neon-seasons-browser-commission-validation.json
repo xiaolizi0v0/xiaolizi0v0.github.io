@@ -1,0 +1,68 @@
+{
+  "checked": "2026-10-01T13:28:08.842Z",
+  "normalResourceProof": "commission-playthrough-results.json: 3 tiers, 1517 actual productions, 7060 virtual recovery seconds, zero energy purchases",
+  "phone": {
+    "viewports": [
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        640
+      ]
+    ],
+    "documentWidth": 320,
+    "footerBottom": 612,
+    "buttonHeights": [
+      44,
+      48
+    ],
+    "screenshot": "v2-commission-active.png",
+    "smallScreenshot": "v2-commission-320.png"
+  },
+  "liveDelivery": {
+    "beforeCoins": 417761,
+    "afterCoins": 419071,
+    "beforeEnergy": 3449,
+    "afterEnergy": 3499,
+    "required": [
+      "lens:8",
+      "star:5"
+    ],
+    "completed": 1,
+    "daily": 1,
+    "confirmationCancelPreservedMaterials": true,
+    "acceptAndRefreshPreserved": true,
+    "missingMaterialsDisabled": true,
+    "cancelKeptOtherGoods": true,
+    "cancelMaterialCounts": [
+      {
+        "id": "tea:8",
+        "before": 1,
+        "after": 1
+      },
+      {
+        "id": "fruit:5",
+        "before": 0,
+        "after": 0
+      }
+    ]
+  },
+  "cooldown": "30-second message displayed. Expiry and next-day behavior verified in clock tests only; the UI proof file uses a future virtual timestamp, so wall time cannot expire its cooldown today.",
+  "restoration": {
+    "ignoredRecoveryKeys": [
+      "stamp",
+      "energyStamp",
+      "chargeStamp",
+      "genStamp"
+    ],
+    "differences": [],
+    "commissionsAbsentAsBefore": true,
+    "coins": 229,
+    "energy": 464,
+    "renovations": 11,
+    "puzzlePaused": true,
+    "puzzleMoves": 0
+  }
+}

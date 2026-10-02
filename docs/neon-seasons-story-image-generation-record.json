@@ -1,0 +1,321 @@
+{
+  "mode": "built-in imagegen; new generation referencing original cover and portraits",
+  "promptPlan": "neon-seasons-story-image-prompts.json",
+  "historicalFirstPass": "neon-seasons-story-image-first-pass-prompts.json",
+  "note": "All 52 planned atlases, 208 independent scenes generated with built-in imagegen and registered; no shared scene placeholders or paid API fallback.",
+  "assets": [
+    {
+      "key": "home-0",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-0ca8940d-d9d8-45d3-9366-bddf6c22fc54.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/home-0.png"
+    },
+    {
+      "key": "home-1",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-e5f0cf56-3532-44cb-9c30-0e5420811af1.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/home-1.png"
+    },
+    {
+      "key": "district-0",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-cdbe7e99-a525-4c8d-9dde-80ae50cc190c.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-0.png"
+    },
+    {
+      "key": "district-1",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-b65dccf1-f24e-4e58-b25e-eb32b4d0d6d6.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-1.png"
+    },
+    {
+      "key": "district-2",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-4af2efdd-45a0-47d0-8980-0808149c00ff.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-2.png"
+    },
+    {
+      "key": "district-3",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-a515f226-1a91-4fa3-83d2-cf5f32a76635.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-3.png"
+    },
+    {
+      "key": "district-4",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-df25fb87-4be2-4ae5-90f7-c7b07bcaa10d.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-4.png"
+    },
+    {
+      "key": "district-5",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-9aa1ce6f-19ec-41fe-bb97-a44c1fb42c59.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-5.png"
+    },
+    {
+      "key": "district-6",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-96b310b9-1727-4b35-ba97-696fc1e84ef3.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-6.png"
+    },
+    {
+      "key": "district-7",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-2b938481-da2d-48b5-9b5b-c211e08e2ee3.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-7.png"
+    },
+    {
+      "key": "district-8",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-f7235350-b609-4d96-aeaf-80f38f9064cf.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-8.png"
+    },
+    {
+      "key": "district-9",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-efc3bfaa-0d84-4c47-9fd7-0770df8b7ab5.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-9.png"
+    },
+    {
+      "key": "district-10",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-e898ce38-b49a-40e7-9944-3a41c804aeb9.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-10.png"
+    },
+    {
+      "key": "district-11",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-b25e080c-8fdc-4b78-9bb5-9251e990c9b4.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-11.png"
+    },
+    {
+      "key": "district-12",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-43bd4f74-5f6f-48cc-b7ca-5c163a6827d9.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-12.png"
+    },
+    {
+      "key": "district-13",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-1b57d3ac-9d5d-4ace-8f03-76d6babce8c1.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-13.png"
+    },
+    {
+      "key": "district-14",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-e99584a6-1f83-4479-8dcd-50950e408236.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-14.png"
+    },
+    {
+      "key": "district-15",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-667e2d51-f8ca-4862-911d-9d853d076527.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/district-15.png"
+    },
+    {
+      "key": "activity-0",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-246a3027-a687-4c1a-a3c5-7ff98f985d1b.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-0.png"
+    },
+    {
+      "key": "activity-1",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-d2016db4-574c-44c7-8012-091b61709dc0.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-1.png"
+    },
+    {
+      "key": "activity-2",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-6a581861-3543-4caa-a263-63142243b07e.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-2.png"
+    },
+    {
+      "key": "activity-3",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-4e05655d-7616-4395-bc0e-b9a2494c12cb.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-3.png"
+    },
+    {
+      "key": "activity-4",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-85d9514f-7188-4c0c-b04e-5bd8ed436573.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-4.png"
+    },
+    {
+      "key": "activity-5",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-0daa8ba5-3eb2-410d-be06-f53a4eaa3c87.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-5.png"
+    },
+    {
+      "key": "activity-6",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-c4c4678c-ff59-4b44-9577-adebbf145dd4.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-6.png"
+    },
+    {
+      "key": "activity-7",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-0c85bc8e-e1eb-4712-9e1e-50227762d792.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-7.png"
+    },
+    {
+      "key": "activity-8",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-046927f2-fe95-4ba4-b260-ae09953f77ef.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-8.png"
+    },
+    {
+      "key": "activity-9",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-ac2a5271-d145-475e-9ada-6fed7d2e26de.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-9.png"
+    },
+    {
+      "key": "activity-10",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-f2c8707e-7b71-42ac-b98a-19e4886faf01.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-10.png"
+    },
+    {
+      "key": "activity-11",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-0b10de55-27c1-4c54-90b4-de88c54a9a22.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-11.png"
+    },
+    {
+      "key": "activity-12",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-10e5616c-16c6-4d64-a23b-b8d71b09139e.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-12.png"
+    },
+    {
+      "key": "activity-13",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-6082bb99-2bb1-415d-ae83-00b681338467.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-13.png"
+    },
+    {
+      "key": "activity-14",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-e03dd4c2-c2cd-4595-8171-d6889ca9bff4.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/activity-14.png"
+    },
+    {
+      "key": "prologue-endings",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-264b3844-bfeb-4211-86e6-aff29bf57a21.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/prologue-endings.png"
+    },
+    {
+      "key": "memory-0",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-9da04ece-679c-4d5d-966a-d2a0e7378b0e.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/memory-0.png"
+    },
+    {
+      "key": "memory-1",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-cbd30c76-1cfa-4f06-8284-d3227c3acf5c.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/memory-1.png"
+    },
+    {
+      "key": "island-0-0",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-6b0da1f6-13f0-48ec-b7d4-156668ea6559.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-0-0.png"
+    },
+    {
+      "key": "island-0-1",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-c34fb16b-009c-41c5-9ec3-3c23c41d0c78.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-0-1.png"
+    },
+    {
+      "key": "island-0-2",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-90540d31-a423-4241-98a0-ac815d28ea0b.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-0-2.png"
+    },
+    {
+      "key": "island-1-0",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-7982065f-32ce-46ad-a80a-756f42026c34.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-1-0.png"
+    },
+    {
+      "key": "island-1-1",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-5fd42be7-e989-4349-ac69-938472a4f782.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-1-1.png"
+    },
+    {
+      "key": "island-1-2",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-d16cc9e2-10d9-4988-9400-dbaad9e6ca98.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-1-2.png"
+    },
+    {
+      "key": "island-2-0",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-0c6841b8-e5c1-4531-85ad-c2a27b982e9c.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-2-0.png"
+    },
+    {
+      "key": "island-2-1",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-e2670eac-a573-45af-bffb-4325cc45971f.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-2-1.png"
+    },
+    {
+      "key": "memory-2",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-bbca5ecf-91d5-4d60-9619-3fd2abe6207e.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/memory-2.png"
+    },
+    {
+      "key": "memory-3",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-084ee7a0-a1c1-42ed-bfda-b630d153043f.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/memory-3.png"
+    },
+    {
+      "key": "memory-4",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-83294f94-5a96-4bf3-a3bb-d269ce5d3cc9.png",
+      "mode": "imagegen generation followed by imagegen clock-hand edit",
+      "projectPath": "tools/neon-seasons/assets/story/memory-4.png",
+      "initialOriginalPath": "C:/Users/xiaolizi0v0/.codex/generated_images/01a0f265-c36d-7a83-ba15-6685b21095e9/exec-eeca3591-2a5c-4307-872f-c9d11ccfd86b.png"
+    },
+    {
+      "key": "memory-5",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-5fb6914a-803e-44ea-8503-78c2587c4192.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/memory-5.png"
+    },
+    {
+      "key": "island-2-2",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-541e802d-8568-4c50-b48a-c5e7011d2213.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-2-2.png"
+    },
+    {
+      "key": "island-3-0",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-60ad8024-f151-4c34-9bce-9f9684e219ad.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-3-0.png"
+    },
+    {
+      "key": "island-3-1",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-12358065-94ee-4639-9e62-c330c587b23f.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-3-1.png"
+    },
+    {
+      "key": "island-3-2",
+      "originalPath": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-848587da-d3b4-4c86-be9d-00d270467a69.png",
+      "mode": "imagegen generation with character/style references",
+      "projectPath": "tools/neon-seasons/assets/story/island-3-2.png"
+    }
+  ]
+}

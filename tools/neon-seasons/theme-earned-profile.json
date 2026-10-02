@@ -1,0 +1,2514 @@
+{
+  "provenance": "Normal earned 72-renovation campaign continued through all four complete seasonal events; no injected goods, resources or unlocks.",
+  "clock": 1793468400000,
+  "state": {
+    "version": 2,
+    "seed": "72-renovations",
+    "rng": 3239577732,
+    "created": 1790812800000,
+    "stamp": 1793468400000,
+    "energyStamp": 1793468400000,
+    "uid": 20940,
+    "energy": 410,
+    "coins": 79268,
+    "gems": 220,
+    "stars": 0,
+    "xp": 587,
+    "level": 44,
+    "progress": 64,
+    "ready": false,
+    "weather": 0,
+    "board": [
+      {
+        "uid": 12,
+        "chain": "producer0",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 13,
+        "chain": "producer0",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 14,
+        "chain": "producer0",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 3875,
+        "chain": "producer6",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 3110,
+        "chain": "producer3",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 4258,
+        "chain": "producer7",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 383,
+        "chain": "producer1",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 3558,
+        "chain": "producer5",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 4732,
+        "chain": "producer8",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 5188,
+        "chain": "producer9",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 5602,
+        "chain": "producer10",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 6130,
+        "chain": "producer11",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 6615,
+        "chain": "producer12",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 7154,
+        "chain": "producer13",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 7651,
+        "chain": "producer14",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 3329,
+        "chain": "producer4",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 8322,
+        "chain": "producer15",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 20935,
+        "chain": "wood",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 20931,
+        "chain": "wood",
+        "level": 3,
+        "web": false
+      },
+      {
+        "uid": 20917,
+        "chain": "needle",
+        "level": 3,
+        "web": false
+      },
+      {
+        "uid": 20938,
+        "chain": "tool",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 20937,
+        "chain": "tool",
+        "level": 4,
+        "web": false
+      },
+      null,
+      {
+        "uid": 20915,
+        "chain": "wood",
+        "level": 5,
+        "web": false
+      },
+      {
+        "uid": 9279,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10904,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9213,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9011,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9862,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10647,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9373,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9422,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9618,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10068,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 8903,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 11137,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9731,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9467,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9992,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10296,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10970,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10692,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 2722,
+        "chain": "producer2",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1793468400000
+      },
+      {
+        "uid": 10163,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 9820,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10462,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10211,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 11264,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10423,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10775,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 11052,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 11377,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 11015,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 11182,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 11640,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 11715,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 11479,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      {
+        "uid": 10596,
+        "chain": "needle",
+        "level": 4,
+        "web": false
+      },
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "inventory": [
+      {
+        "uid": 3079,
+        "chain": "flower",
+        "level": 10,
+        "web": false,
+        "autoStock": 3,
+        "autoStamp": 1793468400000
+      },
+      {
+        "uid": 5007,
+        "chain": "flower",
+        "level": 6,
+        "web": false,
+        "autoStock": 3,
+        "autoStamp": 1793468400000
+      },
+      {
+        "uid": 4965,
+        "chain": "flower",
+        "level": 8,
+        "web": false,
+        "autoStock": 3,
+        "autoStamp": 1793468400000
+      }
+    ],
+    "capacity": 16,
+    "inbox": [
+      {
+        "uid": 66,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 163,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 190,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 206,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 378,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 406,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 473,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 597,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 668,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 805,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 933,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 1047,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 1133,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 1316,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 1352,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 1410,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 1417,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 1442,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 1467,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 1646,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 1736,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 1951,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 1969,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 2005,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 2303,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 2382,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 2563,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 2663,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 2691,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 2721,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 2776,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 2848,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 2903,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3005,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3065,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 3109,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 3115,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 3130,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3153,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 3212,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 3242,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3286,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3304,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3314,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 3328,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 3333,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 3372,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3418,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 3461,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3502,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3512,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3554,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3557,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 3570,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3591,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 3756,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 3786,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 3842,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 3874,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 3890,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 3968,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 3995,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 4076,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 4113,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 4147,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 4256,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 4257,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 4308,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 4402,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 4490,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 4606,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 4652,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 4702,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 4731,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 4756,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 4791,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 4882,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 4927,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 5040,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 5097,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 5160,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 5179,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 5187,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 5201,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 5329,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 5422,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 5466,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 5485,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 5586,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 5601,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 5655,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 5702,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 5752,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 5807,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 5875,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 5936,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 6028,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 6066,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 6129,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 6146,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 6245,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 6283,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 6356,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 6379,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 6425,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 6496,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 6547,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 6613,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 6614,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 6640,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 6732,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 6819,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 6846,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 6886,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 6975,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 6985,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 7044,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 2
+      },
+      {
+        "uid": 7104,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 7153,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 7176,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 6
+      },
+      {
+        "uid": 7218,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 7232,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 7268,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 7361,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 7390,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 0
+      },
+      {
+        "uid": 7474,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 7497,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 7560,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 7636,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 7650,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 7679,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 9
+      },
+      {
+        "uid": 7726,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 7780,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 7812,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 7840,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 7995,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 11
+      },
+      {
+        "uid": 8189,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 8289,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 13
+      },
+      {
+        "uid": 8320,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 8
+      },
+      {
+        "uid": 8321,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 14
+      },
+      {
+        "uid": 8365,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 8394,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 8530,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 7
+      },
+      {
+        "uid": 8555,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 8577,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 15
+      },
+      {
+        "uid": 8634,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 8691,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 5
+      },
+      {
+        "uid": 8748,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 1
+      },
+      {
+        "uid": 8791,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 10
+      },
+      {
+        "uid": 8817,
+        "chain": "partsbox",
+        "level": 1,
+        "web": false,
+        "family": 3
+      },
+      {
+        "uid": 8818,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 15
+      },
+      {
+        "uid": 8820,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 12
+      },
+      {
+        "uid": 13021,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 15
+      },
+      {
+        "uid": 16913,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 4
+      },
+      {
+        "uid": 20939,
+        "chain": "partsbox",
+        "level": 2,
+        "web": false,
+        "family": 10
+      }
+    ],
+    "tools": {
+      "scissors": 16,
+      "joker": 4,
+      "hourglass": 3,
+      "packs": 243
+    },
+    "generators": [
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1793468400000,
+        "focus": null
+      }
+    ],
+    "neighbors": [
+      {
+        "id": "order-8816",
+        "slot": 0,
+        "npc": 5,
+        "requirements": [
+          {
+            "chain": "table",
+            "level": 3,
+            "qty": 1
+          }
+        ],
+        "reward": {
+          "coins": 53,
+          "xp": 27
+        },
+        "title": "熟客的日常"
+      },
+      {
+        "id": "order-22",
+        "slot": 1,
+        "npc": 1,
+        "requirements": [
+          {
+            "chain": "tool",
+            "level": 2,
+            "qty": 1
+          }
+        ],
+        "reward": {
+          "coins": 39,
+          "xp": 24
+        },
+        "title": "街区预约单"
+      },
+      {
+        "id": "order-23",
+        "slot": 2,
+        "npc": 4,
+        "requirements": [
+          {
+            "chain": "tool",
+            "level": 3,
+            "qty": 1
+          }
+        ],
+        "reward": {
+          "coins": 53,
+          "xp": 27
+        },
+        "title": "认真做的礼物"
+      }
+    ],
+    "rerollAt": [
+      0,
+      0,
+      0
+    ],
+    "decor": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "decorOwned": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0
+      ]
+    ],
+    "discovered": [
+      "producer0:5",
+      "producer0:1",
+      "tool:1",
+      "wood:1",
+      "flower:1",
+      "tool:2",
+      "wood:2",
+      "flower:2",
+      "tool:3",
+      "needle:1",
+      "tool:4",
+      "needle:2",
+      "wood:3",
+      "tool:5",
+      "needle:3",
+      "wood:4",
+      "tool:6",
+      "needle:4",
+      "cloth:1",
+      "cloth:2",
+      "cloth:3",
+      "cord:1",
+      "wood:5",
+      "wood:6",
+      "tool:7",
+      "producer1:5",
+      "fruit:1",
+      "flower:3",
+      "fruit:2",
+      "tea:1",
+      "tea:2",
+      "flower:4",
+      "fruit:3",
+      "tea:3",
+      "flower:5",
+      "petal:1",
+      "tea:4",
+      "petal:2",
+      "flower:6",
+      "petal:3",
+      "petal:4",
+      "tea:5",
+      "cord:2",
+      "tool:8",
+      "flower:7",
+      "tea:6",
+      "flower:8",
+      "cord:3",
+      "wood:7",
+      "tool:9",
+      "tea:7",
+      "flower:9",
+      "tea:8",
+      "producer2:5",
+      "coffee:2",
+      "cord:4",
+      "coffee:3",
+      "pastry:3",
+      "flower:10",
+      "coffee:4",
+      "pastry:2",
+      "coffee:5",
+      "producer3:5",
+      "circuit:2",
+      "circuit:3",
+      "circuit:4",
+      "vinyl:2",
+      "circuit:5",
+      "vinyl:3",
+      "circuit:6",
+      "vinyl:4",
+      "pastry:4",
+      "producer4:5",
+      "rope:2",
+      "rope:3",
+      "glass:2",
+      "shell:2",
+      "shell:3",
+      "rope:4",
+      "rope:5",
+      "glass:3",
+      "shell:4",
+      "circuit:7",
+      "producer5:5",
+      "banner:2",
+      "music:2",
+      "music:3",
+      "music:4",
+      "rope:6",
+      "glass:4",
+      "lamp:2",
+      "lamp:3",
+      "coffee:6",
+      "banner:3",
+      "producer6:5",
+      "soda:2",
+      "soda:3",
+      "float:2",
+      "float:3",
+      "float:4",
+      "lamp:4",
+      "soda:4",
+      "rope:7",
+      "banner:4",
+      "cloth:4",
+      "producer7:5",
+      "solar:2",
+      "fan:2",
+      "solar:3",
+      "solar:4",
+      "solar:5",
+      "fan:3",
+      "solar:6",
+      "fan:4",
+      "producer8:5",
+      "paper:2",
+      "paper:3",
+      "paper:4",
+      "wood:8",
+      "ink:2",
+      "soda:5",
+      "book:2",
+      "book:3",
+      "book:4",
+      "producer9:5",
+      "pan:2",
+      "pan:3",
+      "table:2",
+      "soup:2",
+      "soup:3",
+      "table:3",
+      "pan:4",
+      "table:4",
+      "pan:5",
+      "ink:3",
+      "soup:4",
+      "producer10:5",
+      "photo:2",
+      "photo:3",
+      "photo:4",
+      "display:2",
+      "producer11:5",
+      "signal:2",
+      "fruit:4",
+      "signal:3",
+      "map:2",
+      "map:3",
+      "signal:4",
+      "producer12:5",
+      "gear:2",
+      "clock:2",
+      "scarf:2",
+      "ink:4",
+      "producer13:5",
+      "fire:2",
+      "fire:3",
+      "ceramic:2",
+      "snow:2",
+      "snow:3",
+      "ceramic:3",
+      "fire:4",
+      "clock:3",
+      "gear:3",
+      "gear:4",
+      "scarf:3",
+      "scarf:4",
+      "clock:4",
+      "display:3",
+      "display:4",
+      "ceramic:4",
+      "producer14:5",
+      "lens:2",
+      "star:2",
+      "lens:3",
+      "lens:4",
+      "producer15:5",
+      "battery:2",
+      "beacon:2",
+      "beacon:3",
+      "beacon:4",
+      "tool:10",
+      "wood:9",
+      "tool:11",
+      "wood:10"
+    ],
+    "recipes": [],
+    "clues": [
+      "倒写的票根",
+      "空白植株标签",
+      "断电记录",
+      "写给明天的歌单",
+      "被剪的录音",
+      "两版撤离图",
+      "未寄的合照",
+      "停在 00:04 的表"
+    ],
+    "choices": {
+      "3": 0,
+      "7": 0,
+      "11": 0,
+      "15": 0,
+      "19": 0,
+      "23": 0,
+      "27": 0,
+      "31": 0,
+      "35": 0,
+      "39": 0,
+      "43": 0,
+      "47": 0,
+      "51": 0,
+      "55": 0,
+      "59": 0,
+      "63": 0
+    },
+    "read": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "pendingScene": null,
+    "bonds": [
+      16,
+      39,
+      39,
+      39,
+      40,
+      37
+    ],
+    "bondClaims": [],
+    "ending": "restore",
+    "endReward": true,
+    "pass": 36275,
+    "passClaims": [],
+    "achievementClaims": [],
+    "album": [],
+    "dust": 0,
+    "pity": 0,
+    "albumClaims": [],
+    "albumFull": false,
+    "signCount": 1,
+    "signedDay": "2026-10-01",
+    "energyBuys": 0,
+    "stats": {
+      "merges": 7974,
+      "produced": 11735,
+      "orders": 540,
+      "built": 64,
+      "recipes": 0,
+      "discovered": 184,
+      "maxItems": 221,
+      "games": 0,
+      "cards": 0,
+      "bondRewards": 0,
+      "highItems": 102
+    },
+    "day": "2026-11-01",
+    "week": "2026-10-26",
+    "daily": {
+      "base": {
+        "merges": 7974,
+        "orders": 540,
+        "games": 0,
+        "built": 64,
+        "highItems": 102
+      },
+      "claims": []
+    },
+    "weekly": {
+      "base": {
+        "merges": 7974,
+        "orders": 540,
+        "games": 0,
+        "built": 64,
+        "highItems": 102
+      },
+      "claims": []
+    },
+    "arcadeRewards": {},
+    "arcadeBest": {},
+    "arcade": null,
+    "night": null,
+    "sold": {
+      "item": {
+        "uid": 20929,
+        "chain": "tool",
+        "level": 5,
+        "web": false
+      },
+      "price": 12
+    },
+    "npcOrders": [
+      0,
+      103,
+      104,
+      110,
+      114,
+      109
+    ],
+    "homeProgress": 8,
+    "homeStyles": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "homeOwned": [
+      [
+        0,
+        1
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "world": "island",
+    "doubleEnergy": true,
+    "sourceGranted": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "decorClaims": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "sideProgress": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "sideRead": [],
+    "sceneHomeRead": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "activity": {
+      "round": 5,
+      "theme": 0,
+      "started": 1793468400000,
+      "endAt": 1794073200000,
+      "ended": false,
+      "tokens": 0,
+      "productions": 0,
+      "picks": 12,
+      "bait": 6,
+      "food": 0,
+      "nodes": 0,
+      "nodeClaims": [],
+      "digLayer": 0,
+      "digBoard": [
+        {
+          "hp": 0,
+          "kind": "entrance",
+          "open": true
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "chest",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "tool",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "dust",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "tool",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "chest",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "dust",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "tool",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "chest",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "exit",
+          "open": false
+        }
+      ],
+      "digClaimed": [],
+      "fishBoard": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "fishScore": 0,
+      "fishClaims": [],
+      "fishing": null,
+      "dinner": 0,
+      "dinnerAt": 1793468400000,
+      "dinnerClaimed": [],
+      "bestFish": 30
+    },
+    "activityCollections": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "activityCards": [
+      0,
+      1,
+      2,
+      3,
+      8,
+      19,
+      59,
+      53,
+      25,
+      14,
+      43,
+      58,
+      31,
+      42,
+      11,
+      39,
+      54,
+      22,
+      28,
+      45,
+      4,
+      7,
+      16,
+      46,
+      32,
+      6,
+      5,
+      30,
+      17,
+      29,
+      35,
+      40,
+      49,
+      51,
+      37,
+      9,
+      10,
+      57,
+      26,
+      36,
+      27,
+      12,
+      13,
+      47,
+      15,
+      23,
+      21,
+      34,
+      44,
+      18,
+      50,
+      20,
+      48,
+      55,
+      24,
+      52,
+      33,
+      38,
+      41,
+      56
+    ],
+    "activityDust": 365,
+    "activityPacks": 392,
+    "activityPity": 0,
+    "activityAlbumClaims": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "fishCollection": [
+      17,
+      1,
+      21,
+      16,
+      12,
+      4,
+      5,
+      22,
+      0,
+      6,
+      20,
+      13,
+      18,
+      14,
+      23,
+      2,
+      9,
+      7,
+      8,
+      10,
+      15,
+      3,
+      19,
+      11
+    ],
+    "dinnerRounds": 0
+  }
+}

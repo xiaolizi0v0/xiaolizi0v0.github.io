@@ -1,0 +1,4084 @@
+{
+  "version": 9,
+  "chains": 40,
+  "items": 480,
+  "bodyUniquenessExcludesBadges": true,
+  "catalog": [
+    {
+      "chain": "tool",
+      "items": [
+        {
+          "bodyHash": "b42e2b67",
+          "family": "tool",
+          "level": 1,
+          "name": "螺丝钉",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "c74e8cda",
+          "family": "tool",
+          "level": 2,
+          "name": "螺丝刀",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "86446df4",
+          "family": "tool",
+          "level": 3,
+          "name": "小扳手",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "603a9ac4",
+          "family": "tool",
+          "level": 4,
+          "name": "维修钳",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "d8262d6b",
+          "family": "tool",
+          "level": 5,
+          "name": "工具腰包",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "73dc7cd9",
+          "family": "tool",
+          "level": 6,
+          "name": "精密工具组",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "75338e0a",
+          "family": "tool",
+          "level": 7,
+          "name": "套筒工具箱",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "250e85e3",
+          "family": "tool",
+          "level": 8,
+          "name": "棘轮工具箱",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "645f8b25",
+          "family": "tool",
+          "level": 9,
+          "name": "电动钻组",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "b7967c17",
+          "family": "tool",
+          "level": 10,
+          "name": "精密测量箱",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "c1bdf9c1",
+          "family": "tool",
+          "level": 11,
+          "name": "全套修复工具",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "23e0b2ae",
+          "family": "tool",
+          "level": 12,
+          "name": "传承工具箱",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "wood",
+      "items": [
+        {
+          "bodyHash": "c192f0bb",
+          "family": "wood",
+          "level": 1,
+          "name": "小木屑",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "86a2bb3e",
+          "family": "wood",
+          "level": 2,
+          "name": "短木条",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "4b812b9e",
+          "family": "wood",
+          "level": 3,
+          "name": "木料板",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "88e51ce8",
+          "family": "wood",
+          "level": 4,
+          "name": "拼合木板",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "f4b61648",
+          "family": "wood",
+          "level": 5,
+          "name": "长椅木架",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "d0ba6118",
+          "family": "wood",
+          "level": 6,
+          "name": "雕花木箱",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "e9c09517",
+          "family": "wood",
+          "level": 7,
+          "name": "复古门扇",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "76d2a9dd",
+          "family": "wood",
+          "level": 8,
+          "name": "镶边木箱",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "15d594f8",
+          "family": "wood",
+          "level": 9,
+          "name": "胡桃木宝匣",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "68163391",
+          "family": "wood",
+          "level": 10,
+          "name": "雕花屏风",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "ab613763",
+          "family": "wood",
+          "level": 11,
+          "name": "拼木长桌",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "313c4a8",
+          "family": "wood",
+          "level": 12,
+          "name": "四季木雕屏",
+          "shapeElements": 51,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "cloth",
+      "items": [
+        {
+          "bodyHash": "9a13ea0",
+          "family": "cloth",
+          "level": 1,
+          "name": "线头",
+          "shapeElements": 1,
+          "valid": true
+        },
+        {
+          "bodyHash": "ff12f377",
+          "family": "cloth",
+          "level": 2,
+          "name": "棉线团",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "c2de4fca",
+          "family": "cloth",
+          "level": 3,
+          "name": "布料片",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "4ce18c23",
+          "family": "cloth",
+          "level": 4,
+          "name": "折好棉布",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "d3e409c0",
+          "family": "cloth",
+          "level": 5,
+          "name": "绣花手帕",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "50911a46",
+          "family": "cloth",
+          "level": 6,
+          "name": "拼色桌布",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "ab84c053",
+          "family": "cloth",
+          "level": 7,
+          "name": "防水帆布",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "108d39ed",
+          "family": "cloth",
+          "level": 8,
+          "name": "旗帜布卷",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "9602d227",
+          "family": "cloth",
+          "level": 9,
+          "name": "四季挂毯",
+          "shapeElements": 31,
+          "valid": true
+        },
+        {
+          "bodyHash": "c930a28d",
+          "family": "cloth",
+          "level": 10,
+          "name": "手织幕帘",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "7857e67f",
+          "family": "cloth",
+          "level": 11,
+          "name": "双面绣帘",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "6eddc41a",
+          "family": "cloth",
+          "level": 12,
+          "name": "记忆织锦",
+          "shapeElements": 10,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "flower",
+      "items": [
+        {
+          "bodyHash": "42229d98",
+          "family": "flower",
+          "level": 1,
+          "name": "小种子",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "a07e86bb",
+          "family": "flower",
+          "level": 2,
+          "name": "嫩芽",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "2db3477",
+          "family": "flower",
+          "level": 3,
+          "name": "雏菊",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "55ed438a",
+          "family": "flower",
+          "level": 4,
+          "name": "雏菊花束",
+          "shapeElements": 21,
+          "valid": true
+        },
+        {
+          "bodyHash": "636e94eb",
+          "family": "flower",
+          "level": 5,
+          "name": "陶盆鲜花",
+          "shapeElements": 27,
+          "valid": true
+        },
+        {
+          "bodyHash": "c192c61b",
+          "family": "flower",
+          "level": 6,
+          "name": "悬吊花篮",
+          "shapeElements": 29,
+          "valid": true
+        },
+        {
+          "bodyHash": "f795180d",
+          "family": "flower",
+          "level": 7,
+          "name": "蔷薇花束",
+          "shapeElements": 33,
+          "valid": true
+        },
+        {
+          "bodyHash": "c6e0962d",
+          "family": "flower",
+          "level": 8,
+          "name": "百合花篮",
+          "shapeElements": 23,
+          "valid": true
+        },
+        {
+          "bodyHash": "53f05de0",
+          "family": "flower",
+          "level": 9,
+          "name": "满天星捧花",
+          "shapeElements": 19,
+          "valid": true
+        },
+        {
+          "bodyHash": "6ed9810",
+          "family": "flower",
+          "level": 10,
+          "name": "四季鲜花篮",
+          "shapeElements": 54,
+          "valid": true
+        },
+        {
+          "bodyHash": "876caf31",
+          "family": "flower",
+          "level": 11,
+          "name": "流光插花",
+          "shapeElements": 26,
+          "valid": true
+        },
+        {
+          "bodyHash": "3ed1f40a",
+          "family": "flower",
+          "level": 12,
+          "name": "开花的回声",
+          "shapeElements": 40,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "tea",
+      "items": [
+        {
+          "bodyHash": "6b8bacf5",
+          "family": "tea",
+          "level": 1,
+          "name": "茶籽",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "3ae35d00",
+          "family": "tea",
+          "level": 2,
+          "name": "鲜茶叶",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "bf40f915",
+          "family": "tea",
+          "level": 3,
+          "name": "晒青茶",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "57a97fb0",
+          "family": "tea",
+          "level": 4,
+          "name": "春茶小包",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "c5208560",
+          "family": "tea",
+          "level": 5,
+          "name": "茉莉茶罐",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "6a0c0223",
+          "family": "tea",
+          "level": 6,
+          "name": "手炒春茶",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "a9e87313",
+          "family": "tea",
+          "level": 7,
+          "name": "雨前茶礼",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "76037839",
+          "family": "tea",
+          "level": 8,
+          "name": "四季茶箱",
+          "shapeElements": 19,
+          "valid": true
+        },
+        {
+          "bodyHash": "89c1767c",
+          "family": "tea",
+          "level": 9,
+          "name": "陈香茶饼",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "c6f1ca5a",
+          "family": "tea",
+          "level": 10,
+          "name": "双层茶礼",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "c9b0f4fa",
+          "family": "tea",
+          "level": 11,
+          "name": "手选茶珍",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "fe2b27c6",
+          "family": "tea",
+          "level": 12,
+          "name": "四季藏茶",
+          "shapeElements": 8,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "fruit",
+      "items": [
+        {
+          "bodyHash": "592e3d1a",
+          "family": "fruit",
+          "level": 1,
+          "name": "果核",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "482f33f0",
+          "family": "fruit",
+          "level": 2,
+          "name": "青涩小果",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "84cd1858",
+          "family": "fruit",
+          "level": 3,
+          "name": "春日草莓",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "38dbb29e",
+          "family": "fruit",
+          "level": 4,
+          "name": "草莓碗",
+          "shapeElements": 29,
+          "valid": true
+        },
+        {
+          "bodyHash": "43185811",
+          "family": "fruit",
+          "level": 5,
+          "name": "鲜果篮",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "bbee3ba9",
+          "family": "fruit",
+          "level": 6,
+          "name": "缤纷果盘",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "6177b0d4",
+          "family": "fruit",
+          "level": 7,
+          "name": "果酱礼盒",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "e2d41815",
+          "family": "fruit",
+          "level": 8,
+          "name": "蜜桃果篮",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "66ac728b",
+          "family": "fruit",
+          "level": 9,
+          "name": "双层果盘",
+          "shapeElements": 17,
+          "valid": true
+        },
+        {
+          "bodyHash": "7ce9f617",
+          "family": "fruit",
+          "level": 10,
+          "name": "丰收果篮",
+          "shapeElements": 21,
+          "valid": true
+        },
+        {
+          "bodyHash": "46d50e81",
+          "family": "fruit",
+          "level": 11,
+          "name": "四季鲜果礼",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "bodyHash": "e01d818b",
+          "family": "fruit",
+          "level": 12,
+          "name": "一起分享的果篮",
+          "shapeElements": 29,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "coffee",
+      "items": [
+        {
+          "bodyHash": "65360a7f",
+          "family": "coffee",
+          "level": 1,
+          "name": "咖啡豆",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "ef0e10b2",
+          "family": "coffee",
+          "level": 2,
+          "name": "烘焙豆",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "bb43ce2",
+          "family": "coffee",
+          "level": 3,
+          "name": "纸杯咖啡",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "3b5d9039",
+          "family": "coffee",
+          "level": 4,
+          "name": "陶杯拿铁",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "a6cf1bc6",
+          "family": "coffee",
+          "level": 5,
+          "name": "拉花咖啡",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "3dccfb8",
+          "family": "coffee",
+          "level": 6,
+          "name": "手冲咖啡壶",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "4d297ee9",
+          "family": "coffee",
+          "level": 7,
+          "name": "虹吸咖啡壶",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "718019be",
+          "family": "coffee",
+          "level": 8,
+          "name": "摩卡咖啡壶",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "9c5b50df",
+          "family": "coffee",
+          "level": 9,
+          "name": "双杯浓缩机",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "65ab0283",
+          "family": "coffee",
+          "level": 10,
+          "name": "铜制冲煮器",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "cde4754",
+          "family": "coffee",
+          "level": 11,
+          "name": "六人的咖啡组",
+          "shapeElements": 25,
+          "valid": true
+        },
+        {
+          "bodyHash": "40a88899",
+          "family": "coffee",
+          "level": 12,
+          "name": "明天的第一杯",
+          "shapeElements": 12,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "pastry",
+      "items": [
+        {
+          "bodyHash": "e06870ac",
+          "family": "pastry",
+          "level": 1,
+          "name": "面粉",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "e9bce988",
+          "family": "pastry",
+          "level": 2,
+          "name": "小面团",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "bddaea83",
+          "family": "pastry",
+          "level": 3,
+          "name": "黄油饼干",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "64ea1f54",
+          "family": "pastry",
+          "level": 4,
+          "name": "草莓蛋挞",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "c7753ad6",
+          "family": "pastry",
+          "level": 5,
+          "name": "迷你蛋糕",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "9aeee55b",
+          "family": "pastry",
+          "level": 6,
+          "name": "花瓣甜点",
+          "shapeElements": 28,
+          "valid": true
+        },
+        {
+          "bodyHash": "abc98f1f",
+          "family": "pastry",
+          "level": 7,
+          "name": "外婆下午茶",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "6a7860ae",
+          "family": "pastry",
+          "level": 8,
+          "name": "四季甜点塔",
+          "shapeElements": 22,
+          "valid": true
+        },
+        {
+          "bodyHash": "303665c9",
+          "family": "pastry",
+          "level": 9,
+          "name": "水果庆生糕",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "5833afca",
+          "family": "pastry",
+          "level": 10,
+          "name": "双层奶油糕",
+          "shapeElements": 27,
+          "valid": true
+        },
+        {
+          "bodyHash": "94c2b39b",
+          "family": "pastry",
+          "level": 11,
+          "name": "六人的庆生糕",
+          "shapeElements": 17,
+          "valid": true
+        },
+        {
+          "bodyHash": "f1c67c4a",
+          "family": "pastry",
+          "level": 12,
+          "name": "四季分享蛋糕",
+          "shapeElements": 34,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "circuit",
+      "items": [
+        {
+          "bodyHash": "48b5ce83",
+          "family": "circuit",
+          "level": 1,
+          "name": "铜线",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "a88f7c0c",
+          "family": "circuit",
+          "level": 2,
+          "name": "焊锡点",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "b2d77320",
+          "family": "circuit",
+          "level": 3,
+          "name": "线路板",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "c14721a",
+          "family": "circuit",
+          "level": 4,
+          "name": "小控制器",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "972030d4",
+          "family": "circuit",
+          "level": 5,
+          "name": "广播接线盒",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "2236b40",
+          "family": "circuit",
+          "level": 6,
+          "name": "精密电路组",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "a236a193",
+          "family": "circuit",
+          "level": 7,
+          "name": "电台主板",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "b5c0bd5",
+          "family": "circuit",
+          "level": 8,
+          "name": "信号放大器",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "8889c3f4",
+          "family": "circuit",
+          "level": 9,
+          "name": "双路控制板",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "ac6a0037",
+          "family": "circuit",
+          "level": 10,
+          "name": "防水主控盒",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "9fa9be62",
+          "family": "circuit",
+          "level": 11,
+          "name": "四季联动板",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "2be6d844",
+          "family": "circuit",
+          "level": 12,
+          "name": "记忆回路核",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "vinyl",
+      "items": [
+        {
+          "bodyHash": "8c286e34",
+          "family": "vinyl",
+          "level": 1,
+          "name": "音符纸",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "4c46a5f1",
+          "family": "vinyl",
+          "level": 2,
+          "name": "录音片",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "e4a6cc5a",
+          "family": "vinyl",
+          "level": 3,
+          "name": "小唱片",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "10331d12",
+          "family": "vinyl",
+          "level": 4,
+          "name": "黑胶唱片",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "5dd9e462",
+          "family": "vinyl",
+          "level": 5,
+          "name": "手写歌单",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "8dc3e8bc",
+          "family": "vinyl",
+          "level": 6,
+          "name": "复古唱机",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "a21d1479",
+          "family": "vinyl",
+          "level": 7,
+          "name": "便携留声机",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "421482d8",
+          "family": "vinyl",
+          "level": 8,
+          "name": "双碟唱片组",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "55741670",
+          "family": "vinyl",
+          "level": 9,
+          "name": "珍藏黑胶盒",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "19a43adc",
+          "family": "vinyl",
+          "level": 10,
+          "name": "铜喇叭唱机",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "76ee9b7a",
+          "family": "vinyl",
+          "level": 11,
+          "name": "四季唱片集",
+          "shapeElements": 25,
+          "valid": true
+        },
+        {
+          "bodyHash": "90ac935a",
+          "family": "vinyl",
+          "level": 12,
+          "name": "明天的留声机",
+          "shapeElements": 8,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "rope",
+      "items": [
+        {
+          "bodyHash": "4535c29a",
+          "family": "rope",
+          "level": 1,
+          "name": "麻绳",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "7f6f5b2a",
+          "family": "rope",
+          "level": 2,
+          "name": "绳结",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "2f30e909",
+          "family": "rope",
+          "level": 3,
+          "name": "船用缆绳",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "31a79ca4",
+          "family": "rope",
+          "level": 4,
+          "name": "木船桨",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "44260de2",
+          "family": "rope",
+          "level": 5,
+          "name": "海边救生圈",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "2100ce58",
+          "family": "rope",
+          "level": 6,
+          "name": "遮阳帆",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "f6823c09",
+          "family": "rope",
+          "level": 7,
+          "name": "双桨组件",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "8219e635",
+          "family": "rope",
+          "level": 8,
+          "name": "观潮小木船",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "28f66715",
+          "family": "rope",
+          "level": 9,
+          "name": "双人帆船",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "810e3f57",
+          "family": "rope",
+          "level": 10,
+          "name": "灯帆小艇",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "64c15a1",
+          "family": "rope",
+          "level": 11,
+          "name": "四季帆船",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "df75cb7f",
+          "family": "rope",
+          "level": 12,
+          "name": "明日远航船",
+          "shapeElements": 8,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "shell",
+      "items": [
+        {
+          "bodyHash": "efb0e6b",
+          "family": "shell",
+          "level": 1,
+          "name": "小螺壳",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "d9bae442",
+          "family": "shell",
+          "level": 2,
+          "name": "白贝壳",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "c3f6ee46",
+          "family": "shell",
+          "level": 3,
+          "name": "扇形贝",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "3a52b6e4",
+          "family": "shell",
+          "level": 4,
+          "name": "海螺",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "487ee0c9",
+          "family": "shell",
+          "level": 5,
+          "name": "珍珠贝",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "8651ffd2",
+          "family": "shell",
+          "level": 6,
+          "name": "贝壳摆件",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "152e21c",
+          "family": "shell",
+          "level": 7,
+          "name": "潮汐贝盒",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "2e8d88d2",
+          "family": "shell",
+          "level": 8,
+          "name": "海洋贝饰",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "9ca6c151",
+          "family": "shell",
+          "level": 9,
+          "name": "珍珠贝串",
+          "shapeElements": 14,
+          "valid": true
+        },
+        {
+          "bodyHash": "4a01e0e8",
+          "family": "shell",
+          "level": 10,
+          "name": "双层贝雕",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "8baa685b",
+          "family": "shell",
+          "level": 11,
+          "name": "四季贝壳冠",
+          "shapeElements": 17,
+          "valid": true
+        },
+        {
+          "bodyHash": "7d7c9be5",
+          "family": "shell",
+          "level": 12,
+          "name": "海风贝雕",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "glass",
+      "items": [
+        {
+          "bodyHash": "a7f20c38",
+          "family": "glass",
+          "level": 1,
+          "name": "玻璃碎片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "fc0b1b08",
+          "family": "glass",
+          "level": 2,
+          "name": "磨圆玻璃",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "c42d528c",
+          "family": "glass",
+          "level": 3,
+          "name": "青色海玻璃",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "994b8bca",
+          "family": "glass",
+          "level": 4,
+          "name": "彩玻璃石",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "8d334b0d",
+          "family": "glass",
+          "level": 5,
+          "name": "玻璃小瓶",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "539afd7b",
+          "family": "glass",
+          "level": 6,
+          "name": "潮汐摆件",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "f9a94748",
+          "family": "glass",
+          "level": 7,
+          "name": "海光吊灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "e7f3eee1",
+          "family": "glass",
+          "level": 8,
+          "name": "琉璃花瓶",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "de9fb4ce",
+          "family": "glass",
+          "level": 9,
+          "name": "彩玻璃灯盏",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "359fe9d4",
+          "family": "glass",
+          "level": 10,
+          "name": "六色琉璃瓶",
+          "shapeElements": 20,
+          "valid": true
+        },
+        {
+          "bodyHash": "88a10955",
+          "family": "glass",
+          "level": 11,
+          "name": "四季琉璃摆件",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "dd22e154",
+          "family": "glass",
+          "level": 12,
+          "name": "不碎的晴天",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "music",
+      "items": [
+        {
+          "bodyHash": "65bc419a",
+          "family": "music",
+          "level": 1,
+          "name": "拨片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "384400c2",
+          "family": "music",
+          "level": 2,
+          "name": "口琴",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "32e8a092",
+          "family": "music",
+          "level": 3,
+          "name": "手鼓",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "1b89e374",
+          "family": "music",
+          "level": 4,
+          "name": "小吉他",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "86e514ab",
+          "family": "music",
+          "level": 5,
+          "name": "木吉他",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "f8c6aff",
+          "family": "music",
+          "level": 6,
+          "name": "电子键盘",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "9de68c66",
+          "family": "music",
+          "level": 7,
+          "name": "舞台鼓组",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "ae379e99",
+          "family": "music",
+          "level": 8,
+          "name": "双人弦乐组",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "a9eb4e93",
+          "family": "music",
+          "level": 9,
+          "name": "铜管乐器组",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "8a5bd3e1",
+          "family": "music",
+          "level": 10,
+          "name": "四季乐器箱",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "4f3de9d0",
+          "family": "music",
+          "level": 11,
+          "name": "六人的合奏组",
+          "shapeElements": 22,
+          "valid": true
+        },
+        {
+          "bodyHash": "15a77330",
+          "family": "music",
+          "level": 12,
+          "name": "明日合奏礼",
+          "shapeElements": 13,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "banner",
+      "items": [
+        {
+          "bodyHash": "e5632998",
+          "family": "banner",
+          "level": 1,
+          "name": "彩纸条",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "e9f4f5b0",
+          "family": "banner",
+          "level": 2,
+          "name": "布旗角",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "681d6fe3",
+          "family": "banner",
+          "level": 3,
+          "name": "小三角旗",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "9796a8f7",
+          "family": "banner",
+          "level": 4,
+          "name": "演出旗",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "69f23588",
+          "family": "banner",
+          "level": 5,
+          "name": "串旗",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "8b6399e9",
+          "family": "banner",
+          "level": 6,
+          "name": "舞台背旗",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "3cf124ea",
+          "family": "banner",
+          "level": 7,
+          "name": "风帆横幅",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "cc98a965",
+          "family": "banner",
+          "level": 8,
+          "name": "屋顶灯旗",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "738f3a5d",
+          "family": "banner",
+          "level": 9,
+          "name": "庆典旗串",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "4dca1ad3",
+          "family": "banner",
+          "level": 10,
+          "name": "双层刺绣旗",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "bf7527e5",
+          "family": "banner",
+          "level": 11,
+          "name": "四季庆典旗",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "c83db03e",
+          "family": "banner",
+          "level": 12,
+          "name": "欢迎回来的旗",
+          "shapeElements": 8,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "lamp",
+      "items": [
+        {
+          "bodyHash": "76b645c3",
+          "family": "lamp",
+          "level": 1,
+          "name": "灯芯",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "904a8a1a",
+          "family": "lamp",
+          "level": 2,
+          "name": "小灯泡",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "9be27c6e",
+          "family": "lamp",
+          "level": 3,
+          "name": "台灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "dad3e58d",
+          "family": "lamp",
+          "level": 4,
+          "name": "舞台射灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "91d8db6f",
+          "family": "lamp",
+          "level": 5,
+          "name": "串灯",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "b19bf47e",
+          "family": "lamp",
+          "level": 6,
+          "name": "音乐彩灯",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "d142d402",
+          "family": "lamp",
+          "level": 7,
+          "name": "月光灯柱",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "91bb3f8b",
+          "family": "lamp",
+          "level": 8,
+          "name": "彩色吊灯",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "68419453",
+          "family": "lamp",
+          "level": 9,
+          "name": "星星灯串",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "1d9db15a",
+          "family": "lamp",
+          "level": 10,
+          "name": "六角纸灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "8fcdaf89",
+          "family": "lamp",
+          "level": 11,
+          "name": "四季灯笼",
+          "shapeElements": 28,
+          "valid": true
+        },
+        {
+          "bodyHash": "4dfdb420",
+          "family": "lamp",
+          "level": 12,
+          "name": "不熄的谢幕灯",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "soda",
+      "items": [
+        {
+          "bodyHash": "290165a5",
+          "family": "soda",
+          "level": 1,
+          "name": "汽水糖",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "a374f589",
+          "family": "soda",
+          "level": 2,
+          "name": "糖浆",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "3ec75ed6",
+          "family": "soda",
+          "level": 3,
+          "name": "玻璃汽水",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "2879e116",
+          "family": "soda",
+          "level": 4,
+          "name": "冰镇汽水",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "ddbbdfca",
+          "family": "soda",
+          "level": 5,
+          "name": "彩虹汽水",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "567fdefc",
+          "family": "soda",
+          "level": 6,
+          "name": "夏日饮品组",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "5e97d835",
+          "family": "soda",
+          "level": 7,
+          "name": "泳池冰桶",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "3810be3f",
+          "family": "soda",
+          "level": 8,
+          "name": "汽水礼盒",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "bodyHash": "edf5401b",
+          "family": "soda",
+          "level": 9,
+          "name": "水果汽水壶",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "5c721218",
+          "family": "soda",
+          "level": 10,
+          "name": "双层冰饮桶",
+          "shapeElements": 23,
+          "valid": true
+        },
+        {
+          "bodyHash": "c5cf680e",
+          "family": "soda",
+          "level": 11,
+          "name": "六人的汽水盘",
+          "shapeElements": 25,
+          "valid": true
+        },
+        {
+          "bodyHash": "4e0042c9",
+          "family": "soda",
+          "level": 12,
+          "name": "永夏庆典饮",
+          "shapeElements": 15,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "float",
+      "items": [
+        {
+          "bodyHash": "43f0bd79",
+          "family": "float",
+          "level": 1,
+          "name": "橡胶片",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "2e3bfbb6",
+          "family": "float",
+          "level": 2,
+          "name": "气嘴",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "6a0fef9",
+          "family": "float",
+          "level": 3,
+          "name": "小浮板",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "6d3163c1",
+          "family": "float",
+          "level": 4,
+          "name": "泳圈",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "e3ab5e0a",
+          "family": "float",
+          "level": 5,
+          "name": "泳池玩具",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "a274af9a",
+          "family": "float",
+          "level": 6,
+          "name": "双人浮排",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "b45e3816",
+          "family": "float",
+          "level": 7,
+          "name": "遮阳水垫",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "dc207f45",
+          "family": "float",
+          "level": 8,
+          "name": "泳具收纳篮",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "8f91221",
+          "family": "float",
+          "level": 9,
+          "name": "小鲸鱼浮排",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "490d7ad6",
+          "family": "float",
+          "level": 10,
+          "name": "双层救生圈",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "576b951e",
+          "family": "float",
+          "level": 11,
+          "name": "四季游泳组",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "acd45ff2",
+          "family": "float",
+          "level": 12,
+          "name": "夏夜漂浮鲸",
+          "shapeElements": 11,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "solar",
+      "items": [
+        {
+          "bodyHash": "f643466a",
+          "family": "solar",
+          "level": 1,
+          "name": "硅片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "cd122fdc",
+          "family": "solar",
+          "level": 2,
+          "name": "小电片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "a2dda9fc",
+          "family": "solar",
+          "level": 3,
+          "name": "太阳电池",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "a80a35cd",
+          "family": "solar",
+          "level": 4,
+          "name": "太阳能板",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "94523168",
+          "family": "solar",
+          "level": 5,
+          "name": "便携充电板",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "ac3cbd7a",
+          "family": "solar",
+          "level": 6,
+          "name": "屋顶光能架",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "56ab717c",
+          "family": "solar",
+          "level": 7,
+          "name": "折叠太阳板",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "a06a137e",
+          "family": "solar",
+          "level": 8,
+          "name": "双面光能板",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "5737766b",
+          "family": "solar",
+          "level": 9,
+          "name": "日光储能箱",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "208150b3",
+          "family": "solar",
+          "level": 10,
+          "name": "四季光能组",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "c645275d",
+          "family": "solar",
+          "level": 11,
+          "name": "六片日光阵",
+          "shapeElements": 31,
+          "valid": true
+        },
+        {
+          "bodyHash": "f37e0ffb",
+          "family": "solar",
+          "level": 12,
+          "name": "永续日光芯",
+          "shapeElements": 4,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "fan",
+      "items": [
+        {
+          "bodyHash": "d2631bf5",
+          "family": "fan",
+          "level": 1,
+          "name": "风扇叶",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "dab2929",
+          "family": "fan",
+          "level": 2,
+          "name": "小扇叶组",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "5f0426ec",
+          "family": "fan",
+          "level": 3,
+          "name": "手持风扇",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "22a31af2",
+          "family": "fan",
+          "level": 4,
+          "name": "桌面风扇",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "60944213",
+          "family": "fan",
+          "level": 5,
+          "name": "落地风扇",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "78cc1752",
+          "family": "fan",
+          "level": 6,
+          "name": "循环风机",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "6e98d679",
+          "family": "fan",
+          "level": 7,
+          "name": "双叶风机",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "bodyHash": "491d9591",
+          "family": "fan",
+          "level": 8,
+          "name": "折叠凉风扇",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "b8fb22c7",
+          "family": "fan",
+          "level": 9,
+          "name": "双向循环扇",
+          "shapeElements": 17,
+          "valid": true
+        },
+        {
+          "bodyHash": "7eeca2b4",
+          "family": "fan",
+          "level": 10,
+          "name": "静音塔扇",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "cc34372",
+          "family": "fan",
+          "level": 11,
+          "name": "四季凉风组",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "bodyHash": "1e460901",
+          "family": "fan",
+          "level": 12,
+          "name": "温柔季风机",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "paper",
+      "items": [
+        {
+          "bodyHash": "c3b4bd27",
+          "family": "paper",
+          "level": 1,
+          "name": "纸屑",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "8f0da314",
+          "family": "paper",
+          "level": 2,
+          "name": "纸片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "919dc44",
+          "family": "paper",
+          "level": 3,
+          "name": "牛皮纸",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "242f86d4",
+          "family": "paper",
+          "level": 4,
+          "name": "印刷纸",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "f23dd455",
+          "family": "paper",
+          "level": 5,
+          "name": "彩色纸卷",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "79b2ecc2",
+          "family": "paper",
+          "level": 6,
+          "name": "四季信纸",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "66957a67",
+          "family": "paper",
+          "level": 7,
+          "name": "海报纸箱",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "35adabe",
+          "family": "paper",
+          "level": 8,
+          "name": "古法纸帘",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "f66f3852",
+          "family": "paper",
+          "level": 9,
+          "name": "手抄花纸",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "264c53af",
+          "family": "paper",
+          "level": 10,
+          "name": "折叠纸屏",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "6755b1c3",
+          "family": "paper",
+          "level": 11,
+          "name": "四季纸卷",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "979d7a71",
+          "family": "paper",
+          "level": 12,
+          "name": "记忆书写笺",
+          "shapeElements": 6,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "ink",
+      "items": [
+        {
+          "bodyHash": "741b8c14",
+          "family": "ink",
+          "level": 1,
+          "name": "炭粉",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "11495eb",
+          "family": "ink",
+          "level": 2,
+          "name": "墨滴",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "a3286961",
+          "family": "ink",
+          "level": 3,
+          "name": "小墨瓶",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "41fbd48e",
+          "family": "ink",
+          "level": 4,
+          "name": "印刷油墨",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "bcbb8f88",
+          "family": "ink",
+          "level": 5,
+          "name": "彩墨组",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "ca10cebe",
+          "family": "ink",
+          "level": 6,
+          "name": "不褪色油墨",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "1c5e3483",
+          "family": "ink",
+          "level": 7,
+          "name": "手工墨盒",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "9f8eb706",
+          "family": "ink",
+          "level": 8,
+          "name": "风叶油墨箱",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "cb7cf3ce",
+          "family": "ink",
+          "level": 9,
+          "name": "六色墨瓶",
+          "shapeElements": 32,
+          "valid": true
+        },
+        {
+          "bodyHash": "8b4fb9bd",
+          "family": "ink",
+          "level": 10,
+          "name": "双层调色盒",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "f6577dd9",
+          "family": "ink",
+          "level": 11,
+          "name": "四季印色组",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "90d40841",
+          "family": "ink",
+          "level": 12,
+          "name": "不褪的明天",
+          "shapeElements": 11,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "book",
+      "items": [
+        {
+          "bodyHash": "3f172e2a",
+          "family": "book",
+          "level": 1,
+          "name": "书页",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "2559741f",
+          "family": "book",
+          "level": 2,
+          "name": "书签页",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "c259f452",
+          "family": "book",
+          "level": 3,
+          "name": "小册子",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "9b5ddc83",
+          "family": "book",
+          "level": 4,
+          "name": "装订书",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "f0aa6ef2",
+          "family": "book",
+          "level": 5,
+          "name": "旧日笔记",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "16bdcfc",
+          "family": "book",
+          "level": 6,
+          "name": "四季手账",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "1f9784c8",
+          "family": "book",
+          "level": 7,
+          "name": "站长日志",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "2f79e24f",
+          "family": "book",
+          "level": 8,
+          "name": "街区故事集",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "8bf62658",
+          "family": "book",
+          "level": 9,
+          "name": "烫金故事册",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "948aba82",
+          "family": "book",
+          "level": 10,
+          "name": "四季纪念册",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "8bf51df5",
+          "family": "book",
+          "level": 11,
+          "name": "共同档案集",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "fcdfc1c2",
+          "family": "book",
+          "level": 12,
+          "name": "完整时光册",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "pan",
+      "items": [
+        {
+          "bodyHash": "fa0ecf91",
+          "family": "pan",
+          "level": 1,
+          "name": "锅铆钉",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "8aa98e39",
+          "family": "pan",
+          "level": 2,
+          "name": "木勺",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "bd772ebc",
+          "family": "pan",
+          "level": 3,
+          "name": "小平底锅",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "f651585d",
+          "family": "pan",
+          "level": 4,
+          "name": "汤锅",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "6887fb7d",
+          "family": "pan",
+          "level": 5,
+          "name": "陶砂锅",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "cf06ba01",
+          "family": "pan",
+          "level": 6,
+          "name": "共享厨具组",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "3c491015",
+          "family": "pan",
+          "level": 7,
+          "name": "厨房工具架",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "b70944",
+          "family": "pan",
+          "level": 8,
+          "name": "双耳炖锅",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "6a28b0e1",
+          "family": "pan",
+          "level": 9,
+          "name": "铜底炒锅",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "dfac1757",
+          "family": "pan",
+          "level": 10,
+          "name": "六人的锅具组",
+          "shapeElements": 28,
+          "valid": true
+        },
+        {
+          "bodyHash": "626fd9d8",
+          "family": "pan",
+          "level": 11,
+          "name": "四季厨具箱",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "81e98ca",
+          "family": "pan",
+          "level": 12,
+          "name": "明日家宴锅",
+          "shapeElements": 15,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "soup",
+      "items": [
+        {
+          "bodyHash": "4de077f2",
+          "family": "soup",
+          "level": 1,
+          "name": "汤料",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "5633514c",
+          "family": "soup",
+          "level": 2,
+          "name": "蔬菜丁",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "8831956a",
+          "family": "soup",
+          "level": 3,
+          "name": "热汤碗",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "a77f1993",
+          "family": "soup",
+          "level": 4,
+          "name": "南瓜汤",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "a6a10181",
+          "family": "soup",
+          "level": 5,
+          "name": "奶油浓汤",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "6a5da679",
+          "family": "soup",
+          "level": 6,
+          "name": "砂锅热汤",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "523ed25",
+          "family": "soup",
+          "level": 7,
+          "name": "暖灯汤盅",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "8cc11a8b",
+          "family": "soup",
+          "level": 8,
+          "name": "丰收汤宴",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "6e0e02df",
+          "family": "soup",
+          "level": 9,
+          "name": "双耳煲汤锅",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "26a8ee76",
+          "family": "soup",
+          "level": 10,
+          "name": "六人的汤盅",
+          "shapeElements": 31,
+          "valid": true
+        },
+        {
+          "bodyHash": "695249cb",
+          "family": "soup",
+          "level": 11,
+          "name": "四季暖汤礼",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "bodyHash": "e4cbce7f",
+          "family": "soup",
+          "level": 12,
+          "name": "永远有你一碗",
+          "shapeElements": 7,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "table",
+      "items": [
+        {
+          "bodyHash": "e8585363",
+          "family": "table",
+          "level": 1,
+          "name": "桌垫角",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "5c6d295c",
+          "family": "table",
+          "level": 2,
+          "name": "小桌垫",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "d19b9d3d",
+          "family": "table",
+          "level": 3,
+          "name": "餐巾",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "56a43aa2",
+          "family": "table",
+          "level": 4,
+          "name": "烛台",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "947a40d4",
+          "family": "table",
+          "level": 5,
+          "name": "枫叶桌饰",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "c58c569e",
+          "family": "table",
+          "level": 6,
+          "name": "秋日晚餐组",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "5aa5876f",
+          "family": "table",
+          "level": 7,
+          "name": "暖灯餐桌饰",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "999910c1",
+          "family": "table",
+          "level": 8,
+          "name": "共享席位牌",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "16d7e411",
+          "family": "table",
+          "level": 9,
+          "name": "四季桌景",
+          "shapeElements": 28,
+          "valid": true
+        },
+        {
+          "bodyHash": "a039eeba",
+          "family": "table",
+          "level": 10,
+          "name": "六人的杯碟组",
+          "shapeElements": 25,
+          "valid": true
+        },
+        {
+          "bodyHash": "bc31c94e",
+          "family": "table",
+          "level": 11,
+          "name": "团聚餐具礼",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "ed59e809",
+          "family": "table",
+          "level": 12,
+          "name": "团聚的空位",
+          "shapeElements": 6,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "photo",
+      "items": [
+        {
+          "bodyHash": "6868406e",
+          "family": "photo",
+          "level": 1,
+          "name": "相纸角",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "70d4408a",
+          "family": "photo",
+          "level": 2,
+          "name": "底片",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "8201ad21",
+          "family": "photo",
+          "level": 3,
+          "name": "冲洗照片",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "ffe80ef0",
+          "family": "photo",
+          "level": 4,
+          "name": "合照",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "bodyHash": "eacda32",
+          "family": "photo",
+          "level": 5,
+          "name": "装框照片",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "2733458b",
+          "family": "photo",
+          "level": 6,
+          "name": "记忆照片组",
+          "shapeElements": 17,
+          "valid": true
+        },
+        {
+          "bodyHash": "cb50c69a",
+          "family": "photo",
+          "level": 7,
+          "name": "四季影集",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "96801653",
+          "family": "photo",
+          "level": 8,
+          "name": "回忆相框墙",
+          "shapeElements": 29,
+          "valid": true
+        },
+        {
+          "bodyHash": "7dee6a54",
+          "family": "photo",
+          "level": 9,
+          "name": "折叠相框",
+          "shapeElements": 19,
+          "valid": true
+        },
+        {
+          "bodyHash": "93374d01",
+          "family": "photo",
+          "level": 10,
+          "name": "双层影集",
+          "shapeElements": 39,
+          "valid": true
+        },
+        {
+          "bodyHash": "50be20b",
+          "family": "photo",
+          "level": 11,
+          "name": "六人的纪念册",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "76775f33",
+          "family": "photo",
+          "level": 12,
+          "name": "未剪的时光册",
+          "shapeElements": 20,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "display",
+      "items": [
+        {
+          "bodyHash": "e6e792b0",
+          "family": "display",
+          "level": 1,
+          "name": "展架螺母",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "346076ec",
+          "family": "display",
+          "level": 2,
+          "name": "支撑杆",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "f7e9de34",
+          "family": "display",
+          "level": 3,
+          "name": "小展台",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "ab6078eb",
+          "family": "display",
+          "level": 4,
+          "name": "木展架",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "cb589203",
+          "family": "display",
+          "level": 5,
+          "name": "玻璃展架",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "759321bf",
+          "family": "display",
+          "level": 6,
+          "name": "移动展示柜",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "d1e5268b",
+          "family": "display",
+          "level": 7,
+          "name": "证物展台",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "a4e40f1c",
+          "family": "display",
+          "level": 8,
+          "name": "记忆展示架",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "5cdd339",
+          "family": "display",
+          "level": 9,
+          "name": "双层展示柜",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "bodyHash": "83e0f006",
+          "family": "display",
+          "level": 10,
+          "name": "四季展陈架",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "6576f31b",
+          "family": "display",
+          "level": 11,
+          "name": "共同档案柜",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "1408d26a",
+          "family": "display",
+          "level": 12,
+          "name": "每个人的故事架",
+          "shapeElements": 15,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "signal",
+      "items": [
+        {
+          "bodyHash": "177c51b",
+          "family": "signal",
+          "level": 1,
+          "name": "信号片",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "fea32ab3",
+          "family": "signal",
+          "level": 2,
+          "name": "灯光片",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "b90c66f6",
+          "family": "signal",
+          "level": 3,
+          "name": "指示灯",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "3efcae76",
+          "family": "signal",
+          "level": 4,
+          "name": "信号灯",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "2365f013",
+          "family": "signal",
+          "level": 5,
+          "name": "道口信号器",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "20987af3",
+          "family": "signal",
+          "level": 6,
+          "name": "换乘控制灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "593025ed",
+          "family": "signal",
+          "level": 7,
+          "name": "双向指示灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "6cfc30b1",
+          "family": "signal",
+          "level": 8,
+          "name": "三色路标灯",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "c481e11d",
+          "family": "signal",
+          "level": 9,
+          "name": "跨线信号架",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "ce71c493",
+          "family": "signal",
+          "level": 10,
+          "name": "四季信号组",
+          "shapeElements": 14,
+          "valid": true
+        },
+        {
+          "bodyHash": "d6075660",
+          "family": "signal",
+          "level": 11,
+          "name": "归途指示牌",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "148eb90d",
+          "family": "signal",
+          "level": 12,
+          "name": "永远可返回的灯",
+          "shapeElements": 4,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "map",
+      "items": [
+        {
+          "bodyHash": "d7a0b405",
+          "family": "map",
+          "level": 1,
+          "name": "地图纸角",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "550bb7b",
+          "family": "map",
+          "level": 2,
+          "name": "路线草稿",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "d1edb07d",
+          "family": "map",
+          "level": 3,
+          "name": "小地图",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "2be4cb71",
+          "family": "map",
+          "level": 4,
+          "name": "站场地图",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "626a0daa",
+          "family": "map",
+          "level": 5,
+          "name": "换乘路线图",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "e61dc87d",
+          "family": "map",
+          "level": 6,
+          "name": "撤离地图",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "a69bae42",
+          "family": "map",
+          "level": 7,
+          "name": "四季街区图",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "cd435d93",
+          "family": "map",
+          "level": 8,
+          "name": "现实返程图",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "ebd363a7",
+          "family": "map",
+          "level": 9,
+          "name": "公共路线册",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "e40ce3b6",
+          "family": "map",
+          "level": 10,
+          "name": "四季航路册",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "b1391af5",
+          "family": "map",
+          "level": 11,
+          "name": "折叠旅行图",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "b479c082",
+          "family": "map",
+          "level": 12,
+          "name": "明日航路册",
+          "shapeElements": 8,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "gear",
+      "items": [
+        {
+          "bodyHash": "1a49c752",
+          "family": "gear",
+          "level": 1,
+          "name": "金属屑",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "6d3972a5",
+          "family": "gear",
+          "level": 2,
+          "name": "小齿轮",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "673bd23b",
+          "family": "gear",
+          "level": 3,
+          "name": "铜齿轮",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "2bf15af9",
+          "family": "gear",
+          "level": 4,
+          "name": "钢齿轮组",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "7832f48d",
+          "family": "gear",
+          "level": 5,
+          "name": "精密齿轮",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "dc0028ff",
+          "family": "gear",
+          "level": 6,
+          "name": "传动齿轮组",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "61f068b8",
+          "family": "gear",
+          "level": 7,
+          "name": "钟楼机芯",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "bb77f2f3",
+          "family": "gear",
+          "level": 8,
+          "name": "四季传动组",
+          "shapeElements": 14,
+          "valid": true
+        },
+        {
+          "bodyHash": "aa1f3439",
+          "family": "gear",
+          "level": 9,
+          "name": "双层联动齿轮",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "83f9d232",
+          "family": "gear",
+          "level": 10,
+          "name": "铜制机芯组",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "68d4761",
+          "family": "gear",
+          "level": 11,
+          "name": "六轮传动芯",
+          "shapeElements": 20,
+          "valid": true
+        },
+        {
+          "bodyHash": "da307297",
+          "family": "gear",
+          "level": 12,
+          "name": "走向明日的心",
+          "shapeElements": 9,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "clock",
+      "items": [
+        {
+          "bodyHash": "dcb450a8",
+          "family": "clock",
+          "level": 1,
+          "name": "表针",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "ff014754",
+          "family": "clock",
+          "level": 2,
+          "name": "小表盘",
+          "shapeElements": 15,
+          "valid": true
+        },
+        {
+          "bodyHash": "5e1449a",
+          "family": "clock",
+          "level": 3,
+          "name": "怀表",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "b5316713",
+          "family": "clock",
+          "level": 4,
+          "name": "旧时钟",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "f4894f56",
+          "family": "clock",
+          "level": 5,
+          "name": "机械台钟",
+          "shapeElements": 17,
+          "valid": true
+        },
+        {
+          "bodyHash": "afc7a123",
+          "family": "clock",
+          "level": 6,
+          "name": "钟楼小钟",
+          "shapeElements": 19,
+          "valid": true
+        },
+        {
+          "bodyHash": "a0e48377",
+          "family": "clock",
+          "level": 7,
+          "name": "精准座钟",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "3d117f1a",
+          "family": "clock",
+          "level": 8,
+          "name": "四季时钟",
+          "shapeElements": 41,
+          "valid": true
+        },
+        {
+          "bodyHash": "cdcfe3e2",
+          "family": "clock",
+          "level": 9,
+          "name": "零点报时钟",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "f83ec8da",
+          "family": "clock",
+          "level": 10,
+          "name": "双铃报时钟",
+          "shapeElements": 19,
+          "valid": true
+        },
+        {
+          "bodyHash": "acba19b7",
+          "family": "clock",
+          "level": 11,
+          "name": "六面的四季钟",
+          "shapeElements": 48,
+          "valid": true
+        },
+        {
+          "bodyHash": "fd18b754",
+          "family": "clock",
+          "level": 12,
+          "name": "明日第一分钟",
+          "shapeElements": 24,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "scarf",
+      "items": [
+        {
+          "bodyHash": "8828a151",
+          "family": "scarf",
+          "level": 1,
+          "name": "毛线头",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "386a8855",
+          "family": "scarf",
+          "level": 2,
+          "name": "毛线团",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "cb1e42e9",
+          "family": "scarf",
+          "level": 3,
+          "name": "小围脖",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "19b719f",
+          "family": "scarf",
+          "level": 4,
+          "name": "针织围巾",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "9875e58c",
+          "family": "scarf",
+          "level": 5,
+          "name": "长围巾",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "cec90fa7",
+          "family": "scarf",
+          "level": 6,
+          "name": "手织披肩",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "44a11a62",
+          "family": "scarf",
+          "level": 7,
+          "name": "暖冬围巾组",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "c3b50b28",
+          "family": "scarf",
+          "level": 8,
+          "name": "四季织衣箱",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "13f97516",
+          "family": "scarf",
+          "level": 9,
+          "name": "双面花纹披肩",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "4c588190",
+          "family": "scarf",
+          "level": 10,
+          "name": "绒边暖冬披肩",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "42fdb3c5",
+          "family": "scarf",
+          "level": 11,
+          "name": "六人的围巾礼",
+          "shapeElements": 14,
+          "valid": true
+        },
+        {
+          "bodyHash": "7b3a180e",
+          "family": "scarf",
+          "level": 12,
+          "name": "不再独自过冬",
+          "shapeElements": 7,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "fire",
+      "items": [
+        {
+          "bodyHash": "37a39783",
+          "family": "fire",
+          "level": 1,
+          "name": "炉炭",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "32238e44",
+          "family": "fire",
+          "level": 2,
+          "name": "引火柴",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "b54cef99",
+          "family": "fire",
+          "level": 3,
+          "name": "火盆",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "9fcb34de",
+          "family": "fire",
+          "level": 4,
+          "name": "小暖炉",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "ca530ece",
+          "family": "fire",
+          "level": 5,
+          "name": "陶壁炉",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "27dcd56a",
+          "family": "fire",
+          "level": 6,
+          "name": "安全炉具组",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "ee6da9d9",
+          "family": "fire",
+          "level": 7,
+          "name": "共享壁炉",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "d8653385",
+          "family": "fire",
+          "level": 8,
+          "name": "双门铸铁炉",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "f5548fb1",
+          "family": "fire",
+          "level": 9,
+          "name": "暖灯炭炉",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "17515dbf",
+          "family": "fire",
+          "level": 10,
+          "name": "便携围炉组",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "55d8565f",
+          "family": "fire",
+          "level": 11,
+          "name": "四季暖炉",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "f618b515",
+          "family": "fire",
+          "level": 12,
+          "name": "明日不息火",
+          "shapeElements": 6,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "ceramic",
+      "items": [
+        {
+          "bodyHash": "d3aae53c",
+          "family": "ceramic",
+          "level": 1,
+          "name": "陶土",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "668e9b91",
+          "family": "ceramic",
+          "level": 2,
+          "name": "陶泥球",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "74791d2b",
+          "family": "ceramic",
+          "level": 3,
+          "name": "小陶杯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "d2b62c1b",
+          "family": "ceramic",
+          "level": 4,
+          "name": "陶壶",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "27057b93",
+          "family": "ceramic",
+          "level": 5,
+          "name": "手绘陶罐",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "8367b11c",
+          "family": "ceramic",
+          "level": 6,
+          "name": "冬日陶餐具",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "ab2a6fb3",
+          "family": "ceramic",
+          "level": 7,
+          "name": "记忆陶瓶",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "8f4851b7",
+          "family": "ceramic",
+          "level": 8,
+          "name": "四季陶器箱",
+          "shapeElements": 14,
+          "valid": true
+        },
+        {
+          "bodyHash": "b33f30ed",
+          "family": "ceramic",
+          "level": 9,
+          "name": "双耳陶盆",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "e9a13396",
+          "family": "ceramic",
+          "level": 10,
+          "name": "六人的陶杯组",
+          "shapeElements": 25,
+          "valid": true
+        },
+        {
+          "bodyHash": "702f6cc9",
+          "family": "ceramic",
+          "level": 11,
+          "name": "四季手绘陶碗",
+          "shapeElements": 33,
+          "valid": true
+        },
+        {
+          "bodyHash": "459d2a6b",
+          "family": "ceramic",
+          "level": 12,
+          "name": "盛得下新年的碗",
+          "shapeElements": 13,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "snow",
+      "items": [
+        {
+          "bodyHash": "caa327d3",
+          "family": "snow",
+          "level": 1,
+          "name": "冰晶",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "555a4c6a",
+          "family": "snow",
+          "level": 2,
+          "name": "雪花片",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "208f1860",
+          "family": "snow",
+          "level": 3,
+          "name": "小雪人",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "bodyHash": "ed3b3204",
+          "family": "snow",
+          "level": 4,
+          "name": "雪花挂饰",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "f0d3c2b3",
+          "family": "snow",
+          "level": 5,
+          "name": "雪景摆件",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "bf3b58a8",
+          "family": "snow",
+          "level": 6,
+          "name": "冬夜雪灯",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "2ba07456",
+          "family": "snow",
+          "level": 7,
+          "name": "四季雪景盒",
+          "shapeElements": 14,
+          "valid": true
+        },
+        {
+          "bodyHash": "a6f45983",
+          "family": "snow",
+          "level": 8,
+          "name": "冰蓝门饰",
+          "shapeElements": 39,
+          "valid": true
+        },
+        {
+          "bodyHash": "8fde2a03",
+          "family": "snow",
+          "level": 9,
+          "name": "雪人水晶球",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "2342fd11",
+          "family": "snow",
+          "level": 10,
+          "name": "双层雪景盒",
+          "shapeElements": 20,
+          "valid": true
+        },
+        {
+          "bodyHash": "33a54ba5",
+          "family": "snow",
+          "level": 11,
+          "name": "四季雪晶灯",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "cabe7591",
+          "family": "snow",
+          "level": 12,
+          "name": "会融化的冬天",
+          "shapeElements": 6,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "lens",
+      "items": [
+        {
+          "bodyHash": "b6dae3c3",
+          "family": "lens",
+          "level": 1,
+          "name": "玻璃屑",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "354169eb",
+          "family": "lens",
+          "level": 2,
+          "name": "磨镜片",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "4f590149",
+          "family": "lens",
+          "level": 3,
+          "name": "小透镜",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "dbe307a8",
+          "family": "lens",
+          "level": 4,
+          "name": "望远镜片",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "2fee7587",
+          "family": "lens",
+          "level": 5,
+          "name": "双透镜组",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "5bbacf",
+          "family": "lens",
+          "level": 6,
+          "name": "观测目镜",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "65e935cb",
+          "family": "lens",
+          "level": 7,
+          "name": "精密望远镜",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "4bed9187",
+          "family": "lens",
+          "level": 8,
+          "name": "星空观测组",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "74b1e793",
+          "family": "lens",
+          "level": 9,
+          "name": "双筒观测镜",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "74db3151",
+          "family": "lens",
+          "level": 10,
+          "name": "极光望远镜",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "9c8020ac",
+          "family": "lens",
+          "level": 11,
+          "name": "四季观测镜",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "bodyHash": "beceeb03",
+          "family": "lens",
+          "level": 12,
+          "name": "看见彼此的镜",
+          "shapeElements": 13,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "star",
+      "items": [
+        {
+          "bodyHash": "f05fa942",
+          "family": "star",
+          "level": 1,
+          "name": "星点纸",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "e07a7ada",
+          "family": "star",
+          "level": 2,
+          "name": "星座线稿",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "ffb148bb",
+          "family": "star",
+          "level": 3,
+          "name": "小星图",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "db4cd678",
+          "family": "star",
+          "level": 4,
+          "name": "冬夜星图",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "bodyHash": "cbd15558",
+          "family": "star",
+          "level": 5,
+          "name": "四季星图",
+          "shapeElements": 33,
+          "valid": true
+        },
+        {
+          "bodyHash": "119f81d0",
+          "family": "star",
+          "level": 6,
+          "name": "极光观测图",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "784bd66f",
+          "family": "star",
+          "level": 7,
+          "name": "星路航册",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "bodyHash": "100997f8",
+          "family": "star",
+          "level": 8,
+          "name": "折叠星图",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "bodyHash": "84228ca5",
+          "family": "star",
+          "level": 9,
+          "name": "手绘天象册",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "bodyHash": "4324f513",
+          "family": "star",
+          "level": 10,
+          "name": "四季天象图",
+          "shapeElements": 34,
+          "valid": true
+        },
+        {
+          "bodyHash": "11b7e482",
+          "family": "star",
+          "level": 11,
+          "name": "六人的观星册",
+          "shapeElements": 26,
+          "valid": true
+        },
+        {
+          "bodyHash": "b0ad10",
+          "family": "star",
+          "level": 12,
+          "name": "明日星路图",
+          "shapeElements": 14,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "battery",
+      "items": [
+        {
+          "bodyHash": "42bc868b",
+          "family": "battery",
+          "level": 1,
+          "name": "电极片",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "88b98414",
+          "family": "battery",
+          "level": 2,
+          "name": "小电芯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "4c23d6c0",
+          "family": "battery",
+          "level": 3,
+          "name": "蓄电池",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "bodyHash": "43c2333d",
+          "family": "battery",
+          "level": 4,
+          "name": "可充电池",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "98b4bcd5",
+          "family": "battery",
+          "level": 5,
+          "name": "储能电池组",
+          "shapeElements": 14,
+          "valid": true
+        },
+        {
+          "bodyHash": "b02d0360",
+          "family": "battery",
+          "level": 6,
+          "name": "冬夜供电组",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "9398bb88",
+          "family": "battery",
+          "level": 7,
+          "name": "四季储能柜",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "ef56e972",
+          "family": "battery",
+          "level": 8,
+          "name": "灯塔备用电源",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "e24ec55d",
+          "family": "battery",
+          "level": 9,
+          "name": "双芯储能箱",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "eb19b939",
+          "family": "battery",
+          "level": 10,
+          "name": "六联电池组",
+          "shapeElements": 26,
+          "valid": true
+        },
+        {
+          "bodyHash": "d00fa294",
+          "family": "battery",
+          "level": 11,
+          "name": "四季恒流箱",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "d6d52611",
+          "family": "battery",
+          "level": 12,
+          "name": "明日供能核",
+          "shapeElements": 6,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "beacon",
+      "items": [
+        {
+          "bodyHash": "a9394869",
+          "family": "beacon",
+          "level": 1,
+          "name": "镜面片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "bodyHash": "bd26b5c3",
+          "family": "beacon",
+          "level": 2,
+          "name": "灯塔透镜",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "7c3743ef",
+          "family": "beacon",
+          "level": 3,
+          "name": "信号小灯",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "bodyHash": "980f43a4",
+          "family": "beacon",
+          "level": 4,
+          "name": "航标灯",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "f458aabc",
+          "family": "beacon",
+          "level": 5,
+          "name": "灯塔灯组",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "bodyHash": "1a25341b",
+          "family": "beacon",
+          "level": 6,
+          "name": "四季灯塔镜",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "bodyHash": "2ec8923e",
+          "family": "beacon",
+          "level": 7,
+          "name": "航路指引灯",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "1f5cbf15",
+          "family": "beacon",
+          "level": 8,
+          "name": "明日灯塔芯",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "bodyHash": "99329012",
+          "family": "beacon",
+          "level": 9,
+          "name": "六面航标灯",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "bodyHash": "f1c38e76",
+          "family": "beacon",
+          "level": 10,
+          "name": "旋转航路灯",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "30b098fa",
+          "family": "beacon",
+          "level": 11,
+          "name": "四季返航灯",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "bodyHash": "806c0590",
+          "family": "beacon",
+          "level": 12,
+          "name": "四季之后的灯",
+          "shapeElements": 7,
+          "valid": true
+        }
+      ]
+    }
+  ],
+  "breakpoints": [
+    {
+      "dialogWidth": 296,
+      "family": "beacon",
+      "footerBottom": 544.15625,
+      "height": 740,
+      "pageWidth": 320,
+      "width": 320
+    },
+    {
+      "dialogWidth": 690,
+      "family": "beacon",
+      "footerBottom": 346.140625,
+      "height": 390,
+      "pageWidth": 844,
+      "width": 844
+    }
+  ],
+  "saveComparison": {
+    "stateDifferences": [],
+    "expectedMetadataDifferences": [
+      "savedAt"
+    ],
+    "ignoredNaturalClockFields": [
+      "stamp",
+      "energyStamp",
+      "chargeStamp",
+      "genStamp"
+    ]
+  },
+  "logs": [],
+  "remainingAdvancedBodies": 0,
+  "clockPlotMinutes": {
+    "frozen": 4,
+    "tomorrow": 5
+  }
+}

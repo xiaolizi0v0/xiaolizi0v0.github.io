@@ -1,0 +1,167 @@
+{
+  "version": 2,
+  "checked": "2026-10-01T12:30:22.334Z",
+  "ordinary": 40,
+  "hidden": 8,
+  "discoveredOriginal": 528,
+  "reached": [
+    "tool:12",
+    "wood:12",
+    "cloth:12",
+    "flower:12",
+    "tea:12",
+    "fruit:12",
+    "coffee:12",
+    "pastry:12",
+    "circuit:12",
+    "vinyl:12",
+    "rope:12",
+    "shell:12",
+    "glass:12",
+    "music:12",
+    "banner:12",
+    "lamp:12",
+    "soda:12",
+    "float:12",
+    "solar:12",
+    "fan:12",
+    "paper:12",
+    "ink:12",
+    "book:12",
+    "pan:12",
+    "soup:12",
+    "table:12",
+    "photo:12",
+    "display:12",
+    "signal:12",
+    "map:12",
+    "gear:12",
+    "clock:12",
+    "scarf:12",
+    "fire:12",
+    "ceramic:12",
+    "snow:12",
+    "lens:12",
+    "star:12",
+    "battery:12",
+    "beacon:12",
+    "bloomlight:6",
+    "message:6",
+    "ticket:6",
+    "chime:6",
+    "voice:6",
+    "memory:6",
+    "warm:6",
+    "key:6"
+  ],
+  "production": 143963,
+  "energyPurchases": 348,
+  "earnedBoxClicks": 507,
+  "waitedSeconds": 4986840,
+  "producerLevels": [
+    {
+      "family": 0,
+      "levels": [
+        5,
+        7,
+        6
+      ]
+    },
+    {
+      "family": 1,
+      "levels": [
+        7,
+        7
+      ]
+    },
+    {
+      "family": 2,
+      "levels": [
+        5,
+        6
+      ]
+    },
+    {
+      "family": 3,
+      "levels": [
+        7
+      ]
+    },
+    {
+      "family": 4,
+      "levels": [
+        6
+      ]
+    },
+    {
+      "family": 5,
+      "levels": [
+        6,
+        5
+      ]
+    },
+    {
+      "family": 6,
+      "levels": [
+        6
+      ]
+    },
+    {
+      "family": 7,
+      "levels": [
+        6
+      ]
+    },
+    {
+      "family": 8,
+      "levels": [
+        6
+      ]
+    },
+    {
+      "family": 9,
+      "levels": [
+        5,
+        6
+      ]
+    },
+    {
+      "family": 10,
+      "levels": [
+        6
+      ]
+    },
+    {
+      "family": 11,
+      "levels": [
+        6
+      ]
+    },
+    {
+      "family": 12,
+      "levels": [
+        6
+      ]
+    },
+    {
+      "family": 13,
+      "levels": [
+        6
+      ]
+    },
+    {
+      "family": 14,
+      "levels": [
+        5
+      ]
+    },
+    {
+      "family": 15,
+      "levels": [
+        5
+      ]
+    }
+  ],
+  "coins": 313557,
+  "level": 81
+}

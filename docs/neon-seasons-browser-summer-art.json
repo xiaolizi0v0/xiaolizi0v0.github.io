@@ -1,0 +1,760 @@
+{
+  "date": "2026-10-02",
+  "renderings": 480,
+  "revisedBodies": 192,
+  "batchBodies": 96,
+  "script": "ordinary-art.js?v=4",
+  "catalog": [
+    {
+      "chain": "circuit",
+      "items": [
+        {
+          "family": "circuit",
+          "level": 1,
+          "name": "铜线",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 2,
+          "name": "焊锡点",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 3,
+          "name": "线路板",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 4,
+          "name": "小控制器",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 5,
+          "name": "广播接线盒",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 6,
+          "name": "精密电路组",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 7,
+          "name": "电台主板",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 8,
+          "name": "信号放大器",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 9,
+          "name": "双路控制板",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 10,
+          "name": "防水主控盒",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 11,
+          "name": "四季联动板",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "family": "circuit",
+          "level": 12,
+          "name": "记忆回路核",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "vinyl",
+      "items": [
+        {
+          "family": "vinyl",
+          "level": 1,
+          "name": "音符纸",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 2,
+          "name": "录音片",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 3,
+          "name": "小唱片",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 4,
+          "name": "黑胶唱片",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 5,
+          "name": "手写歌单",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 6,
+          "name": "复古唱机",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 7,
+          "name": "便携留声机",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 8,
+          "name": "双碟唱片组",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 9,
+          "name": "珍藏黑胶盒",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 10,
+          "name": "铜喇叭唱机",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 11,
+          "name": "四季唱片集",
+          "shapeElements": 25,
+          "valid": true
+        },
+        {
+          "family": "vinyl",
+          "level": 12,
+          "name": "明天的留声机",
+          "shapeElements": 8,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "rope",
+      "items": [
+        {
+          "family": "rope",
+          "level": 1,
+          "name": "麻绳",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 2,
+          "name": "绳结",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 3,
+          "name": "船用缆绳",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 4,
+          "name": "木船桨",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 5,
+          "name": "海边救生圈",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 6,
+          "name": "遮阳帆",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 7,
+          "name": "双桨组件",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 8,
+          "name": "观潮小木船",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 9,
+          "name": "双人帆船",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 10,
+          "name": "灯帆小艇",
+          "shapeElements": 13,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 11,
+          "name": "四季帆船",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "rope",
+          "level": 12,
+          "name": "明日远航船",
+          "shapeElements": 8,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "shell",
+      "items": [
+        {
+          "family": "shell",
+          "level": 1,
+          "name": "小螺壳",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 2,
+          "name": "白贝壳",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 3,
+          "name": "扇形贝",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 4,
+          "name": "海螺",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 5,
+          "name": "珍珠贝",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 6,
+          "name": "贝壳摆件",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 7,
+          "name": "潮汐贝盒",
+          "shapeElements": 10,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 8,
+          "name": "海洋贝饰",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 9,
+          "name": "珍珠贝串",
+          "shapeElements": 14,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 10,
+          "name": "双层贝雕",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 11,
+          "name": "四季贝壳冠",
+          "shapeElements": 17,
+          "valid": true
+        },
+        {
+          "family": "shell",
+          "level": 12,
+          "name": "海风贝雕",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "glass",
+      "items": [
+        {
+          "family": "glass",
+          "level": 1,
+          "name": "玻璃碎片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 2,
+          "name": "磨圆玻璃",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 3,
+          "name": "青色海玻璃",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 4,
+          "name": "彩玻璃石",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 5,
+          "name": "玻璃小瓶",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 6,
+          "name": "潮汐摆件",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 7,
+          "name": "海光吊灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 8,
+          "name": "琉璃花瓶",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 9,
+          "name": "彩玻璃灯盏",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 10,
+          "name": "六色琉璃瓶",
+          "shapeElements": 20,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 11,
+          "name": "四季琉璃摆件",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "glass",
+          "level": 12,
+          "name": "不碎的晴天",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "music",
+      "items": [
+        {
+          "family": "music",
+          "level": 1,
+          "name": "拨片",
+          "shapeElements": 2,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 2,
+          "name": "口琴",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 3,
+          "name": "手鼓",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 4,
+          "name": "小吉他",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 5,
+          "name": "木吉他",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 6,
+          "name": "电子键盘",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 7,
+          "name": "舞台鼓组",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 8,
+          "name": "双人弦乐组",
+          "shapeElements": 8,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 9,
+          "name": "铜管乐器组",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 10,
+          "name": "四季乐器箱",
+          "shapeElements": 12,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 11,
+          "name": "六人的合奏组",
+          "shapeElements": 22,
+          "valid": true
+        },
+        {
+          "family": "music",
+          "level": 12,
+          "name": "明日合奏礼",
+          "shapeElements": 13,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "banner",
+      "items": [
+        {
+          "family": "banner",
+          "level": 1,
+          "name": "彩纸条",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 2,
+          "name": "布旗角",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 3,
+          "name": "小三角旗",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 4,
+          "name": "演出旗",
+          "shapeElements": 6,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 5,
+          "name": "串旗",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 6,
+          "name": "舞台背旗",
+          "shapeElements": 5,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 7,
+          "name": "风帆横幅",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 8,
+          "name": "屋顶灯旗",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 9,
+          "name": "庆典旗串",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 10,
+          "name": "双层刺绣旗",
+          "shapeElements": 16,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 11,
+          "name": "四季庆典旗",
+          "shapeElements": 18,
+          "valid": true
+        },
+        {
+          "family": "banner",
+          "level": 12,
+          "name": "欢迎回来的旗",
+          "shapeElements": 8,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "lamp",
+      "items": [
+        {
+          "family": "lamp",
+          "level": 1,
+          "name": "灯芯",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 2,
+          "name": "小灯泡",
+          "shapeElements": 3,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 3,
+          "name": "台灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 4,
+          "name": "舞台射灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 5,
+          "name": "串灯",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 6,
+          "name": "音乐彩灯",
+          "shapeElements": 9,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 7,
+          "name": "月光灯柱",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 8,
+          "name": "彩色吊灯",
+          "shapeElements": 7,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 9,
+          "name": "星星灯串",
+          "shapeElements": 11,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 10,
+          "name": "六角纸灯",
+          "shapeElements": 4,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 11,
+          "name": "四季灯笼",
+          "shapeElements": 28,
+          "valid": true
+        },
+        {
+          "family": "lamp",
+          "level": 12,
+          "name": "不熄的谢幕灯",
+          "shapeElements": 5,
+          "valid": true
+        }
+      ]
+    }
+  ],
+  "saveComparison": {
+    "ignoredNaturalClockKeys": [
+      "stamp",
+      "energyStamp",
+      "chargeStamp",
+      "genStamp"
+    ],
+    "diffs": [],
+    "coins": 268,
+    "energy": 461
+  },
+  "breakpoints": [
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "scrollWidth": 320,
+      "dialogWidth": 296,
+      "footerBottom": 544.15625
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "dialogWidth": 690,
+      "bodyHeight": 144,
+      "bodyScroll": 144,
+      "footerBottom": 346.140625
+    }
+  ],
+  "previewSizeChecks": [
+    88,
+    38
+  ],
+  "remainingAdvancedBodies": 216,
+  "browserLogs": []
+}

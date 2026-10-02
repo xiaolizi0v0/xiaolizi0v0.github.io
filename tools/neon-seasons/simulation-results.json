@@ -1,0 +1,29 @@
+{
+  "seed": "story-normal",
+  "operations": 87477,
+  "waitHours": 72.75,
+  "elapsedHours": 72.75,
+  "progress": 64,
+  "level": 62,
+  "coins": 95173,
+  "energy": 531,
+  "merges": 42073,
+  "produced": 42506,
+  "discovered": 528,
+  "recipes": 8,
+  "claims": 12,
+  "maxOrdinary": 40,
+  "maxSecret": 8,
+  "clues": 8,
+  "read": 64,
+  "night": {
+    "orders": 12,
+    "score": 2697,
+    "claims": 8
+  },
+  "endings": [
+    "restore",
+    "archive",
+    "tomorrow"
+  ]
+}

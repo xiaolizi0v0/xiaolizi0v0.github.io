@@ -1,0 +1,20 @@
+{
+  "url": "http://127.0.0.1:8765/tools/NeonSeasons.html",
+  "viewport": {"width":390,"height":844},
+  "input": "documented native Tab.drag plus Playwright locator.press",
+  "observed": [
+    "小木屑1 第3格拖到第23格，原格空、目标同物品",
+    "第23格拖到第6格，同级小木屑合成短木条2",
+    "第6格短木条拖到第4格螺丝钉，两件交换",
+    "第4格拖到棋盘外说明区，两格保持不变，悬浮物0",
+    "Space选螺丝钉1，Enter操作第23格，将物品移到空格"
+  ],
+  "resources": {"coinsBefore":229,"coinsAfter":229,"energyBefore":461,"energyAfter":461},
+  "protectedBackupLength":14719,
+  "restore": "official import, reload, official export; complete state comparison excluding only four natural clock keys",
+  "restoreDifferences": [],
+  "browserWarningsOrErrors": [],
+  "viewportReset": true,
+  "screenshot": "tools/neon-seasons/assets/story/v2-pointer-mobile.png",
+  "limitations": ["系统取消、失去捕获、失焦、多指由独立DOM夹具验证；未做真机多点触控测试"]
+}

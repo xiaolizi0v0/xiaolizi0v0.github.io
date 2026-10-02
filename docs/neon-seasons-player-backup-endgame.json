@@ -1,0 +1,898 @@
+{
+  "game": "neon-seasons",
+  "savedAt": 1790858978110,
+  "state": {
+    "version": 2,
+    "seed": "1790828413099",
+    "rng": 3798801797,
+    "created": 1790828413099,
+    "stamp": 1790858978110,
+    "energyStamp": 1790858978110,
+    "uid": 49,
+    "energy": 464,
+    "coins": 229,
+    "gems": 20,
+    "stars": 0,
+    "xp": 56,
+    "level": 3,
+    "progress": 3,
+    "ready": false,
+    "weather": 0,
+    "board": [
+      {
+        "uid": 23,
+        "chain": "producer0",
+        "level": 6,
+        "web": false,
+        "charge": 26,
+        "chargeStamp": 1790858978110
+      },
+      {
+        "uid": 24,
+        "chain": "producer1",
+        "level": 5,
+        "web": false,
+        "charge": 18,
+        "chargeStamp": 1790858978110
+      },
+      {
+        "uid": 30,
+        "chain": "wood",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 36,
+        "chain": "tool",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 27,
+        "chain": "needle",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 37,
+        "chain": "wood",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 31,
+        "chain": "needle",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 38,
+        "chain": "wood",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 39,
+        "chain": "tool",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 40,
+        "chain": "needle",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 41,
+        "chain": "wood",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 46,
+        "chain": "tool",
+        "level": 2,
+        "web": false
+      },
+      {
+        "uid": 43,
+        "chain": "wood",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 44,
+        "chain": "tool",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 5,
+        "chain": "cloth",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 6,
+        "chain": "cloth",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 47,
+        "chain": "tool",
+        "level": 1,
+        "web": false
+      },
+      {
+        "uid": 48,
+        "chain": "wood",
+        "level": 1,
+        "web": false
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "uid": 7,
+        "chain": "flower",
+        "level": 1,
+        "web": true
+      },
+      {
+        "uid": 8,
+        "chain": "flower",
+        "level": 1,
+        "web": false
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "inventory": [],
+    "capacity": 16,
+    "inbox": [],
+    "tools": {
+      "scissors": 4,
+      "joker": 1,
+      "hourglass": 3,
+      "packs": 2
+    },
+    "generators": [
+      {
+        "level": 2,
+        "charge": 22,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      },
+      {
+        "level": 1,
+        "charge": 16,
+        "stamp": 1790858978110,
+        "focus": null
+      }
+    ],
+    "neighbors": [
+      {
+        "id": "order-35",
+        "slot": 0,
+        "npc": 2,
+        "requirements": [
+          {
+            "chain": "tool",
+            "level": 2,
+            "qty": 1
+          }
+        ],
+        "reward": {
+          "coins": 39,
+          "xp": 24
+        },
+        "title": "熟客的日常"
+      },
+      {
+        "id": "order-10",
+        "slot": 1,
+        "npc": 5,
+        "requirements": [
+          {
+            "chain": "tool",
+            "level": 3,
+            "qty": 1
+          }
+        ],
+        "reward": {
+          "coins": 38,
+          "xp": 27
+        },
+        "title": "熟客的预约单"
+      },
+      {
+        "id": "order-11",
+        "slot": 2,
+        "npc": 2,
+        "requirements": [
+          {
+            "chain": "wood",
+            "level": 3,
+            "qty": 1
+          }
+        ],
+        "reward": {
+          "coins": 38,
+          "xp": 27
+        },
+        "title": "今天也有好心情"
+      }
+    ],
+    "rerollAt": [
+      0,
+      0,
+      0
+    ],
+    "decor": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "decorOwned": [
+      [
+        0
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "discovered": [
+      "tool:1",
+      "wood:1",
+      "cloth:1",
+      "flower:1",
+      "tool:2",
+      "wood:2",
+      "wood:3",
+      "producer0:6",
+      "producer1:5",
+      "needle:1",
+      "needle:2",
+      "tool:3",
+      "nightdrink:1",
+      "nightdrink:2"
+    ],
+    "recipes": [],
+    "clues": [],
+    "choices": {},
+    "read": [
+      0,
+      1,
+      2
+    ],
+    "pendingScene": null,
+    "bonds": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "bondClaims": [],
+    "ending": null,
+    "endReward": false,
+    "pass": 369,
+    "passClaims": [],
+    "achievementClaims": [],
+    "album": [],
+    "dust": 0,
+    "pity": 0,
+    "albumClaims": [],
+    "albumFull": false,
+    "signCount": 0,
+    "signedDay": "",
+    "energyBuys": 1,
+    "stats": {
+      "merges": 7,
+      "produced": 20,
+      "orders": 3,
+      "built": 3,
+      "recipes": 0,
+      "discovered": 14,
+      "maxItems": 0,
+      "games": 1,
+      "cards": 0,
+      "bondRewards": 0,
+      "highItems": 0
+    },
+    "day": "2026-10-01",
+    "week": "2026-09-28",
+    "daily": {
+      "base": {
+        "merges": 0,
+        "orders": 0,
+        "games": 0,
+        "built": 0,
+        "highItems": 0
+      },
+      "claims": []
+    },
+    "weekly": {
+      "base": {
+        "merges": 0,
+        "orders": 0,
+        "games": 0,
+        "built": 0,
+        "highItems": 0
+      },
+      "claims": []
+    },
+    "arcadeRewards": {
+      "0": 1
+    },
+    "arcadeBest": {
+      "0": 27
+    },
+    "arcade": {
+      "type": 3,
+      "seed": "2026-10-01-22",
+      "done": false,
+      "score": 0,
+      "grade": 0,
+      "won": false,
+      "paused": true,
+      "board": [
+        3,
+        6,
+        8,
+        1,
+        0,
+        2,
+        4,
+        7,
+        5
+      ],
+      "moves": 0,
+      "shuffle": [
+        8,
+        7,
+        4,
+        1,
+        0,
+        3,
+        6,
+        7,
+        4,
+        5,
+        8,
+        7,
+        6,
+        3,
+        0,
+        1,
+        2,
+        5,
+        8,
+        7,
+        6,
+        3,
+        0,
+        1
+      ],
+      "id": "arcade-22",
+      "trial": true,
+      "credited": false,
+      "rewarded": false
+    },
+    "night": {
+      "round": 1,
+      "started": 1790830109812,
+      "endAt": 1791434909812,
+      "ended": false,
+      "path": "drink",
+      "energy": 80,
+      "energyStamp": 1790858978110,
+      "stock": 30,
+      "genStamp": 1790858977812,
+      "board": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "score": 41,
+      "tokens": 41,
+      "order": 1,
+      "buys": 0,
+      "claimed": [
+        0
+      ],
+      "best": 0
+    },
+    "sold": null,
+    "npcOrders": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "homeProgress": 8,
+    "homeStyles": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "homeOwned": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "world": "home",
+    "doubleEnergy": false,
+    "sourceGranted": [
+      0,
+      1
+    ],
+    "decorClaims": [],
+    "sideProgress": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "sideRead": [],
+    "sceneHomeRead": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "activity": {
+      "round": 1,
+      "theme": 0,
+      "started": 1790835462067,
+      "endAt": 1791440262067,
+      "ended": false,
+      "tokens": 2,
+      "productions": 12,
+      "picks": 12,
+      "bait": 4,
+      "food": 1,
+      "nodes": 1,
+      "nodeClaims": [
+        0
+      ],
+      "digLayer": 0,
+      "digBoard": [
+        {
+          "hp": 0,
+          "kind": "entrance",
+          "open": true
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 0,
+          "kind": "chest",
+          "open": true
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "tool",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "dust",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "tool",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "chest",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "dust",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "tool",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "chest",
+          "open": false
+        },
+        {
+          "hp": 3,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 2,
+          "kind": "rock",
+          "open": false
+        },
+        {
+          "hp": 1,
+          "kind": "exit",
+          "open": false
+        }
+      ],
+      "digClaimed": [],
+      "fishBoard": [
+        {
+          "kind": 0,
+          "level": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "fishScore": 30,
+      "fishClaims": [
+        0
+      ],
+      "fishing": null,
+      "dinner": 0,
+      "dinnerAt": 1790835462067,
+      "dinnerClaimed": [],
+      "bestFish": 30
+    },
+    "activityCollections": [],
+    "activityCards": [
+      9,
+      54
+    ],
+    "activityDust": 0,
+    "activityPacks": 2,
+    "activityPity": 0,
+    "activityAlbumClaims": [],
+    "fishCollection": [
+      0
+    ],
+    "dinnerRounds": 0
+  }
+}

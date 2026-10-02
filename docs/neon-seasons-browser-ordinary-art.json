@@ -1,0 +1,642 @@
+{
+  "date": "2026-10-02",
+  "renderings": 480,
+  "revisedBodies": 96,
+  "catalog": [
+    {
+      "chain": "tool",
+      "items": [
+        {
+          "family": "tool",
+          "level": 1,
+          "name": "螺丝钉",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 2,
+          "name": "螺丝刀",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 3,
+          "name": "小扳手",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 4,
+          "name": "维修钳",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 5,
+          "name": "工具腰包",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 6,
+          "name": "精密工具组",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 7,
+          "name": "套筒工具箱",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 8,
+          "name": "棘轮工具箱",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 9,
+          "name": "电动钻组",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 10,
+          "name": "精密测量箱",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 11,
+          "name": "全套修复工具",
+          "valid": true
+        },
+        {
+          "family": "tool",
+          "level": 12,
+          "name": "传承工具箱",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "wood",
+      "items": [
+        {
+          "family": "wood",
+          "level": 1,
+          "name": "小木屑",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 2,
+          "name": "短木条",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 3,
+          "name": "木料板",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 4,
+          "name": "拼合木板",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 5,
+          "name": "长椅木架",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 6,
+          "name": "雕花木箱",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 7,
+          "name": "复古门扇",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 8,
+          "name": "镶边木箱",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 9,
+          "name": "胡桃木宝匣",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 10,
+          "name": "雕花屏风",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 11,
+          "name": "拼木长桌",
+          "valid": true
+        },
+        {
+          "family": "wood",
+          "level": 12,
+          "name": "四季木雕屏",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "cloth",
+      "items": [
+        {
+          "family": "cloth",
+          "level": 1,
+          "name": "线头",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 2,
+          "name": "棉线团",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 3,
+          "name": "布料片",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 4,
+          "name": "折好棉布",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 5,
+          "name": "绣花手帕",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 6,
+          "name": "拼色桌布",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 7,
+          "name": "防水帆布",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 8,
+          "name": "旗帜布卷",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 9,
+          "name": "四季挂毯",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 10,
+          "name": "手织幕帘",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 11,
+          "name": "双面绣帘",
+          "valid": true
+        },
+        {
+          "family": "cloth",
+          "level": 12,
+          "name": "记忆织锦",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "flower",
+      "items": [
+        {
+          "family": "flower",
+          "level": 1,
+          "name": "小种子",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 2,
+          "name": "嫩芽",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 3,
+          "name": "雏菊",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 4,
+          "name": "雏菊花束",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 5,
+          "name": "陶盆鲜花",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 6,
+          "name": "悬吊花篮",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 7,
+          "name": "蔷薇花束",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 8,
+          "name": "百合花篮",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 9,
+          "name": "满天星捧花",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 10,
+          "name": "四季鲜花篮",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 11,
+          "name": "流光插花",
+          "valid": true
+        },
+        {
+          "family": "flower",
+          "level": 12,
+          "name": "开花的回声",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "tea",
+      "items": [
+        {
+          "family": "tea",
+          "level": 1,
+          "name": "茶籽",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 2,
+          "name": "鲜茶叶",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 3,
+          "name": "晒青茶",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 4,
+          "name": "春茶小包",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 5,
+          "name": "茉莉茶罐",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 6,
+          "name": "手炒春茶",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 7,
+          "name": "雨前茶礼",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 8,
+          "name": "四季茶箱",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 9,
+          "name": "陈香茶饼",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 10,
+          "name": "双层茶礼",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 11,
+          "name": "手选茶珍",
+          "valid": true
+        },
+        {
+          "family": "tea",
+          "level": 12,
+          "name": "四季藏茶",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "fruit",
+      "items": [
+        {
+          "family": "fruit",
+          "level": 1,
+          "name": "果核",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 2,
+          "name": "青涩小果",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 3,
+          "name": "春日草莓",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 4,
+          "name": "草莓碗",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 5,
+          "name": "鲜果篮",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 6,
+          "name": "缤纷果盘",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 7,
+          "name": "果酱礼盒",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 8,
+          "name": "蜜桃果篮",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 9,
+          "name": "双层果盘",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 10,
+          "name": "丰收果篮",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 11,
+          "name": "四季鲜果礼",
+          "valid": true
+        },
+        {
+          "family": "fruit",
+          "level": 12,
+          "name": "一起分享的果篮",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "coffee",
+      "items": [
+        {
+          "family": "coffee",
+          "level": 1,
+          "name": "咖啡豆",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 2,
+          "name": "烘焙豆",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 3,
+          "name": "纸杯咖啡",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 4,
+          "name": "陶杯拿铁",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 5,
+          "name": "拉花咖啡",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 6,
+          "name": "手冲咖啡壶",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 7,
+          "name": "虹吸咖啡壶",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 8,
+          "name": "摩卡咖啡壶",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 9,
+          "name": "双杯浓缩机",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 10,
+          "name": "铜制冲煮器",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 11,
+          "name": "六人的咖啡组",
+          "valid": true
+        },
+        {
+          "family": "coffee",
+          "level": 12,
+          "name": "明天的第一杯",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "chain": "pastry",
+      "items": [
+        {
+          "family": "pastry",
+          "level": 1,
+          "name": "面粉",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 2,
+          "name": "小面团",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 3,
+          "name": "黄油饼干",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 4,
+          "name": "草莓蛋挞",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 5,
+          "name": "迷你蛋糕",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 6,
+          "name": "花瓣甜点",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 7,
+          "name": "外婆下午茶",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 8,
+          "name": "四季甜点塔",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 9,
+          "name": "水果庆生糕",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 10,
+          "name": "双层奶油糕",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 11,
+          "name": "六人的庆生糕",
+          "valid": true
+        },
+        {
+          "family": "pastry",
+          "level": 12,
+          "name": "四季分享蛋糕",
+          "valid": true
+        }
+      ]
+    }
+  ],
+  "saveComparison": {
+    "ignoredNaturalClockKeys": [
+      "stamp",
+      "energyStamp",
+      "chargeStamp",
+      "genStamp"
+    ],
+    "diffs": [],
+    "coins": 268,
+    "energy": 461
+  },
+  "phoneWidth": 390,
+  "horizontalOverflow": false,
+  "generatedStoryImageLoaded": true,
+  "previewSizeChecks": [
+    88,
+    38
+  ],
+  "remainingAdvancedBodies": 288
+}

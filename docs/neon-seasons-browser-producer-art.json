@@ -1,0 +1,31 @@
+{
+  "checked": "2026-10-01",
+  "viewport": [
+    390,
+    844
+  ],
+  "documentWidth": 390,
+  "cellPixels": 46.5625,
+  "iconPixels": 40.421875,
+  "sourceIconPixels": 50,
+  "originalPlayer": {
+    "coins": 229,
+    "energy": 464,
+    "level": 3,
+    "renovations": 11,
+    "source0Level": 6,
+    "source1Level": 5
+  },
+  "actions": "Reload final resources, view source 0 and source 1, return to board. No production, resource purchase, import or game-state injection. Counts observed unchanged; full serialized equivalence was not rerun in this read-only UI pass.",
+  "fixes": [
+    "Removed legacy generic producer-box override in reference-scenes.js",
+    "Final renderer test loads reference-scenes.js and asserts all producer shapes survive",
+    "Bumped changed resource URLs to refresh cached code",
+    "Improved stove grate contrast at 38px"
+  ],
+  "galleryReview": "All 112 producer tiers, 23 auxiliary tiers, and 32 family crate variants viewed at large size and 38px across grouped gallery screenshots. Phone UI checked existing source0/source1 and needle1/2; not every family on the phone.",
+  "screenshots": [
+    "v2-producer-illustrated-board.png",
+    "v2-producer-illustrated-source.png"
+  ]
+}

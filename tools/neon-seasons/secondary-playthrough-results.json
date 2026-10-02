@@ -1,0 +1,46 @@
+{
+  "checked": "2026-10-01T12:35:19.841Z",
+  "checks": 9,
+  "passed": [
+    "four minigames: legal highest grades, pause/restore, saved garden mode and daily three-reward cap",
+    "future-season practice completes by legal moves and never awards resources",
+    "invalid garden modes/actions stay valid and cannot change a completed or other minigame",
+    "all eighteen trust rewards and twelve growth rewards derive from earned campaign counters, claimed only once",
+    "twenty-four base memories, six set rewards and full-album letter gate from earned packs and duplicate crafting",
+    "daily and weekly goals still progress through ordinary orders and merges, including post-story high-item goals",
+    "seven consecutive sign-ins and all earned achievements, three endings keep unique reward accounting",
+    "both night routes: twelve genuine orders, eight milestones, sixteen persistent tiers, recycling and expiry without main-board edits",
+    "full highest-tier night board is recoverable, blocked production is atomic, old orders recover only proven tiers"
+  ],
+  "source": "Continues earned normal 72-renovation and 528-item collection profile; separate explicit fixtures only in edge test.",
+  "minigames": {
+    "types": 4,
+    "completed": 16,
+    "dailyRewardCap": 3
+  },
+  "baseAlbum": 24,
+  "baseSets": 6,
+  "trustRewards": 18,
+  "growthRewards": 12,
+  "signInDays": 7,
+  "achievements": 12,
+  "nightRoutes": [
+    {
+      "path": "drink",
+      "orders": 12,
+      "score": 4420,
+      "claims": 8
+    },
+    {
+      "path": "music",
+      "orders": 12,
+      "score": 4420,
+      "claims": 8
+    }
+  ],
+  "nightProductions": 1026,
+  "nightRecoveryWaitSeconds": 6859,
+  "additionalOrderProductions": 0,
+  "nightTiers": 16,
+  "remaining": "Actual phone rhythm latency, full UI reward and endgame acceptance, art polish."
+}

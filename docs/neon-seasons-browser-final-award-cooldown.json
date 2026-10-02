@@ -1,0 +1,169 @@
+{
+  "origin": "http://localhost:8765",
+  "isolatedFromPlayerOrigin": "http://127.0.0.1:8765",
+  "provenance": "Normal campaign production, merges, real orders and coin renovation; no resource/progress assignment. Virtual regeneration begins in the past so first-award and wall-clock UI can be tested today.",
+  "scriptVersion": 20,
+  "firstReward": {
+    "before": {
+      "coins": 54,
+      "energy": 200,
+      "gems": 21,
+      "joker": 1,
+      "packs": 199,
+      "endReward": false,
+      "ending": null
+    },
+    "after": {
+      "coins": 1554,
+      "energy": 400,
+      "gems": 51,
+      "joker": 4,
+      "packs": 203,
+      "endReward": true,
+      "ending": "restore"
+    },
+    "reReadRewardDelta": {
+      "coins": 0,
+      "energy": 0,
+      "gems": 0,
+      "joker": 0,
+      "packs": 0
+    }
+  },
+  "cooldown": {
+    "start": {
+      "elapsedMs": 0,
+      "dom": {
+        "offers": 0,
+        "seconds": 30
+      }
+    },
+    "middle": {
+      "elapsedMs": 22115,
+      "dom": {
+        "offers": 0,
+        "seconds": 9
+      }
+    },
+    "end": {
+      "elapsedMs": 56927,
+      "dom": {
+        "countdownPresent": false,
+        "headings": [
+          "搭起周末的小舞台",
+          "给志愿者送来清凉",
+          "建起共享光能站"
+        ],
+        "offers": 3
+      }
+    }
+  },
+  "abandonResourceDifferences": [
+    "board"
+  ],
+  "logs": [],
+  "abandonNaturalClockDifferences": [
+    {
+      "path": "0.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "3.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "4.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "5.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "6.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "7.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "8.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "9.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "10.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "11.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "12.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "13.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "14.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "15.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "16.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "42.chargeStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "49.autoStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "58.autoStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    },
+    {
+      "path": "61.autoStamp",
+      "before": 1790878288475,
+      "after": 1790878633281
+    }
+  ],
+  "abandonResourceDifferencesExcludingNaturalClocks": [],
+  "abandonMaterialDifferences": [],
+  "originalPlayerStateDifferences": [],
+  "ignoredAbandonNaturalClockFields": [
+    "chargeStamp",
+    "autoStamp"
+  ]
+}

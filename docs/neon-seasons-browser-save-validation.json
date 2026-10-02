@@ -1,0 +1,27 @@
+{
+  "checked": "2026-10-01",
+  "browser": "Codex in-app browser, existing user profile",
+  "viewport": [390, 844],
+  "generatedBackupCharacters": 14296,
+  "textBackupAvailable": true,
+  "copyButtonDisplayedSuccess": true,
+  "clipboardReadApiCharacters": 0,
+  "clipboardContentsVerified": false,
+  "downloadEventObserved": false,
+  "downloadWaitMs": 10000,
+  "validFileChooserAcceptedBackupAndShowedReview": true,
+  "cancelFileImportPreservedVisibleProgress": true,
+  "invalidTextRejected": true,
+  "invalidFileRejected": true,
+  "validTextImportConfirmed": true,
+  "actualRestoreProof": {
+    "beforeBackup": {"renovations": 11, "level": 3, "coins": 229, "energy": 464, "produced": 20, "uid": 49},
+    "normalProductionAfterBackup": {"energy": 463, "boardCell19": "tool:1", "eventTokens": 3},
+    "afterImportAndReload": {"renovations": 11, "level": 3, "coins": 229, "energy": 464, "produced": 20, "uid": 49, "boardCell19": null, "eventTokens": 2},
+    "fullExportedStateMatchesBackupExceptRecoveryClocks": true,
+    "excludedClockKeys": ["stamp", "energyStamp", "chargeStamp", "genStamp", "autoStamp"]
+  },
+  "scriptWarningsAndErrors": 0,
+  "viewportReset": true,
+  "limits": "File import was accepted then cancelled; actual confirmed restoration used the same exported backup via text. Download file and physical clipboard are not claimed verified. No gameplay state injection was used."
+}

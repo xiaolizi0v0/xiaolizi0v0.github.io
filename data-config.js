@@ -3,10 +3,20 @@ const dataConfig = {
  //工具
   tools: [
     {
+      id: "10",
+      title: "霓虹四季",
+      icon: "fas fa-leaf",
+      description: "原创合成与街区修复游戏：四季剧情、64 项工程、40 条普通链、8 条秘密配方、16 个生成器、独立夜市、四种小游戏、信任与记忆相册。支持手机触控和本地存档。",
+      file: "NeonSeasons.html",
+      category: "other",
+      date: "2026-10-01",
+      cover: "neon-seasons/assets/cover.png"
+    },
+    {
       id: "9",
       title: "劫速街区 3D",
       icon: "fas fa-car",
-      description: "Blender 原创车模的 3D 赛车肉鸽：尾流换速、漂移蓄电与共享加速轨。24 张赛道、三车三城、六站锦标赛、24 种改件、永久研究和手机多指操作。",
+      description: "Blender 原创车模的 3D 赛车肉鸽：反打漂移、双喷出弯、CWW 连喷、尾流换速与共享加速轨。24 张赛道、六站锦标赛、24 种改件、八步驾校和手机多指操作。",
       file: "VelocityHeist.html",
       category: "other",
       date: "2026-10-01",
