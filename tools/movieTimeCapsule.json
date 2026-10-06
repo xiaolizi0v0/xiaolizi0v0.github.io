@@ -5973,11 +5973,16 @@
           "title": "第41集",
           "url": "https://v.lzcdn31.com/20260926/11932_b11bcb7b/2000k/hls/mixed.m3u8",
           "watched": true
+        },
+        {
+          "title": "第42集",
+          "url": "https://cdn.yzzy30-play.com/20261003/59888_7afe3bb3/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787430055073,
-      "updatedAt": 1790524170237
+      "updatedAt": 1791276615628
     },
     {
       "id": "baike-35977696",
