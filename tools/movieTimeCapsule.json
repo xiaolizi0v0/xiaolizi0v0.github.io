@@ -434,7 +434,7 @@
         {
           "title": "第95集",
           "url": "https://v.lzcdn31.com/20260918/11560_f7f2238b/2000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第96集",
@@ -447,7 +447,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1791297093179
+      "updatedAt": 1791298160850
     },
     {
       "watchedDate": "2026-08-21",
