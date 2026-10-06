@@ -1059,9 +1059,14 @@
           "title": "第10集",
           "url": "https://v.lzcdn31.com/20260921/11678_5201a4c8/2000k/hls/mixed.m3u8",
           "watched": true
+        },
+        {
+          "title": "第11集",
+          "url": "https://cdn.yzzy31-play.com/20260928/26767_76d25c33/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1791276784654
+      "updatedAt": 1791276813180
     },
     {
       "watchedDate": "2026-08-21",
