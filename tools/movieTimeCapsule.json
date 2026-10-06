@@ -8451,9 +8451,14 @@
           "title": "20260814上",
           "url": "https://v.lzcdn28.com/20260814/14279_bed67309/2000k/hls/mixed.m3u8",
           "watched": true
+        },
+        {
+          "title": "20261002 上",
+          "url": "https://cdn.yzzy31-play.com/20261002/26933_f88c38d9/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1790402374543
+      "updatedAt": 1791276925885
     },
     {
       "id": "baike-37282866",
