@@ -6030,11 +6030,16 @@
           "title": "第11集",
           "url": "https://v.lzcdn31.com/20260924/11848_c4edd7a0/2000k/hls/mixed.m3u8",
           "watched": true
+        },
+        {
+          "title": "第12集",
+          "url": "https://cdn.yzzy30-play.com/20261001/59786_9673ed35/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787430287694,
-      "updatedAt": 1790512957399
+      "updatedAt": 1791276657322
     },
     {
       "watchedDate": "2026-08-24",
