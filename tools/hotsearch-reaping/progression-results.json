@@ -1,0 +1,293 @@
+{
+  "completed": true,
+  "seconds": 3544,
+  "highest": 36,
+  "wins": 36,
+  "losses": 0,
+  "kills": 26393,
+  "levels": {
+    "paper": 5,
+    "bell": 5,
+    "orbit": 5,
+    "context": 5,
+    "beam": 5,
+    "frost": 4,
+    "return": 4,
+    "petal": 4
+  },
+  "upgrades": {
+    "attack": 7,
+    "hp": 8,
+    "speed": 6,
+    "range": 6,
+    "haste": 7,
+    "magnet": 7,
+    "focus": 6,
+    "armor": 6,
+    "regen": 6,
+    "cooling": 6,
+    "income": 6,
+    "skill": 6
+  },
+  "milestones": [
+    {
+      "stage": 1,
+      "seconds": 94,
+      "kills": 450,
+      "losses": 0,
+      "coins": 26
+    },
+    {
+      "stage": 2,
+      "seconds": 192,
+      "kills": 890,
+      "losses": 0,
+      "coins": 19
+    },
+    {
+      "stage": 3,
+      "seconds": 288,
+      "kills": 1339,
+      "losses": 0,
+      "coins": 128
+    },
+    {
+      "stage": 4,
+      "seconds": 386,
+      "kills": 1803,
+      "losses": 0,
+      "coins": 51
+    },
+    {
+      "stage": 5,
+      "seconds": 484,
+      "kills": 2269,
+      "losses": 0,
+      "coins": 88
+    },
+    {
+      "stage": 6,
+      "seconds": 578,
+      "kills": 2751,
+      "losses": 0,
+      "coins": 93
+    },
+    {
+      "stage": 7,
+      "seconds": 676,
+      "kills": 3290,
+      "losses": 0,
+      "coins": 45
+    },
+    {
+      "stage": 8,
+      "seconds": 772,
+      "kills": 3793,
+      "losses": 0,
+      "coins": 81
+    },
+    {
+      "stage": 9,
+      "seconds": 870,
+      "kills": 4318,
+      "losses": 0,
+      "coins": 15
+    },
+    {
+      "stage": 10,
+      "seconds": 966,
+      "kills": 4869,
+      "losses": 0,
+      "coins": 133
+    },
+    {
+      "stage": 11,
+      "seconds": 1068,
+      "kills": 5432,
+      "losses": 0,
+      "coins": 209
+    },
+    {
+      "stage": 12,
+      "seconds": 1166,
+      "kills": 6033,
+      "losses": 0,
+      "coins": 109
+    },
+    {
+      "stage": 13,
+      "seconds": 1262,
+      "kills": 6747,
+      "losses": 0,
+      "coins": 310
+    },
+    {
+      "stage": 14,
+      "seconds": 1360,
+      "kills": 7468,
+      "losses": 0,
+      "coins": 295
+    },
+    {
+      "stage": 15,
+      "seconds": 1458,
+      "kills": 8189,
+      "losses": 0,
+      "coins": 57
+    },
+    {
+      "stage": 16,
+      "seconds": 1562,
+      "kills": 8920,
+      "losses": 0,
+      "coins": 375
+    },
+    {
+      "stage": 17,
+      "seconds": 1658,
+      "kills": 9658,
+      "losses": 0,
+      "coins": 160
+    },
+    {
+      "stage": 18,
+      "seconds": 1752,
+      "kills": 10397,
+      "losses": 0,
+      "coins": 45
+    },
+    {
+      "stage": 19,
+      "seconds": 1850,
+      "kills": 11185,
+      "losses": 0,
+      "coins": 362
+    },
+    {
+      "stage": 20,
+      "seconds": 1948,
+      "kills": 11987,
+      "losses": 0,
+      "coins": 407
+    },
+    {
+      "stage": 21,
+      "seconds": 2044,
+      "kills": 12791,
+      "losses": 0,
+      "coins": 478
+    },
+    {
+      "stage": 22,
+      "seconds": 2140,
+      "kills": 13644,
+      "losses": 0,
+      "coins": 465
+    },
+    {
+      "stage": 23,
+      "seconds": 2236,
+      "kills": 14499,
+      "losses": 0,
+      "coins": 402
+    },
+    {
+      "stage": 24,
+      "seconds": 2336,
+      "kills": 15360,
+      "losses": 0,
+      "coins": 140
+    },
+    {
+      "stage": 25,
+      "seconds": 2436,
+      "kills": 16220,
+      "losses": 0,
+      "coins": 124
+    },
+    {
+      "stage": 26,
+      "seconds": 2534,
+      "kills": 17099,
+      "losses": 0,
+      "coins": 294
+    },
+    {
+      "stage": 27,
+      "seconds": 2636,
+      "kills": 17977,
+      "losses": 0,
+      "coins": 290
+    },
+    {
+      "stage": 28,
+      "seconds": 2738,
+      "kills": 18845,
+      "losses": 0,
+      "coins": 289
+    },
+    {
+      "stage": 29,
+      "seconds": 2840,
+      "kills": 19742,
+      "losses": 0,
+      "coins": 293
+    },
+    {
+      "stage": 30,
+      "seconds": 2944,
+      "kills": 20709,
+      "losses": 0,
+      "coins": 434
+    },
+    {
+      "stage": 31,
+      "seconds": 3044,
+      "kills": 21637,
+      "losses": 0,
+      "coins": 463
+    },
+    {
+      "stage": 32,
+      "seconds": 3146,
+      "kills": 22604,
+      "losses": 0,
+      "coins": 139
+    },
+    {
+      "stage": 33,
+      "seconds": 3246,
+      "kills": 23540,
+      "losses": 0,
+      "coins": 86
+    },
+    {
+      "stage": 34,
+      "seconds": 3346,
+      "kills": 24491,
+      "losses": 0,
+      "coins": 17
+    },
+    {
+      "stage": 35,
+      "seconds": 3444,
+      "kills": 25438,
+      "losses": 0,
+      "coins": 530
+    },
+    {
+      "stage": 36,
+      "seconds": 3544,
+      "kills": 26393,
+      "losses": 0,
+      "coins": 1010
+    }
+  ],
+  "endless": {
+    "phase": "playing",
+    "time": 360.0000000000476,
+    "wave": 13,
+    "kills": 5147,
+    "bosses": 3
+  }
+}

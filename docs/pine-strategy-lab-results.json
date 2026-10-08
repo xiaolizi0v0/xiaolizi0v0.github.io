@@ -1,0 +1,830 @@
+{
+  "scope": "Neutral mechanism research; not implemented product or proof of fun",
+  "budget": 10,
+  "storageLimit": 20,
+  "processes": [
+    "sourceA",
+    "sourceB",
+    "prepareA",
+    "prepareB",
+    "finish"
+  ],
+  "allocations": {
+    "balanced": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "targetA": [
+      2,
+      1,
+      3,
+      2,
+      2
+    ],
+    "targetB": [
+      1,
+      2,
+      2,
+      3,
+      2
+    ],
+    "sourceOnly": [
+      5,
+      5,
+      0,
+      0,
+      0
+    ]
+  },
+  "fixedA": {
+    "balanced": {
+      "output": 420,
+      "unusedIncoming": 1082.8,
+      "stock": [
+        18.6,
+        19.3,
+        0,
+        19.3
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 210,
+          "stock": [
+            18.6,
+            19.3,
+            0,
+            19.3
+          ]
+        },
+        {
+          "second": 600,
+          "output": 420,
+          "stock": [
+            18.6,
+            19.3,
+            0,
+            19.3
+          ]
+        }
+      ]
+    },
+    "targetA": {
+      "output": 600,
+      "unusedIncoming": 0,
+      "stock": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 300,
+          "stock": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 600,
+          "output": 600,
+          "stock": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "targetB": {
+      "output": 300,
+      "unusedIncoming": 861,
+      "stock": [
+        0,
+        19.5,
+        0,
+        19.5
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 150,
+          "stock": [
+            0,
+            19.5,
+            0,
+            19.5
+          ]
+        },
+        {
+          "second": 600,
+          "output": 300,
+          "stock": [
+            0,
+            19.5,
+            0,
+            19.5
+          ]
+        }
+      ]
+    },
+    "sourceOnly": {
+      "output": 0,
+      "unusedIncoming": 5960,
+      "stock": [
+        20,
+        20,
+        0,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 0,
+          "stock": [
+            20,
+            20,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 600,
+          "output": 0,
+          "stock": [
+            20,
+            20,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "fixedB": {
+    "balanced": {
+      "output": 420,
+      "unusedIncoming": 1082.8,
+      "stock": [
+        19.3,
+        18.6,
+        19.3,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 210,
+          "stock": [
+            19.3,
+            18.6,
+            19.3,
+            0
+          ]
+        },
+        {
+          "second": 600,
+          "output": 420,
+          "stock": [
+            19.3,
+            18.6,
+            19.3,
+            0
+          ]
+        }
+      ]
+    },
+    "targetA": {
+      "output": 300,
+      "unusedIncoming": 861,
+      "stock": [
+        19.5,
+        0,
+        19.5,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 150,
+          "stock": [
+            19.5,
+            0,
+            19.5,
+            0
+          ]
+        },
+        {
+          "second": 600,
+          "output": 300,
+          "stock": [
+            19.5,
+            0,
+            19.5,
+            0
+          ]
+        }
+      ]
+    },
+    "targetB": {
+      "output": 600,
+      "unusedIncoming": 0,
+      "stock": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 300,
+          "stock": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 600,
+          "output": 600,
+          "stock": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "sourceOnly": {
+      "output": 0,
+      "unusedIncoming": 5960,
+      "stock": [
+        20,
+        20,
+        0,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 0,
+          "stock": [
+            20,
+            20,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 600,
+          "output": 0,
+          "stock": [
+            20,
+            20,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "changing": {
+    "balanced": {
+      "output": 867.9,
+      "unusedIncoming": 2139.1,
+      "stock": [
+        19.3,
+        18.6,
+        19.3,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 210,
+          "stock": [
+            18.6,
+            19.3,
+            0,
+            19.3
+          ]
+        },
+        {
+          "second": 600,
+          "output": 429.3,
+          "stock": [
+            19.3,
+            18.6,
+            19.3,
+            0
+          ]
+        },
+        {
+          "second": 900,
+          "output": 648.6,
+          "stock": [
+            18.6,
+            19.3,
+            0,
+            19.3
+          ]
+        },
+        {
+          "second": 1200,
+          "output": 867.9,
+          "stock": [
+            19.3,
+            18.6,
+            19.3,
+            0
+          ]
+        }
+      ]
+    },
+    "targetA": {
+      "output": 900,
+      "unusedIncoming": 861,
+      "stock": [
+        19.5,
+        0,
+        19.5,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 300,
+          "stock": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 600,
+          "output": 450,
+          "stock": [
+            19.5,
+            0,
+            19.5,
+            0
+          ]
+        },
+        {
+          "second": 900,
+          "output": 750,
+          "stock": [
+            18,
+            0,
+            18,
+            0
+          ]
+        },
+        {
+          "second": 1200,
+          "output": 900,
+          "stock": [
+            19.5,
+            0,
+            19.5,
+            0
+          ]
+        }
+      ]
+    },
+    "targetB": {
+      "output": 900,
+      "unusedIncoming": 864,
+      "stock": [
+        0,
+        18,
+        0,
+        18
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 150,
+          "stock": [
+            0,
+            19.5,
+            0,
+            19.5
+          ]
+        },
+        {
+          "second": 600,
+          "output": 450,
+          "stock": [
+            0,
+            18,
+            0,
+            18
+          ]
+        },
+        {
+          "second": 900,
+          "output": 600,
+          "stock": [
+            0,
+            19.5,
+            0,
+            19.5
+          ]
+        },
+        {
+          "second": 1200,
+          "output": 900,
+          "stock": [
+            0,
+            18,
+            0,
+            18
+          ]
+        }
+      ]
+    },
+    "sourceOnly": {
+      "output": 0,
+      "unusedIncoming": 11960,
+      "stock": [
+        20,
+        20,
+        0,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 0,
+          "stock": [
+            20,
+            20,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 600,
+          "output": 0,
+          "stock": [
+            20,
+            20,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 900,
+          "output": 0,
+          "stock": [
+            20,
+            20,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 1200,
+          "output": 0,
+          "stock": [
+            20,
+            20,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "adaptive": {
+      "output": 1200,
+      "unusedIncoming": 0,
+      "stock": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "checkpoints": [
+        {
+          "second": 300,
+          "output": 300,
+          "stock": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 600,
+          "output": 600,
+          "stock": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 900,
+          "output": 900,
+          "stock": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "second": 1200,
+          "output": 1200,
+          "stock": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "waitCannotFixMissingStages": {
+    "output": 0,
+    "unusedIncoming": 71960,
+    "stock": [
+      20,
+      20,
+      0,
+      0
+    ],
+    "checkpoints": [
+      {
+        "second": 300,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 600,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 900,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 1200,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 1500,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 1800,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 2100,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 2400,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 2700,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 3000,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 3300,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 3600,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 3900,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 4200,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 4500,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 4800,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 5100,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 5400,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 5700,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 6000,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 6300,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 6600,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 6900,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "second": 7200,
+        "output": 0,
+        "stock": [
+          20,
+          20,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "conclusions": {
+    "equalBudgetDifferentOutcomes": true,
+    "targetChangesBestAllocation": true,
+    "waitingCannotRepairMissingStage": true,
+    "conditionalAllocationHasMeasuredBenefit": true,
+    "unproven": [
+      "meaningful collaboration",
+      "originality beyond supply-chain mechanics",
+      "progression layers",
+      "attention frequency",
+      "fun",
+      "actual game online/offline consistency"
+    ]
+  }
+}

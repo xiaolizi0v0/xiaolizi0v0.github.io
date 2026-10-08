@@ -3,6 +3,16 @@ const dataConfig = {
  //工具
   tools: [
     {
+      id: "11",
+      title: "热搜清屏",
+      icon: "fas fa-fire",
+      description: "微博公开热搜与竖屏挂机割草：复读增殖、扩音清源、上下文破盾和降温清场。36关、六首领、三角色、八武器、永久成长与原创剧情插画，支持手机摇杆和本地存档。",
+      file: "HotSearchReaping.html",
+      category: "other",
+      date: "2026-10-08",
+      cover: "hotsearch-reaping/assets/sprout.png"
+    },
+    {
       id: "10",
       title: "霓虹四季",
       icon: "fas fa-leaf",

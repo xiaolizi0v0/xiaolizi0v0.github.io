@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f4ede0"><title>晴岛夺核 · 守望群岛</title><link rel="stylesheet" href="sunny-isle/style.css"></head>
+<body><div id="shell" class="shell">
+<header class="header"><a class="back" href="index.html" aria-label="返回工具页面">‹</a><div class="brand"><span class="brand-mark">✦</span><div><h1>晴岛夺核</h1><small>让借来的光，换一个方向</small></div></div><div class="wallet"><span>☀ <b id="credits">0</b></span><span>◈ <b id="shards">0</b></span></div></header>
+<main>
+<section id="battle-view" class="view" aria-label="自动战斗">
+<div class="stage-heading"><div><small id="stage-eyebrow">CHAPTER 01 · 晴芽岛</small><h2 id="stage-title">单枝雾团</h2></div><button data-action="chapter" class="round" aria-label="查看本章剧情">▤</button></div>
+<div class="health-row"><div class="health"><span id="hero-label">铃 · 守望者</span><div class="meter"><i id="hero-bar"></i></div><small id="hero-hp"></small></div><div class="versus">✦</div><div class="health enemy"><span>敌体雾核</span><div class="meter"><i id="core-bar"></i></div><small id="core-hp"></small></div></div>
+<div class="arena"><canvas id="arena" width="840" height="880" aria-label="可点击敌体部件，选择接管或拆解">自动战斗地图。请使用下方“部件列表”按钮查看及操作敌体。</canvas><div class="arena-top"><span id="body-state">自动交战</span><span id="capacity">共鸣 0 / 3</span></div><div id="arena-result" class="result" hidden></div><button data-action="parts" class="arena-parts">部件列表</button><div class="arena-caption"><span class="dot enemy-dot"></span>敌方 <span class="dot ally-dot"></span>接管 <span class="dot off-dot"></span>停机</div></div>
+<div id="tutorial-strip" class="tutorial-strip" hidden></div>
+<div id="node-card" class="node-card"></div>
+<div class="strategy"><div><small>持久策略</small><strong id="policy-name">均衡</strong></div><button data-action="policies">调整策略 <span>›</span></button></div>
+<div class="control-row"><button data-action="pause" id="pause-button">Ⅱ 暂停</button><button data-action="speed" id="speed-button">1×</button><button data-action="advance" id="advance-button" class="active">自动推进</button><button data-action="sound" id="sound-button" aria-label="切换音效">♫ 音效</button></div>
+<div class="battle-note"><span id="battle-log">点部件看供能，接管它的力量。</span><button data-action="journal" aria-label="查看交战记录">≡</button></div>
+</section>
+<section id="islands-view" class="view" hidden aria-label="群岛与试炼"></section>
+<section id="workshop-view" class="view" hidden aria-label="研究与器具"></section>
+<section id="codex-view" class="view" hidden aria-label="图鉴与成就"></section>
+<section id="guide-view" class="view" hidden aria-label="手册与存档"></section>
+</main>
+<nav class="navigation" aria-label="游戏导航"><button data-view="battle" class="active"><span>⚔</span>战斗</button><button data-view="islands"><span>☷</span>群岛</button><button data-view="workshop"><span>⚒</span>工坊</button><button data-view="codex"><span>▧</span>图鉴</button><button data-view="guide"><span>☰</span>手册</button></nav>
+</div><div id="toast" role="status" hidden></div><dialog id="modal"><div id="modal-body"></div></dialog>
+<script src="sunny-isle/content.js"></script><script src="sunny-isle/engine.js"></script><script src="sunny-isle/app.js"></script></body></html>

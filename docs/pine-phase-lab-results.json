@@ -1,0 +1,520 @@
+{
+  "scope": "Automatic phase cooperation research, not implemented gameplay or human fun evidence",
+  "phaseCycle": [
+    "charge",
+    "charge",
+    "release",
+    "release",
+    "recover",
+    "recover"
+  ],
+  "unitBudget": 3,
+  "continuous": {
+    "aligned": {
+      "offsets": [
+        0,
+        0,
+        0
+      ],
+      "routes": [
+        -1,
+        -1,
+        -1
+      ],
+      "mode": "continuous",
+      "buffer": 0,
+      "steps": 600,
+      "delivered": 200,
+      "unused": 400,
+      "support": 0,
+      "samples": [
+        {
+          "step": 60,
+          "delivered": 20,
+          "stored": 0
+        },
+        {
+          "step": 120,
+          "delivered": 40,
+          "stored": 0
+        },
+        {
+          "step": 180,
+          "delivered": 60,
+          "stored": 0
+        },
+        {
+          "step": 240,
+          "delivered": 80,
+          "stored": 0
+        },
+        {
+          "step": 300,
+          "delivered": 100,
+          "stored": 0
+        },
+        {
+          "step": 360,
+          "delivered": 120,
+          "stored": 0
+        },
+        {
+          "step": 420,
+          "delivered": 140,
+          "stored": 0
+        },
+        {
+          "step": 480,
+          "delivered": 160,
+          "stored": 0
+        },
+        {
+          "step": 540,
+          "delivered": 180,
+          "stored": 0
+        },
+        {
+          "step": 600,
+          "delivered": 200,
+          "stored": 0
+        }
+      ]
+    },
+    "staggered": {
+      "offsets": [
+        0,
+        2,
+        4
+      ],
+      "routes": [
+        -1,
+        -1,
+        -1
+      ],
+      "mode": "continuous",
+      "buffer": 0,
+      "steps": 600,
+      "delivered": 598,
+      "unused": 0,
+      "support": 0,
+      "samples": [
+        {
+          "step": 60,
+          "delivered": 58,
+          "stored": 0
+        },
+        {
+          "step": 120,
+          "delivered": 118,
+          "stored": 0
+        },
+        {
+          "step": 180,
+          "delivered": 178,
+          "stored": 0
+        },
+        {
+          "step": 240,
+          "delivered": 238,
+          "stored": 0
+        },
+        {
+          "step": 300,
+          "delivered": 298,
+          "stored": 0
+        },
+        {
+          "step": 360,
+          "delivered": 358,
+          "stored": 0
+        },
+        {
+          "step": 420,
+          "delivered": 418,
+          "stored": 0
+        },
+        {
+          "step": 480,
+          "delivered": 478,
+          "stored": 0
+        },
+        {
+          "step": 540,
+          "delivered": 538,
+          "stored": 0
+        },
+        {
+          "step": 600,
+          "delivered": 598,
+          "stored": 0
+        }
+      ]
+    },
+    "feedback": {
+      "offsets": [
+        0,
+        2,
+        4
+      ],
+      "routes": [
+        1,
+        2,
+        0
+      ],
+      "mode": "continuous",
+      "buffer": 0,
+      "steps": 600,
+      "delivered": 1196,
+      "unused": 0,
+      "support": 600,
+      "samples": [
+        {
+          "step": 60,
+          "delivered": 116,
+          "stored": 0
+        },
+        {
+          "step": 120,
+          "delivered": 236,
+          "stored": 0
+        },
+        {
+          "step": 180,
+          "delivered": 356,
+          "stored": 0
+        },
+        {
+          "step": 240,
+          "delivered": 476,
+          "stored": 0
+        },
+        {
+          "step": 300,
+          "delivered": 596,
+          "stored": 0
+        },
+        {
+          "step": 360,
+          "delivered": 716,
+          "stored": 0
+        },
+        {
+          "step": 420,
+          "delivered": 836,
+          "stored": 0
+        },
+        {
+          "step": 480,
+          "delivered": 956,
+          "stored": 0
+        },
+        {
+          "step": 540,
+          "delivered": 1076,
+          "stored": 0
+        },
+        {
+          "step": 600,
+          "delivered": 1196,
+          "stored": 0
+        }
+      ]
+    }
+  },
+  "pulse": {
+    "aligned": {
+      "offsets": [
+        0,
+        0,
+        0
+      ],
+      "routes": [
+        -1,
+        -1,
+        -1
+      ],
+      "mode": "pulse",
+      "buffer": 0,
+      "steps": 600,
+      "delivered": 600,
+      "unused": 0,
+      "support": 0,
+      "samples": [
+        {
+          "step": 60,
+          "delivered": 60,
+          "stored": 0
+        },
+        {
+          "step": 120,
+          "delivered": 120,
+          "stored": 0
+        },
+        {
+          "step": 180,
+          "delivered": 180,
+          "stored": 0
+        },
+        {
+          "step": 240,
+          "delivered": 240,
+          "stored": 0
+        },
+        {
+          "step": 300,
+          "delivered": 300,
+          "stored": 0
+        },
+        {
+          "step": 360,
+          "delivered": 360,
+          "stored": 0
+        },
+        {
+          "step": 420,
+          "delivered": 420,
+          "stored": 0
+        },
+        {
+          "step": 480,
+          "delivered": 480,
+          "stored": 0
+        },
+        {
+          "step": 540,
+          "delivered": 540,
+          "stored": 0
+        },
+        {
+          "step": 600,
+          "delivered": 600,
+          "stored": 0
+        }
+      ]
+    },
+    "staggered": {
+      "offsets": [
+        0,
+        2,
+        4
+      ],
+      "routes": [
+        -1,
+        -1,
+        -1
+      ],
+      "mode": "pulse",
+      "buffer": 0,
+      "steps": 600,
+      "delivered": 200,
+      "unused": 398,
+      "support": 0,
+      "samples": [
+        {
+          "step": 60,
+          "delivered": 20,
+          "stored": 0
+        },
+        {
+          "step": 120,
+          "delivered": 40,
+          "stored": 0
+        },
+        {
+          "step": 180,
+          "delivered": 60,
+          "stored": 0
+        },
+        {
+          "step": 240,
+          "delivered": 80,
+          "stored": 0
+        },
+        {
+          "step": 300,
+          "delivered": 100,
+          "stored": 0
+        },
+        {
+          "step": 360,
+          "delivered": 120,
+          "stored": 0
+        },
+        {
+          "step": 420,
+          "delivered": 140,
+          "stored": 0
+        },
+        {
+          "step": 480,
+          "delivered": 160,
+          "stored": 0
+        },
+        {
+          "step": 540,
+          "delivered": 180,
+          "stored": 0
+        },
+        {
+          "step": 600,
+          "delivered": 200,
+          "stored": 0
+        }
+      ]
+    },
+    "feedback": {
+      "offsets": [
+        0,
+        2,
+        4
+      ],
+      "routes": [
+        1,
+        2,
+        0
+      ],
+      "mode": "pulse",
+      "buffer": 0,
+      "steps": 600,
+      "delivered": 400,
+      "unused": 796,
+      "support": 600,
+      "samples": [
+        {
+          "step": 60,
+          "delivered": 40,
+          "stored": 0
+        },
+        {
+          "step": 120,
+          "delivered": 80,
+          "stored": 0
+        },
+        {
+          "step": 180,
+          "delivered": 120,
+          "stored": 0
+        },
+        {
+          "step": 240,
+          "delivered": 160,
+          "stored": 0
+        },
+        {
+          "step": 300,
+          "delivered": 200,
+          "stored": 0
+        },
+        {
+          "step": 360,
+          "delivered": 240,
+          "stored": 0
+        },
+        {
+          "step": 420,
+          "delivered": 280,
+          "stored": 0
+        },
+        {
+          "step": 480,
+          "delivered": 320,
+          "stored": 0
+        },
+        {
+          "step": 540,
+          "delivered": 360,
+          "stored": 0
+        },
+        {
+          "step": 600,
+          "delivered": 400,
+          "stored": 0
+        }
+      ]
+    }
+  },
+  "pulseBufferedFeedback": {
+    "offsets": [
+      0,
+      2,
+      4
+    ],
+    "routes": [
+      1,
+      2,
+      0
+    ],
+    "mode": "pulse",
+    "buffer": 8,
+    "steps": 600,
+    "delivered": 994,
+    "unused": 198,
+    "support": 600,
+    "samples": [
+      {
+        "step": 60,
+        "delivered": 94,
+        "stored": 4
+      },
+      {
+        "step": 120,
+        "delivered": 194,
+        "stored": 4
+      },
+      {
+        "step": 180,
+        "delivered": 294,
+        "stored": 4
+      },
+      {
+        "step": 240,
+        "delivered": 394,
+        "stored": 4
+      },
+      {
+        "step": 300,
+        "delivered": 494,
+        "stored": 4
+      },
+      {
+        "step": 360,
+        "delivered": 594,
+        "stored": 4
+      },
+      {
+        "step": 420,
+        "delivered": 694,
+        "stored": 4
+      },
+      {
+        "step": 480,
+        "delivered": 794,
+        "stored": 4
+      },
+      {
+        "step": 540,
+        "delivered": 894,
+        "stored": 4
+      },
+      {
+        "step": 600,
+        "delivered": 994,
+        "stored": 4
+      }
+    ]
+  },
+  "conclusions": {
+    "phaseAndCooperationChangeOutcome": true,
+    "steadyAndPulseNeedDifferentStrategy": true,
+    "newBufferChangesAvailableBestStrategy": true,
+    "noHumanTimingInput": true,
+    "unproven": [
+      "learnability",
+      "originality across entire market",
+      "long-term content",
+      "resource economy",
+      "online-offline consistency of future product",
+      "fun"
+    ]
+  }
+}

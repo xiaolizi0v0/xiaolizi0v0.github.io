@@ -1074,7 +1074,7 @@
 
             toolsGrid.innerHTML = filteredTools.map((tool, i) => `
                 <div class="tool-card" data-tool-id="${tool.id}">
-                    ${['7', '8', '9', '10'].includes(tool.id) ? `<div class="card-media"><img src="${tool.cover}" alt="${tool.title}，原创霓虹游戏" loading="lazy"></div>` : ''}
+                    ${['7', '8', '9', '10', '11'].includes(tool.id) ? `<div class="card-media"><img src="${tool.cover}" alt="${tool.title}，原创游戏封面" loading="lazy"></div>` : ''}
                     <div class="card-body">
                         <p class="card-title"><a href="#" onclick="event.stopPropagation(); openTool('${tool.id}')">${tool.title}</a></p>
                         <p class="card-date">${formatDate(tool.date)}</p>
@@ -1120,7 +1120,7 @@
 
             toolsGrid.innerHTML = tools.map((tool, i) => `
                 <div class="tool-card" data-tool-id="${tool.id}">
-                    ${['7', '8', '9', '10'].includes(tool.id) ? `<div class="card-media"><img src="${tool.cover}" alt="${tool.title}，原创霓虹游戏" loading="lazy"></div>` : ''}
+                    ${['7', '8', '9', '10', '11'].includes(tool.id) ? `<div class="card-media"><img src="${tool.cover}" alt="${tool.title}，原创游戏封面" loading="lazy"></div>` : ''}
                     <div class="card-body">
                         <p class="card-title"><a href="#" onclick="event.stopPropagation(); openTool('${tool.id}')">${tool.title}</a></p>
                         <p class="card-date">${formatDate(tool.date)}</p>
