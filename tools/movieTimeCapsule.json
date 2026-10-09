@@ -7625,8 +7625,6 @@
       "updatedAt": 1787725010765
     },
     {
-      "watchedDate": "2026-08-27",
-      "timestamp": 1787809072830,
       "id": "baike-65619917",
       "title": "金色（2026年徐兵执导的大漠寻金武侠冒险剧）",
       "year": "2026",
@@ -7643,6 +7641,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-08-27",
+      "timestamp": 1787809072830,
       "updatedAt": 1787809089138
     },
     {
@@ -7788,8 +7788,6 @@
       "updatedAt": 1789451159034
     },
     {
-      "watchedDate": "2026-09-01",
-      "timestamp": 1788232199325,
       "id": "baike-1111485",
       "title": "魔幻手机",
       "year": "2008",
@@ -7812,6 +7810,8 @@
           "watched": false
         }
       ],
+      "watchedDate": "2026-09-01",
+      "timestamp": 1788232199325,
       "updatedAt": 1788758648628
     },
     {
@@ -8151,8 +8151,6 @@
       "updatedAt": 1790509753252
     },
     {
-      "watchedDate": "2026-09-12",
-      "timestamp": 1789199027743,
       "id": "baike-33675787",
       "title": "兰香如故",
       "year": "2026",
@@ -8169,6 +8167,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-09-12",
+      "timestamp": 1789199027743,
       "updatedAt": 1789199045970
     },
     {
@@ -8343,8 +8343,6 @@
       "updatedAt": 1790097933786
     },
     {
-      "watchedDate": "2026-09-24",
-      "timestamp": 1790254252325,
       "id": "baike-68973933",
       "title": "我不是大师（2026年杨磊执导的民国悬疑剧）",
       "year": "2026",
@@ -8361,6 +8359,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-09-24",
+      "timestamp": 1790254252325,
       "updatedAt": 1790254252325
     },
     {
@@ -8466,6 +8466,8 @@
       "updatedAt": 1791276966826
     },
     {
+      "watchedDate": "2026-09-29",
+      "timestamp": 1790683013015,
       "id": "baike-37282866",
       "title": "潜入你心",
       "year": "2026",
@@ -8482,13 +8484,9 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-09-29",
-      "timestamp": 1790683013015,
       "updatedAt": 1790683013015
     },
     {
-      "watchedDate": "2026-09-30",
-      "timestamp": 1790768921776,
       "id": "baike-66944695",
       "title": "密室大逃脱第八季（2026年芒果TV推出的益智类实景解密真人秀）",
       "year": "2026",
@@ -8588,9 +8586,13 @@
           "url": "https://cdn.vvvip-plays33.cc/20260930/20507_d3dc22ad/3000k/hls/mixed.m3u8"
         }
       ],
+      "watchedDate": "2026-09-30",
+      "timestamp": 1790768921776,
       "updatedAt": 1790777548329
     },
     {
+      "watchedDate": "2026-10-01",
+      "timestamp": 1790785351334,
       "id": "baike-21950664",
       "title": "梅比乌斯·尘埃",
       "year": "2025",
@@ -8607,11 +8609,11 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-10-01",
-      "timestamp": 1790785351334,
       "updatedAt": 1790785351334
     },
     {
+      "watchedDate": "2026-10-01",
+      "timestamp": 1790848885229,
       "id": "baike-34581525",
       "title": "仙逆剧场版：神临之战",
       "year": "2025",
@@ -8628,11 +8630,11 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-10-01",
-      "timestamp": 1790848885229,
       "updatedAt": 1790848885229
     },
     {
+      "watchedDate": "2026-10-01",
+      "timestamp": 1790848923591,
       "id": "baike-35556407",
       "title": "仙逆剧场版：弑仙之战",
       "year": "2025",
@@ -8655,11 +8657,11 @@
           "watched": true
         }
       ],
-      "watchedDate": "2026-10-01",
-      "timestamp": 1790848923591,
       "updatedAt": 1790856285444
     },
     {
+      "watchedDate": "2026-10-08",
+      "timestamp": 1791454360363,
       "id": "baike-34249294",
       "title": "囧徒之预演告别",
       "year": "2026",
@@ -8676,9 +8678,28 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-10-08",
-      "timestamp": 1791454360363,
       "updatedAt": 1791454360363
+    },
+    {
+      "id": "manual-1791553261466",
+      "title": "神隐",
+      "year": "2023",
+      "type": "tv",
+      "url": "",
+      "img": "",
+      "genre": "仙侠",
+      "platform": "腾讯",
+      "region": "",
+      "sub_title": "",
+      "desc": "",
+      "note": "",
+      "liked": 0,
+      "done": 0,
+      "count": 1,
+      "eps": [],
+      "watchedDate": "2026-10-09",
+      "timestamp": 1791553261466,
+      "updatedAt": 1791553261466
     }
   ],
   "deleted": {
