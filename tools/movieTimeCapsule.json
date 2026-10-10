@@ -8461,9 +8461,14 @@
           "title": "20261002下",
           "url": "https://cdn.yzzy31-play.com/20261002/26934_06cbf650/3000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "20261009上",
+          "url": "https://cdn.yzzy30-play.com/20261009/60179_1ba44f86/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1791276966826
+      "updatedAt": 1791618121368
     },
     {
       "watchedDate": "2026-09-29",
