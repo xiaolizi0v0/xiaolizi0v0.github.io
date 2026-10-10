@@ -449,10 +449,10 @@
         {
           "title": "第98集",
           "url": "https://cdn.yzzy30-play.com/20261009/60173_a625fcbd/3000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         }
       ],
-      "updatedAt": 1791618401326
+      "updatedAt": 1791647883172
     },
     {
       "watchedDate": "2026-08-21",
