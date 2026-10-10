@@ -445,9 +445,14 @@
           "title": "第97集",
           "url": "https://cdn.yzzy30-play.com/20261002/59829_e3c59ef6/3000k/hls/mixed.m3u8",
           "watched": true
+        },
+        {
+          "title": "第98集",
+          "url": "https://cdn.yzzy30-play.com/20261009/60173_a625fcbd/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1791300305864
+      "updatedAt": 1791618401326
     },
     {
       "watchedDate": "2026-08-21",
