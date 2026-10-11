@@ -8505,7 +8505,7 @@
         {
           "title": "20261009上",
           "url": "https://cdn.yzzy30-play.com/20261009/60179_1ba44f86/3000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "20261009下",
@@ -8513,7 +8513,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1791619305133
+      "updatedAt": 1791704969026
     },
     {
       "id": "baike-37282866",
