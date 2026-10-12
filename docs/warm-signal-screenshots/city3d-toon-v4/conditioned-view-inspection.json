@@ -1,0 +1,8 @@
+{
+  "clay": "C:\\Users\\xiaolizi0v0\\.codex\\warm-signal-model-runtime\\city3d-runs\\tangli-compact-clay-v3\\left.png",
+  "coloredView": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a11c44-2a61-72b0-af27-3ac60a66f2c7\\exec-670af644-659e-4c8a-9573-eb15bf0816be.png",
+  "fullSilhouetteIoU": 0.7983,
+  "upperHalfIoU": 0.8438,
+  "lowerHalfIoU": 0.733,
+  "usedAsTexture": false
+}

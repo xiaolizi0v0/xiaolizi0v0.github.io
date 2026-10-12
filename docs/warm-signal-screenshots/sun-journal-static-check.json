@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-12",
+  "version": "20261012-sun-journal-1",
+  "scripts": 108,
+  "pages": {
+    "WarmSignal.html": {
+      "localReferences": 144,
+      "missing": [],
+      "duplicateScripts": []
+    },
+    "WarmSignalLabyrinthReview.html": {
+      "localReferences": 141,
+      "missing": [],
+      "duplicateScripts": []
+    },
+    "WarmSignalSunJournalReview.html": {
+      "localReferences": 144,
+      "missing": [],
+      "duplicateScripts": []
+    }
+  },
+  "cards": 138,
+  "phoneEntries": 564,
+  "art": [
+    {
+      "file": "sun-journal-lin-zhi-v1.webp",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "file": "sun-journal-gu-qinghe-v1.webp",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "file": "sun-journal-xu-zhixia-v1.webp",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "file": "sun-journal-su-wan-v1.webp",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "file": "sun-journal-jiang-yue-v1.webp",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "file": "sun-journal-tang-li-v1.webp",
+      "width": 1024,
+      "height": 1536
+    }
+  ],
+  "scenes": {
+    "width": 1254,
+    "height": 1254
+  },
+  "errors": []
+}

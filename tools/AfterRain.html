@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#142330"><title>心动在雨停之后 · 竖版影游</title><link rel="stylesheet" href="after-rain/style.css"></head>
+<body>
+<main id="film" aria-label="心动在雨停之后">
+  <section id="home" class="screen">
+    <img class="cover" src="after-rain/assets/cover-portrait.png" alt="雨后的海声影院，予晴与四位伙伴站在街边">
+    <div class="cover-shade"></div><div class="home-header"><span class="edition">一部由你决定走向的故事</span><button data-open="settings" class="icon-button" aria-label="设置">⚙</button></div>
+    <div class="title-block"><p class="eyebrow">WHEN THE RAIN LEAVES</p><h1>心动在<br><span>雨停之后</span></h1><p class="tagline">在这座城市，留下一个属于自己的答案。</p><span class="hairline"></span></div>
+    <div class="home-actions"><button id="continue" class="primary">继续这段故事 <span>→</span></button><button id="new" class="quiet">从第一场雨开始</button><nav class="home-nav" aria-label="故事档案"><button data-open="branches">◈<span>故事分支</span></button><button data-open="relationships">◎<span>人物关系</span></button><button data-open="album">◇<span>回忆册</span></button><button data-open="saves">▤<span>存档</span></button></nav><p class="production-label">竖版演出制作中 · 当前可审阅第一章剧情与配音</p></div>
+  </section>
+  <section id="player" class="screen" hidden>
+    <div id="visual"><img id="background" alt=""><video id="shot" playsinline preload="metadata" hidden></video><img id="actor" alt="" hidden><div class="visual-shade"></div><div id="rain" aria-hidden="true"></div></div>
+    <header class="player-header"><button id="exit" class="icon-button" aria-label="返回主菜单">‹</button><div><p id="chapter-label"></p><h2 id="scene-title"></h2></div><button data-open="saves" class="icon-button" aria-label="打开存档">▤</button></header>
+    <div class="place"><i></i><span id="location"></span></div><span id="media-status" class="media-status"></span>
+    <div id="choices" hidden aria-label="剧情选择"></div>
+    <div class="subtitle-area"><div id="speaker"></div><button id="advance" class="dialogue" aria-label="推进剧情"><span id="subtitle"></span><span id="advance-hint">轻触继续 ◇</span></button></div>
+    <footer class="player-controls"><button id="auto" aria-pressed="false">▷ 自动</button><button id="skip" aria-pressed="false">≫ 已读</button><button data-open="history">↶ 回看</button><button data-open="phone">▯ 手机</button><button data-open="branches">◈ 分支</button></footer><div class="film-progress"><span id="beat-progress"></span></div>
+  </section>
+  <dialog id="panel"><div class="panel-header"><div><p id="panel-caption"></p><h2 id="panel-title"></h2></div><button id="close-panel" aria-label="关闭页面">×</button></div><div id="panel-content"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</main>
+<script src="after-rain/story.js"></script><script src="after-rain/chapter-01.js"></script><script src="after-rain/chapter-02.js"></script><script src="after-rain/engine.js"></script><script src="after-rain/app.js"></script>
+</body></html>

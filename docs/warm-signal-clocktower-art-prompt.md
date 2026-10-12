@@ -1,0 +1,11 @@
+# 第二章钟楼场景美术记录
+
+2026-10-10，使用内置 image_gen（imagegen 技能），非 CLI。生成一张 1536×1024、2×2 等分背景图集，供主线阅读器以 SVG viewBox 等比裁切显示。
+
+四格依次为钟楼外景、钟楼资料室、西窗旁木楼梯、雨天茶摊。无人物、界面、文字和原作素材，沿用本项目温馨绘画方向。生成结果已实际查看，四格边界与布局可用于裁切；图片主体仅为环境。
+
+工作区原图：`tools/warm-signal/assets/main-story-clocktower-v1.png`；页面使用：`tools/warm-signal/assets/main-story-clocktower-v1.webp`。保留内置生成目录原文件；Pillow 仅用于 WebP 格式编码（quality=88、method=6），未用程序重绘或改图。
+
+## 完整提示词
+
+Use case: illustration-story. Asset type: production game background atlas for an original Chinese warm romance visual novel, WARM SIGNAL. Create ONE landscape 1536x1024 illustration sheet divided exactly into a seamless regular 2-by-2 grid, four equal rectangular panels, no gutters, each panel an independent complete composition. No characters, no text, no labels, no logos, no watermark, no UI. Premium anime game environment painting, delicate architectural detail, soft painterly shading, warm cream, apricot light, muted sage and dusty rose palette, inviting lived-in small Chinese coastal town, cinematic depth. Top left panel: exterior of a modest old brick clock tower at a quiet town square in soft spring morning sunshine, arched wooden windows, small plants, a tidy low construction safety fence at the edge, a pathway leading towards the entrance, no monumental European cathedral. Top right panel: inside the same old clock tower's light-filled upper reading room, repaired arched west window, deep wooden sill, a measuring tape and rolled blank drawing sheets on a clean wooden worktable, warm dusty light and quiet craftsmanship, open center suitable for overlaying a portrait. Bottom left panel: lower clock tower interior, old but safe narrow wooden staircase leading upward with handrail, open door light, brick texture, a small stool and coiled audio cable neatly beside a canvas recorder bag, no people, gentle midday shade. Bottom right panel: sheltered street tea stand near the tower during a light spring rain, two plain takeaway cups on a wooden counter beneath an awning, wet stone pavement reflecting gentle amber shop lights, distant tower blurred beyond the rain, cozy not gloomy. All four panels equally sharp and finished, each panel uses coherent natural perspective and balanced lighting, focal details inside central 65% so they survive portrait center crop. Flat atlas only, absolutely no sheet border or typography.

@@ -1,0 +1,4992 @@
+{
+  "title": "心动在雨停之后",
+  "version": 1,
+  "beats": [
+    {
+      "speaker": "n",
+      "text": "末班电车停在海声站时，雨没有完全停。玻璃上的水痕把对面的灯拉得很长，像一卷还没有显影的底片。",
+      "id": "c1-arrival-0",
+      "scene": "c1-arrival",
+      "index": 0,
+      "hash": "df6472c0d51d",
+      "file": "c1-arrival-0-df6472c0d51d.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "姜予晴把相机袋换到干一点的肩膀上。屏幕里，仲溪发来的地址停在最上面。下面还有一条：别带太多衣服，办公室能借你一张床。",
+      "id": "c1-arrival-1",
+      "scene": "c1-arrival",
+      "index": 1,
+      "hash": "ee2cf979afef",
+      "file": "c1-arrival-1-ee2cf979afef.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这听起来像招工，不像邀请老朋友。",
+      "id": "c1-arrival-2",
+      "scene": "c1-arrival",
+      "index": 2,
+      "hash": "c1d4fc656250",
+      "file": "c1-arrival-2-c1d4fc656250.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "她没有把这句话发出去。半年前的项目结束以后，她们只在报销单上互相说过话。如今仲溪发来的是一份工作，也可能是一道很窄的门。",
+      "id": "c1-arrival-3",
+      "scene": "c1-arrival",
+      "index": 3,
+      "hash": "ebac1fa77e8b",
+      "file": "c1-arrival-3-ebac1fa77e8b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "站牌还在原来的地方，边角新贴了更新项目的公告。她小时候用硬币刮过的那一道痕，已经被深蓝色的漆盖住。",
+      "id": "c1-arrival-4",
+      "scene": "c1-arrival",
+      "index": 4,
+      "hash": "24c0ef803f11",
+      "file": "c1-arrival-4-24c0ef803f11.mp3"
+    },
+    {
+      "speaker": "qiao",
+      "text": "到了吗？刚写完稿。我把楼下那家馄饨店的位置发你了，去之前先问老板有没有虾。你现在还过敏吗？",
+      "id": "c1-arrival-5",
+      "scene": "c1-arrival",
+      "index": 5,
+      "hash": "6fe611e42f88",
+      "file": "c1-arrival-5-6fe611e42f88.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "虾不行。馄饨可以。你怎么连这个都记得。",
+      "id": "c1-arrival-6",
+      "scene": "c1-arrival",
+      "index": 6,
+      "hash": "2856b5c11cc7",
+      "file": "c1-arrival-6-2856b5c11cc7.mp3"
+    },
+    {
+      "speaker": "qiao",
+      "text": "职业病。今晚要是想说话，我在。如果只想吃饭，也在。",
+      "id": "c1-arrival-7",
+      "scene": "c1-arrival",
+      "index": 7,
+      "hash": "694b2a9412d3",
+      "file": "c1-arrival-7-694b2a9412d3.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴看了两次最后一句，才把手机收进口袋。街对面，海声影院门口的灯一盏一盏亮起来，只有最靠海的那盏没亮。",
+      "id": "c1-arrival-8",
+      "scene": "c1-arrival",
+      "index": 8,
+      "hash": "d503ebca1eda",
+      "file": "c1-arrival-8-d503ebca1eda.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "她抬起相机。镜头里，一辆自行车滑过水洼。骑车的人及时刹住，鞋底还是溅了一片水。下一秒，她的行李箱轮子卡进了石缝。",
+      "id": "c1-arrival-9",
+      "scene": "c1-arrival",
+      "index": 9,
+      "hash": "fdb3c8f98ed7",
+      "file": "c1-arrival-9-fdb3c8f98ed7.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "别在第一分钟就这样欢迎我。",
+      "id": "c1-arrival-10",
+      "scene": "c1-arrival",
+      "index": 10,
+      "hash": "11003dd5975b",
+      "file": "c1-arrival-10-11003dd5975b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "箱子不理她。相机袋顺着肩膀往下滑，她刚伸手去接，一把黑伞已经挡在镜头上方。",
+      "id": "c1-arrival-11",
+      "scene": "c1-arrival",
+      "index": 11,
+      "hash": "5e5a8e9c1c10",
+      "file": "c1-arrival-11-5e5a8e9c1c10.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "先别往后拽。轮子卡住了，越拽越紧。",
+      "id": "c1-arrival-12",
+      "scene": "c1-arrival",
+      "index": 12,
+      "hash": "1ebbfd3865d5",
+      "file": "c1-arrival-12-1ebbfd3865d5.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我知道。理论上知道。",
+      "id": "c1-arrival-13",
+      "scene": "c1-arrival",
+      "index": 13,
+      "hash": "bd25ff51eeba",
+      "file": "c1-arrival-13-bd25ff51eeba.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "那实践交给我？你把相机拿稳就行。",
+      "id": "c1-arrival-14",
+      "scene": "c1-arrival",
+      "index": 14,
+      "hash": "2fc5414a6eea",
+      "file": "c1-arrival-14-2fc5414a6eea.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他蹲下来，没碰相机，也没有替她拿行李。他用鞋尖拨开石缝里的小树枝，让她自己把箱子向前推了半步。轮子出来时，发出一声很轻的响。",
+      "id": "c1-arrival-15",
+      "scene": "c1-arrival",
+      "index": 15,
+      "hash": "12061937a70d",
+      "file": "c1-arrival-15-12061937a70d.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "谢谢。你也是去海声？",
+      "id": "c1-arrival-16",
+      "scene": "c1-arrival",
+      "index": 16,
+      "hash": "0cab9b4cefa5",
+      "file": "c1-arrival-16-0cab9b4cefa5.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "嗯。送一段声音，也送一把忘在那里的钥匙。你是仲溪说的摄影师吧？",
+      "id": "c1-arrival-17",
+      "scene": "c1-arrival",
+      "index": 17,
+      "hash": "7e955c8528bc",
+      "file": "c1-arrival-17-7e955c8528bc.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他看了一眼袋子上的机位标签，随即把目光移开，像怕自己读得太仔细。",
+      "id": "c1-arrival-18",
+      "scene": "c1-arrival",
+      "index": 18,
+      "hash": "a7c8cff689df",
+      "file": "c1-arrival-18-a7c8cff689df.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "段言。说话的言。不着急进去的话，这里其实能等到一辆空电车，拍起来很好看。",
+      "id": "c1-arrival-19",
+      "scene": "c1-arrival",
+      "index": 19,
+      "hash": "95cb4ccdc18c",
+      "file": "c1-arrival-19-95cb4ccdc18c.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "海面远处出现一道薄薄的金色。予晴的手指停在快门上。段言侧身，让伞遮住她的设备，却把自己的半边肩膀留在雨里。",
+      "id": "c1-arrival-20",
+      "scene": "c1-arrival",
+      "index": 20,
+      "hash": "21f8def1baef",
+      "file": "c1-arrival-20-21f8def1baef.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我想拍你撑伞的背影，可能会放进纪录片。你愿意吗？不愿意也没关系。",
+      "id": "c1-permission-0",
+      "scene": "c1-permission",
+      "index": 0,
+      "hash": "f94aae0c89aa",
+      "file": "c1-permission-0-f94aae0c89aa.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "纪录片拍什么？",
+      "id": "c1-permission-1",
+      "scene": "c1-permission",
+      "index": 1,
+      "hash": "2c971e6af4dc",
+      "file": "c1-permission-1-2c971e6af4dc.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "还没有确定。仲溪说，是这条街和影院的最后一个营业月。我不想把人拍成风景，所以先问。",
+      "id": "c1-permission-2",
+      "scene": "c1-permission",
+      "index": 2,
+      "hash": "0ec7fa7f283b",
+      "file": "c1-permission-2-0ec7fa7f283b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言把伞向街边挪了挪，给镜头留出一条不被雨水遮住的路。",
+      "id": "c1-permission-3",
+      "scene": "c1-permission",
+      "index": 3,
+      "hash": "59e27604ff2d",
+      "file": "c1-permission-3-59e27604ff2d.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "背影可以。正脸等我知道片子要说什么再决定，行吗？",
+      "id": "c1-permission-4",
+      "scene": "c1-permission",
+      "index": 4,
+      "hash": "773396a7af89",
+      "file": "c1-permission-4-773396a7af89.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "当然。后面如果不用，也会告诉你。",
+      "id": "c1-permission-5",
+      "scene": "c1-permission",
+      "index": 5,
+      "hash": "d142f9060741",
+      "file": "c1-permission-5-d142f9060741.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "不用专门道歉。你要是为了照顾我，留下一个不合适的镜头，我还得负责演得更好。",
+      "id": "c1-permission-6",
+      "scene": "c1-permission",
+      "index": 6,
+      "hash": "e52a44d242d2",
+      "file": "c1-permission-6-e52a44d242d2.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴笑了一下。她拍了三秒，关机后让他看回放。画面里的人不英勇，也不落寞，只是在一场普通的雨里，替陌生人挡住了一点水。",
+      "id": "c1-permission-7",
+      "scene": "c1-permission",
+      "index": 7,
+      "hash": "8c0458af16fe",
+      "file": "c1-permission-7-8c0458af16fe.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "看起来我比实际有耐心。",
+      "id": "c1-permission-8",
+      "scene": "c1-permission",
+      "index": 8,
+      "hash": "eec83c0c4cf4",
+      "file": "c1-permission-8-eec83c0c4cf4.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那我先记住这个版本。",
+      "id": "c1-permission-9",
+      "scene": "c1-permission",
+      "index": 9,
+      "hash": "f2dfda0a6081",
+      "file": "c1-permission-9-f2dfda0a6081.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "实际版本也不难相处。只是会偶尔忘带伞。",
+      "id": "c1-permission-10",
+      "scene": "c1-permission",
+      "index": 10,
+      "hash": "3a9bd5d2f706",
+      "file": "c1-permission-10-3a9bd5d2f706.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把手里的伞举高一点。予晴注意到，伞柄上缠着一圈旧胶带，内侧写了小小的“海声”。这不是他的伞。他对这里很熟，但熟悉未必等于可以一直留下。",
+      "id": "c1-permission-11",
+      "scene": "c1-permission",
+      "index": 11,
+      "hash": "c0b0f38f57bc",
+      "file": "c1-permission-11-c0b0f38f57bc.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "她把素材命名为“雨棚，已同意背影”。新的工作，从这几个并不漂亮的字开始。",
+      "id": "c1-permission-12",
+      "scene": "c1-permission",
+      "index": 12,
+      "hash": "f091f29226bb",
+      "file": "c1-permission-12-f091f29226bb.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把画面稍稍移向左边。段言看懂了，退到雨棚柱子后面。电车驶过时，窗内只坐着一个打瞌睡的乘客。",
+      "id": "c1-empty-street-0",
+      "scene": "c1-empty-street",
+      "index": 0,
+      "hash": "1c38579ea8ba",
+      "file": "c1-empty-street-0-1c38579ea8ba.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我小时候总觉得，空电车会开去一个只有司机知道的地方。",
+      "id": "c1-empty-street-1",
+      "scene": "c1-empty-street",
+      "index": 1,
+      "hash": "4ee18e57df07",
+      "file": "c1-empty-street-1-4ee18e57df07.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "司机知道。我们不知道。听起来也算一种地方。",
+      "id": "c1-empty-street-2",
+      "scene": "c1-empty-street",
+      "index": 2,
+      "hash": "5ec4bd9d24bc",
+      "file": "c1-empty-street-2-5ec4bd9d24bc.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你小时候也在这里？",
+      "id": "c1-empty-street-3",
+      "scene": "c1-empty-street",
+      "index": 3,
+      "hash": "0ebf53202ff9",
+      "file": "c1-empty-street-3-0ebf53202ff9.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "没有。我是三年前来的。刚来时以为这条线去车站，坐到海边才发现方向反了。",
+      "id": "c1-empty-street-4",
+      "scene": "c1-empty-street",
+      "index": 4,
+      "hash": "12db67b4dceb",
+      "file": "c1-empty-street-4-12db67b4dceb.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "相机没有录到他们的谈话。予晴的拇指停在录音键旁，最终没有按下。不是每句好听的话都需要成为素材。",
+      "id": "c1-empty-street-5",
+      "scene": "c1-empty-street",
+      "index": 5,
+      "hash": "638a8f91d9c1",
+      "file": "c1-empty-street-5-638a8f91d9c1.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "你这个镜头，没有拍影院招牌。",
+      "id": "c1-empty-street-6",
+      "scene": "c1-empty-street",
+      "index": 6,
+      "hash": "77e304d3110f",
+      "file": "c1-empty-street-6-77e304d3110f.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我想先拍回来是什么感觉。招牌明天也能拍。",
+      "id": "c1-empty-street-7",
+      "scene": "c1-empty-street",
+      "index": 7,
+      "hash": "1838e998f7f0",
+      "file": "c1-empty-street-7-1838e998f7f0.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "那得早点。林老师八点半到，九点就开始嫌门口太安静。",
+      "id": "c1-empty-street-8",
+      "scene": "c1-empty-street",
+      "index": 8,
+      "hash": "bafa60e028fb",
+      "file": "c1-empty-street-8-bafa60e028fb.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把伞收拢，甩掉水珠，始终让伞尖朝向街外。予晴发现自己记住的，反而不是刚才那辆电车。",
+      "id": "c1-empty-street-9",
+      "scene": "c1-empty-street",
+      "index": 9,
+      "hash": "1fab07e474c6",
+      "file": "c1-empty-street-9-1fab07e474c6.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你很了解她。",
+      "id": "c1-empty-street-10",
+      "scene": "c1-empty-street",
+      "index": 10,
+      "hash": "861a19d1b44a",
+      "file": "c1-empty-street-10-861a19d1b44a.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "我来录声音时，她不肯让我只录放映机。说人喝水、打喷嚏，也是影院的声音。我后来就记住了。",
+      "id": "c1-empty-street-11",
+      "scene": "c1-empty-street",
+      "index": 11,
+      "hash": "124a377c5423",
+      "file": "c1-empty-street-11-124a377c5423.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把那段空街回放了一遍。画面看起来什么也没有，却不像一个结束的地方。",
+      "id": "c1-empty-street-12",
+      "scene": "c1-empty-street",
+      "index": 12,
+      "hash": "9703324a54be",
+      "file": "c1-empty-street-12-9703324a54be.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "相机进过太多次水了。今天就先不拍。你也过来一点，肩膀已经湿了。",
+      "id": "c1-shared-umbrella-0",
+      "scene": "c1-shared-umbrella",
+      "index": 0,
+      "hash": "ad0982edc1bf",
+      "file": "c1-shared-umbrella-0-ad0982edc1bf.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "这个位置离门近。你拎箱子进去，我再走。",
+      "id": "c1-shared-umbrella-1",
+      "scene": "c1-shared-umbrella",
+      "index": 1,
+      "hash": "0738b8e8d420",
+      "file": "c1-shared-umbrella-1-0738b8e8d420.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "不是要你一直替我挡着。我是说，雨棚够两个人站。",
+      "id": "c1-shared-umbrella-2",
+      "scene": "c1-shared-umbrella",
+      "index": 2,
+      "hash": "18eec0f2bc0d",
+      "file": "c1-shared-umbrella-2-18eec0f2bc0d.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他像刚听懂这句话，向她身侧挪了一步。伞沿滴下来的水终于没有落在他的衣领里。",
+      "id": "c1-shared-umbrella-3",
+      "scene": "c1-shared-umbrella",
+      "index": 3,
+      "hash": "a59e68ccca00",
+      "file": "c1-shared-umbrella-3-a59e68ccca00.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "好。那我们各自负责自己那一半。",
+      "id": "c1-shared-umbrella-4",
+      "scene": "c1-shared-umbrella",
+      "index": 4,
+      "hash": "cfed345021f8",
+      "file": "c1-shared-umbrella-4-cfed345021f8.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "很公平。",
+      "id": "c1-shared-umbrella-5",
+      "scene": "c1-shared-umbrella",
+      "index": 5,
+      "hash": "75d2e3a1bc62",
+      "file": "c1-shared-umbrella-5-75d2e3a1bc62.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他们站在雨棚里，听雨落在卷闸门上。街边咖啡店的老板搬出一块黑板，写了两笔又被水打湿，只好重新搬回去。",
+      "id": "c1-shared-umbrella-6",
+      "scene": "c1-shared-umbrella",
+      "index": 6,
+      "hash": "f42aa2eff9e5",
+      "file": "c1-shared-umbrella-6-f42aa2eff9e5.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "你真的打算在办公室住？那张沙发展开后，有一个地方会凹下去。",
+      "id": "c1-shared-umbrella-7",
+      "scene": "c1-shared-umbrella",
+      "index": 7,
+      "hash": "692d05efd89b",
+      "file": "c1-shared-umbrella-7-692d05efd89b.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我正在相信它之前，听到了非常有价值的信息。",
+      "id": "c1-shared-umbrella-8",
+      "scene": "c1-shared-umbrella",
+      "index": 8,
+      "hash": "b64f5b89c584",
+      "file": "c1-shared-umbrella-8-b64f5b89c584.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "我知道一家民宿，还有一间。可以把地址给你，你自己问，别说是我介绍的。",
+      "id": "c1-shared-umbrella-9",
+      "scene": "c1-shared-umbrella",
+      "index": 9,
+      "hash": "f1b7657f3d0d",
+      "file": "c1-shared-umbrella-9-f1b7657f3d0d.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "为什么？",
+      "id": "c1-shared-umbrella-10",
+      "scene": "c1-shared-umbrella",
+      "index": 10,
+      "hash": "7d85e2cf013a",
+      "file": "c1-shared-umbrella-10-7d85e2cf013a.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "房东是我的鼓手。提我名字，他会先讲半小时我们演出迟到的故事。",
+      "id": "c1-shared-umbrella-11",
+      "scene": "c1-shared-umbrella",
+      "index": 11,
+      "hash": "20d6245705bc",
+      "file": "c1-shared-umbrella-11-20d6245705bc.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "这一次，予晴没有把谈话叫作采访。她笑的时候，行李箱上最后几滴水也顺着轮子落下来。",
+      "id": "c1-shared-umbrella-12",
+      "scene": "c1-shared-umbrella",
+      "index": 12,
+      "hash": "c0fc4627e6e5",
+      "file": "c1-shared-umbrella-12-c0fc4627e6e5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "雨暂时小了。两个人一起推开海声影院的门，谁也没有先替另一个决定。",
+      "id": "c1-shared-umbrella-13",
+      "scene": "c1-shared-umbrella",
+      "index": 13,
+      "hash": "0d20e99f281b",
+      "file": "c1-shared-umbrella-13-0d20e99f281b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "大厅里仍有爆米花的甜味，但售票窗口放着螺丝刀和保险丝。旧海报被取下一半，墙上留下颜色更浅的矩形。",
+      "id": "c1-foyer-0",
+      "scene": "c1-foyer",
+      "index": 0,
+      "hash": "50925d993a23",
+      "file": "c1-foyer-0-50925d993a23.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "回来就回来，怎么还拖这么大一个箱子。跟搬家一样。",
+      "id": "c1-foyer-1",
+      "scene": "c1-foyer",
+      "index": 1,
+      "hash": "f36abf5dedc1",
+      "file": "c1-foyer-1-f36abf5dedc1.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我要住一个月。仲溪没告诉你？",
+      "id": "c1-foyer-2",
+      "scene": "c1-foyer",
+      "index": 2,
+      "hash": "ca2b666aed3d",
+      "file": "c1-foyer-2-ca2b666aed3d.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "她说来工作。工作和回来是两回事。我给你留了毛巾，先擦头发。",
+      "id": "c1-foyer-3",
+      "scene": "c1-foyer",
+      "index": 3,
+      "hash": "3b59184fb649",
+      "file": "c1-foyer-3-3b59184fb649.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "外婆把毛巾递给她，没拥抱，也没问那半年过得怎样。予晴接过来，觉得这样正好。头发湿的时候，不适合解释所有事情。",
+      "id": "c1-foyer-4",
+      "scene": "c1-foyer",
+      "index": 4,
+      "hash": "02b911bfcf66",
+      "file": "c1-foyer-4-02b911bfcf66.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "原计划七点到？",
+      "id": "c1-foyer-5",
+      "scene": "c1-foyer",
+      "index": 5,
+      "hash": "530507db1f58",
+      "file": "c1-foyer-5-530507db1f58.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "车晚了四十分钟。我发过消息。",
+      "id": "c1-foyer-6",
+      "scene": "c1-foyer",
+      "index": 6,
+      "hash": "d50906bfecb9",
+      "file": "c1-foyer-6-d50906bfecb9.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "看到了。不是责怪你。我们八点要试片，先确认一下还来得及。",
+      "id": "c1-foyer-7",
+      "scene": "c1-foyer",
+      "index": 7,
+      "hash": "4a112d9d225e",
+      "file": "c1-foyer-7-4a112d9d225e.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪站在检票口边，穿着卷起袖口的深紫色衬衫。她的手指停在一份打印好的设备清单上，没有像以前一样顺手接过予晴的相机。",
+      "id": "c1-foyer-8",
+      "scene": "c1-foyer",
+      "index": 8,
+      "hash": "97b2afcde7da",
+      "file": "c1-foyer-8-97b2afcde7da.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你把我那台机器的电池也算进去了。",
+      "id": "c1-foyer-9",
+      "scene": "c1-foyer",
+      "index": 9,
+      "hash": "22f23049f4b9",
+      "file": "c1-foyer-9-22f23049f4b9.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "我记得它吃电。记得设备，不算难。",
+      "id": "c1-foyer-10",
+      "scene": "c1-foyer",
+      "index": 10,
+      "hash": "cb80b0f34ab2",
+      "file": "c1-foyer-10-cb80b0f34ab2.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "后半句轻得像一句自言自语。予晴想说那你还记得别的吗，最终只问了办公室在哪里。",
+      "id": "c1-foyer-11",
+      "scene": "c1-foyer",
+      "index": 11,
+      "hash": "0c248af7879a",
+      "file": "c1-foyer-11-0c248af7879a.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "左边。段言，钥匙别再放售票窗。昨天我找了一上午。",
+      "id": "c1-foyer-12",
+      "scene": "c1-foyer",
+      "index": 12,
+      "hash": "c8ece8fa1d9d",
+      "file": "c1-foyer-12-c8ece8fa1d9d.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "今天亲手交。还有你说的放映机声音，录了三遍，最后一遍没剪掉咳嗽。",
+      "id": "c1-foyer-13",
+      "scene": "c1-foyer",
+      "index": 13,
+      "hash": "6ffac0773b2a",
+      "file": "c1-foyer-13-6ffac0773b2a.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "那才像这里。",
+      "id": "c1-foyer-14",
+      "scene": "c1-foyer",
+      "index": 14,
+      "hash": "f76ea52dbd7d",
+      "file": "c1-foyer-14-f76ea52dbd7d.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "外婆收好钥匙，把检票口的小台灯打开。灯罩是予晴十四岁那年贴的蓝纸，如今边缘已经发黄。",
+      "id": "c1-foyer-15",
+      "scene": "c1-foyer",
+      "index": 15,
+      "hash": "3738d35cccf4",
+      "file": "c1-foyer-15-3738d35cccf4.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "先进去看试片。你可以暂时不接这个项目，但看完再决定。今天来的人不止资助方，还有给我们借设备的人。",
+      "id": "c1-foyer-16",
+      "scene": "c1-foyer",
+      "index": 16,
+      "hash": "279b3fc3d366",
+      "file": "c1-foyer-16-279b3fc3d366.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你为什么找我？",
+      "id": "c1-foyer-17",
+      "scene": "c1-foyer",
+      "index": 17,
+      "hash": "52cb15ae42bc",
+      "file": "c1-foyer-17-52cb15ae42bc.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪看着她，第一次没有立即回答。",
+      "id": "c1-foyer-18",
+      "scene": "c1-foyer",
+      "index": 18,
+      "hash": "a80e94ee885a",
+      "file": "c1-foyer-18-a80e94ee885a.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "因为你知道什么画面是假的。也因为上一次，你知道，却没有拦住。两件事我都记得。",
+      "id": "c1-foyer-19",
+      "scene": "c1-foyer",
+      "index": 19,
+      "hash": "a5f0dec83872",
+      "file": "c1-foyer-19-a5f0dec83872.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "大厅忽然安静了一点。段言去放设备，外婆低头把毛巾晾好。没人替予晴接话。这里仍然欢迎她，却不是一个可以忘掉过去的地方。",
+      "id": "c1-foyer-20",
+      "scene": "c1-foyer",
+      "index": 20,
+      "hash": "95bdad5ea870",
+      "file": "c1-foyer-20-95bdad5ea870.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "上次粗剪我看到过。我觉得不合适，但我最后没有再坚持。这件事不是你一个人的责任。",
+      "id": "c1-old-project-0",
+      "scene": "c1-old-project",
+      "index": 0,
+      "hash": "a7721270e3c3",
+      "file": "c1-old-project-0-a7721270e3c3.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "也不是你一个人的责任。我现在不需要你把它全部拿回去。",
+      "id": "c1-old-project-1",
+      "scene": "c1-old-project",
+      "index": 1,
+      "hash": "dd4a7d4272dd",
+      "file": "c1-old-project-1-dd4a7d4272dd.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那你需要什么？",
+      "id": "c1-old-project-2",
+      "scene": "c1-old-project",
+      "index": 2,
+      "hash": "e41dedcf2cfc",
+      "file": "c1-old-project-2-e41dedcf2cfc.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "这一次，每一个无法接受的修改，写下来。发邮件，留下意见。不要只在走廊里说两句，然后在会上说都可以。",
+      "id": "c1-old-project-3",
+      "scene": "c1-old-project",
+      "index": 3,
+      "hash": "80e6e3b29771",
+      "file": "c1-old-project-3-80e6e3b29771.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴垂下眼睛。她记得那次会上大家多么疲倦，记得自己想早点结束，更记得被剪成“得到援助就走出困境”的阿姨，后来打电话问她，为什么没有保留那句还在找工作的实话。",
+      "id": "c1-old-project-4",
+      "scene": "c1-old-project",
+      "index": 4,
+      "hash": "be277d662bb2",
+      "file": "c1-old-project-4-be277d662bb2.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "如果资助方因此撤钱呢？",
+      "id": "c1-old-project-5",
+      "scene": "c1-old-project",
+      "index": 5,
+      "hash": "1a264d011abf",
+      "file": "c1-old-project-5-1a264d011abf.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "我们再决定要不要接着做。两个人一起决定。不是我知道钱要没了，你知道片子要变了，却各自假装另外一个会处理。",
+      "id": "c1-old-project-6",
+      "scene": "c1-old-project",
+      "index": 6,
+      "hash": "0c3f39403c87",
+      "file": "c1-old-project-6-0c3f39403c87.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "好。这次意见不留在走廊。",
+      "id": "c1-old-project-7",
+      "scene": "c1-old-project",
+      "index": 7,
+      "hash": "52e4e7f5f188",
+      "file": "c1-old-project-7-52e4e7f5f188.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪把设备单递给她。纸上还没有主摄影的签名，那个空白像她们之间还没有补完的话。",
+      "id": "c1-old-project-8",
+      "scene": "c1-old-project",
+      "index": 8,
+      "hash": "ba1a0ef2880d",
+      "file": "c1-old-project-8-ba1a0ef2880d.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "还有，我找你不是为了看你证明自己变好了。项目需要人，你也需要工作。如果最后只是一段普通的合作，也可以。",
+      "id": "c1-old-project-9",
+      "scene": "c1-old-project",
+      "index": 9,
+      "hash": "9e8e14651821",
+      "file": "c1-old-project-9-9e8e14651821.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴点头。这比被立刻原谅难得，也比一个昂贵的保证让她轻松。",
+      "id": "c1-old-project-10",
+      "scene": "c1-old-project",
+      "index": 10,
+      "hash": "e1f19cf577b0",
+      "file": "c1-old-project-10-e1f19cf577b0.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言远远问试片能不能开始。仲溪抬手回应，然后在设备单上划掉了一条“独立完成”。她把它改成“共同确认”。",
+      "id": "c1-old-project-11",
+      "scene": "c1-old-project",
+      "index": 11,
+      "hash": "2240e04201fd",
+      "file": "c1-old-project-11-2240e04201fd.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我知道旧项目还没说清楚。不过今天人都在，我们能不能先把这次要做什么讲明白？后面的事，我会单独找你。",
+      "id": "c1-business-first-0",
+      "scene": "c1-business-first",
+      "index": 0,
+      "hash": "ec8d50eb7416",
+      "file": "c1-business-first-0-ec8d50eb7416.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "可以。但别把单独找我变成一个没有日期的约定。",
+      "id": "c1-business-first-1",
+      "scene": "c1-business-first",
+      "index": 1,
+      "hash": "2164c967d15c",
+      "file": "c1-business-first-1-2164c967d15c.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "今天结束以后。你如果不想聊，我们改时间。",
+      "id": "c1-business-first-2",
+      "scene": "c1-business-first",
+      "index": 2,
+      "hash": "6f01398ed3b5",
+      "file": "c1-business-first-2-6f01398ed3b5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪翻到设备清单的第二页，在最下面写上“会后确认”。她没有把纸藏起来，也没有故意写得很重。",
+      "id": "c1-business-first-3",
+      "scene": "c1-business-first",
+      "index": 3,
+      "hash": "500db485644c",
+      "file": "c1-business-first-3-500db485644c.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "这一次是三十天的拍摄。片子二十到二十五分钟，影院停业前一晚首映。费用够两个人的基本酬劳，后期要找人借设备。",
+      "id": "c1-business-first-4",
+      "scene": "c1-business-first",
+      "index": 4,
+      "hash": "a108b7765a14",
+      "file": "c1-business-first-4-a108b7765a14.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "只拍影院？",
+      "id": "c1-business-first-5",
+      "scene": "c1-business-first",
+      "index": 5,
+      "hash": "e719d129b798",
+      "file": "c1-business-first-5-e719d129b798.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "拍它和这条街。但我不会现在就替你定主题。资助方有一个提案，社区有另一个提案。你得看完，再回答。",
+      "id": "c1-business-first-6",
+      "scene": "c1-business-first",
+      "index": 6,
+      "hash": "b7be02feec55",
+      "file": "c1-business-first-6-b7be02feec55.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "预算会限制采访对象吗？",
+      "id": "c1-business-first-7",
+      "scene": "c1-business-first",
+      "index": 7,
+      "hash": "ae292e8b5a7e",
+      "file": "c1-business-first-7-ae292e8b5a7e.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "会限制时间，不应该限制答案。现在还只是“不应该”。能不能守住，需要你参与。",
+      "id": "c1-business-first-8",
+      "scene": "c1-business-first",
+      "index": 8,
+      "hash": "94b2bc662249",
+      "file": "c1-business-first-8-94b2bc662249.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴在手机里建了一个新的备忘录，把这句话打进去。过去她总把开会记成待办事项，今天却写了一个问题。",
+      "id": "c1-business-first-9",
+      "scene": "c1-business-first",
+      "index": 9,
+      "hash": "4620ea073145",
+      "file": "c1-business-first-9-4620ea073145.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "试片结束后，不用急着签。我们可以工作，但暂时不能装作没发生过那些事。",
+      "id": "c1-business-first-10",
+      "scene": "c1-business-first",
+      "index": 10,
+      "hash": "783dc8358821",
+      "file": "c1-business-first-10-783dc8358821.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "她伸手扶住快要倒下的海报筒。予晴接住另一端。这份默契还在，却不是所有破损都能凭它恢复。",
+      "id": "c1-business-first-11",
+      "scene": "c1-business-first",
+      "index": 11,
+      "hash": "291f8cbba15d",
+      "file": "c1-business-first-11-291f8cbba15d.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "幕布亮起来之前，周嘉禾蹲在第三排座椅后面，对一根数据线说了两句好话。苏时安把原本放在中间的资料移到旁边，给予晴留了一张空椅子。",
+      "id": "c1-screening-0",
+      "scene": "c1-screening",
+      "index": 0,
+      "hash": "16e2e7060a2b",
+      "file": "c1-screening-0-16e2e7060a2b.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "不是电脑的问题。这台投影仪有自己的信仰，它拒绝所有转接头。",
+      "id": "c1-screening-1",
+      "scene": "c1-screening",
+      "index": 1,
+      "hash": "d531a47f1307",
+      "file": "c1-screening-1-d531a47f1307.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "它上周接受过同一个转接头。",
+      "id": "c1-screening-2",
+      "scene": "c1-screening",
+      "index": 2,
+      "hash": "047b1e2747a4",
+      "file": "c1-screening-2-047b1e2747a4.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "信仰也会变化。别催它。",
+      "id": "c1-screening-3",
+      "scene": "c1-screening",
+      "index": 3,
+      "hash": "52fdb24c45d0",
+      "file": "c1-screening-3-52fdb24c45d0.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "影厅最前面的灯灭了，幕布上出现一段旧胶片。一个年轻女人在海边唱歌，声音断断续续，字幕没有补全。镜头很快切到今天的影院，放映机转动，检票员把半张票放进铁盒。",
+      "id": "c1-screening-4",
+      "scene": "c1-screening",
+      "index": 4,
+      "hash": "0599d2aa1d68",
+      "file": "c1-screening-4-0599d2aa1d68.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这段是谁拍的？",
+      "id": "c1-screening-5",
+      "scene": "c1-screening",
+      "index": 5,
+      "hash": "e5d7a9d9ed27",
+      "file": "c1-screening-5-e5d7a9d9ed27.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "社区交给我们的。原作者暂时还没找到。只能内部试片，公开使用还要确认。",
+      "id": "c1-screening-6",
+      "scene": "c1-screening",
+      "index": 6,
+      "hash": "6667a9e105d3",
+      "file": "c1-screening-6-6667a9e105d3.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "我们也希望片子能让人看到，这里为什么值得回来。更新之后应该有更多人来，这一点大家的目标其实相近。",
+      "id": "c1-screening-7",
+      "scene": "c1-screening",
+      "index": 7,
+      "hash": "b30a5205fcea",
+      "file": "c1-screening-7-b30a5205fcea.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "苏时安说得很平稳。他没有站起来演讲，也没有把漂亮的方案盖在那段旧影像上。予晴还是注意到，他用的是“回来”，不是“留下”。",
+      "id": "c1-screening-8",
+      "scene": "c1-screening",
+      "index": 8,
+      "hash": "86b3f917736d",
+      "file": "c1-screening-8-86b3f917736d.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "我在做一个影院互动地图。每个座位能点开一段故事，但当事人不想被公开的，就只放空白。",
+      "id": "c1-screening-9",
+      "scene": "c1-screening",
+      "index": 9,
+      "hash": "7d1d9fbc20eb",
+      "file": "c1-screening-9-7d1d9fbc20eb.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "空白也算内容吗？",
+      "id": "c1-screening-10",
+      "scene": "c1-screening",
+      "index": 10,
+      "hash": "4c514b1c3fa0",
+      "file": "c1-screening-10-4c514b1c3fa0.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "当然。至少能告诉你，这里不是等着我们填满的地方。",
+      "id": "c1-screening-11",
+      "scene": "c1-screening",
+      "index": 11,
+      "hash": "732483b567a2",
+      "file": "c1-screening-11-732483b567a2.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴看着幕布上的外婆。拍摄者问她停业有什么感想，她把电线理到一边，说终于能检修厕所了。下一镜头却配上了低沉的弦乐。",
+      "id": "c1-screening-12",
+      "scene": "c1-screening",
+      "index": 12,
+      "hash": "8b4c5ca70cd7",
+      "file": "c1-screening-12-8b4c5ca70cd7.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这段音乐是谁加的？",
+      "id": "c1-screening-13",
+      "scene": "c1-screening",
+      "index": 13,
+      "hash": "7e38698d7505",
+      "file": "c1-screening-13-7e38698d7505.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "临时轨。不是我写的。你是不是也觉得不对？",
+      "id": "c1-screening-14",
+      "scene": "c1-screening",
+      "index": 14,
+      "hash": "449e90e327f5",
+      "file": "c1-screening-14-449e90e327f5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪按下暂停。幕布停在外婆低头的瞬间，轻易就能被看成难过。予晴忽然理解了，仲溪为什么没有发一段精修过的片子给她。",
+      "id": "c1-screening-15",
+      "scene": "c1-screening",
+      "index": 15,
+      "hash": "6832fa6a890e",
+      "file": "c1-screening-15-6832fa6a890e.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "你可以改。今天请你来，就是希望听实际意见。不过最后上线前，还得符合品牌的传播要求。",
+      "id": "c1-screening-16",
+      "scene": "c1-screening",
+      "index": 16,
+      "hash": "43d282d19add",
+      "file": "c1-screening-16-43d282d19add.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "哪些要求？",
+      "id": "c1-screening-17",
+      "scene": "c1-screening",
+      "index": 17,
+      "hash": "300c155401b4",
+      "file": "c1-screening-17-300c155401b4.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "不能让资助显得像一次强行进入。也不能承诺我们没有权力保证的结果。我可以把范围写给你，其他的，我们谈。",
+      "id": "c1-screening-18",
+      "scene": "c1-screening",
+      "index": 18,
+      "hash": "8f58e681444f",
+      "file": "c1-screening-18-8f58e681444f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "这是一个留着门缝的答案。予晴看向外婆坐过的位置。如果现在只说很好，她以后再提出不同意见，会比今天更难。",
+      "id": "c1-screening-19",
+      "scene": "c1-screening",
+      "index": 19,
+      "hash": "675aed1fabe6",
+      "file": "c1-screening-19-675aed1fabe6.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我想先去掉这段音乐。她说检修厕所时很认真。我们不能把低头找电线的动作，剪成舍不得离开的证明。",
+      "id": "c1-cut-truth-0",
+      "scene": "c1-cut-truth",
+      "index": 0,
+      "hash": "2308b3ffec9b",
+      "file": "c1-cut-truth-0-2308b3ffec9b.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "如果没有情绪，观众可能不会停下来。",
+      "id": "c1-cut-truth-1",
+      "scene": "c1-cut-truth",
+      "index": 1,
+      "hash": "131a4758b95b",
+      "file": "c1-cut-truth-1-131a4758b95b.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "有情绪。只是和我们预设的不一样。她也许既舍不得，又觉得改造有必要。观众可以听完整，再决定自己怎么想。",
+      "id": "c1-cut-truth-2",
+      "scene": "c1-cut-truth",
+      "index": 2,
+      "hash": "054d93b74fdf",
+      "file": "c1-cut-truth-2-054d93b74fdf.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "苏时安看了一眼暂停画面，把资料里“告别”两个字划了条线。",
+      "id": "c1-cut-truth-3",
+      "scene": "c1-cut-truth",
+      "index": 3,
+      "hash": "8154dc55b7ba",
+      "file": "c1-cut-truth-3-8154dc55b7ba.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "我可以支持保留原话。但片子里如果有对更新方案的意见，我们需要提前知道，不能等首映当天才看到。",
+      "id": "c1-cut-truth-4",
+      "scene": "c1-cut-truth",
+      "index": 4,
+      "hash": "ec5e6c28a573",
+      "file": "c1-cut-truth-4-ec5e6c28a573.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "提前看可以。意见原话的最后决定，需要当事人同意。不同立场也要有机会回应。",
+      "id": "c1-cut-truth-5",
+      "scene": "c1-cut-truth",
+      "index": 5,
+      "hash": "ea496f24fd10",
+      "file": "c1-cut-truth-5-ea496f24fd10.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "声音这边，我可以先留一版环境音。配乐等结构确定了再写。别让音乐替她说话。",
+      "id": "c1-cut-truth-6",
+      "scene": "c1-cut-truth",
+      "index": 6,
+      "hash": "82a851807c44",
+      "file": "c1-cut-truth-6-82a851807c44.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言说这句时没有看予晴，像把一项普通的工作接回手里。她反而感到一点可靠。",
+      "id": "c1-cut-truth-7",
+      "scene": "c1-cut-truth",
+      "index": 7,
+      "hash": "b16580f00f81",
+      "file": "c1-cut-truth-7-b16580f00f81.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "把刚才这些写进拍摄约定。我的权限只能签现阶段预算，后续争议我负责向上说明，但不能替所有人保证。",
+      "id": "c1-cut-truth-8",
+      "scene": "c1-cut-truth",
+      "index": 8,
+      "hash": "94e5ea42c312",
+      "file": "c1-cut-truth-8-94e5ea42c312.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这个答案够明确了。",
+      "id": "c1-cut-truth-9",
+      "scene": "c1-cut-truth",
+      "index": 9,
+      "hash": "cc4ca4c8ea5b",
+      "file": "c1-cut-truth-9-cc4ca4c8ea5b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "幕布重新播放。没有那段音乐，外婆忽然从一个漂亮的象征，变回了一个正在整理电线的人。予晴第一次想拍她整理完以后，走到哪里去。",
+      "id": "c1-cut-truth-10",
+      "scene": "c1-cut-truth",
+      "index": 10,
+      "hash": "2ae62cde5b66",
+      "file": "c1-cut-truth-10-2ae62cde5b66.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我想先办一次公开讨论。不是让居民支持已经做好的主题，是让他们说，这部片有没有必要，应该拍谁。",
+      "id": "c1-cut-dialogue-0",
+      "scene": "c1-cut-dialogue",
+      "index": 0,
+      "hash": "5701237d999b",
+      "file": "c1-cut-dialogue-0-5701237d999b.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "那地图也能放在现场。大家自己选愿不愿意留下故事。",
+      "id": "c1-cut-dialogue-1",
+      "scene": "c1-cut-dialogue",
+      "index": 1,
+      "hash": "b7b1372ed22e",
+      "file": "c1-cut-dialogue-1-b7b1372ed22e.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "我支持听意见。不过讨论至少要占掉两天，预算没有算这部分。",
+      "id": "c1-cut-dialogue-2",
+      "scene": "c1-cut-dialogue",
+      "index": 2,
+      "hash": "b2f2e5a90cb9",
+      "file": "c1-cut-dialogue-2-b2f2e5a90cb9.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我可以缩短前期勘景。正式访谈不急着开机，先把问题问对。",
+      "id": "c1-cut-dialogue-3",
+      "scene": "c1-cut-dialogue",
+      "index": 3,
+      "hash": "2568c6884e78",
+      "file": "c1-cut-dialogue-3-2568c6884e78.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "你的酬劳不应该靠免费劳动来补。我们可以缩小活动，先请直接使用影院的人，不做宣传、不搭舞台。场地费我去协调。",
+      "id": "c1-cut-dialogue-4",
+      "scene": "c1-cut-dialogue",
+      "index": 4,
+      "hash": "6815f2937e12",
+      "file": "c1-cut-dialogue-4-6815f2937e12.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴以为他会只说没有钱。这个具体的替代办法让她重新看了他一眼。合作里并不是只有让步和拒绝。",
+      "id": "c1-cut-dialogue-5",
+      "scene": "c1-cut-dialogue",
+      "index": 5,
+      "hash": "cfc1bcc12bf4",
+      "file": "c1-cut-dialogue-5-cfc1bcc12bf4.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "我能把地图投到幕布上。还不稳定，但可以先演示。需要一个人帮我测试，最好愿意故意乱点。",
+      "id": "c1-cut-dialogue-6",
+      "scene": "c1-cut-dialogue",
+      "index": 6,
+      "hash": "80ce2b4003d8",
+      "file": "c1-cut-dialogue-6-80ce2b4003d8.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我可以。不过你得接受测试报告不漂亮。",
+      "id": "c1-cut-dialogue-7",
+      "scene": "c1-cut-dialogue",
+      "index": 7,
+      "hash": "1f69898f89ea",
+      "file": "c1-cut-dialogue-7-1f69898f89ea.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "真实一点。别只写“很有潜力”，那句话我已经听够了。",
+      "id": "c1-cut-dialogue-8",
+      "scene": "c1-cut-dialogue",
+      "index": 8,
+      "hash": "28d0b438ebac",
+      "file": "c1-cut-dialogue-8-28d0b438ebac.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把笔记本转过来。屏幕上是一排很普通的座椅，其中几张是空白。他没急着解释那些空白，等予晴自己点进去。",
+      "id": "c1-cut-dialogue-9",
+      "scene": "c1-cut-dialogue",
+      "index": 9,
+      "hash": "971b1ce84d48",
+      "file": "c1-cut-dialogue-9-971b1ce84d48.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "点击后只有一句提示：这里的主人选择不讲。予晴停了一会儿，把这句话记在备忘录里。",
+      "id": "c1-cut-dialogue-10",
+      "scene": "c1-cut-dialogue",
+      "index": 10,
+      "hash": "e6ef6d133bf6",
+      "file": "c1-cut-dialogue-10-e6ef6d133bf6.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "讨论结果不一定是我们想听的。包括有人说，不需要这部片。",
+      "id": "c1-cut-dialogue-11",
+      "scene": "c1-cut-dialogue",
+      "index": 11,
+      "hash": "59a9c8e0e6e0",
+      "file": "c1-cut-dialogue-11-59a9c8e0e6e0.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那也要留一个位置给这个答案。",
+      "id": "c1-cut-dialogue-12",
+      "scene": "c1-cut-dialogue",
+      "index": 12,
+      "hash": "4f1d5dc4d04d",
+      "file": "c1-cut-dialogue-12-4f1d5dc4d04d.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "苏时安把第三排那张椅子上的文件挪开。谁都还没知道，过几天究竟谁会坐在那里。",
+      "id": "c1-cut-dialogue-13",
+      "scene": "c1-cut-dialogue",
+      "index": 13,
+      "hash": "dbd838560e3a",
+      "file": "c1-cut-dialogue-13-dbd838560e3a.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "城市短片可以做。它可以漂亮，但要明确是资助方的宣传版本。居民访谈另做一版，由我们和当事人确认。不能混在一起，让人以为采访里的每句话都替品牌背书。",
+      "id": "c1-cut-beauty-0",
+      "scene": "c1-cut-beauty",
+      "index": 0,
+      "hash": "384922be5529",
+      "file": "c1-cut-beauty-0-384922be5529.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "两版后期，要增加工作量。",
+      "id": "c1-cut-beauty-1",
+      "scene": "c1-cut-beauty",
+      "index": 1,
+      "hash": "66e01a1416dc",
+      "file": "c1-cut-beauty-1-66e01a1416dc.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "宣传版短一点，先从两分钟做起。独立版不必每个镜头都精修，保留完整的现场。",
+      "id": "c1-cut-beauty-2",
+      "scene": "c1-cut-beauty",
+      "index": 2,
+      "hash": "496b24b5be1f",
+      "file": "c1-cut-beauty-2-496b24b5be1f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "苏时安把电脑打开，重新算了一遍交付时间。他没有因为予晴答应漂亮的画面，就把她刚才的条件悄悄删掉。",
+      "id": "c1-cut-beauty-3",
+      "scene": "c1-cut-beauty",
+      "index": 3,
+      "hash": "7924b2925584",
+      "file": "c1-cut-beauty-3-7924b2925584.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "这个方案有可能批准。我会标成两个不同用途的成片，公开使用需要单独授权。但预算只覆盖现在的工作，不能默认你们后面免费加班。",
+      "id": "c1-cut-beauty-4",
+      "scene": "c1-cut-beauty",
+      "index": 4,
+      "hash": "bf358ba6da71",
+      "file": "c1-cut-beauty-4-bf358ba6da71.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "如果审批不通过，就不自动把两版合并。",
+      "id": "c1-cut-beauty-5",
+      "scene": "c1-cut-beauty",
+      "index": 5,
+      "hash": "a7b572b2f430",
+      "file": "c1-cut-beauty-5-a7b572b2f430.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "对。这一条写进去。",
+      "id": "c1-cut-beauty-6",
+      "scene": "c1-cut-beauty",
+      "index": 6,
+      "hash": "186f5d448d0f",
+      "file": "c1-cut-beauty-6-186f5d448d0f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "她原以为这种选择意味着妥协得彻底。谈到这里才发现，妥协也能被拆开，逐项说清楚，而不是用一句“为了项目”包住所有不舒服。",
+      "id": "c1-cut-beauty-7",
+      "scene": "c1-cut-beauty",
+      "index": 7,
+      "hash": "aa0474531112",
+      "file": "c1-cut-beauty-7-aa0474531112.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "你很在意上一个项目？",
+      "id": "c1-cut-beauty-8",
+      "scene": "c1-cut-beauty",
+      "index": 8,
+      "hash": "98619048e739",
+      "file": "c1-cut-beauty-8-98619048e739.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我在意这一份约定会不会走到同样的地方。",
+      "id": "c1-cut-beauty-9",
+      "scene": "c1-cut-beauty",
+      "index": 9,
+      "hash": "9bf3d2ff6460",
+      "file": "c1-cut-beauty-9-9bf3d2ff6460.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他点头，没继续追问。对成年人来说，及时停下的问题，有时和问得恰到好处的问题一样难得。",
+      "id": "c1-cut-beauty-10",
+      "scene": "c1-cut-beauty",
+      "index": 10,
+      "hash": "15db70a61eb5",
+      "file": "c1-cut-beauty-10-15db70a61eb5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "预算表上多出来一行“用途分别确认”。它不好看，不像海边落日，却可能成为这部片最需要的第一帧。",
+      "id": "c1-cut-beauty-11",
+      "scene": "c1-cut-beauty",
+      "index": 11,
+      "hash": "481290e7d6e6",
+      "file": "c1-cut-beauty-11-481290e7d6e6.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "试片结束时，天已经完全暗了。周嘉禾把影院里唯一一台可用的读卡器递给予晴，仲溪去确认明天的访谈时间。",
+      "id": "c1-backup-0",
+      "scene": "c1-backup",
+      "index": 0,
+      "hash": "c6c0a9b21859",
+      "file": "c1-backup-0-c6c0a9b21859.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "先别接左边那个口，它偶尔会断电。我贴了胶带，但胶带已经失去警告能力了。",
+      "id": "c1-backup-1",
+      "scene": "c1-backup",
+      "index": 1,
+      "hash": "ab7ac58db6c3",
+      "file": "c1-backup-1-ab7ac58db6c3.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这台电脑是不是靠大家的口述说明书在活着。",
+      "id": "c1-backup-2",
+      "scene": "c1-backup",
+      "index": 2,
+      "hash": "7653addef10f",
+      "file": "c1-backup-2-7653addef10f.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "还有信任。主要是信任。",
+      "id": "c1-backup-3",
+      "scene": "c1-backup",
+      "index": 3,
+      "hash": "b98ab0867a44",
+      "file": "c1-backup-3-b98ab0867a44.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "进度条走到一半，周嘉禾忽然伸手，停在触摸板上方。",
+      "id": "c1-backup-4",
+      "scene": "c1-backup",
+      "index": 4,
+      "hash": "81d450d16ed0",
+      "file": "c1-backup-4-81d450d16ed0.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "我能点一下吗？缓存盘快满了，想先把临时文件移走。",
+      "id": "c1-backup-5",
+      "scene": "c1-backup",
+      "index": 5,
+      "hash": "d5505eda6ab8",
+      "file": "c1-backup-5-d5505eda6ab8.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "可以。原始卡别删，还没做第二份备份。",
+      "id": "c1-backup-6",
+      "scene": "c1-backup",
+      "index": 6,
+      "hash": "4ffe37fd9743",
+      "file": "c1-backup-6-4ffe37fd9743.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "放心。丢过一次，我现在见到“永久删除”四个字会起立。",
+      "id": "c1-backup-7",
+      "scene": "c1-backup",
+      "index": 7,
+      "hash": "1416fbab92c2",
+      "file": "c1-backup-7-1416fbab92c2.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "屏幕旁贴着一张没有署名的便利贴：不要相信只存在一处的东西。予晴原本以为是玩笑，看到周嘉禾的表情，才知道不是。",
+      "id": "c1-backup-8",
+      "scene": "c1-backup",
+      "index": 8,
+      "hash": "76d189437e1c",
+      "file": "c1-backup-8-76d189437e1c.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "丢的是游戏？",
+      "id": "c1-backup-9",
+      "scene": "c1-backup",
+      "index": 9,
+      "hash": "138e6ec41a4d",
+      "file": "c1-backup-9-138e6ec41a4d.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "一部分。能重做的那部分。我当时说，反正版本不好，正好重来。大家都相信了。",
+      "id": "c1-backup-10",
+      "scene": "c1-backup",
+      "index": 10,
+      "hash": "fa9ebe2d181c",
+      "file": "c1-backup-10-fa9ebe2d181c.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你现在也相信吗？",
+      "id": "c1-backup-11",
+      "scene": "c1-backup",
+      "index": 11,
+      "hash": "729d8f431038",
+      "file": "c1-backup-11-729d8f431038.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他盯着进度条，没用笑话回答。窗外一盏灯正好亮起来，落在他的镜片反光里——那不是眼镜，只是他把眼睛睁得很久。",
+      "id": "c1-backup-12",
+      "scene": "c1-backup",
+      "index": 12,
+      "hash": "72cddbc62079",
+      "file": "c1-backup-12-72cddbc62079.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "现在觉得，可惜就是可惜。做得不好，也不是没做过。",
+      "id": "c1-backup-13",
+      "scene": "c1-backup",
+      "index": 13,
+      "hash": "3998daaceae5",
+      "file": "c1-backup-13-3998daaceae5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把读卡器线理到桌边，给他让出一点位置。复制结束的提示音很小，像一句谁也没有大声说出的确认。",
+      "id": "c1-backup-14",
+      "scene": "c1-backup",
+      "index": 14,
+      "hash": "3b883ca38d9d",
+      "file": "c1-backup-14-3b883ca38d9d.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "你想试地图吗？只能点三个座位。第四个会把自己隐藏起来，我还没找出为什么。",
+      "id": "c1-backup-15",
+      "scene": "c1-backup",
+      "index": 15,
+      "hash": "8b38eec2fba0",
+      "file": "c1-backup-15-8b38eec2fba0.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "第四个也许不想接受采访。",
+      "id": "c1-backup-16",
+      "scene": "c1-backup",
+      "index": 16,
+      "hash": "819a63bc1c56",
+      "file": "c1-backup-16-819a63bc1c56.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "周嘉禾终于笑了。这次不是把话挡回去的笑。",
+      "id": "c1-backup-17",
+      "scene": "c1-backup",
+      "index": 17,
+      "hash": "adcbad461f3c",
+      "file": "c1-backup-17-adcbad461f3c.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴点开第三排最靠过道的位置。画面里没有人，只有一张褪色的票根。日期是十二年前。",
+      "id": "c1-map-test-0",
+      "scene": "c1-map-test",
+      "index": 0,
+      "hash": "c11dfe054aa5",
+      "file": "c1-map-test-0-c11dfe054aa5.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "这张来自一个叔叔。他第一次约会来看电影，两个人都没敢买旁边的座位。后来结婚了，还说那天能看见对方的侧脸就挺好。",
+      "id": "c1-map-test-1",
+      "scene": "c1-map-test",
+      "index": 1,
+      "hash": "bdb87b753e5a",
+      "file": "c1-map-test-1-bdb87b753e5a.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这故事很好。不过我现在不知道票根是谁的，也不知道能不能转载。",
+      "id": "c1-map-test-2",
+      "scene": "c1-map-test",
+      "index": 2,
+      "hash": "5cb4e58ba631",
+      "file": "c1-map-test-2-5cb4e58ba631.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "我记在另一个表里了。地图上没有显示。",
+      "id": "c1-map-test-3",
+      "scene": "c1-map-test",
+      "index": 3,
+      "hash": "e45dd42273e3",
+      "file": "c1-map-test-3-e45dd42273e3.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那需要一个授权状态。还有音频停止的位置，关闭页面以后声音仍在。",
+      "id": "c1-map-test-4",
+      "scene": "c1-map-test",
+      "index": 4,
+      "hash": "4450b764c620",
+      "file": "c1-map-test-4-4450b764c620.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他认真记下来。予晴等了片刻，又把第三个座位点亮。",
+      "id": "c1-map-test-5",
+      "scene": "c1-map-test",
+      "index": 5,
+      "hash": "64178f08ee26",
+      "file": "c1-map-test-5-64178f08ee26.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我喜欢空位的设计。不是所有空白都要补上，也不是只有有趣的人才算来过。这个可以留住。",
+      "id": "c1-map-test-6",
+      "scene": "c1-map-test",
+      "index": 6,
+      "hash": "169bbebb8c98",
+      "file": "c1-map-test-6-169bbebb8c98.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "你不是为了照顾我，才先挑一点夸吗？",
+      "id": "c1-map-test-7",
+      "scene": "c1-map-test",
+      "index": 7,
+      "hash": "507781916f50",
+      "file": "c1-map-test-7-507781916f50.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我先挑了两个问题。现在是第三条。你可以都记下来。",
+      "id": "c1-map-test-8",
+      "scene": "c1-map-test",
+      "index": 8,
+      "hash": "ede59220377d",
+      "file": "c1-map-test-8-ede59220377d.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "周嘉禾在纸上写“保留空白”，旁边画了一个小小的方框。予晴注意到，他写字比刚才稳了一点。",
+      "id": "c1-map-test-9",
+      "scene": "c1-map-test",
+      "index": 9,
+      "hash": "fb9992ee16f5",
+      "file": "c1-map-test-9-fb9992ee16f5.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "明天下午两点，能不能再帮我看一次？我想改完这两个问题再给社区用。",
+      "id": "c1-map-test-10",
+      "scene": "c1-map-test",
+      "index": 10,
+      "hash": "ca30680f1395",
+      "file": "c1-map-test-10-ca30680f1395.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "两点到两点半。我三点有别的工作。",
+      "id": "c1-map-test-11",
+      "scene": "c1-map-test",
+      "index": 11,
+      "hash": "4a4734cbe21a",
+      "file": "c1-map-test-11-4a4734cbe21a.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "半小时够。超时我自己关电脑，不要你提醒。",
+      "id": "c1-map-test-12",
+      "scene": "c1-map-test",
+      "index": 12,
+      "hash": "665e18ff7ec3",
+      "file": "c1-map-test-12-665e18ff7ec3.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "这个约定并不浪漫，甚至有点像工作通知。但它准确地给了彼此一段可以相信的时间。",
+      "id": "c1-map-test-13",
+      "scene": "c1-map-test",
+      "index": 13,
+      "hash": "2dc92c861b44",
+      "file": "c1-map-test-13-2dc92c861b44.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你眼睛已经红了。测试现在开始，会不会变成你再改一整夜？",
+      "id": "c1-map-rest-0",
+      "scene": "c1-map-rest",
+      "index": 0,
+      "hash": "42f8a37e9f44",
+      "file": "c1-map-rest-0-42f8a37e9f44.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "被发现了。我本来想改一个小问题。",
+      "id": "c1-map-rest-1",
+      "scene": "c1-map-rest",
+      "index": 1,
+      "hash": "7d2d44dbfc7e",
+      "file": "c1-map-rest-1-7d2d44dbfc7e.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "小问题后面有没有一个大问题？",
+      "id": "c1-map-rest-2",
+      "scene": "c1-map-rest",
+      "index": 2,
+      "hash": "3ddb543ef835",
+      "file": "c1-map-rest-2-3ddb543ef835.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "通常有。但大问题后面也会有新的小问题，像一种生态。",
+      "id": "c1-map-rest-3",
+      "scene": "c1-map-rest",
+      "index": 3,
+      "hash": "e9b08ff909b8",
+      "file": "c1-map-rest-3-e9b08ff909b8.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴合上还没使用的笔记本，没有去碰他的电脑。",
+      "id": "c1-map-rest-4",
+      "scene": "c1-map-rest",
+      "index": 4,
+      "hash": "cd304f17d578",
+      "file": "c1-map-rest-4-cd304f17d578.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "明天下午两点，我有半小时。你把想测试的项目先列出来，我们按清单来。今天先把备份弄好就结束。",
+      "id": "c1-map-rest-5",
+      "scene": "c1-map-rest",
+      "index": 5,
+      "hash": "42ae2fbb00ba",
+      "file": "c1-map-rest-5-42ae2fbb00ba.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "你可以直接说没时间，不用帮我安排一个很远的明天。",
+      "id": "c1-map-rest-6",
+      "scene": "c1-map-rest",
+      "index": 6,
+      "hash": "7862c1c5d422",
+      "file": "c1-map-rest-6-7862c1c5d422.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "明天下午两点不远。做不到我会提前告诉你，不会让你等。",
+      "id": "c1-map-rest-7",
+      "scene": "c1-map-rest",
+      "index": 7,
+      "hash": "988b8825ce7b",
+      "file": "c1-map-rest-7-988b8825ce7b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "周嘉禾看了一眼墙上的钟，才把时间打进日历。屏幕上那个小小的方块，第一次从“待办”变成了“有人一起”。",
+      "id": "c1-map-rest-8",
+      "scene": "c1-map-rest",
+      "index": 8,
+      "hash": "90e8e011f66e",
+      "file": "c1-map-rest-8-90e8e011f66e.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "好。我也不提前把全部功能重做一遍。",
+      "id": "c1-map-rest-9",
+      "scene": "c1-map-rest",
+      "index": 9,
+      "hash": "8944a81fcdb0",
+      "file": "c1-map-rest-9-8944a81fcdb0.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你刚才是不是已经想重做了？",
+      "id": "c1-map-rest-10",
+      "scene": "c1-map-rest",
+      "index": 10,
+      "hash": "f9afbcce3b6e",
+      "file": "c1-map-rest-10-f9afbcce3b6e.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "一点点。现在收回。",
+      "id": "c1-map-rest-11",
+      "scene": "c1-map-rest",
+      "index": 11,
+      "hash": "7f79a93e945c",
+      "file": "c1-map-rest-11-7f79a93e945c.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把两块硬盘分别放进桌子两侧的柜子。予晴没有替他关机，却等到他自己把椅子推回去。靠近有时候需要帮忙，有时候只需要不把别人的疲倦变成你的任务。",
+      "id": "c1-map-rest-12",
+      "scene": "c1-map-rest",
+      "index": 12,
+      "hash": "293cf0f4ac24",
+      "file": "c1-map-rest-12-293cf0f4ac24.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "影院侧门的石阶还很湿。予晴准备去民宿时，发现外婆拎着一个保温盒，在门口等人。",
+      "id": "c1-night-walk-0",
+      "scene": "c1-night-walk",
+      "index": 0,
+      "hash": "0b58e9602dc0",
+      "file": "c1-night-walk-0-0b58e9602dc0.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "顾砚说路过。他今天在这边做志愿活动，顺便拿他父亲以前的票根。",
+      "id": "c1-night-walk-1",
+      "scene": "c1-night-walk",
+      "index": 1,
+      "hash": "09e9ac5d0a21",
+      "file": "c1-night-walk-1-09e9ac5d0a21.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这个盒子也是票根？",
+      "id": "c1-night-walk-2",
+      "scene": "c1-night-walk",
+      "index": 2,
+      "hash": "e055458e3393",
+      "file": "c1-night-walk-2-e055458e3393.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "饭。票根夹在报纸里，你帮我拿，别沾水。",
+      "id": "c1-night-walk-3",
+      "scene": "c1-night-walk",
+      "index": 3,
+      "hash": "41944299f2ee",
+      "file": "c1-night-walk-3-41944299f2ee.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "外婆回屋找伞，一个穿浅蓝色衬衫的人从街角走来。他先把背包放在干的台阶上，再接过予晴递来的报纸。",
+      "id": "c1-night-walk-4",
+      "scene": "c1-night-walk",
+      "index": 4,
+      "hash": "5899d7033dd8",
+      "file": "c1-night-walk-4-5899d7033dd8.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "不好意思，晚了二十分钟。我发的消息可能没送出去。",
+      "id": "c1-night-walk-5",
+      "scene": "c1-night-walk",
+      "index": 5,
+      "hash": "9b67bfff9da7",
+      "file": "c1-night-walk-5-9b67bfff9da7.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这里信号不好。她没有生气，给你留了饭。",
+      "id": "c1-night-walk-6",
+      "scene": "c1-night-walk",
+      "index": 6,
+      "hash": "654c0fa6e749",
+      "file": "c1-night-walk-6-654c0fa6e749.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "我明天还盒子。洗干净再还。",
+      "id": "c1-night-walk-7",
+      "scene": "c1-night-walk",
+      "index": 7,
+      "hash": "e625b839dda6",
+      "file": "c1-night-walk-7-e625b839dda6.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把盒子放进包里，拉拉链前又停下来，掀开看了一眼。里面是清淡的炖菜，热气已经没有了。",
+      "id": "c1-night-walk-8",
+      "scene": "c1-night-walk",
+      "index": 8,
+      "hash": "dbe61e1dd79c",
+      "file": "c1-night-walk-8-dbe61e1dd79c.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "她还记得我爸不能吃太咸。",
+      "id": "c1-night-walk-9",
+      "scene": "c1-night-walk",
+      "index": 9,
+      "hash": "8600d144431f",
+      "file": "c1-night-walk-9-8600d144431f.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我也刚发现，她记得很多我不知道的事。",
+      "id": "c1-night-walk-10",
+      "scene": "c1-night-walk",
+      "index": 10,
+      "hash": "16339293f412",
+      "file": "c1-night-walk-10-16339293f412.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚看向她脚边的行李箱。轮子上的泥只擦了一半，拉杆挂着那条外婆给的毛巾。",
+      "id": "c1-night-walk-11",
+      "scene": "c1-night-walk",
+      "index": 11,
+      "hash": "0476f3facd73",
+      "file": "c1-night-walk-11-0476f3facd73.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "你是予晴？林老师说你会回来拍片。我叫顾砚，砚台的砚。明天的口述史访谈，有几位参与者由我联系。",
+      "id": "c1-night-walk-12",
+      "scene": "c1-night-walk",
+      "index": 12,
+      "hash": "e4f6f4d32129",
+      "file": "c1-night-walk-12-e4f6f4d32129.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你也做纪录片？",
+      "id": "c1-night-walk-13",
+      "scene": "c1-night-walk",
+      "index": 13,
+      "hash": "159aebcb63fd",
+      "file": "c1-night-walk-13-159aebcb63fd.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "不做。我负责确认，他们是真的愿意来，而不是不好意思拒绝林老师。",
+      "id": "c1-night-walk-14",
+      "scene": "c1-night-walk",
+      "index": 14,
+      "hash": "8ec4bdae0dad",
+      "file": "c1-night-walk-14-8ec4bdae0dad.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他说得很认真。予晴忽然觉得，这是一种与相机完全不同，又很接近的工作。",
+      "id": "c1-night-walk-15",
+      "scene": "c1-night-walk",
+      "index": 15,
+      "hash": "7d5dc25ca821",
+      "file": "c1-night-walk-15-7d5dc25ca821.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "如果有人采访到一半想走，希望你能让他走。问完所有问题不是最重要的。",
+      "id": "c1-night-walk-16",
+      "scene": "c1-night-walk",
+      "index": 16,
+      "hash": "e4f4d113108f",
+      "file": "c1-night-walk-16-e4f4d113108f.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你是不是担心我会为了素材留下他们？",
+      "id": "c1-night-walk-17",
+      "scene": "c1-night-walk",
+      "index": 17,
+      "hash": "74182ef6075f",
+      "file": "c1-night-walk-17-74182ef6075f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚没有马上否认。街灯在他的衣袖上落下一层浅蓝的光。",
+      "id": "c1-night-walk-18",
+      "scene": "c1-night-walk",
+      "index": 18,
+      "hash": "8c982474b3fc",
+      "file": "c1-night-walk-18-8c982474b3fc.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "我还不了解你。所以先说明白。这样明天大家都轻松一点。",
+      "id": "c1-night-walk-19",
+      "scene": "c1-night-walk",
+      "index": 19,
+      "hash": "a9ddb66a32b2",
+      "file": "c1-night-walk-19-a9ddb66a32b2.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "可以。采访开始前就告诉他们，中途可以停。你觉得直接说“停”容易吗？",
+      "id": "c1-consent-night-0",
+      "scene": "c1-consent-night",
+      "index": 0,
+      "hash": "08bd69a67354",
+      "file": "c1-consent-night-0-08bd69a67354.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "有人会怕打扰大家。可以给每个人一张卡，想结束就把卡翻过来，不用解释。",
+      "id": "c1-consent-night-1",
+      "scene": "c1-consent-night",
+      "index": 1,
+      "hash": "6040cf99bd94",
+      "file": "c1-consent-night-1-6040cf99bd94.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那不是退出证，是他们一直拥有的决定。上面可以什么也不写。",
+      "id": "c1-consent-night-2",
+      "scene": "c1-consent-night",
+      "index": 2,
+      "hash": "1cd16574e720",
+      "file": "c1-consent-night-2-1cd16574e720.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚点头，把这个办法发给参与者群。手机亮起来时，予晴看见屏幕上还有一条没有回复的家人消息。他读了一眼，把手机放低。",
+      "id": "c1-consent-night-3",
+      "scene": "c1-consent-night",
+      "index": 3,
+      "hash": "e797f92eb0e7",
+      "file": "c1-consent-night-3-e797f92eb0e7.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你有别的事就先忙，明天再确认。",
+      "id": "c1-consent-night-4",
+      "scene": "c1-consent-night",
+      "index": 4,
+      "hash": "8b6df96fa370",
+      "file": "c1-consent-night-4-8b6df96fa370.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "是我爸问盒子有没有拿到。不是急事，但也不应该一直让他等。",
+      "id": "c1-consent-night-5",
+      "scene": "c1-consent-night",
+      "index": 5,
+      "hash": "584e3d9ac8ca",
+      "file": "c1-consent-night-5-584e3d9ac8ca.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他回了消息，附上一张保温盒的照片。动作很快，没有把照顾家人讲成一段值得赞美的经历。",
+      "id": "c1-consent-night-6",
+      "scene": "c1-consent-night",
+      "index": 6,
+      "hash": "fb816e84ac11",
+      "file": "c1-consent-night-6-fb816e84ac11.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "你明天如果方便，先不带相机见大家，坐一会儿。拍摄时再用设备。",
+      "id": "c1-consent-night-7",
+      "scene": "c1-consent-night",
+      "index": 7,
+      "hash": "6e22fdd08254",
+      "file": "c1-consent-night-7-6e22fdd08254.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我会提前到。谢谢你没有只说一句他们都同意了。",
+      "id": "c1-consent-night-8",
+      "scene": "c1-consent-night",
+      "index": 8,
+      "hash": "c4cefe3a8090",
+      "file": "c1-consent-night-8-c4cefe3a8090.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "同意有很多种。想清楚的那种，拍起来也许会更好。",
+      "id": "c1-consent-night-9",
+      "scene": "c1-consent-night",
+      "index": 9,
+      "hash": "8a96b01e856a",
+      "file": "c1-consent-night-9-8a96b01e856a.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "外婆出来把伞塞给他。他接住以后，先问予晴要不要一起往电车站走。问题的语气和刚才一样，没有替她决定答案。",
+      "id": "c1-consent-night-10",
+      "scene": "c1-consent-night",
+      "index": 10,
+      "hash": "dd30ac0b096b",
+      "file": "c1-consent-night-10-dd30ac0b096b.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我去前面的民宿。走到路口就行。",
+      "id": "c1-consent-night-11",
+      "scene": "c1-consent-night",
+      "index": 11,
+      "hash": "01e33f0fc665",
+      "file": "c1-consent-night-11-01e33f0fc665.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚没有把路口改成门口。两人并肩走了一小段，予晴第一次在这个晚上，把相机袋完全拉好。",
+      "id": "c1-consent-night-12",
+      "scene": "c1-consent-night",
+      "index": 12,
+      "hash": "9364a80028bd",
+      "file": "c1-consent-night-12-9364a80028bd.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我会让他们停，也会在开机前确认用途。不过我希望明天你能先看一下流程，再判断我会怎么做。",
+      "id": "c1-professional-night-0",
+      "scene": "c1-professional-night",
+      "index": 0,
+      "hash": "549dc1cfb59e",
+      "file": "c1-professional-night-0-549dc1cfb59e.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚认真听完，没有用一句“我不是那个意思”把刚才的话擦掉。",
+      "id": "c1-professional-night-1",
+      "scene": "c1-professional-night",
+      "index": 1,
+      "hash": "1c1de0de1a81",
+      "file": "c1-professional-night-1-1c1de0de1a81.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "可以。刚才说得太直接了。我遇到过参与者不愿拒绝摄影师，所以先想到那个情形，不应该把它当成你一定会做的事。",
+      "id": "c1-professional-night-2",
+      "scene": "c1-professional-night",
+      "index": 2,
+      "hash": "62228affc98e",
+      "file": "c1-professional-night-2-62228affc98e.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "谢谢。我们都能提前把担心说出来，应该是好事。",
+      "id": "c1-professional-night-3",
+      "scene": "c1-professional-night",
+      "index": 3,
+      "hash": "fff0dd13d25c",
+      "file": "c1-professional-night-3-fff0dd13d25c.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "你也可以问我担心什么。不用因为我负责联系，就默认我替他们做得足够好。",
+      "id": "c1-professional-night-4",
+      "scene": "c1-professional-night",
+      "index": 4,
+      "hash": "46656032b057",
+      "file": "c1-professional-night-4-46656032b057.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴原本绷紧的肩膀放松了一点。她发现，明确表达不舒服，没有像她想象的那样让对话碎掉。",
+      "id": "c1-professional-night-5",
+      "scene": "c1-professional-night",
+      "index": 5,
+      "hash": "b6d0fba01a83",
+      "file": "c1-professional-night-5-b6d0fba01a83.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那明天先不开机，见一见大家。我把流程打印出来，你帮我看有没有容易误解的地方。",
+      "id": "c1-professional-night-6",
+      "scene": "c1-professional-night",
+      "index": 6,
+      "hash": "37b3c3339c8d",
+      "file": "c1-professional-night-6-37b3c3339c8d.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "好。我八点四十到。如果临时有事，会提前打电话。不要只等消息。",
+      "id": "c1-professional-night-7",
+      "scene": "c1-professional-night",
+      "index": 7,
+      "hash": "b8ebfcd0889c",
+      "file": "c1-professional-night-7-b8ebfcd0889c.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "外婆把伞送出来，顺便问起他的父亲。他没有说一切都好，只说这周吃饭规律了一点。这个具体的小变化，比任何完整的安慰都显得可信。",
+      "id": "c1-professional-night-8",
+      "scene": "c1-professional-night",
+      "index": 8,
+      "hash": "9ea2b5a1a7f6",
+      "file": "c1-professional-night-8-9ea2b5a1a7f6.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他们在路口分开。予晴看着他回头确认伞是否漏水，忽然想到，可靠并不总是第一次见面就让人舒服，也可能是有能力听见别人说，不必这样。",
+      "id": "c1-professional-night-9",
+      "scene": "c1-professional-night",
+      "index": 9,
+      "hash": "f874e46a3d5e",
+      "file": "c1-professional-night-9-f874e46a3d5e.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴还是先回了一趟后期室。仲溪没有睡，正在把明天的名单写进拍摄通告。",
+      "id": "c1-contact-0",
+      "scene": "c1-contact",
+      "index": 0,
+      "hash": "eb68b8c85928",
+      "file": "c1-contact-0-eb68b8c85928.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "民宿问到了？",
+      "id": "c1-contact-1",
+      "scene": "c1-contact",
+      "index": 1,
+      "hash": "b869aecdfa7d",
+      "file": "c1-contact-1-b869aecdfa7d.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "问到了。我先回来取充电器。",
+      "id": "c1-contact-2",
+      "scene": "c1-contact",
+      "index": 2,
+      "hash": "4193bff1b211",
+      "file": "c1-contact-2-4193bff1b211.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "她把充电器装进袋里，却没有立刻走。桌面上那份设备清单已经签了仲溪的名字，主摄影的位置仍然空着。",
+      "id": "c1-contact-3",
+      "scene": "c1-contact",
+      "index": 3,
+      "hash": "74df7d93d1af",
+      "file": "c1-contact-3-74df7d93d1af.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我们今天说好会后确认。我没有忘。",
+      "id": "c1-contact-4",
+      "scene": "c1-contact",
+      "index": 4,
+      "hash": "3e026c7efec4",
+      "file": "c1-contact-4-3e026c7efec4.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "现在不适合把过去全部说完。你已经很累了。",
+      "id": "c1-contact-5",
+      "scene": "c1-contact",
+      "index": 5,
+      "hash": "fa9e84aa4f93",
+      "file": "c1-contact-5-fa9e84aa4f93.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那至少先说一件。上次你问我，能不能接受那个版本，我回答“先这样吧”。我其实不能。我知道这个回答让你一个人去面对后面的事情。",
+      "id": "c1-contact-6",
+      "scene": "c1-contact",
+      "index": 6,
+      "hash": "f25caf3068ac",
+      "file": "c1-contact-6-f25caf3068ac.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪把笔放下。窗外的雨停了，屋里没有立刻变得明亮，只是玻璃上的水终于不再向下移动。",
+      "id": "c1-contact-7",
+      "scene": "c1-contact",
+      "index": 7,
+      "hash": "da86a43767b9",
+      "file": "c1-contact-7-da86a43767b9.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "我也有没说的事。资金方第一次提修改时，我没有告诉你。我以为谈得回来，后来已经没有时间。现在我们都很会总结错误，但明天还会碰到新的。",
+      "id": "c1-contact-8",
+      "scene": "c1-contact",
+      "index": 8,
+      "hash": "e9e23bb8519f",
+      "file": "c1-contact-8-e9e23bb8519f.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "所以今天先不保证绝对不会再错。",
+      "id": "c1-contact-9",
+      "scene": "c1-contact",
+      "index": 9,
+      "hash": "19c7b2fa822d",
+      "file": "c1-contact-9-19c7b2fa822d.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "保证遇到的时候，把问题交到桌面上。",
+      "id": "c1-contact-10",
+      "scene": "c1-contact",
+      "index": 10,
+      "hash": "4b841fec9c22",
+      "file": "c1-contact-10-4b841fec9c22.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴在设备单的空白处签名。她没有写一句漂亮的誓言，只在日期下面补了一行“用途和修改共同确认”。",
+      "id": "c1-contact-11",
+      "scene": "c1-contact",
+      "index": 11,
+      "hash": "2e2ad8078e9a",
+      "file": "c1-contact-11-2e2ad8078e9a.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "片名想了吗？",
+      "id": "c1-contact-12",
+      "scene": "c1-contact",
+      "index": 12,
+      "hash": "1e72ba5d240a",
+      "file": "c1-contact-12-1e72ba5d240a.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "还没。我想等大家说完再起。",
+      "id": "c1-contact-13",
+      "scene": "c1-contact",
+      "index": 13,
+      "hash": "a1b034081df9",
+      "file": "c1-contact-13-a1b034081df9.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "那就先叫未命名。一部还没有名字的片子，也值得认真开始。",
+      "id": "c1-contact-14",
+      "scene": "c1-contact",
+      "index": 14,
+      "hash": "667bc8939561",
+      "file": "c1-contact-14-667bc8939561.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "手机同时收到几条消息：段言发来民宿地址；苏时安发来交付范围；周嘉禾发来明天测试的清单；顾砚发来参与者可以退出的确认方式。",
+      "id": "c1-contact-15",
+      "scene": "c1-contact",
+      "index": 15,
+      "hash": "b7b99ef7b3e2",
+      "file": "c1-contact-15-b7b99ef7b3e2.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "四条消息，没有一条在问她有没有想我。予晴却觉得自己回来这件事，第一次有了真实的重量。",
+      "id": "c1-contact-16",
+      "scene": "c1-contact",
+      "index": 16,
+      "hash": "9bea56163709",
+      "file": "c1-contact-16-9bea56163709.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "她推开窗，让湿润的空气进来。街灯映着空电车的轨道，最靠海的那一盏仍然没亮。也许明天，她会先去看看灯里坏掉的是什么。",
+      "id": "c1-contact-17",
+      "scene": "c1-contact",
+      "index": 17,
+      "hash": "ffb25ed26d62",
+      "file": "c1-contact-17-ffb25ed26d62.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴到海声时，顾砚已经在门口。他今天没有背那个很大的包，手里拎着两杯豆浆，杯盖上各贴了一小片纸。",
+      "id": "c2-calltime-0",
+      "scene": "c2-calltime",
+      "index": 0,
+      "hash": "e98fe9332e91",
+      "file": "c2-calltime-0-e98fe9332e91.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "一杯不加糖，一杯正常。林老师说你以前喝正常，现在我不确定。",
+      "id": "c2-calltime-1",
+      "scene": "c2-calltime",
+      "index": 1,
+      "hash": "1da721f64622",
+      "file": "c2-calltime-1-1da721f64622.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "正常。我还没有长成她想象中的那么健康。",
+      "id": "c2-calltime-2",
+      "scene": "c2-calltime",
+      "index": 2,
+      "hash": "89384bb5cd0a",
+      "file": "c2-calltime-2-89384bb5cd0a.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "很好。那我不用交换标签了。我刚才贴反过一次。",
+      "id": "c2-calltime-3",
+      "scene": "c2-calltime",
+      "index": 3,
+      "hash": "ecce54c6d727",
+      "file": "c2-calltime-3-ecce54c6d727.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把正常那杯递给她，手指在纸杯下方托了一下，确定不会因为受潮而松开。予晴接过来，看见他另一杯的标签上写着两个同样的字，又补了一个小小的“不”。",
+      "id": "c2-calltime-4",
+      "scene": "c2-calltime",
+      "index": 4,
+      "hash": "9f90e7f3b3f2",
+      "file": "c2-calltime-4-9f90e7f3b3f2.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这看起来很不像你的工作风格。",
+      "id": "c2-calltime-5",
+      "scene": "c2-calltime",
+      "index": 5,
+      "hash": "68dc292ec2a5",
+      "file": "c2-calltime-5-68dc292ec2a5.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "工作时不会一边走，一边和豆浆店老板讨论豆浆算不算汤。",
+      "id": "c2-calltime-6",
+      "scene": "c2-calltime",
+      "index": 6,
+      "hash": "cc29c8be36f2",
+      "file": "c2-calltime-6-cc29c8be36f2.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "最后呢？",
+      "id": "c2-calltime-7",
+      "scene": "c2-calltime",
+      "index": 7,
+      "hash": "36f8a48a1e22",
+      "file": "c2-calltime-7-36f8a48a1e22.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "他觉得算。我说那要不要给一把勺子。他说不可以，勺子另收钱。",
+      "id": "c2-calltime-8",
+      "scene": "c2-calltime",
+      "index": 8,
+      "hash": "3dfb980a3eb2",
+      "file": "c2-calltime-8-3dfb980a3eb2.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴笑得差点把吸管拿反。昨晚那个认真说明所有条件的人，今天仍然认真，只是没有把每一件事都变成一份意见。",
+      "id": "c2-calltime-9",
+      "scene": "c2-calltime",
+      "index": 9,
+      "hash": "fd0caff61cf2",
+      "file": "c2-calltime-9-fd0caff61cf2.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "你们笑什么？",
+      "id": "c2-calltime-10",
+      "scene": "c2-calltime",
+      "index": 10,
+      "hash": "8da4ed37ec58",
+      "file": "c2-calltime-10-8da4ed37ec58.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "一个很重要的分类问题。之后可能要开学术会议。",
+      "id": "c2-calltime-11",
+      "scene": "c2-calltime",
+      "index": 11,
+      "hash": "b75ff5cea826",
+      "file": "c2-calltime-11-b75ff5cea826.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "会议结束先把椅子摆好。别喝着豆浆干活，弄洒了又要怪杯子。",
+      "id": "c2-calltime-12",
+      "scene": "c2-calltime",
+      "index": 12,
+      "hash": "93751b5faa33",
+      "file": "c2-calltime-12-93751b5faa33.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "第一位参与者到得很早，是在这条街修过二十年电器的许叔。他看见相机时先整了整衣领，随后问，能不能不要拍工作室最里面那面墙。",
+      "id": "c2-calltime-13",
+      "scene": "c2-calltime",
+      "index": 13,
+      "hash": "1f7bd9d2e40b",
+      "file": "c2-calltime-13-1f7bd9d2e40b.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "为什么，你不用现在解释。如果那面墙不能拍，我们先写下来。",
+      "id": "c2-calltime-14",
+      "scene": "c2-calltime",
+      "index": 14,
+      "hash": "293fd89765c5",
+      "file": "c2-calltime-14-293fd89765c5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴在纸上画了一个小方框。许叔看着那个方框，说不是不让拍，是老照片里有别人的孩子，他联系不上。",
+      "id": "c2-calltime-15",
+      "scene": "c2-calltime",
+      "index": 15,
+      "hash": "9c627bdcd7c6",
+      "file": "c2-calltime-15-9c627bdcd7c6.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那我们拍你现在愿意给人看的地方。旧照片先留着，不着急。",
+      "id": "c2-calltime-16",
+      "scene": "c2-calltime",
+      "index": 16,
+      "hash": "ae4582ae5a55",
+      "file": "c2-calltime-16-ae4582ae5a55.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚把一张椅子挪到相机旁边，没有坐在许叔身后。他今天的任务不是替谁回答。",
+      "id": "c2-calltime-17",
+      "scene": "c2-calltime",
+      "index": 17,
+      "hash": "78f5e8340826",
+      "file": "c2-calltime-17-78f5e8340826.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "晨光穿过高窗，在地上留下一个很亮的矩形。予晴开机前忽然想到，她昨天拍的第一张照片，今天已经有了几个可以询问名字的人。",
+      "id": "c2-calltime-18",
+      "scene": "c2-calltime",
+      "index": 18,
+      "hash": "d3adadb905b8",
+      "file": "c2-calltime-18-d3adadb905b8.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴以为第一场采访会很顺利。许叔熟悉影院，熟悉外婆，还把提前写好的稿子折成四折，放在衬衫口袋里。",
+      "id": "c2-two-minutes-0",
+      "scene": "c2-two-minutes",
+      "index": 0,
+      "hash": "7ab4c769ecc8",
+      "file": "c2-two-minutes-0-7ab4c769ecc8.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "真正开机以后，他却只说了两句话。第一句是这里很好，第二句是希望以后更好。说完以后，他很不安地看向稿子。",
+      "id": "c2-two-minutes-1",
+      "scene": "c2-two-minutes",
+      "index": 1,
+      "hash": "884d9808d98c",
+      "file": "c2-two-minutes-1-884d9808d98c.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "不一定要照着稿子念。最近一周，你在工作室里修的最后一件东西是什么？",
+      "id": "c2-two-minutes-2",
+      "scene": "c2-two-minutes",
+      "index": 2,
+      "hash": "a1b863cd33e2",
+      "file": "c2-two-minutes-2-a1b863cd33e2.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他想了想，开始讲一台很旧的收音机。送来的人说修不好也没关系，装回去就行。他花了三天才发现，对方不是想听节目，只是想再听一次开机的杂音。",
+      "id": "c2-two-minutes-3",
+      "scene": "c2-two-minutes",
+      "index": 3,
+      "hash": "7fb4a6995329",
+      "file": "c2-two-minutes-3-7fb4a6995329.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "我记得那台。你还问我有没有同样型号的零件。",
+      "id": "c2-two-minutes-4",
+      "scene": "c2-two-minutes",
+      "index": 4,
+      "hash": "48073fdc9791",
+      "file": "c2-two-minutes-4-48073fdc9791.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "许叔点头。说到这里，他把稿子重新折了一次，放回口袋。他不需要那两句希望了，他知道自己讲了一个实际发生过的故事。",
+      "id": "c2-two-minutes-5",
+      "scene": "c2-two-minutes",
+      "index": 5,
+      "hash": "7698aa6585f7",
+      "file": "c2-two-minutes-5-7698aa6585f7.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚坐在相机外面，看见许叔翻过空白卡片，就把自己的水杯推到桌子中间。予晴立即停机。",
+      "id": "c2-two-minutes-6",
+      "scene": "c2-two-minutes",
+      "index": 6,
+      "hash": "234159494345",
+      "file": "c2-two-minutes-6-234159494345.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "到这里就好。我们把这段看一遍，你再确认想留下什么。",
+      "id": "c2-two-minutes-7",
+      "scene": "c2-two-minutes",
+      "index": 7,
+      "hash": "5dfcfdb25a47",
+      "file": "c2-two-minutes-7-5dfcfdb25a47.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "许叔看完回放，指着自己说“我以为他嫌贵”的那句，问是不是显得自己很小气。",
+      "id": "c2-two-minutes-8",
+      "scene": "c2-two-minutes",
+      "index": 8,
+      "hash": "d939fbbd55b8",
+      "file": "c2-two-minutes-8-d939fbbd55b8.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "是你当时真的以为。后来不这么想了，后面也说了。",
+      "id": "c2-two-minutes-9",
+      "scene": "c2-two-minutes",
+      "index": 9,
+      "hash": "58a03d76da33",
+      "file": "c2-two-minutes-9-58a03d76da33.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "如果你想删，可以删。但我觉得，误会以后愿意再看一眼，也是这个故事里很好的部分。",
+      "id": "c2-two-minutes-10",
+      "scene": "c2-two-minutes",
+      "index": 10,
+      "hash": "4f93cbf05602",
+      "file": "c2-two-minutes-10-4f93cbf05602.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "许叔没有立即回答。他把纸杯里的水喝完，要求下午再看一次。这一天原本只有一次正式访谈，予晴在通告上加了半小时。",
+      "id": "c2-two-minutes-11",
+      "scene": "c2-two-minutes",
+      "index": 11,
+      "hash": "fee0c8f5a99f",
+      "file": "c2-two-minutes-11-fee0c8f5a99f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "外婆目送他出去，关上门后忽然把杯子往桌上放得重了一点。",
+      "id": "c2-two-minutes-12",
+      "scene": "c2-two-minutes",
+      "index": 12,
+      "hash": "bdb2c276dc91",
+      "file": "c2-two-minutes-12-bdb2c276dc91.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "你别把我刚才说的也剪进去，显得像我抢他的采访。",
+      "id": "c2-two-minutes-13",
+      "scene": "c2-two-minutes",
+      "index": 13,
+      "hash": "0ef845cf0504",
+      "file": "c2-two-minutes-13-0ef845cf0504.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你也会紧张自己上镜好不好看？",
+      "id": "c2-two-minutes-14",
+      "scene": "c2-two-minutes",
+      "index": 14,
+      "hash": "3aaa0c697f93",
+      "file": "c2-two-minutes-14-3aaa0c697f93.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "当然。老了也不是不用好看。",
+      "id": "c2-two-minutes-15",
+      "scene": "c2-two-minutes",
+      "index": 15,
+      "hash": "38ae4f4306c5",
+      "file": "c2-two-minutes-15-38ae4f4306c5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚在一旁抬了抬手里的豆浆，像在为这句话干杯。予晴把镜头盖好，突然很想保留这种没有被机位包住的早晨。",
+      "id": "c2-two-minutes-16",
+      "scene": "c2-two-minutes",
+      "index": 16,
+      "hash": "1a6cd91fe8ea",
+      "file": "c2-two-minutes-16-1a6cd91fe8ea.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "读卡器今天工作得很安静。仲溪坐在予晴旁边，把每一段录像的授权状态逐项填进表格。",
+      "id": "c2-morning-edit-0",
+      "scene": "c2-morning-edit",
+      "index": 0,
+      "hash": "2ef0cd747116",
+      "file": "c2-morning-edit-0-2ef0cd747116.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "昨天的拍摄方向，今天要变成实际安排。我们不能只在试片时说得好听。",
+      "id": "c2-morning-edit-1",
+      "scene": "c2-morning-edit",
+      "index": 1,
+      "hash": "03e6fecbdec5",
+      "file": "c2-morning-edit-1-03e6fecbdec5.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我知道。我想先从许叔那台收音机开始。他说愿意带我们去看看。",
+      "id": "c2-morning-edit-2",
+      "scene": "c2-morning-edit",
+      "index": 2,
+      "hash": "d4746c4dc4e0",
+      "file": "c2-morning-edit-2-d4746c4dc4e0.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "可以。设备只借到晚上九点，去之前要留够返回的时间。",
+      "id": "c2-morning-edit-3",
+      "scene": "c2-morning-edit",
+      "index": 3,
+      "hash": "c204e5b50df7",
+      "file": "c2-morning-edit-3-c204e5b50df7.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把许叔看回放的半小时也写进去。仲溪没有说采访已经结束，不必再占时间，她只把下午的备份提前了。",
+      "id": "c2-morning-edit-4",
+      "scene": "c2-morning-edit",
+      "index": 4,
+      "hash": "d21c60524e45",
+      "file": "c2-morning-edit-4-d21c60524e45.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "我上午和苏时安确认过，他没有把你昨天的意见改成“初步建议”。正式邮件里，每一条都保留了。",
+      "id": "c2-morning-edit-5",
+      "scene": "c2-morning-edit",
+      "index": 5,
+      "hash": "9f70f52e9509",
+      "file": "c2-morning-edit-5-9f70f52e9509.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "他是不是很擅长让合作看起来顺利？",
+      "id": "c2-morning-edit-6",
+      "scene": "c2-morning-edit",
+      "index": 6,
+      "hash": "df2485443f33",
+      "file": "c2-morning-edit-6-df2485443f33.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "擅长。但顺利也不一定是假。他能拿到钱、愿意把限制写清楚，这部分是真的。你可以欣赏，又不必把所有信任一次给完。",
+      "id": "c2-morning-edit-7",
+      "scene": "c2-morning-edit",
+      "index": 7,
+      "hash": "3381ed37fcaf",
+      "file": "c2-morning-edit-7-3381ed37fcaf.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪说完自己也笑了一下。",
+      "id": "c2-morning-edit-8",
+      "scene": "c2-morning-edit",
+      "index": 8,
+      "hash": "c93550352299",
+      "file": "c2-morning-edit-8-c93550352299.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "听起来像我在介绍对象。我是在介绍项目接口，先别误会。",
+      "id": "c2-morning-edit-9",
+      "scene": "c2-morning-edit",
+      "index": 9,
+      "hash": "edf08779eaa1",
+      "file": "c2-morning-edit-9-edf08779eaa1.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那我能不能要求项目接口少发一点凌晨一点的邮件？",
+      "id": "c2-morning-edit-10",
+      "scene": "c2-morning-edit",
+      "index": 10,
+      "hash": "b39560575537",
+      "file": "c2-morning-edit-10-b39560575537.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "你自己提。我不负责你们的睡眠管理。",
+      "id": "c2-morning-edit-11",
+      "scene": "c2-morning-edit",
+      "index": 11,
+      "hash": "a45e07b19a08",
+      "file": "c2-morning-edit-11-a45e07b19a08.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把素材拖到时间线上。许叔的第一句话很拘谨，后面逐渐活起来。昨天的几种想法，现在必须变成今天的一个具体动作。",
+      "id": "c2-morning-edit-12",
+      "scene": "c2-morning-edit",
+      "index": 12,
+      "hash": "06950fbead35",
+      "file": "c2-morning-edit-12-06950fbead35.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把那段收音机的故事单独放出来，保留了开头的拘谨，也保留了许叔讲错型号后自己纠正的笑声。",
+      "id": "c2-plan-truth-0",
+      "scene": "c2-plan-truth",
+      "index": 0,
+      "hash": "1b520abffd0f",
+      "file": "c2-plan-truth-0-1b520abffd0f.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这一版不替他总结。他讲完以后，停在那个“后来我才明白”就好。",
+      "id": "c2-plan-truth-1",
+      "scene": "c2-plan-truth",
+      "index": 1,
+      "hash": "3da07dc5c70e",
+      "file": "c2-plan-truth-1-3da07dc5c70e.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "最后的停顿有六秒。",
+      "id": "c2-plan-truth-2",
+      "scene": "c2-plan-truth",
+      "index": 2,
+      "hash": "12fd704056a2",
+      "file": "c2-plan-truth-2-12fd704056a2.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "可以短一点。只是别用一行字幕把它变成“科技让记忆重生”。",
+      "id": "c2-plan-truth-3",
+      "scene": "c2-plan-truth",
+      "index": 3,
+      "hash": "cc81d9fbb6e2",
+      "file": "c2-plan-truth-3-cc81d9fbb6e2.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "懂。那句话我都替资助方想到字体了。",
+      "id": "c2-plan-truth-4",
+      "scene": "c2-plan-truth",
+      "index": 4,
+      "hash": "c8c816b4abc0",
+      "file": "c2-plan-truth-4-c8c816b4abc0.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "两人对着那段波形笑了一会儿。共同知道一句话哪里不对，还不等于共同做出更好的片子，但至少比假装满意容易呼吸。",
+      "id": "c2-plan-truth-5",
+      "scene": "c2-plan-truth",
+      "index": 5,
+      "hash": "6f70e92ded0f",
+      "file": "c2-plan-truth-5-6f70e92ded0f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪把草稿发给许叔，没有附上必须当天回复的要求。予晴顺手把素材表里“人物情绪：怀旧”改成了“人物表达：自行确认”。",
+      "id": "c2-plan-truth-6",
+      "scene": "c2-plan-truth",
+      "index": 6,
+      "hash": "d0c047221b1b",
+      "file": "c2-plan-truth-6-d0c047221b1b.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "今晚试映这一段，可以让他自己介绍。他不想说的话，我们再替他说明。",
+      "id": "c2-plan-truth-7",
+      "scene": "c2-plan-truth",
+      "index": 7,
+      "hash": "0bf6cfbfb2c0",
+      "file": "c2-plan-truth-7-0bf6cfbfb2c0.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "好。他那台收音机的杂音，留给观众自己听。",
+      "id": "c2-plan-truth-8",
+      "scene": "c2-plan-truth",
+      "index": 8,
+      "hash": "7912e73ea2c0",
+      "file": "c2-plan-truth-8-7912e73ea2c0.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "时间线上的音乐轨仍然空着。予晴第一次觉得，留白也能是一项已经完成的工作，而不是偷懒的解释。",
+      "id": "c2-plan-truth-9",
+      "scene": "c2-plan-truth",
+      "index": 9,
+      "hash": "fd4737c3ff28",
+      "file": "c2-plan-truth-9-fd4737c3ff28.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴没有马上剪片。她先把几段采访的问题打印出来，留出足够大的空白，让今晚参加讨论的人可以直接写意见。",
+      "id": "c2-plan-dialogue-0",
+      "scene": "c2-plan-dialogue",
+      "index": 0,
+      "hash": "a0be0054a6a9",
+      "file": "c2-plan-dialogue-0-a0be0054a6a9.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "我把地图里的空位加上了返回按钮。不会再让人为了退出一个故事，退出整个地图。",
+      "id": "c2-plan-dialogue-1",
+      "scene": "c2-plan-dialogue",
+      "index": 1,
+      "hash": "1ddf7495f525",
+      "file": "c2-plan-dialogue-1-1ddf7495f525.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这句话比功能说明好。",
+      "id": "c2-plan-dialogue-2",
+      "scene": "c2-plan-dialogue",
+      "index": 2,
+      "hash": "e259adde35cb",
+      "file": "c2-plan-dialogue-2-e259adde35cb.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "那要不要写在开场？",
+      "id": "c2-plan-dialogue-3",
+      "scene": "c2-plan-dialogue",
+      "index": 3,
+      "hash": "8c3102295919",
+      "file": "c2-plan-dialogue-3-8c3102295919.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "不用。让按钮自己说明就行。",
+      "id": "c2-plan-dialogue-4",
+      "scene": "c2-plan-dialogue",
+      "index": 4,
+      "hash": "c541c3988073",
+      "file": "c2-plan-dialogue-4-c541c3988073.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "周嘉禾拿着打印纸坐到地上，检查每一行有没有被裁掉。仲溪看见他的姿势，给他挪来一张椅子，他才发现自己刚才一直在蹲着。",
+      "id": "c2-plan-dialogue-5",
+      "scene": "c2-plan-dialogue",
+      "index": 5,
+      "hash": "e40e0364efbf",
+      "file": "c2-plan-dialogue-5-e40e0364efbf.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "我们只能印二十份，多的让人两人共用。讨论会开始之前，要把可以不留名这件事讲清楚。",
+      "id": "c2-plan-dialogue-6",
+      "scene": "c2-plan-dialogue",
+      "index": 6,
+      "hash": "e0ce7abe0e67",
+      "file": "c2-plan-dialogue-6-e0ce7abe0e67.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "不用每个人都说。可以交纸条，可以听，也可以离开。",
+      "id": "c2-plan-dialogue-7",
+      "scene": "c2-plan-dialogue",
+      "index": 7,
+      "hash": "e6eaa8d99f88",
+      "file": "c2-plan-dialogue-7-e6eaa8d99f88.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "那我给地图加一个纯看模式，不逼着人第一次打开就写自己的故事。",
+      "id": "c2-plan-dialogue-8",
+      "scene": "c2-plan-dialogue",
+      "index": 8,
+      "hash": "ee8166c3e9a1",
+      "file": "c2-plan-dialogue-8-ee8166c3e9a1.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴抬起头。他把昨晚她说喜欢的地方记住了，却没有拿来要求她再夸一次。",
+      "id": "c2-plan-dialogue-9",
+      "scene": "c2-plan-dialogue",
+      "index": 9,
+      "hash": "56aa71300b0b",
+      "file": "c2-plan-dialogue-9-56aa71300b0b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "二十张纸放在桌上，看起来很普通。它们会占用今晚的时间，也会让这部片少一点早早设好的答案。",
+      "id": "c2-plan-dialogue-10",
+      "scene": "c2-plan-dialogue",
+      "index": 10,
+      "hash": "a333bed7ea29",
+      "file": "c2-plan-dialogue-10-a333bed7ea29.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "苏时安来确认用途时，予晴把剪辑界面分成两条时间线。上面是雨后的街道和海声的灯，下面是许叔的完整访谈。",
+      "id": "c2-plan-beauty-0",
+      "scene": "c2-plan-beauty",
+      "index": 0,
+      "hash": "19ef5dcb6e20",
+      "file": "c2-plan-beauty-0-19ef5dcb6e20.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "宣传版本使用前，镜头里涉及的人单独确认。下面这一版，今天只给参与者和项目组看。",
+      "id": "c2-plan-beauty-1",
+      "scene": "c2-plan-beauty",
+      "index": 1,
+      "hash": "0a25bbf90aae",
+      "file": "c2-plan-beauty-1-0a25bbf90aae.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "可以。邮件里我加了两份授权，不用一个勾选框默认同时同意。",
+      "id": "c2-plan-beauty-2",
+      "scene": "c2-plan-beauty",
+      "index": 2,
+      "hash": "8ddf74cabf0e",
+      "file": "c2-plan-beauty-2-8ddf74cabf0e.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "你们公司的法务喜欢这样的文件吗？",
+      "id": "c2-plan-beauty-3",
+      "scene": "c2-plan-beauty",
+      "index": 3,
+      "hash": "1589610cb93b",
+      "file": "c2-plan-beauty-3-1589610cb93b.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "不喜欢我增加他们的工作量。但已经同意了。",
+      "id": "c2-plan-beauty-4",
+      "scene": "c2-plan-beauty",
+      "index": 4,
+      "hash": "39053f4a438b",
+      "file": "c2-plan-beauty-4-39053f4a438b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把签过的文件放到桌子边上，没有把它们压住那段还没完成的访谈。予晴发现他额角有一点汗，外套却扣得完整。",
+      "id": "c2-plan-beauty-5",
+      "scene": "c2-plan-beauty",
+      "index": 5,
+      "hash": "0a1c7bd19eb0",
+      "file": "c2-plan-beauty-5-0a1c7bd19eb0.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你一路走过来的？",
+      "id": "c2-plan-beauty-6",
+      "scene": "c2-plan-beauty",
+      "index": 6,
+      "hash": "9657c1a7b9e0",
+      "file": "c2-plan-beauty-6-9657c1a7b9e0.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "打车堵在路口。司机说走路快，我相信了。现在我的鞋也相信了。",
+      "id": "c2-plan-beauty-7",
+      "scene": "c2-plan-beauty",
+      "index": 7,
+      "hash": "32f80907b78b",
+      "file": "c2-plan-beauty-7-32f80907b78b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "鞋尖沾了很浅的一片泥。他低头看见予晴注意到了，没装作没有，只把外套脱下来搭在椅背上。",
+      "id": "c2-plan-beauty-8",
+      "scene": "c2-plan-beauty",
+      "index": 8,
+      "hash": "d31523318f8e",
+      "file": "c2-plan-beauty-8-d31523318f8e.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "不用为了让我好受一点，把片子剪得更像广告。条件已经确认，你按这个范围做。",
+      "id": "c2-plan-beauty-9",
+      "scene": "c2-plan-beauty",
+      "index": 9,
+      "hash": "c5ef56006a56",
+      "file": "c2-plan-beauty-9-c5ef56006a56.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把宣传版名字后面加上“用途已确认”。美丽可以是一种表达，但不必假装自己代表了全部的人。",
+      "id": "c2-plan-beauty-10",
+      "scene": "c2-plan-beauty",
+      "index": 10,
+      "hash": "7fae5c764b5e",
+      "file": "c2-plan-beauty-10-7fae5c764b5e.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "外卖送到时，影院里只有一张够干净的折叠桌。段言展开以后发现桌脚长短不一，周嘉禾毫不犹豫把自己的宣传册塞到下面。",
+      "id": "c2-lunch-0",
+      "scene": "c2-lunch",
+      "index": 0,
+      "hash": "13623cd2be0c",
+      "file": "c2-lunch-0-13623cd2be0c.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "这是它目前最稳定的用途。",
+      "id": "c2-lunch-1",
+      "scene": "c2-lunch",
+      "index": 1,
+      "hash": "a0084eda3c44",
+      "file": "c2-lunch-1-a0084eda3c44.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "你原本打算让我把这份带回公司。",
+      "id": "c2-lunch-2",
+      "scene": "c2-lunch",
+      "index": 2,
+      "hash": "f0cd8683f079",
+      "file": "c2-lunch-2-f0cd8683f079.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "你可以带一份没有承担结构力学的。",
+      "id": "c2-lunch-3",
+      "scene": "c2-lunch",
+      "index": 3,
+      "hash": "a2b5616a9ab4",
+      "file": "c2-lunch-3-a2b5616a9ab4.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言把汤盒盖揭开，没有立刻伸手拿走最完整的那一份。他问予晴吃不吃辣，随后把没有红油的放到她面前。",
+      "id": "c2-lunch-4",
+      "scene": "c2-lunch",
+      "index": 4,
+      "hash": "0cb612523087",
+      "file": "c2-lunch-4-0cb612523087.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你怎么知道这一盒没放？",
+      "id": "c2-lunch-5",
+      "scene": "c2-lunch",
+      "index": 5,
+      "hash": "b8a914d52282",
+      "file": "c2-lunch-5-b8a914d52282.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "颜色。猜错了你可以换。别相信我刚才说得很确定。",
+      "id": "c2-lunch-6",
+      "scene": "c2-lunch",
+      "index": 6,
+      "hash": "f05f5376ad07",
+      "file": "c2-lunch-6-f05f5376ad07.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "看颜色有时不可靠。比如清淡的辣椒酱。",
+      "id": "c2-lunch-7",
+      "scene": "c2-lunch",
+      "index": 7,
+      "hash": "80d1eef4ee12",
+      "file": "c2-lunch-7-80d1eef4ee12.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "顾医生，我只是分外卖，不是在做临床诊断。",
+      "id": "c2-lunch-8",
+      "scene": "c2-lunch",
+      "index": 8,
+      "hash": "10605585f36d",
+      "file": "c2-lunch-8-10605585f36d.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "知道。我也是分外卖，所以先尝了一口。",
+      "id": "c2-lunch-9",
+      "scene": "c2-lunch",
+      "index": 9,
+      "hash": "273177853b55",
+      "file": "c2-lunch-9-273177853b55.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚把自己那一盒举高一点。大家终于笑起来。苏时安拿开外套，把它放到椅子背面，第一次没有坐得像随时要开始开会。",
+      "id": "c2-lunch-10",
+      "scene": "c2-lunch",
+      "index": 10,
+      "hash": "35dc6a4cccc6",
+      "file": "c2-lunch-10-35dc6a4cccc6.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "我是不是来得太晚了，已经错过了午饭团队里的职务分配。",
+      "id": "c2-lunch-11",
+      "scene": "c2-lunch",
+      "index": 11,
+      "hash": "36c1a21e0a3b",
+      "file": "c2-lunch-11-36c1a21e0a3b.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "没有。你负责提醒我们，不要把汤放在借来的硬盘旁边。",
+      "id": "c2-lunch-12",
+      "scene": "c2-lunch",
+      "index": 12,
+      "hash": "c956b4295e64",
+      "file": "c2-lunch-12-c956b4295e64.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "那我申请拥有实际执行权。",
+      "id": "c2-lunch-13",
+      "scene": "c2-lunch",
+      "index": 13,
+      "hash": "12d1a7cf5ffa",
+      "file": "c2-lunch-13-12d1a7cf5ffa.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把硬盘挪到墙边。予晴看着这一桌的人，想起昨晚收到的四条工作消息。现在这些名字终于有了吃饭的速度、不喜欢的配菜，和某句玩笑讲完以后会不会笑出声的区别。",
+      "id": "c2-lunch-14",
+      "scene": "c2-lunch",
+      "index": 14,
+      "hash": "956ec08bcf95",
+      "file": "c2-lunch-14-956ec08bcf95.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言的手机响了两次。他看见号码，转身走到雨棚外，回来时没有提。苏时安问晚上需要几路声音，段言停顿了一下，才回答两路足够。",
+      "id": "c2-lunch-15",
+      "scene": "c2-lunch",
+      "index": 15,
+      "hash": "034efcb2519d",
+      "file": "c2-lunch-15-034efcb2519d.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "午饭结束前，予晴有一点空余时间。有人想先去看旧放映室，有人要回工作地方，还有一个人说自己不急，但已经第三次看了钟。",
+      "id": "c2-lunch-16",
+      "scene": "c2-lunch",
+      "index": 16,
+      "hash": "9ef425372777",
+      "file": "c2-lunch-16-9ef425372777.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "海边离影院只有两个路口。段言带来的录音笔很小，装在一只毛茸茸的防风罩里。予晴忍了半路，还是问它像不像一只没睡醒的动物。",
+      "id": "c2-duan-sea-0",
+      "scene": "c2-duan-sea",
+      "index": 0,
+      "hash": "b31739cb0566",
+      "file": "c2-duan-sea-0-b31739cb0566.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "像。我每次拿出来，林老师都说我带了一个新的打扫工具。",
+      "id": "c2-duan-sea-1",
+      "scene": "c2-duan-sea",
+      "index": 1,
+      "hash": "33a480ecae2a",
+      "file": "c2-duan-sea-1-33a480ecae2a.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "没有名字吗？",
+      "id": "c2-duan-sea-2",
+      "scene": "c2-duan-sea",
+      "index": 2,
+      "hash": "4095b49ac9ac",
+      "file": "c2-duan-sea-2-4095b49ac9ac.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "给器材起名字，会不会听起来很舍不得换新的。",
+      "id": "c2-duan-sea-3",
+      "scene": "c2-duan-sea",
+      "index": 3,
+      "hash": "23af324d7a3c",
+      "file": "c2-duan-sea-3-23af324d7a3c.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "也可能显得你的人际关系比较稳定。",
+      "id": "c2-duan-sea-4",
+      "scene": "c2-duan-sea",
+      "index": 4,
+      "hash": "5ae5ce4ecd2c",
+      "file": "c2-duan-sea-4-5ae5ce4ecd2c.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他笑着把耳机给她一边，自己戴另一边。风声在耳机里没有变小，反而突然变得具体：远处的船、鞋底碰在栏杆上、她说话以前的一次呼吸。",
+      "id": "c2-duan-sea-5",
+      "scene": "c2-duan-sea",
+      "index": 5,
+      "hash": "2276fd9a1885",
+      "file": "c2-duan-sea-5-2276fd9a1885.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这段能用？",
+      "id": "c2-duan-sea-6",
+      "scene": "c2-duan-sea",
+      "index": 6,
+      "hash": "6c63bf859def",
+      "file": "c2-duan-sea-6-6c63bf859def.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "不一定。先听。声音也可以白录一次。",
+      "id": "c2-duan-sea-7",
+      "scene": "c2-duan-sea",
+      "index": 7,
+      "hash": "ee63a09565ee",
+      "file": "c2-duan-sea-7-ee63a09565ee.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴望着远处的海，他看向她，却在她转头以前把目光移开。他的耳机线很短，两个人不能隔得太远，又没有必要靠得更近。",
+      "id": "c2-duan-sea-8",
+      "scene": "c2-duan-sea",
+      "index": 8,
+      "hash": "4b94263b9aa5",
+      "file": "c2-duan-sea-8-4b94263b9aa5.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "刚才的电话，急吗？",
+      "id": "c2-duan-sea-9",
+      "scene": "c2-duan-sea",
+      "index": 9,
+      "hash": "0bccb41d0878",
+      "file": "c2-duan-sea-9-0bccb41d0878.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "巡演的事。不是急事，但他们一直等我确认。我不能等到最后一天，才说自己还没有想清楚。",
+      "id": "c2-duan-sea-10",
+      "scene": "c2-duan-sea",
+      "index": 10,
+      "hash": "d279f8831118",
+      "file": "c2-duan-sea-10-d279f8831118.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你想去？",
+      "id": "c2-duan-sea-11",
+      "scene": "c2-duan-sea",
+      "index": 11,
+      "hash": "8cb2ae108fc9",
+      "file": "c2-duan-sea-11-8cb2ae108fc9.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他没有把问题反问回来，也没有先说自己在这里多重要。",
+      "id": "c2-duan-sea-12",
+      "scene": "c2-duan-sea",
+      "index": 12,
+      "hash": "958fe46582da",
+      "file": "c2-duan-sea-12-958fe46582da.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "想。想得很明确。难的是知道想去以后，怎么把别的事情安排好。",
+      "id": "c2-duan-sea-13",
+      "scene": "c2-duan-sea",
+      "index": 13,
+      "hash": "e8b7ead28adf",
+      "file": "c2-duan-sea-13-e8b7ead28adf.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那我以后问你时间，会先问实际安排，不默认你在影院就有空。",
+      "id": "c2-duan-sea-14",
+      "scene": "c2-duan-sea",
+      "index": 14,
+      "hash": "97d764e52b03",
+      "file": "c2-duan-sea-14-97d764e52b03.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言把耳机音量调低一格。予晴听見录音笔收到了他的一声笑，很短，没有任何好看的修饰。",
+      "id": "c2-duan-sea-15",
+      "scene": "c2-duan-sea",
+      "index": 15,
+      "hash": "29eba78630d9",
+      "file": "c2-duan-sea-15-29eba78630d9.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "听起来，你没有准备把我留下来当配乐机器。",
+      "id": "c2-duan-sea-16",
+      "scene": "c2-duan-sea",
+      "index": 16,
+      "hash": "d2c376324c0d",
+      "file": "c2-duan-sea-16-d2c376324c0d.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "机器不会请人喝豆浆。",
+      "id": "c2-duan-sea-17",
+      "scene": "c2-duan-sea",
+      "index": 17,
+      "hash": "ecce1318f487",
+      "file": "c2-duan-sea-17-ecce1318f487.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "我今天还没请。那记住，我欠一杯。",
+      "id": "c2-duan-sea-18",
+      "scene": "c2-duan-sea",
+      "index": 18,
+      "hash": "a48b5d86a081",
+      "file": "c2-duan-sea-18-a48b5d86a081.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "风从两个人之间经过，耳机线轻轻碰到她的衣袖。予晴没有把这段录音命名为心动，只写了海边，十二点四十。",
+      "id": "c2-duan-sea-19",
+      "scene": "c2-duan-sea",
+      "index": 19,
+      "hash": "5968fbb6917c",
+      "file": "c2-duan-sea-19-5968fbb6917c.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "苏时安把文件塞进包里，拉链合上时才发现予晴也走了出来。",
+      "id": "c2-su-road-0",
+      "scene": "c2-su-road",
+      "index": 0,
+      "hash": "84380ed9240a",
+      "file": "c2-su-road-0-84380ed9240a.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "你是不是要问新的条件？",
+      "id": "c2-su-road-1",
+      "scene": "c2-su-road",
+      "index": 1,
+      "hash": "f17e9f29a191",
+      "file": "c2-su-road-1-f17e9f29a191.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "不是。陪你走一段。你现在要去哪里？",
+      "id": "c2-su-road-2",
+      "scene": "c2-su-road",
+      "index": 2,
+      "hash": "18eb9bf3fe6d",
+      "file": "c2-su-road-2-18eb9bf3fe6d.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "公司。下午有个内部提案，内容和我们这个完全不一样。我需要先把自己切换成另一个人。",
+      "id": "c2-su-road-3",
+      "scene": "c2-su-road",
+      "index": 3,
+      "hash": "5cbabbc147dd",
+      "file": "c2-su-road-3-5cbabbc147dd.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "另一个人怎么说话？",
+      "id": "c2-su-road-4",
+      "scene": "c2-su-road",
+      "index": 4,
+      "hash": "e4f4ac1e750d",
+      "file": "c2-su-road-4-e4f4ac1e750d.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "会说“形成完整传播闭环”，不会说我走路弄脏了鞋。",
+      "id": "c2-su-road-5",
+      "scene": "c2-su-road",
+      "index": 5,
+      "hash": "6716f6c8dac8",
+      "file": "c2-su-road-5-6716f6c8dac8.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴笑起来。他也笑了一下，像第一次听见自己的两种语气在同一句话里碰面。",
+      "id": "c2-su-road-6",
+      "scene": "c2-su-road",
+      "index": 6,
+      "hash": "7353dd04edc7",
+      "file": "c2-su-road-6-7353dd04edc7.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你喜欢哪个？",
+      "id": "c2-su-road-7",
+      "scene": "c2-su-road",
+      "index": 7,
+      "hash": "95f54dc97418",
+      "file": "c2-su-road-7-95f54dc97418.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "都算我。有时候我确实想把一件事说明白，有时候只是害怕别人发现，我还没那么知道自己在做什么。",
+      "id": "c2-su-road-8",
+      "scene": "c2-su-road",
+      "index": 8,
+      "hash": "1f50125fa266",
+      "file": "c2-su-road-8-1f50125fa266.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "过路口时，他没有伸手拉她，只站在她靠车流的一侧。绿灯亮了以后，他仍等到她收好手机才走。",
+      "id": "c2-su-road-9",
+      "scene": "c2-su-road",
+      "index": 9,
+      "hash": "6192dcbcb13b",
+      "file": "c2-su-road-9-6192dcbcb13b.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你昨天说更新以后，更多人会回来。你自己会回来吗？",
+      "id": "c2-su-road-10",
+      "scene": "c2-su-road",
+      "index": 10,
+      "hash": "03a05d716d87",
+      "file": "c2-su-road-10-03a05d716d87.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "我小时候来过。没有你们想的那么熟。大概每年生日一次，因为我爸妈只有那时候愿意一起出门看电影。",
+      "id": "c2-su-road-11",
+      "scene": "c2-su-road",
+      "index": 11,
+      "hash": "961df3e4eab6",
+      "file": "c2-su-road-11-961df3e4eab6.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他说完以后，停在斑马线尽头。这个停顿没有邀请她追问父母后来怎么样，她就把问题留在这一段路里。",
+      "id": "c2-su-road-12",
+      "scene": "c2-su-road",
+      "index": 12,
+      "hash": "ddb0d8a68343",
+      "file": "c2-su-road-12-ddb0d8a68343.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那你把它改好的理由，比预算表里多一点。",
+      "id": "c2-su-road-13",
+      "scene": "c2-su-road",
+      "index": 13,
+      "hash": "11f9327044ad",
+      "file": "c2-su-road-13-11f9327044ad.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "是。但私人理由不能替我证明，公司的方案一定好。你以后也可以不同意我。",
+      "id": "c2-su-road-14",
+      "scene": "c2-su-road",
+      "index": 14,
+      "hash": "3eb240d7c323",
+      "file": "c2-su-road-14-3eb240d7c323.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那我们可以各自保留一个座位，不用坐得一模一样。",
+      "id": "c2-su-road-15",
+      "scene": "c2-su-road",
+      "index": 15,
+      "hash": "d1af63c9efc5",
+      "file": "c2-su-road-15-d1af63c9efc5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他低头看了一眼鞋尖的泥，没有再擦。到了街口，他从包里找出一小包纸巾，递给她。",
+      "id": "c2-su-road-16",
+      "scene": "c2-su-road",
+      "index": 16,
+      "hash": "700e6eac61c0",
+      "file": "c2-su-road-16-700e6eac61c0.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "刚才汤盒边上有油，你袖口蹭到了。我在想，到底什么时候告诉你，比较不像在挑毛病。",
+      "id": "c2-su-road-17",
+      "scene": "c2-su-road",
+      "index": 17,
+      "hash": "52ea72a05cfb",
+      "file": "c2-su-road-17-52ea72a05cfb.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "现在刚好。再晚一点，我就会把它当成衣服本来有的设计。",
+      "id": "c2-su-road-18",
+      "scene": "c2-su-road",
+      "index": 18,
+      "hash": "6788ad87751b",
+      "file": "c2-su-road-18-6788ad87751b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "苏时安笑得比午饭时放松。他上车以前，没有再说我们保持联系，只说晚上见。",
+      "id": "c2-su-road-19",
+      "scene": "c2-su-road",
+      "index": 19,
+      "hash": "4b49079a1b77",
+      "file": "c2-su-road-19-4b49079a1b77.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "外婆的围巾不在她以为的地方。顾砚沿着回廊走了一遍，最后在靠窗的椅背上找到它，叠起来时没有顺手抖掉那片小小的纸。",
+      "id": "c2-gu-steps-0",
+      "scene": "c2-gu-steps",
+      "index": 0,
+      "hash": "4591d7850720",
+      "file": "c2-gu-steps-0-4591d7850720.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这是我的旧电影票。她居然还夹在这里。",
+      "id": "c2-gu-steps-1",
+      "scene": "c2-gu-steps",
+      "index": 1,
+      "hash": "9c31caaeb10d",
+      "file": "c2-gu-steps-1-9c31caaeb10d.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "会不会是怕你认不出围巾。",
+      "id": "c2-gu-steps-2",
+      "scene": "c2-gu-steps",
+      "index": 2,
+      "hash": "1cb929af9562",
+      "file": "c2-gu-steps-2-1cb929af9562.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "她会觉得我认不出自己的东西，但不会忘掉她的东西。",
+      "id": "c2-gu-steps-3",
+      "scene": "c2-gu-steps",
+      "index": 3,
+      "hash": "b590d90dc704",
+      "file": "c2-gu-steps-3-b590d90dc704.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚把票根单独递给她。边角上有一行很浅的铅笔字，是她十六岁那年写的“下一次不迟到”。",
+      "id": "c2-gu-steps-4",
+      "scene": "c2-gu-steps",
+      "index": 4,
+      "hash": "3d7872e2e022",
+      "file": "c2-gu-steps-4-3d7872e2e022.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "没做到。后来还迟到过很多次。",
+      "id": "c2-gu-steps-5",
+      "scene": "c2-gu-steps",
+      "index": 5,
+      "hash": "7db9b6a6953f",
+      "file": "c2-gu-steps-5-7db9b6a6953f.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "这不是合同，应该可以改。",
+      "id": "c2-gu-steps-6",
+      "scene": "c2-gu-steps",
+      "index": 6,
+      "hash": "2f7b511988d9",
+      "file": "c2-gu-steps-6-2f7b511988d9.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴本来在笑，听完以后安静了一点。她把票根放进钱包，没有立刻去改那行字。",
+      "id": "c2-gu-steps-7",
+      "scene": "c2-gu-steps",
+      "index": 7,
+      "hash": "af32d679e422",
+      "file": "c2-gu-steps-7-af32d679e422.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你下午要回医院吗？",
+      "id": "c2-gu-steps-8",
+      "scene": "c2-gu-steps",
+      "index": 8,
+      "hash": "08889fc910b7",
+      "file": "c2-gu-steps-8-08889fc910b7.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "不用。今天休息。等会儿去接我爸，他想看一眼放映机，但不好意思自己来。",
+      "id": "c2-gu-steps-9",
+      "scene": "c2-gu-steps",
+      "index": 9,
+      "hash": "86037c0efc68",
+      "file": "c2-gu-steps-9-86037c0efc68.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "为什么不好意思？",
+      "id": "c2-gu-steps-10",
+      "scene": "c2-gu-steps",
+      "index": 10,
+      "hash": "50fb55115fce",
+      "file": "c2-gu-steps-10-50fb55115fce.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "以前修过一次，后来修坏了另一个地方。他说林老师看见他会想起那件事。",
+      "id": "c2-gu-steps-11",
+      "scene": "c2-gu-steps",
+      "index": 11,
+      "hash": "3ad561d59bb0",
+      "file": "c2-gu-steps-11-3ad561d59bb0.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "她连谁打碎了哪一只杯子都记得。但记得，不一定是在记仇。",
+      "id": "c2-gu-steps-12",
+      "scene": "c2-gu-steps",
+      "index": 12,
+      "hash": "fae610330ff3",
+      "file": "c2-gu-steps-12-fae610330ff3.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚点头，像把这句话存进一个只给自己看的位置。他陪她走到屋门口，门打开时，外婆没有先接围巾，先问他们有没有找到另一只眼镜。",
+      "id": "c2-gu-steps-13",
+      "scene": "c2-gu-steps",
+      "index": 13,
+      "hash": "131050305834",
+      "file": "c2-gu-steps-13-131050305834.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "围巾任务已完成，眼镜任务刚刚收到。",
+      "id": "c2-gu-steps-14",
+      "scene": "c2-gu-steps",
+      "index": 14,
+      "hash": "3b622bef4a56",
+      "file": "c2-gu-steps-14-3b622bef4a56.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我小时候每天都在这个任务系统里，没有结算页。",
+      "id": "c2-gu-steps-15",
+      "scene": "c2-gu-steps",
+      "index": 15,
+      "hash": "192e4f49fe02",
+      "file": "c2-gu-steps-15-192e4f49fe02.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他笑了。予晴忽然发现，他不笑的时候显得很稳，笑起来反而有一点不熟练。不是刻意留给谁的温柔，只是终于不用一直把正确答案拿在手里。",
+      "id": "c2-gu-steps-16",
+      "scene": "c2-gu-steps",
+      "index": 16,
+      "hash": "0f87f868ac51",
+      "file": "c2-gu-steps-16-0f87f868ac51.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "两人重新沿回廊走过去。那一刻，寻找一副眼镜成了一件并不需要急着结束的小事。",
+      "id": "c2-gu-steps-17",
+      "scene": "c2-gu-steps",
+      "index": 17,
+      "hash": "b369845d0446",
+      "file": "c2-gu-steps-17-b369845d0446.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "周嘉禾从前排开始贴座位号，贴到第四个就把顺序弄乱了。他盯着两张贴纸，表情像在排查一个非常不值得排查的问题。",
+      "id": "c2-zhou-seats-0",
+      "scene": "c2-zhou-seats",
+      "index": 0,
+      "hash": "7933bc9fdeb5",
+      "file": "c2-zhou-seats-0-7933bc9fdeb5.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你可以直接揭下来重新贴。",
+      "id": "c2-zhou-seats-1",
+      "scene": "c2-zhou-seats",
+      "index": 1,
+      "hash": "16c4cb41dcd2",
+      "file": "c2-zhou-seats-1-16c4cb41dcd2.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "我知道。我是在理解我刚才为什么这样做。",
+      "id": "c2-zhou-seats-2",
+      "scene": "c2-zhou-seats",
+      "index": 2,
+      "hash": "8c896ce736b7",
+      "file": "c2-zhou-seats-2-8c896ce736b7.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "因为你拿错了？",
+      "id": "c2-zhou-seats-3",
+      "scene": "c2-zhou-seats",
+      "index": 3,
+      "hash": "d5a6b26ece74",
+      "file": "c2-zhou-seats-3-d5a6b26ece74.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "这个结论太快了，没有给我的过程留一点尊严。",
+      "id": "c2-zhou-seats-4",
+      "scene": "c2-zhou-seats",
+      "index": 4,
+      "hash": "67e2d99efdaf",
+      "file": "c2-zhou-seats-4-67e2d99efdaf.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把号码交给他，自己去摆纸杯。几分钟后，她发现他给空着的那张椅子贴上了一个小小的太阳。",
+      "id": "c2-zhou-seats-5",
+      "scene": "c2-zhou-seats",
+      "index": 5,
+      "hash": "24c0a26cf5dd",
+      "file": "c2-zhou-seats-5-24c0a26cf5dd.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这个座位有什么特殊安排？",
+      "id": "c2-zhou-seats-6",
+      "scene": "c2-zhou-seats",
+      "index": 6,
+      "hash": "a116d0cc6082",
+      "file": "c2-zhou-seats-6-a116d0cc6082.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "没有。只是窗外的光会先照到它。很快就照不到了，我想让它至少今天不和别的椅子一样。",
+      "id": "c2-zhou-seats-7",
+      "scene": "c2-zhou-seats",
+      "index": 7,
+      "hash": "a66e17729691",
+      "file": "c2-zhou-seats-7-a66e17729691.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他的地图里，每个座位都有坐过的人。予晴却在这个太阳前停了一会儿，忽然问，没有人讲过故事的位置，也能记录今天吗？",
+      "id": "c2-zhou-seats-8",
+      "scene": "c2-zhou-seats",
+      "index": 8,
+      "hash": "929abb7fd85e",
+      "file": "c2-zhou-seats-8-929abb7fd85e.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "能。记录谁先发现，它其实很亮。",
+      "id": "c2-zhou-seats-9",
+      "scene": "c2-zhou-seats",
+      "index": 9,
+      "hash": "57ec98f9c7b2",
+      "file": "c2-zhou-seats-9-57ec98f9c7b2.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那写你。我是因为贴纸才发现的。",
+      "id": "c2-zhou-seats-10",
+      "scene": "c2-zhou-seats",
+      "index": 10,
+      "hash": "c1f43c4cbf04",
+      "file": "c2-zhou-seats-10-c1f43c4cbf04.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "两个人也行。不用为了让履历看起来干净，只留一个名字。",
+      "id": "c2-zhou-seats-11",
+      "scene": "c2-zhou-seats",
+      "index": 11,
+      "hash": "3de22ee90032",
+      "file": "c2-zhou-seats-11-3de22ee90032.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他低着头说完，耳朵却红了一点。予晴没有立刻用玩笑把这句话盖过去。她把另一张贴纸放到靠过道的位置，画了一个小月亮。",
+      "id": "c2-zhou-seats-12",
+      "scene": "c2-zhou-seats",
+      "index": 12,
+      "hash": "eec60cfbabe6",
+      "file": "c2-zhou-seats-12-eec60cfbabe6.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这里离出口近，我想留给中途要走的人。",
+      "id": "c2-zhou-seats-13",
+      "scene": "c2-zhou-seats",
+      "index": 13,
+      "hash": "8edd8367b662",
+      "file": "c2-zhou-seats-13-8edd8367b662.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "那今晚别把太阳和月亮放在投影上。会有人以为这是我们的主题标识。",
+      "id": "c2-zhou-seats-14",
+      "scene": "c2-zhou-seats",
+      "index": 14,
+      "hash": "5e880fe1bb66",
+      "file": "c2-zhou-seats-14-5e880fe1bb66.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我们的？",
+      "id": "c2-zhou-seats-15",
+      "scene": "c2-zhou-seats",
+      "index": 15,
+      "hash": "d0deedff9a9b",
+      "file": "c2-zhou-seats-15-d0deedff9a9b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "周嘉禾手里的贴纸没拿稳，黏在自己袖子上。他看了两秒，选择先把这个事故处理好。",
+      "id": "c2-zhou-seats-16",
+      "scene": "c2-zhou-seats",
+      "index": 16,
+      "hash": "400a08292fc1",
+      "file": "c2-zhou-seats-16-400a08292fc1.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "工作上的我们。暂时是。",
+      "id": "c2-zhou-seats-17",
+      "scene": "c2-zhou-seats",
+      "index": 17,
+      "hash": "70b69e1aefa5",
+      "file": "c2-zhou-seats-17-70b69e1aefa5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "影厅里没有开始放片，予晴却已经想记住某一个瞬间。",
+      "id": "c2-zhou-seats-18",
+      "scene": "c2-zhou-seats",
+      "index": 18,
+      "hash": "5ca26aaa0fbf",
+      "file": "c2-zhou-seats-18-5ca26aaa0fbf.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "两点的测试准时开始。周嘉禾把三个问题写成一列，第一条后面已经打了勾，另外两条留空。",
+      "id": "c2-afternoon-0",
+      "scene": "c2-afternoon",
+      "index": 0,
+      "hash": "34c3e29972ab",
+      "file": "c2-afternoon-0-34c3e29972ab.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "可以随便点，但先别点左上角。我正在假装它不存在。",
+      "id": "c2-afternoon-1",
+      "scene": "c2-afternoon",
+      "index": 1,
+      "hash": "0829d3638c90",
+      "file": "c2-afternoon-1-0829d3638c90.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那它应该排在测试第一条。",
+      "id": "c2-afternoon-2",
+      "scene": "c2-afternoon",
+      "index": 2,
+      "hash": "8ef1c86dab45",
+      "file": "c2-afternoon-2-8ef1c86dab45.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴一按，地图果然回到入口。周嘉禾没有立刻把电脑夺回去，只拿出笔，在第二条旁边补了一行。仲溪在另一张桌子上做试映字幕，听见他叹气，给他的水杯续满。",
+      "id": "c2-afternoon-3",
+      "scene": "c2-afternoon",
+      "index": 3,
+      "hash": "3d4f798d021f",
+      "file": "c2-afternoon-3-3d4f798d021f.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "今晚不一定要演示全部。你可以只展示稳定的那部分。",
+      "id": "c2-afternoon-4",
+      "scene": "c2-afternoon",
+      "index": 4,
+      "hash": "25cd4fb46647",
+      "file": "c2-afternoon-4-25cd4fb46647.mp3"
+    },
+    {
+      "speaker": "zhou",
+      "text": "会不会看起来像我只做了这么一点？",
+      "id": "c2-afternoon-5",
+      "scene": "c2-afternoon",
+      "index": 5,
+      "hash": "b2854627923d",
+      "file": "c2-afternoon-5-b2854627923d.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "做过多少和今晚能展示多少，可以分别说。不能播放的部分，你也不是没有做。",
+      "id": "c2-afternoon-6",
+      "scene": "c2-afternoon",
+      "index": 6,
+      "hash": "c4b4c2de7cbc",
+      "file": "c2-afternoon-6-c4b4c2de7cbc.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他对着清单看了一会儿，把左上角的按钮暂时隐藏。这个决定没有让他高兴，但让半小时的工作真的能够结束。",
+      "id": "c2-afternoon-7",
+      "scene": "c2-afternoon",
+      "index": 7,
+      "hash": "e4f0b6a1474a",
+      "file": "c2-afternoon-7-e4f0b6a1474a.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "许叔来确认上午的采访，比约定早了五分钟。他把纠正型号的笑声保留了，删掉了一句无关的邻居姓名。予晴重新导出片段，收到段言问晚上还需不需要麦克风的消息。",
+      "id": "c2-afternoon-8",
+      "scene": "c2-afternoon",
+      "index": 8,
+      "hash": "5fe7cd7664e3",
+      "file": "c2-afternoon-8-5fe7cd7664e3.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪把通告放到桌子中间。今晚的试映比原计划多了一段讨论，也有一首正在等声音的人愿意演的小歌。准备时间只剩下两小时。",
+      "id": "c2-afternoon-9",
+      "scene": "c2-afternoon",
+      "index": 9,
+      "hash": "d1b2ab5100c4",
+      "file": "c2-afternoon-9-d1b2ab5100c4.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "我可以盯放映。你挑一个最需要自己在场的准备，其他的让大家分开做。别为了每个人都照顾到，让所有事情都停在一半。",
+      "id": "c2-afternoon-10",
+      "scene": "c2-afternoon",
+      "index": 10,
+      "hash": "e2a8d0700a13",
+      "file": "c2-afternoon-10-e2a8d0700a13.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "这不是一个会被别人评分的答案。予晴必须先承认，自己的两只手确实不能同时拿住全部东西。",
+      "id": "c2-afternoon-11",
+      "scene": "c2-afternoon",
+      "index": 11,
+      "hash": "62cc15b7d03e",
+      "file": "c2-afternoon-11-62cc15b7d03e.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言把麦克风架的高度调到和林老师说话时差不多。他没有一上来就弹歌，而是请予晴站在台下最后一排，听她自己的声音从音箱里返回。",
+      "id": "c2-soundcheck-0",
+      "scene": "c2-soundcheck",
+      "index": 0,
+      "hash": "3cc0ef926886",
+      "file": "c2-soundcheck-0-3cc0ef926886.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我听起来比平时犹豫。",
+      "id": "c2-soundcheck-1",
+      "scene": "c2-soundcheck",
+      "index": 1,
+      "hash": "1a13fbd3413a",
+      "file": "c2-soundcheck-1-1a13fbd3413a.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "音箱没给你加这个效果。",
+      "id": "c2-soundcheck-2",
+      "scene": "c2-soundcheck",
+      "index": 2,
+      "hash": "6294a7d46fc8",
+      "file": "c2-soundcheck-2-6294a7d46fc8.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "谢谢你没有说是设备的问题。",
+      "id": "c2-soundcheck-3",
+      "scene": "c2-soundcheck",
+      "index": 3,
+      "hash": "b7a6ffc5ed7f",
+      "file": "c2-soundcheck-3-b7a6ffc5ed7f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他试着弹了几个和弦，旋律停在一个没有完成的地方。予晴等了一会儿，没有用“很好听”催他把后面也说出来。",
+      "id": "c2-soundcheck-4",
+      "scene": "c2-soundcheck",
+      "index": 4,
+      "hash": "7e74f05826c2",
+      "file": "c2-soundcheck-4-7e74f05826c2.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "这个收尾我改了四次。每次都很像在劝人，别走。",
+      "id": "c2-soundcheck-5",
+      "scene": "c2-soundcheck",
+      "index": 5,
+      "hash": "4893f1738079",
+      "file": "c2-soundcheck-5-4893f1738079.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你想写的不是那个？",
+      "id": "c2-soundcheck-6",
+      "scene": "c2-soundcheck",
+      "index": 6,
+      "hash": "df13e240dcfa",
+      "file": "c2-soundcheck-6-df13e240dcfa.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "不是。我想写，人走了，声音也会留下。听起来差不多，写起来差很多。",
+      "id": "c2-soundcheck-7",
+      "scene": "c2-soundcheck",
+      "index": 7,
+      "hash": "953311eaef45",
+      "file": "c2-soundcheck-7-953311eaef45.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴想起昨晚那把印着海声的伞。他对这里有留恋，但留恋不一定要求所有人留下。",
+      "id": "c2-soundcheck-8",
+      "scene": "c2-soundcheck",
+      "index": 8,
+      "hash": "bff35c291e8d",
+      "file": "c2-soundcheck-8-bff35c291e8d.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "那今晚先演没有完成的版本。告诉大家，你在找一个不劝人留下的结尾。",
+      "id": "c2-soundcheck-9",
+      "scene": "c2-soundcheck",
+      "index": 9,
+      "hash": "7bf7bc5c22d2",
+      "file": "c2-soundcheck-9-7bf7bc5c22d2.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "你会觉得不专业吗？",
+      "id": "c2-soundcheck-10",
+      "scene": "c2-soundcheck",
+      "index": 10,
+      "hash": "55077b1ecc1f",
+      "file": "c2-soundcheck-10-55077b1ecc1f.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我会觉得你真的在写。不是拿一个漂亮的结果来堵住问题。",
+      "id": "c2-soundcheck-11",
+      "scene": "c2-soundcheck",
+      "index": 11,
+      "hash": "2f0f0b1d1c50",
+      "file": "c2-soundcheck-11-2f0f0b1d1c50.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言把最后的和弦轻轻按住，没有再补一个熟悉的终止。他抬头看她，看得比海边那次久了一点。",
+      "id": "c2-soundcheck-12",
+      "scene": "c2-soundcheck",
+      "index": 12,
+      "hash": "5f7284b1c6f2",
+      "file": "c2-soundcheck-12-5f7284b1c6f2.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "好。那你也得听到最后，别只为工作录到一半。",
+      "id": "c2-soundcheck-13",
+      "scene": "c2-soundcheck",
+      "index": 13,
+      "hash": "d8fa903265fc",
+      "file": "c2-soundcheck-13-d8fa903265fc.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴说好。这个约定没有写进拍摄通告，却比某一项时间表留得更清楚。",
+      "id": "c2-soundcheck-14",
+      "scene": "c2-soundcheck",
+      "index": 14,
+      "hash": "d4c37b4cab4a",
+      "file": "c2-soundcheck-14-d4c37b4cab4a.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴留下来做字幕。许叔说话时有几个很短的方言词，她反复听了三遍，没有擅自把它们改成更流畅的句子。",
+      "id": "c2-subtitles-0",
+      "scene": "c2-subtitles",
+      "index": 0,
+      "hash": "74e438c84ad5",
+      "file": "c2-subtitles-0-74e438c84ad5.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "我帮你核对名字和型号。方言不够熟，只能标问题，不能直接改。",
+      "id": "c2-subtitles-1",
+      "scene": "c2-subtitles",
+      "index": 1,
+      "hash": "7038c20c2491",
+      "file": "c2-subtitles-1-7038c20c2491.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你不是说下午有会？",
+      "id": "c2-subtitles-2",
+      "scene": "c2-subtitles",
+      "index": 2,
+      "hash": "2d6be2cc341d",
+      "file": "c2-subtitles-2-2d6be2cc341d.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "结束了。没有顺利到值得开香槟，也没有坏到不想来。",
+      "id": "c2-subtitles-3",
+      "scene": "c2-subtitles",
+      "index": 3,
+      "hash": "32bc677402be",
+      "file": "c2-subtitles-3-32bc677402be.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他坐到另一台电脑前，把袖口卷高，认真核对那些并不出现在宣传提案里的小字。仲溪端来一杯水，看了一眼进度，终于放心去试放映机。",
+      "id": "c2-subtitles-4",
+      "scene": "c2-subtitles",
+      "index": 4,
+      "hash": "7e12cfd3df4b",
+      "file": "c2-subtitles-4-7e12cfd3df4b.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你是不是不太喜欢做没有成果可以展示的工作？",
+      "id": "c2-subtitles-5",
+      "scene": "c2-subtitles",
+      "index": 5,
+      "hash": "45707248c7dc",
+      "file": "c2-subtitles-5-45707248c7dc.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "以前会着急。总想让别人看见我做了多少。现在仍然会，但知道字幕里的错字被改对了，不需要所有人知道是谁改的。",
+      "id": "c2-subtitles-6",
+      "scene": "c2-subtitles",
+      "index": 6,
+      "hash": "cc5325bfe1f9",
+      "file": "c2-subtitles-6-cc5325bfe1f9.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他指着一处括号，问这里是否要标成听不清。予晴听过以后，把不确定的词留在工作备注里，去打电话问许叔。",
+      "id": "c2-subtitles-7",
+      "scene": "c2-subtitles",
+      "index": 7,
+      "hash": "947ef34eb307",
+      "file": "c2-subtitles-7-947ef34eb307.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "你可以直接用一个接近的词。大概没人发现。",
+      "id": "c2-subtitles-8",
+      "scene": "c2-subtitles",
+      "index": 8,
+      "hash": "97650cfae443",
+      "file": "c2-subtitles-8-97650cfae443.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我会发现。以后再想起来，会忘不掉那个大概。",
+      "id": "c2-subtitles-9",
+      "scene": "c2-subtitles",
+      "index": 9,
+      "hash": "5183043bf4cd",
+      "file": "c2-subtitles-9-5183043bf4cd.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "苏时安没有把这句当成批评。他把那一行也留空，等她打完电话回来，再一起补上。",
+      "id": "c2-subtitles-10",
+      "scene": "c2-subtitles",
+      "index": 10,
+      "hash": "6c20baae6264",
+      "file": "c2-subtitles-10-6c20baae6264.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "导出完成时，他把备份文件复制到第二块盘里，认真拔掉连接线。直到这时，予晴才发现两个人已经安静坐了四十分钟，并不觉得难以相处。",
+      "id": "c2-subtitles-11",
+      "scene": "c2-subtitles",
+      "index": 11,
+      "hash": "ef2803768e2c",
+      "file": "c2-subtitles-11-ef2803768e2c.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "这段可以放了。今晚你看最后一排，我看靠过道那边，有人看不清字幕，我们就知道该改哪里。",
+      "id": "c2-subtitles-12",
+      "scene": "c2-subtitles",
+      "index": 12,
+      "hash": "a4ebaec88d6e",
+      "file": "c2-subtitles-12-a4ebaec88d6e.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他没有说我们做得很好，只约好了下一个具体的位置。",
+      "id": "c2-subtitles-13",
+      "scene": "c2-subtitles",
+      "index": 13,
+      "hash": "1eab5833598f",
+      "file": "c2-subtitles-13-1eab5833598f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚带父亲来的时候，先把一张靠近过道的椅子留空。他的父亲姓顾，不愿意让所有人都叫自己顾医生的爸爸，外婆立刻改口叫老顾。",
+      "id": "c2-frontdesk-0",
+      "scene": "c2-frontdesk",
+      "index": 0,
+      "hash": "ae40ba19acce",
+      "file": "c2-frontdesk-0-ae40ba19acce.mp3"
+    },
+    {
+      "speaker": "lin",
+      "text": "放映机那次不是你修坏的。那个零件本来就快坏了，我当时心烦，随口怪了你。还记着？",
+      "id": "c2-frontdesk-1",
+      "scene": "c2-frontdesk",
+      "index": 1,
+      "hash": "b139294ef311",
+      "file": "c2-frontdesk-1-b139294ef311.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "老顾摆摆手，过了一会儿却问，她真的这么想吗。外婆把工具盒打开，递给他一把以前用过的螺丝刀，叫他先看看，不想动手也可以。",
+      "id": "c2-frontdesk-2",
+      "scene": "c2-frontdesk",
+      "index": 2,
+      "hash": "1c6fdf512562",
+      "file": "c2-frontdesk-2-1c6fdf512562.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚一直没有插话。予晴看见他站在旁边，像突然被允许从照顾者的位置退开一点。",
+      "id": "c2-frontdesk-3",
+      "scene": "c2-frontdesk",
+      "index": 3,
+      "hash": "e82c5bda2ec1",
+      "file": "c2-frontdesk-3-e82c5bda2ec1.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你可以和他一起看，我来摆椅子。",
+      "id": "c2-frontdesk-4",
+      "scene": "c2-frontdesk",
+      "index": 4,
+      "hash": "6aaf15703e51",
+      "file": "c2-frontdesk-4-6aaf15703e51.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "好。你需要帮忙就叫我。",
+      "id": "c2-frontdesk-5",
+      "scene": "c2-frontdesk",
+      "index": 5,
+      "hash": "0af9ff832079",
+      "file": "c2-frontdesk-5-0af9ff832079.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他去放映间站了几分钟，回来时耳朵上夹着一支铅笔。予晴指了指，他才想起是父亲让他暂时拿着的。",
+      "id": "c2-frontdesk-6",
+      "scene": "c2-frontdesk",
+      "index": 6,
+      "hash": "f8176a1076b6",
+      "file": "c2-frontdesk-6-f8176a1076b6.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "夹在这里，总比放进不知道哪一个口袋好找。",
+      "id": "c2-frontdesk-7",
+      "scene": "c2-frontdesk",
+      "index": 7,
+      "hash": "5e34e47c91af",
+      "file": "c2-frontdesk-7-5e34e47c91af.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "这个结论，你父亲也说过？",
+      "id": "c2-frontdesk-8",
+      "scene": "c2-frontdesk",
+      "index": 8,
+      "hash": "c72cf5534231",
+      "file": "c2-frontdesk-8-c72cf5534231.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "每次修东西都说。我以前嫌他说太多。",
+      "id": "c2-frontdesk-9",
+      "scene": "c2-frontdesk",
+      "index": 9,
+      "hash": "219bf7a9880a",
+      "file": "c2-frontdesk-9-219bf7a9880a.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把铅笔放到桌上，随后又拿起来，决定还是先还回去。予晴把那些需要中途离开的座位排在过道附近，没把它们变成单独的照顾区。",
+      "id": "c2-frontdesk-10",
+      "scene": "c2-frontdesk",
+      "index": 10,
+      "hash": "07b7dec258cd",
+      "file": "c2-frontdesk-10-07b7dec258cd.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "大家可以和别人坐在一起，也可以随时走。不是只有被特意照顾的人才需要这样的座位。",
+      "id": "c2-frontdesk-11",
+      "scene": "c2-frontdesk",
+      "index": 11,
+      "hash": "a1bc853911a7",
+      "file": "c2-frontdesk-11-a1bc853911a7.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "顾砚回来时，给她带来一张没有写字的纸。",
+      "id": "c2-frontdesk-12",
+      "scene": "c2-frontdesk",
+      "index": 12,
+      "hash": "34015a9fe069",
+      "file": "c2-frontdesk-12-34015a9fe069.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "我爸说让摄影师留着，画放映机结构。他说你记得会比他清楚。",
+      "id": "c2-frontdesk-13",
+      "scene": "c2-frontdesk",
+      "index": 13,
+      "hash": "3e066636ed8a",
+      "file": "c2-frontdesk-13-3e066636ed8a.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "他怎么知道我不会把齿轮画成花。",
+      "id": "c2-frontdesk-14",
+      "scene": "c2-frontdesk",
+      "index": 14,
+      "hash": "1902879e80ab",
+      "file": "c2-frontdesk-14-1902879e80ab.mp3"
+    },
+    {
+      "speaker": "gu",
+      "text": "不知道。他现在愿意把这个猜测交给你。",
+      "id": "c2-frontdesk-15",
+      "scene": "c2-frontdesk",
+      "index": 15,
+      "hash": "f89207e4609c",
+      "file": "c2-frontdesk-15-f89207e4609c.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把纸折好放进笔记本。顾砚看着她，笑得很轻。",
+      "id": "c2-frontdesk-16",
+      "scene": "c2-frontdesk",
+      "index": 16,
+      "hash": "7b71b72be4a4",
+      "file": "c2-frontdesk-16-7b71b72be4a4.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "试映开始前，没有人知道会来多少观众。第一排空了几张，后面却坐得很满。有人是为看电影来的，有人只是想在回家以前等雨变小。",
+      "id": "c2-evening-0",
+      "scene": "c2-evening",
+      "index": 0,
+      "hash": "ecb416e54ae9",
+      "file": "c2-evening-0-ecb416e54ae9.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴没有请大家把手机交出来。她只说明今晚放的是仍在制作的版本，采访对象还可以要求修改，请不要随意转发没有确认的私人片段。",
+      "id": "c2-evening-1",
+      "scene": "c2-evening",
+      "index": 1,
+      "hash": "714980953e17",
+      "file": "c2-evening-1-714980953e17.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "许叔上台时仍然带着那份折好的稿子，但这次只从里面拿出一张写着收音机型号的小纸。他说怕自己再讲错，大家笑了，他也笑了。",
+      "id": "c2-evening-2",
+      "scene": "c2-evening",
+      "index": 2,
+      "hash": "92ecfd5f9a57",
+      "file": "c2-evening-2-92ecfd5f9a57.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "片子放到旧收音机重新开机的地方，影厅里有人跟着那阵杂音轻轻哼了一句。林老师转过头，没让谁保持安静。",
+      "id": "c2-evening-3",
+      "scene": "c2-evening",
+      "index": 3,
+      "hash": "e73db508942f",
+      "file": "c2-evening-3-e73db508942f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴坐在最后一排，看见苏时安认真听字幕最下面的一句话，顾砚父亲的手停在扶手上，周嘉禾看着自己标过太阳的那张椅子。段言的吉他还靠在台边。",
+      "id": "c2-evening-4",
+      "scene": "c2-evening",
+      "index": 4,
+      "hash": "fb27e0a82a2e",
+      "file": "c2-evening-4-fb27e0a82a2e.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "片段结束时，没有立刻响起掌声。最先开口的，是一位住在影院楼上的阿姨。她说片子很好看，但更新的时候能不能先修屋顶，别总问大家舍不舍得。",
+      "id": "c2-evening-5",
+      "scene": "c2-evening",
+      "index": 5,
+      "hash": "1bb7c77058f9",
+      "file": "c2-evening-5-1bb7c77058f9.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "另一个年轻人说，他希望改造以后有新的工作机会，不然这些故事里，年轻人总只是走出去的背影。",
+      "id": "c2-evening-6",
+      "scene": "c2-evening",
+      "index": 6,
+      "hash": "57f8522bffec",
+      "file": "c2-evening-6-57f8522bffec.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "这两句话把影厅里的气氛改变了。苏时安站起来说明自己能确认的部分，刚说到体验空间，一个人便问，以后还能不能像今天一样，只来坐一会儿。",
+      "id": "c2-evening-7",
+      "scene": "c2-evening",
+      "index": 7,
+      "hash": "3b68298355a0",
+      "file": "c2-evening-7-3b68298355a0.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他停下来，没有立即给出保证。予晴知道相机正在录，如果这时用一句温柔的总结结束讨论，今晚会很顺利，后面的事情却可能被那句话关在外面。",
+      "id": "c2-evening-8",
+      "scene": "c2-evening",
+      "index": 8,
+      "hash": "bd2f55e9dd11",
+      "file": "c2-evening-8-bd2f55e9dd11.mp3"
+    },
+    {
+      "speaker": "xi",
+      "text": "我们还有十五分钟。可以讨论，也可以先把没确认的写下来，再约下一次。",
+      "id": "c2-evening-9",
+      "scene": "c2-evening",
+      "index": 9,
+      "hash": "f5082c74e0d9",
+      "file": "c2-evening-9-f5082c74e0d9.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪把目光交给她。段言的手落在琴弦上，准备配合任何一种安排。予晴并不是唯一能回答的人，但她是今晚需要决定，把哪一个问题真正留下的人。",
+      "id": "c2-evening-10",
+      "scene": "c2-evening",
+      "index": 10,
+      "hash": "c680ce28383e",
+      "file": "c2-evening-10-c680ce28383e.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我们可以先不把今晚收成一个结论。苏时安，你能不能把现在不能保证的部分也写下来？不确定，不等于大家不能再问。",
+      "id": "c2-open-discussion-0",
+      "scene": "c2-open-discussion",
+      "index": 0,
+      "hash": "fa4e54c2e06d",
+      "file": "c2-open-discussion-0-fa4e54c2e06d.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "可以。使用时间、商业活动的频率，还有是否需要消费才能进入，这三项我没有最终决定权。今晚的意见我带回去，明天确认谁能正式回应。",
+      "id": "c2-open-discussion-1",
+      "scene": "c2-open-discussion",
+      "index": 1,
+      "hash": "c9b406e920a5",
+      "file": "c2-open-discussion-1-c9b406e920a5.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他把纸放到幕布前面，一条一条写，没有拿自己的生日回忆去劝人相信方案。予晴看见他的字最后越来越大，像终于不再想把所有问题挤进一页很好看的资料。",
+      "id": "c2-open-discussion-2",
+      "scene": "c2-open-discussion",
+      "index": 2,
+      "hash": "132b3d0ffa84",
+      "file": "c2-open-discussion-2-132b3d0ffa84.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "讨论比计划多了十分钟。段言没有弹那首歌，帮大家把麦克风递到更远的位置。予晴向他做了一个抱歉的手势，他点头，沒有立刻说没关系。",
+      "id": "c2-open-discussion-3",
+      "scene": "c2-open-discussion",
+      "index": 3,
+      "hash": "613f710e3ed3",
+      "file": "c2-open-discussion-3-613f710e3ed3.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "散场时他把吉他收回琴盒，拉链停到一半，问予晴是不是觉得这首歌以后再演也一样。",
+      "id": "c2-open-discussion-4",
+      "scene": "c2-open-discussion",
+      "index": 4,
+      "hash": "92b48075d574",
+      "file": "c2-open-discussion-4-92b48075d574.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "不一样。你今天准备好了，我还是临时改变了安排。对不起，我应该更早和你确认，而不是因为你会配合，就默认你不用失望。",
+      "id": "c2-open-discussion-5",
+      "scene": "c2-open-discussion",
+      "index": 5,
+      "hash": "ec8d3b5c64de",
+      "file": "c2-open-discussion-5-ec8d3b5c64de.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "我可以配合，也确实失望。两件事没有互相抵消。",
+      "id": "c2-open-discussion-6",
+      "scene": "c2-open-discussion",
+      "index": 6,
+      "hash": "b9a0a57dfcbd",
+      "file": "c2-open-discussion-6-b9a0a57dfcbd.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "她点头，没有急着找一句话让他重新高兴。段言把琴盒放到地上，在她身边站了一会儿。",
+      "id": "c2-open-discussion-7",
+      "scene": "c2-open-discussion",
+      "index": 7,
+      "hash": "711d3f753a7e",
+      "file": "c2-open-discussion-7-711d3f753a7e.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "下次提前告诉我。不是每次都要照我的计划来，我想至少知道，它什么时候会变。",
+      "id": "c2-open-discussion-8",
+      "scene": "c2-open-discussion",
+      "index": 8,
+      "hash": "adf199ee4425",
+      "file": "c2-open-discussion-8-adf199ee4425.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我会。你愿意的话，明天录一版。我来听，不只录。",
+      "id": "c2-open-discussion-9",
+      "scene": "c2-open-discussion",
+      "index": 9,
+      "hash": "e0dc3b5ac771",
+      "file": "c2-open-discussion-9-e0dc3b5ac771.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言说让他先看时间。这个回答让予晴觉得，她仍然有机会认真修补今晚没接住的东西，却不能把机会当成已经得到的原谅。",
+      "id": "c2-open-discussion-10",
+      "scene": "c2-open-discussion",
+      "index": 10,
+      "hash": "35b9d44fa64c",
+      "file": "c2-open-discussion-10-35b9d44fa64c.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "今晚没能回答的问题，我们先记下来。明天下午把负责回应的人和时间写在影院门口。现在，把约好的十分钟交给段言。",
+      "id": "c2-first-song-0",
+      "scene": "c2-first-song",
+      "index": 0,
+      "hash": "83aff606bdb1",
+      "file": "c2-first-song-0-83aff606bdb1.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴说完，看向苏时安。他把纸留下，认真在日期旁边签了名字。那不是同意所有要求，只是承认这些问题需要下一次回答。",
+      "id": "c2-first-song-1",
+      "scene": "c2-first-song",
+      "index": 1,
+      "hash": "d459ea86d013",
+      "file": "c2-first-song-1-d459ea86d013.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "段言把吉他拿起来，先说今晚的歌没有最后一个和弦。他不是忘记写，是还在想，离开一个地方的人，能不能不把最后一句唱成告别。",
+      "id": "c2-first-song-2",
+      "scene": "c2-first-song",
+      "index": 2,
+      "hash": "3a61cd8e1fb1",
+      "file": "c2-first-song-2-3a61cd8e1fb1.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "琴声很轻，没有因为影院小，就刻意让人觉得心酸。予晴坐在最后一排，看着他的手指从一个和弦移向另一个。录音笔放在腿上，她却没有一直盯着电平。",
+      "id": "c2-first-song-3",
+      "scene": "c2-first-song",
+      "index": 3,
+      "hash": "daff5eb731b7",
+      "file": "c2-first-song-3-daff5eb731b7.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "最后一句唱完，他没有弹下一个声音。观众等了一会儿，忽然有人轻轻笑出来，又有几个人开始鼓掌。这首歌真的停在一个还没想清楚的地方，却没有显得被草草放弃。",
+      "id": "c2-first-song-4",
+      "scene": "c2-first-song",
+      "index": 4,
+      "hash": "f852215610f2",
+      "file": "c2-first-song-4-f852215610f2.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴也鼓掌。段言在幕布前找了她一眼，嘴角有一个几乎没有藏住的笑。",
+      "id": "c2-first-song-5",
+      "scene": "c2-first-song",
+      "index": 5,
+      "hash": "7d9a964a1df3",
+      "file": "c2-first-song-5-7d9a964a1df3.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "谢谢。下一版再让大家听。",
+      "id": "c2-first-song-6",
+      "scene": "c2-first-song",
+      "index": 6,
+      "hash": "d7f1a06bcf22",
+      "file": "c2-first-song-6-d7f1a06bcf22.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "演出后，苏时安把问题表带走，提醒她明天仍需要兑现那份回应。",
+      "id": "c2-first-song-7",
+      "scene": "c2-first-song",
+      "index": 7,
+      "hash": "12a71ffbf706",
+      "file": "c2-first-song-7-12a71ffbf706.mp3"
+    },
+    {
+      "speaker": "su",
+      "text": "刚才气氛很好。我不想让这个“很好”，变成我们不用再做事情的理由。",
+      "id": "c2-first-song-8",
+      "scene": "c2-first-song",
+      "index": 8,
+      "hash": "7d0d997d5726",
+      "file": "c2-first-song-8-7d0d997d5726.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "明天我先问你，不等宣传稿。",
+      "id": "c2-first-song-9",
+      "scene": "c2-first-song",
+      "index": 9,
+      "hash": "5493a7aea525",
+      "file": "c2-first-song-9-5493a7aea525.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他点头，没有为她打断讨论感到被拯救。段言走过来，把录音笔重新交给她。",
+      "id": "c2-first-song-10",
+      "scene": "c2-first-song",
+      "index": 10,
+      "hash": "a8b2de1bd020",
+      "file": "c2-first-song-10-a8b2de1bd020.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "你今天确实听到了最后。",
+      "id": "c2-first-song-11",
+      "scene": "c2-first-song",
+      "index": 11,
+      "hash": "295ff39508f7",
+      "file": "c2-first-song-11-295ff39508f7.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "最后也没有等到一个结尾。",
+      "id": "c2-first-song-12",
+      "scene": "c2-first-song",
+      "index": 12,
+      "hash": "5adcefc1cd18",
+      "file": "c2-first-song-12-5adcefc1cd18.mp3"
+    },
+    {
+      "speaker": "duan",
+      "text": "那好，下次还有理由请你来。",
+      "id": "c2-first-song-13",
+      "scene": "c2-first-song",
+      "index": 13,
+      "hash": "20cb381072bc",
+      "file": "c2-first-song-13-20cb381072bc.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "他不是一个会替所有话找意义的人。这句话却让予晴记到关灯以后。",
+      "id": "c2-first-song-14",
+      "scene": "c2-first-song",
+      "index": 14,
+      "hash": "e58fcf466ac1",
+      "file": "c2-first-song-14-e58fcf466ac1.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "沈乔来得很晚，手里提着两份打包的馄饨。她看见予晴第一句话不是问采访做得怎样，而是说，老板真的记得你不能吃虾。",
+      "id": "c2-afterglow-0",
+      "scene": "c2-afterglow",
+      "index": 0,
+      "hash": "c785b491541a",
+      "file": "c2-afterglow-0-c785b491541a.mp3"
+    },
+    {
+      "speaker": "qiao",
+      "text": "他还说你小时候总把葱挑出来。我替你说明，现在至少能留两根了。",
+      "id": "c2-afterglow-1",
+      "scene": "c2-afterglow",
+      "index": 1,
+      "hash": "16d656b93c74",
+      "file": "c2-afterglow-1-16d656b93c74.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "谢谢你准确报道我的成长。",
+      "id": "c2-afterglow-2",
+      "scene": "c2-afterglow",
+      "index": 2,
+      "hash": "2eeff149040f",
+      "file": "c2-afterglow-2-2eeff149040f.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "两人坐在售票窗口后面吃饭，仲溪来取电池，顺手给她们垫了两张旧海报纸。过去的熟悉并没有因为半年的沉默完全消失，只是需要重新找到放在哪里。",
+      "id": "c2-afterglow-3",
+      "scene": "c2-afterglow",
+      "index": 3,
+      "hash": "85c900a16397",
+      "file": "c2-afterglow-3-85c900a16397.mp3"
+    },
+    {
+      "speaker": "qiao",
+      "text": "我在写更新项目的稿子。今天现场有人打电话给我，说讨论里提到了公共使用时间。",
+      "id": "c2-afterglow-4",
+      "scene": "c2-afterglow",
+      "index": 4,
+      "hash": "300bc7b19e65",
+      "file": "c2-afterglow-4-300bc7b19e65.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "你需要我的素材？",
+      "id": "c2-afterglow-5",
+      "scene": "c2-afterglow",
+      "index": 5,
+      "hash": "d3bb0a61b448",
+      "file": "c2-afterglow-5-d3bb0a61b448.mp3"
+    },
+    {
+      "speaker": "qiao",
+      "text": "需要。但我先来吃饭。你可以拒绝，也可以只给已经确认的那一部分。",
+      "id": "c2-afterglow-6",
+      "scene": "c2-afterglow",
+      "index": 6,
+      "hash": "21705bcf04e0",
+      "file": "c2-afterglow-6-21705bcf04e0.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴把勺子放下，想起她昨晚发来的最后一句。友情里也会有工作，有需要，不会因为亲近就全都变成不会伤人的事情。",
+      "id": "c2-afterglow-7",
+      "scene": "c2-afterglow",
+      "index": 7,
+      "hash": "4830cda9a1a2",
+      "file": "c2-afterglow-7-4830cda9a1a2.mp3"
+    },
+    {
+      "speaker": "me",
+      "text": "我明天先和采访对象确认，再给你公共讨论的记录。不把私下说的话一起交出去。",
+      "id": "c2-afterglow-8",
+      "scene": "c2-afterglow",
+      "index": 8,
+      "hash": "f16bfbcef26b",
+      "file": "c2-afterglow-8-f16bfbcef26b.mp3"
+    },
+    {
+      "speaker": "qiao",
+      "text": "好。我也把用途和可能出现在哪一段先告诉你。这样你不用每次都猜，我是不是只想要一个能发稿的答案。",
+      "id": "c2-afterglow-9",
+      "scene": "c2-afterglow",
+      "index": 9,
+      "hash": "04a5093e6c0b",
+      "file": "c2-afterglow-9-04a5093e6c0b.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "仲溪关掉后期室的灯，回头问予晴明天能不能继续早到。予晴说能，但要先买三杯豆浆。沈乔立刻举手，说那自己也来，就不用把采访做成单人通关。",
+      "id": "c2-afterglow-10",
+      "scene": "c2-afterglow",
+      "index": 10,
+      "hash": "38ee915433f6",
+      "file": "c2-afterglow-10-38ee915433f6.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "影院门口最后一盏灯今天修好了。老顾把坏掉的接头带走，外婆送他时没有再提十几年前那次没修好的机器。",
+      "id": "c2-afterglow-11",
+      "scene": "c2-afterglow",
+      "index": 11,
+      "hash": "7dde5bb48ca8",
+      "file": "c2-afterglow-11-7dde5bb48ca8.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "予晴站在门口，看着几个人往不同方向走。段言去排练，苏时安回办公室，顾砚陪父亲等车，周嘉禾抱着电脑走进还亮着一盏灯的后期室。",
+      "id": "c2-afterglow-12",
+      "scene": "c2-afterglow",
+      "index": 12,
+      "hash": "296e905bbac4",
+      "file": "c2-afterglow-12-296e905bbac4.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "她不需要在今天晚上知道哪一个人会陪她走到最后。但她开始想知道，他们明天会怎样来，又会把什么暂时留在门口。",
+      "id": "c2-afterglow-13",
+      "scene": "c2-afterglow",
+      "index": 13,
+      "hash": "ba8ea1e11ab9",
+      "file": "c2-afterglow-13-ba8ea1e11ab9.mp3"
+    },
+    {
+      "speaker": "n",
+      "text": "手机里，新的通告写到第三行。片子仍然叫未命名。所有人却已经在它里面，留下了可以被认真回应的事情。",
+      "id": "c2-afterglow-14",
+      "scene": "c2-afterglow",
+      "index": 14,
+      "hash": "2ca95f07269e",
+      "file": "c2-afterglow-14-2ca95f07269e.mp3"
+    }
+  ]
+}

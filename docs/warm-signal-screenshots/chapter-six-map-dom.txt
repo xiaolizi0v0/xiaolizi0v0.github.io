@@ -1,0 +1,91 @@
+- main:
+  - button "返回晴川": ‹
+  - generic: OUR STORY · 我们的故事
+  - button "规则"
+  - button "体力补给": ♥ 133/170 ⊕
+  - button "金币商店": ● 88,952 ⊕
+  - button "钻石充值": ◆ 1,407 ⊕
+  - button "上一章": ‹
+  - button "CHAPTER 06 · 普通 明天也在这里 ⌄":
+    - generic: CHAPTER 06 · 普通
+    - generic: 明天也在这里 ⌄
+  - button "下一章" [disabled]: ›
+  - generic "章节地图":
+    - button "普通 6-1 开场前的清单":
+      - generic: ♡
+      - generic: 6-1 开场前的清单
+      - generic: 已珍藏
+    - button "普通 6-2 首映布场 3星":
+      - generic: 6-2 首映布场
+      - generic: ★★★
+    - button "普通 6-3 清晨的布场":
+      - generic: ♡
+      - generic: 6-3 清晨的布场
+      - generic: 已珍藏
+    - button "普通 6-4 第一排 3星":
+      - generic: 6-4 第一排
+      - generic: ★★★
+    - button "普通 6-5 第一排的名字":
+      - generic: ♡
+      - generic: 6-5 第一排的名字
+      - generic: 已珍藏
+    - button "普通 6-6 旧片说明 3星":
+      - generic: 6-6 旧片说明
+      - generic: ★★★
+    - button "普通 6-7 开场之前":
+      - generic: ♡
+      - generic: 6-7 开场之前
+      - generic: 已珍藏
+    - button "普通 6-8 西窗亮起 3星":
+      - generic: 6-8 西窗亮起
+      - generic: ★★★
+    - button "普通 6-9 暖场的另一边":
+      - generic: ♡
+      - generic: 6-9 暖场的另一边
+      - generic: 已珍藏
+    - button "普通 6-10 暖场直播 3星":
+      - generic: 6-10 暖场直播
+      - generic: ★★★
+    - button "普通 6-11 沉默的第一分钟":
+      - generic: ♡
+      - generic: 6-11 沉默的第一分钟
+      - generic: 已珍藏
+    - button "普通 6-12 银幕回声 3星":
+      - generic: 6-12 银幕回声
+      - generic: ★★★
+    - button "普通 6-13 观众的回信":
+      - generic: ♡
+      - generic: 6-13 观众的回信
+      - generic: 已珍藏
+    - button "普通 6-14 街坊回信 3星":
+      - generic: 6-14 街坊回信
+      - generic: ★★★
+    - button "普通 6-15 镜头外的合照":
+      - generic: ♡
+      - generic: 6-15 镜头外的合照
+      - generic: 已珍藏
+    - button "普通 6-16 合照倒数 3星":
+      - generic: 6-16 合照倒数
+      - generic: ★★★
+    - button "普通 6-17 明天也在这里":
+      - generic: ♡
+      - generic: 6-17 明天也在这里
+      - generic: 已珍藏
+    - button "普通 6-18 明天也在这里 3星":
+      - generic: 6-18 明天也在这里
+      - generic: ★★★
+    - generic: 首映的灯亮起。属于你们的春天，这才刚刚开始。
+  - generic: ★ 章节星级 27/27
+  - button "材料背包"
+  - button "9星章节奖励":
+    - generic: ◇
+    - generic: 9星
+  - button "18星章节奖励":
+    - generic: ◇
+    - generic: 18星
+  - button "27星章节奖励":
+    - generic: ◇
+    - generic: 27星
+  - button "普通"
+  - button "精英"
+- status: 故事已珍藏 · 钻石 +20

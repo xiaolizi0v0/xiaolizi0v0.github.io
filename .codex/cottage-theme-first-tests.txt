@@ -1,0 +1,250 @@
+TAP version 13
+# Subtest: each date chooses three distinct persisted tasks from all eight categories without consuming RNG or rerolling on import
+ok 1 - each date chooses three distinct persisted tasks from all eight categories without consuming RNG or rerolling on import
+  ---
+  duration_ms: 258.4041
+  type: 'test'
+  ...
+# Subtest: old daily lists, completed rewards and existing counters migrate without another grant or replacement until 5am
+ok 2 - old daily lists, completed rewards and existing counters migrate without another grant or replacement until 5am
+  ---
+  duration_ms: 4.5279
+  type: 'test'
+  ...
+# Subtest: 5am replaces all eight counters once and preserves jobs, reading and moment sessions; backward time cannot reroll
+ok 3 - 5am replaces all eight counters once and preserves jobs, reading and moment sessions; backward time cannot reroll
+  ---
+  duration_ms: 1.9422
+  type: 'test'
+  ...
+# Subtest: real calls, gifts, explorations, harvests and two natural SR claims populate every category
+ok 4 - real calls, gifts, explorations, harvests and two natural SR claims populate every category
+  ---
+  duration_ms: 2.4565
+  type: 'test'
+  ...
+# Subtest: all eight task types pay their published project rewards once; all-three bonus is shared and pays twenty gems once
+ok 5 - all eight task types pay their published project rewards once; all-three bonus is shared and pays twenty gems once
+  ---
+  duration_ms: 41.3064
+  type: 'test'
+  ...
+# Subtest: exchanges, gift purchases, task rewards and repeated moment playback cannot manufacture collected-resource progress
+ok 6 - exchanges, gift purchases, task rewards and repeated moment playback cannot manufacture collected-resource progress
+  ---
+  duration_ms: 1.6569
+  type: 'test'
+  ...
+# Subtest: stale dates, unselected tasks, invalid identifiers and overflow fail without partial currency or claims
+ok 7 - stale dates, unselected tasks, invalid identifiers and overflow fail without partial currency or claims
+  ---
+  duration_ms: 5.2676
+  type: 'test'
+  ...
+# Subtest: imports reject changed task draws, missing or forged counters, claims for absent or incomplete tasks and invalid legacy flags
+ok 8 - imports reject changed task draws, missing or forged counters, claims for absent or incomplete tasks and invalid legacy flags
+  ---
+  duration_ms: 12.459
+  type: 'test'
+  ...
+# Subtest: an open memo panel refreshes its dated task list at 5am without reopening or granting rewards
+ok 9 - an open memo panel refreshes its dated task list at 5am without reopening or granting rewards
+  ---
+  duration_ms: 5.6928
+  type: 'test'
+  ...
+# Subtest: legacy migration grants the cottage starter kit once without replacing other wallets or progression
+ok 10 - legacy migration grants the cottage starter kit once without replacing other wallets or progression
+  ---
+  duration_ms: 18.6163
+  type: 'test'
+  ...
+# Subtest: ordinary 5-18 gates every resource action and selecting a house does not change daytime companionship
+ok 11 - ordinary 5-18 gates every resource action and selecting a house does not change daytime companionship
+  ---
+  duration_ms: 52.2292
+  type: 'test'
+  ...
+# Subtest: six heroines have 36 independent memories and 24 four-line events with 312 original narrative lines
+ok 12 - six heroines have 36 independent memories and 24 four-line events with 312 original narrative lines
+  ---
+  duration_ms: 0.6759
+  type: 'test'
+  ...
+# Subtest: preferred, neutral, tea and disliked gifts have different intimacy and mood effects
+ok 13 - preferred, neutral, tea and disliked gifts have different intimacy and mood effects
+  ---
+  duration_ms: 2.7393
+  type: 'test'
+  ...
+# Subtest: gift purchases share inventory and a three-per-kind quota across houses, with stale confirmation rejected
+ok 14 - gift purchases share inventory and a three-per-kind quota across houses, with stale confirmation rejected
+  ---
+  duration_ms: 21.4258
+  type: 'test'
+  ...
+# Subtest: depressed mood pauses calling and exploration until one minute elapses or a preferred gift improves it
+ok 15 - depressed mood pauses calling and exploration until one minute elapses or a preferred gift improves it
+  ---
+  duration_ms: 28.9246
+  type: 'test'
+  ...
+# Subtest: intimacy caps at level 50 and every heroine records super-happy status only once
+ok 16 - intimacy caps at level 50 and every heroine records super-happy status only once
+  ---
+  duration_ms: 2.9589
+  type: 'test'
+  ...
+# Subtest: furniture belongs to one home, requires its area, and purchases and area unlocks cannot repeat
+ok 17 - furniture belongs to one home, requires its area, and purchases and area unlocks cannot repeat
+  ---
+  duration_ms: 43.6216
+  type: 'test'
+  ...
+# Subtest: the balcony needs the study, warmth 95 and 80 moonstones, and placements stay in their own floor area
+ok 18 - the balcony needs the study, warmth 95 and 80 moonstones, and placements stay in their own floor area
+  ---
+  duration_ms: 42.9422
+  type: 'test'
+  ...
+# Subtest: hiding and restoring furniture retains ownership and warmth, and all default sprite positions are valid
+ok 19 - hiding and restoring furniture retains ownership and warmth, and all default sprite positions are valid
+  ---
+  duration_ms: 131.3016
+  type: 'test'
+  ...
+# Subtest: plant income starts at exactly fifteen minutes, shares one clock and caps at eight hours
+ok 20 - plant income starts at exactly fifteen minutes, shares one clock and caps at eight hours
+  ---
+  duration_ms: 28.2616
+  type: 'test'
+  ...
+# Subtest: collecting plants uses the selected home level and backward time never generates ticks
+ok 21 - collecting plants uses the selected home level and backward time never generates ticks
+  ---
+  duration_ms: 12.0543
+  type: 'test'
+  ...
+# Subtest: exploration rewards each furniture once daily and permanently collects piano and chess events
+ok 22 - exploration rewards each furniture once daily and permanently collects piano and chess events
+  ---
+  duration_ms: 11.7396
+  type: 'test'
+  ...
+# Subtest: moonstone exchange and speed-card purchases use real shared balances and five/three daily limits
+ok 23 - moonstone exchange and speed-card purchases use real shared balances and five/three daily limits
+  ---
+  duration_ms: 19.2891
+  type: 'test'
+  ...
+# Subtest: all four job rarities use exact offline durations and pay only after a manual one-time claim
+ok 24 - all four job rarities use exact offline durations and pay only after a manual one-time claim
+  ---
+  duration_ms: 74.7756
+  type: 'test'
+  ...
+# Subtest: one global job survives changing heroine and restarting the game without rerolling its event
+ok 25 - one global job survives changing heroine and restarting the game without rerolling its event
+  ---
+  duration_ms: 11.7576
+  type: 'test'
+  ...
+# Subtest: card formations reject duplicates, other heroines and unowned cards and snapshot both 20 percent boosts
+ok 26 - card formations reject duplicates, other heroines and unowned cards and snapshot both 20 percent boosts
+  ---
+  duration_ms: 37.0465
+  type: 'test'
+  ...
+# Subtest: daily free and paid board refreshes retain the running job and all event collections
+ok 27 - daily free and paid board refreshes retain the running job and all event collections
+  ---
+  duration_ms: 2.4801
+  type: 'test'
+  ...
+# Subtest: speed cards only finish timing, and cancelling either a running or completed job grants no rewards
+ok 28 - speed cards only finish timing, and cancelling either a running or completed job grants no rewards
+  ---
+  duration_ms: 20.775
+  type: 'test'
+  ...
+# Subtest: memo rewards and the shared twenty-gem completion pay once and do not reset by selecting another house
+ok 29 - memo rewards and the shared twenty-gem completion pay once and do not reset by selecting another house
+  ---
+  duration_ms: 40.6571
+  type: 'test'
+  ...
+# Subtest: Shanghai 5am resets quotas, memo and exploration while preserving the running job, inventories and bookmarks
+ok 30 - Shanghai 5am resets quotas, memo and exploration while preserving the running job, inventories and bookmarks
+  ---
+  duration_ms: 2.4336
+  type: 'test'
+  ...
+# Subtest: all sixty stories finish, reload and replay freely without granting wallets or repeated read achievements
+ok 31 - all sixty stories finish, reload and replay freely without granting wallets or repeated read achievements
+  ---
+  duration_ms: 178.2165
+  type: 'test'
+  ...
+# Subtest: reading requires each exact level or collected event, supports pause/reload/replay bookmarks and rejects stale steps
+ok 32 - reading requires each exact level or collected event, supports pause/reload/replay bookmarks and rejects stale steps
+  ---
+  duration_ms: 60.4869
+  type: 'test'
+  ...
+# Subtest: all six achievements unlock from real actions and cannot be claimed again
+ok 33 - all six achievements unlock from real actions and cannot be claimed again
+  ---
+  duration_ms: 65.0626
+  type: 'test'
+  ...
+# Subtest: resource overflow and stale confirmation reject gifts, furniture, exchange, harvest and job claims atomically
+ok 34 - resource overflow and stale confirmation reject gifts, furniture, exchange, harvest and job claims atomically
+  ---
+  duration_ms: 68.3626
+  type: 'test'
+  ...
+# Subtest: malformed imports reject forged unlocks, duplicate histories, invalid placements, counters and conflicting identifiers
+ok 35 - malformed imports reject forged unlocks, duplicate histories, invalid placements, counters and conflicting identifiers
+  ---
+  duration_ms: 16.6313
+  type: 'test'
+  ...
+# Subtest: fifty-entry history truncation retains unique order identifiers and totals
+ok 36 - fifty-entry history truncation retains unique order identifiers and totals
+  ---
+  duration_ms: 12.9387
+  type: 'test'
+  ...
+# Subtest: six independent room sources and the transparent atlases retain native dimensions and bounded sprite crops
+ok 37 - six independent room sources and the transparent atlases retain native dimensions and bounded sprite crops
+  ---
+  duration_ms: 44.2653
+  type: 'test'
+  ...
+# Subtest: the live scene enables plant harvest at fifteen minutes without reopening the page
+ok 38 - the live scene enables plant harvest at fifteen minutes without reopening the page
+  ---
+  duration_ms: 5.0953
+  type: 'test'
+  ...
+# Subtest: an open job panel counts down and enables its claim button exactly when offline timing ends
+ok 39 - an open job panel counts down and enables its claim button exactly when offline timing ends
+  ---
+  duration_ms: 3.1939
+  type: 'test'
+  ...
+# Subtest: the UI offers a proportional close view and whole-house view and presents gated memories honestly
+ok 40 - the UI offers a proportional close view and whole-house view and presents gated memories honestly
+  ---
+  duration_ms: 2.8326
+  type: 'test'
+  ...
+1..40
+# tests 40
+# suites 0
+# pass 40
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1299.8014

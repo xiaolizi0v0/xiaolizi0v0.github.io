@@ -1,0 +1,74 @@
+{
+  "version": "20261012-city-painted-1",
+  "gallery": {
+    "figures": [
+      {
+        "name": "晴川书店",
+        "renderer": "canvas-2d"
+      },
+      {
+        "name": "春日花房",
+        "renderer": "canvas-2d"
+      },
+      {
+        "name": "晚风咖啡",
+        "renderer": "canvas-2d"
+      },
+      {
+        "name": "梧桐邮局",
+        "renderer": "canvas-2d"
+      },
+      {
+        "name": "花树",
+        "renderer": "canvas-2d"
+      },
+      {
+        "name": "许愿喷泉",
+        "renderer": "canvas-2d"
+      },
+      {
+        "name": "街角长椅",
+        "renderer": "canvas-2d"
+      },
+      {
+        "name": "春日花箱",
+        "renderer": "canvas-2d"
+      }
+    ],
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "url": "http://127.0.0.1:8765/tools/warm-signal/city-scenery-preview.html",
+    "width": 502
+  },
+  "city": {
+    "canvas": {
+      "characterArt": "illustrated-atlas-v1",
+      "renderer": "canvas-2d",
+      "sceneryArt": "painted-v1"
+    },
+    "map": 0,
+    "p": 5,
+    "scripts": [
+      "http://127.0.0.1:8765/tools/warm-signal/city-content.js?v=20261012-city-painted-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-path.js?v=20261012-city-painted-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-photo.js?v=20261012-city-painted-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-art-frames.js?v=20261012-city-painted-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-art.js?v=20261012-city-painted-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-scenery.js?v=20261012-city-painted-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-view.js?v=20261012-city-painted-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-ui.js?v=20261012-city-painted-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-review.js?v=20261012-city-painted-1"
+    ],
+    "valid": true,
+    "zoom": 0.7
+  },
+  "galleryLogs": [],
+  "cityLogs": [],
+  "landscapeExport": {
+    "width": 1200,
+    "height": 900,
+    "file": "landscape-export.png"
+  },
+  "formalSaveUntouched": true,
+  "rechargeTestsRun": false
+}

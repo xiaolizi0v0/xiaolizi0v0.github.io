@@ -1,0 +1,138 @@
+TAP version 13
+# Subtest: all 114 non-N cards have original phone scenes and explicit acquisition, star and evolution gates
+ok 1 - all 114 non-N cards have original phone scenes and explicit acquisition, star and evolution gates
+  ---
+  duration_ms: 2.7515
+  type: 'test'
+  ...
+# Subtest: fresh phone is playable without paying, with independent six-role archives and one article
+ok 2 - fresh phone is playable without paying, with independent six-role archives and one article
+  ---
+  duration_ms: 12.7888
+  type: 'test'
+  ...
+# Subtest: legacy replies, calls and likes migrate as already rewarded, preserving all old resources
+ok 3 - legacy replies, calls and likes migrate as already rewarded, preserving all old resources
+  ---
+  duration_ms: 16.3791
+  type: 'test'
+  ...
+# Subtest: SMS choices preserve a first answer, reward only on completion, and cannot bypass the choice
+ok 4 - SMS choices preserve a first answer, reward only on completion, and cannot bypass the choice
+  ---
+  duration_ms: 5.41
+  type: 'test'
+  ...
+# Subtest: SMS bookmarks, reply branch and unique session tokens survive export, reload and switching
+ok 5 - SMS bookmarks, reply branch and unique session tokens survive export, reload and switching
+  ---
+  duration_ms: 3.6272
+  type: 'test'
+  ...
+# Subtest: calls may be missed and resumed, require acceptance, and enter recordings only after finishing
+ok 6 - calls may be missed and resumed, require acceptance, and enter recordings only after finishing
+  ---
+  duration_ms: 6.3086
+  type: 'test'
+  ...
+# Subtest: card growth unlocks different entries immediately and non-owned cards cannot be opened
+ok 7 - card growth unlocks different entries immediately and non-owned cards cannot be opened
+  ---
+  duration_ms: 3.5137
+  type: 'test'
+  ...
+# Subtest: star-related content cannot open early and the catalog never grants rewards
+not ok 8 - star-related content cannot open early and the catalog never grants rewards
+  ---
+  duration_ms: 3.0627
+  type: 'test'
+  location: 'C:\\Users\\xiaolizi0v0\\Desktop\\ponselBlog\\xiaolizi0v0.github.io\\tests\\warm-signal-phone.test.cjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    86 !== 82
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 82
+  actual: 86
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\xiaolizi0v0\Desktop\ponselBlog\xiaolizi0v0.github.io\tests\warm-signal-phone.test.cjs:11:288)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: likes, one comment and her branch reply persist and pay affection at most once
+ok 9 - likes, one comment and her branch reply persist and pay affection at most once
+  ---
+  duration_ms: 3.4294
+  type: 'test'
+  ...
+# Subtest: heart progression from an existing game action unlocks phone content before its next failed action
+ok 10 - heart progression from an existing game action unlocks phone content before its next failed action
+  ---
+  duration_ms: 1.8931
+  type: 'test'
+  ...
+# Subtest: mark-read, favorites, articles and replay change no wallet or affection
+ok 11 - mark-read, favorites, articles and replay change no wallet or affection
+  ---
+  duration_ms: 4.2066
+  type: 'test'
+  ...
+# Subtest: six profiles accept only owned heroine photos, preserve remarks, and use warm theme choices
+ok 12 - six profiles accept only owned heroine photos, preserve remarks, and use warm theme choices
+  ---
+  duration_ms: 1.8675
+  type: 'test'
+  ...
+# Subtest: album reveals only owned cards and unlocked SP stage variants, all separately favoritable
+ok 13 - album reveals only owned cards and unlocked SP stage variants, all separately favoritable
+  ---
+  duration_ms: 1.5175
+  type: 'test'
+  ...
+# Subtest: new phone save rejects forged unlocks, malformed bookmarks, foreign photos and duplicates
+ok 14 - new phone save rejects forged unlocks, malformed bookmarks, foreign photos and duplicates
+  ---
+  duration_ms: 17.2107
+  type: 'test'
+  ...
+# Subtest: affection overflow blocks completion and social interactions without consuming their rewards
+ok 15 - affection overflow blocks completion and social interactions without consuming their rewards
+  ---
+  duration_ms: 1.7692
+  type: 'test'
+  ...
+# Subtest: finishing an actual chapter unlocks its afterword and next public article immediately
+ok 16 - finishing an actual chapter unlocks its afterword and next public article immediately
+  ---
+  duration_ms: 3.4095
+  type: 'test'
+  ...
+# Subtest: all four date sections must finish before the corresponding after-date SMS arrives
+ok 17 - all four date sections must finish before the corresponding after-date SMS arrives
+  ---
+  duration_ms: 7.666
+  type: 'test'
+  ...
+# Subtest: every phone entry can complete and replay in a fully unlocked save without duplicate rewards
+ok 18 - every phone entry can complete and replay in a fully unlocked save without duplicate rewards
+  ---
+  duration_ms: 3688.0268
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 17
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3958.3378

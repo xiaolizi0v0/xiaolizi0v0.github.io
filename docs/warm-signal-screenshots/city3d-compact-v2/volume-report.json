@@ -1,0 +1,29 @@
+{
+  "source": "C:\\Users\\xiaolizi0v0\\.codex\\warm-signal-model-runtime\\city3d-runs\\tangli-compact-geometry-v1\\shape.glb",
+  "sourceSHA256": "629d3b08ab8bf2413546f83f7c5dd92719845e5d76f88ce24514ef0cc2681f90",
+  "pitch": 0.012,
+  "closingIterations": 2,
+  "grid": [
+    105,
+    175,
+    84
+  ],
+  "vertices": 78586,
+  "faces": 157172,
+  "watertight": true,
+  "bounds": [
+    [
+      -0.5700000000000001,
+      -1.002,
+      -0.462
+    ],
+    [
+      0.5939999999999999,
+      1.0019999999999998,
+      0.44999999999999996
+    ]
+  ],
+  "sourceUnchanged": true,
+  "seconds": 2.66,
+  "productionReady": false
+}

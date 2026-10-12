@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: photography defaults and all original sticker types are valid without modifying the city view
+ok 1 - photography defaults and all original sticker types are valid without modifying the city view
+  ---
+  duration_ms: 16.2122
+  type: 'test'
+  ...
+# Subtest: separate player and companion poses, framing, zoom and visibility survive export/import exactly
+ok 2 - separate player and companion poses, framing, zoom and visibility survive export/import exactly
+  ---
+  duration_ms: 6.1437
+  type: 'test'
+  ...
+# Subtest: each photograph deep copies its stickers and poses so changing the next shot cannot rewrite the album
+ok 3 - each photograph deep copies its stickers and poses so changing the next shot cannot rewrite the album
+  ---
+  duration_ms: 2.8849
+  type: 'test'
+  ...
+# Subtest: invalid photography data rejects before spending a four-strip coin or recording any task
+ok 4 - invalid photography data rejects before spending a four-strip coin or recording any task
+  ---
+  duration_ms: 5.1899
+  type: 'test'
+  ...
+# Subtest: four-strip snapshot includes its decorations and deducts one game coin once
+ok 5 - four-strip snapshot includes its decorations and deducts one game coin once
+  ---
+  duration_ms: 3.6684
+  type: 'test'
+  ...
+# Subtest: old photos without camera options remain readable alongside new full-screen snapshots
+ok 6 - old photos without camera options remain readable alongside new full-screen snapshots
+  ---
+  duration_ms: 3.5308
+  type: 'test'
+  ...
+# Subtest: forged photo stickers, infinite coordinates and unsupported fields are rejected on import
+ok 7 - forged photo stickers, infinite coordinates and unsupported fields are rejected on import
+  ---
+  duration_ms: 8.3774
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 266.6357

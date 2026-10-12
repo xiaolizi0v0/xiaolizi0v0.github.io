@@ -1,0 +1,12 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const story=require('./story.js');for(const file of fs.readdirSync(__dirname).filter(x=>/^chapter-\d+\.js$/.test(x)).sort())require('./'+file);
+const hash=b=>crypto.createHash('sha256').update(b.speaker+'|'+b.text).digest('hex').slice(0,12);
+const voices=fs.existsSync(path.join(__dirname,'voice-manifest.json'))?JSON.parse(fs.readFileSync(path.join(__dirname,'voice-manifest.json'),'utf8')):{};
+const videos=fs.existsSync(path.join(__dirname,'video-manifest.json'))?JSON.parse(fs.readFileSync(path.join(__dirname,'video-manifest.json'),'utf8')):{};
+const beats=Object.values(story.scenes).flatMap(s=>s.beats);
+const verified=beats.filter(b=>voices[b.id]?.hash===hash(b)&&fs.existsSync(path.join(__dirname,voices[b.id].file)));
+const filmFiles=[...new Set(Object.values(videos).flatMap(v=>v.clips||[]).map(c=>c.file))];
+const chapters=story.chapters.map(c=>({id:c.id,title:c.title,scenes:Object.values(story.scenes).filter(s=>s.chapter===c.id).length}));
+const boundaries=Object.values(story.scenes).flatMap(s=>[...(s.next?[s.next]:[]),...(s.nextBy||[]).map(c=>c.next),...(s.choices||[]).map(c=>c.next)]).filter(id=>!story.scenes[id]);
+const report={status:'in-production',storyScenes:Object.keys(story.scenes).length,dialogueLines:beats.length,scriptHanCharacters:beats.reduce((n,b)=>n+(b.text.match(/[\u3400-\u9fff]/g)||[]).length,0),voicedLines:verified.length,uniqueVoiceMinutes:+(verified.reduce((n,b)=>n+voices[b.id].duration,0)/60).toFixed(2),videoFiles:filmFiles.length,uniqueVideoMinutes:0,productionTargetUniqueMinutes:420,chapters,unwrittenContinuations:[...new Set(boundaries)],missingVoiceLines:beats.filter(b=>!verified.includes(b)).map(b=>b.id)};
+fs.writeFileSync(path.join(__dirname,'production-audit.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({...report,missingVoiceLines:report.missingVoiceLines.length},null,2));

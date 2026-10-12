@@ -1,0 +1,225 @@
+TAP version 13
+# Subtest: legacy saves migrate without claiming memories or changing any existing wallets
+not ok 1 - legacy saves migrate without claiming memories or changing any existing wallets
+  ---
+  duration_ms: 15.6739
+  type: 'test'
+  location: 'C:\\Users\\xiaolizi0v0\\Desktop\\ponselBlog\\xiaolizi0v0.github.io\\tests\\warm-signal-rendezvous.test.cjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        claimed: [],
+        counters: {
+          coinsSpent: 0,
+          courses: 0,
+    ...
+          level: 1,
+    +     main: 108,
+    -     main: 0,
+          news: 0,
+          phone: 0,
+          rare: 0,
+          secrets: 0,
+          shoot: 0,
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    version: 1
+    values:
+      level: 1
+      main: 0
+      company: 1
+      coins: 0
+      course: 0
+      sign: 0
+      expert: 5
+      heart: 0
+      dates: 0
+      phone: 0
+      walk: 0
+      companion: 0
+      secrets: 0
+      shoot: 0
+      news: 0
+      wins: 0
+      trial: 0
+      footage: 0
+      ascension: 0
+      collect: 6
+      rare: 0
+      evolved: 0
+      trained: 0
+      stars: 0
+      sp: 0
+      spstage: 0
+    counters:
+      coinsSpent: 0
+      courses: 0
+      signs: 0
+      wins: 0
+    claimed:
+  actual:
+    version: 1
+    values:
+      level: 1
+      main: 108
+      company: 1
+      coins: 0
+      course: 0
+      sign: 0
+      expert: 5
+      heart: 0
+      dates: 0
+      phone: 0
+      walk: 0
+      companion: 0
+      secrets: 0
+      shoot: 0
+      news: 0
+      wins: 0
+      trial: 0
+      footage: 0
+      ascension: 0
+      collect: 6
+      rare: 0
+      evolved: 0
+      trained: 0
+      stars: 0
+      sp: 0
+      spstage: 0
+    counters:
+      coinsSpent: 0
+      courses: 0
+      signs: 0
+      wins: 0
+    claimed:
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\xiaolizi0v0\Desktop\ponselBlog\xiaolizi0v0.github.io\tests\warm-signal-rendezvous.test.cjs:7:356)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: twelve original stories have two explicit choices, four distinct endings and six personal secrets
+ok 2 - twelve original stories have two explicit choices, four distinct endings and six personal secrets
+  ---
+  duration_ms: 0.38
+  type: 'test'
+  ...
+# Subtest: all 48 paths produce the actual ending, only successful endings collect, and every path receives real rewards
+ok 3 - all 48 paths produce the actual ending, only successful endings collect, and every path receives real rewards
+  ---
+  duration_ms: 94.5819
+  type: 'test'
+  ...
+# Subtest: one glass restores after exactly 12 hours, capacity wastes elapsed full time, and clock rollback grants nothing
+ok 4 - one glass restores after exactly 12 hours, capacity wastes elapsed full time, and clock rollback grants nothing
+  ---
+  duration_ms: 1.0709
+  type: 'test'
+  ...
+# Subtest: two consumed glasses regenerate offline up to two and partial time carries through ordinary actions
+ok 5 - two consumed glasses regenerate offline up to two and partial time carries through ordinary actions
+  ---
+  duration_ms: 4.246
+  type: 'test'
+  ...
+# Subtest: normal gate, invalid role, empty resources and active session cannot consume resources or advance serial
+ok 6 - normal gate, invalid role, empty resources and active session cannot consume resources or advance serial
+  ---
+  duration_ms: 1.6721
+  type: 'test'
+  ...
+# Subtest: glass purchases obey capacity, exact price, two per Shanghai 5am day and stale confirmation protection
+ok 7 - glass purchases obey capacity, exact price, two per Shanghai 5am day and stale confirmation protection
+  ---
+  duration_ms: 5.8954
+  type: 'test'
+  ...
+# Subtest: theme postcards cost 30, cap at 10 purchases, remain after expiry and cannot open outside event window
+ok 8 - theme postcards cost 30, cap at 10 purchases, remain after expiry and cannot open outside event window
+  ---
+  duration_ms: 2.4263
+  type: 'test'
+  ...
+# Subtest: an already started event can finish after closing and its successful memory remains readable
+ok 9 - an already started event can finish after closing and its successful memory remains readable
+  ---
+  duration_ms: 2.192
+  type: 'test'
+  ...
+# Subtest: bookmarks and pre-rolled loot survive reload; stale next and choice tokens are refused
+ok 10 - bookmarks and pre-rolled loot survive reload; stale next and choice tokens are refused
+  ---
+  duration_ms: 2.8048
+  type: 'test'
+  ...
+# Subtest: key, flower and companion ticket rewards update existing shared wallets rather than duplicate resources
+ok 11 - key, flower and companion ticket rewards update existing shared wallets rather than duplicate resources
+  ---
+  duration_ms: 6.9171
+  type: 'test'
+  ...
+# Subtest: abandoning does not award or refund the spent item, and cancelling cannot affect another session
+ok 12 - abandoning does not award or refund the spent item, and cancelling cannot affect another session
+  ---
+  duration_ms: 1.2601
+  type: 'test'
+  ...
+# Subtest: secrets require a daily successful ending and 50 personal items; unlocking is permanent and reading is free
+ok 13 - secrets require a daily successful ending and 50 personal items; unlocking is permanent and reading is free
+  ---
+  duration_ms: 28.9544
+  type: 'test'
+  ...
+# Subtest: locked endings and another character secret cannot be replayed, and replays never create additional loot
+ok 14 - locked endings and another character secret cannot be replayed, and replays never create additional loot
+  ---
+  duration_ms: 3.6685
+  type: 'test'
+  ...
+# Subtest: resource capacity, serial limits and empty diamonds reject before final reward or purchase mutation
+ok 15 - resource capacity, serial limits and empty diamonds reject before final reward or purchase mutation
+  ---
+  duration_ms: 4.8221
+  type: 'test'
+  ...
+# Subtest: malformed state, premature memories, impossible choices and forged reward sessions fail import
+ok 16 - malformed state, premature memories, impossible choices and forged reward sessions fail import
+  ---
+  duration_ms: 8.32
+  type: 'test'
+  ...
+# Subtest: history truncates to 50 entries with unique sessions while permanent endings survive
+ok 17 - history truncates to 50 entries with unique sessions while permanent endings survive
+  ---
+  duration_ms: 61.3898
+  type: 'test'
+  ...
+# Subtest: UI uses daily/event envelopes, respects gated memories and preserves each character scroll independently
+ok 18 - UI uses daily/event envelopes, respects gated memories and preserves each character scroll independently
+  ---
+  duration_ms: 4.9477
+  type: 'test'
+  ...
+# Subtest: auto reading pauses on choices and before leaving the page, and never silently makes a choice
+ok 19 - auto reading pauses on choices and before leaving the page, and never silently makes a choice
+  ---
+  duration_ms: 1.403
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 18
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 399.4629

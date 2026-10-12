@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>唐梨 · 拆层原位检查</title>
+<style>
+#provenance{overflow-wrap:anywhere}
+*{box-sizing:border-box}body{margin:0;background:#f5eee6;color:#61493e;font:14px/1.7 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:24px}header{display:flex;align-items:center;justify-content:space-between;gap:16px}h1{font:26px Georgia,serif;margin:0}h2{font-size:15px;margin:0}.muted{color:#967c6d;font-size:12px}a{color:#a46c76}p{margin:8px 0}.notice,.controls{padding:16px;border:1px solid #e4d4c5;border-radius:12px;background:#fffaf3;margin:16px 0}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.row+.row{margin-top:12px}button,select{font:inherit;padding:8px 12px;border:1px solid #ddcbbc;border-radius:8px;background:#f5e9dd;color:#705345;max-width:100%}button{cursor:pointer}button[aria-pressed=true]{background:#b9858d;color:white}button:disabled{opacity:.5;cursor:default}select{min-width:160px}input[type=range]{accent-color:#ba8790;width:min(280px,55vw)}.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}figure{margin:0;min-width:0}figcaption{padding:8px 0}svg{display:block;width:100%;height:min(66vh,720px);min-height:360px;border-radius:12px;border:1px solid #e1d1c0;background:conic-gradient(#e8e1d9 25%,#faf6f0 0 50%,#e8e1d9 0 75%,#faf6f0 0) 0 0/24px 24px}.error{color:#a34d53}[hidden]{display:none!important}@media(max-width:640px){main{padding:16px}.compare{grid-template-columns:1fr}svg{height:510px}header{align-items:flex-start}h1{font-size:23px}}
+</style>
+<main>
+<header><div><h1>唐梨 · 拆层原位检查</h1><p class="muted">同一画布与镜头，对照默认叠层和独立部件。</p></div><a href="preview.html">返回原画</a></header>
+<div class="notice" id="status" role="status">正在读取实际拆层结果…</div>
+<section id="workbench" hidden>
+<div class="controls">
+<div class="row"><label>素材版本 <select id="version"><option value="seethrough-neutral-v2-garment-v2">遮挡修订 v2 · 待精修</option><option value="seethrough-neutral-v2-order-v1">层序修订 v1 · 未通过</option><option value="seethrough-neutral-v2-s42">自动拆层原始结果 · 未通过</option></select></label></div>
+<div class="row"><button id="whole" type="button">完整画布</button><button id="face" type="button" disabled>检查脸部</button><button id="fit" type="button">放大当前层</button><span class="muted" id="canvasInfo"></span></div>
+<div class="row"><label>检查图层 <select id="layer"></select></label><button id="previous" type="button">上一层</button><button id="next" type="button">下一层</button></div>
+<div class="row" aria-label="图层显示方式"><button data-mode="composite" type="button" aria-pressed="true">PSD 合成图</button><button data-mode="only" type="button" aria-pressed="false">只看当前层</button><button data-mode="without" type="button" aria-pressed="false">隐藏当前层</button></div>
+<div class="row"><label>原画叠加 <input id="overlay" type="range" min="0" max="100" value="0"></label><output id="overlayValue" for="overlay">0%</output></div>
+<p class="muted" id="layerInfo"></p>
+</div>
+<div class="compare">
+<figure><figcaption><h2>原画基准</h2></figcaption><svg id="original" role="img" aria-label="推理使用的原画画布"><image id="reference"/></svg></figure>
+<figure><figcaption><h2 id="resultTitle">PSD 实际合成图</h2></figcaption><svg id="result" role="img" aria-label="拆层检查画布"><image id="composite"/><g id="parts"></g><image id="overlayImage" opacity="0"/></svg></figure>
+</div>
+<div class="notice"><p>检查眼距、鼻唇轮廓、耳饰、发束遮挡和衣物边缘；左右视图始终保持相同坐标，图层不按包围盒拉伸。合成图来自实际 PSD；隐藏图层只用于检查遮挡关系。</p><p class="muted" id="provenance"></p><div class="row"><a id="psdDownload" download>分层 PSD</a><a id="sourceDownload" download>推理原画 PNG</a><a id="manifestDownload" download>图层清单</a></div></div>
+</section>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),namespace='http://www.w3.org/2000/svg';
+let manifest,base,selected=0,mode='composite',partNodes=[];
+function asset(file){const url=new URL(file,base);if(url.origin!==base.origin||!url.pathname.startsWith(base.pathname))throw Error('素材地址超出当前试跑目录');return url.href;}
+function imageNode(file,left,top,width,height){const image=document.createElementNS(namespace,'image');image.setAttribute('href',asset(file));image.setAttribute('x',left);image.setAttribute('y',top);image.setAttribute('width',width);image.setAttribute('height',height);return image;}
+function camera(bounds){for(const id of ['original','result'])$(id).setAttribute('viewBox',bounds.join(' '));}
+function fitPart(part){const padding=Math.max(part.width,part.height)*.12;camera([part.left-padding,part.top-padding,part.width+padding*2,part.height+padding*2]);}
+function update(){const part=manifest.parts[selected];$('layer').value=String(selected);$('layerInfo').textContent=`${part.name} · 坐标 (${part.left}, ${part.top}) · ${part.width} × ${part.height} · ${part.visible?'默认可见':'默认隐藏'} · 不透明度 ${Math.round(part.opacity*100)}%`;
+ $('composite').style.display=mode==='composite'?'':'none';$('parts').style.display=mode==='composite'?'none':'';
+ partNodes.forEach((node,index)=>{node.style.display=(mode==='only'?index===selected:manifest.parts[index].visible&&index!==selected)?'':'none';});
+ document.querySelectorAll('[data-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mode===mode)));
+ $('resultTitle').textContent=mode==='composite'?'PSD 实际合成图':mode==='only'?`独立图层 · ${part.name}`:`隐藏图层 · ${part.name}`;
+ $('previous').disabled=selected===0;$('next').disabled=selected===manifest.parts.length-1;
+}
+$('layer').addEventListener('change',()=>{selected=Number($('layer').value);update();});
+$('previous').addEventListener('click',()=>{if(selected>0){selected--;update();}});$('next').addEventListener('click',()=>{if(selected<manifest.parts.length-1){selected++;update();}});
+document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;update();}));
+$('whole').addEventListener('click',()=>camera([0,0,manifest.width,manifest.height]));$('fit').addEventListener('click',()=>fitPart(manifest.parts[selected]));
+$('face').addEventListener('click',()=>{const face=manifest.parts.find(part=>part.name==='face');if(face)fitPart(face);});
+$('overlay').addEventListener('input',()=>{$('overlayImage').setAttribute('opacity',Number($('overlay').value)/100);$('overlayValue').textContent=$('overlay').value+'%';});
+$('version').addEventListener('change',()=>{location.href='review.html?run='+encodeURIComponent($('version').value);});
+(async()=>{try{
+ const run=new URLSearchParams(location.search).get('run')||'seethrough-neutral-v2-garment-v2';if(!/^[a-z0-9-]+$/.test(run))throw Error('试跑版本名称无效');$('version').value=run;base=new URL(run+'/',location.href);const response=await fetch(asset('manifest.json'));if(!response.ok)throw Error('该版本尚无可检查的拆层清单');manifest=await response.json();
+ if(!Number.isInteger(manifest.width)||!Number.isInteger(manifest.height)||manifest.width<=0||manifest.height<=0||!Array.isArray(manifest.parts)||!manifest.parts.length)throw Error('画布或图层清单不完整');
+ manifest.parts.sort((a,b)=>a.order-b.order);
+ for(const part of manifest.parts){if(![part.left,part.top,part.width,part.height,part.opacity,part.order].every(Number.isFinite)||part.width<=0||part.height<=0||part.opacity<0||part.opacity>1)throw Error('图层坐标或透明度无效');if(part.blendMode!=='norm')throw Error('该试跑包含尚未支持的图层混合方式，不能用普通叠层替代检查');const node=imageNode(part.file,part.left,part.top,part.width,part.height);node.setAttribute('opacity',part.opacity);$('parts').append(node);partNodes.push(node);const option=document.createElement('option');option.value=String(partNodes.length-1);option.textContent=`${partNodes.length}. ${part.name}`;$('layer').append(option);}
+ for(const [id,file] of [['reference',manifest.reference],['overlayImage',manifest.reference],['composite',manifest.composite]]){const node=$(id);node.setAttribute('href',asset(file));node.setAttribute('x',0);node.setAttribute('y',0);node.setAttribute('width',manifest.width);node.setAttribute('height',manifest.height);const decoded=new Image();decoded.src=asset(file);await decoded.decode();if(decoded.naturalWidth!==manifest.width||decoded.naturalHeight!==manifest.height)throw Error('合成图与原画画布不一致');}
+ camera([0,0,manifest.width,manifest.height]);$('face').disabled=!manifest.parts.some(part=>part.name==='face');$('canvasInfo').textContent=`${manifest.width} × ${manifest.height} · ${manifest.parts.length} 层`;
+ const provenance=manifest.provenance||{};$('provenance').textContent=`${provenance.engine||'实际 PSD'} · seed ${provenance.seed??'未记录'} · 源码 ${provenance.sourceCommit||'未记录'} · PSD SHA256 ${manifest.psdSha256||'未记录'}`;
+ $('status').textContent=manifest.status==='rejected-art-quality'?'该试跑未通过美术检查：'+(manifest.rejectionReason||'保留用于分析。')+' 尚未绑定 Live2D。':manifest.status==='needs-art-refinement'?'24 层真实拆层，仍待精修：'+manifest.reviewNotes.join('；')+'。尚未绑定 Live2D。':'实际拆层候选，尚待美术验收；本页没有绑定动画或正式 .moc3。';
+ for(const [id,file] of [['psdDownload',manifest.psd],['sourceDownload',manifest.reference],['manifestDownload','manifest.json']])$(id).href=asset(file);
+ update();$('workbench').hidden=false;
+ }catch(error){$('status').classList.add('error');$('status').textContent='无法检查：'+error.message;}
+})();
+</script>
+</html>

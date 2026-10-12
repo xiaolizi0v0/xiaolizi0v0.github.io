@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5ece1">
+  <title>唐梨 · 三维造型试作</title>
+  <link rel="stylesheet" href="preview.css?v=20261012-toon-4">
+  <script type="importmap">{"imports":{"three":"../../vendor/three.module.js"}}</script>
+</head>
+<body>
+  <main>
+    <header><a href="../../../WarmSignalCityReview.html?scene=art">‹ 返回晴川</a><span>WARM SIGNAL · ART STUDIO</span></header>
+    <div class="intro"><p>角色美术 / 唐梨</p><h1>唐梨的晴川造型</h1><p>小眼睛、哑光色彩与圆润发束。三维试作尚未替换正式角色。</p></div>
+    <div class="workspace">
+      <section class="model-panel" aria-labelledby="model-heading">
+        <div class="panel-heading"><h2 id="model-heading">立体模型</h2><label>造型版本 <select id="variant"><option value="toon" selected>小眼造型试作</option><option value="compact">上一版大眼造型</option></select></label></div>
+        <div id="stage"><p id="loading" role="status">正在载入模型…</p></div>
+        <div class="views" aria-label="查看角度">
+          <button type="button" data-angle="0" aria-pressed="true">正面</button>
+          <button type="button" data-angle="-45" aria-pressed="false">四分之三</button>
+          <button type="button" data-angle="-90" aria-pressed="false">左侧</button>
+          <button type="button" data-angle="90" aria-pressed="false">右侧</button>
+          <button type="button" data-angle="180" aria-pressed="false">背面</button>
+        </div>
+        <div class="options">
+          <label><input id="clay" type="checkbox"> 白模</label>
+          <label><input id="wire" type="checkbox"> 线框</label>
+          <label><input id="rotate" type="checkbox"> 自动旋转</label>
+          <label class="zoom">大小 <input id="zoom" type="range" min="80" max="135" value="100"></label>
+        </div>
+        <p class="hint">拖动模型可旋转；也可使用上方角度按钮。</p>
+        <p id="quality">侧面仍有颜色串位，骨骼与动作尚未制作。</p>
+        <details><summary>模型检查信息</summary><p id="model-info">载入后显示实际网格信息。</p><p>无骨骼与动作 · 独立预览</p><a id="model-download" href="tangli-toon-prototype-v4.glb" download>下载 GLB 试作文件</a></details>
+      </section>
+      <section class="reference-panel" aria-labelledby="reference-heading">
+        <h2 id="reference-heading">造型设计图</h2>
+        <div class="references" data-views="2"><figure data-view="front"><img src="tangli-toon-source-v4.png" alt="唐梨造型正面设计图"><figcaption>正面设计</figcaption></figure><figure data-view="back"><img src="tangli-toon-back-v2.png" alt="唐梨造型背面配色参考"><figcaption>背面配色参考</figcaption></figure></div>
+        <p>参考小眼睛、柔和哑光色彩与宽发束。设计图与实际模型仍有差距，可转动模型或切换上一版对比。</p>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="preview.js?v=20261012-toon-4"></script>
+</body>
+</html>

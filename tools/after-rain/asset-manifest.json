@@ -1,0 +1,100 @@
+[
+  {
+    "key": "cover",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-7c2e0fa8-703e-46d4-b2ac-36b9572c377b.png",
+    "file": "assets/cover.png",
+    "prompt": "Use case: illustration-story. Asset type: original Chinese urban romance interactive anime film key visual, widescreen 16:9, 2048x1152 quality composition. Title artwork WITHOUT ANY text. In a contemporary Chinese coastal city at blue-hour just after summer rain: wet tram street leads to an old art-deco neighborhood cinema, sea visible at end of street, vivid coral and amber windows contrasting midnight indigo, gentle luminous reflections, a realistic lived-in quiet city. Ensemble of five clearly adult characters on lower/right foreground: female documentary photographer age25 with shoulder-length dark auburn hair, side part, cream shirt and muted-teal jacket, crossbody camera; male musician age28 black wavy hair charcoal overshirt with acoustic guitar case; male creative producer age27 neatly styled chestnut hair thin bronze glasses and sand tailored jacket; male physician age30 dark navy straight hair light-blue shirt rolled sleeves with black messenger bag; male independent game developer age25 sandy brown fluffy hair cream hoodie under rust jacket. Elegant detailed hand-drawn 2D anime film illustration, clean expressive facial anatomy, painterly detailed background, restrained romantic tension, ordinary adult clothes. Female protagonist placed slightly ahead, characters looking in different directions, natural conversational arrangement, no harem pose. Left upper third retains quiet beautiful city atmosphere for HTML title overlay. Cinematic wide framing, precise delicate linework, sophisticated summer palette. No logos, no lettering, no watermarks, no UI, no photorealistic faces, no school uniforms.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "street",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-a8cd2767-005f-4fea-bd53-c8d17ded306c.png",
+    "file": "assets/street.png",
+    "prompt": "Use case: illustration-story. Asset type: widescreen 16:9 anime film background plate, no people, no text. A contemporary Chinese coastal city's older neighborhood just after a summer shower at early evening. Eye-level camera on cobbled tram lane, an old art-deco cinema with cream stone and teal doors on right, small cafe awning on left, flowering vines and potted plants, overhead tram wires, puddles reflecting peach and blue sky, far end opening to the ocean. Old cinema has a blank faded sign panel with NO LETTERING. Hand-painted highly detailed premium 2D anime background, delicate ink details, watercolor-like luminous skies, tactile weathered architecture, indigo shadows and warm amber interiors, plausible perspective. Central path clear for character layers, horizon halfway up, room for bottom subtitle overlay. Widescreen 2048x1152 composition. Quiet, intimate, hopeful city mood. No people, no UI, no signage text, no trademark, no watermark.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "studio",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-8e8887e1-4e7d-435f-bf5d-5dfdc986a679.png",
+    "file": "assets/studio.png",
+    "prompt": "Use case: illustration-story. Asset type: 16:9 widescreen anime cinematic background plate, 2048x1152 composition. Cozy professional documentary editing studio in a converted Chinese coastal neighborhood cinema, evening after rain. Warm walnut editing table, two monitors showing abstract untitled color blocks not text, camera equipment shelves, pinned blank contact sheets and postcards, mug, headphones, sound recorder, a large window to a rainy indigo city with amber apartment lights, a hanging plant, curtain lifted slightly, worn upholstered armchair. Eye-level diagonal wide framing, center unobstructed for character cutouts and lower dialogue area, realistic professional space, emotionally inviting. Premium hand-drawn 2D anime film environment, crisp delicate lines and rich painterly textures, amber key light and cool blue rim light, subtle luminous rainy window. No people, no readable lettering, no logo, no UI or watermark.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "duan",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-9a197b19-cd1d-45ba-8713-6f027cb39232.png",
+    "file": "assets/duan.png",
+    "prompt": "Use case: identity-preserve. Asset type: a single anime visual novel character cutout on genuinely transparent background, portrait composition. Reference image is a style and CHARACTER IDENTITY reference, not a background to preserve. Isolate the 28-year-old musician in the reference, black wavy hair and charcoal overshirt, subtle warm expression, dark open collar shirt, guitar strap over shoulder. EXACT same face, hairstyle, adult age, outfit and refined hand-drawn cinematic anime rendering as the corresponding man in the reference. Only this ONE man, standing three-quarter frontal facing slightly left toward player, relaxed arms with clearly drawn natural hands, from top of hair to mid-thigh, fully inside frame with generous transparent margin. A clean polished independent foreground character layer for parallax animation. Soft even neutral lighting so character fits backgrounds; delicate thin linework, restrained blue and amber reflected light, intricate clothing folds. Preserve identity strictly, no redesign. No backdrop, no shadow box, no white fill, no text, no other people, no prop obscuring face. Transparent alpha.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "su",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-a70e6aa3-5540-4056-8447-be9d6fa9e772.png",
+    "file": "assets/su.png",
+    "prompt": "Use case: identity-preserve. Asset type: a single anime visual novel character cutout on genuinely transparent background, portrait composition. Reference image is a style and CHARACTER IDENTITY reference, not a background to preserve. Isolate the 27-year-old creative producer in the reference, neatly styled chestnut hair, thin bronze eyeglasses, sand tailored jacket over light muted sage shirt, polite thoughtful expression. EXACT same face, hairstyle, adult age, outfit and refined hand-drawn cinematic anime rendering as the corresponding man in the reference. Only this ONE man, standing three-quarter frontal facing slightly left toward player, relaxed arms with clearly drawn natural hands, from top of hair to mid-thigh, fully inside frame with generous transparent margin. A clean polished independent foreground character layer for parallax animation. Soft even neutral lighting so character fits backgrounds; delicate thin linework, restrained blue and amber reflected light, intricate clothing folds. Preserve identity strictly, no redesign. No backdrop, no shadow box, no white fill, no text, no other people, no prop obscuring face. Transparent alpha.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "gu",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-93c5a682-cb1e-4c2e-b803-32ba9e634e16.png",
+    "file": "assets/gu.png",
+    "prompt": "Use case: identity-preserve. Asset type: a single anime visual novel character cutout on genuinely transparent background, portrait composition. Reference image is a style and CHARACTER IDENTITY reference, not a background to preserve. Isolate the 30-year-old physician in the reference, straight navy-black hair, light blue shirt rolled sleeves, dark trousers, black shoulder bag strap, calm attentive expression. EXACT same face, hairstyle, adult age, outfit and refined hand-drawn cinematic anime rendering as the corresponding man in the reference. Only this ONE man, standing three-quarter frontal facing slightly left toward player, relaxed arms with clearly drawn natural hands, from top of hair to mid-thigh, fully inside frame with generous transparent margin. A clean polished independent foreground character layer for parallax animation. Soft even neutral lighting so character fits backgrounds; delicate thin linework, restrained blue and amber reflected light, intricate clothing folds. Preserve identity strictly, no redesign. No backdrop, no shadow box, no white fill, no text, no other people, no prop obscuring face. Transparent alpha.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "zhou",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-502959ea-8ab3-419e-adbd-2d7fe0572a75.png",
+    "file": "assets/zhou.png",
+    "prompt": "Use case: identity-preserve. Asset type: a single anime visual novel character cutout on genuinely transparent background, portrait composition. Reference image is a style and CHARACTER IDENTITY reference, not a background to preserve. Isolate the 25-year-old game developer in the reference, fluffy sandy brown hair, cream hoodie under rust-orange casual jacket, headphones around neck, gently playful expression. EXACT same face, hairstyle, adult age, outfit and refined hand-drawn cinematic anime rendering as the corresponding man in the reference. Only this ONE man, standing three-quarter frontal facing slightly left toward player, relaxed arms with clearly drawn natural hands, from top of hair to mid-thigh, fully inside frame with generous transparent margin. A clean polished independent foreground character layer for parallax animation. Soft even neutral lighting so character fits backgrounds; delicate thin linework, restrained blue and amber reflected light, intricate clothing folds. Preserve identity strictly, no redesign. No backdrop, no shadow box, no white fill, no text, no other people, no prop obscuring face. Transparent alpha.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "cover-portrait",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-c84a2dc4-741a-46dc-9024-7a5c032eae87.png",
+    "file": "assets/cover-portrait.png",
+    "prompt": "Use case: illustration-story. Asset type: portrait production game illustration. Reference is style and identity reference. Original polished mobile portrait anime romance film key visual, tall 9:16 composition 1152x2048. Use reference to preserve the identities, faces and outfits of ALL five adult characters: auburn-haired female documentary photographer cream shirt teal jacket; black wavy-haired musician charcoal overshirt; bronze-glasses chestnut-haired producer sand blazer; navy-haired physician light-blue shirt; sandy-haired developer rust jacket cream hoodie. NOT a crop: completely recompose for vertical phone. Blue-hour coastal Chinese tram street after rain, old cinema amber marquee, sea horizon visible. Characters arranged naturally from heroine in mid foreground to four adults behind in alternating depth, each face readable and distinct. Upper 30 percent is beautiful blue/pink sky and weathered upper architecture with no people for HTML title; lower 22 percent puddles and street with no heads for menu controls. Characters occupy middle 50 percent, meaningful subtle glances, calm complex grown-up relationships. Sophisticated detailed 2D anime film, crisp subtle linework, luminous painterly environment same rendering as reference. No text, logos, watermark or UI.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "street-portrait",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-2d17e0df-ea1c-4806-89ca-dcafddf28de8.png",
+    "file": "assets/street-portrait.png",
+    "prompt": "Use case: illustration-story. Asset type: portrait production game illustration. Reference is style and identity reference. A completely new vertical 9:16 1152x2048 ANIME background plate for phone interactive film, style matching reference environment. NO PEOPLE. Chinese coastal old cinema neighborhood at blue hour after rain. Tall cream art-deco cinema facade on right, teal entrance at mid-height, tram tracks receding left-of-center to a visible distant sea horizon, amber canopy lights, weathered balconies, flowering vines, wet cobbles. Upper quarter blue sky and branches, middle half environment with empty space for one foreground character, lower quarter lightly detailed wet pavement to support subtitle overlay. Camera eye level, plausible narrow-street perspective. Fine cinematic hand-drawn anime linework with painterly luminous blue and amber reflections, rich detail. No lettering, no signage characters, no logos, watermark or UI.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "studio-portrait",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-9c456dff-0c6e-4dcd-9722-be6b357fb3cd.png",
+    "file": "assets/studio-portrait.png",
+    "prompt": "Use case: illustration-story. Asset type: portrait production game illustration. Reference is style and identity reference. A NEW vertical 9:16 1152x2048 cinematic anime background plate, NO PEOPLE, style of reference image. Converted old cinema documentary editing studio at night: tall rainy window in upper middle with sea-city indigo lights, warm wooden equipment shelving at left, comfortable armchair to right, an editing desk with two blank monitor displays at bottom-middle, recorder and mug, trailing plant, softly glowing lamp. Middle region intentionally open for character sprite placement, foreground lower quarter dim uncluttered wood floor for subtitle overlay. Strong vertical framing designed from scratch for portrait phone, no crop of landscape. Detailed delicate ink linework, hand-painted anime environment, warm amber light and rich cool-blue window lighting, believable professional room. No readable text, logo, watermark or UI.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "cinema-portrait",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-fe971fc3-0c90-4b90-99f4-fcd336cbd6d8.png",
+    "file": "assets/cinema-portrait.png",
+    "prompt": "Use case: illustration-story. Asset type: portrait production game illustration. Reference is style and identity reference. A NEW tall vertical 9:16 1152x2048 anime film background plate, NO PEOPLE, same refined cinematic handdrawn environment style and blue/amber palette as reference image. Interior of a small old art-deco coastal Chinese neighborhood cinema. Eye-level camera from central aisle, vintage teal upholstered seats arranged either side of uncluttered center aisle, upper half glowing blank pale-cream movie screen with worn proscenium and warm wall sconces. Ornamental old plaster high ceiling, brass trims, nostalgic but well cared for. Middle area clear for layered character foreground, lower 25 percent dim aisle pavement for subtitles. Composition genuinely designed for phone portrait, visible screen at eye level not overhead, subtle perspective depth, detailed ink lines and painterly colored shadows. Quiet intimacy and potential new beginning, not haunted or abandoned. No projected faces, no readable lettering, no logos, watermark or UI.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "xi",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-793a6a6a-a1f2-49d7-a7aa-a0bd7a4b3dcb.png",
+    "file": "assets/xi.png",
+    "prompt": "Use case: illustration-story. Asset type: ONE adult female anime character foreground cutout on genuinely transparent alpha. Reference is STYLE reference only, not the character target. Create original Chinese female documentary producer age29, confident but slightly weary, shoulder-length straight deep brown hair tucked behind one ear, slim small amber hairpin, muted plum-purple button-down shirt rolled sleeves, black practical trousers, silver watch, clipboard held gently at hip, sensible professional outfit. Natural realistic adult proportions, calm direct dark eyes and small reserved smile, three-quarter frontal facing slightly right, framing complete top of hair to middle thighs, generous transparent margin. Detailed refined cinematic hand-drawn 2D anime rendering matches the reference cast, crisp delicate lines, intricate fabric folds, neutral lighting suitable for independent layers. One person only. No background, white fill, text, logos, watermark or other figures.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "lin",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-3727764d-a1b1-49d9-979a-14dabdeb90e7.png",
+    "file": "assets/lin.png",
+    "prompt": "Use case: illustration-story. Asset type: ONE elderly female anime character foreground cutout on genuinely transparent alpha. Reference is STYLE reference only. Original Chinese grandmother cinema projectionist age66, short softly waved salt-and-pepper hair, thin rectangular glasses, lively clear adult eyes, kindly but practical expression, natural age lines without caricature, sage green knitted cardigan over off-white shirt, navy trousers, holding an old cinema key ring at waist. Healthy ordinary older woman not frail symbolic portrait. Three-quarter frontal facing slightly left, full top of hair to middle thighs, generous transparent margin. Delicate refined hand-drawn anime film rendering consistent with reference, believable age and anatomy, refined clothing folds and neutral studio illumination for layered scenes. One character only, no backdrop or white fill, no text, logo, watermark, no extra people.",
+    "mode": "built-in image_gen"
+  },
+  {
+    "key": "duan-rain-shot",
+    "source": "C:\\Users\\xiaolizi0v0\\.codex\\generated_images\\01a0f265-c36d-7a83-ba15-6685b21095e9\\exec-56a96dc6-5557-42ad-85ab-d0c827ca55d1.png",
+    "file": "assets/duan-rain-shot.png",
+    "prompt": "Use case: identity-preserve. Asset type: portrait 9:16 ANIME FILM shot first frame for image-to-video, 1152x2048 composition. Reference image fixes character identity and environment STYLE. The adult male musician with black wavy hair and charcoal overshirt from the reference, exact same face hairstyle and outfit. Medium close-up from chest to head, stands below a cinema awning on a rain-soaked Chinese coastal street at evening blue hour. He is holding a plain black umbrella high in his right hand, with clear anatomically correct grip, handle outside face area. Natural calm attentive expression looking slightly left toward a person off-screen, lips relaxed almost closed. Character centered in middle upper two-thirds so face is large and unobstructed, warm amber cinema light on his cheek and cool rainy blue background. Shallow painted background depth, rain-dappled street behind, no other characters. A clean cinematic anime frame ready for subtle head turn, hair breeze and dialogue, sophisticated delicate hand-drawn lines, detailed eye anatomy, luminous film background, not photorealistic. No text, no UI, no logos, no watermark. Preserve subject adult age and identity strictly.",
+    "mode": "built-in image_gen"
+  }
+]

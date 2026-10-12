@@ -1,0 +1,16 @@
+{
+  "version": "20261012-labyrinth-volume2-2",
+  "js": 104,
+  "styles": 35,
+  "pages": {
+    "tools/WarmSignal.html": {
+      "localTargets": 140,
+      "inlineScripts": 0
+    },
+    "tools/WarmSignalLabyrinthReview.html": {
+      "localTargets": 138,
+      "inlineScripts": 1
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,42 @@
+diff --git a/common/utils/inference_utils.py b/common/utils/inference_utils.py
+index 770c5dc..1bd8052 100644
+--- a/common/utils/inference_utils.py
++++ b/common/utils/inference_utils.py
+@@ -32,16 +32,16 @@ def apply_layerdiff(
+     
+     global layerdiff_pipeline
+     if layerdiff_pipeline is None:
+-        trans_vae = TransparentVAE.from_pretrained(pretrained, subfolder='trans_vae')
++        trans_vae = TransparentVAE.from_pretrained(pretrained, subfolder='trans_vae', torch_dtype=torch.bfloat16)
+         if unet_ckpt is None:
+-            unet = UNetFrameConditionModel.from_pretrained(pretrained, subfolder='unet')
++            unet = UNetFrameConditionModel.from_pretrained(pretrained, subfolder='unet', torch_dtype=torch.bfloat16)
+         else:
+             print(f'load unet from {unet_ckpt}')
+             unet = UNetFrameConditionModel.from_pretrained(unet_ckpt)
+         layerdiff_pipeline = KDiffusionStableDiffusionXLPipeline.from_pretrained(
+             pretrained,
+             trans_vae=trans_vae, unet=unet,
+-            scheduler=None
++            scheduler=None, torch_dtype=torch.bfloat16
+         )
+ 
+         if vae_ckpt is not None:
+@@ -190,8 +190,8 @@ def apply_marigold(srcp, pretrained: str, num_inference_steps=-1, seed=0, save_d
+     resolution=768, normalize_depth=False, disable_progressbar=False, cache_tag_embeds=True, group_offload=False):
+     global marigold_pipeline
+     if marigold_pipeline is None:
+-        unet = UNetFrameConditionModel.from_pretrained(pretrained, subfolder='unet')
+-        marigold_pipeline = MarigoldDepthPipeline.from_pretrained(pretrained, unet=unet)
++        unet = UNetFrameConditionModel.from_pretrained(pretrained, subfolder='unet', torch_dtype=torch.bfloat16)
++        marigold_pipeline = MarigoldDepthPipeline.from_pretrained(pretrained, unet=unet, torch_dtype=torch.bfloat16)
+         marigold_pipeline.to(device='cuda', dtype=torch.bfloat16)
+ 
+         if group_offload:
+@@ -660,4 +660,4 @@ def seg_wlr_psd(srcp, target_tags, savep=None):
+         part_infos['parts'].update(rst_dict)
+ 
+     dump_parts_psd(part_infos['parts'], part_infos['frame_size'], savep)
+-    print(f'psd saved to {savep}')
+\ No newline at end of file
++    print(f'psd saved to {savep}')

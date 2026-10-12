@@ -1,0 +1,240 @@
+[
+  {
+    "file": "tools\\warm-signal\\assets\\cottage-furniture-autumn-v2.png",
+    "size": [
+      1086,
+      1448
+    ],
+    "mode": "RGBA",
+    "sha256": "f7f19472f74dc808508e839f9919ec8776b23b2d866c3a0532a79eeb3a030fde",
+    "crops": [
+      {
+        "rect": [
+          46,
+          81,
+          334,
+          272
+        ],
+        "opaquePixels": 58672
+      },
+      {
+        "rect": [
+          438,
+          67,
+          251,
+          271
+        ],
+        "opaquePixels": 38011
+      },
+      {
+        "rect": [
+          760,
+          131,
+          292,
+          215
+        ],
+        "opaquePixels": 47373
+      },
+      {
+        "rect": [
+          59,
+          390,
+          278,
+          304
+        ],
+        "opaquePixels": 44563
+      },
+      {
+        "rect": [
+          412,
+          404,
+          289,
+          308
+        ],
+        "opaquePixels": 48672
+      },
+      {
+        "rect": [
+          802,
+          391,
+          238,
+          322
+        ],
+        "opaquePixels": 58255
+      },
+      {
+        "rect": [
+          45,
+          738,
+          305,
+          299
+        ],
+        "opaquePixels": 64790
+      },
+      {
+        "rect": [
+          438,
+          743,
+          249,
+          274
+        ],
+        "opaquePixels": 33580
+      },
+      {
+        "rect": [
+          781,
+          754,
+          275,
+          283
+        ],
+        "opaquePixels": 50220
+      },
+      {
+        "rect": [
+          67,
+          1069,
+          292,
+          297
+        ],
+        "opaquePixels": 54911
+      },
+      {
+        "rect": [
+          461,
+          1041,
+          206,
+          313
+        ],
+        "opaquePixels": 42008
+      },
+      {
+        "rect": [
+          723,
+          1122,
+          340,
+          243
+        ],
+        "opaquePixels": 38775
+      }
+    ]
+  },
+  {
+    "file": "tools\\warm-signal\\assets\\cottage-furniture-autumn-v2.webp",
+    "size": [
+      1086,
+      1448
+    ],
+    "mode": "RGBA",
+    "sha256": "8e38396e06a5f4cd4bfae69e50844fd971798338527002519844a062325fd5ea",
+    "crops": [
+      {
+        "rect": [
+          46,
+          81,
+          334,
+          272
+        ],
+        "opaquePixels": 58672
+      },
+      {
+        "rect": [
+          438,
+          67,
+          251,
+          271
+        ],
+        "opaquePixels": 38011
+      },
+      {
+        "rect": [
+          760,
+          131,
+          292,
+          215
+        ],
+        "opaquePixels": 47373
+      },
+      {
+        "rect": [
+          59,
+          390,
+          278,
+          304
+        ],
+        "opaquePixels": 44563
+      },
+      {
+        "rect": [
+          412,
+          404,
+          289,
+          308
+        ],
+        "opaquePixels": 48672
+      },
+      {
+        "rect": [
+          802,
+          391,
+          238,
+          322
+        ],
+        "opaquePixels": 58255
+      },
+      {
+        "rect": [
+          45,
+          738,
+          305,
+          299
+        ],
+        "opaquePixels": 64790
+      },
+      {
+        "rect": [
+          438,
+          743,
+          249,
+          274
+        ],
+        "opaquePixels": 33580
+      },
+      {
+        "rect": [
+          781,
+          754,
+          275,
+          283
+        ],
+        "opaquePixels": 50220
+      },
+      {
+        "rect": [
+          67,
+          1069,
+          292,
+          297
+        ],
+        "opaquePixels": 54911
+      },
+      {
+        "rect": [
+          461,
+          1041,
+          206,
+          313
+        ],
+        "opaquePixels": 42008
+      },
+      {
+        "rect": [
+          723,
+          1122,
+          340,
+          243
+        ],
+        "opaquePixels": 38775
+      }
+    ]
+  }
+]

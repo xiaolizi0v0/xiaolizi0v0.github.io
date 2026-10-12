@@ -1,0 +1,29 @@
+{
+  "source": "C:\\Users\\xiaolizi0v0\\.codex\\warm-signal-model-runtime\\city3d-runs\\tangli-toon-closed-v4\\shape.glb",
+  "sourceSHA256": "69d23f4800b1eecb8b5b48ee7b723151b0d9a23840dc86cc1c1681b3e0ca4948",
+  "sourceUnchanged": true,
+  "originalVertices": 83344,
+  "originalFaces": 166692,
+  "requestedFaces": 24000,
+  "sourceComponents": 2,
+  "retainedComponents": 1,
+  "smoothSteps": 20,
+  "vertices": 11996,
+  "faces": 24000,
+  "watertight": true,
+  "windingConsistent": true,
+  "bounds": [
+    [
+      -0.6201250602252772,
+      -1.0039003937350395,
+      -0.48459210161071625
+    ],
+    [
+      0.6310629239779528,
+      1.003405003262263,
+      0.47657554743890623
+    ]
+  ],
+  "seconds": 3.0,
+  "productionReady": false
+}

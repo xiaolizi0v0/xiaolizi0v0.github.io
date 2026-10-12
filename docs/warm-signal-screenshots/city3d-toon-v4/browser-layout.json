@@ -1,0 +1,36 @@
+{
+  "viewports": [
+    {
+      "canvas": {
+        "bottom": 352.390625,
+        "height": 430,
+        "left": 35,
+        "right": 340,
+        "top": -77.609375,
+        "width": 305,
+        "x": 35,
+        "y": -77.609375
+      },
+      "modelStatus": "loaded",
+      "pageWidth": 375,
+      "variant": "toon",
+      "viewport": 390
+    },
+    {
+      "canvas": {
+        "bottom": 351.984375,
+        "height": 430,
+        "left": 35,
+        "right": 270,
+        "top": -78.015625,
+        "width": 235,
+        "x": 35,
+        "y": -78.015625
+      },
+      "modelStatus": "loaded",
+      "pageWidth": 305,
+      "variant": "toon",
+      "viewport": 320
+    }
+  ]
+}

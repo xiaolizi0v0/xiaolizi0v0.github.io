@@ -1,0 +1,142 @@
+TAP version 13
+# Subtest: old saves receive an empty volume with no card, wallet or invitations granted
+ok 1 - old saves receive an empty volume with no card, wallet or invitations granted
+  ---
+  duration_ms: 17.8167
+  type: 'test'
+  ...
+# Subtest: all 256 independent four-memory results match official exact combinatorial counts
+ok 2 - all 256 independent four-memory results match official exact combinatorial counts
+  ---
+  duration_ms: 0.6299
+  type: 'test'
+  ...
+# Subtest: admission is main-gated, pays exactly once and rejects stale or invalid methods atomically
+ok 3 - admission is main-gated, pays exactly once and rejects stale or invalid methods atomically
+  ---
+  duration_ms: 2.6901
+  type: 'test'
+  ...
+# Subtest: manual 180 invitation mail survives reload, clocks and calendar changes without regenerating
+ok 4 - manual 180 invitation mail survives reload, clocks and calendar changes without regenerating
+  ---
+  duration_ms: 4.7366
+  type: 'test'
+  ...
+# Subtest: ten draws are four independent random values each and persist exact newest-first records
+ok 5 - ten draws are four independent random values each and persist exact newest-first records
+  ---
+  duration_ms: 4.2867
+  type: 'test'
+  ...
+# Subtest: SSR and SR fragment rewards depend only on selected memory occurrences and cap at one card
+ok 6 - SSR and SR fragment rewards depend only on selected memory occurrences and cap at one card
+  ---
+  duration_ms: 7.3241
+  type: 'test'
+  ...
+# Subtest: fragment exchange, actual crafting, phone acquisition, power and owned-card boost form one loop
+ok 7 - fragment exchange, actual crafting, phone acquisition, power and owned-card boost form one loop
+  ---
+  duration_ms: 3.2073
+  type: 'test'
+  ...
+# Subtest: owned cards still yield all photos but no further fragments; latest 50 records retain order
+ok 8 - owned cards still yield all photos but no further fragments; latest 50 records retain order
+  ---
+  duration_ms: 1.4082
+  type: 'test'
+  ...
+# Subtest: all six independent measured art regions are distinct and excluded from every wish pool
+ok 9 - all six independent measured art regions are distinct and excluded from every wish pool
+  ---
+  duration_ms: 2.495
+  type: 'test'
+  ...
+# Subtest: exploration validates owned distinct cards and locked stages without spending
+ok 10 - exploration validates owned distinct cards and locked stages without spending
+  ---
+  duration_ms: 2.7765
+  type: 'test'
+  ...
+# Subtest: failure spends energy but keeps successful attempts and grants no progress or coins
+ok 11 - failure spends energy but keeps successful attempts and grants no progress or coins
+  ---
+  duration_ms: 1.0317
+  type: 'test'
+  ...
+# Subtest: two-star sweeps use actual formation, conserve energy and permanently exhaust node quota
+ok 12 - two-star sweeps use actual formation, conserve energy and permanently exhaust node quota
+  ---
+  duration_ms: 2.8184
+  type: 'test'
+  ...
+# Subtest: refills consume invitations before five-gem shortfalls, stale confirmations cannot spend twice
+ok 13 - refills consume invitations before five-gem shortfalls, stale confirmations cannot spend twice
+  ---
+  duration_ms: 1.4531
+  type: 'test'
+  ...
+# Subtest: photos exchange for invitations and boosts count each owned card only once, not copies or formation
+ok 14 - photos exchange for invitations and boosts count each owned card only once, not copies or formation
+  ---
+  duration_ms: 2.7644
+  type: 'test'
+  ...
+# Subtest: coin shop has finite permanent stock and exact batched costs, rejecting overflow atomically
+ok 15 - coin shop has finite permanent stock and exact batched costs, rejecting overflow atomically
+  ---
+  duration_ms: 1.3795
+  type: 'test'
+  ...
+# Subtest: twelve distinct 12-line stories unlock by real exploration, resume and end once without rewards
+ok 16 - twelve distinct 12-line stories unlock by real exploration, resume and end once without rewards
+  ---
+  duration_ms: 4.6213
+  type: 'test'
+  ...
+# Subtest: full five-node journey and all stories/milestones finish through normal APIs, claims only once
+ok 17 - full five-node journey and all stories/milestones finish through normal APIs, claims only once
+  ---
+  duration_ms: 3.6233
+  type: 'test'
+  ...
+# Subtest: rollback clocks, insufficient resources and stale batch requests leave the entire save untouched
+ok 18 - rollback clocks, insufficient resources and stale batch requests leave the entire save untouched
+  ---
+  duration_ms: 1.3446
+  type: 'test'
+  ...
+# Subtest: malformed imports reject forged wallets, fragments, quota, history, story completion and claims
+ok 19 - malformed imports reject forged wallets, fragments, quota, history, story completion and claims
+  ---
+  duration_ms: 12.8716
+  type: 'test'
+  ...
+# Subtest: UI confirmation cancel spends nothing; portrait previews and rule odds stay explicit
+ok 20 - UI confirmation cancel spends nothing; portrait previews and rule odds stay explicit
+  ---
+  duration_ms: 2.843
+  type: 'test'
+  ...
+# Subtest: completed story replay stays entirely read-only, including the final return to the catalog
+ok 21 - completed story replay stays entirely read-only, including the final return to the catalog
+  ---
+  duration_ms: 3.2644
+  type: 'test'
+  ...
+# Subtest: resource overflow is rejected before coin-shop spending and no crystals are consumed on failed batch draw
+ok 22 - resource overflow is rejected before coin-shop spending and no crystals are consumed on failed batch draw
+  ---
+  duration_ms: 1.2938
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 263.4037

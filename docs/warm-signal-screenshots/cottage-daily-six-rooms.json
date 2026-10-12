@@ -1,0 +1,260 @@
+[
+  {
+    "actors": [
+      {
+        "box": {
+          "bottom": 362.4375,
+          "height": 78.125,
+          "left": 204.6875,
+          "right": 251.5625,
+          "top": 284.3125,
+          "width": 46.875,
+          "x": 204.6875,
+          "y": 284.3125
+        },
+        "display": "block",
+        "id": "cottage-girl-anchor"
+      },
+      {
+        "box": {
+          "bottom": 428.0625,
+          "height": 73.4375,
+          "left": 131.25,
+          "right": 175,
+          "top": 354.625,
+          "width": 43.75,
+          "x": 131.25,
+          "y": 354.625
+        },
+        "display": "block",
+        "id": "cottage-boy-anchor"
+      }
+    ],
+    "stage": {
+      "bottom": 439,
+      "height": 295,
+      "left": 0,
+      "right": 320,
+      "top": 144,
+      "width": 320,
+      "x": 0,
+      "y": 144
+    },
+    "title": "顾清禾 · 温馨小屋"
+  },
+  {
+    "actors": [
+      {
+        "box": {
+          "bottom": 362.4375,
+          "height": 78.125,
+          "left": 204.6875,
+          "right": 251.5625,
+          "top": 284.3125,
+          "width": 46.875,
+          "x": 204.6875,
+          "y": 284.3125
+        },
+        "display": "block",
+        "id": "cottage-girl-anchor"
+      },
+      {
+        "box": {
+          "bottom": 411.1875,
+          "height": 73.4375,
+          "left": 132.5,
+          "right": 176.25,
+          "top": 337.75,
+          "width": 43.75,
+          "x": 132.5,
+          "y": 337.75
+        },
+        "display": "block",
+        "id": "cottage-boy-anchor"
+      }
+    ],
+    "stage": {
+      "bottom": 439,
+      "height": 295,
+      "left": 0,
+      "right": 320,
+      "top": 144,
+      "width": 320,
+      "x": 0,
+      "y": 144
+    },
+    "title": "许知夏 · 温馨小屋"
+  },
+  {
+    "actors": [
+      {
+        "box": {
+          "bottom": 362.4375,
+          "height": 78.125,
+          "left": 204.6875,
+          "right": 251.5625,
+          "top": 284.3125,
+          "width": 46.875,
+          "x": 204.6875,
+          "y": 284.3125
+        },
+        "display": "block",
+        "id": "cottage-girl-anchor"
+      },
+      {
+        "box": {
+          "bottom": 411.1875,
+          "height": 73.4375,
+          "left": 132.5,
+          "right": 176.25,
+          "top": 337.75,
+          "width": 43.75,
+          "x": 132.5,
+          "y": 337.75
+        },
+        "display": "block",
+        "id": "cottage-boy-anchor"
+      }
+    ],
+    "stage": {
+      "bottom": 439,
+      "height": 295,
+      "left": 0,
+      "right": 320,
+      "top": 144,
+      "width": 320,
+      "x": 0,
+      "y": 144
+    },
+    "title": "苏晚 · 温馨小屋"
+  },
+  {
+    "actors": [
+      {
+        "box": {
+          "bottom": 362.4375,
+          "height": 78.125,
+          "left": 204.6875,
+          "right": 251.5625,
+          "top": 284.3125,
+          "width": 46.875,
+          "x": 204.6875,
+          "y": 284.3125
+        },
+        "display": "block",
+        "id": "cottage-girl-anchor"
+      },
+      {
+        "box": {
+          "bottom": 411.1875,
+          "height": 73.4375,
+          "left": 132.5,
+          "right": 176.25,
+          "top": 337.75,
+          "width": 43.75,
+          "x": 132.5,
+          "y": 337.75
+        },
+        "display": "block",
+        "id": "cottage-boy-anchor"
+      }
+    ],
+    "stage": {
+      "bottom": 439,
+      "height": 295,
+      "left": 0,
+      "right": 320,
+      "top": 144,
+      "width": 320,
+      "x": 0,
+      "y": 144
+    },
+    "title": "江月 · 温馨小屋"
+  },
+  {
+    "actors": [
+      {
+        "box": {
+          "bottom": 362.4375,
+          "height": 78.125,
+          "left": 204.6875,
+          "right": 251.5625,
+          "top": 284.3125,
+          "width": 46.875,
+          "x": 204.6875,
+          "y": 284.3125
+        },
+        "display": "block",
+        "id": "cottage-girl-anchor"
+      },
+      {
+        "box": {
+          "bottom": 411.1875,
+          "height": 73.4375,
+          "left": 132.5,
+          "right": 176.25,
+          "top": 337.75,
+          "width": 43.75,
+          "x": 132.5,
+          "y": 337.75
+        },
+        "display": "block",
+        "id": "cottage-boy-anchor"
+      }
+    ],
+    "stage": {
+      "bottom": 439,
+      "height": 295,
+      "left": 0,
+      "right": 320,
+      "top": 144,
+      "width": 320,
+      "x": 0,
+      "y": 144
+    },
+    "title": "唐梨 · 温馨小屋"
+  },
+  {
+    "actors": [
+      {
+        "box": {
+          "bottom": 362.4375,
+          "height": 78.125,
+          "left": 204.6875,
+          "right": 251.5625,
+          "top": 284.3125,
+          "width": 46.875,
+          "x": 204.6875,
+          "y": 284.3125
+        },
+        "display": "block",
+        "id": "cottage-girl-anchor"
+      },
+      {
+        "box": {
+          "bottom": 428.0625,
+          "height": 73.4375,
+          "left": 131.25,
+          "right": 175,
+          "top": 354.625,
+          "width": 43.75,
+          "x": 131.25,
+          "y": 354.625
+        },
+        "display": "block",
+        "id": "cottage-boy-anchor"
+      }
+    ],
+    "stage": {
+      "bottom": 439,
+      "height": 295,
+      "left": 0,
+      "right": 320,
+      "top": 144,
+      "width": 320,
+      "x": 0,
+      "y": 144
+    },
+    "title": "林栀 · 温馨小屋"
+  }
+]

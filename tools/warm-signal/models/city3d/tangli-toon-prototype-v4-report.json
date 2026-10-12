@@ -1,0 +1,40 @@
+{
+  "sourceMesh": "C:\\Users\\xiaolizi0v0\\.codex\\warm-signal-model-runtime\\city3d-runs\\tangli-toon-low-v4\\shape.glb",
+  "vertices": 11996,
+  "triangles": 24000,
+  "boundaryEdges": 0,
+  "nonManifoldEdges": 0,
+  "rigged": false,
+  "productionReady": false,
+  "bounds": [
+    [
+      -0.6201250553131104,
+      -0.4765755534172058,
+      -1.003900408744812
+    ],
+    [
+      0.631062924861908,
+      0.48459210991859436,
+      1.003404974937439
+    ]
+  ],
+  "exportedTriangles": 24000,
+  "textureProjection": "two-view baked body plus full-resolution original face/camera decal",
+  "materialTriangles": {
+    "face": 704,
+    "camera": 327,
+    "body": 22969
+  },
+  "textures": [
+    {
+      "path": "tools\\warm-signal\\models\\city3d\\tangli-toon-source-v4.png",
+      "SHA256": "ec68a64877677c5bad71233f5146903011a3a09323c88d1968e5625f75ce2897",
+      "unchanged": true,
+      "size": [
+        1024,
+        1536
+      ]
+    }
+  ],
+  "bodyMaterialSource": "C:\\Users\\xiaolizi0v0\\.codex\\warm-signal-model-runtime\\city3d-runs\\tangli-toon-material-v4\\character-review.blend"
+}

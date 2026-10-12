@@ -1,0 +1,56 @@
+{
+  "scripts": 82,
+  "syntaxFailures": [],
+  "htmlReferences": 111,
+  "missing": [],
+  "atlasDimensions": {
+    "main-story-bakery-v1.webp": [
+      1536,
+      1024
+    ],
+    "main-story-cg-0-v1.webp": [
+      1024,
+      1536
+    ],
+    "main-story-cg-1-v1.webp": [
+      1024,
+      1536
+    ],
+    "main-story-cg-2-v1.webp": [
+      1024,
+      1536
+    ],
+    "main-story-cg-3-v1.webp": [
+      1024,
+      1536
+    ],
+    "main-story-cg-4-v1.webp": [
+      1024,
+      1536
+    ],
+    "main-story-cg-5-v1.webp": [
+      1024,
+      1536
+    ],
+    "main-story-clocktower-v1.webp": [
+      1536,
+      1024
+    ],
+    "main-story-music-v1.webp": [
+      1536,
+      1024
+    ],
+    "main-story-premiere-v1.webp": [
+      1536,
+      1024
+    ],
+    "main-story-reporter-v1.webp": [
+      1536,
+      1024
+    ],
+    "main-story-scenes-v1.webp": [
+      1536,
+      1024
+    ]
+  }
+}

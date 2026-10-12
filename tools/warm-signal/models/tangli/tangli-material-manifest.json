@@ -1,0 +1,363 @@
+{
+  "version": 2,
+  "name": "唐梨",
+  "status": "rejected-art-quality",
+  "width": 1024,
+  "height": 1536,
+  "source": "tangli-materials-v1.png",
+  "parameters": [
+    [
+      "ParamAngleX",
+      -30,
+      0,
+      30
+    ],
+    [
+      "ParamAngleY",
+      -30,
+      0,
+      30
+    ],
+    [
+      "ParamAngleZ",
+      -30,
+      0,
+      30
+    ],
+    [
+      "ParamEyeLOpen",
+      0,
+      1,
+      1
+    ],
+    [
+      "ParamEyeROpen",
+      0,
+      1,
+      1
+    ],
+    [
+      "ParamEyeBallX",
+      -1,
+      0,
+      1
+    ],
+    [
+      "ParamEyeBallY",
+      -1,
+      0,
+      1
+    ],
+    [
+      "ParamMouthOpenY",
+      0,
+      0,
+      1
+    ],
+    [
+      "ParamMouthForm",
+      -1,
+      0,
+      1
+    ],
+    [
+      "ParamBodyAngleX",
+      -10,
+      0,
+      10
+    ],
+    [
+      "ParamBreath",
+      0,
+      0,
+      1
+    ],
+    [
+      "ParamHairFront",
+      -1,
+      0,
+      1
+    ],
+    [
+      "ParamHairBack",
+      -1,
+      0,
+      1
+    ]
+  ],
+  "parts": [
+    {
+      "id": "ArtBody",
+      "name": "身体与颈部",
+      "sourceRegion": [
+        7,
+        25,
+        312,
+        395
+      ],
+      "left": 152,
+      "top": 404,
+      "width": 720,
+      "height": 912,
+      "order": 1,
+      "hidden": false,
+      "file": "parts/ArtBody.png"
+    },
+    {
+      "id": "ArtHairBack",
+      "name": "后发",
+      "sourceRegion": [
+        323,
+        14,
+        306,
+        408
+      ],
+      "left": 190,
+      "top": 78,
+      "width": 644,
+      "height": 859,
+      "order": 0,
+      "hidden": false,
+      "file": "parts/ArtHairBack.png"
+    },
+    {
+      "id": "ArtFace",
+      "name": "脸底",
+      "sourceRegion": [
+        643,
+        62,
+        276,
+        301
+      ],
+      "left": 389,
+      "top": 204,
+      "width": 246,
+      "height": 268,
+      "order": 2,
+      "hidden": false,
+      "file": "parts/ArtFace.png"
+    },
+    {
+      "id": "ArtHairCrown",
+      "name": "前发与花夹",
+      "sourceRegion": [
+        927,
+        18,
+        320,
+        404
+      ],
+      "left": 317,
+      "top": 76,
+      "width": 398,
+      "height": 502,
+      "order": 14,
+      "hidden": false,
+      "file": "parts/ArtHairCrown.png"
+    },
+    {
+      "id": "ArtHairFrontL",
+      "name": "左侧发束",
+      "sourceRegion": [
+        61,
+        428,
+        182,
+        370
+      ],
+      "left": 257,
+      "top": 413,
+      "width": 205,
+      "height": 417,
+      "order": 12,
+      "hidden": false,
+      "file": "parts/ArtHairFrontL.png"
+    },
+    {
+      "id": "ArtHairFrontR",
+      "name": "右侧发束",
+      "sourceRegion": [
+        403,
+        429,
+        190,
+        372
+      ],
+      "left": 618,
+      "top": 413,
+      "width": 205,
+      "height": 401,
+      "order": 13,
+      "hidden": false,
+      "file": "parts/ArtHairFrontR.png"
+    },
+    {
+      "id": "ArtEyeWhiteL",
+      "name": "左眼白",
+      "sourceRegion": [
+        632,
+        532,
+        272,
+        129
+      ],
+      "left": 420,
+      "top": 303,
+      "width": 78,
+      "height": 37,
+      "order": 3,
+      "hidden": false,
+      "file": "parts/ArtEyeWhiteL.png"
+    },
+    {
+      "id": "ArtEyeWhiteR",
+      "name": "右眼白",
+      "sourceRegion": [
+        978,
+        532,
+        269,
+        128
+      ],
+      "left": 533,
+      "top": 292,
+      "width": 78,
+      "height": 37,
+      "order": 4,
+      "hidden": false,
+      "file": "parts/ArtEyeWhiteR.png"
+    },
+    {
+      "id": "ArtEyeBallL",
+      "name": "左虹膜",
+      "sourceRegion": [
+        77,
+        834,
+        162,
+        157
+      ],
+      "left": 445,
+      "top": 303,
+      "width": 31,
+      "height": 30,
+      "order": 5,
+      "hidden": false,
+      "file": "parts/ArtEyeBallL.png"
+    },
+    {
+      "id": "ArtEyeBallR",
+      "name": "右虹膜",
+      "sourceRegion": [
+        388,
+        834,
+        162,
+        156
+      ],
+      "left": 557,
+      "top": 292,
+      "width": 31,
+      "height": 30,
+      "order": 6,
+      "hidden": false,
+      "file": "parts/ArtEyeBallR.png"
+    },
+    {
+      "id": "ArtEyeLashL",
+      "name": "左睫毛",
+      "sourceRegion": [
+        631,
+        847,
+        272,
+        135
+      ],
+      "left": 421,
+      "top": 300,
+      "width": 79,
+      "height": 39,
+      "order": 7,
+      "hidden": false,
+      "file": "parts/ArtEyeLashL.png"
+    },
+    {
+      "id": "ArtEyeLashR",
+      "name": "右睫毛",
+      "sourceRegion": [
+        972,
+        849,
+        265,
+        132
+      ],
+      "left": 533,
+      "top": 289,
+      "width": 79,
+      "height": 39,
+      "order": 8,
+      "hidden": false,
+      "file": "parts/ArtEyeLashR.png"
+    },
+    {
+      "id": "ArtBrowL",
+      "name": "左眉",
+      "sourceRegion": [
+        12,
+        1072,
+        279,
+        92
+      ],
+      "left": 421,
+      "top": 274,
+      "width": 79,
+      "height": 26,
+      "order": 9,
+      "hidden": false,
+      "file": "parts/ArtBrowL.png"
+    },
+    {
+      "id": "ArtBrowR",
+      "name": "右眉",
+      "sourceRegion": [
+        344,
+        1067,
+        283,
+        99
+      ],
+      "left": 532,
+      "top": 262,
+      "width": 79,
+      "height": 28,
+      "order": 10,
+      "hidden": false,
+      "file": "parts/ArtBrowR.png"
+    },
+    {
+      "id": "ArtMouthInside",
+      "name": "口腔",
+      "sourceRegion": [
+        685,
+        1065,
+        182,
+        117
+      ],
+      "left": 479,
+      "top": 411,
+      "width": 66,
+      "height": 42,
+      "order": 11,
+      "hidden": true,
+      "file": "parts/ArtMouthInside.png"
+    },
+    {
+      "id": "ArtMouth",
+      "name": "嘴唇",
+      "sourceRegion": [
+        963,
+        1057,
+        260,
+        126
+      ],
+      "left": 471,
+      "top": 401,
+      "width": 81,
+      "height": 39,
+      "order": 15,
+      "hidden": false,
+      "file": "parts/ArtMouth.png"
+    }
+  ],
+  "rejectionReason": "独立生成并缩放五官改变了原画长相；用户美术检查失败，停止用于模型生产。"
+}

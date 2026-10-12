@@ -1,0 +1,48 @@
+{
+  "gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "torch": "2.9.0.dev20250905+cu129",
+  "hubert_providers": [
+    "CUDAExecutionProvider",
+    "CPUExecutionProvider"
+  ],
+  "source": "C:/Users/xiaolizi0v0/Desktop/ponselBlog/xiaolizi0v0.github.io/tools/after-rain/assets/duan-rain-shot.png",
+  "audio": "C:/Users/xiaolizi0v0/Desktop/ponselBlog/xiaolizi0v0.github.io/tools/after-rain/assets/voice/c1-arrival-12-1ebbfd3865d5.mp3",
+  "initialization_seconds": 15.614151299931109,
+  "audio_seconds": 5.28,
+  "sampling_steps": 10,
+  "online_mode": false,
+  "input_submission": "as fast as possible, not paced at microphone real time",
+  "runs": [
+    {
+      "output": "D:\\Ai video chat\\Ditto\\results\\ditto_after-rain-anime-20261008_offline_10steps_run1.mp4",
+      "reference_preparation_seconds": 56.44159079995006,
+      "generation_seconds_including_audio_features_and_encoding": 10.168026100029238,
+      "frames": 132,
+      "expected_frames": 132,
+      "complete_audio_coverage": true,
+      "throughput_fps": 12.981870689692707,
+      "first_frame_seconds_after_reference_ready": 4.930117400013842,
+      "last_frame_seconds": 9.939572000061162,
+      "audio_features_seconds": 4.2159229000099,
+      "muxed_video_frames": 132,
+      "muxed_duration_seconds": 5.28,
+      "output_width": 940,
+      "output_height": 1672,
+      "accelerator_preparation_seconds": 0.9861947000026703
+    }
+  ],
+  "stable_offline_motion_pipelining": true,
+  "acceleration": {
+    "gpu_resident_warp_decoder": true,
+    "cuda_graph": true,
+    "channels_last_decoder": false,
+    "gpu_composite": true,
+    "frozen_spectral_layers": 18,
+    "fused_batchnorm_layers": 13,
+    "stitch_on_cpu": true,
+    "renderer_backend": "PyTorch warp + TensorRT FP16 decoder",
+    "pinned_async_transfers_and_separate_motion_stream": true
+  },
+  "peak_total_gpu_memory_mib": 6985,
+  "peak_pytorch_reserved_mib": 1834.0
+}

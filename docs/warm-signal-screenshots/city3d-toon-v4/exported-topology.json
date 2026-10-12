@@ -1,0 +1,8 @@
+{
+  "file": "tools\\warm-signal\\models\\city3d\\tangli-toon-prototype-v4.glb",
+  "exportVertices": 20234,
+  "weldedVertices": 11996,
+  "triangles": 24000,
+  "watertightAfterUVSeamWeld": true,
+  "consistentWinding": true
+}

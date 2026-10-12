@@ -1,0 +1,304 @@
+TAP version 13
+# Subtest: legacy birthday saves gain an unclaimed outfit flag without granting clothes or changing resources
+ok 1 - legacy birthday saves gain an unclaimed outfit flag without granting clothes or changing resources
+  ---
+  duration_ms: 17.0406
+  type: 'test'
+  ...
+# Subtest: all six birthday outfits require ten actual transmissions, claim permanently, and preserve current clothes
+ok 2 - all six birthday outfits require ten actual transmissions, claim permanently, and preserve current clothes
+  ---
+  duration_ms: 34.7694
+  type: 'test'
+  ...
+# Subtest: outfit claims reject stale and duplicate confirmations without resources or serial changes
+ok 3 - outfit claims reject stale and duplicate confirmations without resources or serial changes
+  ---
+  duration_ms: 1.7845
+  type: 'test'
+  ...
+# Subtest: ordinary wardrobe tickets cannot buy or equip an unearned event outfit
+ok 4 - ordinary wardrobe tickets cannot buy or equip an unearned event outfit
+  ---
+  duration_ms: 1.4455
+  type: 'test'
+  ...
+# Subtest: import rejects invented, cross-person or missing event outfit ownership without throwing
+ok 5 - import rejects invented, cross-person or missing event outfit ownership without throwing
+  ---
+  duration_ms: 6.9096
+  type: 'test'
+  ...
+# Subtest: earned outfits remain claimable and wearable after the annual window closes
+ok 6 - earned outfits remain claimable and wearable after the annual window closes
+  ---
+  duration_ms: 3.2519
+  type: 'test'
+  ...
+# Subtest: next-year outfit receipt never duplicates the permanent wardrobe entry
+ok 7 - next-year outfit receipt never duplicates the permanent wardrobe entry
+  ---
+  duration_ms: 2.9779
+  type: 'test'
+  ...
+# Subtest: wearing from an event cannot bypass ownership or interrupt a companion timer
+ok 8 - wearing from an event cannot bypass ownership or interrupt a companion timer
+  ---
+  duration_ms: 2.5538
+  type: 'test'
+  ...
+# Subtest: daily random outfit selection includes the earned birthday costume and preserves it across reload
+ok 9 - daily random outfit selection includes the earned birthday costume and preserves it across reload
+  ---
+  duration_ms: 3.3018
+  type: 'test'
+  ...
+# Subtest: locked wardrobe previews the real portrait and links to the current person birthday rather than selling tickets
+ok 10 - locked wardrobe previews the real portrait and links to the current person birthday rather than selling tickets
+  ---
+  duration_ms: 4.2877
+  type: 'test'
+  ...
+# Subtest: birthday UI previews, claims, wears and routes the real unlocked outfit
+ok 11 - birthday UI previews, claims, wears and routes the real unlocked outfit
+  ---
+  duration_ms: 4.824
+  type: 'test'
+  ...
+# Subtest: six birthday portrait assets are distinct transparent PNGs with real proportional descriptors
+ok 12 - six birthday portrait assets are distinct transparent PNGs with real proportional descriptors
+  ---
+  duration_ms: 16.2583
+  type: 'test'
+  ...
+# Subtest: birthday blink and mouth motion leave nose, cheeks, body and all points outside compact features unchanged
+ok 13 - birthday blink and mouth motion leave nose, cheeks, body and all points outside compact features unchanged
+  ---
+  duration_ms: 103.1138
+  type: 'test'
+  ...
+# Subtest: elite sweeps credit balloons once per successful replay
+ok 14 - elite sweeps credit balloons once per successful replay
+  ---
+  duration_ms: 16.0524
+  type: 'test'
+  ...
+# Subtest: footage stories give no balloons while manual wins and batch replays credit their exact count
+ok 15 - footage stories give no balloons while manual wins and batch replays credit their exact count
+  ---
+  duration_ms: 8.2191
+  type: 'test'
+  ...
+# Subtest: heart trials exclude failures and credit manual plus sweep counts without nested duplication
+ok 16 - heart trials exclude failures and credit manual plus sweep counts without nested duplication
+  ---
+  duration_ms: 5.7136
+  type: 'test'
+  ...
+# Subtest: birthday UI discards preview edits and persists a design only on explicit save
+ok 17 - birthday UI discards preview edits and persists a design only on explicit save
+  ---
+  duration_ms: 13.5119
+  type: 'test'
+  ...
+# Subtest: birthday UI replays completed choices without issuing rewards and shows actual phase-two loot
+ok 18 - birthday UI replays completed choices without issuing rewards and shows actual phase-two loot
+  ---
+  duration_ms: 8.5868
+  type: 'test'
+  ...
+# Subtest: old saves gain only empty annual birthday state, preserving the existing game
+ok 19 - old saves gain only empty annual birthday state, preserving the existing game
+  ---
+  duration_ms: 6.6701
+  type: 'test'
+  ...
+# Subtest: all six original calendars open exactly five days before birthday through next day, in Shanghai time
+ok 20 - all six original calendars open exactly five days before birthday through next day, in Shanghai time
+  ---
+  duration_ms: 0.5417
+  type: 'test'
+  ...
+# Subtest: a real successful campaign sweep grants balloons by count, failed shots and free story replay grant none
+ok 21 - a real successful campaign sweep grants balloons by count, failed shots and free story replay grant none
+  ---
+  duration_ms: 2.696
+  type: 'test'
+  ...
+# Subtest: birthday login candles pay once, persist after reload and do not leak across six people or years
+ok 22 - birthday login candles pay once, persist after reload and do not leak across six people or years
+  ---
+  duration_ms: 3.0816
+  type: 'test'
+  ...
+# Subtest: six preparations yield six different memorials, six cottage gifts and independent real R and SR cards
+ok 23 - six preparations yield six different memorials, six cottage gifts and independent real R and SR cards
+  ---
+  duration_ms: 50.1221
+  type: 'test'
+  ...
+# Subtest: four misses force the fifth preparation to a new memorial and completed collections reset pity
+ok 24 - four misses force the fifth preparation to a new memorial and completed collections reset pity
+  ---
+  duration_ms: 17.6308
+  type: 'test'
+  ...
+# Subtest: empty candle balance uses exactly ten diamonds and stale confirmation cannot charge twice
+ok 25 - empty candle balance uses exactly ten diamonds and stale confirmation cannot charge twice
+  ---
+  duration_ms: 14.413
+  type: 'test'
+  ...
+# Subtest: resource limits reject preparation before consuming candles or balloons
+ok 26 - resource limits reject preparation before consuming candles or balloons
+  ---
+  duration_ms: 1.6391
+  type: 'test'
+  ...
+# Subtest: daily wish tickets reset at 5am, never backfill missed days, and complete all six original stories once
+ok 27 - daily wish tickets reset at 5am, never backfill missed days, and complete all six original stories once
+  ---
+  duration_ms: 3.8835
+  type: 'test'
+  ...
+# Subtest: birthday DIY validates owned materials, deep-saves designs and opens phase two only after both saves
+ok 28 - birthday DIY validates owned materials, deep-saves designs and opens phase two only after both saves
+  ---
+  duration_ms: 7.5932
+  type: 'test'
+  ...
+# Subtest: phase two consumes the same resources, milestones and shop conserve tokens and reject duplicate rewards
+ok 29 - phase two consumes the same resources, milestones and shop conserve tokens and reject duplicate rewards
+  ---
+  duration_ms: 14.2783
+  type: 'test'
+  ...
+# Subtest: birthday interaction is date-gated, grants once, preserves the delivered gift and room snapshot
+ok 30 - birthday interaction is date-gated, grants once, preserves the delivered gift and room snapshot
+  ---
+  duration_ms: 7.1289
+  type: 'test'
+  ...
+# Subtest: birthday date requires actual event cards and level six affection, choices and first rewards survive reload
+ok 31 - birthday date requires actual event cards and level six affection, choices and first rewards survive reload
+  ---
+  duration_ms: 6.4071
+  type: 'test'
+  ...
+# Subtest: birthday gifts affect their own cottage and daily memo, with stock conservation across expired years
+ok 32 - birthday gifts affect their own cottage and daily memo, with stock conservation across expired years
+  ---
+  duration_ms: 6.1613
+  type: 'test'
+  ...
+# Subtest: event close and backward clock block new spending without discarding earned archives
+ok 33 - event close and backward clock block new spending without discarding earned archives
+  ---
+  duration_ms: 6.7256
+  type: 'test'
+  ...
+# Subtest: malformed birthday imports reject invented resources, duplicate collections, false gates and broken snapshots
+ok 34 - malformed birthday imports reject invented resources, duplicate collections, false gates and broken snapshots
+  ---
+  duration_ms: 13.7773
+  type: 'test'
+  ...
+# Subtest: twelve birthday cards keep distinct measured images and never enter normal wish pools
+ok 35 - twelve birthday cards keep distinct measured images and never enter normal wish pools
+  ---
+  duration_ms: 8.1688
+  type: 'test'
+  ...
+# Subtest: legacy timers, original progression and logs migrate without a reset
+ok 36 - legacy timers, original progression and logs migrate without a reset
+  ---
+  duration_ms: 17.3406
+  type: 'test'
+  ...
+# Subtest: custom work/study duration and heroine affinity gate reject atomically
+ok 37 - custom work/study duration and heroine affinity gate reject atomically
+  ---
+  duration_ms: 1.9057
+  type: 'test'
+  ...
+# Subtest: one-minute timer survives reload, completion pays once and daily gift is global
+ok 38 - one-minute timer survives reload, completion pays once and daily gift is global
+  ---
+  duration_ms: 5.8177
+  type: 'test'
+  ...
+# Subtest: cancel produces history without reward; completed goals must be claimed
+ok 39 - cancel produces history without reward; completed goals must be claimed
+  ---
+  duration_ms: 1.2175
+  type: 'test'
+  ...
+# Subtest: 5am daily boundary resets first gift and touch allowance without clearing timers
+ok 40 - 5am daily boundary resets first gift and touch allowance without clearing timers
+  ---
+  duration_ms: 2.9203
+  type: 'test'
+  ...
+# Subtest: touch rewards cap per heroine; timer feedback never yields extra resources
+ok 41 - touch rewards cap per heroine; timer feedback never yields extra resources
+  ---
+  duration_ms: 6.4234
+  type: 'test'
+  ...
+# Subtest: outfit/scene/music ownership spends tickets once and failed buys are atomic
+ok 42 - outfit/scene/music ownership spends tickets once and failed buys are atomic
+  ---
+  duration_ms: 1.5416
+  type: 'test'
+  ...
+# Subtest: random login uses only selected heroines and owned clothes/scenes once per day
+ok 43 - random login uses only selected heroines and owned clothes/scenes once per day
+  ---
+  duration_ms: 1.4608
+  type: 'test'
+  ...
+# Subtest: achievements depend on completed timers and cannot be claimed repeatedly
+ok 44 - achievements depend on completed timers and cannot be claimed repeatedly
+  ---
+  duration_ms: 2.1606
+  type: 'test'
+  ...
+# Subtest: malformed nested imports are rejected, including ownership and mismatched timers
+ok 45 - malformed nested imports are rejected, including ownership and mismatched timers
+  ---
+  duration_ms: 5.7599
+  type: 'test'
+  ...
+# Subtest: twelve static outfits resolve to distinct real image regions, including two high-resolution Tang Li assets
+ok 46 - twelve static outfits resolve to distinct real image regions, including two high-resolution Tang Li assets
+  ---
+  duration_ms: 14.1977
+  type: 'test'
+  ...
+# Subtest: portrait stays visible while an image loads and while resize waits for the next motion frame
+ok 47 - portrait stays visible while an image loads and while resize waits for the next motion frame
+  ---
+  duration_ms: 22.5048
+  type: 'test'
+  ...
+# Subtest: light face effects preserve neutral geometry and target blinking and lip stretch for all eighteen illustrations
+ok 48 - light face effects preserve neutral geometry and target blinking and lip stretch for all eighteen illustrations
+  ---
+  duration_ms: 65.6367
+  type: 'test'
+  ...
+# Subtest: Tang Li blink and speech never move nose, cheeks, chin or geometry outside their compact feature bounds
+ok 49 - Tang Li blink and speech never move nose, cheeks, chin or geometry outside their compact feature bounds
+  ---
+  duration_ms: 24.6578
+  type: 'test'
+  ...
+1..49
+# tests 49
+# suites 0
+# pass 49
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 437.1059

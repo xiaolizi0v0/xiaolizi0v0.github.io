@@ -1,0 +1,6 @@
+(function(root){'use strict';
+const zones=[[[240,350,330,330],[370,870,330,180]],[[260,300,330,330],[340,890,350,180]],[[510,320,330,330],[350,850,360,210]],[[150,280,350,330],[310,840,390,180]],[[440,340,360,330],[440,960,390,220]],[[180,320,360,330],[320,900,360,200]]];
+function descriptor(p){return Number.isInteger(p)&&p>=0&&p<6?{file:`sleep-${p}-v1.webp`,width:1024,height:p===2?1535:1536,zones:{face:zones[p][0],hand:zones[p][1],quilt:[270,1080,480,170]}}:null;}
+function markup(p,name,esc){const a=descriptor(p);if(!a)return'';return `<svg class="sleep-illustration" viewBox="0 0 ${a.width} ${a.height}" preserveAspectRatio="xMidYMid slice" role="group" aria-label="${esc(name)} · 夜间躺卧静态插画"><image href="warm-signal/assets/${a.file}" width="${a.width}" height="${a.height}"/>${Object.entries(a.zones).map(([kind,[x,y,w,h]])=>`<foreignObject x="${x}" y="${y}" width="${w}" height="${h}"><button xmlns="http://www.w3.org/1999/xhtml" class="sleep-hit" data-act="sleep-touch" data-kind="${kind}" aria-label="${kind==='face'?'轻触她的额头':kind==='hand'?'轻握她的手':'为她整理被角'}"></button></foreignObject>`).join('')}</svg>`;}
+const api={descriptor,markup};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.WarmSleepArt=api;
+})(typeof window==='undefined'?globalThis:window);

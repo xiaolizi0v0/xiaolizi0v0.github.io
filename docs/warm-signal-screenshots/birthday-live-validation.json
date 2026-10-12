@@ -1,0 +1,29 @@
+{
+  "build": "20261011-birthday-3",
+  "dom": {
+    "balloons": "彩焰蜡烛 10庆贺气球 2◆ 13,627",
+    "blessing": "生日快乐，唐梨。镜头外的每一天，也想陪你一起收藏。",
+    "buildScripts": 96,
+    "docWidth": 498,
+    "heading": "生日来信",
+    "overflow": false,
+    "room": "生日现场，5件装饰",
+    "width": 513
+  },
+  "logs": [],
+  "responsive": [
+    {
+      "width": 320,
+      "height": 568,
+      "docWidth": 305,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "docWidth": 375,
+      "overflow": false
+    }
+  ],
+  "reloaded": true
+}

@@ -1,0 +1,19 @@
+{
+  "version": "20261012-labyrinth-rerun-2",
+  "scripts": 102,
+  "pages": [
+    {
+      "file": "tools/WarmSignal.html",
+      "localTargets": 138,
+      "inlineScripts": 0,
+      "missing": []
+    },
+    {
+      "file": "tools/WarmSignalLabyrinthReview.html",
+      "localTargets": 136,
+      "inlineScripts": 1,
+      "missing": []
+    }
+  ],
+  "syntaxErrors": []
+}

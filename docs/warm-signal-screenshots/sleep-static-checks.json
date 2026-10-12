@@ -1,0 +1,58 @@
+{
+  "scripts": 86,
+  "syntaxFailures": [],
+  "htmlReferences": 117,
+  "missing": [],
+  "sleepImages": {
+    "sleep-0-v1.png": [
+      1024,
+      1536
+    ],
+    "sleep-0-v1.webp": [
+      1024,
+      1536
+    ],
+    "sleep-1-v1.png": [
+      1024,
+      1536
+    ],
+    "sleep-1-v1.webp": [
+      1024,
+      1536
+    ],
+    "sleep-2-v1.png": [
+      1024,
+      1535
+    ],
+    "sleep-2-v1.webp": [
+      1024,
+      1535
+    ],
+    "sleep-3-v1.png": [
+      1024,
+      1536
+    ],
+    "sleep-3-v1.webp": [
+      1024,
+      1536
+    ],
+    "sleep-4-v1.png": [
+      1024,
+      1536
+    ],
+    "sleep-4-v1.webp": [
+      1024,
+      1536
+    ],
+    "sleep-5-v1.png": [
+      1024,
+      1536
+    ],
+    "sleep-5-v1.webp": [
+      1024,
+      1536
+    ]
+  },
+  "htmlResourceReferences": 116,
+  "htmlNavigationReferences": 1
+}

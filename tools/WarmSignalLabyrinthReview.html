@@ -1,0 +1,140 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>记忆迷宫 · 生命周期检查</title><link rel="stylesheet" href="warm-signal/birthday.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/game.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/customization.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/pets.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/card-art.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/company.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/companion.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/ai-chat.css?v=20261009-chat-theme-5">
+<link rel="stylesheet" href="warm-signal/trial.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/walk.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/news.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/arena.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/wishing.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/campaign.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/recharge.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/storefront.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/dating.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/secrets.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/ascension.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/sp.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/ur.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/phone.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/footage.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/activity.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/benefits.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/achievements.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/friends.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/social-space.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/story-cg.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/main-story.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/rendezvous.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/sleep.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/cottage.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/keepsakes.css?v=20261012-city-riding-1">
+<link rel="stylesheet" href="warm-signal/labyrinth.css?v=20261012-city-riding-1"><style>.review-toolbar{height:48px;display:flex;align-items:center;justify-content:center;gap:4px;background:#ead9c7;color:#806454;font-size:9px}.review-toolbar button{padding:7px 6px;font-size:10px;background:#fff9ef;color:#9a7563}#game{margin:0 auto;min-height:0}#game.immersive #screen{min-height:0}.lab-page{height:calc(100dvh - 48px);max-height:calc(100dvh - 48px)}#review-status{position:fixed;bottom:35px;left:50%;transform:translateX(-50%);max-width:90%;background:#755c4c;color:#fff8ec;border-radius:5px;padding:6px 12px;font-size:11px;pointer-events:none}#review-status:empty{display:none}</style><link rel="stylesheet" href="warm-signal/sun-journal.css?v=20261012-city-riding-1"></head><body><nav class="review-toolbar" aria-label="独立测试场景"><span>检查预览 · 不写玩家存档</span><button data-scenario="locked">未开启</button><button data-scenario="first">首开</button><button data-scenario="ended">到期</button><button data-scenario="rerun">复刻</button><button data-scenario="night">卷二</button></nav><main id="game" class="immersive"><div id="screen"></div></main><div id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title"><section><header><span id="modal-kicker"></span><button id="close-modal" aria-label="关闭弹窗">×</button></header><h2 id="modal-title"></h2><div id="modal-body"></div><footer id="modal-actions"></footer></section></div><output id="review-status"></output><script src="warm-signal/campaign-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/birthday-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/labyrinth-night-content.js?v=20261012-city-riding-1"></script><script src="warm-signal/labyrinth-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sun-journal-content.js?v=20261012-city-riding-1"></script><script src="warm-signal/content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/card-art.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/customization.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/pets.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/company.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/companion.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/trial.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/walk.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/walk-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/news-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/news.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/arena.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/wishing.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/campaign.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/storefront.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sun-journal.js?v=20261012-city-riding-1"></script><script src="warm-signal/recharge.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/date-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/dating.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/secret-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/secrets.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/ascension.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sp-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sp.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sp-art.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/ur-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/ur.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/ur-art.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/activity-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/phone-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/phone.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/footage-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/footage.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/activity.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/benefits.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/achievements.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/social-space.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/friends.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/main-story-chapter-two.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/main-story-chapter-three.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/main-story-chapter-four.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/main-story-chapter-five.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/main-story-chapter-six.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/main-story-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/main-story.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/main-story-cg.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/rendezvous-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/rendezvous.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sleep-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sleep.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/cottage-content.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/cottage-themes.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/cottage-memo.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/cottage-moments.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/cottage.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/birthday.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/keepsakes.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/labyrinth-legacy.js?v=20261012-city-riding-1"></script><script src="warm-signal/labyrinth.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/city-content.js?v=20261012-city-riding-1"></script><script src="warm-signal/city-path.js?v=20261012-city-riding-1"></script><script src="warm-signal/city-photo.js?v=20261012-city-riding-1"></script><script src="warm-signal/city.js?v=20261012-city-riding-1"></script><script src="warm-signal/engine.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/pet-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/company-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/character-art.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/character-rig.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/ai-chat.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/ai-chat-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/companion-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/trial-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/walk-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/news-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/arena-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/wishing-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/campaign-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/recharge-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/storefront-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/dating-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/secrets-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/ascension-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sp-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/ur-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/story-cg-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/phone-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/footage-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/activity-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/benefits-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/achievements-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/social-space-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/friends-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/main-story-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/rendezvous-art.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/rendezvous-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sleep-art.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/sleep-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/cottage-roam.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/cottage-art.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/cottage-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/birthday-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/keepsakes-art.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/keepsakes-ui.js?v=20261012-city-riding-1"></script>
+<script src="warm-signal/labyrinth-ui.js?v=20261012-city-riding-1"></script><script>
+(()=>{'use strict';const $=id=>document.getElementById(id),esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),btn=(label,act,attrs='',cls='soft',disabled=false)=>'<button data-act="'+act+'" '+attrs+' class="'+cls+'" '+(disabled?'disabled':'')+'>'+label+'</button>';let game,clock,ui,toastTimer;
+function render(){$('screen').innerHTML=ui.screen();}function close(){$('modal').hidden=true;}function toast(t){clearTimeout(toastTimer);$('review-status').textContent=t;if(t)toastTimer=setTimeout(()=>$('review-status').textContent='',2500);}function modal(title,body,actions='',kicker='CHECK PREVIEW'){$('modal-title').textContent=title;$('modal-kicker').textContent=kicker;$('modal-body').innerHTML=body;$('modal-actions').innerHTML=actions;$('modal').hidden=false;}function commit(fn){const r=fn();if(!r.ok){toast(r.reason);return false;}render();return r;}
+function scenario(kind){close();toast('');clock={at:Date.parse('2026-10-12T04:00:00Z')};game=new WarmEngine.Game(null,()=>clock.at,()=>0);game.s.main=kind==='locked'?29:55;game.s.gems=30000;game.s.energy=5000;game.s.arena.medals=2000;const rev=()=>game.s.labyrinth.serial,run=r=>{if(!r.ok)throw Error(r.reason);};if(kind!=='locked'){run(game.labyrinthAdmit('story',rev()));run(game.labyrinthBuyDice(rev(),WarmLabyrinth.month(clock.at)));run(game.labyrinthBuyCrystal(10,rev()));run(game.labyrinthDraw(5,10,rev()));run(game.labyrinthMail(rev()));const ids=game.s.cards.slice(0,3).map(c=>{c.level=60;c.stars=6;c.evolved=true;return c.id;});run(game.labyrinthExplore(0,ids,1,false,rev()));run(game.labyrinthRefill(0,10,rev()));run(game.labyrinthExplore(0,ids,10,true,rev()));run(game.labyrinthRead(0,0,rev()));if(kind==='ended'||kind==='rerun'||kind==='night'){clock.at=game.s.labyrinth.opening.ends;game.refresh();}if(kind==='rerun')run(game.labyrinthAdmit('dice',rev()));if(kind==='night'){run(game.labyrinthSelect(1,rev()));run(game.labyrinthAdmit('story',rev()));run(game.labyrinthBuyCrystal(10,rev()));run(game.labyrinthDraw(0,10,rev()));run(game.craft(126));run(game.labyrinthMail(rev()));run(game.labyrinthExplore(0,ids,1,false,rev()));run(game.labyrinthRefill(0,10,rev()));run(game.labyrinthExplore(0,ids,10,true,rev()));}}if(!WarmEngine.valid(game.s))throw Error('检查场景存档不合法');ui=WarmLabyrinthUI.create({getGame:()=>game,btn,esc,fmt:n=>n.toLocaleString('zh-CN'),cardArt:id=>WarmCardArt.markup(WarmData.cards[id],esc),modal,close,commit,toast,redraw:render,route:()=>toast('独立检查页：票房联动请在主游戏体验')});render();}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;if(b.dataset.scenario)return scenario(b.dataset.scenario);if(b.id==='close-modal'||b.dataset.act==='close')return close();if(b.dataset.go)return toast('独立检查页：正式入口位于主游戏');if(b.dataset.act)ui.act(b.dataset.act,b);});scenario('first');
+})();</script></body></html>

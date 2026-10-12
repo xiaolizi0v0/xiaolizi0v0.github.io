@@ -1,0 +1,334 @@
+TAP version 13
+# Subtest: old saves gain an empty recharge wallet without changing progress or resources
+ok 1 - old saves gain an empty recharge wallet without changing progress or resources
+  ---
+  duration_ms: 25.0721
+  type: 'test'
+  ...
+# Subtest: all six tiers double only their own first successful purchase
+ok 2 - all six tiers double only their own first successful purchase
+  ---
+  duration_ms: 24.4839
+  type: 'test'
+  ...
+# Subtest: payment requires confirmation and exactly four ASCII digits, with no partial rewards
+ok 3 - payment requires confirmation and exactly four ASCII digits, with no partial rewards
+  ---
+  duration_ms: 3.4848
+  type: 'test'
+  ...
+# Subtest: pending confirmation and payment resume across reload, while PIN never enters the save
+ok 4 - pending confirmation and payment resume across reload, while PIN never enters the save
+  ---
+  duration_ms: 4.6247
+  type: 'test'
+  ...
+# Subtest: cancelled and abandoned orders preserve first double and never credit currency
+ok 5 - cancelled and abandoned orders preserve first double and never credit currency
+  ---
+  duration_ms: 1.4356
+  type: 'test'
+  ...
+# Subtest: stale, double-clicked and competing order actions cannot pay twice
+ok 6 - stale, double-clicked and competing order actions cannot pay twice
+  ---
+  duration_ms: 1.5042
+  type: 'test'
+  ...
+# Subtest: returning from the PIN page preserves the order and allows a new payment method
+ok 7 - returning from the PIN page preserves the order and allows a new payment method
+  ---
+  duration_ms: 0.8212
+  type: 'test'
+  ...
+# Subtest: first gift requires payment, grants the selected SR and can only be claimed once
+ok 8 - first gift requires payment, grants the selected SR and can only be claimed once
+  ---
+  duration_ms: 2.992
+  type: 'test'
+  ...
+# Subtest: an already-owned first-gift SR uses the normal duplicate and dust rules
+ok 9 - an already-owned first-gift SR uses the normal duplicate and dust rules
+  ---
+  duration_ms: 3.4297
+  type: 'test'
+  ...
+# Subtest: cumulative gifts unlock at their exact thresholds and each pays once
+ok 10 - cumulative gifts unlock at their exact thresholds and each pays once
+  ---
+  duration_ms: 3.9918
+  type: 'test'
+  ...
+# Subtest: history truncation preserves total spend, first purchase flags and unique serials
+ok 11 - history truncation preserves total spend, first purchase flags and unique serials
+  ---
+  duration_ms: 39.1306
+  type: 'test'
+  ...
+# Subtest: malformed or forged recharge state is rejected during import
+ok 12 - malformed or forged recharge state is rejected during import
+  ---
+  duration_ms: 11.9787
+  type: 'test'
+  ...
+# Subtest: invalid products and overflow leave all balances, order state and rewards untouched
+ok 13 - invalid products and overflow leave all balances, order state and rewards untouched
+  ---
+  duration_ms: 3.7104
+  type: 'test'
+  ...
+# Subtest: v1 recharge histories and pending orders migrate without changing any balances
+ok 14 - v1 recharge histories and pending orders migrate without changing any balances
+  ---
+  duration_ms: 23.7999
+  type: 'test'
+  ...
+# Subtest: pass payment grants 300 immediately, daily reward once, renewal stacks without a second daily claim
+ok 15 - pass payment grants 300 immediately, daily reward once, renewal stacks without a second daily claim
+  ---
+  duration_ms: 4.7205
+  type: 'test'
+  ...
+# Subtest: Shanghai 5am starts a new claim day and missed daily diamonds are not backfilled
+ok 16 - Shanghai 5am starts a new claim day and missed daily diamonds are not backfilled
+  ---
+  duration_ms: 2.4809
+  type: 'test'
+  ...
+# Subtest: expired pass loses benefits, retains excess stamina, repurchase starts a new 30-day period
+ok 17 - expired pass loses benefits, retains excess stamina, repurchase starts a new 30-day period
+  ---
+  duration_ms: 5.1413
+  type: 'test'
+  ...
+# Subtest: regeneration reaches the member cap and stops there
+ok 18 - regeneration reaches the member cap and stops there
+  ---
+  duration_ms: 2.0813
+  type: 'test'
+  ...
+# Subtest: renewal ceiling rejects a purchase exceeding 365 remaining game days
+ok 19 - renewal ceiling rejects a purchase exceeding 365 remaining game days
+  ---
+  duration_ms: 11.6203
+  type: 'test'
+  ...
+# Subtest: backward clock cannot reactivate expired benefits or replay daily rewards
+ok 20 - backward clock cannot reactivate expired benefits or replay daily rewards
+  ---
+  duration_ms: 2.1156
+  type: 'test'
+  ...
+# Subtest: calendar sign-in base reward doubles only while membership is active
+ok 21 - calendar sign-in base reward doubles only while membership is active
+  ---
+  duration_ms: 2.975
+  type: 'test'
+  ...
+# Subtest: main story and successful production experience use the actual member multiplier
+ok 22 - main story and successful production experience use the actual member multiplier
+  ---
+  duration_ms: 5.0102
+  type: 'test'
+  ...
+# Subtest: challenge membership clears two more historical stages without wearing cards
+ok 23 - challenge membership clears two more historical stages without wearing cards
+  ---
+  duration_ms: 3.8204
+  type: 'test'
+  ...
+# Subtest: fund rewards require complete chapters, allow retrospective claims and cannot repeat
+ok 24 - fund rewards require complete chapters, allow retrospective claims and cannot repeat
+  ---
+  duration_ms: 3.158
+  type: 'test'
+  ...
+# Subtest: daily packs require an active pass, grant all resources and lock each tier until 5am
+ok 25 - daily packs require an active pass, grant all resources and lock each tier until 5am
+  ---
+  duration_ms: 5.7694
+  type: 'test'
+  ...
+# Subtest: a daily pack left at payment across 5am rejects stale quota without rewarding or spending
+ok 26 - a daily pack left at payment across 5am rejects stale quota without rewarding or spending
+  ---
+  duration_ms: 1.7894
+  type: 'test'
+  ...
+# Subtest: meal gifts use local time, 10-gem catchup, free member catchup and stale fee protection
+ok 27 - meal gifts use local time, 10-gem catchup, free member catchup and stale fee protection
+  ---
+  duration_ms: 1.8931
+  type: 'test'
+  ...
+# Subtest: meal catchup without membership spends exactly 10 gems and rejects duplicates
+ok 28 - meal catchup without membership spends exactly 10 gems and rejects duplicates
+  ---
+  duration_ms: 0.5642
+  type: 'test'
+  ...
+# Subtest: weekly packs reset Monday 5am, Monday gift is day restricted and stale week cannot spend
+ok 29 - weekly packs reset Monday 5am, Monday gift is day restricted and stale week cannot spend
+  ---
+  duration_ms: 2.1649
+  type: 'test'
+  ...
+# Subtest: resource overflow rejects payment, daily claims, signing and exchanges atomically
+ok 30 - resource overflow rejects payment, daily claims, signing and exchanges atomically
+  ---
+  duration_ms: 2.6325
+  type: 'test'
+  ...
+# Subtest: forged entitlements, duplicate chapter claims and receipt resource amounts fail import
+ok 31 - forged entitlements, duplicate chapter claims and receipt resource amounts fail import
+  ---
+  duration_ms: 14.7835
+  type: 'test'
+  ...
+# Subtest: sign-in keeps its midnight reset while membership diamonds reset at 5am
+ok 32 - sign-in keeps its midnight reset while membership diamonds reset at 5am
+  ---
+  duration_ms: 2.1769
+  type: 'test'
+  ...
+# Subtest: legacy v2 recharge and save migrate without backfilling daily claims or changing resources
+ok 33 - legacy v2 recharge and save migrate without backfilling daily claims or changing resources
+  ---
+  duration_ms: 25.6238
+  type: 'test'
+  ...
+# Subtest: season starts at Shanghai 5am on odd months and catchup starts one month later
+ok 34 - season starts at Shanghai 5am on odd months and catchup starts one month later
+  ---
+  duration_ms: 0.4283
+  type: 'test'
+  ...
+# Subtest: claimed daily activity becomes light exactly once and daily boxes never add light
+ok 35 - claimed daily activity becomes light exactly once and daily boxes never add light
+  ---
+  duration_ms: 5.0186
+  type: 'test'
+  ...
+# Subtest: weekly daily light is capped at1000 and Monday begins a separate ledger without erasing levels
+ok 36 - weekly daily light is capped at1000 and Monday begins a separate ledger without erasing levels
+  ---
+  duration_ms: 4.6331
+  type: 'test'
+  ...
+# Subtest: successful actual draws and re-shoots count weekly tasks, story playback does not
+ok 37 - successful actual draws and re-shoots count weekly tasks, story playback does not
+  ---
+  duration_ms: 12.0227
+  type: 'test'
+  ...
+# Subtest: free and paid tracks are separate, no auto claim, premium allows retrospective rewards
+ok 38 - free and paid tracks are separate, no auto claim, premium allows retrospective rewards
+  ---
+  duration_ms: 6.0625
+  type: 'test'
+  ...
+# Subtest: deluxe payment uses four arbitrary ASCII digits, grants20 levels,20tickets and10glow only once
+ok 39 - deluxe payment uses four arbitrary ASCII digits, grants20 levels,20tickets and10glow only once
+  ---
+  duration_ms: 3.9868
+  type: 'test'
+  ...
+# Subtest: cancelled premium preserves choices and a season-bound pending order rejects after rollover
+ok 40 - cancelled premium preserves choices and a season-bound pending order rejects after rollover
+  ---
+  duration_ms: 3.8408
+  type: 'test'
+  ...
+# Subtest: full free track matches advertised resource totals and safely includes an unopened rerun chest
+ok 41 - full free track matches advertised resource totals and safely includes an unopened rerun chest
+  ---
+  duration_ms: 3.5434
+  type: 'test'
+  ...
+# Subtest: premium100 grants exact totals, unique ER and scene with four independent phone gates
+ok 42 - premium100 grants exact totals, unique ER and scene with four independent phone gates
+  ---
+  duration_ms: 5.2177
+  type: 'test'
+  ...
+# Subtest: cap150 rejects extra purchases, paid101–150 adds only currency and free stops100
+ok 43 - cap150 rejects extra purchases, paid101–150 adds only currency and free stops100
+  ---
+  duration_ms: 5.7286
+  type: 'test'
+  ...
+# Subtest: catchup is unavailable in first month and stale revisions cannot spend or claim
+ok 44 - catchup is unavailable in first month and stale revisions cannot spend or claim
+  ---
+  duration_ms: 2.9041
+  type: 'test'
+  ...
+# Subtest: gold rerun chest consumes one key once and grants selectedER,background,permanentcosmetics
+ok 45 - gold rerun chest consumes one key once and grants selectedER,background,permanentcosmetics
+  ---
+  duration_ms: 5.672
+  type: 'test'
+  ...
+# Subtest: expired unopened chest converts to1000coin mail once and unused keys persist
+ok 46 - expired unopened chest converts to1000coin mail once and unused keys persist
+  ---
+  duration_ms: 3.8489
+  type: 'test'
+  ...
+# Subtest: starstones never repeat ownedR and shop limits and self-choice boxes consume exactly once
+ok 47 - starstones never repeat ownedR and shop limits and self-choice boxes consume exactly once
+  ---
+  duration_ms: 7.7551
+  type: 'test'
+  ...
+# Subtest: claimed scene can be used without purchase but locked seasonal scenes cannot be bought with coupons
+ok 48 - claimed scene can be used without purchase but locked seasonal scenes cannot be bought with coupons
+  ---
+  duration_ms: 3.2132
+  type: 'test'
+  ...
+# Subtest: overflow in nested materials, energy or deluxe glow rejects atomically before recording claims or payment
+ok 49 - overflow in nested materials, energy or deluxe glow rejects atomically before recording claims or payment
+  ---
+  duration_ms: 3.1127
+  type: 'test'
+  ...
+# Subtest: forged premium, key ledger, double rewards and scene ownership fail import
+ok 50 - forged premium, key ledger, double rewards and scene ownership fail import
+  ---
+  duration_ms: 11.639
+  type: 'test'
+  ...
+# Subtest: backward clocks cannot reactivate an archived season, receive light or pay old orders
+ok 51 - backward clocks cannot reactivate an archived season, receive light or pay old orders
+  ---
+  duration_ms: 1.6905
+  type: 'test'
+  ...
+# Subtest: six independent measured images and companion crops preserve proportions, exclusiveERs never enter wishing pools
+ok 52 - six independent measured images and companion crops preserve proportions, exclusiveERs never enter wishing pools
+  ---
+  duration_ms: 7.4244
+  type: 'test'
+  ...
+# Subtest: purchased selection boxes remain openable after the season ends and cannot be claimed twice
+ok 53 - purchased selection boxes remain openable after the season ends and cannot be claimed twice
+  ---
+  duration_ms: 6.7746
+  type: 'test'
+  ...
+# Subtest: fully owned basicRs yield only dust and wish from starstones, fully owned outfits cannot waste currency
+ok 54 - fully owned basicRs yield only dust and wish from starstones, fully owned outfits cannot waste currency
+  ---
+  duration_ms: 4.6107
+  type: 'test'
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 378.2651

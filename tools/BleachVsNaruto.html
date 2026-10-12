@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>死神VS火影 HD：重制版 - 经典2D格斗手机端重制</title>
+  <meta name="description" content="经典开源2D格斗游戏《死神VS火影》高清手机重制版：AI超分画质重构、纯原生Canvas/WebAudio引擎、多指触控虚拟摇杆与经典连招系统。">
+  <link rel="stylesheet" href="bvn-hd/game.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="game-app">
+    <!-- 顶部操作条 -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <a href="index.html" class="back-link">
+          <i class="fas fa-chevron-left"></i> 工具箱
+        </a>
+        <img src="bvn-hd/assets/orig/logo_new.png" alt="BVN Official Logo" style="height: 24px; object-fit: contain; vertical-align: middle;">
+        <h1 class="game-title" style="margin-left: 4px;">死神VS火影 <small style="font-size: 11px; opacity: 0.8;">HD</small></h1>
+        <span id="modeBadge" class="badge-mode">自由对战</span>
+      </div>
+
+      <div class="topbar-right">
+        <!-- 实时画质切换按钮 -->
+        <button id="renderModeBtn" class="action-btn active" title="切换画质模式">
+          <i class="fas fa-wand-magic-sparkles"></i> <span id="renderModeText">AI超分重制</span>
+        </button>
+
+        <!-- 重制技术解析弹窗 -->
+        <button id="techBtn" class="action-btn" title="查看高清重制技术原理">
+          <i class="fas fa-microchip"></i> <span>重制技术对比</span>
+        </button>
+
+        <!-- 换人换图/对战设置 -->
+        <button id="settingsBtn" class="action-btn" title="对战配置">
+          <i class="fas fa-sliders"></i> <span>配置</span>
+        </button>
+
+        <!-- 音效开关 -->
+        <button id="soundBtn" class="action-btn" title="音效开关">
+          <i class="fas fa-volume-high"></i>
+        </button>
+
+        <!-- 全屏切换 -->
+        <button id="fullscreenBtn" class="action-btn" title="切换全屏">
+          <i class="fas fa-expand"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- 核心战斗画布视口 -->
+    <main class="viewport-container">
+      <canvas id="battleCanvas" width="1000" height="560"></canvas>
+
+      <!-- 手机触控交互遮罩层 -->
+      <div class="touch-controls" id="touchControls">
+        <!-- 左侧虚拟全向摇杆 -->
+        <div class="stick-zone" id="stickZone">
+          <span class="stick-dir-label dir-up">跳跃</span>
+          <span class="stick-dir-label dir-down">蹲防</span>
+          <span class="stick-dir-label dir-left">后退</span>
+          <span class="stick-dir-label dir-right">前移</span>
+          <div class="stick-knob" id="stickKnob"></div>
+        </div>
+
+        <!-- 右侧经典格斗按键轮盘 -->
+        <div class="action-wheel">
+          <!-- 普攻 J -->
+          <div class="touch-btn btn-attack" id="btnAttack">
+            <span class="label">普攻</span>
+            <span class="key-hint">J</span>
+          </div>
+          <!-- 跳跃 K -->
+          <div class="touch-btn btn-jump" id="btnJump">
+            <span class="label">跳跃</span>
+            <span class="key-hint">K</span>
+          </div>
+          <!-- 瞬步 L -->
+          <div class="touch-btn btn-dash" id="btnDash">
+            <span class="label">瞬步</span>
+            <span class="key-hint">L</span>
+          </div>
+          <!-- 技能 U -->
+          <div class="touch-btn btn-skill" id="btnSkill">
+            <span class="label">技能</span>
+            <span class="key-hint">U</span>
+          </div>
+          <!-- 特技 I -->
+          <div class="touch-btn btn-special" id="btnSpecial">
+            <span class="label">特技</span>
+            <span class="key-hint">I</span>
+          </div>
+          <!-- 奥义 O -->
+          <div class="touch-btn btn-ultimate" id="btnUltimate">
+            <span class="label">奥义</span>
+            <span class="key-hint">O</span>
+          </div>
+          <!-- 援助 P -->
+          <div class="touch-btn btn-assist" id="btnAssist">
+            <span class="label">援助</span>
+            <span class="key-hint">P</span>
+          </div>
+          <!-- 替身术 -->
+          <div class="touch-btn btn-substitute" id="btnSubstitute">
+            <span class="label">替身</span>
+            <span class="key-hint">空格</span>
+          </div>
+          <!-- 爆气觉醒 -->
+          <div class="touch-btn btn-awaken" id="btnAwaken">
+            <span class="label">觉醒</span>
+            <span class="key-hint">Q</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 弹窗 1：角色与对战配置弹窗 -->
+    <div class="modal-overlay" id="configModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 class="modal-title">出战配置 / 自由对战</h3>
+          <button class="modal-close" id="closeConfigBtn">&times;</button>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 14px; color: var(--accent-color); margin-bottom: 8px;">1. 选择你的参战角色 (P1)</h4>
+          <div class="char-grid" id="p1SelectGrid"></div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 14px; color: var(--accent-color); margin-bottom: 8px;">2. 选择对手角色 (P2 / AI)</h4>
+          <div class="char-grid" id="p2SelectGrid"></div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 14px; color: var(--accent-color); margin-bottom: 8px;">3. 选择援助伙伴</h4>
+          <div class="char-grid" id="assistSelectGrid"></div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 14px; color: var(--accent-color); margin-bottom: 8px;">4. 对战舞台与难度</h4>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <select id="stageSelect" class="action-btn" style="flex: 1; padding: 8px;"></select>
+            <select id="diffSelect" class="action-btn" style="flex: 1; padding: 8px;">
+              <option value="easy">新手入门 (反应迟缓/低反击)</option>
+              <option value="normal" selected>中坚挑战 (智能立回/替身反打)</option>
+              <option value="hard">极限宗师 (极速拆招/高压连段)</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="applyBattleBtn" class="touch-btn btn-attack" style="position: static; width: 100%; height: 46px; border-radius: 10px; margin-top: 12px;">
+          立即开始战斗
+        </button>
+      </div>
+    </div>
+
+    <!-- 弹窗 2：高清重制技术展示与素材对比弹窗 -->
+    <div class="modal-overlay" id="techModal">
+      <div class="modal-card" style="max-width: 780px;">
+        <div class="modal-header">
+          <h3 class="modal-title">经典开源死神VS火影 · 原版素材与高清重制对比</h3>
+          <button class="modal-close" id="closeTechBtn">&times;</button>
+        </div>
+
+        <div class="tech-section">
+          <p>
+            《死神VS火影》（Bleach vs Naruto）官方开源项目由 <strong>5DPLAY Game Studio</strong>（制作人 <strong>剑jian</strong>）发布于 Gitee 与 GitHub。原版基于 Flash / ActionScript 架构，其美术资源多为 2008 年代 NDS 掌机 JUS 风格的点阵像素与 120p 位图。
+          </p>
+
+          <!-- 真实素材横向对比展区 -->
+          <div style="margin: 18px 0; background: var(--surface-elevated); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px;">
+            <h4 style="color: #f59e0b; margin-bottom: 12px; font-size: 15px;"><i class="fas fa-images"></i> 官方 Gitee 源码素材 vs 2026 AI超清重制资产 实物对比</h4>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+              <!-- 原版素材展示 -->
+              <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 12px; font-weight: 700; color: #94a3b8; margin-bottom: 6px;">【Gitee源码原版】低清经典位图 (96x96像素)</div>
+                <img src="bvn-hd/assets/orig/bigface_1.png" alt="原版一护头像" style="width: 96px; height: 96px; image-rendering: pixelated; border: 1px solid #475569; border-radius: 6px; margin: 6px auto; display: block;">
+                <div style="font-size: 11px; color: #64748b;">原始 Flash 时代像素颗粒，放大后有明显噪点</div>
+              </div>
+
+              <!-- AI超清重制展示 -->
+              <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--accent-color); margin-bottom: 6px;">【AI超分辨率重构】4K 动漫级奥义特写</div>
+                <img src="bvn-hd/assets/hd/cutin_ichigo.jpg" alt="重制版一护卍解特写" style="width: 140px; height: 140px; object-fit: cover; border: 1px solid var(--accent-color); border-radius: 8px; margin: 6px auto; display: block; box-shadow: 0 0 12px rgba(56,189,248,0.4);">
+                <div style="font-size: 11px; color: #38bdf8;">神经网络降噪超分放大 + 亚像素矢量发丝刻画</div>
+              </div>
+            </div>
+
+            <!-- 地图与场景对比 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 12px; font-weight: 700; color: #94a3b8; margin-bottom: 6px;">【Gitee源码原版】地图背景 (bvnmap.png)</div>
+                <img src="bvn-hd/assets/orig/bvnmap.png" alt="原版地图" style="width: 100%; height: 90px; object-fit: cover; border-radius: 6px; border: 1px solid #475569;">
+              </div>
+              <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; text-align: center;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--accent-color); margin-bottom: 6px;">【重制版】4K 终末之谷视差对战巨像</div>
+                <img src="bvn-hd/assets/hd/stage_valley.jpg" alt="重制版终末之谷" style="width: 100%; height: 90px; object-fit: cover; border-radius: 6px; border: 1px solid var(--accent-color); box-shadow: 0 0 12px rgba(56,189,248,0.4);">
+              </div>
+            </div>
+          </div>
+
+          <div class="tech-grid">
+            <div class="tech-box">
+              <h5>1. 神经网络超分辨率插值 (AI Super-Resolution)</h5>
+              <p>针对二次元特化的 Waifu2x 与 Real-ESRGAN 残差密集重构算法，对经典角色动作帧进行降噪与轮廓超分放大，彻底消解早期 Flash 位图锯齿。</p>
+            </div>
+            <div class="tech-box">
+              <h5>2. 亚像素矢量描边着色 (Subpixel Vector Cel-Shading)</h5>
+              <p>在 2D Canvas 中使用 subpixel 亚像素级贝塞尔曲线重构关键发丝、刀芒与衣褶外轮廓，高 DPI 视网膜屏幕下如刀刻般锐利。</p>
+            </div>
+            <div class="tech-box">
+              <h5>3. 动态 HDR Bloom 辉光粒子 (Dynamic Glow Engine)</h5>
+              <p>黑红天锁月牙剑芒、湛蓝螺旋丸风涡气旋与千鸟雷光电弧采用叠加着色混合管线，呈现强烈的流光漫反射感。</p>
+            </div>
+            <div class="tech-box">
+              <h5>4. 动漫张力黑白冲击帧 (Anime Impact Frames)</h5>
+              <p>奥义超必杀与暴击命中时触发 2 帧高反差黑白负片冲击定格，还原原作动画极限热血打击感！</p>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 16px;">
+            <button id="toggleInTechBtn" class="action-btn active" style="padding: 8px 16px; font-size: 13px;">
+              当前模式：AI超分重制 (点击切换为原版低清像素对比)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗 3：战斗胜负结算弹窗 -->
+    <div class="modal-overlay" id="resultModal">
+      <div class="modal-card" style="max-width: 420px; text-align: center;">
+        <div class="result-banner">
+          <img src="bvn-hd/assets/orig/congratulations.png" alt="Congratulations" style="max-width: 160px; margin-bottom: 8px; display: block; margin-left: auto; margin-right: auto;">
+          <div id="resultTitle" class="result-title result-victory">VICTORY!</div>
+          <p id="resultDesc" style="color: var(--text-secondary); font-size: 14px;">KO! 绝杀强敌</p>
+        </div>
+
+        <table class="stats-table">
+          <tr>
+            <td>最高连击 (Max Combo)</td>
+            <td id="statMaxCombo">0 HITS</td>
+          </tr>
+          <tr>
+            <td>剩余生命比例</td>
+            <td id="statHpRemain">0%</td>
+          </tr>
+          <tr>
+            <td>战力战斗评级</td>
+            <td id="statRank" style="font-size: 18px; color: #f59e0b;">S 级</td>
+          </tr>
+        </table>
+
+        <div style="display: flex; gap: 10px; margin-top: 18px;">
+          <button id="retryBtn" class="touch-btn btn-attack" style="position: static; flex: 1; height: 44px; border-radius: 8px;">
+            再战一局
+          </button>
+          <button id="backLobbyBtn" class="action-btn" style="flex: 1; height: 44px; justify-content: center; border-radius: 8px;">
+            出战配置
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引擎与核心脚本库 -->
+  <script src="bvn-hd/data.js"></script>
+  <script src="bvn-hd/engine.js"></script>
+  <script src="bvn-hd/audio.js"></script>
+  <script src="bvn-hd/render.js"></script>
+  <script src="bvn-hd/touch.js"></script>
+
+  <script>
+    // 游戏客户端总线与驱动装配
+    (function () {
+      'use strict';
+
+      const canvas = document.getElementById('battleCanvas');
+      let engine = null;
+      let renderer = null;
+      let controller = null;
+      let currentP1Id = 'ichigo';
+      let currentP2Id = 'naruto';
+      let currentAssistId = 'rukia';
+      let currentStageId = 'valley_of_end';
+      let currentDiff = 'normal';
+
+      // 角色对应头像映射
+      const charCutinMap = {
+        ichigo: 'bvn-hd/assets/hd/cutin_ichigo.jpg',
+        naruto: 'bvn-hd/assets/hd/cutin_naruto.jpg',
+        sasuke: 'bvn-hd/assets/hd/cutin_sasuke.jpg',
+        hitsugaya: 'bvn-hd/assets/hd/cutin_hitsugaya.jpg'
+      };
+
+      // 初始化战斗实例
+      function createMatch() {
+        const p1Char = BVN_DATA.CHARACTERS.find(c => c.id === currentP1Id) || BVN_DATA.CHARACTERS[0];
+        const p2Char = BVN_DATA.CHARACTERS.find(c => c.id === currentP2Id) || BVN_DATA.CHARACTERS[1];
+        const assist = BVN_DATA.ASSISTS.find(a => a.id === currentAssistId) || BVN_DATA.ASSISTS[0];
+        const stage = BVN_DATA.STAGES.find(s => s.id === currentStageId) || BVN_DATA.STAGES[0];
+
+        engine = new BVN_ENGINE.BattleEngine({
+          p1Char,
+          p2Char,
+          p1Assist: assist,
+          stage,
+          difficulty: currentDiff,
+          onPlaySound: (s) => BVN_AUDIO.play(s),
+          onMatchEnd: (winner) => handleMatchOver(winner)
+        });
+
+        renderer = new BVN_RENDER(canvas, engine);
+        controller = new BVN_TOUCH(engine, BVN_AUDIO);
+
+        // 重新挂接触控按键
+        controller.bindTouchControls({
+          stickZone: document.getElementById('stickZone'),
+          stickKnob: document.getElementById('stickKnob'),
+          btnAttack: document.getElementById('btnAttack'),
+          btnJump: document.getElementById('btnJump'),
+          btnDash: document.getElementById('btnDash'),
+          btnSkill: document.getElementById('btnSkill'),
+          btnSpecial: document.getElementById('btnSpecial'),
+          btnUltimate: document.getElementById('btnUltimate'),
+          btnAssist: document.getElementById('btnAssist'),
+          btnSubstitute: document.getElementById('btnSubstitute'),
+          btnAwaken: document.getElementById('btnAwaken')
+        });
+      }
+
+      // 胜负处理
+      function handleMatchOver(winner) {
+        setTimeout(() => {
+          const modal = document.getElementById('resultModal');
+          const title = document.getElementById('resultTitle');
+          const desc = document.getElementById('resultDesc');
+          const maxCombo = document.getElementById('statMaxCombo');
+          const hpRemain = document.getElementById('statHpRemain');
+          const rank = document.getElementById('statRank');
+
+          if (winner === 1) {
+            title.textContent = 'VICTORY!';
+            title.className = 'result-title result-victory';
+            desc.textContent = 'K.O.! 击溃对手，赢得宿命之决！';
+          } else if (winner === 2) {
+            title.textContent = 'DEFEAT...';
+            title.className = 'result-title result-defeat';
+            desc.textContent = '抱憾战败，请再次挑战！';
+          } else {
+            title.textContent = 'DRAW MATCH';
+            title.className = 'result-title';
+            desc.textContent = '势均力敌，平分秋色！';
+          }
+
+          const p1Max = engine.p1.comboCount;
+          const p1HpRatio = Math.round((engine.p1.hp / engine.p1.maxHp) * 100);
+          maxCombo.textContent = `${p1Max} HITS`;
+          hpRemain.textContent = `${p1HpRatio}%`;
+
+          let r = 'C 级';
+          if (winner === 1 && p1HpRatio >= 70) r = 'S 级·奥义宗师';
+          else if (winner === 1) r = 'A 级·胜者';
+          else if (p1Max >= 5) r = 'B 级·破空';
+          rank.textContent = r;
+
+          modal.classList.add('active');
+        }, 600);
+      }
+
+      // 60FPS 游戏主循环
+      let lastTime = performance.now();
+      function gameLoop(now) {
+        const dt = Math.min(0.033, (now - lastTime) / 1000);
+        lastTime = now;
+
+        if (engine) engine.step(dt);
+        if (renderer) renderer.render();
+
+        requestAnimationFrame(gameLoop);
+      }
+
+      // 初始化交互 UI
+      function initUI() {
+        // 画质切换
+        const renderBtn = document.getElementById('renderModeBtn');
+        const renderText = document.getElementById('renderModeText');
+        const toggleInTech = document.getElementById('toggleInTechBtn');
+
+        function toggleMode() {
+          const next = renderer.renderMode === 'hd' ? 'pixel' : 'hd';
+          renderer.setRenderMode(next);
+          if (next === 'hd') {
+            renderBtn.classList.add('active');
+            renderText.textContent = 'AI超分重制';
+            if (toggleInTech) toggleInTech.textContent = '当前模式：AI超分重制 (点击切换为原版低清像素对比)';
+          } else {
+            renderBtn.classList.remove('active');
+            renderText.textContent = '原版低清像素';
+            if (toggleInTech) toggleInTech.textContent = '当前模式：原版低清像素 (点击切换为AI超分重制)';
+          }
+        }
+
+        renderBtn.addEventListener('click', toggleMode);
+        if (toggleInTech) toggleInTech.addEventListener('click', toggleMode);
+
+        // 音效开关
+        const soundBtn = document.getElementById('soundBtn');
+        soundBtn.addEventListener('click', () => {
+          BVN_AUDIO.init();
+          BVN_AUDIO.enabled = !BVN_AUDIO.enabled;
+          soundBtn.innerHTML = BVN_AUDIO.enabled ? '<i class="fas fa-volume-high"></i>' : '<i class="fas fa-volume-xmark"></i>';
+          soundBtn.classList.toggle('active', BVN_AUDIO.enabled);
+        });
+
+        // 全屏
+        document.getElementById('fullscreenBtn').addEventListener('click', () => {
+          controller.toggleFullscreen(document.getElementById('game-app'));
+        });
+
+        // 技术弹窗
+        const techModal = document.getElementById('techModal');
+        document.getElementById('techBtn').addEventListener('click', () => techModal.classList.add('active'));
+        document.getElementById('closeTechBtn').addEventListener('click', () => techModal.classList.remove('active'));
+
+        // 对战配置弹窗
+        const configModal = document.getElementById('configModal');
+        document.getElementById('settingsBtn').addEventListener('click', () => {
+          renderConfigModal();
+          configModal.classList.add('active');
+        });
+        document.getElementById('closeConfigBtn').addEventListener('click', () => configModal.classList.remove('active'));
+
+        // 结算弹窗按钮
+        document.getElementById('retryBtn').addEventListener('click', () => {
+          document.getElementById('resultModal').classList.remove('active');
+          createMatch();
+        });
+        document.getElementById('backLobbyBtn').addEventListener('click', () => {
+          document.getElementById('resultModal').classList.remove('active');
+          renderConfigModal();
+          configModal.classList.add('active');
+        });
+
+        document.getElementById('applyBattleBtn').addEventListener('click', () => {
+          currentStageId = document.getElementById('stageSelect').value;
+          currentDiff = document.getElementById('diffSelect').value;
+          configModal.classList.remove('active');
+          createMatch();
+        });
+      }
+
+      // 填充对战配置网格
+      function renderConfigModal() {
+        const p1Grid = document.getElementById('p1SelectGrid');
+        const p2Grid = document.getElementById('p2SelectGrid');
+        const aGrid = document.getElementById('assistSelectGrid');
+        const sSelect = document.getElementById('stageSelect');
+
+        p1Grid.innerHTML = BVN_DATA.CHARACTERS.map(c => `
+          <div class="char-card ${c.id === currentP1Id ? 'selected' : ''}" data-id="${c.id}">
+            <img src="${charCutinMap[c.id]}" alt="${c.name}" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; margin: 0 auto 6px; display: block; border: 2px solid ${c.avatarColor};">
+            <div class="char-name">${c.name}</div>
+            <div class="char-series">${c.seriesName}</div>
+          </div>
+        `).join('');
+
+        p2Grid.innerHTML = BVN_DATA.CHARACTERS.map(c => `
+          <div class="char-card ${c.id === currentP2Id ? 'selected' : ''}" data-id="${c.id}">
+            <img src="${charCutinMap[c.id]}" alt="${c.name}" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; margin: 0 auto 6px; display: block; border: 2px solid ${c.avatarColor};">
+            <div class="char-name">${c.name}</div>
+            <div class="char-series">${c.seriesName}</div>
+          </div>
+        `).join('');
+
+        aGrid.innerHTML = BVN_DATA.ASSISTS.map(a => `
+          <div class="char-card ${a.id === currentAssistId ? 'selected' : ''}" data-id="${a.id}">
+            <div class="char-avatar-circle" style="background: ${a.avatarColor};">${a.name[0]}</div>
+            <div class="char-name">${a.name}</div>
+            <div class="char-series">${a.skillName}</div>
+          </div>
+        `).join('');
+
+        sSelect.innerHTML = BVN_DATA.STAGES.map(s => `
+          <option value="${s.id}" ${s.id === currentStageId ? 'selected' : ''}>${s.name} (${s.subtitle})</option>
+        `).join('');
+
+        // 选人卡片点击
+        p1Grid.querySelectorAll('.char-card').forEach(el => {
+          el.addEventListener('click', () => {
+            currentP1Id = el.dataset.id;
+            p1Grid.querySelectorAll('.char-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+          });
+        });
+
+        p2Grid.querySelectorAll('.char-card').forEach(el => {
+          el.addEventListener('click', () => {
+            currentP2Id = el.dataset.id;
+            p2Grid.querySelectorAll('.char-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+          });
+        });
+
+        aGrid.querySelectorAll('.char-card').forEach(el => {
+          el.addEventListener('click', () => {
+            currentAssistId = el.dataset.id;
+            aGrid.querySelectorAll('.char-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+          });
+        });
+      }
+
+      // 启动
+      window.addEventListener('DOMContentLoaded', () => {
+        initUI();
+        createMatch();
+        requestAnimationFrame(gameLoop);
+
+        // 首次触控激活音频环境
+        window.addEventListener('touchstart', () => BVN_AUDIO.init(), { once: true });
+        window.addEventListener('click', () => BVN_AUDIO.init(), { once: true });
+      });
+    })();
+  </script>
+</body>
+</html>

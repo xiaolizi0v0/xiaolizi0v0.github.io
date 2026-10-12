@@ -1,0 +1,323 @@
+{
+  "version": "20261011-birthday-outfit-4",
+  "rootScripts": 96,
+  "html": {
+    "tools/WarmSignal.html": {
+      "localTargets": 130,
+      "inlineScripts": 0,
+      "http200": true
+    },
+    "tools/warm-signal/models/birthday-preview.html": {
+      "localTargets": 4,
+      "inlineScripts": 1,
+      "http200": true
+    }
+  },
+  "assets": [
+    {
+      "file": "birthday-outfit-lin-zhi-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "c435f96b7d7963ac72c11bf195ad705fb9be288f3bb67df4c106d72756913ac5"
+    },
+    {
+      "file": "birthday-outfit-lin-zhi-v1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "e62f52fb927e884b981d395e369a8ea44cbe10b1f80c153501f67e1eea7a3f49"
+    },
+    {
+      "file": "birthday-outfit-gu-qinghe-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "a72c820b40b461b870a01c8ff20eda9981cf83589bebea211fdde310c832a0a1"
+    },
+    {
+      "file": "birthday-outfit-gu-qinghe-v1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "be817da0c0b0cd060524ac16823e2d0330442a0a21cc3e413e64b1b560bbe21a"
+    },
+    {
+      "file": "birthday-outfit-xu-zhixia-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "31e79635c15477bf146e75f8a681179abf56fe74004be0f6da4c198a4e1b193b"
+    },
+    {
+      "file": "birthday-outfit-xu-zhixia-v1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "11e777aa0160541d16b1178882e05e08e370509aabe434f13f7385bde2d30716"
+    },
+    {
+      "file": "birthday-outfit-su-wan-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "9c94589aa422a25d7067d60074454231365ffe9f20b3dd0d550e843e5e7643ed"
+    },
+    {
+      "file": "birthday-outfit-su-wan-v1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "bb5ec89e65dc129dede6ed6b0ac48f4caf5967c3d85eb563820999a41dce53d8"
+    },
+    {
+      "file": "birthday-outfit-jiang-yue-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "ef367746812a38b3da62a3fef6ff67e27b22f9e36392abd47a961b4fec31f92a"
+    },
+    {
+      "file": "birthday-outfit-jiang-yue-v1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "ed32b57241f7516cefe30f8a2d589f1334ca71829a24565a87b576cff08b444b"
+    },
+    {
+      "file": "birthday-outfit-tang-li-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "0d4b8dc6edc3ffea53a6689111c1ed8a61b9641c9e5924e35e2fae1b6c367cdf"
+    },
+    {
+      "file": "birthday-outfit-tang-li-v1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "f3b092a3e1b54ba9bc780d699b1c46b81a24568d0c39304658127520db3941d4"
+    }
+  ],
+  "motion": [
+    {
+      "person": "lin-zhi",
+      "pose": "blink",
+      "changedPixelsOver8": 5111,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        142,
+        108,
+        347,
+        196
+      ]
+    },
+    {
+      "person": "lin-zhi",
+      "pose": "mouth",
+      "changedPixelsOver8": 1084,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        178,
+        231,
+        247,
+        264
+      ]
+    },
+    {
+      "person": "gu-qinghe",
+      "pose": "blink",
+      "changedPixelsOver8": 5046,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        64,
+        71,
+        259,
+        192
+      ]
+    },
+    {
+      "person": "gu-qinghe",
+      "pose": "mouth",
+      "changedPixelsOver8": 1103,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        159,
+        200,
+        226,
+        235
+      ]
+    },
+    {
+      "person": "xu-zhixia",
+      "pose": "blink",
+      "changedPixelsOver8": 4558,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        110,
+        25,
+        291,
+        151
+      ]
+    },
+    {
+      "person": "xu-zhixia",
+      "pose": "mouth",
+      "changedPixelsOver8": 1119,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        198,
+        150,
+        259,
+        186
+      ]
+    },
+    {
+      "person": "su-wan",
+      "pose": "blink",
+      "changedPixelsOver8": 5180,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        41,
+        29,
+        235,
+        160
+      ]
+    },
+    {
+      "person": "su-wan",
+      "pose": "mouth",
+      "changedPixelsOver8": 1190,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        133,
+        154,
+        203,
+        192
+      ]
+    },
+    {
+      "person": "jiang-yue",
+      "pose": "blink",
+      "changedPixelsOver8": 5162,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        52,
+        113,
+        240,
+        239
+      ]
+    },
+    {
+      "person": "jiang-yue",
+      "pose": "mouth",
+      "changedPixelsOver8": 984,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        148,
+        232,
+        218,
+        267
+      ]
+    },
+    {
+      "person": "tang-li",
+      "pose": "blink",
+      "changedPixelsOver8": 4990,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        60,
+        41,
+        258,
+        149
+      ]
+    },
+    {
+      "person": "tang-li",
+      "pose": "mouth",
+      "changedPixelsOver8": 1408,
+      "outsideExpandedFeatureSupport": 0,
+      "pixelBounds": [
+        148,
+        162,
+        219,
+        208
+      ]
+    }
+  ],
+  "motionMethod": "Full browser screenshots; portrait crop (460,223)-(820,554); RGB difference >8. Mesh support plus 5 normalized units raster margin.",
+  "motionScreenshotsVersion": "20261011-birthday-outfit-3; vertex geometry unchanged in version4",
+  "resizeFallback": "Version4 delays rig-ready until successful draw and keeps original visible across resize; lifecycle test and actual 320/390 screenshots verified."
+}

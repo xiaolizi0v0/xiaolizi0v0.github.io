@@ -3,6 +3,26 @@ const dataConfig = {
  //工具
   tools: [
     {
+      id: "13",
+      title: "死神VS火影 HD：重制版",
+      icon: "fas fa-fire-alt",
+      description: "经典开源2D动作格斗死神VS火影高清手机重制版：AI超分画质重构、4K视差舞台、一护/鸣人/佐助/冬狮郎四英雄、三段普攻连段、瞬步、替身术脱离、满能量卍解觉醒与超杀特写，适配手机虚拟摇杆与本地存档。",
+      file: "BleachVsNaruto.html",
+      category: "other",
+      date: "2026-10-12",
+      cover: "bvn-hd/assets/cover.jpg"
+    },
+    {
+      id: "12",
+      title: "心动来信",
+      icon: "fas fa-heart",
+      description: "男主视角的原创温馨恋爱经营游戏：六位成年女主、六章剧情与拍摄、72 张羁绊、培养许愿、约会短信、城市漫步、公司经营与唐梨的竖屏直播。支持本地存档。",
+      file: "WarmSignal.html",
+      category: "other",
+      date: "2026-10-09",
+      cover: "warm-signal/assets/city.jpg"
+    },
+    {
       id: "11",
       title: "热搜清屏",
       icon: "fas fa-fire",

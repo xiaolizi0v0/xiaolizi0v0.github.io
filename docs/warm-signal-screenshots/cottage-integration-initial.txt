@@ -1,0 +1,352 @@
+TAP version 13
+# Subtest: legacy migration adds only empty sleep records while retaining every wallet, old timer and progression
+ok 1 - legacy migration adds only empty sleep records while retaining every wallet, old timer and progression
+  ---
+  duration_ms: 16.1966
+  type: 'test'
+  ...
+# Subtest: six distinct adult heroines have eighteen independent eight-line nights and three responses per story
+ok 2 - six distinct adult heroines have eighteen independent eight-line nights and three responses per story
+  ---
+  duration_ms: 0.3298
+  type: 'test'
+  ...
+# Subtest: each story consumes exactly ten existing companion tickets once and has no second payment
+ok 3 - each story consumes exactly ten existing companion tickets once and has no second payment
+  ---
+  duration_ms: 19.7652
+  type: 'test'
+  ...
+# Subtest: insufficient tickets, stale purchase confirmations and wrong heroine are rejected atomically
+ok 4 - insufficient tickets, stale purchase confirmations and wrong heroine are rejected atomically
+  ---
+  duration_ms: 1.8442
+  type: 'test'
+  ...
+# Subtest: all eighteen nights complete and reload as permanently owned without farming currencies or affinity
+ok 5 - all eighteen nights complete and reload as permanently owned without farming currencies or affinity
+  ---
+  duration_ms: 73.1326
+  type: 'test'
+  ...
+# Subtest: current session survives reload and stale next buttons cannot skip text or complete twice
+ok 6 - current session survives reload and stale next buttons cannot skip text or complete twice
+  ---
+  duration_ms: 3.9645
+  type: 'test'
+  ...
+# Subtest: pausing and resuming both an unfinished night and an already-completed replay preserve the current line
+ok 7 - pausing and resuming both an unfinished night and an already-completed replay preserve the current line
+  ---
+  duration_ms: 2.3054
+  type: 'test'
+  ...
+# Subtest: locked reading and simultaneous nights fail, while explicit restart is available after pausing
+ok 8 - locked reading and simultaneous nights fail, while explicit restart is available after pausing
+  ---
+  duration_ms: 1.0938
+  type: 'test'
+  ...
+# Subtest: favorites require ownership and survive reload without affecting unlocks or resources
+ok 9 - favorites require ownership and survive reload without affecting unlocks or resources
+  ---
+  duration_ms: 2.535
+  type: 'test'
+  ...
+# Subtest: distance is restricted to three bounded levels and serial/session overflow rejects before mutation
+ok 10 - distance is restricted to three bounded levels and serial/session overflow rejects before mutation
+  ---
+  duration_ms: 2.7435
+  type: 'test'
+  ...
+# Subtest: sleep scene timer uses the original global gift and affinity loop, with no duplicate completion
+ok 11 - sleep scene timer uses the original global gift and affinity loop, with no duplicate completion
+  ---
+  duration_ms: 5.2006
+  type: 'test'
+  ...
+# Subtest: early ending records actual duration without refunding night unlock or giving timer rewards
+ok 12 - early ending records actual duration without refunding night unlock or giving timer rewards
+  ---
+  duration_ms: 0.4831
+  type: 'test'
+  ...
+# Subtest: sleep touch reuses five daily interactions and timer response cap rather than adding a second reward allowance
+ok 13 - sleep touch reuses five daily interactions and timer response cap rather than adding a second reward allowance
+  ---
+  duration_ms: 3.797
+  type: 'test'
+  ...
+# Subtest: malformed imports reject hidden unlocks, unowned favorites, out-of-range bookmarks and forged sessions
+ok 14 - malformed imports reject hidden unlocks, unowned favorites, out-of-range bookmarks and forged sessions
+  ---
+  duration_ms: 7.5463
+  type: 'test'
+  ...
+# Subtest: all six independent source images and clickable areas retain native dimensions under one proportional SVG
+ok 15 - all six independent source images and clickable areas retain native dimensions under one proportional SVG
+  ---
+  duration_ms: 22.7383
+  type: 'test'
+  ...
+# Subtest: auto reading stops for a modal, page visibility and explicit pause, and completes without extra rewards
+ok 16 - auto reading stops for a modal, page visibility and explicit pause, and completes without extra rewards
+  ---
+  duration_ms: 4.1096
+  type: 'test'
+  ...
+# Subtest: idle speech is capped at two online prompts and scene interactions use story-specific feedback
+ok 17 - idle speech is capped at two online prompts and scene interactions use story-specific feedback
+  ---
+  duration_ms: 3.0039
+  type: 'test'
+  ...
+# Subtest: pet league daily allowance belongs to each household and resets at Shanghai midnight
+ok 18 - pet league daily allowance belongs to each household and resets at Shanghai midnight
+  ---
+  duration_ms: 17.8387
+  type: 'test'
+  ...
+# Subtest: six original adult heroines have cards, pet ERs, dates and routes; new save is valid
+ok 19 - six original adult heroines have cards, pet ERs, dates and routes; new save is valid
+  ---
+  duration_ms: 2.4538
+  type: 'test'
+  ...
+# Subtest: failed resource transactions are atomic
+ok 20 - failed resource transactions are atomic
+  ---
+  duration_ms: 1.9364
+  type: 'test'
+  ...
+# Subtest: stage unlocks and one-time rewards cannot be farmed by rereading
+ok 21 - stage unlocks and one-time rewards cannot be farmed by rereading
+  ---
+  duration_ms: 4.2876
+  type: 'test'
+  ...
+# Subtest: shooting failure consumes energy without unlock or success reward
+ok 22 - shooting failure consumes energy without unlock or success reward
+  ---
+  duration_ms: 1.0279
+  type: 'test'
+  ...
+# Subtest: diamond ten-pull guarantees SR without a shared hard pity; coin pool stays separate
+ok 23 - diamond ten-pull guarantees SR without a shared hard pity; coin pool stays separate
+  ---
+  duration_ms: 13.0201
+  type: 'test'
+  ...
+# Subtest: single-pull probabilities obey SSR and SR thresholds
+ok 24 - single-pull probabilities obey SSR and SR thresholds
+  ---
+  duration_ms: 1.6128
+  type: 'test'
+  ...
+# Subtest: levels, stars, evolution and caps change actual four-attribute scores
+ok 25 - levels, stars, evolution and caps change actual four-attribute scores
+  ---
+  duration_ms: 1.8339
+  type: 'test'
+  ...
+# Subtest: sixth heroine participates in daily walks, messages, calls and dates
+ok 26 - sixth heroine participates in daily walks, messages, calls and dates
+  ---
+  duration_ms: 12.2741
+  type: 'test'
+  ...
+# Subtest: daily film limits and fragment crafting prevent duplicate free cards
+ok 27 - daily film limits and fragment crafting prevent duplicate free cards
+  ---
+  duration_ms: 5.8876
+  type: 'test'
+  ...
+# Subtest: company time projects persist and pay only once
+ok 28 - company time projects persist and pay only once
+  ---
+  duration_ms: 3.6219
+  type: 'test'
+  ...
+# Subtest: resource regeneration stops at cap and daily refresh uses Shanghai midnight
+ok 29 - resource regeneration stops at cap and daily refresh uses Shanghai midnight
+  ---
+  duration_ms: 0.8806
+  type: 'test'
+  ...
+# Subtest: endurance losses persist and change subsequent challenge score
+ok 30 - endurance losses persist and change subsequent challenge score
+  ---
+  duration_ms: 0.9255
+  type: 'test'
+  ...
+# Subtest: tasks, mail, sign-in, achievements and weekly rewards cannot double-pay
+ok 31 - tasks, mail, sign-in, achievements and weekly rewards cannot double-pay
+  ---
+  duration_ms: 1.5286
+  type: 'test'
+  ...
+# Subtest: invalid modes and identifiers cannot mutate gameplay state
+ok 32 - invalid modes and identifiers cannot mutate gameplay state
+  ---
+  duration_ms: 1.3989
+  type: 'test'
+  ...
+# Subtest: live starts exactly once, resumes after save, and decisions are single-use
+ok 33 - live starts exactly once, resumes after save, and decisions are single-use
+  ---
+  duration_ms: 3.8199
+  type: 'test'
+  ...
+# Subtest: live timeout is idempotent, leaving without interaction still settles
+ok 34 - live timeout is idempotent, leaving without interaction still settles
+  ---
+  duration_ms: 1.2547
+  type: 'test'
+  ...
+# Subtest: live interaction caps, comment cooldown, virtual currency and PK gate
+ok 35 - live interaction caps, comment cooldown, virtual currency and PK gate
+  ---
+  duration_ms: 2.8175
+  type: 'test'
+  ...
+# Subtest: companion timers cannot finish early or award twice; pet decays offline
+ok 36 - companion timers cannot finish early or award twice; pet decays offline
+  ---
+  duration_ms: 1.2858
+  type: 'test'
+  ...
+# Subtest: save backup recovers corruption, rejects invalid imports and handles quota failures
+ok 37 - save backup recovers corruption, rejects invalid imports and handles quota failures
+  ---
+  duration_ms: 4.6008
+  type: 'test'
+  ...
+# Subtest: full six-chapter campaign completes with trained cards and stays valid
+ok 38 - full six-chapter campaign completes with trained cards and stays valid
+  ---
+  duration_ms: 18.5145
+  type: 'test'
+  ...
+# Subtest: festival milestones, late challenge progression and winning PK settle once
+ok 39 - festival milestones, late challenge progression and winning PK settle once
+  ---
+  duration_ms: 29.7497
+  type: 'test'
+  ...
+# Subtest: first-release DIY saves migrate without losing progress, decorations or home preference
+ok 40 - first-release DIY saves migrate without losing progress, decorations or home preference
+  ---
+  duration_ms: 3.8084
+  type: 'test'
+  ...
+# Subtest: DIY placement limits, card ownership and transform bounds fail atomically
+ok 41 - DIY placement limits, card ownership and transform bounds fail atomically
+  ---
+  duration_ms: 2.4242
+  type: 'test'
+  ...
+# Subtest: DIY copy, mirror, crop and layer order are independent and survive object removal
+ok 42 - DIY copy, mirror, crop and layer order are independent and survive object removal
+  ---
+  duration_ms: 1.3634
+  type: 'test'
+  ...
+# Subtest: six named plans are deep snapshots, can be replaced and remain loadable after save
+ok 43 - six named plans are deep snapshots, can be replaced and remain loadable after save
+  ---
+  duration_ms: 2.6002
+  type: 'test'
+  ...
+# Subtest: board unlocks connect main and live progression; publishing leaves later drafts separate
+ok 44 - board unlocks connect main and live progression; publishing leaves later drafts separate
+  ---
+  duration_ms: 1.4143
+  type: 'test'
+  ...
+# Subtest: import rejects malformed crops, unknown artwork and duplicated layers in saved plans
+ok 45 - import rejects malformed crops, unknown artwork and duplicated layers in saved plans
+  ---
+  duration_ms: 3.6895
+  type: 'test'
+  ...
+# Subtest: six pet households choose cats/dogs and personalities independently; adoption is permanent
+ok 46 - six pet households choose cats/dogs and personalities independently; adoption is permanent
+  ---
+  duration_ms: 2.5762
+  type: 'test'
+  ...
+# Subtest: legacy pet migration keeps name, bond, hunger and the original game progress
+ok 47 - legacy pet migration keeps name, bond, hunger and the original game progress
+  ---
+  duration_ms: 3.1687
+  type: 'test'
+  ...
+# Subtest: care consumes supplies atomically, daily growth and pats have limits, all households decay offline
+ok 48 - care consumes supplies atomically, daily growth and pats have limits, all households decay offline
+  ---
+  duration_ms: 4.5238
+  type: 'test'
+  ...
+# Subtest: furniture ownership, floor bounds and mastery affect real stats only once
+ok 49 - furniture ownership, floor bounds and mastery affect real stats only once
+  ---
+  duration_ms: 1.1515
+  type: 'test'
+  ...
+# Subtest: daily and competition clothing remain separate; matching theme improves league power
+ok 50 - daily and competition clothing remain separate; matching theme improves league power
+  ---
+  duration_ms: 0.948
+  type: 'test'
+  ...
+# Subtest: pet gacha publishes separate normal chances and a shared advanced hard pity
+ok 51 - pet gacha publishes separate normal chances and a shared advanced hard pity
+  ---
+  duration_ms: 1.433
+  type: 'test'
+  ...
+# Subtest: pet calendars, daily tasks, invitations and training cannot double award
+ok 52 - pet calendars, daily tasks, invitations and training cannot double award
+  ---
+  duration_ms: 3.041
+  type: 'test'
+  ...
+# Subtest: pet league requires level six and accepts at most six owned cards of the household heroine
+ok 53 - pet league requires level six and accepts at most six owned cards of the household heroine
+  ---
+  duration_ms: 2.4224
+  type: 'test'
+  ...
+# Subtest: 30-second pet league survives a save, single-use choices and settlement cannot repeat
+ok 54 - 30-second pet league survives a save, single-use choices and settlement cannot repeat
+  ---
+  duration_ms: 2.2956
+  type: 'test'
+  ...
+# Subtest: month-boundary live sessions settle into their original season; monthly ER rewards pay once
+ok 55 - month-boundary live sessions settle into their original season; monthly ER rewards pay once
+  ---
+  duration_ms: 1.3224
+  type: 'test'
+  ...
+# Subtest: pet ER crafting unlocks twelve original pet dates, first rewards and choices persist
+ok 56 - pet ER crafting unlocks twelve original pet dates, first rewards and choices persist
+  ---
+  duration_ms: 2.0434
+  type: 'test'
+  ...
+# Subtest: malformed nested pet imports are rejected without throwing or resetting a valid live save
+ok 57 - malformed nested pet imports are rejected without throwing or resetting a valid live save
+  ---
+  duration_ms: 4.9055
+  type: 'test'
+  ...
+1..57
+# tests 57
+# suites 0
+# pass 57
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 379.1788

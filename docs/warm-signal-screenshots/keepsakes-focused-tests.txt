@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: old saves gain an empty cosmetic collection without auto-claiming earned birthday rewards
+ok 1 - old saves gain an empty cosmetic collection without auto-claiming earned birthday rewards
+  ---
+  duration_ms: 24.2344
+  type: 'test'
+  ...
+# Subtest: each of six people and four reward kinds requires its actual transmission threshold
+ok 2 - each of six people and four reward kinds requires its actual transmission threshold
+  ---
+  duration_ms: 95.3815
+  type: 'test'
+  ...
+# Subtest: claims reject wrong annual keys, unsupported kinds, duplicate and stale confirmations atomically
+ok 3 - claims reject wrong annual keys, unsupported kinds, duplicate and stale confirmations atomically
+  ---
+  duration_ms: 3.8469
+  type: 'test'
+  ...
+# Subtest: equipping requires ownership and independent categories persist after reload and selective removal
+ok 4 - equipping requires ownership and independent categories persist after reload and selective removal
+  ---
+  duration_ms: 4.5376
+  type: 'test'
+  ...
+# Subtest: earned cosmetics remain claimable after the event ends while clock rollback is rejected
+ok 5 - earned cosmetics remain claimable after the event ends while clock rollback is rejected
+  ---
+  duration_ms: 2.3389
+  type: 'test'
+  ...
+# Subtest: the same themed cosmetic next year records the annual receipt without duplicate permanent items or rewards
+ok 6 - the same themed cosmetic next year records the annual receipt without duplicate permanent items or rewards
+  ---
+  duration_ms: 3.5918
+  type: 'test'
+  ...
+# Subtest: a birthday mutation invalidates a previously opened claim even if cosmetic revision did not change
+ok 7 - a birthday mutation invalidates a previously opened claim even if cosmetic revision did not change
+  ---
+  duration_ms: 3.1041
+  type: 'test'
+  ...
+# Subtest: import rejects forged source progress, cross-person equipment and malformed collections without throwing
+ok 8 - import rejects forged source progress, cross-person equipment and malformed collections without throwing
+  ---
+  duration_ms: 16.807
+  type: 'test'
+  ...
+# Subtest: collection revision ceiling rejects further claims and equipment without losing resources
+ok 9 - collection revision ceiling rejects further claims and equipment without losing resources
+  ---
+  duration_ms: 2.8732
+  type: 'test'
+  ...
+# Subtest: claimable collection points to the latest earned annual source and does not depend on active dates
+ok 10 - claimable collection points to the latest earned annual source and does not depend on active dates
+  ---
+  duration_ms: 2.6408
+  type: 'test'
+  ...
+# Subtest: all six original avatar frames and motifs are distinct scalable vector artwork
+ok 11 - all six original avatar frames and motifs are distinct scalable vector artwork
+  ---
+  duration_ms: 0.4935
+  type: 'test'
+  ...
+# Subtest: collection previews claim and equip manually, display actual profile art, and escape player names
+ok 12 - collection previews claim and equip manually, display actual profile art, and escape player names
+  ---
+  duration_ms: 4.4428
+  type: 'test'
+  ...
+# Subtest: locked previews route to the selected person and never equip or consume currency
+ok 13 - locked previews route to the selected person and never equip or consume currency
+  ---
+  duration_ms: 1.8306
+  type: 'test'
+  ...
+# Subtest: global click effects require equipped ownership, respect motion settings, clean up and never mutate saves
+ok 14 - global click effects require equipped ownership, respect motion settings, clean up and never mutate saves
+  ---
+  duration_ms: 3.2889
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 348.4809

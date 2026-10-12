@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-12",
+  "file": "tangli-toon-prototype-v4.glb",
+  "bytes": 4580848,
+  "triangles": 24000,
+  "exportedVertices": 20234,
+  "textures": [
+    {
+      "width": 2048,
+      "height": 2048,
+      "bytes": 1513055
+    },
+    {
+      "width": 1024,
+      "height": 1536,
+      "bytes": 1867905
+    }
+  ],
+  "hashes": [
+    {
+      "file": "tangli-toon-source-v4.png",
+      "SHA256": "ec68a64877677c5bad71233f5146903011a3a09323c88d1968e5625f75ce2897"
+    }
+  ],
+  "productionReady": false,
+  "errors": []
+}

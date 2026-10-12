@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: old saves migrate empty theme inventory without granting resources or replacing any cottage progress
+ok 1 - old saves migrate empty theme inventory without granting resources or replacing any cottage progress
+  ---
+  duration_ms: 17.1207
+  type: 'test'
+  ...
+# Subtest: a closed gate, invalid person, stale price/date/serial and insufficient diamonds fail atomically
+ok 2 - a closed gate, invalid person, stale price/date/serial and insufficient diamonds fail atomically
+  ---
+  duration_ms: 9.3156
+  type: 'test'
+  ...
+# Subtest: monthly windows respect Shanghai 5am exactly and prior collections/pity survive closure and return
+ok 3 - monthly windows respect Shanghai 5am exactly and prior collections/pity survive closure and return
+  ---
+  duration_ms: 4.1904
+  type: 'test'
+  ...
+# Subtest: one global daily half-price is shared across six heroines and resets at 5am without resetting pity or gifts
+ok 4 - one global daily half-price is shared across six heroines and resets at 5am without resetting pity or gifts
+  ---
+  duration_ms: 1.882
+  type: 'test'
+  ...
+# Subtest: six misses guarantee a seventh new furniture, grant every base box, and restart the counter after a furniture
+ok 5 - six misses guarantee a seventh new furniture, grant every base box, and restart the counter after a furniture
+  ---
+  duration_ms: 2.091
+  type: 'test'
+  ...
+# Subtest: early furniture resets pity, samples uniformly from remaining IDs, and collection cannot produce duplicate styles
+ok 6 - early furniture resets pity, samples uniformly from remaining IDs, and collection cannot produce duplicate styles
+  ---
+  duration_ms: 5.2861
+  type: 'test'
+  ...
+# Subtest: pity, collections, equipped styles and limited gifts remain heroine-specific across switching and reload
+ok 7 - pity, collections, equipped styles and limited gifts remain heroine-specific across switching and reload
+  ---
+  duration_ms: 4.0898
+  type: 'test'
+  ...
+# Subtest: bulk style saves require base furniture and owned styles, preserve positions and exploration, and restoration keeps warmth
+ok 8 - bulk style saves require base furniture and owned styles, preserve positions and exploration, and restoration keeps warmth
+  ---
+  duration_ms: 5.9844
+  type: 'test'
+  ...
+# Subtest: style warmth can unlock an area and remains valid after reloading even when base furniture warmth is below the threshold
+ok 9 - style warmth can unlock an area and remains valid after reloading even when base furniture warmth is below the threshold
+  ---
+  duration_ms: 3.3088
+  type: 'test'
+  ...
+# Subtest: base boxes and own limited gifts increase cottage intimacy/mood and real gift tasks once, without global affection or duplicate money
+ok 10 - base boxes and own limited gifts increase cottage intimacy/mood and real gift tasks once, without global affection or duplicate money
+  ---
+  duration_ms: 2.3951
+  type: 'test'
+  ...
+# Subtest: a gift can recover a resting heroine; same-day purchased bases may be gifted to a different heroine
+ok 11 - a gift can recover a resting heroine; same-day purchased bases may be gifted to a different heroine
+  ---
+  duration_ms: 1.8017
+  type: 'test'
+  ...
+# Subtest: original furniture interactions pause when themed, then resume after restoration; ordinary exploration still rewards once
+ok 12 - original furniture interactions pause when themed, then resume after restoration; ordinary exploration still rewards once
+  ---
+  duration_ms: 3.0472
+  type: 'test'
+  ...
+# Subtest: receipts retain fifty ordered rows while total purchase counts and inventory remain valid beyond truncation
+ok 13 - receipts retain fifty ordered rows while total purchase counts and inventory remain valid beyond truncation
+  ---
+  duration_ms: 9.2029
+  type: 'test'
+  ...
+# Subtest: same confirmation cannot charge twice and serial changes or a 5am discount change invalidate stale confirmations
+ok 14 - same confirmation cannot charge twice and serial changes or a 5am discount change invalidate stale confirmations
+  ---
+  duration_ms: 2.013
+  type: 'test'
+  ...
+# Subtest: forged theme counts, duplicate styles, unowned equipment, invalid receipts and missing inventory are rejected on import
+ok 15 - forged theme counts, duplicate styles, unowned equipment, invalid receipts and missing inventory are rejected on import
+  ---
+  duration_ms: 9.8795
+  type: 'test'
+  ...
+# Subtest: inventory and save serial limits reject purchases, giving and equipment without partial deductions
+ok 16 - inventory and save serial limits reject purchases, giving and equipment without partial deductions
+  ---
+  duration_ms: 2.1802
+  type: 'test'
+  ...
+# Subtest: all twelve generated style crops stay within the transparent atlas and retain proportional rendering
+ok 17 - all twelve generated style crops stay within the transparent atlas and retain proportional rendering
+  ---
+  duration_ms: 1.2128
+  type: 'test'
+  ...
+# Subtest: themed room navigation uses new crop ratios for furniture collision shapes in all six rooms
+ok 18 - themed room navigation uses new crop ratios for furniture collision shapes in all six rooms
+  ---
+  duration_ms: 76.3407
+  type: 'test'
+  ...
+# Subtest: the UI previews several styles without persisting them, discards by reopening, and saves once on explicit action
+ok 19 - the UI previews several styles without persisting them, discards by reopening, and saves once on explicit action
+  ---
+  duration_ms: 5.1668
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 336.2523

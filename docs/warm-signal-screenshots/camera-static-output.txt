@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-12",
+  "version": "20261012-camera-1",
+  "scripts": 115,
+  "vendorScripts": 2,
+  "threeRevision": 186,
+  "pages": {
+    "WarmSignal.html": {
+      "localReferences": 151,
+      "missing": [],
+      "duplicate": []
+    },
+    "WarmSignalCityReview.html": {
+      "localReferences": 151,
+      "missing": [],
+      "duplicate": []
+    },
+    "WarmSignalSunJournalReview.html": {
+      "localReferences": 148,
+      "missing": [],
+      "duplicate": []
+    },
+    "WarmSignalLabyrinthReview.html": {
+      "localReferences": 145,
+      "missing": [],
+      "duplicate": []
+    }
+  },
+  "city": {
+    "characters": 6,
+    "maps": 3,
+    "heartsPerRoute": 45,
+    "stories": 90,
+    "storyLines": 360,
+    "entertainment": 4,
+    "reachable": [
+      {
+        "p": 0,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 0,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 0,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 1,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 1,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 1,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 2,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 2,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 2,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 3,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 3,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 3,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 4,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 4,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 4,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 5,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 5,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 5,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      }
+    ]
+  },
+  "errors": []
+}

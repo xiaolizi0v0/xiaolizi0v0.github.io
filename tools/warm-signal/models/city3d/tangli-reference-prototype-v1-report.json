@@ -1,0 +1,82 @@
+{
+  "sourceMesh": "C:\\Users\\xiaolizi0v0\\.codex\\warm-signal-model-runtime\\city3d-runs\\tangli-reference-low-v1\\shape.glb",
+  "sourceSHA256": "3a35a99740981bbd204ff6a051afcb72561b40a48f04897cdd16d649d583d678",
+  "vertices": 12002,
+  "triangles": 24000,
+  "boundaryEdges": 0,
+  "nonManifoldEdges": 0,
+  "rigged": false,
+  "productionReady": false,
+  "bounds": [
+    [
+      -0.7146194577217102,
+      -0.5469198226928711,
+      -1.0026371479034424
+    ],
+    [
+      0.6906245350837708,
+      0.559078574180603,
+      1.0027283430099487
+    ]
+  ],
+  "exportedTriangles": 24000,
+  "textureProjection": "normalized cosine^6, visibility-tested four-view Blender EMIT shader bake",
+  "bakedTexture": {
+    "size": [
+      2048,
+      2048
+    ],
+    "path": "C:\\Users\\xiaolizi0v0\\.codex\\warm-signal-model-runtime\\city3d-runs\\tangli-reference-material-v1\\albedo-baked.png"
+  },
+  "textures": [
+    {
+      "name": "front",
+      "path": "tools\\warm-signal\\models\\city3d\\tangli-toon-source-v3.png",
+      "SHA256": "50ec0e22d15e9b274a1664d38862415e1ded6e995e63fa7db2cea647005f9c72",
+      "bounds": [
+        199,
+        78,
+        998,
+        1267
+      ],
+      "unchanged": true
+    },
+    {
+      "name": "back",
+      "path": "tools\\warm-signal\\models\\city3d\\tangli-toon-back-v3.png",
+      "SHA256": "3b004fc80e4708cb759471fd2a19eb85666ed1f8b72cf26c093a5e944706fa5d",
+      "bounds": [
+        172,
+        73,
+        978,
+        1314
+      ],
+      "unchanged": true
+    },
+    {
+      "name": "left",
+      "path": "tools\\warm-signal\\models\\city3d\\tangli-toon-left-v3.png",
+      "SHA256": "3c08caedf12574e89641c1922ecc9396cfd55f9c60a0bb0587e99c0ab938f3eb",
+      "bounds": [
+        246,
+        79,
+        922,
+        1282
+      ],
+      "unchanged": true
+    },
+    {
+      "name": "right",
+      "path": "tools\\warm-signal\\models\\city3d\\tangli-toon-right-v3.png",
+      "SHA256": "4bceaab6a9fd47cb5d44be876cbef90d0e44013982eb0bb66e13f0af0ab22c99",
+      "bounds": [
+        232,
+        72,
+        885,
+        1290
+      ],
+      "unchanged": true
+    }
+  ],
+  "sourceUnchanged": true
+}

@@ -1,0 +1,67 @@
+{
+  "status": "in-production",
+  "storyScenes": 37,
+  "dialogueLines": 554,
+  "scriptHanCharacters": 16323,
+  "voicedLines": 554,
+  "uniqueVoiceMinutes": 71.77,
+  "videoFiles": 0,
+  "uniqueVideoMinutes": 0,
+  "productionTargetUniqueMinutes": 420,
+  "chapters": [
+    {
+      "id": "1",
+      "title": "雨停之前",
+      "scenes": 18
+    },
+    {
+      "id": "2",
+      "title": "一起把灯打开",
+      "scenes": 19
+    },
+    {
+      "id": "3",
+      "title": "镜头以外的人",
+      "scenes": 0
+    },
+    {
+      "id": "4",
+      "title": "没有拍下来的那一晚",
+      "scenes": 0
+    },
+    {
+      "id": "5",
+      "title": "体面和真心",
+      "scenes": 0
+    },
+    {
+      "id": "6",
+      "title": "留一张空椅子",
+      "scenes": 0
+    },
+    {
+      "id": "7",
+      "title": "各自的远方",
+      "scenes": 0
+    },
+    {
+      "id": "8",
+      "title": "彼此的日常",
+      "scenes": 0
+    },
+    {
+      "id": "9",
+      "title": "我想要的生活",
+      "scenes": 0
+    },
+    {
+      "id": "10",
+      "title": "雨停之后",
+      "scenes": 0
+    }
+  ],
+  "unwrittenContinuations": [
+    "c3-visit"
+  ],
+  "missingVoiceLines": []
+}

@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-12",
+  "version": "20261012-city-2d-1",
+  "book": {
+    "canvas": {
+      "outfit": "2",
+      "person": "5",
+      "pose": "2",
+      "renderer": "canvas-2d"
+    },
+    "scripts": [
+      "http://127.0.0.1:8765/tools/warm-signal/city-art-frames.js?v=20261012-city-2d-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-art.js?v=20261012-city-2d-1",
+      "http://127.0.0.1:8765/tools/warm-signal/city-art-preview.js?v=20261012-city-2d-1"
+    ],
+    "scrollWidth": 502,
+    "title": "晴川 · 2D角色画册",
+    "url": "http://127.0.0.1:8765/tools/warm-signal/city-art-preview.html",
+    "width": 502
+  },
+  "city": {
+    "canvases": [
+      {
+        "height": 670,
+        "renderer": "canvas-2d",
+        "width": 517
+      }
+    ],
+    "map": 1,
+    "p": 5,
+    "title": "心动来信 · WARM SIGNAL",
+    "url": "http://127.0.0.1:8765/tools/WarmSignalCityReview.html?scene=art",
+    "valid": true,
+    "width": 517
+  },
+  "bookLogs": [],
+  "cityLogs": [],
+  "export": {
+    "width": 900,
+    "height": 1200,
+    "file": "photo-export.png"
+  },
+  "temporaryViewportReset": true
+}

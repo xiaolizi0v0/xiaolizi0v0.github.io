@@ -1,0 +1,121 @@
+{
+  "build": "20261011-birthday-3",
+  "syntaxCount": 96,
+  "syntaxFailures": [],
+  "htmlTargets": 130,
+  "resourceFailures": [],
+  "assets": [
+    {
+      "file": "birthday-gu-qinghe-v1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 2827462
+    },
+    {
+      "file": "birthday-gu-qinghe-v1.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 457194
+    },
+    {
+      "file": "birthday-jiang-yue-v1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 2842699
+    },
+    {
+      "file": "birthday-jiang-yue-v1.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 458400
+    },
+    {
+      "file": "birthday-lin-zhi-v1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 3041797
+    },
+    {
+      "file": "birthday-lin-zhi-v1.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 501096
+    },
+    {
+      "file": "birthday-room-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "bytes": 2641085
+    },
+    {
+      "file": "birthday-room-v1.webp",
+      "size": [
+        1024,
+        1536
+      ],
+      "bytes": 416988
+    },
+    {
+      "file": "birthday-su-wan-v1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 2715212
+    },
+    {
+      "file": "birthday-su-wan-v1.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 427136
+    },
+    {
+      "file": "birthday-tang-li-v1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 2873024
+    },
+    {
+      "file": "birthday-tang-li-v1.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 461404
+    },
+    {
+      "file": "birthday-xu-zhixia-v1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 2845439
+    },
+    {
+      "file": "birthday-xu-zhixia-v1.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 464082
+    }
+  ]
+}

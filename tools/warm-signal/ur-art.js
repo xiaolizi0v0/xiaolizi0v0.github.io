@@ -1,0 +1,8 @@
+(function(root){'use strict';
+const node=typeof module!=='undefined'&&module.exports,D=node?require('./content.js'):root.WarmData,U=node?require('./ur.js'):root.WarmUR,Base=node?require('./card-art.js'):root.WarmCardArt;
+const sheets=Array.from({length:6},(_,p)=>({file:`ur-${p}-v1.webp`,width:1536,height:1024}));
+function descriptor(g,id,display){const r=U.record(g,id);if(!r)return null;display=display??r.display;if(![5,6].includes(display)||display>r.stage)return null;const a=sheets[D.cards[id].p];return{file:a.file,key:`ur-${id}-${display}`,x:display===5?2:770,y:2,width:764,height:1020,atlasWidth:a.width,atlasHeight:a.height,display};}
+const marks=r=>r.marks.map(m=>`<i class="ur-mark" style="left:${m.x}%;top:${m.y}%" aria-hidden="true">✧</i>`).join('');
+function markup(g,id,esc,display,clean=false){const r=U.record(g,id);if(!r)return '';display=display??r.display;const a=descriptor(g,id,display);if(!a)return display===0&&!clean&&r.marks.length?`<div class="ur-marked-base">${Base.markup(D.cards[id],esc)}${marks(r)}</div>`:'';return `<div class="card-illustration ur-card-art" data-art-key="${a.key}" role="img" aria-label="${esc(D.characters[D.cards[id].p].name+' · '+D.cards[id].name+' · UR'+a.display+'阶'+(a.display===5?'单人':'双人')+'卡面')}"><svg class="card-image" viewBox="${a.x} ${a.y} ${a.width} ${a.height}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="warm-signal/assets/${a.file}" width="${a.atlasWidth}" height="${a.atlasHeight}"/></svg>${!clean&&display===5?marks(r):''}</div>`;}
+const api={sheets,descriptor,markup};if(node)module.exports=api;else root.WarmURArt=api;
+})(typeof window==='undefined'?globalThis:window);

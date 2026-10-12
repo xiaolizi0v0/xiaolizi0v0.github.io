@@ -1,0 +1,57 @@
+{
+  "sourceMesh": "C:\\Users\\xiaolizi0v0\\.codex\\warm-signal-model-runtime\\city3d-runs\\tangli-compact-geometry-v1\\shape.glb",
+  "sourceSHA256": "629d3b08ab8bf2413546f83f7c5dd92719845e5d76f88ce24514ef0cc2681f90",
+  "originalVertices": 234744,
+  "originalFaces": 470220,
+  "voxel": 0.024,
+  "rigged": false,
+  "productionReady": false,
+  "vertices": 11982,
+  "triangles": 23996,
+  "boundaryEdges": 8,
+  "nonManifoldEdges": 8,
+  "bounds": [
+    [
+      -0.5546421408653259,
+      -0.43943458795547485,
+      -0.9997865557670593
+    ],
+    [
+      0.5849984884262085,
+      0.4486219882965088,
+      0.988206684589386
+    ]
+  ],
+  "textureProjection": "Blender EMIT UV bake of smooth normal-weighted front/back projections and solid side palette; not an AI texture model",
+  "bakedTexture": {
+    "path": "C:\\Users\\xiaolizi0v0\\.codex\\warm-signal-model-runtime\\city3d-runs\\tangli-compact-material-v2\\albedo-baked.png",
+    "size": [
+      2048,
+      2048
+    ]
+  },
+  "textures": [
+    {
+      "path": "tools\\warm-signal\\models\\city3d\\tangli-toon-source-v2.png",
+      "SHA256": "a4e53cda23c25375401946465b86626c3f05d2a8cb450b4ca0dae8230da2420c",
+      "bounds": [
+        183,
+        107,
+        930,
+        1394
+      ],
+      "unchanged": true
+    },
+    {
+      "path": "tools\\warm-signal\\models\\city3d\\tangli-toon-back-v2.png",
+      "SHA256": "40b45d89d941354c5857c8e77630825458f131316045fb449a53e6a737027c6c",
+      "bounds": [
+        88,
+        75,
+        897,
+        1472
+      ],
+      "unchanged": true
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "scripts": 90,
+  "scriptErrors": [],
+  "htmlLocalResources": 122,
+  "missing": [],
+  "art": [
+    {
+      "file": "cottage-characters-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "webpExists": true
+    },
+    {
+      "file": "cottage-furniture-v1.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "webpExists": true
+    },
+    {
+      "file": "cottage-room-0-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alphaRange": null,
+      "webpExists": true
+    },
+    {
+      "file": "cottage-room-1-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alphaRange": null,
+      "webpExists": true
+    },
+    {
+      "file": "cottage-room-2-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alphaRange": null,
+      "webpExists": true
+    },
+    {
+      "file": "cottage-room-3-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alphaRange": null,
+      "webpExists": true
+    },
+    {
+      "file": "cottage-room-4-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alphaRange": null,
+      "webpExists": true
+    },
+    {
+      "file": "cottage-room-5-v1.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alphaRange": null,
+      "webpExists": true
+    }
+  ],
+  "htmlBuild": "20261011-cottage-4"
+}

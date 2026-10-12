@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: v1 city saves move old overlapping positions to the nearest free ground without losing any progress
+ok 1 - v1 city saves move old overlapping positions to the nearest free ground without losing any progress
+  ---
+  duration_ms: 63.2555
+  type: 'test'
+  ...
+# Subtest: current city positions still reject obstacle overlap and photos reject coordinates outside the scene
+ok 2 - current city positions still reject obstacle overlap and photos reject coordinates outside the scene
+  ---
+  duration_ms: 6.9004
+  type: 'test'
+  ...
+# Subtest: old saves migrate to an empty city without granting unlocks or changing player progress
+ok 3 - old saves migrate to an empty city without granting unlocks or changing player progress
+  ---
+  duration_ms: 4.7631
+  type: 'test'
+  ...
+# Subtest: all45 hearts, NPCs and attractions are reachable without crossing walls, flower boxes or fountain
+ok 4 - all45 hearts, NPCs and attractions are reachable without crossing walls, flower boxes or fountain
+  ---
+  duration_ms: 153.0217
+  type: 'test'
+  ...
+# Subtest: collision rejects large jumps, non finite positions, map bounds and walls atomically
+ok 5 - collision rejects large jumps, non finite positions, map bounds and walls atomically
+  ---
+  duration_ms: 3.015
+  type: 'test'
+  ...
+# Subtest: swept collision catches a fountain edge between samples and planned segments remain clear when subdivided
+ok 6 - swept collision catches a fountain edge between samples and planned segments remain clear when subdivided
+  ---
+  duration_ms: 6.3047
+  type: 'test'
+  ...
+# Subtest: walking and cycling routes keep the full party away from every map obstacle
+ok 7 - walking and cycling routes keep the full party away from every map obstacle
+  ---
+  duration_ms: 236.7389
+  type: 'test'
+  ...
+# Subtest: hearts require proximity, collect once and keep six independent routes and three independent maps
+ok 8 - hearts require proximity, collect once and keep six independent routes and three independent maps
+  ---
+  duration_ms: 4.1505
+  type: 'test'
+  ...
+# Subtest: special hearts unlock original moments, bookmarks survive reload and only the final line records read
+ok 9 - special hearts unlock original moments, bookmarks survive reload and only the final line records read
+  ---
+  duration_ms: 2.6
+  type: 'test'
+  ...
+# Subtest: camera, bikes and two outfits are unlocked by their local NPC and shared without sharing route tasks
+ok 10 - camera, bikes and two outfits are unlocked by their local NPC and shared without sharing route tasks
+  ---
+  duration_ms: 4.1929
+  type: 'test'
+  ...
+# Subtest: three riding modes count only after actual movement and switching back to walking is free
+ok 11 - three riding modes count only after actual movement and switching back to walking is free
+  ---
+  duration_ms: 3.1346
+  type: 'test'
+  ...
+# Subtest: snapshots preserve original person, clothing, map and view; four strip costs exactly one coin locally
+ok 12 - snapshots preserve original person, clothing, map and view; four strip costs exactly one coin locally
+  ---
+  duration_ms: 4.2576
+  type: 'test'
+  ...
+# Subtest: photo rolling cap keeps60 and lifetime IDs, task evidence and original snapshots survive import
+ok 13 - photo rolling cap keeps60 and lifetime IDs, task evidence and original snapshots survive import
+  ---
+  duration_ms: 5.4641
+  type: 'test'
+  ...
+# Subtest: landmark claims are manual, local to route, one time and medal ledger remains exact
+ok 14 - landmark claims are manual, local to route, one time and medal ledger remains exact
+  ---
+  duration_ms: 38.2358
+  type: 'test'
+  ...
+# Subtest: energy exchange requires the local NPC, exact batch cost and rejects insufficient resources atomically
+ok 15 - energy exchange requires the local NPC, exact batch cost and rejects insufficient resources atomically
+  ---
+  duration_ms: 2.5694
+  type: 'test'
+  ...
+# Subtest: medal store has exact resource rewards, finite stock, ledger validation and overflow protection
+ok 16 - medal store has exact resource rewards, finite stock, ledger validation and overflow protection
+  ---
+  duration_ms: 1.9922
+  type: 'test'
+  ...
+# Subtest: rides cannot complete immediately, survive reload and repeated rides never duplicate first completion
+ok 17 - rides cannot complete immediately, survive reload and repeated rides never duplicate first completion
+  ---
+  duration_ms: 3.4746
+  type: 'test'
+  ...
+# Subtest: tile game requires reveal delay, checks every ordered input and completes after four real rounds
+ok 18 - tile game requires reveal delay, checks every ordered input and completes after four real rounds
+  ---
+  duration_ms: 1.4595
+  type: 'test'
+  ...
+# Subtest: three wrong tile rounds end without rewards, then the attraction can be retried
+ok 19 - three wrong tile rounds end without rewards, then the attraction can be retried
+  ---
+  duration_ms: 1.3689
+  type: 'test'
+  ...
+# Subtest: balloon score comes from moving aim position, five hits complete and eight misses fail
+ok 20 - balloon score comes from moving aim position, five hits complete and eight misses fail
+  ---
+  duration_ms: 3.7318
+  type: 'test'
+  ...
+# Subtest: forged task claims, negative medals, unread stories, photos and unlocks are rejected on import
+ok 21 - forged task claims, negative medals, unread stories, photos and unlocks are rejected on import
+  ---
+  duration_ms: 11.4853
+  type: 'test'
+  ...
+# Subtest: all six routes expose15 distinct original story beats with real bookmarks and task keys
+ok 22 - all six routes expose15 distinct original story beats with real bookmarks and task keys
+  ---
+  duration_ms: 0.3248
+  type: 'test'
+  ...
+# Subtest: migration preserves an existing confirmed recharge order and all currency exactly
+ok 23 - migration preserves an existing confirmed recharge order and all currency exactly
+  ---
+  duration_ms: 3.1092
+  type: 'test'
+  ...
+# Subtest: candid photos retain cycling mode and heading while arranged photos use their chosen fixed pose
+ok 24 - candid photos retain cycling mode and heading while arranged photos use their chosen fixed pose
+  ---
+  duration_ms: 5.9099
+  type: 'test'
+  ...
+# Subtest: switching companion safely ends the previous free attraction without granting either route completion
+ok 25 - switching companion safely ends the previous free attraction without granting either route completion
+  ---
+  duration_ms: 2.5011
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 830.69

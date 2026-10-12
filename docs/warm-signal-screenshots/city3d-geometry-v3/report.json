@@ -1,0 +1,33 @@
+{
+  "status": "geometry_complete_needs_visual_review",
+  "source": "C:\\Users\\xiaolizi0v0\\Desktop\\ponselBlog\\xiaolizi0v0.github.io\\tools\\warm-signal\\models\\city3d\\tangli-toon-source-v1.png",
+  "sourceSHA256": "093dafa7715bf33b3c85c9fd402a82e8fc1b3d7794bc60b91a78ff2b5da93362",
+  "codeCommit": "f8db63096c8282cb27354314d896feba5ba6ff8a",
+  "model": "tencent/Hunyuan3D-2mini",
+  "modelRevision": "f90a0f7df7d5e6f71109cf333f6a95a0ae3194a6",
+  "subfolder": "hunyuan3d-dit-v2-mini-turbo",
+  "seed": 42,
+  "steps": 5,
+  "resolution": 256,
+  "textured": false,
+  "rigged": false,
+  "seconds": 63.65,
+  "gpu": "NVIDIA GeForce RTX 5060 Ti",
+  "torch": "2.9.0.dev20250905+cu129",
+  "vertices": 299696,
+  "faces": 602114,
+  "bounds": [
+    [
+      -0.5181010365486145,
+      -0.9995391964912415,
+      -0.4449310004711151
+    ],
+    [
+      0.5106168389320374,
+      0.9926942586898804,
+      0.46178433299064636
+    ]
+  ],
+  "watertight": false,
+  "sourceUnchanged": true
+}
