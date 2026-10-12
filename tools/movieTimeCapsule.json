@@ -8799,7 +8799,7 @@
         {
           "title": "第2集",
           "url": "https://fengbao13.com/video/xijuzhiwang2026/9bce23fcfe4e/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第3集",
@@ -8872,7 +8872,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1791782445220
+      "updatedAt": 1791786739392
     }
   ],
   "deleted": {
