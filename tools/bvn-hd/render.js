@@ -59,15 +59,43 @@
         orig_logo: 'bvn-hd/assets/orig/logo_new.png',
         orig_congrats: 'bvn-hd/assets/orig/congratulations.png',
         orig_title: 'bvn-hd/assets/orig/title.png',
+        facekk: 'bvn-hd/assets/orig/facekk.png',
         face_ichigo: 'bvn-hd/assets/orig/bigface_1.png',
         face_naruto: 'bvn-hd/assets/orig/bigface_2.png',
-        face_sasuke: 'bvn-hd/assets/orig/bigface_3.png'
+        face_sasuke: 'bvn-hd/assets/orig/bigface_3.png',
+
+        // 官方角色与援助对战头像
+        face_ichigo_orig: 'bvn-hd/assets/orig/face/ichigo.png',
+        face_naruto_orig: 'bvn-hd/assets/orig/face/naruto.png',
+        face_sasuke_orig: 'bvn-hd/assets/orig/face/sasuke.png',
+        face_hitsugaya_orig: 'bvn-hd/assets/orig/face/toushirou.png',
+        face_rukia_orig: 'bvn-hd/assets/orig/face/rukia.png',
+        face_orihime_orig: 'bvn-hd/assets/orig/face/orihime.png',
+        face_itachi_orig: 'bvn-hd/assets/orig/face/itachi.png'
       };
 
       for (const [key, src] of Object.entries(assetMap)) {
         const img = new Image();
         img.src = src;
         this.images[key] = img;
+      }
+
+      // 预加载官方原版与高清重制角色动作切片帧
+      this.spriteCache = {};
+      const manifest = (typeof window !== 'undefined' && window.BVN_SPRITES_MANIFEST) ? window.BVN_SPRITES_MANIFEST : (typeof BVN_SPRITES_MANIFEST !== 'undefined' ? BVN_SPRITES_MANIFEST : null);
+      if (manifest) {
+        for (const actions of Object.values(manifest)) {
+          for (const actData of Object.values(actions)) {
+            const list = [...(actData.frames_orig || []), ...(actData.frames_hd || [])];
+            for (const relPath of list) {
+              if (!this.spriteCache[relPath]) {
+                const img = new Image();
+                img.src = relPath;
+                this.spriteCache[relPath] = img;
+              }
+            }
+          }
+        }
       }
     }
 
@@ -228,14 +256,14 @@
       ctx.restore();
     }
 
-    // 绘制角色身体骨骼与形态
+    // 绘制角色身体与动作贴图
     drawFighterBody(ctx, fighter) {
       const cfg = fighter.config;
       const isPixel = this.renderMode === 'pixel';
       const isHurt = fighter.state === 'hurt';
 
-      // 阴影
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+      // 地面阴影
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
       ctx.beginPath();
       ctx.ellipse(0, 0, 32, 10, 0, 0, Math.PI * 2);
       ctx.fill();
@@ -243,83 +271,120 @@
       // 受击闪白
       if (isHurt && Math.floor(fighter.hitstun) % 2 === 0) {
         ctx.fillStyle = '#ffffff';
-        ctx.fillRect(-22, -85, 44, 85);
+        ctx.fillRect(-24, -85, 48, 85);
         return;
       }
 
+      // 状态机动作映射
+      const state = fighter.state;
+      let actionKey = 'idle';
+      if (state === 'idle') actionKey = 'idle';
+      else if (state === 'walk') actionKey = 'walk';
+      else if (state === 'dash' || state === 'run') actionKey = 'run';
+      else if (state === 'jump') actionKey = 'jump';
+      else if (state === 'jump_attack') actionKey = 'air_attack';
+      else if (state === 'attack') actionKey = 'attack1';
+      else if (state === 'attack2') actionKey = 'attack2';
+      else if (state === 'attack3') actionKey = 'attack3';
+      else if (state === 'skill_u') actionKey = 'skill_u';
+      else if (state === 'skill_i') actionKey = 'skill_i';
+      else if (state === 'skill_o') actionKey = 'skill_o';
+      else if (state === 'hurt') actionKey = 'hurt';
+      else if (state === 'knockdown') actionKey = 'knockdown';
+      else if (state === 'win') actionKey = 'win';
+
+      const manifest = (typeof window !== 'undefined' && window.BVN_SPRITES_MANIFEST) ? window.BVN_SPRITES_MANIFEST : (typeof BVN_SPRITES_MANIFEST !== 'undefined' ? BVN_SPRITES_MANIFEST : null);
+      let spriteImg = null;
+
+      if (manifest && manifest[cfg.id] && manifest[cfg.id][actionKey]) {
+        const actInfo = manifest[cfg.id][actionKey];
+        const frames = isPixel ? actInfo.frames_orig : actInfo.frames_hd;
+        if (frames && frames.length > 0) {
+          const fIdx = Math.floor(fighter.animTimer) % frames.length;
+          const fPath = frames[fIdx];
+          spriteImg = this.spriteCache ? this.spriteCache[fPath] : null;
+          if (!spriteImg && typeof Image !== 'undefined') {
+            spriteImg = new Image();
+            spriteImg.src = fPath;
+            if (this.spriteCache) this.spriteCache[fPath] = spriteImg;
+          }
+        }
+      }
+
+      // 若官方切片动作帧已就绪，渲染真实动作！
+      if (spriteImg && spriteImg.complete && spriteImg.naturalWidth > 0) {
+        const natW = spriteImg.naturalWidth;
+        const natH = spriteImg.naturalHeight;
+
+        // 统一缩放至格斗视口标准人物身高 (~85-95px)
+        const scale = isPixel ? 1.55 : 0.78;
+        const drawW = natW * scale;
+        const drawH = natH * scale;
+
+        // 脚底对齐 (x = 0, y = 0)
+        const drawX = -drawW / 2;
+        const drawY = -drawH;
+
+        if (!isPixel) {
+          // HD 超分重制模式：立体边缘泛光与平滑抗锯齿
+          ctx.save();
+          ctx.shadowColor = cfg.avatarColor;
+          ctx.shadowBlur = fighter.isAwakened ? 16 : 4;
+          ctx.drawImage(spriteImg, drawX, drawY, drawW, drawH);
+          ctx.restore();
+        } else {
+          // 怀旧像素模式：纯净点阵直出
+          ctx.drawImage(spriteImg, drawX, drawY, drawW, drawH);
+        }
+        return;
+      }
+
+      // 图片加载保护兜底
+      this.drawFallbackFighter(ctx, fighter, isPixel);
+    }
+
+    // 动作帧未就绪时的容错兜底绘制
+    drawFallbackFighter(ctx, fighter, isPixel) {
+      const cfg = fighter.config;
       const col = cfg.avatarColor || '#38bdf8';
       const dark = cfg.darkColor || '#0f172a';
 
-      // 像素模式下使用粗糙方块化渲染（模拟 2008 JUS 掌机像素感）
       if (isPixel) {
         ctx.fillStyle = dark;
         ctx.fillRect(-18, -80, 36, 75);
         ctx.fillStyle = col;
         ctx.fillRect(-12, -75, 24, 30);
-        // 头部
         ctx.fillStyle = '#fed7aa';
         ctx.fillRect(-10, -85, 20, 20);
         return;
       }
 
-      // HD AI 超分重制模式：圆润亚像素矢量造型 + 细腻高光
       ctx.lineWidth = 2.5;
       ctx.strokeStyle = '#020617';
 
-      // 躯干服装
       ctx.fillStyle = dark;
       ctx.beginPath();
       ctx.roundRect(-16, -65, 32, 45, [6, 6, 4, 4]);
       ctx.fill();
       ctx.stroke();
 
-      // 头部与发型
-      ctx.fillStyle = '#fed7aa'; // 肤色
+      ctx.fillStyle = '#fed7aa';
       ctx.beginPath();
       ctx.arc(0, -72, 13, 0, Math.PI * 2);
       ctx.fill();
       ctx.stroke();
 
-      // 角色个性发色与头巾
       ctx.fillStyle = col;
       ctx.beginPath();
-      if (cfg.id === 'ichigo') {
-        // 一护刺猬橘发
-        ctx.moveTo(-14, -76);
-        ctx.lineTo(-20, -92);
-        ctx.lineTo(-6, -86);
-        ctx.lineTo(0, -96);
-        ctx.lineTo(8, -86);
-        ctx.lineTo(18, -90);
-        ctx.lineTo(14, -74);
-      } else if (cfg.id === 'naruto') {
-        // 鸣人金发 + 护额
-        ctx.moveTo(-14, -74);
-        ctx.lineTo(-18, -88);
-        ctx.lineTo(-4, -84);
-        ctx.lineTo(4, -88);
-        ctx.lineTo(16, -86);
-        ctx.lineTo(14, -74);
-      } else if (cfg.id === 'sasuke') {
-        // 佐助深蓝分头
-        ctx.moveTo(-14, -72);
-        ctx.lineTo(-16, -88);
-        ctx.lineTo(0, -86);
-        ctx.lineTo(16, -88);
-        ctx.lineTo(14, -72);
-      } else {
-        // 冬狮郎白发
-        ctx.moveTo(-14, -74);
-        ctx.lineTo(-18, -90);
-        ctx.lineTo(-2, -88);
-        ctx.lineTo(12, -92);
-        ctx.lineTo(14, -74);
-      }
+      ctx.moveTo(-14, -76);
+      ctx.lineTo(-20, -92);
+      ctx.lineTo(0, -96);
+      ctx.lineTo(18, -90);
+      ctx.lineTo(14, -74);
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
 
-      // 腿部与鞋
       ctx.fillStyle = dark;
       ctx.fillRect(-14, -20, 10, 20);
       ctx.fillRect(4, -20, 10, 20);
@@ -519,12 +584,12 @@
       ctx.save();
 
       // P1 头像与血条 (左上)
-      this.drawHealthBar(ctx, 40, 24, 380, 24, p1, false);
-      this.drawEnergyBar(ctx, 40, 52, 280, 10, p1, false);
+      this.drawHealthBar(ctx, 70, 24, 350, 24, p1, false);
+      this.drawEnergyBar(ctx, 70, 52, 260, 10, p1, false);
 
       // P2 头像与血条 (右上)
-      this.drawHealthBar(ctx, 580, 24, 380, 24, p2, true);
-      this.drawEnergyBar(ctx, 680, 52, 280, 10, p2, true);
+      this.drawHealthBar(ctx, 580, 24, 350, 24, p2, true);
+      this.drawEnergyBar(ctx, 670, 52, 260, 10, p2, true);
 
       // 回合倒计时圆盘 (中央)
       ctx.fillStyle = '#0f172a';
@@ -546,21 +611,48 @@
         ctx.fillStyle = '#f59e0b';
         ctx.font = 'italic bold 28px sans-serif';
         ctx.textAlign = 'left';
-        ctx.fillText(`${p1.comboCount} HITS!`, 60, 95);
+        ctx.fillText(`${p1.comboCount} HITS!`, 70, 95);
       }
       if (p2.comboCount > 1) {
         ctx.fillStyle = '#f59e0b';
         ctx.font = 'italic bold 28px sans-serif';
         ctx.textAlign = 'right';
-        ctx.fillText(`${p2.comboCount} HITS!`, 940, 95);
+        ctx.fillText(`${p2.comboCount} HITS!`, 930, 95);
       }
 
       ctx.restore();
     }
 
-    // 绘制血条与角色名称
+    // 绘制血条与角色名称 (含官方经典头像与金属头像框)
     drawHealthBar(ctx, x, y, w, h, fighter, isRight) {
       ctx.save();
+
+      // 官方头像与头像框
+      const avatarSize = 46;
+      const avatarX = isRight ? (x + w + 8) : (x - avatarSize - 8);
+      const avatarY = y - 4;
+
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(avatarX, avatarY, avatarSize, avatarSize);
+
+      const faceKey = `face_${fighter.config.id}_orig`;
+      const faceImg = this.images[faceKey] || this.images[`face_${fighter.config.id}`];
+      if (faceImg && faceImg.complete && faceImg.naturalWidth > 0) {
+        ctx.drawImage(faceImg, avatarX + 3, avatarY + 3, avatarSize - 6, avatarSize - 6);
+      } else {
+        ctx.fillStyle = fighter.config.avatarColor;
+        ctx.fillRect(avatarX + 3, avatarY + 3, avatarSize - 6, avatarSize - 6);
+      }
+
+      // 官方金属头像框
+      if (this.images.facekk && this.images.facekk.complete && this.images.facekk.naturalWidth > 0) {
+        ctx.drawImage(this.images.facekk, avatarX - 2, avatarY - 2, avatarSize + 4, avatarSize + 4);
+      } else {
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(avatarX, avatarY, avatarSize, avatarSize);
+      }
+
       // 底框
       ctx.fillStyle = '#0f172a';
       ctx.strokeStyle = '#334155';

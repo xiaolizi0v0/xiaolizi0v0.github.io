@@ -1,0 +1,7 @@
+(()=>{'use strict';
+const Art=WarmCityRiding,canvas=document.getElementById('riding'),ctx=canvas.getContext('2d'),status=document.getElementById('status'),mode=document.getElementById('riding-mode'),outfit=document.getElementById('riding-outfit'),direction=document.getElementById('riding-direction');
+let images=new Map(),ticket=0;
+function paint(){const choice=Art.pick(5,Number(mode.value),Number(outfit.value),Number(direction.value)),w=canvas.clientWidth,h=canvas.clientHeight,pixel=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(w*pixel);canvas.height=Math.round(h*pixel);ctx.setTransform(pixel,0,0,pixel,0,0);ctx.clearRect(0,0,w,h);if(!images.has(choice.id))return;const frame=Art.sheets[choice.id].frames[choice.frame],height=Math.min(h*.82,w*.88*frame[3]/frame[2]),unit=height/2.55*Art.sheets[choice.id].frames[0][3]/frame[3];ctx.fillStyle='#927e5d16';ctx.beginPath();ctx.ellipse(w/2,h*.92,w*.35,5,0,0,7);ctx.fill();Art.paint(ctx,images,choice,w/2,h*.91,unit);canvas.dataset.renderer='canvas-2d';canvas.dataset.ridingArt=choice.id+':'+choice.frame;}
+async function load(){const current=++ticket;status.hidden=false;try{const next=await Art.preload(5,Number(mode.value));if(current!==ticket)return;for(const[id,image]of next)images.set(id,image);status.hidden=true;paint();}catch{if(current===ticket){status.hidden=false;status.textContent='骑行图片暂时没有打开，请重新选择。';}}}
+mode.addEventListener('change',load);outfit.addEventListener('change',paint);direction.addEventListener('change',paint);new ResizeObserver(paint).observe(canvas.parentElement);load();
+})();

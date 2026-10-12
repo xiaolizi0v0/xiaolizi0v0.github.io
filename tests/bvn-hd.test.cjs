@@ -94,7 +94,7 @@ test('左右移动与边界限制阻挡', () => {
 });
 
 test('跳跃物理与落地状态恢复', () => {
-  const engine = new BVN_ENGINE.BattleEngine();
+  const engine = new BVN_ENGINE.BattleEngine({ p2IsAi: false });
   const p1 = engine.p1;
   p1.handleJump();
   assert.equal(p1.onGround, false);
@@ -343,4 +343,37 @@ test('AI 正常进行立回、逼近与攻击决策', () => {
   assert(engine.p2.x < startX);
 });
 
+// 24. 官方真实角色动作切片与高清重制资源完整性测试
+test('官方真实切片动作帧清单与图片物理存在性校验', () => {
+  const fs = require('node:fs');
+  const manifestPath = path.join(root, 'tools/bvn-hd/assets/sprites_manifest.json');
+  assert(fs.existsSync(manifestPath), 'sprites_manifest.json 必须存在');
+
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const requiredChars = ['ichigo', 'naruto', 'sasuke', 'hitsugaya', 'rukia', 'orihime', 'itachi'];
+
+  for (const cid of requiredChars) {
+    assert(manifest[cid], `角色 ${cid} 必须存在于清单中`);
+    const actions = manifest[cid];
+    assert(actions.idle && actions.idle.frame_count > 0, `${cid} 必须具备 idle 动作帧`);
+    assert(actions.attack1 && actions.attack1.frame_count > 0, `${cid} 必须具备 attack1 动作帧`);
+
+    // 抽样检查物理图片文件存在且大小 > 0
+    const sampleOrig = path.join(root, 'tools', actions.idle.frames_orig[0]);
+    const sampleHd = path.join(root, 'tools', actions.idle.frames_hd[0]);
+    assert(fs.existsSync(sampleOrig), `物理文件不存在: ${sampleOrig}`);
+    assert(fs.existsSync(sampleHd), `物理文件不存在: ${sampleHd}`);
+    assert(fs.statSync(sampleOrig).size > 100, `图片文件异常空文件: ${sampleOrig}`);
+    assert(fs.statSync(sampleHd).size > 100, `图片文件异常空文件: ${sampleHd}`);
+  }
+
+  // 官方头像与框
+  assert(fs.existsSync(path.join(root, 'tools/bvn-hd/assets/orig/face/ichigo.png')));
+  assert(fs.existsSync(path.join(root, 'tools/bvn-hd/assets/orig/face/naruto.png')));
+  assert(fs.existsSync(path.join(root, 'tools/bvn-hd/assets/orig/face/sasuke.png')));
+  assert(fs.existsSync(path.join(root, 'tools/bvn-hd/assets/orig/face/toushirou.png')));
+  assert(fs.existsSync(path.join(root, 'tools/bvn-hd/assets/orig/facekk.png')));
+});
+
 console.log(`\n全部 ${passed} 项格斗引擎单元与回归测试通过！`);
+

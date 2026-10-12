@@ -269,6 +269,7 @@
 
   <!-- 引擎与核心脚本库 -->
   <script src="bvn-hd/data.js"></script>
+  <script src="bvn-hd/sprites-manifest.js"></script>
   <script src="bvn-hd/engine.js"></script>
   <script src="bvn-hd/audio.js"></script>
   <script src="bvn-hd/render.js"></script>
@@ -289,7 +290,22 @@
       let currentStageId = 'valley_of_end';
       let currentDiff = 'normal';
 
-      // 角色对应头像映射
+      // 官方角色与援助头像映射
+      const charFaceMap = {
+        ichigo: 'bvn-hd/assets/orig/face/ichigo.png',
+        naruto: 'bvn-hd/assets/orig/face/naruto.png',
+        sasuke: 'bvn-hd/assets/orig/face/sasuke.png',
+        hitsugaya: 'bvn-hd/assets/orig/face/toushirou.png'
+      };
+
+      const assistFaceMap = {
+        rukia: 'bvn-hd/assets/orig/face/rukia.png',
+        itachi: 'bvn-hd/assets/orig/face/itachi.png',
+        orihime: 'bvn-hd/assets/orig/face/orihime.png',
+        shino: 'bvn-hd/assets/orig/face/naruto.png'
+      };
+
+      // 角色奥义特写映射
       const charCutinMap = {
         ichigo: 'bvn-hd/assets/hd/cutin_ichigo.jpg',
         naruto: 'bvn-hd/assets/hd/cutin_naruto.jpg',
@@ -463,7 +479,10 @@
 
         p1Grid.innerHTML = BVN_DATA.CHARACTERS.map(c => `
           <div class="char-card ${c.id === currentP1Id ? 'selected' : ''}" data-id="${c.id}">
-            <img src="${charCutinMap[c.id]}" alt="${c.name}" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; margin: 0 auto 6px; display: block; border: 2px solid ${c.avatarColor};">
+            <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 6px;">
+              <img src="${charFaceMap[c.id] || charCutinMap[c.id]}" alt="${c.name}" style="width: 48px; height: 48px; object-fit: contain; margin: 3px; display: block; image-rendering: pixelated; border-radius: 4px; background: #0f172a;">
+              <img src="bvn-hd/assets/orig/facekk.png" alt="frame" style="position: absolute; top: 0; left: 0; width: 54px; height: 54px; pointer-events: none;">
+            </div>
             <div class="char-name">${c.name}</div>
             <div class="char-series">${c.seriesName}</div>
           </div>
@@ -471,7 +490,10 @@
 
         p2Grid.innerHTML = BVN_DATA.CHARACTERS.map(c => `
           <div class="char-card ${c.id === currentP2Id ? 'selected' : ''}" data-id="${c.id}">
-            <img src="${charCutinMap[c.id]}" alt="${c.name}" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; margin: 0 auto 6px; display: block; border: 2px solid ${c.avatarColor};">
+            <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 6px;">
+              <img src="${charFaceMap[c.id] || charCutinMap[c.id]}" alt="${c.name}" style="width: 48px; height: 48px; object-fit: contain; margin: 3px; display: block; image-rendering: pixelated; border-radius: 4px; background: #0f172a;">
+              <img src="bvn-hd/assets/orig/facekk.png" alt="frame" style="position: absolute; top: 0; left: 0; width: 54px; height: 54px; pointer-events: none;">
+            </div>
             <div class="char-name">${c.name}</div>
             <div class="char-series">${c.seriesName}</div>
           </div>
@@ -479,7 +501,10 @@
 
         aGrid.innerHTML = BVN_DATA.ASSISTS.map(a => `
           <div class="char-card ${a.id === currentAssistId ? 'selected' : ''}" data-id="${a.id}">
-            <div class="char-avatar-circle" style="background: ${a.avatarColor};">${a.name[0]}</div>
+            <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 6px;">
+              <img src="${assistFaceMap[a.id] || 'bvn-hd/assets/orig/facekk.png'}" alt="${a.name}" style="width: 48px; height: 48px; object-fit: contain; margin: 3px; display: block; image-rendering: pixelated; border-radius: 4px; background: #0f172a;">
+              <img src="bvn-hd/assets/orig/facekk.png" alt="frame" style="position: absolute; top: 0; left: 0; width: 54px; height: 54px; pointer-events: none;">
+            </div>
             <div class="char-name">${a.name}</div>
             <div class="char-series">${a.skillName}</div>
           </div>

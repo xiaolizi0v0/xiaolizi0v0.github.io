@@ -13,7 +13,11 @@
     - `net.play5d.game.bvn.stage`: 关卡与背景管理，包含双层视差与镜头跟随逻辑。
     - `net.play5d.game.bvn.ctrl`: 键盘输入与虚拟按键映射系统。
     - `net.play5d.game.bvn.ui`: 血条、气槽、结算面板与立绘 UI。
-- **美术资源源码仓库 (`play5d_game_studio/BleachVsNaruto_FlashSrc`)**:
+- **美术与发布资源库 (`play5d_game_studio/BleachVsNaruto_TagAssets`)**:
+  - 官方真实角色独立 SWF 资产包：`shared/assets/assets/fighter/{ichigo,naruto,sasuke,toushirou,rukia,orihime,itachi}.swf`。
+  - 官方真实对战头像库：`shared/assets/assets/face/*.png`。
+  - SWF 容器内封装：包含 LZMA (`ZWS`) 与 Zlib (`CWS`) 压缩的 `DefineBitsLossless2` (Tag 36) 动作切片帧，每位主战角色包含 400~1045 张真实动作帧。
+- **Flash 源码工程库 (`play5d_game_studio/BleachVsNaruto_FlashSrc`)**:
   - 资产结构: 包含 1,703 张分散的 `.png` 动作切片图、`.fla` 工程文件及 Adobe Animate `.xfl` XML 矢量骨骼库。
   - 核心原生素材: 标题 LOGO (`title.png`、`logo_new.png`)、经典对战地图 (`bvnmap.png`)、胜利结界 (`congratulations.png`)、头像框 (`facekk.png`)、角色大头像 (`bigface_1.png`~`3`)、替身术与乌鸦动作帧 (`Crow_sq_2i4r_0.png`~`2`) 等。
 
