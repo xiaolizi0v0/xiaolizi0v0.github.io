@@ -282,31 +282,58 @@
       else if (state === 'walk') actionKey = 'walk';
       else if (state === 'dash' || state === 'run') actionKey = 'run';
       else if (state === 'jump') actionKey = 'jump';
-      else if (state === 'jump_attack') actionKey = 'air_attack';
-      else if (state === 'attack') actionKey = 'attack1';
-      else if (state === 'attack2') actionKey = 'attack2';
-      else if (state === 'attack3') actionKey = 'attack3';
-      else if (state === 'skill_u') actionKey = 'skill_u';
-      else if (state === 'skill_i') actionKey = 'skill_i';
-      else if (state === 'skill_o') actionKey = 'skill_o';
+      else if (state === 'attack') {
+        if (fighter.currentMoveKey === 'attack2') actionKey = 'attack2';
+        else if (fighter.currentMoveKey === 'attack3') actionKey = 'attack3';
+        else if (fighter.currentMoveKey === 'jumpAttack') actionKey = 'air_attack';
+        else actionKey = 'attack1';
+      }
+      else if (state === 'skill') actionKey = 'skill_u';
+      else if (state === 'special') actionKey = 'skill_i';
+      else if (state === 'ultimate') actionKey = 'skill_o';
       else if (state === 'hurt') actionKey = 'hurt';
-      else if (state === 'knockdown') actionKey = 'knockdown';
+      else if (state === 'knockdown' || state === 'wakeup') actionKey = 'knockdown';
       else if (state === 'win') actionKey = 'win';
 
-      const manifest = (typeof window !== 'undefined' && window.BVN_SPRITES_MANIFEST) ? window.BVN_SPRITES_MANIFEST : (typeof BVN_SPRITES_MANIFEST !== 'undefined' ? BVN_SPRITES_MANIFEST : null);
+      const manifest = (typeof window !== 'undefined' && window.BVN_SPRITES_MANIFEST) ? window.BVN_SPRITES_MANIFEST :
+                       (typeof BVN_DATA !== 'undefined' && BVN_DATA.SPRITES_MANIFEST ? BVN_DATA.SPRITES_MANIFEST :
+                       (typeof BVN_SPRITES_MANIFEST !== 'undefined' ? BVN_SPRITES_MANIFEST : null));
       let spriteImg = null;
 
       if (manifest && manifest[cfg.id] && manifest[cfg.id][actionKey]) {
         const actInfo = manifest[cfg.id][actionKey];
         const frames = isPixel ? actInfo.frames_orig : actInfo.frames_hd;
         if (frames && frames.length > 0) {
-          const fIdx = Math.floor(fighter.animTimer) % frames.length;
+          let fIdx = 0;
+          if (['attack', 'skill', 'special', 'ultimate'].includes(state)) {
+            fIdx = Math.floor((fighter.moveFrame || 0) / 4);
+          } else {
+            const t = (typeof fighter.stateTimer === 'number' ? fighter.stateTimer : this.animTime) * 6;
+            fIdx = Math.floor(t);
+          }
+          if (isNaN(fIdx) || fIdx < 0) fIdx = 0;
+          fIdx = fIdx % frames.length;
+
           const fPath = frames[fIdx];
-          spriteImg = this.spriteCache ? this.spriteCache[fPath] : null;
-          if (!spriteImg && typeof Image !== 'undefined') {
-            spriteImg = new Image();
-            spriteImg.src = fPath;
-            if (this.spriteCache) this.spriteCache[fPath] = spriteImg;
+          if (fPath) {
+            spriteImg = this.spriteCache ? this.spriteCache[fPath] : null;
+            if (!spriteImg && typeof Image !== 'undefined') {
+              spriteImg = new Image();
+              spriteImg.src = fPath;
+              if (this.spriteCache) this.spriteCache[fPath] = spriteImg;
+            }
+          }
+        }
+      }
+
+      // 如果当前帧仍在解码，优先降级到已就绪的待机帧/首帧，绝不展示方块
+      if ((!spriteImg || !spriteImg.complete || spriteImg.naturalWidth === 0) && manifest && manifest[cfg.id]) {
+        const fallbackList = isPixel ? (manifest[cfg.id].idle?.frames_orig || []) : (manifest[cfg.id].idle?.frames_hd || []);
+        for (const p of fallbackList) {
+          const cand = this.spriteCache ? this.spriteCache[p] : null;
+          if (cand && cand.complete && cand.naturalWidth > 0) {
+            spriteImg = cand;
+            break;
           }
         }
       }
