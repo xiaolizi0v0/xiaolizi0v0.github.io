@@ -8793,11 +8793,16 @@
           "title": "第1集",
           "url": "https://fengbao13.com/video/xijuzhiwang2026/6e11f789006d/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第2集",
+          "url": "https://fengbao13.com/video/xijuzhiwang2026/9bce23fcfe4e/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-10-12",
       "timestamp": 1791778169315,
-      "updatedAt": 1791778334442
+      "updatedAt": 1791778348179
     }
   ],
   "deleted": {
