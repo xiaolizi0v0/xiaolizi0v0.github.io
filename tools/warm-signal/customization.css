@@ -8,5 +8,8 @@
 
 /* Keep the edit surface still while selection and parameters update. */
 .diy-page{animation:none}
+/* A permanent plaza entrance is shared by the city and custom display homes. */
+.home-city{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);z-index:4;display:flex;align-items:center;justify-content:center;gap:7px;min-height:34px;padding:7px 16px;background:linear-gradient(135deg,#fff9ecf5,#f1dfcdf2);border:1px solid #cba78c;border-radius:22px;box-shadow:0 3px 10px #89694b24;color:#956d59;font-size:12px;white-space:nowrap}
+.home-city>span{color:#bd8d7a;font-size:18px;line-height:1}.home-city small{font-size:9px;color:#ae8a73}.home-city:focus-visible{outline:2px solid #bc8992;outline-offset:3px}
 
 .diy-page>.diy-board{height:clamp(290px,calc(100dvh - 480px),430px);max-height:none;min-height:0}

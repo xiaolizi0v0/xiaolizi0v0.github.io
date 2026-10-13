@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-12",
-  "version": "20261012-city-riding-1",
-  "scripts": 122,
+  "date": "2026-10-13",
+  "version": "20261013-city-riding-1",
+  "scripts": 123,
   "vendorScripts": 0,
   "renderer": "canvas-2d",
   "art": [
@@ -350,12 +350,17 @@
       "duplicate": []
     },
     "warm-signal/city-art-preview.html": {
-      "localReferences": 7,
+      "localReferences": 8,
       "missing": [],
       "duplicate": []
     },
     "warm-signal/city-scenery-preview.html": {
       "localReferences": 6,
+      "missing": [],
+      "duplicate": []
+    },
+    "warm-signal/city-riding-preview.html": {
+      "localReferences": 7,
       "missing": [],
       "duplicate": []
     },

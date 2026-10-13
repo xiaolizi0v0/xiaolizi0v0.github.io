@@ -2,9 +2,15 @@
 from pathlib import Path
 from PIL import Image
 import json
+import sys
 
 base = Path(__file__).parent
 files = {'solo': 'city-ride-shen-yu-v1.png', 'boy': 'city-ride-tang-li-boy-v2.png', 'girl': 'city-ride-tang-li-girl-v3.png'}
+for character in json.loads((base.parent.parent / 'docs/warm-signal-city-riding-cast-spec.json').read_text(encoding='utf-8')):
+    files[character['slug']+'-boy'] = character['boyFile']
+    files[character['slug']+'-girl'] = character['girlFile']
+if len(sys.argv) > 1:
+    files = {Path(name).stem: Path(name).name for name in sys.argv[1:]}
 sheets = {}
 for key, name in files.items():
     image = Image.open(base / 'assets' / name)
@@ -41,5 +47,6 @@ for key, name in files.items():
         for a,b,c,d in frames[:i]:
             assert not (x<a+c and x+fw>a and y<b+d and y+fh>b), (name,'overlapping source rectangles')
     sheets[key] = {'file':name, 'size':[w,h], 'frames':frames}
-(base / 'city-riding-frames.js').write_text('(function(root){\'use strict\';root.WarmCityRidingFrames='+json.dumps(sheets,separators=(',',':'))+';})(window);\n',encoding='utf-8')
+if len(sys.argv) == 1:
+    (base / 'city-riding-frames.js').write_text('(function(root){\'use strict\';root.WarmCityRidingFrames='+json.dumps(sheets,separators=(',',':'))+';})(window);\n',encoding='utf-8')
 print(json.dumps(sheets,ensure_ascii=False,indent=2))

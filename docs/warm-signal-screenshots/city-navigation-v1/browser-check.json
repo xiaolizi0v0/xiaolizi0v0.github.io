@@ -1,0 +1,14 @@
+{
+  "release": "20261013-city-navigation-1",
+  "checks": [
+    "DIY homepage plaza entrance visible and clickable",
+    "Formal city lobby returns to formal homepage",
+    "Review street exit opens formal homepage instead of toast",
+    "Review formal plaza link opens #city",
+    "Reloading #city keeps city screen"
+  ],
+  "formalHomeStyleChanged": false,
+  "formalExplorationStarted": false,
+  "rechargeTested": false,
+  "logs": []
+}

@@ -1,0 +1,224 @@
+{
+  "checks": [
+    {
+      "kind": "descending",
+      "cards": [
+        {
+          "id": 40,
+          "selected": false,
+          "strength": 31
+        },
+        {
+          "id": 20,
+          "selected": false,
+          "strength": 30
+        },
+        {
+          "id": 60,
+          "selected": false,
+          "strength": 27
+        },
+        {
+          "id": 28,
+          "selected": false,
+          "strength": 26
+        },
+        {
+          "id": 8,
+          "selected": false,
+          "strength": 25
+        },
+        {
+          "id": 68,
+          "selected": false,
+          "strength": 25
+        },
+        {
+          "id": 48,
+          "selected": false,
+          "strength": 22
+        },
+        {
+          "id": 36,
+          "selected": false,
+          "strength": 22
+        },
+        {
+          "id": 16,
+          "selected": false,
+          "strength": 21
+        },
+        {
+          "id": 56,
+          "selected": false,
+          "strength": 20
+        },
+        {
+          "id": 44,
+          "selected": false,
+          "strength": 19
+        },
+        {
+          "id": 24,
+          "selected": true,
+          "strength": 17
+        },
+        {
+          "id": 4,
+          "selected": false,
+          "strength": 16
+        },
+        {
+          "id": 64,
+          "selected": false,
+          "strength": 15
+        },
+        {
+          "id": 32,
+          "selected": false,
+          "strength": 14
+        },
+        {
+          "id": 12,
+          "selected": true,
+          "strength": 11
+        },
+        {
+          "id": 52,
+          "selected": false,
+          "strength": 10
+        },
+        {
+          "id": 0,
+          "selected": true,
+          "strength": 6
+        }
+      ],
+      "summary": "选择1～3张羁绊 · 已选3/3阵容实力 36 · 今日加成后评分 4,240",
+      "ordered": true
+    },
+    {
+      "kind": "ascending",
+      "cards": [
+        {
+          "id": 0,
+          "selected": true,
+          "strength": 6
+        },
+        {
+          "id": 52,
+          "selected": false,
+          "strength": 10
+        },
+        {
+          "id": 12,
+          "selected": true,
+          "strength": 11
+        },
+        {
+          "id": 32,
+          "selected": false,
+          "strength": 14
+        },
+        {
+          "id": 64,
+          "selected": false,
+          "strength": 15
+        },
+        {
+          "id": 4,
+          "selected": false,
+          "strength": 16
+        },
+        {
+          "id": 24,
+          "selected": true,
+          "strength": 17
+        },
+        {
+          "id": 44,
+          "selected": false,
+          "strength": 19
+        },
+        {
+          "id": 56,
+          "selected": false,
+          "strength": 20
+        },
+        {
+          "id": 16,
+          "selected": false,
+          "strength": 21
+        },
+        {
+          "id": 36,
+          "selected": false,
+          "strength": 22
+        },
+        {
+          "id": 48,
+          "selected": false,
+          "strength": 22
+        },
+        {
+          "id": 68,
+          "selected": false,
+          "strength": 25
+        },
+        {
+          "id": 8,
+          "selected": false,
+          "strength": 25
+        },
+        {
+          "id": 28,
+          "selected": false,
+          "strength": 26
+        },
+        {
+          "id": 60,
+          "selected": false,
+          "strength": 27
+        },
+        {
+          "id": 20,
+          "selected": false,
+          "strength": 30
+        },
+        {
+          "id": 40,
+          "selected": false,
+          "strength": 31
+        }
+      ],
+      "summary": "选择1～3张羁绊 · 已选3/3阵容实力 36 · 今日加成后评分 4,240",
+      "ordered": true,
+      "sameSelection": true
+    },
+    {
+      "kind": "selected-first",
+      "ids": [
+        0,
+        12,
+        24
+      ],
+      "passed": true
+    },
+    {
+      "kind": "heroine-filter",
+      "ids": [
+        52,
+        56,
+        48
+      ],
+      "passed": true
+    },
+    {
+      "kind": "save-unchanged-draft",
+      "passed": true
+    }
+  ],
+  "logs": [],
+  "formalSaveTouched": false,
+  "rechargeTested": false
+}

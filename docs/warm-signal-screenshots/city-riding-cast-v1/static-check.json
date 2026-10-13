@@ -1,0 +1,952 @@
+{
+  "date": "2026-10-13",
+  "version": "20261013-city-riding-cast-1",
+  "scripts": 123,
+  "vendorScripts": 0,
+  "renderer": "canvas-2d",
+  "art": [
+    {
+      "file": "assets/city-shen-yu-atlas-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "rows": 2,
+      "rgba": true,
+      "bytes": 2300777
+    },
+    {
+      "file": "assets/city-shen-yu-outfits-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rows": 4,
+      "rgba": true,
+      "bytes": 2457115
+    },
+    {
+      "file": "assets/city-lin-zhi-atlas-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "rows": 2,
+      "rgba": true,
+      "bytes": 2575266
+    },
+    {
+      "file": "assets/city-lin-zhi-outfits-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rows": 4,
+      "rgba": true,
+      "bytes": 2838098
+    },
+    {
+      "file": "assets/city-gu-qinghe-atlas-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "rows": 2,
+      "rgba": true,
+      "bytes": 2265955
+    },
+    {
+      "file": "assets/city-gu-qinghe-outfits-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rows": 4,
+      "rgba": true,
+      "bytes": 2546085
+    },
+    {
+      "file": "assets/city-xu-zhixia-atlas-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "rows": 2,
+      "rgba": true,
+      "bytes": 2488724
+    },
+    {
+      "file": "assets/city-xu-zhixia-outfits-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rows": 4,
+      "rgba": true,
+      "bytes": 2621345
+    },
+    {
+      "file": "assets/city-su-wan-atlas-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "rows": 2,
+      "rgba": true,
+      "bytes": 2116979
+    },
+    {
+      "file": "assets/city-su-wan-outfits-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rows": 4,
+      "rgba": true,
+      "bytes": 2422148
+    },
+    {
+      "file": "assets/city-jiang-yue-atlas-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "rows": 2,
+      "rgba": true,
+      "bytes": 2433993
+    },
+    {
+      "file": "assets/city-jiang-yue-outfits-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rows": 4,
+      "rgba": true,
+      "bytes": 2627532
+    },
+    {
+      "file": "assets/city-tang-li-atlas-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "rows": 2,
+      "rgba": true,
+      "bytes": 2446893
+    },
+    {
+      "file": "assets/city-tang-li-outfits-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rows": 4,
+      "rgba": true,
+      "bytes": 2697746
+    }
+  ],
+  "scenery": [
+    {
+      "file": "assets/city-shops-painted-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "rgba": true,
+      "frames": [
+        [
+          26,
+          2,
+          591,
+          614
+        ],
+        [
+          654,
+          24,
+          579,
+          598
+        ],
+        [
+          37,
+          616,
+          588,
+          596
+        ],
+        [
+          647,
+          640,
+          595,
+          571
+        ]
+      ],
+      "bytes": 2922929,
+      "sha256": "4a3770438a7a6ce9d6646f52d32d954a39bdcf01e49550b2b1230f17ccfab80b"
+    },
+    {
+      "file": "assets/city-props-painted-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "rgba": true,
+      "frames": [
+        [
+          33,
+          27,
+          599,
+          636
+        ],
+        [
+          658,
+          89,
+          552,
+          575
+        ],
+        [
+          10,
+          760,
+          621,
+          411
+        ],
+        [
+          646,
+          822,
+          597,
+          368
+        ]
+      ],
+      "bytes": 2186006,
+      "sha256": "d56ebf2626898af0257fa4eb90a79b453421531392847790a05a1a72a4587d94"
+    }
+  ],
+  "riding": [
+    {
+      "file": "assets/city-ride-shen-yu-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          31,
+          11,
+          466,
+          503
+        ],
+        [
+          533,
+          11,
+          466,
+          503
+        ],
+        [
+          32,
+          517,
+          465,
+          503
+        ],
+        [
+          534,
+          516,
+          465,
+          504
+        ],
+        [
+          31,
+          1023,
+          466,
+          503
+        ],
+        [
+          533,
+          1024,
+          466,
+          502
+        ]
+      ],
+      "bytes": 2703302,
+      "sha256": "acea0debcf1228ffae2c8a8233d7aba53fb39ae8c2b8c077e15c3e75603edbe0"
+    },
+    {
+      "file": "assets/city-ride-tang-li-boy-v2.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          27,
+          47,
+          452,
+          446
+        ],
+        [
+          565,
+          47,
+          436,
+          445
+        ],
+        [
+          25,
+          545,
+          455,
+          449
+        ],
+        [
+          561,
+          545,
+          440,
+          448
+        ],
+        [
+          27,
+          1044,
+          453,
+          445
+        ],
+        [
+          565,
+          1044,
+          436,
+          443
+        ]
+      ],
+      "bytes": 2711004,
+      "sha256": "8756b7e00ce5980acfbafe64c4b0422e6b554e12c3e76aa1158943191b325ed3"
+    },
+    {
+      "file": "assets/city-ride-tang-li-girl-v3.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          19,
+          44,
+          458,
+          478
+        ],
+        [
+          545,
+          45,
+          457,
+          477
+        ],
+        [
+          19,
+          542,
+          458,
+          482
+        ],
+        [
+          545,
+          543,
+          457,
+          481
+        ],
+        [
+          19,
+          1039,
+          458,
+          478
+        ],
+        [
+          545,
+          1039,
+          457,
+          478
+        ]
+      ],
+      "bytes": 2876336,
+      "sha256": "15d12bad6409c04ae1e5d449d4df79e72a06594076725d92f5b4c19633ed2312"
+    },
+    {
+      "file": "assets/city-ride-lin-zhi-boy-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          1,
+          20,
+          506,
+          496
+        ],
+        [
+          538,
+          19,
+          485,
+          495
+        ],
+        [
+          1,
+          519,
+          506,
+          497
+        ],
+        [
+          537,
+          517,
+          486,
+          497
+        ],
+        [
+          1,
+          1019,
+          506,
+          495
+        ],
+        [
+          537,
+          1021,
+          486,
+          491
+        ]
+      ],
+      "bytes": 2962927,
+      "sha256": "c82bce05826ae9f9cd846daec14798cf9d87f6b8231f967830b0820ab98852c8"
+    },
+    {
+      "file": "assets/city-ride-lin-zhi-girl-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          15,
+          23,
+          465,
+          474
+        ],
+        [
+          543,
+          23,
+          465,
+          474
+        ],
+        [
+          15,
+          513,
+          465,
+          473
+        ],
+        [
+          543,
+          513,
+          465,
+          473
+        ],
+        [
+          15,
+          1003,
+          466,
+          476
+        ],
+        [
+          543,
+          1004,
+          466,
+          475
+        ]
+      ],
+      "bytes": 2958969,
+      "sha256": "8fa8378387a6c2f7394840220d7ce099fc5c3e1330260603d673558f51d6520b"
+    },
+    {
+      "file": "assets/city-ride-gu-qinghe-boy-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          13,
+          25,
+          489,
+          473
+        ],
+        [
+          545,
+          25,
+          468,
+          472
+        ],
+        [
+          12,
+          527,
+          488,
+          472
+        ],
+        [
+          545,
+          525,
+          468,
+          473
+        ],
+        [
+          13,
+          1031,
+          485,
+          472
+        ],
+        [
+          542,
+          1030,
+          471,
+          472
+        ]
+      ],
+      "bytes": 2837444,
+      "sha256": "817a770286e155cbd274cf1369afa6745b3aeaae9cfe977ca050e23524e57a5b"
+    },
+    {
+      "file": "assets/city-ride-gu-qinghe-girl-v2.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          15,
+          11,
+          465,
+          479
+        ],
+        [
+          544,
+          12,
+          464,
+          478
+        ],
+        [
+          15,
+          507,
+          465,
+          486
+        ],
+        [
+          544,
+          507,
+          464,
+          486
+        ],
+        [
+          16,
+          1003,
+          464,
+          482
+        ],
+        [
+          544,
+          1004,
+          464,
+          481
+        ]
+      ],
+      "bytes": 2880668,
+      "sha256": "1d9a06bc58abc64ed175010e65453cc3c97dfc7f32db9973866b053c2a259c5f"
+    },
+    {
+      "file": "assets/city-ride-xu-zhixia-boy-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          4,
+          17,
+          481,
+          466
+        ],
+        [
+          568,
+          15,
+          453,
+          467
+        ],
+        [
+          3,
+          517,
+          484,
+          467
+        ],
+        [
+          568,
+          517,
+          453,
+          466
+        ],
+        [
+          2,
+          1009,
+          485,
+          464
+        ],
+        [
+          567,
+          1010,
+          454,
+          463
+        ]
+      ],
+      "bytes": 2918578,
+      "sha256": "8e05eb0b3b1708e91433e4083270b9f9540d1ee28cb8bfa44db2eb9d5002fcda"
+    },
+    {
+      "file": "assets/city-ride-xu-zhixia-girl-v2.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          16,
+          13,
+          466,
+          476
+        ],
+        [
+          542,
+          14,
+          466,
+          475
+        ],
+        [
+          16,
+          509,
+          465,
+          476
+        ],
+        [
+          542,
+          509,
+          466,
+          476
+        ],
+        [
+          16,
+          1008,
+          466,
+          475
+        ],
+        [
+          542,
+          1008,
+          466,
+          475
+        ]
+      ],
+      "bytes": 2910370,
+      "sha256": "88d9deed0e6fd98d27860f167aaf252bf497ed9a005653bb78223759b8b4e52a"
+    },
+    {
+      "file": "assets/city-ride-su-wan-boy-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          13,
+          25,
+          460,
+          474
+        ],
+        [
+          555,
+          24,
+          459,
+          474
+        ],
+        [
+          12,
+          527,
+          462,
+          473
+        ],
+        [
+          554,
+          525,
+          460,
+          474
+        ],
+        [
+          13,
+          1031,
+          461,
+          473
+        ],
+        [
+          554,
+          1029,
+          459,
+          474
+        ]
+      ],
+      "bytes": 2799644,
+      "sha256": "726997ddc7e0feb6be285ab65918d0ba3b52475b60f5466403f346597034f225"
+    },
+    {
+      "file": "assets/city-ride-su-wan-girl-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          15,
+          11,
+          469,
+          480
+        ],
+        [
+          540,
+          12,
+          469,
+          479
+        ],
+        [
+          15,
+          510,
+          470,
+          484
+        ],
+        [
+          539,
+          511,
+          470,
+          483
+        ],
+        [
+          15,
+          1013,
+          470,
+          480
+        ],
+        [
+          539,
+          1013,
+          470,
+          480
+        ]
+      ],
+      "bytes": 2853375,
+      "sha256": "03d46586cff38959b0705016554e41fe926373b541e27a8a02939310e47cbae4"
+    },
+    {
+      "file": "assets/city-ride-jiang-yue-boy-v1.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          13,
+          24,
+          470,
+          474
+        ],
+        [
+          555,
+          23,
+          459,
+          474
+        ],
+        [
+          13,
+          525,
+          470,
+          475
+        ],
+        [
+          555,
+          523,
+          459,
+          476
+        ],
+        [
+          13,
+          1030,
+          470,
+          474
+        ],
+        [
+          555,
+          1029,
+          459,
+          473
+        ]
+      ],
+      "bytes": 2812653,
+      "sha256": "a9b10d79574a10a97d32489f881049f605fbda1b86199de277a47fecf3322dea"
+    },
+    {
+      "file": "assets/city-ride-jiang-yue-girl-v2.png",
+      "width": 1024,
+      "height": 1536,
+      "rgba": true,
+      "frames": [
+        [
+          13,
+          10,
+          469,
+          480
+        ],
+        [
+          542,
+          10,
+          470,
+          480
+        ],
+        [
+          13,
+          508,
+          470,
+          485
+        ],
+        [
+          542,
+          508,
+          470,
+          485
+        ],
+        [
+          13,
+          1004,
+          470,
+          482
+        ],
+        [
+          542,
+          1004,
+          470,
+          482
+        ]
+      ],
+      "bytes": 2894613,
+      "sha256": "f774da114df513d5705177dd8739e95802b877e774696ac930a85124208f30e0"
+    }
+  ],
+  "pages": {
+    "WarmSignal.html": {
+      "localReferences": 156,
+      "missing": [],
+      "duplicate": []
+    },
+    "WarmSignalCityReview.html": {
+      "localReferences": 156,
+      "missing": [],
+      "duplicate": []
+    },
+    "WarmSignalSunJournalReview.html": {
+      "localReferences": 148,
+      "missing": [],
+      "duplicate": []
+    },
+    "WarmSignalLabyrinthReview.html": {
+      "localReferences": 145,
+      "missing": [],
+      "duplicate": []
+    },
+    "warm-signal/city-art-preview.html": {
+      "localReferences": 8,
+      "missing": [],
+      "duplicate": []
+    },
+    "warm-signal/city-scenery-preview.html": {
+      "localReferences": 6,
+      "missing": [],
+      "duplicate": []
+    },
+    "warm-signal/city-riding-preview.html": {
+      "localReferences": 7,
+      "missing": [],
+      "duplicate": []
+    },
+    "warm-signal/models/city3d/preview.html": {
+      "localReferences": 1,
+      "missing": [],
+      "duplicate": []
+    }
+  },
+  "city": {
+    "characters": 6,
+    "maps": 3,
+    "heartsPerRoute": 45,
+    "stories": 90,
+    "storyLines": 360,
+    "entertainment": 4,
+    "reachable": [
+      {
+        "p": 0,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 0,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 0,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 1,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 1,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 1,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 2,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 2,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 2,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 3,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 3,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 3,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 4,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 4,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 4,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      },
+      {
+        "p": 5,
+        "map": 0,
+        "points": 18,
+        "reachable": 18
+      },
+      {
+        "p": 5,
+        "map": 1,
+        "points": 17,
+        "reachable": 17
+      },
+      {
+        "p": 5,
+        "map": 2,
+        "points": 20,
+        "reachable": 20
+      }
+    ]
+  },
+  "errors": []
+}

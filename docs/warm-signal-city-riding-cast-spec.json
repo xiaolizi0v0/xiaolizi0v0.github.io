@@ -1,0 +1,52 @@
+[
+  {
+    "p": 0,
+    "slug": "lin-zhi",
+    "name": "Lin Zhi",
+    "identity": "adult botanist with long dark warm-brown wavy hair, honey-brown eyes, sage leaf hairclip, small olive botanical crossbody satchel",
+    "daily": "sage green cardigan, ivory bow-collar blouse and ivory botanical floral knee skirt, cream socks and brown ankle boots",
+    "bottom": "ivory botanical floral knee skirt, cream socks and brown ankle boots; olive botanical crossbody satchel",
+    "boyFile": "city-ride-lin-zhi-boy-v1.png",
+    "girlFile": "city-ride-lin-zhi-girl-v1.png"
+  },
+  {
+    "p": 1,
+    "slug": "gu-qinghe",
+    "name": "Gu Qinghe",
+    "identity": "adult architect with long near-black straight hair, cool gray-blue eyes, tiny gold drop earrings, small tan book satchel",
+    "daily": "dusty blue tailored jacket, ivory blouse with thin black ribbon tie, charcoal pleated knee skirt, ivory socks and black loafers",
+    "bottom": "charcoal pleated knee skirt, ivory socks and black loafers; small tan book satchel",
+    "boyFile": "city-ride-gu-qinghe-boy-v1.png",
+    "girlFile": "city-ride-gu-qinghe-girl-v2.png"
+  },
+  {
+    "p": 2,
+    "slug": "xu-zhixia",
+    "name": "Xu Zhixia",
+    "identity": "adult musician with chestnut high ponytail and ochre ribbon bow, warm brown eyes, small caramel shoulder bag",
+    "daily": "caramel varsity jacket with cream sleeves over ivory shirt, brown tartan pleated knee skirt, cream socks and ochre lace-up boots",
+    "bottom": "brown tartan pleated knee skirt, cream socks and ochre lace-up boots; small caramel shoulder bag",
+    "boyFile": "city-ride-xu-zhixia-boy-v1.png",
+    "girlFile": "city-ride-xu-zhixia-girl-v2.png"
+  },
+  {
+    "p": 3,
+    "slug": "su-wan",
+    "name": "Su Wan",
+    "identity": "adult journalist with short wavy auburn bob, tiny gold hairclip, warm reddish-brown eyes, small dark brown notebook crossbody bag",
+    "daily": "muted dusty-rose collared blouse, chocolate brown belted knee-length A-line skirt, ivory socks and dark brown loafers",
+    "bottom": "chocolate brown knee-length A-line skirt, ivory socks and dark brown loafers; small dark brown notebook crossbody bag",
+    "boyFile": "city-ride-su-wan-boy-v1.png",
+    "girlFile": "city-ride-su-wan-girl-v1.png"
+  },
+  {
+    "p": 4,
+    "slug": "jiang-yue",
+    "name": "Jiang Yue",
+    "identity": "adult baker with dark chocolate hair in TWO loose low side buns and ivory ribbons, golden honey eyes, tiny wheat brooch, small caramel bread-shaped satchel",
+    "daily": "ivory knit cardigan over cream puff-sleeve blouse, cocoa-and-cream gingham knee skirt, ivory socks and caramel Mary Jane shoes",
+    "bottom": "cocoa-and-cream gingham knee skirt, ivory socks and caramel Mary Jane shoes; small caramel bread-shaped satchel",
+    "boyFile": "city-ride-jiang-yue-boy-v1.png",
+    "girlFile": "city-ride-jiang-yue-girl-v2.png"
+  }
+]

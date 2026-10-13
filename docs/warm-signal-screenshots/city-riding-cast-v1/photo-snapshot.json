@@ -1,0 +1,29 @@
+{
+  "art": "lin-zhi-girl:4",
+  "photo": {
+    "angle": 0.65,
+    "at": 1791869360226,
+    "camera": {
+      "boy": 0,
+      "frame": "portrait",
+      "girl": 0,
+      "hearts": false,
+      "npc": false,
+      "pair": 0,
+      "stickers": [],
+      "zoom": 1
+    },
+    "hearts": [],
+    "id": 1,
+    "kind": 0,
+    "map": 0,
+    "mode": 3,
+    "outfit": 2,
+    "p": 0,
+    "pose": 0,
+    "x": 0,
+    "yaw": 0,
+    "z": 6,
+    "zoom": 1
+  }
+}

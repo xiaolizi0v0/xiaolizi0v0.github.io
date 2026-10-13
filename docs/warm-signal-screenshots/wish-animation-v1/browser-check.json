@@ -1,0 +1,263 @@
+{
+  "release": "20261013-wish-animation-1",
+  "checks": [
+    {
+      "kind": "single-committed-before-reveal",
+      "passed": true,
+      "receipt": {
+        "valid": true,
+        "drawCalls": 1,
+        "saves": 1,
+        "motion": true,
+        "total": 1,
+        "serial": 1,
+        "gems": 5000,
+        "coins": 18000,
+        "tickets": 10,
+        "flowers": 1,
+        "history": [
+          {
+            "id": 8,
+            "rarity": "SSR",
+            "kind": "card"
+          }
+        ],
+        "cards": [
+          {
+            "id": 0,
+            "copies": 1
+          },
+          {
+            "id": 12,
+            "copies": 1
+          },
+          {
+            "id": 24,
+            "copies": 1
+          },
+          {
+            "id": 36,
+            "copies": 1
+          },
+          {
+            "id": 48,
+            "copies": 1
+          },
+          {
+            "id": 60,
+            "copies": 1
+          },
+          {
+            "id": 8,
+            "copies": 1
+          }
+        ]
+      }
+    },
+    {
+      "kind": "ten-all-revealed",
+      "passed": true,
+      "revealed": [
+        "SSR 林栀 与你同春",
+        "R 许知夏 耳机另一端",
+        "SR 江月 温暖手心",
+        "R 顾清禾 城市素描",
+        "SSR 唐梨 一同发光",
+        "R 顾清禾 窗边晨光",
+        "R 江月 草莓心事",
+        "R 江月 甜甜日常",
+        "SR 苏晚 镜头以外",
+        "R 林栀 温室来信"
+      ],
+      "receipt": {
+        "valid": true,
+        "drawCalls": 1,
+        "saves": 1,
+        "motion": true,
+        "total": 10,
+        "serial": 1,
+        "gems": 5000,
+        "coins": 18000,
+        "tickets": 0,
+        "flowers": 10,
+        "history": [
+          {
+            "id": 2,
+            "rarity": "R",
+            "kind": "card"
+          },
+          {
+            "id": 40,
+            "rarity": "SR",
+            "kind": "card"
+          },
+          {
+            "id": 51,
+            "rarity": "R",
+            "kind": "card"
+          },
+          {
+            "id": 48,
+            "rarity": "R",
+            "kind": "card"
+          },
+          {
+            "id": 15,
+            "rarity": "R",
+            "kind": "card"
+          },
+          {
+            "id": 68,
+            "rarity": "SSR",
+            "kind": "card"
+          },
+          {
+            "id": 12,
+            "rarity": "R",
+            "kind": "card"
+          },
+          {
+            "id": 54,
+            "rarity": "SR",
+            "kind": "card"
+          },
+          {
+            "id": 25,
+            "rarity": "R",
+            "kind": "card"
+          },
+          {
+            "id": 8,
+            "rarity": "SSR",
+            "kind": "card"
+          }
+        ],
+        "cards": [
+          {
+            "id": 0,
+            "copies": 1
+          },
+          {
+            "id": 12,
+            "copies": 2
+          },
+          {
+            "id": 24,
+            "copies": 1
+          },
+          {
+            "id": 36,
+            "copies": 1
+          },
+          {
+            "id": 48,
+            "copies": 2
+          },
+          {
+            "id": 60,
+            "copies": 1
+          },
+          {
+            "id": 8,
+            "copies": 1
+          },
+          {
+            "id": 25,
+            "copies": 1
+          },
+          {
+            "id": 54,
+            "copies": 1
+          },
+          {
+            "id": 68,
+            "copies": 1
+          },
+          {
+            "id": 15,
+            "copies": 1
+          },
+          {
+            "id": 51,
+            "copies": 1
+          },
+          {
+            "id": 40,
+            "copies": 1
+          },
+          {
+            "id": 2,
+            "copies": 1
+          }
+        ]
+      }
+    },
+    {
+      "kind": "skip-intro",
+      "passed": true
+    },
+    {
+      "kind": "motion-disabled",
+      "passed": true
+    },
+    {
+      "kind": "320x568",
+      "passed": true,
+      "metrics": {
+        "card": {
+          "bottom": 404.234375,
+          "height": 297.578125,
+          "left": 60.796875,
+          "right": 259.1875,
+          "top": 106.65625,
+          "width": 198.390625,
+          "x": 60.796875,
+          "y": 106.65625
+        },
+        "documentWidth": 320,
+        "name": {
+          "bottom": 495.234375,
+          "height": 82,
+          "left": 108.28125,
+          "right": 211.71875,
+          "top": 413.234375,
+          "width": 103.4375,
+          "x": 108.28125,
+          "y": 413.234375
+        },
+        "next": {
+          "bottom": 554,
+          "height": 45,
+          "left": 60.96875,
+          "right": 259.015625,
+          "top": 509,
+          "width": 198.046875,
+          "x": 60.96875,
+          "y": 509
+        },
+        "viewport": 320
+      }
+    },
+    {
+      "kind": "skip-paid-ten",
+      "passed": true
+    },
+    {
+      "kind": "small-results-actions",
+      "passed": true,
+      "metrics": {
+        "bottom": 527,
+        "height": 60,
+        "left": 33,
+        "right": 287,
+        "top": 467,
+        "width": 254,
+        "x": 33,
+        "y": 467
+      }
+    }
+  ],
+  "logs": [],
+  "formalSaveTouched": false,
+  "rechargeTested": false
+}

@@ -1,0 +1,164 @@
+[
+  {
+    "mode": "1",
+    "outfit": "0",
+    "direction": "-1",
+    "art": "solo:0",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "1",
+    "outfit": "0",
+    "direction": "1",
+    "art": "solo:1",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "1",
+    "outfit": "1",
+    "direction": "-1",
+    "art": "solo:2",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "1",
+    "outfit": "1",
+    "direction": "1",
+    "art": "solo:3",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "1",
+    "outfit": "2",
+    "direction": "-1",
+    "art": "solo:4",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "1",
+    "outfit": "2",
+    "direction": "1",
+    "art": "solo:5",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "2",
+    "outfit": "0",
+    "direction": "-1",
+    "art": "boy:0",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "2",
+    "outfit": "0",
+    "direction": "1",
+    "art": "boy:1",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "2",
+    "outfit": "1",
+    "direction": "-1",
+    "art": "boy:2",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "2",
+    "outfit": "1",
+    "direction": "1",
+    "art": "boy:3",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "2",
+    "outfit": "2",
+    "direction": "-1",
+    "art": "boy:4",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "2",
+    "outfit": "2",
+    "direction": "1",
+    "art": "boy:5",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "3",
+    "outfit": "0",
+    "direction": "-1",
+    "art": "girl:0",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "3",
+    "outfit": "0",
+    "direction": "1",
+    "art": "girl:1",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "3",
+    "outfit": "1",
+    "direction": "-1",
+    "art": "girl:2",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "3",
+    "outfit": "1",
+    "direction": "1",
+    "art": "girl:3",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "3",
+    "outfit": "2",
+    "direction": "-1",
+    "art": "girl:4",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  },
+  {
+    "mode": "3",
+    "outfit": "2",
+    "direction": "1",
+    "art": "girl:5",
+    "scrollWidth": 502,
+    "statusHidden": true,
+    "width": 502
+  }
+]

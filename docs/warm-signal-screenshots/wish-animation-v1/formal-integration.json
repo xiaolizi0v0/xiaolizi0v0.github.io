@@ -1,0 +1,8 @@
+{
+  "script": "warm-signal/wish-reveal.js?v=20261013-wish-animation-1",
+  "style": "warm-signal/wish-reveal.css?v=20261013-wish-animation-1",
+  "wishVisible": true,
+  "walletUnchanged": true,
+  "logs": [],
+  "actualDrawPerformed": false
+}

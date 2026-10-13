@@ -1,0 +1,48 @@
+{
+  "references": [
+    {
+      "page": "WarmSignal.html",
+      "localReferences": 158,
+      "missing": [],
+      "revealScripts": 1,
+      "revealBeforeWishingUI": true
+    },
+    {
+      "page": "WarmSignalCityReview.html",
+      "localReferences": 159,
+      "missing": [],
+      "revealScripts": 1,
+      "revealBeforeWishingUI": true
+    },
+    {
+      "page": "WarmSignalSunJournalReview.html",
+      "localReferences": 150,
+      "missing": [],
+      "revealScripts": 1,
+      "revealBeforeWishingUI": true
+    },
+    {
+      "page": "WarmSignalLabyrinthReview.html",
+      "localReferences": 147,
+      "missing": [],
+      "revealScripts": 1,
+      "revealBeforeWishingUI": true
+    },
+    {
+      "page": "WarmSignalArenaReview.html",
+      "localReferences": 74,
+      "missing": [],
+      "revealScripts": 0,
+      "revealBeforeWishingUI": null
+    },
+    {
+      "page": "WarmSignalWishingReview.html",
+      "localReferences": 76,
+      "missing": [],
+      "revealScripts": 1,
+      "revealBeforeWishingUI": true
+    }
+  ],
+  "syntaxFiles": 6,
+  "errors": []
+}
