@@ -1,0 +1,47 @@
+{
+  "tracks": [
+    {
+      "id": "childhood",
+      "duration": 137.079206,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "hashMatchesOriginalDownload": true,
+      "fullDecodeErrors": "",
+      "bytes": 5486935
+    },
+    {
+      "id": "elementary",
+      "duration": 136.715283,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "hashMatchesOriginalDownload": true,
+      "fullDecodeErrors": "",
+      "bytes": 5472312
+    },
+    {
+      "id": "reverie",
+      "duration": 223.672925,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "hashMatchesOriginalDownload": true,
+      "fullDecodeErrors": "",
+      "bytes": 8950768
+    }
+  ],
+  "errors": []
+}

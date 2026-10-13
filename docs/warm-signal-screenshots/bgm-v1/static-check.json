@@ -1,0 +1,18 @@
+{
+  "references": [
+    {
+      "page": "WarmSignal.html",
+      "localReferences": 160,
+      "missing": []
+    },
+    {
+      "page": "WarmSignalMusicReview.html",
+      "localReferences": 4,
+      "missing": []
+    }
+  ],
+  "syntaxFiles": 4,
+  "browserChecks": 11,
+  "formalIntegration": true,
+  "errors": []
+}

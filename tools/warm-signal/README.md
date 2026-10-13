@@ -4,6 +4,8 @@
 
 2026-10-13 收尾版新增「心愿成笺」抽卡动画：信封片头、稀有度光效、十连逐张揭晓、跳过和减少动态效果。主页可直达全 2D 晴川街区，票房编队支持实力排序。更新现有页面后即可体验；抽卡动画使用已经保存的结果。策划与验证见 `docs/warm-signal-wish-animation-plan.md`。
 
+同日加入三首 Scott Buckley 的 CC BY 4.0 背景音乐：Childhood、Elementary、Reverie，按日常/剧情/陪伴场景自动切换。主页「♫ 音乐」或设置中可选曲、暂停和调音量，首次点击页面后开始。录音、署名和来源随游戏分发；详见 `docs/warm-signal-bgm-plan.md` 与 `assets/music/CREDITS.md`。
+
 ## 游玩
 
 从仓库根目录启动静态服务器：

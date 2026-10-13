@@ -1,0 +1,13 @@
+{
+  "module": "warm-signal/bgm.js?v=20261013-bgm-1",
+  "walletUnchanged": true,
+  "player": {
+    "duration": 137.079206,
+    "paused": false,
+    "players": 1,
+    "readyState": 4,
+    "source": "http://127.0.0.1:8765/tools/warm-signal/assets/music/childhood-scott-buckley.mp3",
+    "time": 19.485259
+  },
+  "logs": []
+}

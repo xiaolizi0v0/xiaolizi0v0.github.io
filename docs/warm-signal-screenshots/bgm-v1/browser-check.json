@@ -1,0 +1,201 @@
+{
+  "checks": [
+    {
+      "kind": "no-autoplay-before-gesture",
+      "passed": true,
+      "media": {
+        "current": "Childhood · Scott Buckley",
+        "duration": null,
+        "hidden": false,
+        "loop": true,
+        "paused": true,
+        "readyState": 0,
+        "source": "",
+        "status": "轻触页面，开启音乐",
+        "time": 0
+      }
+    },
+    {
+      "kind": "home-playing",
+      "passed": true,
+      "media": {
+        "current": "Childhood · Scott Buckley",
+        "duration": 137.079206,
+        "hidden": false,
+        "loop": true,
+        "paused": false,
+        "readyState": 4,
+        "source": "http://127.0.0.1:8765/tools/warm-signal/assets/music/childhood-scott-buckley.mp3",
+        "status": "正在播放",
+        "time": 14.222038
+      }
+    },
+    {
+      "kind": "volume-slider",
+      "passed": true,
+      "value": 50,
+      "diagnostics": {
+        "enabled": true,
+        "volume": 0.5,
+        "auto": true,
+        "track": "childhood",
+        "status": "playing",
+        "current": "childhood",
+        "desired": "childhood",
+        "unlocked": true,
+        "hidden": false,
+        "paused": false,
+        "volumeActual": 0.5
+      }
+    },
+    {
+      "kind": "elementary-playing",
+      "passed": true,
+      "media": {
+        "current": "Elementary · Scott Buckley",
+        "duration": 136.715283,
+        "hidden": false,
+        "loop": true,
+        "paused": false,
+        "readyState": 4,
+        "source": "http://127.0.0.1:8765/tools/warm-signal/assets/music/elementary-scott-buckley.mp3",
+        "status": "正在播放",
+        "time": 9.778304
+      }
+    },
+    {
+      "kind": "reverie-playing",
+      "passed": true,
+      "media": {
+        "current": "Reverie · Scott Buckley",
+        "duration": 223.672925,
+        "hidden": false,
+        "loop": true,
+        "paused": false,
+        "readyState": 4,
+        "source": "http://127.0.0.1:8765/tools/warm-signal/assets/music/reverie-scott-buckley.mp3",
+        "status": "正在播放",
+        "time": 15.808916
+      }
+    },
+    {
+      "kind": "auto-dates",
+      "passed": true,
+      "media": {
+        "current": "Elementary · Scott Buckley",
+        "duration": 136.715283,
+        "hidden": false,
+        "loop": true,
+        "paused": false,
+        "readyState": 4,
+        "source": "http://127.0.0.1:8765/tools/warm-signal/assets/music/elementary-scott-buckley.mp3",
+        "status": "正在播放",
+        "time": 35.022507
+      }
+    },
+    {
+      "kind": "auto-companion",
+      "passed": true,
+      "media": {
+        "current": "Reverie · Scott Buckley",
+        "duration": 223.672925,
+        "hidden": false,
+        "loop": true,
+        "paused": false,
+        "readyState": 4,
+        "source": "http://127.0.0.1:8765/tools/warm-signal/assets/music/reverie-scott-buckley.mp3",
+        "status": "正在播放",
+        "time": 212.331814
+      }
+    },
+    {
+      "kind": "pause",
+      "passed": true,
+      "media": {
+        "current": "Reverie · Scott Buckley",
+        "duration": 223.672925,
+        "hidden": false,
+        "loop": true,
+        "paused": true,
+        "readyState": 4,
+        "source": "http://127.0.0.1:8765/tools/warm-signal/assets/music/reverie-scott-buckley.mp3",
+        "status": "音乐已关闭",
+        "time": 212.6674
+      },
+      "diagnostics": {
+        "enabled": false,
+        "volume": 0.5,
+        "auto": true,
+        "track": "reverie",
+        "status": "off",
+        "current": "reverie",
+        "desired": "reverie",
+        "unlocked": true,
+        "hidden": false,
+        "paused": true,
+        "volumeActual": 0
+      }
+    },
+    {
+      "kind": "pause-survives-navigation",
+      "passed": true,
+      "media": {
+        "current": "Childhood · Scott Buckley",
+        "duration": 223.672925,
+        "hidden": false,
+        "loop": true,
+        "paused": true,
+        "readyState": 4,
+        "source": "http://127.0.0.1:8765/tools/warm-signal/assets/music/reverie-scott-buckley.mp3",
+        "status": "音乐已关闭",
+        "time": 212.6674
+      }
+    },
+    {
+      "kind": "320x568-music-dialog",
+      "passed": true,
+      "metrics": {
+        "actions": {
+          "bottom": 529,
+          "height": 45,
+          "left": 31,
+          "right": 289,
+          "top": 484,
+          "width": 258,
+          "x": 31,
+          "y": 484
+        },
+        "dialog": {
+          "bottom": 548,
+          "height": 528,
+          "left": 12,
+          "right": 308,
+          "top": 20,
+          "width": 296,
+          "x": 12,
+          "y": 20
+        },
+        "pageWidth": 320,
+        "viewport": 320
+      }
+    },
+    {
+      "kind": "resume",
+      "passed": true,
+      "media": {
+        "current": "Childhood · Scott Buckley",
+        "duration": 137.079206,
+        "hidden": false,
+        "loop": true,
+        "paused": false,
+        "readyState": 4,
+        "source": "http://127.0.0.1:8765/tools/warm-signal/assets/music/childhood-scott-buckley.mp3",
+        "status": "正在播放",
+        "time": 20.846583
+      }
+    }
+  ],
+  "logs": [],
+  "gameSaveAccessed": false,
+  "rechargeTested": false
+}
