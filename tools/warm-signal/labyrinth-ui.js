@@ -1,5 +1,5 @@
 (function(root){'use strict';
-function create({getGame,btn,esc,cardArt,fmt,modal,close,commit,toast,route,redraw,onFormation}){
+function create({voicePlayer,getGame,btn,esc,cardArt,fmt,modal,close,commit,toast,route,redraw,onFormation}){
  const L=WarmLabyrinth,C=WarmLabyrinthContent,D=WarmData,g=getGame,s=()=>L.view(g()),v=()=>L.selected(g()),content=()=>C.volumes[v()],lc=i=>L.card(i,v()),cost=i=>L.fragmentCost(i,v());
  let tab='entry',p=0,stage=0,ids=[],pending=null,reading=null,lastStatus='';
  const names=()=>content().memories,kinds={four:'四张相同',three:'三张相同','two-pairs':'两两相同',pair:'一组相同',different:'四张不同'};
@@ -56,7 +56,8 @@ function create({getGame,btn,esc,cardArt,fmt,modal,close,commit,toast,route,redr
  case 'lab-rules':modal('记忆迷宫规则',`<div class="lab-rules"><p>入口常驻，每期开放10天，同时只能开启一期。卷一通过主线2-12、卷二通过主线4-1，各有一次免费首次旅程；之后用1枚命运骰子开启复刻。票房商店500奖章兑换骰子，每月1日5:00刷新一次资格。每卷首开入场请帖180张仅领取一次。碎晶与照片两卷共用；碎片、探索、请帖、纪念币、商店限额与故事独立记录。探索加成只统计当前卷专属卡。</p><p>记忆宫殿每次消耗1碎晶，获得四张回忆和20照片。四种回忆每张独立等概率出现：</p><table><thead><tr><th>组合</th><th>额外照片</th><th>概率</th></tr></thead><tbody>${[['四张相同',60,'1.5625%'],['三张相同',25,'18.75%'],['两两相同',15,'14.0625%'],['一组相同',10,'56.25%'],['四张不同',0,'9.375%']].map(r=>'<tr>'+r.map(v=>'<td>'+v+'</td>').join('')+'</tr>').join('')}</tbody></table><p>所选女生的回忆出现2/3/4张时，SSR碎片奖励为1/2/5，SR为1/3/6。本卷其他三种回忆为${names().slice(1).join("、")}，不产生别人的碎片。</p><p>SSR80片、SR50片合成。照片换碎片每片SSR32、SR9；已拥有或凑齐后停发该卡碎片。碎晶150钻石/枚。</p><p>探索每节点初始5次成功机会，消耗体力5；失败不扣次数。请帖补1次，无请帖时每次5钻石，两星开启扫荡。SSR每张进度+135%、币+2，SR+35%、币+1。三张羁绊、公司能力与纪录专家共同评分。</p><p>复刻不开放迷宫探索、不恢复次数，也不重发首开请帖。到期保留碎晶、照片、碎片、羁绊及书签；解锁的故事可继续阅读，纪念币补给与合成可在归档状态使用。十二段故事按探索进度解锁，已读可免费重温。本卷进度${content().milestones.map(m=>m.need).join("与")}另有一次性奖励。主线门槛、首开窗口、骰子月度安排、剧情阈值及补给价格为本项目适配，非原作各区统一运营规则。</p></div>`,btn('知道了','close','','primary'),'MEMORY · RULES');decor();break;
  }}
  function tick(){if(signature()!==lastStatus){redraw();return;}const el=document.getElementById('lab-clock');if(el)el.textContent=clockText();}
- return{screen,entry,act,tick,reset(){lastStatus='';tab='entry';p=0;stage=0;ids=[];pending=null;reading=null;}};
+ function bind(){if(!reading){voicePlayer?.reset();return;}const st=content().stories[reading.id],r=s().stories[st.id],cursor=reading.replay?reading.cursor:r.cursor,[who,text]=st.lines[cursor];voicePlayer?.cue('lab-'+v()+'-'+st.id+'-'+cursor,who,text);}
+ return{screen,entry,act,tick,bind,reset(){lastStatus='';tab='entry';p=0;stage=0;ids=[];pending=null;reading=null;}};
 }
 root.WarmLabyrinthUI={create};
 })(window);

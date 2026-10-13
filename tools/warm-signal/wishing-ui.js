@@ -3,7 +3,7 @@ function create(ctx){
  const W=root.WarmWishing,D=root.WarmData,{getGame,btn,esc,cardArt,modal,close,commit,toast,redraw,save}=ctx;
  let pool='gem',view='tree',filter=-1,selected=4,lastClock='';
  const g=()=>getGame(),w=()=>g().s.wishing,fmt=n=>n.toLocaleString('zh-CN');
- const reveal=root.WarmWishReveal?.create({cardArt,esc,motion:()=>g().s.settings.motion});
+ const reveal=root.WarmWishReveal?.create({voicePlayer:ctx.voicePlayer,cardArt,esc,motion:()=>g().s.settings.motion});
  const names={gem:'星河许愿',coin:'日常许愿',event:'当期心动',...Object.fromEntries(D.characters.map((c,p)=>['solo-'+p,c.name+' · 专属许愿']))};
  const costText=c=>Object.entries(c).map(([k,v])=>({tickets:'券 ',gems:'◆ ',coins:'● '}[k])+fmt(v)).join(' ＋ ')||'免费';
  const countdown=t=>{const n=Math.max(0,Math.ceil((t-g().now())/1000));return [Math.floor(n/3600),Math.floor(n/60)%60,n%60].map(v=>String(v).padStart(2,'0')).join(':');};

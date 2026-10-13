@@ -1,5 +1,5 @@
 (function(root){'use strict';
-function create(ctx){const {getGame,btn,esc,avatar,cardArt,modal,close,commit,toast,route,redraw}=ctx,W=root.WarmWalk,C=root.WarmWalkContent,D=root.WarmData;let p=null,running=false,speed=1,nextAt=0,result=null,observedWeek=null;
+function create(ctx){const {voicePlayer,getGame,btn,esc,avatar,cardArt,modal,close,commit,toast,route,redraw}=ctx,W=root.WarmWalk,C=root.WarmWalkContent,D=root.WarmData;let p=null,running=false,speed=1,nextAt=0,result=null,observedWeek=null;
 const g=()=>getGame(),state=()=>g().s.walks,r=()=>state().routes[p];
 const description=x=>Object.entries(x).filter(([k,v])=>k==='material'||v!==0).map(([k,v])=>k==='material'?D.attrs[v]+'材料 +2':({coins:'金币',gems:'钻石',wish:'心愿',energy:'体力'}[k]||k)+' +'+v).join(' · ');
 const token=()=>({week:state().week,round:r().round,step:r().step});
@@ -11,7 +11,8 @@ function detail(){const t=r(),c=D.characters[p],s=C.routes[p],e=C.event(p,t.roun
 function response(){const e=C.event(p,result.round,result.step-1);return `<article class="stroll-event stroll-response"><small>你：${esc(e[result.choice+2])}</small><div class="stroll-reply">${avatar(p)}<p>${esc(e[result.choice+4])}</p></div><p class="stroll-gains">${esc(description(result.rewards))}</p>${btn(result.complete?'查看本轮成果':'继续走走','stroll-next','','primary small')}</article>`;}
 function ending(){const t=r();return `<article class="stroll-event stroll-ending"><span>✧</span><h3>${t.round===2?'这周的路，已经一起走完':'在这里，稍作停留'}</h3><p>${t.round===2?'她回过头，说明天见面也不一定要找理由。':'下一段街角，还有想和你一起看的风景。'}</p>${!t.claimed?btn('领取本轮好感 +100','stroll-claim',attrs(),'primary'):t.round<2?btn('金币 5000 · 开启下一轮','stroll-reset',attrs(),'primary'):btn('回到全部路线','stroll-list','','soft')}<small>${t.round===2?'完成第 150 步的钻石 100 已直接到账。':'领取本轮心意后，可开启下一轮。'}</small></article>`;}
 function doStep(choice,expected){const before=token();result=null;const value=commit(()=>{const value=g().walk(p,choice,expected||before);if(value.ok){result=value;if(value.complete)running=false;}return value;});if(!value){running=false;redraw();return;}nextAt=Date.now()+2000/speed;}
-function pause(){running=false;nextAt=0;}
+function bind(){if(p===null)return;const t=r(),key='walk-'+state().week+'-'+p+'-'+t.round+'-'+t.step;if(result){const e=C.event(p,result.round,result.step-1);voicePlayer?.sequence(key+'-'+result.choice,[{speaker:'我',text:e[result.choice+2]},{speaker:D.characters[p].name,text:e[result.choice+4]}]);}else voicePlayer?.cue(key+'-scene','旁白',t.step===50?root.WarmVoiceDialogue.walkEndings[t.round===2?0:1]:C.event(p,t.round,t.step)[1]);}
+function pause(){voicePlayer?.stop();running=false;nextAt=0;}
 function act(a,el){const person=Number(el.dataset.person),expected={week:Number(el.dataset.week),round:Number(el.dataset.round),step:Number(el.dataset.step)};
  switch(a){
  case 'stroll-enter':pause();p=person;result=null;redraw();window.scrollTo({top:0,behavior:'instant'});break;
@@ -28,8 +29,8 @@ function act(a,el){const person=Number(el.dataset.person),expected={week:Number(
  case 'stroll-album':pause();redraw();modal('和'+D.characters[p].name+'的沿途记忆',`<div class="stroll-history">${C.routes[p].events.map((e,i)=>`<article><b>${r().seen.includes(i)?esc(e[0]):'尚未走到的街角'}</b><p>${r().seen.includes(i)?esc(e[1]):'继续漫步，会遇见更多日常。'}</p>${r().seen.includes(i)?`<small>${esc(e[2])}：${esc(e[4])}<br>${esc(e[3])}：${esc(e[5])}</small>`:''}</article>`).join('')}</div>`,btn('返回漫步','close','','primary'));break;
  case 'stroll-help':pause();redraw();modal('一起认识晴川','<p>每位女生每周有三轮漫步，每轮 50 步，不消耗体力。完成一轮可领取好感 100，用金币 5000 开启下一轮；第三轮第 50 步直接获得钻石 100。</p><p>每步获得金币，每十步获得心愿与体力，每二十五步获得材料。六条路线独立保存，每周一 5:00 更新，已获得资源和沿途记忆保留。</p><p>自动漫步仅在本页前台运行，默认选择第一项；开启下一轮和领取好感需要手动操作。有效特权卡可使用二倍速度。</p>',btn('知道了','close','','primary'));break;
  }}
-function tick(){if(speed===2&&!g().passActive()){speed=1;nextAt=Date.now()+2000;redraw();}if(p===null)return;if(observedWeek!==state().week){pause();result=null;observedWeek=state().week;redraw();return;}if(!running)return;if(document.hidden||!document.getElementById('modal').hidden){pause();redraw();return;}if(Date.now()<nextAt)return;if(result){result=null;redraw();nextAt=Date.now()+2000/speed;}else doStep(0);}
-return{screen,act,tick,pause,reset(){pause();p=null;result=null;observedWeek=null;}};
+function tick(){if(speed===2&&!g().passActive()){speed=1;nextAt=Date.now()+2000;redraw();}if(p===null)return;if(observedWeek!==state().week){pause();result=null;observedWeek=state().week;redraw();return;}if(voicePlayer?.state().busy)return;if(!running)return;if(document.hidden||!document.getElementById('modal').hidden){pause();redraw();return;}if(Date.now()<nextAt)return;if(result){result=null;redraw();nextAt=Date.now()+2000/speed;}else doStep(0);}
+return{screen,act,bind,tick,pause,reset(){pause();p=null;result=null;observedWeek=null;}};
 }
 root.WarmWalkUI={create};
 })(typeof window==='undefined'?globalThis:window);

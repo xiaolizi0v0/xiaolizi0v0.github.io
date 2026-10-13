@@ -1,5 +1,5 @@
 (function(root){'use strict';
-function create(ctx){const F=root.WarmFootage,D=root.WarmData,A=root.WarmCampaign,{getGame,btn,esc,cardArt,modal,close,commit,toast,route,redraw,save}=ctx;let p=0,ch=0,view='people',filter=-1,lastDay='',batch=[];
+function create(ctx){const F=root.WarmFootage,D=root.WarmData,A=root.WarmCampaign,{voicePlayer,getGame,btn,esc,cardArt,modal,close,commit,toast,route,redraw,save}=ctx;let p=0,ch=0,view='people',filter=-1,lastDay='',batch=[];
  const g=()=>getGame(),v=()=>g().s.footage,q=()=>v().session,r=()=>F.route(g(),p),label=s=>(s.chapter+1)+'-'+(s.n+1),money=n=>n.toLocaleString('zh-CN'),photo=id=>root.WarmCardArt.markup(D.cards[id],esc),art=person=>photo(person*12+1),gifts=x=>Object.entries(x).filter(([,n])=>n).map(([k,n])=>({coins:'金币',gems:'钻石',wish:'心愿',xp:'制作人经验'}[k]||k)+' +'+n).join(' · ');
  function wallet(){return `<div class="film-wallet"><button data-act="film-buy">▤ ${g().s.film}/10 ⊕</button><button data-go="shop" data-shop-tab="supplies">♥ ${g().s.energy}/${g().energyCap()}</button><button data-go="recharge">◆ ${money(g().s.gems)}</button></div>`;}
  function header(title,sub,back='film-people'){return `<header class="film-header">${btn('‹',back,'aria-label="返回"','')}<div><b>${esc(title)}</b><small>${sub}</small></div>${btn('规则','film-help','','')}</header>`;}

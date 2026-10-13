@@ -1,0 +1,112 @@
+[
+  {
+    "label": "生日剧情",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"narrator\",\"message\":\"旁白 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 8.32,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/03e8afe3a61c6dec792d.mp3"
+    }
+  },
+  {
+    "label": "小屋回忆",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"narrator\",\"message\":\"旁白 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 5.6,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/6e55e7eadb249c24df55.mp3"
+    }
+  },
+  {
+    "label": "城市故事",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"narrator\",\"message\":\"旁白 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 4.8,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/58ae9cc2b091b88cd326.mp3"
+    }
+  },
+  {
+    "label": "迷宫剧情",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"narrator\",\"message\":\"旁白 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 8.88,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/4b81aeca8b6bc226d2d7.mp3"
+    }
+  },
+  {
+    "label": "公司约会",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"narrator\",\"message\":\"旁白 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 7.28,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/6bb65eb102d914cb44b6.mp3"
+    }
+  },
+  {
+    "label": "拍摄副本",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"narrator\",\"message\":\"旁白 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 3.36,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/ab91c5ed22cae5636145.mp3"
+    }
+  },
+  {
+    "label": "睡眠陪伴",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"lin-zhi\",\"message\":\"林栀 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 5.84,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/30a95d73d83da989ef62.mp3"
+    }
+  },
+  {
+    "label": "UR互动",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"lin-zhi\",\"message\":\"林栀 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 3.2,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/461e4b116d31116d480b.mp3"
+    }
+  },
+  {
+    "label": "城市漫步",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"narrator\",\"message\":\"旁白 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 6.320042,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/71abc827aff370b1af54.mp3"
+    }
+  },
+  {
+    "label": "宠物家庭",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"lin-zhi\",\"message\":\"林栀 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 4.48,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/1c15e6f3e32e7e179d1f.mp3"
+    }
+  },
+  {
+    "label": "直播回应",
+    "state": "{\"enabled\":true,\"volume\":0.85,\"status\":\"playing\",\"active\":\"tang-li\",\"message\":\"唐梨 · 正在说话\",\"busy\":true,\"roles\":13}",
+    "audio": {
+      "duration": 5.2,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-lines/5cdf9055366a71046aaf.mp3"
+    }
+  }
+]
