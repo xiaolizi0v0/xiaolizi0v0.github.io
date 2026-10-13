@@ -39,11 +39,14 @@ function create(ctx={}){
  function error(){if(!current||disposed)return;audio.pause();status='error';publish();}
  function playing(){if(current===desired()&&prefs.enabled&&!doc?.hidden){status='playing';publish();}}
  doc?.addEventListener('pointerdown',gesture,{passive:true});doc?.addEventListener('keydown',gesture);doc?.addEventListener('click',clicked);doc?.addEventListener('input',input);doc?.addEventListener('visibilitychange',visibility);audio.addEventListener('error',error);audio.addEventListener('playing',playing);
- if(root.speechSynthesis)duckTimer=setInterval(()=>{const value=root.speechSynthesis.speaking;if(value!==ducked){ducked=value;if(!audio.paused&&switchTimer===null)fade(target());}},250);
+ let externalSpeech=false;
+ function updateSpeech(){const value=externalSpeech||!!root.speechSynthesis?.speaking;if(value!==ducked){ducked=value;if(!audio.paused&&switchTimer===null)fade(target());}}
+ function setSpeech(value){externalSpeech=!!value;updateSpeech();}
+ if(root.speechSynthesis)duckTimer=setInterval(updateSpeech,250);
  function dispose(){disposed=true;stop();clearInterval(duckTimer);audio.remove();doc?.removeEventListener('pointerdown',gesture);doc?.removeEventListener('keydown',gesture);doc?.removeEventListener('click',clicked);doc?.removeEventListener('input',input);doc?.removeEventListener('visibilitychange',visibility);audio.removeEventListener('error',error);audio.removeEventListener('playing',playing);root.removeEventListener?.('pagehide',pagehide);}
  function pagehide(){stop();}
  root.addEventListener?.('pagehide',pagehide);
- return{tracks,open,settings,panel,setScene,setVolume,toggle,select,setAuto,temporarily,release,gesture,state,dispose};
+ return{tracks,open,settings,panel,setScene,setVolume,toggle,select,setAuto,temporarily,release,gesture,setSpeech,state,dispose};
 }
 const api={create,tracks,preferences,sceneTrack,KEY};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.WarmBGM=api;
 })(typeof window==='undefined'?globalThis:window);

@@ -1,0 +1,12 @@
+{
+  "viewport320": {
+    "scrollWidth": 305,
+    "width": 305
+  },
+  "viewport390": {
+    "scrollWidth": 375,
+    "width": 375
+  },
+  "frameWidth": 390,
+  "notes": "Measured in an actual 320/390 CSS-pixel iframe, not on a physical phone."
+}

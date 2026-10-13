@@ -1,0 +1,10 @@
+{
+  "walletBefore": "屿\n沈屿\nLV.27 制作人\n♥170/170⊕\n●90,902⊕\n◆10,657⊕",
+  "walletAfter": "屿\n沈屿\nLV.27 制作人\n♥170/170⊕\n●90,902⊕\n◆10,657⊕",
+  "voiceAudio": {
+    "paused": true,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/narrator.mp3"
+  },
+  "logs": []
+}

@@ -1,0 +1,1156 @@
+TAP version 13
+# Subtest: model voice ducks music and restores the selected volume without restarting the song
+ok 1 - model voice ducks music and restores the selected volume without restarting the song
+  ---
+  duration_ms: 3.0864
+  type: 'test'
+  ...
+# Subtest: normalizes corrupt device preferences and retains bounded volume and valid songs
+ok 2 - normalizes corrupt device preferences and retains bounded volume and valid songs
+  ---
+  duration_ms: 0.8283
+  type: 'test'
+  ...
+# Subtest: does not load or play before a user gesture and repeated home redraws do not restart music
+ok 3 - does not load or play before a user gesture and repeated home redraws do not restart music
+  ---
+  duration_ms: 0.329
+  type: 'test'
+  ...
+# Subtest: routes to three scene moods and manual choice is preserved across later page changes
+ok 4 - routes to three scene moods and manual choice is preserved across later page changes
+  ---
+  duration_ms: 0.4655
+  type: 'test'
+  ...
+# Subtest: music volume and off preference persist without modifying game progress storage
+ok 5 - music volume and off preference persist without modifying game progress storage
+  ---
+  duration_ms: 0.4003
+  type: 'test'
+  ...
+# Subtest: backgrounding pauses immediately, returning resumes position, and manual pause stays paused
+ok 6 - backgrounding pauses immediately, returning resumes position, and manual pause stays paused
+  ---
+  duration_ms: 0.3384
+  type: 'test'
+  ...
+# Subtest: companion preview temporarily changes one player and restores the selected soundtrack
+ok 7 - companion preview temporarily changes one player and restores the selected soundtrack
+  ---
+  duration_ms: 0.5742
+  type: 'test'
+  ...
+# Subtest: stale play promises cannot change a new song or restart a muted player
+ok 8 - stale play promises cannot change a new song or restart a muted player
+  ---
+  duration_ms: 0.7119
+  type: 'test'
+  ...
+# Subtest: blocked autoplay and unavailable files can be retried on a later gesture
+ok 9 - blocked autoplay and unavailable files can be retried on a later gesture
+  ---
+  duration_ms: 0.6077
+  type: 'test'
+  ...
+# Subtest: volume changes and repeated renders during a fade cannot cancel or delay the pending scene switch
+ok 10 - volume changes and repeated renders during a fade cannot cancel or delay the pending scene switch
+  ---
+  duration_ms: 92.3412
+  type: 'test'
+  ...
+# Subtest: 18 original dates contain 72 distinct sections, role-specific card gates and real branching lines
+ok 11 - 18 original dates contain 72 distinct sections, role-specific card gates and real branching lines
+  ---
+  duration_ms: 1.1271
+  type: 'test'
+  ...
+# Subtest: legacy completed dates retain all sections, original choices, resources and no duplicate rewards
+ok 12 - legacy completed dates retain all sections, original choices, resources and no duplicate rewards
+  ---
+  duration_ms: 35.8543
+  type: 'test'
+  ...
+# Subtest: unread dates require both any listed owned bond and the heroine affection threshold
+ok 13 - unread dates require both any listed owned bond and the heroine affection threshold
+  ---
+  duration_ms: 2.3425
+  type: 'test'
+  ...
+# Subtest: first section is free, following sections require reading the previous one and exact promises
+ok 14 - first section is free, following sections require reading the previous one and exact promises
+  ---
+  duration_ms: 7.2689
+  type: 'test'
+  ...
+# Subtest: chapter unlock shortages and stale confirmations never consume resources
+ok 15 - chapter unlock shortages and stale confirmations never consume resources
+  ---
+  duration_ms: 6.0212
+  type: 'test'
+  ...
+# Subtest: reading and selected response survive export/import at the same line and session id
+ok 16 - reading and selected response survive export/import at the same line and session id
+  ---
+  duration_ms: 10.3305
+  type: 'test'
+  ...
+# Subtest: duplicate selection and stale session actions cannot advance or reward another story
+ok 17 - duplicate selection and stale session actions cannot advance or reward another story
+  ---
+  duration_ms: 1.6195
+  type: 'test'
+  ...
+# Subtest: all 72 sections can be completed, each date spends 9 promises and pays final rewards once
+ok 18 - all 72 sections can be completed, each date spends 9 promises and pays final rewards once
+  ---
+  duration_ms: 605.6375
+  type: 'test'
+  ...
+# Subtest: unread chapters cannot be skipped or completed through the old direct date shortcut
+ok 19 - unread chapters cannot be skipped or completed through the old direct date shortcut
+  ---
+  duration_ms: 5.5525
+  type: 'test'
+  ...
+# Subtest: replaying another response shows its branch but preserves first diary choice and all rewards
+ok 20 - replaying another response shows its branch but preserves first diary choice and all rewards
+  ---
+  duration_ms: 19.5869
+  type: 'test'
+  ...
+# Subtest: partial unlocked chapters survive ending a reading, without charging twice on reopen
+ok 21 - partial unlocked chapters survive ending a reading, without charging twice on reopen
+  ---
+  duration_ms: 7.0378
+  type: 'test'
+  ...
+# Subtest: promise sources pay on successful star growth and two daily tasks only once
+ok 22 - promise sources pay on successful star growth and two daily tasks only once
+  ---
+  duration_ms: 4.3868
+  type: 'test'
+  ...
+# Subtest: diamond exchange pays its displayed price, cannot exchange unsupported counts or overflow
+ok 23 - diamond exchange pays its displayed price, cannot exchange unsupported counts or overflow
+  ---
+  duration_ms: 2.7802
+  type: 'test'
+  ...
+# Subtest: final reward overflow keeps the final line available without marking completion or granting partial rewards
+ok 24 - final reward overflow keeps the final line available without marking completion or granting partial rewards
+  ---
+  duration_ms: 26.6161
+  type: 'test'
+  ...
+# Subtest: malformed records, inconsistent completion, skipped choices and invalid resource fields reject import
+ok 25 - malformed records, inconsistent completion, skipped choices and invalid resource fields reject import
+  ---
+  duration_ms: 43.9638
+  type: 'test'
+  ...
+# Subtest: six routes each have six original seven-node chapters with readable opening and ending
+ok 26 - six routes each have six original seven-node chapters with readable opening and ending
+  ---
+  duration_ms: 18.9165
+  type: 'test'
+  ...
+# Subtest: fresh progression is main-gated and ordered; stories reward once and keep first reply
+ok 27 - fresh progression is main-gated and ordered; stories reward once and keep first reply
+  ---
+  duration_ms: 10.6202
+  type: 'test'
+  ...
+# Subtest: legacy migration preserves wallet and old used quotas without invented clears
+ok 28 - legacy migration preserves wallet and old used quotas without invented clears
+  ---
+  duration_ms: 9.2584
+  type: 'test'
+  ...
+# Subtest: story choice bookmark survives export and stale sessions cannot advance
+ok 29 - story choice bookmark survives export and stale sessions cannot advance
+  ---
+  duration_ms: 9.3945
+  type: 'test'
+  ...
+# Subtest: preparation rejects other heroines, duplicate picks and unowned experts; scoring responds to keyword match
+ok 30 - preparation rejects other heroines, duplicate picks and unowned experts; scoring responds to keyword match
+  ---
+  duration_ms: 6.0507
+  type: 'test'
+  ...
+# Subtest: manual ratings, probability drops, courses, experience and success quota affect real state
+ok 31 - manual ratings, probability drops, courses, experience and success quota affect real state
+  ---
+  duration_ms: 8.2103
+  type: 'test'
+  ...
+# Subtest: failed shooting consumes film and energy, keeps successful allowance and does not unlock or drop
+ok 32 - failed shooting consumes film and energy, keeps successful allowance and does not unlock or drop
+  ---
+  duration_ms: 4.5787
+  type: 'test'
+  ...
+# Subtest: batch sweeps use saved formations, combine different routes and never reroll first rewards
+ok 33 - batch sweeps use saved formations, combine different routes and never reroll first rewards
+  ---
+  duration_ms: 63.872
+  type: 'test'
+  ...
+# Subtest: unaffordable, duplicate, locked and under-two-star batches are atomic and do not consume random rolls
+ok 34 - unaffordable, duplicate, locked and under-two-star batches are atomic and do not consume random rolls
+  ---
+  duration_ms: 53.815
+  type: 'test'
+  ...
+# Subtest: 5am reset is monotonic, old preparation expires, and rollback cannot buy or shoot
+ok 35 - 5am reset is monotonic, old preparation expires, and rollback cannot buy or shoot
+  ---
+  duration_ms: 54.1169
+  type: 'test'
+  ...
+# Subtest: stage reset and film topups validate serial, cost, daily limits and rollover
+ok 36 - stage reset and film topups validate serial, cost, daily limits and rollover
+  ---
+  duration_ms: 109.1323
+  type: 'test'
+  ...
+# Subtest: chapter gifts require stars and cannot be claimed twice, fragment crafting unlocks phone content
+ok 37 - chapter gifts require stars and cannot be claimed twice, fragment crafting unlocks phone content
+  ---
+  duration_ms: 65.5752
+  type: 'test'
+  ...
+# Subtest: save validation rejects malformed nested maps, false clears, wrong role photos and duplicate history
+ok 38 - save validation rejects malformed nested maps, false clears, wrong role photos and duplicate history
+  ---
+  duration_ms: 125.2799
+  type: 'test'
+  ...
+# Subtest: resource limits reject awards, topups and stale operations without partial payment
+ok 39 - resource limits reject awards, topups and stale operations without partial payment
+  ---
+  duration_ms: 72.1242
+  type: 'test'
+  ...
+# Subtest: all 252 nodes complete through real APIs; rereading 72 stories and sweeping 180 stages preserve first prizes
+ok 40 - all 252 nodes complete through real APIs; rereading 72 stories and sweeping 180 stages preserve first prizes
+  ---
+  duration_ms: 851.5454
+  type: 'test'
+  ...
+# Subtest: legacy progress migrates to read records without inventing past choices or changing resources
+ok 41 - legacy progress migrates to read records without inventing past choices or changing resources
+  ---
+  duration_ms: 29.1115
+  type: 'test'
+  ...
+# Subtest: all 54 story nodes use the reader and chapter one has nine complete distinct scenes
+ok 42 - all 54 story nodes use the reader and chapter one has nine complete distinct scenes
+  ---
+  duration_ms: 1.7822
+  type: 'test'
+  ...
+# Subtest: locked, shooting and malformed IDs fail before creating a bookmark
+ok 43 - locked, shooting and malformed IDs fail before creating a bookmark
+  ---
+  duration_ms: 5.0694
+  type: 'test'
+  ...
+# Subtest: each line saves immediately and import resumes the same scene and dialogue
+ok 44 - each line saves immediately and import resumes the same scene and dialogue
+  ---
+  duration_ms: 5.2974
+  type: 'test'
+  ...
+# Subtest: choice blocks next until one response is selected and stale buttons fail atomically
+ok 45 - choice blocks next until one response is selected and stale buttons fail atomically
+  ---
+  duration_ms: 6.0953
+  type: 'test'
+  ...
+# Subtest: finishing unread story advances main and grants its existing reward only once
+ok 46 - finishing unread story advances main and grants its existing reward only once
+  ---
+  duration_ms: 28.3336
+  type: 'test'
+  ...
+# Subtest: first completed branch remains canonical while replay can show the other response
+ok 47 - first completed branch remains canonical while replay can show the other response
+  ---
+  duration_ms: 17.1884
+  type: 'test'
+  ...
+# Subtest: skip is available only for read stories and grants no new progress or rewards
+ok 48 - skip is available only for read stories and grants no new progress or rewards
+  ---
+  duration_ms: 14.1133
+  type: 'test'
+  ...
+# Subtest: switching unlocked stories preserves separate bookmarks and rejects the old session
+ok 49 - switching unlocked stories preserves separate bookmarks and rejects the old session
+  ---
+  duration_ms: 1.9005
+  type: 'test'
+  ...
+# Subtest: dialogue review contains only reached lines and the chosen response
+ok 50 - dialogue review contains only reached lines and the chosen response
+  ---
+  duration_ms: 2.0372
+  type: 'test'
+  ...
+# Subtest: auto and font preferences persist without granting offline progress or currency
+ok 51 - auto and font preferences persist without granting offline progress or currency
+  ---
+  duration_ms: 4.859
+  type: 'test'
+  ...
+# Subtest: reward overflow fails before marking read, advancing main or closing the session
+ok 52 - reward overflow fails before marking read, advancing main or closing the session
+  ---
+  duration_ms: 4.1428
+  type: 'test'
+  ...
+# Subtest: malformed bookmarks, choices, completed records and sessions reject import
+ok 53 - malformed bookmarks, choices, completed records and sessions reject import
+  ---
+  duration_ms: 24.2176
+  type: 'test'
+  ...
+# Subtest: all chapter-one choices and all later stories complete through the same session protocol
+ok 54 - all chapter-one choices and all later stories complete through the same session protocol
+  ---
+  duration_ms: 592.5282
+  type: 'test'
+  ...
+# Subtest: chapter two contains nine continuous original scenes and seven distinct responses
+ok 55 - chapter two contains nine continuous original scenes and seven distinct responses
+  ---
+  duration_ms: 1.769
+  type: 'test'
+  ...
+# Subtest: v1 pending short screenplay and completed records migrate without moving a line or inventing choices
+ok 56 - v1 pending short screenplay and completed records migrate without moving a line or inventing choices
+  ---
+  duration_ms: 7.8781
+  type: 'test'
+  ...
+# Subtest: old pending first reading finishes its original edition and grants once; replay opens expanded edition
+ok 57 - old pending first reading finishes its original edition and grants once; replay opens expanded edition
+  ---
+  duration_ms: 19.1948
+  type: 'test'
+  ...
+# Subtest: explicit expanded restart only replaces this bookmark and rejects old session buttons
+ok 58 - explicit expanded restart only replaces this bookmark and rejects old session buttons
+  ---
+  duration_ms: 7.4629
+  type: 'test'
+  ...
+# Subtest: v1 chapter one choices, completed record and other bookmarks retain the same dialogue after migration
+ok 59 - v1 chapter one choices, completed record and other bookmarks retain the same dialogue after migration
+  ---
+  duration_ms: 14.4111
+  type: 'test'
+  ...
+# Subtest: edition mismatch, unknown editions and expanded records missing a choice reject import
+ok 60 - edition mismatch, unknown editions and expanded records missing a choice reject import
+  ---
+  duration_ms: 13.921
+  type: 'test'
+  ...
+# Subtest: legacy reader offers a voluntary expanded restart and stale confirmation cannot replace a newer session
+ok 61 - legacy reader offers a voluntary expanded restart and stale confirmation cannot replace a newer session
+  ---
+  duration_ms: 8.6757
+  type: 'test'
+  ...
+# Subtest: chapter three connects nine full scenes with nine independent musician responses
+ok 62 - chapter three connects nine full scenes with nine independent musician responses
+  ---
+  duration_ms: 0.3707
+  type: 'test'
+  ...
+# Subtest: both existing save schemas preserve old chapter-three text and records until an explicit restart
+ok 63 - both existing save schemas preserve old chapter-three text and records until an explicit restart
+  ---
+  duration_ms: 29.0801
+  type: 'test'
+  ...
+# Subtest: expanded chapter-three first reward is once and both alternatives remain readable across all nine scenes
+ok 64 - expanded chapter-three first reward is once and both alternatives remain readable across all nine scenes
+  ---
+  duration_ms: 174.5832
+  type: 'test'
+  ...
+# Subtest: chapter four connects nine reporter scenes with nine independent responses
+ok 65 - chapter four connects nine reporter scenes with nine independent responses
+  ---
+  duration_ms: 0.4293
+  type: 'test'
+  ...
+# Subtest: both save schemas preserve old chapter-four text and records until an explicit restart
+ok 66 - both save schemas preserve old chapter-four text and records until an explicit restart
+  ---
+  duration_ms: 33.8907
+  type: 'test'
+  ...
+# Subtest: chapter-four first reward is once and both alternatives survive import for all nine scenes
+ok 67 - chapter-four first reward is once and both alternatives survive import for all nine scenes
+  ---
+  duration_ms: 152.7199
+  type: 'test'
+  ...
+# Subtest: chapter five connects nine bakery scenes with nine independent Jiang Yue responses
+ok 68 - chapter five connects nine bakery scenes with nine independent Jiang Yue responses
+  ---
+  duration_ms: 0.3522
+  type: 'test'
+  ...
+# Subtest: both save schemas preserve old chapter-five text and records until an explicit restart
+ok 69 - both save schemas preserve old chapter-five text and records until an explicit restart
+  ---
+  duration_ms: 21.0781
+  type: 'test'
+  ...
+# Subtest: chapter-five first reward is once and both alternatives survive import for all nine scenes
+ok 70 - chapter-five first reward is once and both alternatives survive import for all nine scenes
+  ---
+  duration_ms: 132.3142
+  type: 'test'
+  ...
+# Subtest: chapter six closes nine premiere scenes and binds choices to all six heroines
+ok 71 - chapter six closes nine premiere scenes and binds choices to all six heroines
+  ---
+  duration_ms: 0.4717
+  type: 'test'
+  ...
+# Subtest: both save schemas preserve old chapter-six text and records until an explicit restart
+ok 72 - both save schemas preserve old chapter-six text and records until an explicit restart
+  ---
+  duration_ms: 24.3379
+  type: 'test'
+  ...
+# Subtest: chapter-six first reward is once and all nine selected replies survive import and replay
+ok 73 - chapter-six first reward is once and all nine selected replies survive import and replay
+  ---
+  duration_ms: 103.2252
+  type: 'test'
+  ...
+# Subtest: all 126 non-N cards have original phone scenes and explicit acquisition, star and evolution gates
+ok 74 - all 126 non-N cards have original phone scenes and explicit acquisition, star and evolution gates
+  ---
+  duration_ms: 4.7297
+  type: 'test'
+  ...
+# Subtest: fresh phone is playable without paying, with independent six-role archives and one article
+ok 75 - fresh phone is playable without paying, with independent six-role archives and one article
+  ---
+  duration_ms: 20.4611
+  type: 'test'
+  ...
+# Subtest: legacy replies, calls and likes migrate as already rewarded, preserving all old resources
+ok 76 - legacy replies, calls and likes migrate as already rewarded, preserving all old resources
+  ---
+  duration_ms: 32.6673
+  type: 'test'
+  ...
+# Subtest: SMS choices preserve a first answer, reward only on completion, and cannot bypass the choice
+ok 77 - SMS choices preserve a first answer, reward only on completion, and cannot bypass the choice
+  ---
+  duration_ms: 11.6978
+  type: 'test'
+  ...
+# Subtest: SMS bookmarks, reply branch and unique session tokens survive export, reload and switching
+ok 78 - SMS bookmarks, reply branch and unique session tokens survive export, reload and switching
+  ---
+  duration_ms: 6.0491
+  type: 'test'
+  ...
+# Subtest: calls may be missed and resumed, require acceptance, and enter recordings only after finishing
+ok 79 - calls may be missed and resumed, require acceptance, and enter recordings only after finishing
+  ---
+  duration_ms: 15.4339
+  type: 'test'
+  ...
+# Subtest: card growth unlocks different entries immediately and non-owned cards cannot be opened
+ok 80 - card growth unlocks different entries immediately and non-owned cards cannot be opened
+  ---
+  duration_ms: 5.8578
+  type: 'test'
+  ...
+# Subtest: star-related content cannot open early and the catalog never grants rewards
+ok 81 - star-related content cannot open early and the catalog never grants rewards
+  ---
+  duration_ms: 4.0516
+  type: 'test'
+  ...
+# Subtest: likes, one comment and her branch reply persist and pay affection at most once
+ok 82 - likes, one comment and her branch reply persist and pay affection at most once
+  ---
+  duration_ms: 6.0532
+  type: 'test'
+  ...
+# Subtest: heart progression from an existing game action unlocks phone content before its next failed action
+ok 83 - heart progression from an existing game action unlocks phone content before its next failed action
+  ---
+  duration_ms: 2.8574
+  type: 'test'
+  ...
+# Subtest: mark-read, favorites, articles and replay change no wallet or affection
+ok 84 - mark-read, favorites, articles and replay change no wallet or affection
+  ---
+  duration_ms: 8.9196
+  type: 'test'
+  ...
+# Subtest: six profiles accept only owned heroine photos, preserve remarks, and use warm theme choices
+ok 85 - six profiles accept only owned heroine photos, preserve remarks, and use warm theme choices
+  ---
+  duration_ms: 3.4702
+  type: 'test'
+  ...
+# Subtest: album reveals only owned cards and unlocked SP stage variants, all separately favoritable
+ok 86 - album reveals only owned cards and unlocked SP stage variants, all separately favoritable
+  ---
+  duration_ms: 3.4962
+  type: 'test'
+  ...
+# Subtest: new phone save rejects forged unlocks, malformed bookmarks, foreign photos and duplicates
+ok 87 - new phone save rejects forged unlocks, malformed bookmarks, foreign photos and duplicates
+  ---
+  duration_ms: 28.3268
+  type: 'test'
+  ...
+# Subtest: affection overflow blocks completion and social interactions without consuming their rewards
+ok 88 - affection overflow blocks completion and social interactions without consuming their rewards
+  ---
+  duration_ms: 2.0741
+  type: 'test'
+  ...
+# Subtest: finishing an actual chapter unlocks its afterword and next public article immediately
+ok 89 - finishing an actual chapter unlocks its afterword and next public article immediately
+  ---
+  duration_ms: 6.5553
+  type: 'test'
+  ...
+# Subtest: all four date sections must finish before the corresponding after-date SMS arrives
+ok 90 - all four date sections must finish before the corresponding after-date SMS arrives
+  ---
+  duration_ms: 16.1
+  type: 'test'
+  ...
+# Subtest: every phone entry can complete and replay in a fully unlocked save without duplicate rewards
+ok 91 - every phone entry can complete and replay in a fully unlocked save without duplicate rewards
+  ---
+  duration_ms: 5407.103
+  type: 'test'
+  ...
+# Subtest: legacy saves migrate without claiming memories or changing any existing wallets
+ok 92 - legacy saves migrate without claiming memories or changing any existing wallets
+  ---
+  duration_ms: 38.078
+  type: 'test'
+  ...
+# Subtest: twelve original stories have two explicit choices, four distinct endings and six personal secrets
+ok 93 - twelve original stories have two explicit choices, four distinct endings and six personal secrets
+  ---
+  duration_ms: 0.5719
+  type: 'test'
+  ...
+# Subtest: all 48 paths produce the actual ending, only successful endings collect, and every path receives real rewards
+ok 94 - all 48 paths produce the actual ending, only successful endings collect, and every path receives real rewards
+  ---
+  duration_ms: 355.6278
+  type: 'test'
+  ...
+# Subtest: one glass restores after exactly 12 hours, capacity wastes elapsed full time, and clock rollback grants nothing
+ok 95 - one glass restores after exactly 12 hours, capacity wastes elapsed full time, and clock rollback grants nothing
+  ---
+  duration_ms: 2.7198
+  type: 'test'
+  ...
+# Subtest: two consumed glasses regenerate offline up to two and partial time carries through ordinary actions
+ok 96 - two consumed glasses regenerate offline up to two and partial time carries through ordinary actions
+  ---
+  duration_ms: 16.2392
+  type: 'test'
+  ...
+# Subtest: normal gate, invalid role, empty resources and active session cannot consume resources or advance serial
+ok 97 - normal gate, invalid role, empty resources and active session cannot consume resources or advance serial
+  ---
+  duration_ms: 5.9923
+  type: 'test'
+  ...
+# Subtest: glass purchases obey capacity, exact price, two per Shanghai 5am day and stale confirmation protection
+ok 98 - glass purchases obey capacity, exact price, two per Shanghai 5am day and stale confirmation protection
+  ---
+  duration_ms: 22.9691
+  type: 'test'
+  ...
+# Subtest: theme postcards cost 30, cap at 10 purchases, remain after expiry and cannot open outside event window
+ok 99 - theme postcards cost 30, cap at 10 purchases, remain after expiry and cannot open outside event window
+  ---
+  duration_ms: 4.4425
+  type: 'test'
+  ...
+# Subtest: an already started event can finish after closing and its successful memory remains readable
+ok 100 - an already started event can finish after closing and its successful memory remains readable
+  ---
+  duration_ms: 7.6619
+  type: 'test'
+  ...
+# Subtest: bookmarks and pre-rolled loot survive reload; stale next and choice tokens are refused
+ok 101 - bookmarks and pre-rolled loot survive reload; stale next and choice tokens are refused
+  ---
+  duration_ms: 12.721
+  type: 'test'
+  ...
+# Subtest: key, flower and companion ticket rewards update existing shared wallets rather than duplicate resources
+ok 102 - key, flower and companion ticket rewards update existing shared wallets rather than duplicate resources
+  ---
+  duration_ms: 30.3902
+  type: 'test'
+  ...
+# Subtest: abandoning does not award or refund the spent item, and cancelling cannot affect another session
+ok 103 - abandoning does not award or refund the spent item, and cancelling cannot affect another session
+  ---
+  duration_ms: 3.3442
+  type: 'test'
+  ...
+# Subtest: secrets require a daily successful ending and 50 personal items; unlocking is permanent and reading is free
+ok 104 - secrets require a daily successful ending and 50 personal items; unlocking is permanent and reading is free
+  ---
+  duration_ms: 130.1777
+  type: 'test'
+  ...
+# Subtest: locked endings and another character secret cannot be replayed, and replays never create additional loot
+ok 105 - locked endings and another character secret cannot be replayed, and replays never create additional loot
+  ---
+  duration_ms: 10.7427
+  type: 'test'
+  ...
+# Subtest: resource capacity, serial limits and empty diamonds reject before final reward or purchase mutation
+ok 106 - resource capacity, serial limits and empty diamonds reject before final reward or purchase mutation
+  ---
+  duration_ms: 11.8337
+  type: 'test'
+  ...
+# Subtest: malformed state, premature memories, impossible choices and forged reward sessions fail import
+ok 107 - malformed state, premature memories, impossible choices and forged reward sessions fail import
+  ---
+  duration_ms: 25.5476
+  type: 'test'
+  ...
+# Subtest: history truncates to 50 entries with unique sessions while permanent endings survive
+ok 108 - history truncates to 50 entries with unique sessions while permanent endings survive
+  ---
+  duration_ms: 268.3333
+  type: 'test'
+  ...
+# Subtest: UI uses daily/event envelopes, respects gated memories and preserves each character scroll independently
+ok 109 - UI uses daily/event envelopes, respects gated memories and preserves each character scroll independently
+  ---
+  duration_ms: 16.0322
+  type: 'test'
+  ...
+# Subtest: auto reading pauses on choices and before leaving the page, and never silently makes a choice
+ok 110 - auto reading pauses on choices and before leaving the page, and never silently makes a choice
+  ---
+  duration_ms: 3.4066
+  type: 'test'
+  ...
+# Subtest: scene art matches each story setting, preserves source proportions and never crops outside an atlas
+ok 111 - scene art matches each story setting, preserves source proportions and never crops outside an atlas
+  ---
+  duration_ms: 34.1183
+  type: 'test'
+  ...
+# Subtest: malformed history objects and impossible game-day dates are rejected without throwing
+ok 112 - malformed history objects and impossible game-day dates are rejected without throwing
+  ---
+  duration_ms: 0.196
+  type: 'test'
+  ...
+# Subtest: twelve original side stories have 36 chapters, six exploration stages and thirty unique fragments
+ok 113 - twelve original side stories have 36 chapters, six exploration stages and thirty unique fragments
+  ---
+  duration_ms: 2.5903
+  type: 'test'
+  ...
+# Subtest: legacy migration only adds a side-story state and retains existing resources and date progress
+ok 114 - legacy migration only adds a side-story state and retains existing resources and date progress
+  ---
+  duration_ms: 40.833
+  type: 'test'
+  ...
+# Subtest: both story kinds require a listed bond, without an affection gate or direct-open bypass
+ok 115 - both story kinds require a listed bond, without an affection gate or direct-open bypass
+  ---
+  duration_ms: 10.3619
+  type: 'test'
+  ...
+# Subtest: chapter unlock is sequential, exact-price and atomic against shortages, stale and repeat submissions
+ok 116 - chapter unlock is sequential, exact-price and atomic against shortages, stale and repeat submissions
+  ---
+  duration_ms: 8.8746
+  type: 'test'
+  ...
+# Subtest: scene fragments are collected only after their last paragraph and incomplete return is free
+ok 117 - scene fragments are collected only after their last paragraph and incomplete return is free
+  ---
+  duration_ms: 6.4407
+  type: 'test'
+  ...
+# Subtest: three object fragments unlock the ending, optional thoughts remain available after full completion
+ok 118 - three object fragments unlock the ending, optional thoughts remain available after full completion
+  ---
+  duration_ms: 17.9684
+  type: 'test'
+  ...
+# Subtest: a bookmark restores an in-progress thought at the same paragraph and retains collected objects
+ok 119 - a bookmark restores an in-progress thought at the same paragraph and retains collected objects
+  ---
+  duration_ms: 12.5965
+  type: 'test'
+  ...
+# Subtest: all 36 chapters and thirty fragments can complete; twelve first rewards pay only once
+ok 120 - all 36 chapters and thirty fragments can complete; twelve first rewards pay only once
+  ---
+  duration_ms: 114.6611
+  type: 'test'
+  ...
+# Subtest: stale session ids cannot read, select a point, abandon or collect a different story
+ok 121 - stale session ids cannot read, select a point, abandon or collect a different story
+  ---
+  duration_ms: 2.2307
+  type: 'test'
+  ...
+# Subtest: unread text and exploration cannot be skipped, and abandoning preserves paid unlocks
+ok 122 - unread text and exploration cannot be skipped, and abandoning preserves paid unlocks
+  ---
+  duration_ms: 4.1431
+  type: 'test'
+  ...
+# Subtest: successful linked bond star and evolution pay sand while unrelated upgrades and failures do not
+ok 123 - successful linked bond star and evolution pay sand while unrelated upgrades and failures do not
+  ---
+  duration_ms: 5.2585
+  type: 'test'
+  ...
+# Subtest: sand exchange uses its own balance and rejects shortages, unsupported amounts and capacity overflow
+ok 124 - sand exchange uses its own balance and rejects shortages, unsupported amounts and capacity overflow
+  ---
+  duration_ms: 2.3362
+  type: 'test'
+  ...
+# Subtest: final rewards preflight gem and sand capacity without erasing the last paragraph
+ok 125 - final rewards preflight gem and sand capacity without erasing the last paragraph
+  ---
+  duration_ms: 8.8944
+  type: 'test'
+  ...
+# Subtest: malformed side stories, skipped prerequisites, fake fragments and invalid bookmarks reject import
+ok 126 - malformed side stories, skipped prerequisites, fake fragments and invalid bookmarks reject import
+  ---
+  duration_ms: 34.6379
+  type: 'test'
+  ...
+# Subtest: side-story counter exhaustion does not create invalid saves or consume unlock resources
+ok 127 - side-story counter exhaustion does not create invalid saves or consume unlock resources
+  ---
+  duration_ms: 2.8241
+  type: 'test'
+  ...
+# Subtest: all scene hotspots have separate touch regions at short-phone and regular-phone content widths
+ok 128 - all scene hotspots have separate touch regions at short-phone and regular-phone content widths
+  ---
+  duration_ms: 1.6323
+  type: 'test'
+  ...
+# Subtest: legacy migration adds only empty sleep records while retaining every wallet, old timer and progression
+ok 129 - legacy migration adds only empty sleep records while retaining every wallet, old timer and progression
+  ---
+  duration_ms: 35.5727
+  type: 'test'
+  ...
+# Subtest: six distinct adult heroines have eighteen independent eight-line nights and three responses per story
+ok 130 - six distinct adult heroines have eighteen independent eight-line nights and three responses per story
+  ---
+  duration_ms: 0.5943
+  type: 'test'
+  ...
+# Subtest: each story consumes exactly ten existing companion tickets once and has no second payment
+ok 131 - each story consumes exactly ten existing companion tickets once and has no second payment
+  ---
+  duration_ms: 44.4862
+  type: 'test'
+  ...
+# Subtest: insufficient tickets, stale purchase confirmations and wrong heroine are rejected atomically
+ok 132 - insufficient tickets, stale purchase confirmations and wrong heroine are rejected atomically
+  ---
+  duration_ms: 2.6195
+  type: 'test'
+  ...
+# Subtest: all eighteen nights complete and reload as permanently owned without farming currencies or affinity
+ok 133 - all eighteen nights complete and reload as permanently owned without farming currencies or affinity
+  ---
+  duration_ms: 213.2709
+  type: 'test'
+  ...
+# Subtest: current session survives reload and stale next buttons cannot skip text or complete twice
+ok 134 - current session survives reload and stale next buttons cannot skip text or complete twice
+  ---
+  duration_ms: 7.9736
+  type: 'test'
+  ...
+# Subtest: pausing and resuming both an unfinished night and an already-completed replay preserve the current line
+ok 135 - pausing and resuming both an unfinished night and an already-completed replay preserve the current line
+  ---
+  duration_ms: 7.0587
+  type: 'test'
+  ...
+# Subtest: locked reading and simultaneous nights fail, while explicit restart is available after pausing
+ok 136 - locked reading and simultaneous nights fail, while explicit restart is available after pausing
+  ---
+  duration_ms: 1.6841
+  type: 'test'
+  ...
+# Subtest: favorites require ownership and survive reload without affecting unlocks or resources
+ok 137 - favorites require ownership and survive reload without affecting unlocks or resources
+  ---
+  duration_ms: 6.7036
+  type: 'test'
+  ...
+# Subtest: distance is restricted to three bounded levels and serial/session overflow rejects before mutation
+ok 138 - distance is restricted to three bounded levels and serial/session overflow rejects before mutation
+  ---
+  duration_ms: 4.6287
+  type: 'test'
+  ...
+# Subtest: sleep scene timer uses the original global gift and affinity loop, with no duplicate completion
+ok 139 - sleep scene timer uses the original global gift and affinity loop, with no duplicate completion
+  ---
+  duration_ms: 10.4484
+  type: 'test'
+  ...
+# Subtest: early ending records actual duration without refunding night unlock or giving timer rewards
+ok 140 - early ending records actual duration without refunding night unlock or giving timer rewards
+  ---
+  duration_ms: 1.0485
+  type: 'test'
+  ...
+# Subtest: sleep touch reuses five daily interactions and timer response cap rather than adding a second reward allowance
+ok 141 - sleep touch reuses five daily interactions and timer response cap rather than adding a second reward allowance
+  ---
+  duration_ms: 7.9839
+  type: 'test'
+  ...
+# Subtest: malformed imports reject hidden unlocks, unowned favorites, out-of-range bookmarks and forged sessions
+ok 142 - malformed imports reject hidden unlocks, unowned favorites, out-of-range bookmarks and forged sessions
+  ---
+  duration_ms: 16.1294
+  type: 'test'
+  ...
+# Subtest: all six independent source images and clickable areas retain native dimensions under one proportional SVG
+ok 143 - all six independent source images and clickable areas retain native dimensions under one proportional SVG
+  ---
+  duration_ms: 35.8886
+  type: 'test'
+  ...
+# Subtest: auto reading stops for a modal, page visibility and explicit pause, and completes without extra rewards
+ok 144 - auto reading stops for a modal, page visibility and explicit pause, and completes without extra rewards
+  ---
+  duration_ms: 7.2005
+  type: 'test'
+  ...
+# Subtest: idle speech is capped at two online prompts and scene interactions use story-specific feedback
+ok 145 - idle speech is capped at two online prompts and scene interactions use story-specific feedback
+  ---
+  duration_ms: 3.3058
+  type: 'test'
+  ...
+# Subtest: SP migration preserves old evolved cards and every existing wallet; starter glow is granted once
+ok 146 - SP migration preserves old evolved cards and every existing wallet; starter glow is granted once
+  ---
+  duration_ms: 39.9553
+  type: 'test'
+  ...
+# Subtest: all twelve SPs have independent original five-part stories, three clues, two memories and a radio
+ok 147 - all twelve SPs have independent original five-part stories, three clues, two memories and a radio
+  ---
+  duration_ms: 0.6507
+  type: 'test'
+  ...
+# Subtest: SP evolution cannot bypass progression while ordinary evolution retains its material transaction
+ok 148 - SP evolution cannot bypass progression while ordinary evolution retains its material transaction
+  ---
+  duration_ms: 3.8323
+  type: 'test'
+  ...
+# Subtest: progression requires completed reading, all three first-stage clues and card level before materials are spent
+ok 149 - progression requires completed reading, all three first-stage clues and card level before materials are spent
+  ---
+  duration_ms: 21.9485
+  type: 'test'
+  ...
+# Subtest: all twelve SPs can progress sequentially to ten stages and claim stories and memories only once
+ok 150 - all twelve SPs can progress sequentially to ten stages and claim stories and memories only once
+  ---
+  duration_ms: 429.5707
+  type: 'test'
+  ...
+# Subtest: each material and serial shortage is atomic, fragment alternative spends only the exact specific card fragments
+ok 151 - each material and serial shortage is atomic, fragment alternative spends only the exact specific card fragments
+  ---
+  duration_ms: 13.4334
+  type: 'test'
+  ...
+# Subtest: post-fourth-stage progression requires final story, sufficient gears and exact higher level
+ok 152 - post-fourth-stage progression requires final story, sufficient gears and exact higher level
+  ---
+  duration_ms: 18.0497
+  type: 'test'
+  ...
+# Subtest: branch choice pauses reading, survives import, changes appearance, and keeps the first canonical response
+ok 153 - branch choice pauses reading, survives import, changes appearance, and keeps the first canonical response
+  ---
+  duration_ms: 15.8238
+  type: 'test'
+  ...
+# Subtest: only fully read clues count; ending a session or switching cards never grants a clue or completion reward
+ok 154 - only fully read clues count; ending a session or switching cards never grants a clue or completion reward
+  ---
+  duration_ms: 5.9554
+  type: 'test'
+  ...
+# Subtest: display switching is owned-stage-gated, serial-checked and replay skip preserves the current variant
+ok 155 - display switching is owned-stage-gated, serial-checked and replay skip preserves the current variant
+  ---
+  duration_ms: 9.3927
+  type: 'test'
+  ...
+# Subtest: 48 generated stage variants have unique keys and in-bounds proportional atlas crops
+ok 156 - 48 generated stage variants have unique keys and in-bounds proportional atlas crops
+  ---
+  duration_ms: 160.8382
+  type: 'test'
+  ...
+# Subtest: SP stages change actual card stats and wear proportionally without altering unrelated cards
+ok 157 - SP stages change actual card stats and wear proportionally without altering unrelated cards
+  ---
+  duration_ms: 10.454
+  type: 'test'
+  ...
+# Subtest: sign-in uses Shanghai calendar days 9 and 24 and cannot double grant glow
+ok 158 - sign-in uses Shanghai calendar days 9 and 24 and cannot double grant glow
+  ---
+  duration_ms: 4.9104
+  type: 'test'
+  ...
+# Subtest: weekly goals and elite full-star chests grant glow exactly once
+ok 159 - weekly goals and elite full-star chests grant glow exactly once
+  ---
+  duration_ms: 3.8405
+  type: 'test'
+  ...
+# Subtest: successful elite chapter four productions and sweeps grant gears; failures and earlier chapters do not
+ok 160 - successful elite chapter four productions and sweeps grant gears; failures and earlier chapters do not
+  ---
+  duration_ms: 11.4287
+  type: 'test'
+  ...
+# Subtest: flowing repeated SPs grants glow and preserves stage, selected skin and the trained original
+ok 161 - flowing repeated SPs grants glow and preserves stage, selected skin and the trained original
+  ---
+  duration_ms: 11.9937
+  type: 'test'
+  ...
+# Subtest: source overflows reject before spending, claiming, flowing copies or modifying a session
+ok 162 - source overflows reject before spending, claiming, flowing copies or modifying a session
+  ---
+  duration_ms: 18.3354
+  type: 'test'
+  ...
+# Subtest: malformed SP stages, skins, branches, clues, ownership and reading bookmarks reject import
+ok 163 - malformed SP stages, skins, branches, clues, ownership and reading bookmarks reject import
+  ---
+  duration_ms: 38.6666
+  type: 'test'
+  ...
+# Subtest: old UR evolution migrates to one stage without granting skins, readings or changing balances
+ok 164 - old UR evolution migrates to one stage without granting skins, readings or changing balances
+  ---
+  duration_ms: 39.9473
+  type: 'test'
+  ...
+# Subtest: six independent UR stories contain five main sections, two perspectives, three companions and explicit branches
+ok 165 - six independent UR stories contain five main sections, two perspectives, three companions and explicit branches
+  ---
+  duration_ms: 0.7951
+  type: 'test'
+  ...
+# Subtest: all six URs evolve sequentially through ten stages with exact common wallet and card statistic increases
+ok 166 - all six URs evolve sequentially through ten stages with exact common wallet and card statistic increases
+  ---
+  duration_ms: 86.321
+  type: 'test'
+  ...
+# Subtest: each missing resource, wrong material source, insufficient level and stale wallet reject atomically
+ok 167 - each missing resource, wrong material source, insufficient level and stale wallet reject atomically
+  ---
+  duration_ms: 4.9703
+  type: 'test'
+  ...
+# Subtest: ordinary evolve cannot bypass UR stages; ordinary cards keep their established material transaction
+ok 168 - ordinary evolve cannot bypass UR stages; ordinary cards keep their established material transaction
+  ---
+  duration_ms: 3.3746
+  type: 'test'
+  ...
+# Subtest: main chapters, fourth-stage perspectives and sixth-stage companionship remain gated and only first reading rewards
+ok 169 - main chapters, fourth-stage perspectives and sixth-stage companionship remain gated and only first reading rewards
+  ---
+  duration_ms: 297.3811
+  type: 'test'
+  ...
+# Subtest: branch reading survives reload, rejects bypass and stale choices, and permits skipping only completed chapters
+ok 170 - branch reading survives reload, rejects bypass and stale choices, and permits skipping only completed chapters
+  ---
+  duration_ms: 13.0677
+  type: 'test'
+  ...
+# Subtest: ending or abandoning a chapter grants no reward and ongoing reading blocks material progression
+ok 171 - ending or abandoning a chapter grants no reward and ongoing reading blocks material progression
+  ---
+  duration_ms: 2.6382
+  type: 'test'
+  ...
+# Subtest: twelve evolved images have unique bounded atlas coordinates; original card art is retained until stage five
+ok 172 - twelve evolved images have unique bounded atlas coordinates; original card art is retained until stage five
+  ---
+  duration_ms: 69.167
+  type: 'test'
+  ...
+# Subtest: display switches and photo favorites require ownership and the actual unlocked stage
+ok 173 - display switches and photo favorites require ownership and the actual unlocked stage
+  ---
+  duration_ms: 8.2621
+  type: 'test'
+  ...
+# Subtest: interaction stages, finite trace retention, invalid coordinates and stale actions protect resources
+ok 174 - interaction stages, finite trace retention, invalid coordinates and stale actions protect resources
+  ---
+  duration_ms: 12.2825
+  type: 'test'
+  ...
+# Subtest: UR duplicates flow into the shared glow wallet while retaining the trained original and guarding overflow
+ok 175 - UR duplicates flow into the shared glow wallet while retaining the trained original and guarding overflow
+  ---
+  duration_ms: 5.1414
+  type: 'test'
+  ...
+# Subtest: forged UR stages, locked skins, premature readings, malformed traces and active bookmarks fail import
+ok 176 - forged UR stages, locked skins, premature readings, malformed traces and active bookmarks fail import
+  ---
+  duration_ms: 27.5601
+  type: 'test'
+  ...
+# Subtest: reward and serial ceilings leave the final line, resources and reading reward claim unchanged
+ok 177 - reward and serial ceilings leave the final line, resources and reading reward claim unchanged
+  ---
+  duration_ms: 6.3268
+  type: 'test'
+  ...
+# Subtest: UR pages show gates, selected material source and distinct unlocked art without exposing locked scenes
+ok 178 - UR pages show gates, selected material source and distinct unlocked art without exposing locked scenes
+  ---
+  duration_ms: 10.2714
+  type: 'test'
+  ...
+# Subtest: pointer cancel, short hold, vertical scroll and stale gestures cannot trigger UR interaction
+ok 179 - pointer cancel, short hold, vertical scroll and stale gestures cannot trigger UR interaction
+  ---
+  duration_ms: 7.9936
+  type: 'test'
+  ...
+# Subtest: UR tabs retain their own scroll position across rendering; trace also has a keyboard button
+ok 180 - UR tabs retain their own scroll position across rendering; trace also has a keyboard button
+  ---
+  duration_ms: 6.6531
+  type: 'test'
+  ...
+# Subtest: all actual main-story speakers resolve to 13 verified original audio references
+ok 181 - all actual main-story speakers resolve to 13 verified original audio references
+  ---
+  duration_ms: 13.9873
+  type: 'test'
+  ...
+# Subtest: male lead and narrator sample playback use different original recordings
+ok 182 - male lead and narrator sample playback use different original recordings
+  ---
+  duration_ms: 5.4963
+  type: 'test'
+  ...
+# Subtest: a late play promise cannot override the next character
+ok 183 - a late play promise cannot override the next character
+  ---
+  duration_ms: 1.4556
+  type: 'test'
+  ...
+# Subtest: missing recordings never call a model service or block reading
+ok 184 - missing recordings never call a model service or block reading
+  ---
+  duration_ms: 2.0301
+  type: 'test'
+  ...
+# Subtest: unknown speaker is not silently assigned a wrong voice
+ok 185 - unknown speaker is not silently assigned a wrong voice
+  ---
+  duration_ms: 0.4444
+  type: 'test'
+  ...
+# Subtest: main-story reader sends all 13 authored speakers to voice playback
+ok 186 - main-story reader sends all 13 authored speakers to voice playback
+  ---
+  duration_ms: 29.621
+  type: 'test'
+  ...
+# Subtest: all sequence-zero cues, including choice responses, have portable prerecorded audio
+ok 187 - all sequence-zero cues, including choice responses, have portable prerecorded audio
+  ---
+  duration_ms: 9.8278
+  type: 'test'
+  ...
+# Subtest: the complete main screenplay has prerecorded audio for every branch and speaking role
+ok 188 - the complete main screenplay has prerecorded audio for every branch and speaking role
+  ---
+  duration_ms: 97.4156
+  type: 'test'
+  ...
+# Subtest: backgrounding a phone stops the current clip without starting another one
+ok 189 - backgrounding a phone stops the current clip without starting another one
+  ---
+  duration_ms: 2.7582
+  type: 'test'
+  ...
+# Subtest: automatic main-story reading waits for prerecorded audio to finish
+ok 190 - automatic main-story reading waits for prerecorded audio to finish
+  ---
+  duration_ms: 1.8548
+  type: 'test'
+  ...
+# Subtest: all indexed fixed dialogue, including old-save text, has a portable recording
+ok 191 - all indexed fixed dialogue, including old-save text, has a portable recording
+  ---
+  duration_ms: 251.4252
+  type: 'test'
+  ...
+1..191
+# tests 191
+# suites 0
+# pass 191
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5955.7895

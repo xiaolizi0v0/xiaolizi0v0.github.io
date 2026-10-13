@@ -52,7 +52,7 @@ function create(ctx){const F=root.WarmFootage,D=root.WarmData,A=root.WarmCampaig
  }}
  function change(el){if(el.dataset.filmExpert!==undefined&&el.value!=='')commit(()=>g().footageExpert(Number(el.dataset.session),Number(el.dataset.filmExpert),Number(el.value)),preparation);}
  function tick(){if(lastDay!==v().daily.date){lastDay=v().daily.date;redraw();}}
- function bind(){if(view==='reader')document.querySelector('.film-reader-body')?.scrollTo(0,0);}
+ function bind(){if(view==='reader'&&q()?.type==='story'){const l=F.line(g());voicePlayer?.cue('film-'+q().id+'-'+l.speaker+'-'+l.text,l.speaker,l.text);}else voicePlayer?.reset();if(view==='reader')document.querySelector('.film-reader-body')?.scrollTo(0,0);}
  function reset(){p=ch=0;view='people';filter=-1;batch=[];lastDay='';}
  return{screen,enter,act,change,tick,bind,reset};
 }

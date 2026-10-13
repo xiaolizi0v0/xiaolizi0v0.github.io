@@ -1,5 +1,5 @@
 (function(root){'use strict';
-function create({getGame,btn,esc,fmt,cardArt,modal,close,commit,toast,route,redraw,onPerson}){
+function create({voicePlayer,getGame,btn,esc,fmt,cardArt,modal,close,commit,toast,route,redraw,onPerson}){
  const A=WarmSecrets,D=WarmData,g=getGame;let p=0,id=0,view='list',filter='all',font=0,auto=false,nextAt=0;
  const s=()=>g().s.secrets,q=()=>s().session,x=()=>A.story(id),r=()=>A.record(g(),id);
  const scene=p=>`<svg class="secret-scene" viewBox="${p%2*512} ${Math.floor(p/2)*512} 512 512" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${esc(D.characters[p].place)}传闻场景"><image href="warm-signal/assets/date-scenes-v1.webp" width="1024" height="1536"/></svg>`;
@@ -39,8 +39,9 @@ function create({getGame,btn,esc,fmt,cardArt,modal,close,commit,toast,route,redr
  case 'secret-wish':route('wish');break;
  case 'secret-card':modal(D.cards[n].name,`<div class="card-detail-art">${cardArt(n)}</div><p class="muted">${g().own(n)?'已拥有，可开启对应传闻；升星或进化可得沙漏。':'获得这张羁绊可开启对应传闻。'}</p>`,btn('返回','close','','primary')+(!g().own(n)?btn('前往许愿树','secret-wish','','soft'):''));break;
  }}
- function tick(){if(!auto||view!=='reader')return;if(document.hidden||!document.getElementById('modal').hidden){auto=false;redraw();return;}const a=q();if(!a||!A.current(a).text){auto=false;redraw();return;}if(Date.now()>=nextAt){next(a.id);if(q()&&A.current(q()).text){auto=true;nextAt=Date.now()+3500;redraw();}}}
- return{screen,act,tick,pause(){auto=false;},enter(){auto=false;view=q()?'reader':'list';if(q()){id=q().story;p=x().p;}},reset(){p=0;id=0;view='list';filter='all';font=0;auto=false;}};
+ function tick(){if(!auto||view!=='reader'||voicePlayer?.state().busy)return;if(document.hidden||!document.getElementById('modal').hidden){auto=false;redraw();return;}const a=q();if(!a||!A.current(a).text){auto=false;redraw();return;}if(Date.now()>=nextAt){next(a.id);if(q()&&A.current(q()).text){auto=true;nextAt=Date.now()+3500;redraw();}}}
+ function bind(){if(view==='reader'&&q()){const part=A.current(q());if(part.text)voicePlayer?.cue('secret-'+q().id+'-'+q().line+'-'+q().point,'旁白',part.text[q().line]);}else voicePlayer?.reset();}
+ return{screen,act,tick,bind,pause(){auto=false;},enter(){auto=false;view=q()?'reader':'list';if(q()){id=q().story;p=x().p;}},reset(){p=0;id=0;view='list';filter='all';font=0;auto=false;}};
 }
 root.WarmSecretsUI={create};
 })(window);

@@ -6,6 +6,8 @@
 
 同日加入三首 Scott Buckley 的 CC BY 4.0 背景音乐：Childhood、Elementary、Reverie，按日常/剧情/陪伴场景自动切换。主页「♫ 音乐」或设置中可选曲、暂停和调音量，首次点击页面后开始。录音、署名和来源随游戏分发；详见 `docs/warm-signal-bgm-plan.md` 与 `assets/music/CREDITS.md`。
 
+同日接入 Qwen3-TTS 全角色预录配音：六位女生、男主、旁白和五位配角，共 13 条原创声线。设置中可逐个试听；电脑提前制作 MP3，手机只播放随游戏提供的音频，不连接模型服务。主线及其他已索引固定对白全部预录，共 3727 条 MP3；按当前台词加载，数量和文件哈希见 `voice-release-manifest.json`。独立试听页为 `tools/WarmSignalVoiceReview.html`；策划与离线制作方式见 `docs/warm-signal-voice-plan.md`。
+
 ## 游玩
 
 从仓库根目录启动静态服务器：

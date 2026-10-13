@@ -1,0 +1,93 @@
+[
+  {
+    "id": "lin-zhi",
+    "duration": 5.92,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/lin-zhi.mp3"
+  },
+  {
+    "id": "gu-qinghe",
+    "duration": 6.16,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/gu-qinghe.mp3"
+  },
+  {
+    "id": "xu-zhixia",
+    "duration": 6.08,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/xu-zhixia.mp3"
+  },
+  {
+    "id": "su-wan",
+    "duration": 7.36,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/su-wan.mp3"
+  },
+  {
+    "id": "jiang-yue",
+    "duration": 4.24,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/jiang-yue.mp3"
+  },
+  {
+    "id": "tang-li",
+    "duration": 7.12,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/tang-li.mp3"
+  },
+  {
+    "id": "shen-yu",
+    "duration": 6.88,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/shen-yu.mp3"
+  },
+  {
+    "id": "narrator",
+    "duration": 8.96,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/narrator.mp3"
+  },
+  {
+    "id": "father",
+    "duration": 4.56,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/father.mp3"
+  },
+  {
+    "id": "chen-yi",
+    "duration": 2.96,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/chen-yi.mp3"
+  },
+  {
+    "id": "neighbor",
+    "duration": 5.04,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/neighbor.mp3"
+  },
+  {
+    "id": "grandma-mei",
+    "duration": 9.2,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/grandma-mei.mp3"
+  },
+  {
+    "id": "uncle-lu",
+    "duration": 15.36,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8765/tools/warm-signal/assets/voice-cast/uncle-lu.mp3"
+  }
+]

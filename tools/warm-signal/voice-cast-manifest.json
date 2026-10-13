@@ -1,0 +1,284 @@
+{
+  "version": 1,
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "license": "Apache-2.0",
+  "characters": {
+    "narrator": {
+      "id": "narrator",
+      "name": "旁白",
+      "aliases": [
+        "旁白"
+      ],
+      "text": "钥匙转了两圈，旧工作室的门才肯打开。阳光从窗帘的缝里落下来，照出空气里细小的灰尘。",
+      "sampleCue": "main-0-0-0",
+      "seed": 351013,
+      "direction": "35岁成年男性，标准普通话，沉静干净的中低男声，温和而有距离感的都市故事旁白，节奏均匀舒展，清晰不抢戏，与青年男主的口语声线明显不同。自然讲述而不是广告播报，不故意煽情，不过分低沉，不拖尾。无音乐无混响的干净录音。",
+      "wav": "assets/voice-cast/narrator.wav",
+      "file": "assets/voice-cast/narrator.mp3",
+      "sampleRate": 24000,
+      "duration": 8.96,
+      "rms": 0.08003691583871841,
+      "originalPeak": 0.83203125,
+      "gain": 1,
+      "sha256": "5ea7340e82017bc7220df32392b22a542312081de709f020d7bbe1836cebca16",
+      "generationSeconds": 26.77,
+      "status": "audition"
+    },
+    "lin-zhi": {
+      "id": "lin-zhi",
+      "name": "林栀",
+      "aliases": [
+        "林栀"
+      ],
+      "text": "倒没有。只是它们等太阳等了很久，再放两天，叶子就要黄了。",
+      "sampleCue": "main-0-12-0",
+      "seed": 241013,
+      "direction": "24岁成年女性，标准普通话，清澈柔和的中高女声，音色轻盈但不虚弱，温暖安静，像植物研究员对熟悉的人自然说话。轻微空气感但不要耳语，句尾平稳，不幼态，不撒娇，不用客服播音腔。自然的口语停顿，近距离干净录音，无背景音乐与混响。",
+      "wav": "assets/voice-cast/lin-zhi.wav",
+      "file": "assets/voice-cast/lin-zhi.mp3",
+      "sampleRate": 24000,
+      "duration": 5.92,
+      "rms": 0.09420350939035416,
+      "originalPeak": 0.52734375,
+      "gain": 1,
+      "sha256": "c1bcdc97c7818f919eb2de8656c21d3b48b43551da5db0649cf6a932bf174195",
+      "generationSeconds": 18.47,
+      "status": "audition"
+    },
+    "gu-qinghe": {
+      "id": "gu-qinghe",
+      "name": "顾清禾",
+      "aliases": [
+        "顾清禾"
+      ],
+      "text": "沈屿？我收到你的邮件了。母带盒上的窗，是这边的西窗。",
+      "sampleCue": "main-18-3-0",
+      "seed": 271013,
+      "direction": "27岁成年女性，标准普通话，偏低而清润的中音女声，声线干净利落，冷静可靠，语速从容，像建筑设计师认真与朋友交谈。克制中带温柔，发音清楚但不是播音腔，不气泡音、不故意压嗓、不拖长尾音。近距离干净对白，无音乐无混响。",
+      "wav": "assets/voice-cast/gu-qinghe.wav",
+      "file": "assets/voice-cast/gu-qinghe.mp3",
+      "sampleRate": 24000,
+      "duration": 6.16,
+      "rms": 0.101313017308712,
+      "originalPeak": 0.7109375,
+      "gain": 1,
+      "sha256": "517f44e25f85e838f8b0930d13001fb092636be66d5da5762a65c9139b2cf06e",
+      "generationSeconds": 17.59,
+      "status": "audition"
+    },
+    "xu-zhixia": {
+      "id": "xu-zhixia",
+      "name": "许知夏",
+      "aliases": [
+        "许知夏"
+      ],
+      "text": "小时候邻居梅奶奶教的。她总在最后停住，说后面要等大家一起唱。",
+      "sampleCue": "main-36-9-0",
+      "seed": 251013,
+      "direction": "25岁成年女性，标准普通话，明亮而稍有颗粒感的中音女声，略微沙哑的独立音乐人音色，松弛开朗，有自然节奏感和真实笑意。说话而不是唱歌，不尖嗓，不夹子音，不像儿童，不夸张表演。清晰自然都市对白，干净录音，无背景音乐无混响。",
+      "wav": "assets/voice-cast/xu-zhixia.wav",
+      "file": "assets/voice-cast/xu-zhixia.mp3",
+      "sampleRate": 24000,
+      "duration": 6.08,
+      "rms": 0.09560974687337875,
+      "originalPeak": 0.55078125,
+      "gain": 1,
+      "sha256": "654b739c82e10f4629b75380a38dfa4feef4218b5e0e85e0aaa2032ddec6cea4",
+      "generationSeconds": 17.2,
+      "status": "audition"
+    },
+    "su-wan": {
+      "id": "su-wan",
+      "name": "苏晚",
+      "aliases": [
+        "苏晚"
+      ],
+      "text": "准时。热的那杯是我的，另一杯刚好可以喝。你昨天发消息说，剪片子时总忘记放凉。",
+      "sampleCue": "main-54-2-0",
+      "seed": 261013,
+      "direction": "26岁成年女性，标准普通话，结实清亮的中高女声，咬字灵活，语速稍快但清楚，像城市记者下班后和熟悉的人聊天。聪明有活力，关心时自然放轻，不像新闻播报，不甜腻，不高亢尖细，不用气声拖尾。近距离清晰录音，无音乐无混响。",
+      "wav": "assets/voice-cast/su-wan.wav",
+      "file": "assets/voice-cast/su-wan.mp3",
+      "sampleRate": 24000,
+      "duration": 7.36,
+      "rms": 0.12614810466766357,
+      "originalPeak": 0.671875,
+      "gain": 1,
+      "sha256": "0f0f5e54a51681b19552f3d61dcc8eb6183c7e6a0abefebc115ec5977750cd67",
+      "generationSeconds": 20.31,
+      "status": "audition"
+    },
+    "jiang-yue": {
+      "id": "jiang-yue",
+      "name": "江月",
+      "aliases": [
+        "江月"
+      ],
+      "text": "隔壁说好听。但音箱别对着他们家窗户，宝宝下午睡觉。",
+      "sampleCue": "main-44-2-0",
+      "seed": 241023,
+      "direction": "24岁成年女性，标准普通话，圆润柔软的中低女声，音色醇暖，亲近放松，像甜点师把热茶放到朋友面前。语速舒缓但不拖沓，带轻微微笑感，不幼态，不刻意撒娇，不全程气声，不模仿广告配音。自然对话，干净录音，无背景音乐无混响。",
+      "wav": "assets/voice-cast/jiang-yue.wav",
+      "file": "assets/voice-cast/jiang-yue.mp3",
+      "sampleRate": 24000,
+      "duration": 4.24,
+      "rms": 0.09794553369283676,
+      "originalPeak": 0.578125,
+      "gain": 1,
+      "sha256": "2e0ef2a82d3b3f3dcf4d51279ce998a01c1603587ed948e3ef4eb1a5e5c28746",
+      "generationSeconds": 11.97,
+      "status": "audition"
+    },
+    "tang-li": {
+      "id": "tang-li",
+      "name": "唐梨",
+      "aliases": [
+        "唐梨"
+      ],
+      "text": "明天我早一点来。你也记得给自己留个位置，别从开场忙到散场都站在后面。",
+      "sampleCue": "main-88-14-0",
+      "seed": 241033,
+      "direction": "24岁成年女性，标准普通话，透亮有弹性的中高女声，鲜活爽朗，带自然微笑，像生活摄影主播在镜头外与朋友交谈。节奏轻快，音量适中，不直播喊麦，不儿童音，不浮夸卖萌，不强行甜嗲。清晰近距离录音，无音乐无混响。",
+      "wav": "assets/voice-cast/tang-li.wav",
+      "file": "assets/voice-cast/tang-li.mp3",
+      "sampleRate": 24000,
+      "duration": 7.12,
+      "rms": 0.09992023557424545,
+      "originalPeak": 0.498046875,
+      "gain": 1,
+      "sha256": "b145797363e3c76a1357b2e2662da9d2d32618caba9ba0c3ea3c00e67bf98c30",
+      "generationSeconds": 19.98,
+      "status": "audition"
+    },
+    "shen-yu": {
+      "id": "shen-yu",
+      "name": "沈屿",
+      "aliases": [
+        "我",
+        "沈屿"
+      ],
+      "text": "父亲说过，没拍完的片子不能随便扔。可这卷，为什么连日期都没有？",
+      "sampleCue": "main-0-5-0",
+      "seed": 271023,
+      "direction": "27岁成年男性，标准普通话，清润自然的中音男声，温暖诚恳，稍有青年人的犹豫与思考，像影像制作人和身边的人交谈。轻松口语，不故意压低嗓音，不油腻，不霸道总裁，不播音腔，不夸张朗诵。干净近距离对白，无背景音乐与混响。",
+      "wav": "assets/voice-cast/shen-yu.wav",
+      "file": "assets/voice-cast/shen-yu.mp3",
+      "sampleRate": 24000,
+      "duration": 6.88,
+      "rms": 0.08064515888690948,
+      "originalPeak": 0.578125,
+      "gain": 1,
+      "sha256": "f0f558e8865b22e70a9afa04bce8c7d51e03c19721bbe37bc21f77c85b4c7c2f",
+      "generationSeconds": 19.28,
+      "status": "audition"
+    },
+    "father": {
+      "id": "father",
+      "name": "父亲",
+      "aliases": [
+        "父亲的信",
+        "父亲"
+      ],
+      "text": "把晴川拍下来。哪怕只是一个普通人的一天。",
+      "sampleCue": "main-0-7-0",
+      "seed": 531013,
+      "direction": "53岁成年男性，标准普通话，温厚沉稳的低中男声，稍带岁月的沙哑，像纪录片工作者给儿子留下一封信。朴素坚定，短句自然，不老态虚弱，不威严训话，不夸张悲情，不广播腔。干净近距离对白，无音乐无混响。",
+      "wav": "assets/voice-cast/father.wav",
+      "file": "assets/voice-cast/father.mp3",
+      "sampleRate": 24000,
+      "duration": 4.56,
+      "rms": 0.07267109304666519,
+      "originalPeak": 0.5078125,
+      "gain": 1,
+      "sha256": "38e40200366ac598b9e59f25d780158e6303308b0c8a313f9f121783b6059911",
+      "generationSeconds": 13.03,
+      "status": "audition"
+    },
+    "chen-yi": {
+      "id": "chen-yi",
+      "name": "陈姨",
+      "aliases": [
+        "陈姨",
+        "陈秀兰"
+      ],
+      "text": "我普通话不好，也没什么好说的。",
+      "sampleCue": "main-10-8-0",
+      "seed": 551013,
+      "direction": "55岁成年女性，以清晰普通话说话，成熟略低的中音女声，带轻微生活气息与不张扬的沙哑，温和朴素，有一点面对镜头的拘谨。语速稍慢，短句自然，不像年轻女生，不故作苍老，不夸张方言，不广播朗读。干净录音，无音乐无混响。",
+      "wav": "assets/voice-cast/chen-yi.wav",
+      "file": "assets/voice-cast/chen-yi.mp3",
+      "sampleRate": 24000,
+      "duration": 2.96,
+      "rms": 0.10765223205089569,
+      "originalPeak": 0.58984375,
+      "gain": 1,
+      "sha256": "989ba223baa93bce8ded1fa8387a110884a1d7cb05f5513bea4ae219794246f6",
+      "generationSeconds": 8.59,
+      "status": "audition"
+    },
+    "neighbor": {
+      "id": "neighbor",
+      "name": "街坊",
+      "aliases": [
+        "街坊"
+      ],
+      "text": "我想坐着也能看见孩子回来，不一定非要更大。",
+      "sampleCue": "main-24-9-0",
+      "seed": 451013,
+      "direction": "45岁成年男性，标准普通话，质朴明亮的中音男声，略有鼻腔共鸣，像旧街住户平常说自己的想法。坦诚随和，口语自然，语速适中，不主持人，不故意低沉，不夸张乡音。干净近距离对白，无音乐无混响。",
+      "wav": "assets/voice-cast/neighbor.wav",
+      "file": "assets/voice-cast/neighbor.mp3",
+      "sampleRate": 24000,
+      "duration": 5.04,
+      "rms": 0.08145000040531158,
+      "originalPeak": 0.58984375,
+      "gain": 1,
+      "sha256": "09dbee9a0eadc7ac51efe7feba54f77e81a7cbd9fdf69f0442ecb296b576243f",
+      "generationSeconds": 14.52,
+      "status": "audition"
+    },
+    "grandma-mei": {
+      "id": "grandma-mei",
+      "name": "梅奶奶",
+      "aliases": [
+        "梅奶奶"
+      ],
+      "text": "唱片早换过好几张，纸套一直舍不得扔。你小时候就在这背面乱画。",
+      "sampleCue": "main-40-4-0",
+      "seed": 731013,
+      "direction": "73岁老年女性，清晰普通话，温软微哑的老年女声，稍有气息感但字字听得清。像外婆慢慢讲起旧事，有生活里的亲切和一点幽默。语速较慢但不拖沓，不病弱呻吟，不年轻甜嗓，不夸张模仿老人。干净近距离对白，无音乐无混响。",
+      "wav": "assets/voice-cast/grandma-mei.wav",
+      "file": "assets/voice-cast/grandma-mei.mp3",
+      "sampleRate": 24000,
+      "duration": 9.2,
+      "rms": 0.07451827079057693,
+      "originalPeak": 0.65625,
+      "gain": 1,
+      "sha256": "136fe77363fda45e4988c4ba74103cda0544ae60f2d8ebf05f5bac61994c45ef",
+      "generationSeconds": 26.22,
+      "status": "audition"
+    },
+    "uncle-lu": {
+      "id": "uncle-lu",
+      "name": "陆伯",
+      "aliases": [
+        "陆伯",
+        "陆伯的语音"
+      ],
+      "text": "那年街坊说，给这条街过一次生日。哪天算生日，大家商量了好久，最后选了最容易凑齐人的那个周末。",
+      "sampleCue": "main-60-1-0",
+      "seed": 651013,
+      "direction": "65岁老年男性，清晰普通话，低中男声带适度粗糙颗粒与年龄感，朴实温和，像街坊老人和认识的年轻人认真聊天。语速慢一点，保留自然思考的短暂停顿，不虚弱，不咆哮，不夸张老年颤音，不新闻播音。干净近距离录音，无音乐无混响。",
+      "wav": "assets/voice-cast/uncle-lu.wav",
+      "file": "assets/voice-cast/uncle-lu.mp3",
+      "sampleRate": 24000,
+      "duration": 15.36,
+      "rms": 0.08095469325780869,
+      "originalPeak": 0.5859375,
+      "gain": 1,
+      "sha256": "a43e065ef8b5830549cdeece6e2df464b95cc871ccef0a8f85ac3a7050658b0c",
+      "generationSeconds": 42.78,
+      "status": "audition"
+    }
+  }
+}

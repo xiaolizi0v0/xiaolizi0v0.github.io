@@ -1,0 +1,8 @@
+{
+  "speaker": "uncle-lu",
+  "text": "我记性不大好了。说错了，害你们白跑。",
+  "seconds": 15.3,
+  "bytes": 85676,
+  "cors": "http://127.0.0.1:8765",
+  "path": "tools\\warm-signal\\assets\\voice-lines\\uncle-lu-base-probe.mp3"
+}

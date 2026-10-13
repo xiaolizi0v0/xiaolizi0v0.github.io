@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-13",
+  "mode": "prerecorded-static-audio",
+  "roles": {
+    "narrator": 1056,
+    "shen-yu": 656,
+    "father": 1,
+    "lin-zhi": 331,
+    "jiang-yue": 350,
+    "chen-yi": 2,
+    "gu-qinghe": 343,
+    "neighbor": 1,
+    "xu-zhixia": 342,
+    "grandma-mei": 9,
+    "su-wan": 341,
+    "uncle-lu": 12,
+    "tang-li": 283
+  },
+  "coverage": {
+    "main": {
+      "cues": 1121,
+      "unique": 1118,
+      "available": 1118
+    },
+    "legacy-main": {
+      "cues": 94,
+      "unique": 94,
+      "available": 94
+    },
+    "date": {
+      "cues": 326,
+      "unique": 326,
+      "available": 326
+    },
+    "rv": {
+      "cues": 312,
+      "unique": 312,
+      "available": 312
+    },
+    "sp": {
+      "cues": 308,
+      "unique": 308,
+      "available": 308
+    },
+    "ur": {
+      "cues": 206,
+      "unique": 206,
+      "available": 206
+    },
+    "secret": {
+      "cues": 180,
+      "unique": 180,
+      "available": 180
+    },
+    "film": {
+      "cues": 337,
+      "unique": 337,
+      "available": 337
+    },
+    "phone": {
+      "cues": 583,
+      "unique": 583,
+      "available": 583
+    },
+    "sleep": {
+      "cues": 180,
+      "unique": 180,
+      "available": 180
+    },
+    "companion": {
+      "cues": 84,
+      "unique": 84,
+      "available": 84
+    }
+  },
+  "files": 3727,
+  "bytes": 233207924,
+  "durationSeconds": 19057,
+  "errors": []
+}

@@ -1,5 +1,5 @@
 (function(root){'use strict';
-function create({getGame,btn,esc,cardArt,fmt,modal,close,commit,toast,route,redraw,onPerson}){
+function create({voicePlayer,getGame,btn,esc,cardArt,fmt,modal,close,commit,toast,route,redraw,onPerson}){
  const A=WarmDating,D=WarmData,g=getGame;let view='people',p=0,n=0,auto=false,nextAt=0,font=0;
  const q=()=>g().s.dating.session,d=()=>A.story(p,n),r=()=>A.record(g(),p,n),attrs=ch=>`data-person="${p}" data-date="${n}" data-chapter="${ch}"`;
  const scene=id=>`<svg class="date-scene" viewBox="${id%2*512} ${Math.floor(id/2)*512} 512 512" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${esc(D.characters[id].place)}约会场景"><image href="warm-signal/assets/date-scenes-v1.webp" width="1024" height="1536"/></svg>`;
@@ -37,8 +37,9 @@ function create({getGame,btn,esc,cardArt,fmt,modal,close,commit,toast,route,redr
  case 'date-associated':route('dates');p=Number(el.dataset.person);n=Number(el.dataset.date);onPerson(p);view='chapters';redraw();break;
  case 'date-card':modal(D.cards[id].name,`<div class="card-detail-art">${cardArt(id)}</div><p class="muted">${g().own(id)?'已拥有，可用于开启对应约会。':'获得这张羁绊可满足对应约会的卡牌条件。'}</p>`,btn('返回约会','close','','primary')+(!g().own(id)?btn('前往许愿树','date-wish','','soft'):''));break;
  }}
- function tick(){if(!auto||view!=='reader')return;if(document.hidden||!document.getElementById('modal').hidden){auto=false;redraw();return;}const s=q();if(!s||A.line(s).options){auto=false;redraw();return;}if(Date.now()>=nextAt){const was=auto;next(s.id);if(was&&q()&&!A.line(q()).options){auto=true;nextAt=Date.now()+3500;redraw();}}}
- return{screen,act,tick,pause(){auto=false;},enter(){auto=false;view=q()?'reader':'people';if(q()){p=Number(q().key[0]);n=Number(q().key[2]);}},select(person,n1){p=person;n=n1;view='chapters';},reset(){p=0;n=0;view='people';auto=false;font=0;}};
+ function tick(){if(!auto||view!=='reader'||voicePlayer?.state().busy)return;if(document.hidden||!document.getElementById('modal').hidden){auto=false;redraw();return;}const s=q();if(!s||A.line(s).options){auto=false;redraw();return;}if(Date.now()>=nextAt){const was=auto;next(s.id);if(was&&q()&&!A.line(q()).options){auto=true;nextAt=Date.now()+3500;redraw();}}}
+ function bind(){if(view==='reader'&&q()){const l=A.line(q());voicePlayer?.cue('date-'+q().id+'-'+q().line+'-'+JSON.stringify(q().choices),l.speaker,l.text);}else voicePlayer?.reset();}
+ return{screen,act,tick,bind,pause(){auto=false;voicePlayer?.reset();},enter(){auto=false;view=q()?'reader':'people';if(q()){p=Number(q().key[0]);n=Number(q().key[2]);}},select(person,n1){p=person;n=n1;view='chapters';},reset(){p=0;n=0;view='people';auto=false;font=0;}};
 }
 root.WarmDatingUI={create};
 })(window);

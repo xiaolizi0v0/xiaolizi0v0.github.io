@@ -1,0 +1,21 @@
+{
+  "syntaxFiles": 15,
+  "pythonSyntax": 2,
+  "html": [
+    {
+      "page": "WarmSignal.html",
+      "references": 162
+    },
+    {
+      "page": "WarmSignalVoiceReview.html",
+      "references": 3
+    },
+    {
+      "page": "WarmSignalVoiceMobileReview.html",
+      "references": 1
+    }
+  ],
+  "staticOnly": true,
+  "unindexedFiles": [],
+  "errors": []
+}
