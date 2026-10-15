@@ -1,0 +1,23 @@
+/* The outer frame owns insets once; pages use its remaining viewport height. */
+:root{
+ --ws-safe-top:max(env(safe-area-inset-top,0px),var(--ws-fallback-top,0px));
+ --ws-safe-right:max(env(safe-area-inset-right,0px),var(--ws-fallback-right,0px));
+ --ws-safe-bottom:max(env(safe-area-inset-bottom,0px),var(--ws-fallback-bottom,0px));
+ --ws-safe-left:max(env(safe-area-inset-left,0px),var(--ws-fallback-left,0px));
+ --ws-viewport-height:calc(100dvh - var(--ws-safe-top) - var(--ws-safe-bottom));
+}
+:root[data-screen-fit="off"]{--ws-safe-top:0px;--ws-safe-right:0px;--ws-safe-bottom:0px;--ws-safe-left:0px}
+:root[data-screen-keyboard="open"]{--ws-safe-bottom:0px}
+body{min-height:100dvh;background-color:var(--cream)}
+#game{min-height:100dvh;padding:var(--ws-safe-top) var(--ws-safe-right) var(--ws-safe-bottom) var(--ws-safe-left)}
+#nav{bottom:var(--ws-safe-bottom)}
+#modal,.wish-cinematic{inset:var(--ws-safe-top) var(--ws-safe-right) var(--ws-safe-bottom) var(--ws-safe-left)}
+#modal.ai-phone-open{
+ --ai-safe-top:max(0px,calc(var(--ws-safe-top) - var(--ai-vtop,0px)));
+ top:calc(var(--ai-vtop,0px) + var(--ai-safe-top));bottom:auto;
+ height:calc(var(--ai-vh,100dvh) - var(--ai-safe-top) - var(--ws-safe-bottom));
+}
+#toast{bottom:calc(105px + var(--ws-safe-bottom));max-width:calc(90vw - var(--ws-safe-left) - var(--ws-safe-right))}
+/* The cream gutters remain opaque while fixed scenes or dialogs are shown. */
+body:before,body:after{content:"";position:fixed;left:0;right:0;background:var(--cream);z-index:99;pointer-events:none}
+body:before{top:0;height:var(--ws-safe-top)}body:after{bottom:0;height:var(--ws-safe-bottom)}

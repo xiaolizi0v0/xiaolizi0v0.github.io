@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict');
+const {fallback}=require('./safe-area.js');
+const phone={width:390,height:844,screenWidth:390,screenHeight:844,ua:'iPhone',platform:'taptap'};
+assert.deepEqual(fallback(phone),{top:59,right:0,bottom:34,left:0});
+assert.equal(fallback({...phone,platform:''}).top,0,'ordinary browser has no guessed padding');
+assert.equal(fallback({...phone,height:780}).top,0,'already inset WebView has no second fallback');
+assert.equal(fallback({...phone,ua:'Android'}).top,44);
+assert.equal(fallback({...phone,ua:'Android TapTap',platform:''}).top,44);
+assert.equal(fallback({...phone,ua:'Desktop'}).top,0);
+assert.equal(fallback({...phone,keyboard:true}).bottom,0,'composer should sit above keyboard');
+assert.deepEqual(fallback({...phone,width:844,height:390,screenWidth:844,screenHeight:390}),{top:0,right:59,bottom:21,left:59});
+assert.equal(fallback({...phone,mode:'off'}).top,0);
+assert.equal(fallback({...phone,height:700,platform:'',mode:'camera'}).top,44,'manual fallback works when host omits insets');
+console.log('10 safe-area cases passed');

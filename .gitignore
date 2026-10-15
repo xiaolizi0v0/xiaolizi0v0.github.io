@@ -1,2 +1,5 @@
 # 百度 Cookie（敏感凭证，勿提交）
 worker-proxy/cookie.txt
+
+# Local TapTap delivery archives and extracted previews (reproducible build output).
+/artifacts/taptap/
