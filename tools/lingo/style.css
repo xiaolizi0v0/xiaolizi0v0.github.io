@@ -942,8 +942,8 @@ body:has(#view-watch.active) .app-main-viewport {
 .watch-right-actions {
   position: absolute;
   right: 14px;
-  bottom: 160px;
-  z-index: 10;
+  bottom: 270px;
+  z-index: 15;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1016,6 +1016,7 @@ body:has(#view-watch.active) .app-main-viewport {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  padding-right: 68px; /* 预留右侧按键避让安全区，杜绝长文本与悬浮按钮水平撞车 */
 }
 
 .sub-en {
@@ -1077,7 +1078,7 @@ body:has(#view-watch.active) .app-main-viewport {
 .video-scrubber-progress {
   height: 100%;
   width: 45%;
-  background: #f97316;
+  background: #ffffff;
   position: relative;
 }
 
@@ -1776,7 +1777,7 @@ body:has(#view-watch.active) .app-main-viewport {
   bottom: 2px;
   width: 4px;
   height: 4px;
-  background: #f97316;
+  background: #18181b;
   border-radius: 50%;
 }
 
@@ -1799,7 +1800,7 @@ body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item.active,
 
 body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item.active::after,
 .lingo-bottom-nav.theme-dark-nav .nav-tab-item.active::after {
-  background: #f97316 !important;
+  background: #ffffff !important;
 }
 
 /* 播放/暂停状态指示与上下滑动提示 */
@@ -2043,8 +2044,9 @@ body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item.active::after,
     bottom: calc(60px + env(safe-area-inset-bottom, 4px)) !important;
   }
 
+  /* 右侧按键与底部字幕区竖向安全距离保障，杜绝重叠 */
   .watch-right-actions {
-    bottom: calc(220px + env(safe-area-inset-bottom, 10px)) !important;
+    bottom: calc(320px + env(safe-area-inset-bottom, 10px)) !important;
   }
 
   .word-sheet-drawer {
