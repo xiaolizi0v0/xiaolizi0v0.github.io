@@ -305,7 +305,7 @@
             </div>
             <div class="feature-card-right">
               <div class="feature-thumb-box">
-                <img src="lingo/assets/guess_restrain_1.png" alt="猜一猜封面" class="feature-thumb-img">
+                <img src="lingo/assets/guess_resemble_1.png" alt="猜一猜封面" class="feature-thumb-img">
               </div>
               <i class="fas fa-chevron-right feature-arrow-chevron"></i>
             </div>
@@ -329,13 +329,12 @@
     </section>
 
 
-    <!-- ================================================================
-         视图 5：「刷一刷」竖屏短视频流与考词精讲 (还原图1)
-         ================================================================ -->
     <section id="view-watch" class="view-panel watch-player-view">
       <div class="watch-stage-box" id="watch-stage-box">
         
-        <!-- 视频画面背景 -->
+        <!-- HTML5 竖屏短视频播放器 -->
+        <video id="watch-video-player" class="video-canvas-element" playsinline webkit-playsinline x5-video-player-type="h5-page" preload="auto" loop></video>
+        <!-- 视频画面背景与封面 -->
         <img src="lingo/assets/vlog-clean.png" alt="视频画面" class="video-canvas-backdrop" id="watch-backdrop-img">
         <div class="video-scrim-top"></div>
         <div class="video-scrim-bottom"></div>
@@ -753,7 +752,7 @@
   <div class="lingo-toast" id="global-toast">提示信息</div>
 
   <!-- 引入数据源与脚本 -->
-  <script src="lingo/mock-data.js?v=2.8"></script>
-  <script src="lingo/app.js?v=2.8"></script>
+  <script src="lingo/mock-data.js?v=2.9"></script>
+  <script src="lingo/app.js?v=2.9"></script>
 </body>
 </html>

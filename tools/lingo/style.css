@@ -841,6 +841,19 @@ body:has(#view-watch.active) .app-main-viewport {
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.video-canvas-element {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  pointer-events: none;
+  background: transparent;
+  transition: opacity 0.25s ease;
 }
 
 .video-scrim-top {
@@ -850,7 +863,7 @@ body:has(#view-watch.active) .app-main-viewport {
   right: 0;
   height: 140px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -861,7 +874,7 @@ body:has(#view-watch.active) .app-main-viewport {
   right: 0;
   height: 320px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 }
 

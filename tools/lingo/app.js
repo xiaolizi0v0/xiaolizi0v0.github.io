@@ -127,8 +127,13 @@
 
   // 加载 config.json
   async function loadConfig() {
+    const defaultConfig = {
+      apiBaseUrl: 'https://travesti-broadcast-flower-planned.trycloudflare.com/api/v1',
+      timeoutMs: 8000,
+      useMockFallback: true
+    };
     try {
-      const resp = await fetch('lingo/config.json');
+      const resp = await fetch('lingo/config.json?v=' + Date.now());
       if (resp.ok) {
         state.config = await resp.json();
       } else {
@@ -136,11 +141,7 @@
       }
     } catch (err) {
       console.warn('读取本地 config.json 失败，使用内置兜底配置', err);
-      state.config = {
-        apiBaseUrl: 'http://127.0.0.1:8080/api/v1',
-        timeoutMs: 8000,
-        useMockFallback: true
-      };
+      state.config = Object.assign({}, defaultConfig);
     }
 
     // 检查是否有本地覆盖的 API 地址
@@ -149,14 +150,28 @@
       state.config.apiBaseUrl = localApi;
     }
 
-    // 静默检测后端联通性
-    await testBackendConnection(false);
+    // 静默检测后端联通性 (若本地保存的旧隧道域名已失效，自动回落并更新为最新云端地址)
+    const connected = await testBackendConnection(false);
+    if (!connected && localApi && state.config.apiBaseUrl !== defaultConfig.apiBaseUrl) {
+      console.info('本地缓存 API 地址失效，尝试自动回退至最新云端地址...');
+      state.config.apiBaseUrl = defaultConfig.apiBaseUrl;
+      const reconnected = await testBackendConnection(false);
+      if (reconnected) {
+        localStorage.setItem('lingo_custom_api_url', defaultConfig.apiBaseUrl);
+      }
+    }
   }
 
   // ------------------------------------------------------------------------
   // 2. 路由与视图切换系统
   // ------------------------------------------------------------------------
   function switchView(viewName) {
+    // 离开刷一刷时暂停视频播放
+    const videoEl = document.getElementById('watch-video-player');
+    if (viewName !== 'watch' && videoEl) {
+      videoEl.pause();
+    }
+
     state.currentView = viewName;
     document.querySelectorAll('.view-panel').forEach(panel => {
       panel.classList.remove('active');
@@ -412,6 +427,24 @@
     }
   }
 
+  // 媒体资源相对路径解析器 (自动补全云端隧道或本地绝对路径)
+  function resolveMediaUrl(url) {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:')) {
+      return url;
+    }
+    const cleanUrl = url.replace(/^\/+/, '');
+    if (state.config && state.config.apiBaseUrl && state.backendStatus === 'online') {
+      try {
+        const u = new URL(state.config.apiBaseUrl);
+        return `${u.origin}/${cleanUrl}`;
+      } catch (e) {
+        // ignore
+      }
+    }
+    return cleanUrl;
+  }
+
   // ------------------------------------------------------------------------
   // 6. 「刷一刷」短视频核心逻辑 (Watch Feed)
   // ------------------------------------------------------------------------
@@ -439,10 +472,73 @@
       `).join('');
     }
 
-    // 画面背景
+    // 画面背景与 HTML5 视频流播放器
     const backdrop = document.getElementById('watch-backdrop-img');
+    const videoEl = document.getElementById('watch-video-player');
+    const resolvedPoster = resolveMediaUrl(cur.poster) || 'lingo/assets/vlog-clean.png';
+    const resolvedVideo = resolveMediaUrl(cur.videoUrl);
+
     if (backdrop) {
-      backdrop.src = cur.poster;
+      backdrop.onerror = () => {
+        backdrop.src = 'lingo/assets/vlog-clean.png';
+      };
+      backdrop.src = resolvedPoster;
+      backdrop.style.opacity = '1';
+    }
+
+    if (videoEl) {
+      if (resolvedVideo) {
+        videoEl.style.display = 'block';
+        if (videoEl.dataset.currentSrc !== resolvedVideo) {
+          videoEl.dataset.currentSrc = resolvedVideo;
+          videoEl.src = resolvedVideo;
+          videoEl.load();
+
+          videoEl.onplaying = () => {
+            state.watch.isPlaying = true;
+            if (backdrop) backdrop.style.opacity = '0';
+          };
+          videoEl.onpause = () => {
+            state.watch.isPlaying = false;
+          };
+          videoEl.onended = () => {
+            if (state.config && state.config.featureFlags && state.config.featureFlags.autoPlayNext) {
+              slideVideo('next');
+            }
+          };
+          videoEl.onerror = (e) => {
+            console.warn('视频播放失败或加载中，展示保底封面:', e);
+            if (backdrop) backdrop.style.opacity = '1';
+          };
+
+          const scrubberProgress = document.querySelector('.video-scrubber-progress');
+          videoEl.ontimeupdate = () => {
+            if (scrubberProgress && videoEl.duration) {
+              const pct = (videoEl.currentTime / videoEl.duration) * 100;
+              scrubberProgress.style.width = `${pct}%`;
+            }
+          };
+
+          const playPromise = videoEl.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              state.watch.isPlaying = true;
+            }).catch(err => {
+              console.info('浏览器拦截带声自动播放，自动切换静音重试播放:', err);
+              videoEl.muted = true;
+              videoEl.play().catch(e2 => console.warn('静音自动播放被拦截:', e2));
+            });
+          }
+        } else {
+          if (videoEl.paused) {
+            videoEl.play().catch(() => {});
+          }
+        }
+      } else {
+        videoEl.style.display = 'none';
+        videoEl.pause();
+        if (backdrop) backdrop.style.opacity = '1';
+      }
     }
 
     // 标题与字幕
@@ -652,7 +748,7 @@
     if (photosBox) {
       photosBox.innerHTML = cur.images.map((img, i) => `
         <div class="guess-photo-card" data-idx="${i}" onclick="window.LingoApp.toggleGuessPhotoSelection(${i})">
-          <img src="${img.url}" alt="${img.caption || '情境图'}">
+          <img src="${resolveMediaUrl(img.url)}" alt="${img.caption || '情境图'}" onerror="this.onerror=null; this.src='lingo/assets/guess_resemble_1.png';">
           <div class="guess-card-check"><i class="fas fa-check"></i></div>
           <div class="guess-card-badge" id="guess-card-badge-${i}"></div>
         </div>
@@ -1387,6 +1483,13 @@
     if (!stage) return;
     isVideoSliding = true;
 
+    // 滑动前暂停旧视频播放
+    const videoEl = document.getElementById('watch-video-player');
+    if (videoEl) {
+      videoEl.pause();
+      videoEl.dataset.currentSrc = '';
+    }
+
     const total = window.LINGO_MOCK.videos.length;
     let nextIdx = state.watch.currentIndex;
     if (direction === 'next') {
@@ -1435,8 +1538,22 @@
   }
 
   function toggleWatchPlayPause() {
-    state.watch.isPlaying = !state.watch.isPlaying;
+    const videoEl = document.getElementById('watch-video-player');
     const indicator = document.getElementById('watch-play-indicator');
+
+    if (videoEl && videoEl.src) {
+      if (videoEl.paused) {
+        if (videoEl.muted) videoEl.muted = false;
+        videoEl.play().catch(e => console.warn('Play error:', e));
+        state.watch.isPlaying = true;
+      } else {
+        videoEl.pause();
+        state.watch.isPlaying = false;
+      }
+    } else {
+      state.watch.isPlaying = !state.watch.isPlaying;
+    }
+
     if (indicator) {
       indicator.innerHTML = state.watch.isPlaying ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
       indicator.classList.add('show');
@@ -1640,7 +1757,7 @@
 
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
       const resp = await fetch(`${apiUrl}/user/profile`, { signal: controller.signal });
       clearTimeout(timeoutId);
 
