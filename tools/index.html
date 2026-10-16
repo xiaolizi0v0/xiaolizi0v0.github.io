@@ -118,6 +118,7 @@
 
         /* 顶部全宽图（贴顶，圆角只留底部） */
         .card-media {
+            display: none;
             width: 100%;
             height: 200px;
             overflow: hidden;
@@ -125,7 +126,6 @@
             background:
                 radial-gradient(ellipse 60% 80% at 50% 20%, rgba(var(--ds-rgb-primary), .18), transparent 70%),
                 var(--ds-bg-surface-2);
-            display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -1074,7 +1074,6 @@
 
             toolsGrid.innerHTML = filteredTools.map((tool, i) => `
                 <div class="tool-card" data-tool-id="${tool.id}">
-                    ${tool.cover ? `<div class="card-media"><img src="${tool.cover}" alt="${tool.title}" loading="lazy"></div>` : ''}
                     <div class="card-body">
                         <p class="card-title"><a href="#" onclick="event.stopPropagation(); openTool('${tool.id}')">${tool.title}</a></p>
                         <p class="card-date">${formatDate(tool.date)}</p>
@@ -1120,7 +1119,6 @@
 
             toolsGrid.innerHTML = tools.map((tool, i) => `
                 <div class="tool-card" data-tool-id="${tool.id}">
-                    ${tool.cover ? `<div class="card-media"><img src="${tool.cover}" alt="${tool.title}" loading="lazy"></div>` : ''}
                     <div class="card-body">
                         <p class="card-title"><a href="#" onclick="event.stopPropagation(); openTool('${tool.id}')">${tool.title}</a></p>
                         <p class="card-date">${formatDate(tool.date)}</p>

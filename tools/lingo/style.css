@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Lingo 雅思轻学 - 样式表 (手机电脑双端沉浸适配)
+   Lingo 雅思轻学 - 样式表 (响应式网页布局 · 无手机模拟外框)
    ========================================================================== */
 
 :root {
@@ -7,14 +7,14 @@
   --lingo-primary: #18181b;
   --lingo-accent: #f97316;
   --lingo-accent-light: #ffedd5;
-  --lingo-cream: #fbf9f5;
+  --lingo-cream: #faf8f5;
   --lingo-cream-card: #ffffff;
   --lingo-cream-subtle: #f2efe9;
   --lingo-dark: #121214;
   --lingo-dark-card: #222226;
   --lingo-dark-card-hover: #2c2c32;
   --lingo-dark-surface: #1a1a1e;
-  --lingo-border-light: rgba(0, 0, 0, 0.07);
+  --lingo-border-light: rgba(0, 0, 0, 0.08);
   --lingo-border-dark: rgba(255, 255, 255, 0.08);
   --lingo-text-dark: #111827;
   --lingo-text-muted: #6b7280;
@@ -35,7 +35,6 @@
   
   --lingo-shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
   --lingo-shadow-floating: 0 12px 36px -4px rgba(0, 0, 0, 0.25);
-  --lingo-shadow-phone: 0 25px 70px -15px rgba(0, 0, 0, 0.6), 0 0 0 12px #262629, 0 0 0 14px #3f3f46;
 }
 
 /* 基础重置 */
@@ -50,47 +49,55 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: var(--lingo-font-sans);
-  background-color: #0c0c0e;
+  background-color: var(--lingo-cream);
   color: var(--lingo-text-dark);
-  overflow: hidden;
-  user-select: none;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* 顶部双端控制条 (桌面端常驻，手机端自动折叠) */
-.desktop-topbar {
+/* ==========================================================================
+   通用网页顶栏 (Web Application Header)
+   ========================================================================== */
+
+.app-web-header {
+  height: 60px;
+  background: rgba(18, 18, 20, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--lingo-border-dark);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 52px;
   padding: 0 24px;
-  background: rgba(18, 18, 20, 0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--lingo-border-dark);
-  z-index: 999;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  color: #ffffff;
 }
 
 .brand-wrapper {
   display: flex;
   align-items: center;
   gap: 12px;
+  cursor: pointer;
 }
 
 .brand-icon {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 9px;
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   box-shadow: 0 2px 10px rgba(249, 115, 22, 0.35);
 }
 
 .brand-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: #f4f4f5;
   letter-spacing: -0.3px;
@@ -104,26 +111,23 @@ html, body {
   color: #a1a1aa;
 }
 
-.topbar-actions {
+/* 桌面端中央导航菜单 */
+.web-nav-tabs {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.view-mode-toggle {
-  display: flex;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 3px;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 4px;
   border-radius: var(--lingo-radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.view-btn {
+.web-nav-btn {
   background: none;
   border: none;
-  padding: 5px 14px;
+  padding: 6px 16px;
   border-radius: var(--lingo-radius-full);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: #a1a1aa;
   cursor: pointer;
@@ -133,202 +137,99 @@ html, body {
   gap: 6px;
 }
 
-.view-btn.active {
+.web-nav-btn:hover {
+  color: #ffffff;
+}
+
+.web-nav-btn.active {
   background: #ffffff;
   color: #18181b;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 顶栏右侧辅助操作按钮 */
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .topbar-btn {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: #e4e4e7;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: var(--lingo-radius-full);
   font-size: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: background 0.2s;
+  transition: all 0.2s;
   text-decoration: none;
 }
 
 .topbar-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.16);
   color: #ffffff;
 }
 
-/* 主容器舞台 */
-.app-stage {
-  width: 100%;
-  height: calc(100% - 52px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(circle at 50% 20%, #1f1f24 0%, #0c0c0e 70%);
-}
-
-/* 手机模拟外框 (Phone Bezel) */
-.phone-frame {
-  width: 412px;
-  height: 860px;
-  max-height: calc(100vh - 76px);
-  background: #000000;
-  border-radius: 52px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--lingo-shadow-phone);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-}
-
-/* 桌面自适应宽屏模式 */
-.app-stage.desktop-mode .phone-frame {
-  width: 1100px;
-  height: calc(100vh - 84px);
-  max-height: 940px;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
-}
-
-.app-stage.desktop-mode .phone-notch,
-.app-stage.desktop-mode .phone-home-indicator {
-  display: none !important;
-}
-
-/* 手机灵动岛与状态栏 */
-.phone-notch {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 122px;
-  height: 32px;
-  background: #000000;
-  border-radius: 20px;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
-}
-
-.island-camera {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #111;
-  border: 1px solid #222;
-}
-
-.island-mic {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #0f172a;
-}
-
-.phone-status-bar {
-  height: 48px;
-  padding: 10px 24px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  z-index: 99;
-  letter-spacing: -0.2px;
-}
-
-.status-time {
-  font-weight: 600;
-}
-
-.status-icons {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-}
-
-.phone-home-indicator {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 134px;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 100px;
-  z-index: 1000;
-  pointer-events: none;
-}
-
-/* 手机内容视口 */
-.phone-screen {
+/* 主内容舞台 */
+.app-main-viewport {
   flex: 1;
   width: 100%;
-  height: 100%;
   position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* 视图容器管理 */
 .view-panel {
-  position: absolute;
-  inset: 0;
+  display: none;
   width: 100%;
-  height: 100%;
-  display: none;
+  min-height: 100%;
   flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.view-panel::-webkit-scrollbar {
-  display: none;
 }
 
 .view-panel.active {
   display: flex;
-  animation: viewFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: viewFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes viewFadeIn {
-  from { opacity: 0; transform: scale(0.985); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
-   页面 1、2、3：引导配置流程 (Onboarding Steps 1, 2, 3 - 暗色极简)
+   页面 1、2、3：引导配置流程 (Onboarding Steps 1, 2, 3 - 居中极简暗黑卡片)
    ========================================================================== */
 
-.onboard-container {
-  min-height: 100%;
+.onboard-canvas {
+  min-height: calc(100vh - 60px);
   background: #111113;
   color: #ffffff;
-  padding: 48px 24px 28px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
-/* 顶部三段式进度条 (图片2、3、4的药丸式步进条) */
+.onboard-container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 三段式进度药丸 */
 .onboard-progress-bar {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 .progress-pill {
@@ -336,58 +237,55 @@ html, body {
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
-  width: 8px;
+  width: 10px;
 }
 
 .progress-pill.active {
-  width: 24px;
+  width: 32px;
   background: #ffffff;
 }
 
 .progress-pill.completed {
   background: rgba(255, 255, 255, 0.6);
-  width: 12px;
+  width: 16px;
 }
 
 .onboard-step-badge {
   font-size: 14px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 12px;
 }
 
 .onboard-title {
   font-size: 32px;
-  line-height: 1.22;
+  line-height: 1.25;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.5px;
-  margin-bottom: 10px;
 }
 
 .onboard-subtitle {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.5;
-  margin-bottom: 36px;
+  margin-bottom: 12px;
 }
 
 /* 核心配置卡片 */
 .onboard-card {
   background: #232326;
   border-radius: var(--lingo-radius-xl);
-  padding: 28px 20px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: auto;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Step 1: 目标雅思分数滑块 */
+/* Step 1: 目标分数大字与滑块 */
 .score-display-wrapper {
-  margin: 16px 0 24px;
+  margin: 10px 0 24px;
   display: flex;
   align-items: baseline;
   justify-content: center;
@@ -395,7 +293,7 @@ html, body {
 
 .score-display-number {
   font-family: var(--lingo-font-serif);
-  font-size: 84px;
+  font-size: 86px;
   font-weight: 700;
   color: #ffffff;
   line-height: 1;
@@ -458,7 +356,7 @@ html, body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
 }
 
 .select-pill {
@@ -514,8 +412,8 @@ html, body {
 .stepper-btn {
   background: none;
   border: none;
-  width: 38px;
-  height: 36px;
+  width: 40px;
+  height: 38px;
   font-size: 18px;
   color: #27272a;
   cursor: pointer;
@@ -530,24 +428,24 @@ html, body {
 }
 
 .stepper-val {
-  width: 44px;
+  width: 48px;
   text-align: center;
   font-size: 16px;
   font-weight: 700;
   color: #18181b;
 }
 
-/* 引导页底部操作按钮 */
+/* 引导页底部操作栏 */
 .onboard-actions {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 10px;
 }
 
 .btn-primary-white {
   width: 100%;
-  height: 54px;
+  height: 52px;
   background: #ffffff;
   color: #111113;
   border: none;
@@ -568,10 +466,6 @@ html, body {
   background: #f4f4f5;
 }
 
-.btn-primary-white:active {
-  transform: translateY(1px);
-}
-
 .btn-secondary-link {
   background: none;
   border: none;
@@ -588,20 +482,20 @@ html, body {
 }
 
 /* ==========================================================================
-   页面 4：首页仪表盘 (Dashboard - 暖色乳白极简风，还原图5)
+   页面 4：首页仪表盘 (Dashboard - 优雅暖白卡片流，还原图5)
    ========================================================================== */
 
 .dashboard-container {
-  min-height: 100%;
-  background: var(--lingo-cream);
-  color: var(--lingo-text-dark);
-  padding: 44px 20px 84px;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 36px 20px 80px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
-/* 顶部问候与打卡连击 */
+/* 顶部问候与连击徽章 */
 .dash-header-row {
   display: flex;
   justify-content: space-between;
@@ -609,24 +503,24 @@ html, body {
 }
 
 .dash-date {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: #71717a;
   margin-bottom: 4px;
 }
 
 .dash-greeting {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   color: #18181b;
-  letter-spacing: -0.4px;
+  letter-spacing: -0.5px;
 }
 
 .streak-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
+  padding: 6px 16px;
   background: #ffedd5;
   color: #c2410c;
   border-radius: var(--lingo-radius-full);
@@ -636,22 +530,23 @@ html, body {
   cursor: pointer;
 }
 
-/* 今日学习暗色沉浸胶囊卡片 */
+/* 今日学习黑底聚焦卡片 */
 .today-summary-card {
   background: #18181b;
   border-radius: var(--lingo-radius-xl);
-  padding: 20px 22px;
+  padding: 22px 26px;
   color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: 0 10px 25px -4px rgba(24, 24, 27, 0.2);
+  box-shadow: 0 10px 25px -4px rgba(24, 24, 27, 0.25);
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .today-summary-card:hover {
   transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(24, 24, 27, 0.35);
 }
 
 .today-card-top {
@@ -670,7 +565,7 @@ html, body {
 }
 
 .today-motto {
-  font-size: 12px;
+  font-size: 13px;
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -683,12 +578,12 @@ html, body {
 .metric-circle-box {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .progress-ring-mini {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: 3px solid rgba(255, 255, 255, 0.15);
   border-top-color: #f97316;
@@ -696,22 +591,22 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
 }
 
 .metric-words-text {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
 }
 
 .metric-time-text {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 /* 核心推荐区标题 */
@@ -719,11 +614,11 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .headline-text {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: #18181b;
   letter-spacing: -0.3px;
@@ -736,7 +631,7 @@ html, body {
   letter-spacing: 1px;
 }
 
-/* 三大核心功能卡片 (刷一刷 / 看一看 / 猜一猜) */
+/* 三大核心入口卡片 */
 .core-features-list {
   display: flex;
   flex-direction: column;
@@ -746,7 +641,7 @@ html, body {
 .feature-entry-card {
   background: var(--lingo-cream-card);
   border-radius: var(--lingo-radius-lg);
-  padding: 16px 18px;
+  padding: 18px 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -758,14 +653,14 @@ html, body {
 
 .feature-entry-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .feature-card-left {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .feature-step-code {
@@ -784,25 +679,25 @@ html, body {
 }
 
 .feature-card-name {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 700;
   color: #18181b;
 }
 
 .feature-card-desc {
-  font-size: 12px;
+  font-size: 13px;
   color: #71717a;
 }
 
 .feature-card-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .feature-thumb-box {
-  width: 76px;
-  height: 76px;
+  width: 84px;
+  height: 84px;
   border-radius: var(--lingo-radius-md);
   position: relative;
   overflow: hidden;
@@ -829,19 +724,19 @@ html, body {
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .feature-arrow-chevron {
   color: #a1a1aa;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* 生词本快捷入口卡片 */
 .vocab-quick-card {
   background: var(--lingo-cream-card);
   border-radius: var(--lingo-radius-md);
-  padding: 14px 18px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -858,8 +753,8 @@ html, body {
 .vocab-quick-left {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 14px;
+  gap: 12px;
+  font-size: 15px;
   font-weight: 600;
   color: #27272a;
 }
@@ -873,94 +768,35 @@ html, body {
 }
 
 /* ==========================================================================
-   底部原生质感导航栏 (Bottom Navigation Bar)
-   ========================================================================== */
-
-.lingo-bottom-nav {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 64px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  z-index: 500;
-  padding-bottom: env(safe-area-inset-bottom, 6px);
-}
-
-/* 暗色场景下的底部导航 */
-.theme-dark .lingo-bottom-nav {
-  background: rgba(18, 18, 20, 0.94);
-  border-top-color: rgba(255, 255, 255, 0.08);
-}
-
-.nav-tab-item {
-  background: none;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  color: #a1a1aa;
-  cursor: pointer;
-  padding: 6px 12px;
-  transition: color 0.15s ease;
-  position: relative;
-}
-
-.nav-tab-item i {
-  font-size: 20px;
-}
-
-.nav-tab-item span {
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.nav-tab-item.active {
-  color: #18181b;
-}
-
-.theme-dark .nav-tab-item.active {
-  color: #ffffff;
-}
-
-.nav-tab-item.active::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  width: 4px;
-  height: 4px;
-  background: #f97316;
-  border-radius: 50%;
-}
-
-/* ==========================================================================
-   功能 1：「刷一刷」竖屏短视频播放器 (还原图1)
+   功能 1：「刷一刷」竖屏短视频流 (自然网页影院，还原图1)
    ========================================================================== */
 
 .watch-player-view {
-  background: #000000;
+  background: #09090b;
   color: #ffffff;
-  position: relative;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
 }
 
 .watch-stage-box {
   width: 100%;
-  height: 100%;
+  max-width: 440px;
+  height: calc(100vh - 92px);
+  max-height: 840px;
+  border-radius: 24px;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #000000;
 }
 
-/* 拟真视频动态背景/画面 */
 .video-canvas-backdrop {
   position: absolute;
   inset: 0;
@@ -976,7 +812,7 @@ html, body {
   left: 0;
   right: 0;
   height: 140px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -992,11 +828,11 @@ html, body {
   pointer-events: none;
 }
 
-/* 顶部操作区 (返回、Vlog胶囊、进度段标) */
+/* 顶部 HUD 导航栏 */
 .watch-top-hud {
   position: relative;
   z-index: 10;
-  padding: 48px 18px 0;
+  padding: 20px 18px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1009,10 +845,10 @@ html, body {
 }
 
 .hud-back-btn {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
@@ -1021,12 +857,17 @@ html, body {
   justify-content: center;
   font-size: 15px;
   cursor: pointer;
+  transition: background 0.15s;
+}
+
+.hud-back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .hud-genre-pill {
   padding: 4px 12px;
   border-radius: var(--lingo-radius-full);
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 13px;
@@ -1041,7 +882,7 @@ html, body {
   letter-spacing: 0.5px;
 }
 
-/* 顶部微进度条分段 */
+/* 顶部多段故事线指示 */
 .hud-progress-segments {
   display: flex;
   align-items: center;
@@ -1056,7 +897,7 @@ html, body {
 }
 
 .hud-seg.active {
-  width: 20px;
+  width: 22px;
   background: #ffffff;
 }
 
@@ -1064,12 +905,12 @@ html, body {
 .watch-right-actions {
   position: absolute;
   right: 14px;
-  bottom: 180px;
+  bottom: 160px;
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 .action-circle-btn {
@@ -1084,10 +925,10 @@ html, body {
 }
 
 .action-icon-pill {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   display: flex;
@@ -1099,7 +940,7 @@ html, body {
 
 .action-circle-btn:hover .action-icon-pill {
   transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .action-circle-btn.starred .action-icon-pill {
@@ -1128,7 +969,7 @@ html, body {
 .watch-bottom-hud {
   position: relative;
   z-index: 10;
-  padding: 0 20px 80px;
+  padding: 0 20px 24px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1188,10 +1029,10 @@ html, body {
 /* 视频播放时间进度线 */
 .video-scrubber-line {
   position: absolute;
-  bottom: 64px;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background: rgba(255, 255, 255, 0.25);
   z-index: 20;
 }
@@ -1203,11 +1044,11 @@ html, body {
   position: relative;
 }
 
-/* 单词精讲与快测底部抽屉 (Bottom Sheet Drawer) */
+/* 单词精讲与快测底部抽屉 */
 .word-sheet-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
   z-index: 100;
   display: none;
@@ -1222,10 +1063,10 @@ html, body {
 
 .word-sheet-drawer {
   width: 100%;
-  max-height: 80%;
+  max-height: 82%;
   background: #18181b;
-  border-radius: 28px 28px 0 0;
-  padding: 24px 20px 40px;
+  border-radius: 24px 24px 0 0;
+  padding: 24px 20px 32px;
   color: #ffffff;
   overflow-y: auto;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -1246,7 +1087,7 @@ html, body {
   border-radius: 2px;
   background: rgba(255, 255, 255, 0.25);
   align-self: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .sheet-header-row {
@@ -1266,8 +1107,8 @@ html, body {
 .sheet-close-btn {
   background: rgba(255, 255, 255, 0.1);
   border: none;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   color: #ffffff;
   cursor: pointer;
@@ -1288,8 +1129,8 @@ html, body {
 }
 
 .actor-avatar {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #f97316;
@@ -1422,13 +1263,13 @@ html, body {
    ========================================================================== */
 
 .read-view-container {
-  min-height: 100%;
-  background: var(--lingo-cream);
-  color: var(--lingo-text-dark);
-  padding: 44px 20px 84px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 36px 20px 80px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 /* 20 大高频外刊横向滑动栏 */
@@ -1449,7 +1290,7 @@ html, body {
   background: #ffffff;
   border: 1px solid var(--lingo-border-light);
   border-radius: var(--lingo-radius-md);
-  padding: 8px 14px;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1476,7 +1317,7 @@ html, body {
 }
 
 .pub-name {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #18181b;
   white-space: nowrap;
@@ -1485,12 +1326,13 @@ html, body {
 /* 文章详情精读界面 */
 .article-detail-sheet {
   background: #ffffff;
-  border-radius: var(--lingo-radius-lg);
-  padding: 24px 20px;
+  border-radius: var(--lingo-radius-xl);
+  padding: 32px 28px;
   box-shadow: var(--lingo-shadow-card);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+  border: 1px solid var(--lingo-border-light);
 }
 
 .article-header-meta {
@@ -1504,26 +1346,27 @@ html, body {
   font-weight: 700;
   color: #ea580c;
   background: #ffedd5;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: var(--lingo-radius-full);
 }
 
 .difficulty-pill-switcher {
   display: flex;
   background: #f4f4f5;
-  padding: 2px;
+  padding: 3px;
   border-radius: var(--lingo-radius-full);
 }
 
 .diff-btn {
   background: none;
   border: none;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: var(--lingo-radius-full);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: #71717a;
   cursor: pointer;
+  transition: all 0.15s;
 }
 
 .diff-btn.active {
@@ -1533,25 +1376,25 @@ html, body {
 
 .article-headline {
   font-family: var(--lingo-font-serif);
-  font-size: 22px;
+  font-size: 26px;
   line-height: 1.35;
   font-weight: 700;
   color: #18181b;
 }
 
 .article-headline-zh {
-  font-size: 13px;
+  font-size: 14px;
   color: #71717a;
 }
 
 .article-body-text {
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.85;
   color: #27272a;
 }
 
 .article-body-text p {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 /* 文章中高亮单词标签 */
@@ -1559,7 +1402,7 @@ html, body {
   background: #fef08a;
   color: #854d0e;
   font-weight: 600;
-  padding: 1px 4px;
+  padding: 2px 6px;
   border-radius: 4px;
   border-bottom: 2px solid #eab308;
   cursor: pointer;
@@ -1574,13 +1417,13 @@ html, body {
 /* 长难句语法拆解卡 */
 .syntax-helper-card {
   background: #f8fafc;
-  border-left: 3px solid #3b82f6;
+  border-left: 4px solid #3b82f6;
   border-radius: 0 var(--lingo-radius-md) var(--lingo-radius-md) 0;
-  padding: 12px 14px;
-  font-size: 13px;
+  padding: 14px 16px;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .syntax-label {
@@ -1590,21 +1433,21 @@ html, body {
 
 .syntax-content {
   color: #475569;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* ==========================================================================
-   功能 3：「猜一猜」图像记忆单词 (4 图猜词，熟人演绎新词义)
+   功能 3：「猜一猜」图像记忆单词 (4 图猜词)
    ========================================================================== */
 
 .guess-view-container {
-  min-height: 100%;
-  background: #121214;
-  color: #ffffff;
-  padding: 44px 20px 84px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 36px 20px 80px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .guess-top-bar {
@@ -1614,36 +1457,41 @@ html, body {
 }
 
 .guess-progress-badge {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
+  color: #f97316;
+  background: #ffedd5;
+  padding: 4px 12px;
+  border-radius: var(--lingo-radius-full);
 }
 
 .guess-clue-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
-  color: #fdba74;
-  line-height: 1.4;
-  background: rgba(249, 115, 22, 0.12);
+  color: #18181b;
+  line-height: 1.5;
+  background: #ffffff;
   border-radius: var(--lingo-radius-md);
-  padding: 12px 14px;
-  border: 1px solid rgba(249, 115, 22, 0.25);
+  padding: 16px 18px;
+  border: 1px solid var(--lingo-border-light);
+  box-shadow: var(--lingo-shadow-card);
 }
 
 /* 四宫格图像矩阵 (2x2) */
 .guess-grid-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 14px;
 }
 
 .grid-image-card {
-  background: #1f1f24;
-  border-radius: var(--lingo-radius-md);
+  background: #f4f4f5;
+  border-radius: var(--lingo-radius-lg);
   overflow: hidden;
   position: relative;
-  height: 130px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  height: 180px;
+  border: 1px solid var(--lingo-border-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .grid-image-card img {
@@ -1657,11 +1505,11 @@ html, body {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 4px 6px;
-  background: rgba(0, 0, 0, 0.65);
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -1672,114 +1520,119 @@ html, body {
 .guess-word-mask {
   text-align: center;
   font-family: var(--lingo-font-mono);
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: 2px;
-  color: #ffffff;
-  padding: 8px 0;
+  letter-spacing: 3px;
+  color: #18181b;
+  padding: 10px 0;
 }
 
 .guess-options-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 12px;
 }
 
 .guess-opt-btn {
-  background: #27272a;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid var(--lingo-border-light);
   border-radius: var(--lingo-radius-full);
-  height: 48px;
-  font-size: 15px;
+  height: 52px;
+  font-size: 16px;
   font-weight: 600;
-  color: #ffffff;
+  color: #18181b;
   cursor: pointer;
+  box-shadow: var(--lingo-shadow-card);
   transition: all 0.15s;
 }
 
 .guess-opt-btn:hover {
-  background: #3f3f46;
+  background: #f4f4f5;
+  transform: translateY(-1px);
 }
 
 .guess-opt-btn.correct {
   background: #15803d;
   border-color: #22c55e;
+  color: #ffffff;
 }
 
 .guess-opt-btn.wrong {
   background: #b91c1c;
   border-color: #ef4444;
+  color: #ffffff;
 }
 
 /* 答题揭晓后的联想记忆解析卡 */
 .guess-mnemonic-card {
-  background: #1c1917;
-  border: 1px solid #78350f;
-  border-radius: var(--lingo-radius-md);
-  padding: 14px 16px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: var(--lingo-radius-lg);
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   animation: fadeIn 0.25s ease;
 }
 
 .mnemonic-header {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
-  color: #fb923c;
+  color: #b45309;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .mnemonic-text {
-  font-size: 13px;
-  color: #fed7aa;
-  line-height: 1.5;
+  font-size: 14px;
+  color: #92400e;
+  line-height: 1.6;
 }
 
 /* ==========================================================================
-   页面 5：「我的」与配置面板 (Settings & Backend Config)
+   页面 5：「我的」与配置面板 (Settings & Vocab)
    ========================================================================== */
 
 .profile-view-container {
-  min-height: 100%;
-  background: var(--lingo-cream);
-  padding: 44px 20px 84px;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 20px 80px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 .user-card-hero {
   background: #ffffff;
   border-radius: var(--lingo-radius-xl);
-  padding: 22px;
+  padding: 24px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   border: 1px solid var(--lingo-border-light);
   box-shadow: var(--lingo-shadow-card);
 }
 
 .user-avatar-large {
-  width: 64px;
-  height: 64px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #f97316;
 }
 
 .user-meta-name {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: #18181b;
 }
 
 .user-meta-sub {
-  font-size: 12px;
+  font-size: 13px;
   color: #71717a;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .settings-list-group {
@@ -1789,13 +1642,14 @@ html, body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--lingo-shadow-card);
 }
 
 .setting-row-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 18px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--lingo-border-light);
   cursor: pointer;
   transition: background 0.15s;
@@ -1812,7 +1666,7 @@ html, body {
 .setting-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-size: 14px;
   font-weight: 600;
   color: #18181b;
@@ -1820,7 +1674,7 @@ html, body {
 
 .setting-left i {
   color: #71717a;
-  width: 18px;
+  width: 20px;
 }
 
 .setting-right {
@@ -1829,6 +1683,64 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+/* ==========================================================================
+   移动端专属底部导航栏 (只在移动屏生效)
+   ========================================================================== */
+
+.lingo-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  align-items: center;
+  justify-content: space-around;
+  z-index: 500;
+  padding-bottom: env(safe-area-inset-bottom, 4px);
+}
+
+.nav-tab-item {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: #a1a1aa;
+  cursor: pointer;
+  padding: 6px 12px;
+  transition: color 0.15s ease;
+  position: relative;
+}
+
+.nav-tab-item i {
+  font-size: 18px;
+}
+
+.nav-tab-item span {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.nav-tab-item.active {
+  color: #18181b;
+}
+
+.nav-tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  width: 4px;
+  height: 4px;
+  background: #f97316;
+  border-radius: 50%;
 }
 
 /* ==========================================================================
@@ -1853,7 +1765,7 @@ html, body {
 
 .modal-content-card {
   width: 100%;
-  max-width: 580px;
+  max-width: 560px;
   max-height: 85vh;
   background: #18181b;
   border-radius: var(--lingo-radius-xl);
@@ -1867,7 +1779,7 @@ html, body {
 }
 
 @keyframes modalScale {
-  from { opacity: 0; transform: scale(0.95); }
+  from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
 }
 
@@ -1933,13 +1845,13 @@ html, body {
 
 /* Toast 提示 */
 .lingo-toast {
-  position: absolute;
-  top: 60px;
+  position: fixed;
+  top: 76px;
   left: 50%;
   transform: translateX(-50%) translateY(-20px);
   background: rgba(24, 24, 27, 0.95);
   color: #ffffff;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: var(--lingo-radius-full);
   font-size: 13px;
   font-weight: 600;
@@ -1948,7 +1860,7 @@ html, body {
   pointer-events: none;
   opacity: 0;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 2000;
+  z-index: 2500;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1960,28 +1872,34 @@ html, body {
 }
 
 /* ==========================================================================
-   响应式断点适配：移动端真机全屏适配
+   响应式断点适配 (移动端自动开启底部导航栏，微调排版)
    ========================================================================== */
 
 @media (max-width: 768px) {
-  .desktop-topbar {
+  .web-nav-tabs {
     display: none;
   }
   
-  .app-stage {
-    height: 100%;
-    background: #000;
+  .lingo-bottom-nav {
+    display: flex;
   }
-  
-  .phone-frame {
-    width: 100% !important;
-    height: 100% !important;
-    max-height: 100% !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
+
+  .watch-player-view {
+    padding: 0;
   }
-  
-  .phone-notch {
-    display: none;
+
+  .watch-stage-box {
+    max-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .dashboard-container,
+  .read-view-container,
+  .guess-view-container,
+  .profile-view-container {
+    padding-bottom: 90px;
   }
 }

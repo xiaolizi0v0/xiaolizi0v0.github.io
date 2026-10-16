@@ -150,28 +150,29 @@
       target.classList.add('active');
     }
 
-    // 更新底部导航高亮
-    updateBottomNav();
-
-    // 更新状态栏和外框主题（引导页暗色，首页暖白，播放器纯黑）
-    const frame = document.querySelector('.phone-frame');
-    if (frame) {
-      if (viewName === 'watch') {
-        frame.classList.add('theme-dark');
-      } else if (viewName.startsWith('step')) {
-        frame.classList.add('theme-dark');
-      } else {
-        frame.classList.remove('theme-dark');
-      }
-    }
+    // 更新导航高亮状态
+    updateNavStates();
 
     // 视窗滚动置顶
+    const viewport = document.querySelector('.app-main-viewport');
+    if (viewport) viewport.scrollTop = 0;
     if (target) target.scrollTop = 0;
 
     renderCurrentView();
   }
 
-  function updateBottomNav() {
+  function updateNavStates() {
+    // 桌面端顶栏选项卡高亮
+    document.querySelectorAll('.web-nav-btn').forEach(btn => {
+      const tab = btn.dataset.tab;
+      if (tab === state.currentView) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // 移动端底部导航高亮
     document.querySelectorAll('.nav-tab-item').forEach(btn => {
       const tab = btn.dataset.tab;
       if (tab === state.currentView) {
@@ -181,13 +182,21 @@
       }
     });
 
-    // 引导页隐藏底部导航
-    const nav = document.getElementById('bottom-nav-bar');
-    if (nav) {
+    // 引导页隐藏底部导航与顶栏菜单高亮
+    const bottomNav = document.getElementById('bottom-nav-bar');
+    const topNavTabs = document.querySelector('.web-nav-tabs');
+    if (bottomNav) {
       if (state.currentView.startsWith('step')) {
-        nav.style.display = 'none';
+        bottomNav.style.display = 'none';
       } else {
-        nav.style.display = 'flex';
+        bottomNav.style.display = '';
+      }
+    }
+    if (topNavTabs) {
+      if (state.currentView.startsWith('step')) {
+        topNavTabs.style.visibility = 'hidden';
+      } else {
+        topNavTabs.style.visibility = 'visible';
       }
     }
   }
@@ -617,26 +626,13 @@
   // 10. 事件监听绑定系统
   // ------------------------------------------------------------------------
   function setupEventListeners() {
-    // 桌面端视图切换：手机真机模拟 vs 电脑宽屏
-    const phoneBtn = document.getElementById('btn-view-phone');
-    const desktopBtn = document.getElementById('btn-view-desktop');
-    const stage = document.querySelector('.app-stage');
-
-    if (phoneBtn && desktopBtn && stage) {
-      phoneBtn.addEventListener('click', () => {
-        phoneBtn.classList.add('active');
-        desktopBtn.classList.remove('active');
-        stage.classList.remove('desktop-mode');
-        state.viewMode = 'phone';
+    // 桌面端顶栏选项卡点击切换
+    document.querySelectorAll('.web-nav-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const tab = this.dataset.tab;
+        switchView(tab);
       });
-
-      desktopBtn.addEventListener('click', () => {
-        desktopBtn.classList.add('active');
-        phoneBtn.classList.remove('active');
-        stage.classList.add('desktop-mode');
-        state.viewMode = 'desktop';
-      });
-    }
+    });
 
     // Step 1: 滑块交互
     const slider = document.getElementById('ielts-score-slider');
