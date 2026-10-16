@@ -1089,22 +1089,110 @@ body:has(#view-watch.active) .app-main-viewport {
   background: #f4f4f5;
 }
 
-/* 视频播放时间进度线 */
+/* 视频缓冲与加载指示器 */
+.watch-loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 15;
+  pointer-events: none;
+  background: rgba(15, 15, 20, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 16px 24px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  transition: opacity 0.2s ease;
+}
+
+.watch-loading-spinner .spinner-ring {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.18);
+  border-top-color: #f97316;
+  border-radius: 50%;
+  animation: watchSpinnerRotate 0.75s linear infinite;
+}
+
+@keyframes watchSpinnerRotate {
+  to { transform: rotate(360deg); }
+}
+
+.watch-loading-spinner .spinner-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f4f4f5;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* 播放重试胶囊 */
+.watch-retry-pill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 18;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(220, 38, 38, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 28px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.watch-retry-pill:hover {
+  background: rgba(239, 68, 68, 0.95);
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+/* 视频播放时间进度线 (双轨：缓冲轨 + 播放轨) */
 .video-scrubber-line {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.25);
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
   z-index: 20;
 }
 
-.video-scrubber-progress {
+.video-scrubber-buffer {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
-  width: 45%;
-  background: #ffffff;
-  position: relative;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.38);
+  transition: width 0.2s ease-out;
+  z-index: 1;
+}
+
+.video-scrubber-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  z-index: 2;
+  transition: width 0.08s linear;
 }
 
 /* 单词精讲与快测底部抽屉 */

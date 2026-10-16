@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- 引入 Lingo 独立样式表 -->
-  <link rel="stylesheet" href="lingo/style.css?v=2.9">
+  <link rel="stylesheet" href="lingo/style.css?v=3.0">
 </head>
 <body>
 
@@ -343,6 +343,15 @@
         <div class="watch-play-indicator" id="watch-play-indicator"></div>
         <div class="swipe-hint-pill" id="watch-swipe-hint"><i class="fas fa-chevron-up"></i> 上下滑动切视频</div>
 
+        <!-- 极速缓冲加载动画与重试提示 -->
+        <div class="watch-loading-spinner" id="watch-loading-spinner" style="display: none;">
+          <div class="spinner-ring"></div>
+          <div class="spinner-text" id="watch-loading-text">⚡ 视频加载中...</div>
+        </div>
+        <div class="watch-retry-pill" id="watch-retry-pill" style="display: none;" onclick="window.LingoApp.retryCurrentVideo()">
+          <i class="fas fa-redo-alt"></i> 加载缓慢？点击重试
+        </div>
+
         <!-- 顶部 HUD 导航栏 -->
         <div class="watch-top-hud">
           <div class="hud-left">
@@ -357,9 +366,17 @@
           <div class="hud-progress-segments" id="watch-seg-dots"></div>
         </div>
 
-        <!-- 右侧竖排快捷操作栏 (跟读录音、收藏、字幕切换) -->
+        <!-- 右侧竖排快捷操作栏 (跟读录音、收藏、字幕切换、播放倍速) -->
         <div class="watch-right-actions">
           
+          <!-- 播放倍速切换 (雅思精听跟读核心利器) -->
+          <button class="action-circle-btn" id="watch-speed-btn" title="切换播放倍速" onclick="window.LingoApp.togglePlaybackRate()">
+            <div class="action-icon-pill">
+              <span id="watch-speed-val" style="font-size: 11px; font-weight: 800;">1.0x</span>
+            </div>
+            <span class="action-label-sub">倍速</span>
+          </button>
+
           <!-- 麦克风跟读测评 -->
           <button class="action-circle-btn" id="watch-mic-btn" title="跟读测评">
             <div class="action-icon-pill">
@@ -400,9 +417,10 @@
           </button>
         </div>
 
-        <!-- 视频时间进度条 -->
-        <div class="video-scrubber-line">
-          <div class="video-scrubber-progress"></div>
+        <!-- 视频时间进度条 (包含网络缓冲轨与播放进度轨) -->
+        <div class="video-scrubber-line" id="watch-scrubber-line">
+          <div class="video-scrubber-buffer" id="watch-scrubber-buffer"></div>
+          <div class="video-scrubber-progress" id="watch-scrubber-progress"></div>
         </div>
 
       </div>
@@ -752,7 +770,7 @@
   <div class="lingo-toast" id="global-toast">提示信息</div>
 
   <!-- 引入数据源与脚本 -->
-  <script src="lingo/mock-data.js?v=2.9"></script>
-  <script src="lingo/app.js?v=2.9"></script>
+  <script src="lingo/mock-data.js?v=3.0"></script>
+  <script src="lingo/app.js?v=3.0"></script>
 </body>
 </html>

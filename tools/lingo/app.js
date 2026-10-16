@@ -446,8 +446,126 @@
   }
 
   // ------------------------------------------------------------------------
-  // 6. 「刷一刷」短视频核心逻辑 (Watch Feed)
+  // 6. 「刷一刷」超低延迟智能视频引擎 (Blob Cache + 智能相邻预加载 + 缓冲监测)
   // ------------------------------------------------------------------------
+  const videoBlobCache = new Map(); // resolvedUrl -> blobUrl (内存急速复用，秒开 0 延迟)
+  const videoPrefetchingSet = new Set();
+
+  // 异步静默预载入视频至内存 Blob (免去后续每次切换的网络握手与加载开销)
+  async function prefetchVideoBlob(rawUrl) {
+    if (!rawUrl || rawUrl.startsWith('data:') || rawUrl.startsWith('blob:')) return;
+    const resolved = resolveMediaUrl(rawUrl);
+    if (!resolved || videoBlobCache.has(resolved) || videoPrefetchingSet.has(resolved)) return;
+
+    videoPrefetchingSet.add(resolved);
+    try {
+      const resp = await fetch(resolved, { mode: 'cors' });
+      if (resp.ok) {
+        const blob = await resp.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        videoBlobCache.set(resolved, blobUrl);
+        console.log('[Lingo VideoEngine] 预加载成功并写入内存缓存:', resolved, `(${(blob.size / (1024 * 1024)).toFixed(2)} MB)`);
+      }
+    } catch (e) {
+      // 预加载容灾：网络异常时不阻塞主线程正常流式播放
+    } finally {
+      videoPrefetchingSet.delete(resolved);
+    }
+  }
+
+  // 预载入下一条与前一条相邻视频（实现抖音同款无缝切流）
+  function preloadAdjacentVideos() {
+    const videos = window.LINGO_MOCK.videos;
+    if (!videos || !videos.length) return;
+
+    const nextIdx = (state.watch.currentIndex + 1) % videos.length;
+    if (videos[nextIdx] && videos[nextIdx].videoUrl) {
+      prefetchVideoBlob(videos[nextIdx].videoUrl);
+    }
+    const prevIdx = (state.watch.currentIndex - 1 + videos.length) % videos.length;
+    if (videos[prevIdx] && videos[prevIdx].videoUrl) {
+      prefetchVideoBlob(videos[prevIdx].videoUrl);
+    }
+  }
+
+  // 控制视频加载/缓冲 HUD 与异常重试提示
+  function setWatchBuffering(isBuffering, msg) {
+    const spinner = document.getElementById('watch-loading-spinner');
+    const textEl = document.getElementById('watch-loading-text');
+    const retryPill = document.getElementById('watch-retry-pill');
+    state.watch.isBuffering = isBuffering;
+
+    if (retryPill && !isBuffering) retryPill.style.display = 'none';
+
+    if (spinner) {
+      if (isBuffering) {
+        if (textEl && msg) textEl.textContent = msg;
+        spinner.style.display = 'flex';
+        spinner.style.opacity = '1';
+      } else {
+        spinner.style.opacity = '0';
+        setTimeout(() => {
+          if (!state.watch.isBuffering) spinner.style.display = 'none';
+        }, 150);
+      }
+    }
+  }
+
+  // 视频网络重试
+  function retryCurrentVideo() {
+    const retryPill = document.getElementById('watch-retry-pill');
+    if (retryPill) retryPill.style.display = 'none';
+    const videoEl = document.getElementById('watch-video-player');
+    if (videoEl) {
+      videoEl.dataset.currentSrc = '';
+    }
+    renderWatch();
+  }
+
+  // 播放倍速切换 (0.75x -> 1.0x -> 1.25x -> 1.5x)
+  function togglePlaybackRate() {
+    const rates = [1.0, 1.25, 1.5, 0.75];
+    const videoEl = document.getElementById('watch-video-player');
+    const currentRate = state.watch.playbackRate || 1.0;
+    const nextIdx = (rates.indexOf(currentRate) + 1) % rates.length;
+    const newRate = rates[nextIdx];
+    state.watch.playbackRate = newRate;
+
+    if (videoEl) {
+      videoEl.playbackRate = newRate;
+    }
+    const badge = document.getElementById('watch-speed-val');
+    if (badge) badge.textContent = `${newRate}x`;
+    showToast(`播放倍速已切换至 ${newRate}x`);
+  }
+
+  // 双轨进度刷新 (播放进度 + 实时网络缓冲进度)
+  function updateScrubberBars(videoEl) {
+    if (!videoEl || !videoEl.duration) return;
+    const progressEl = document.getElementById('watch-scrubber-progress') || document.querySelector('.video-scrubber-progress');
+    const bufferEl = document.getElementById('watch-scrubber-buffer') || document.querySelector('.video-scrubber-buffer');
+
+    if (progressEl) {
+      const pct = (videoEl.currentTime / videoEl.duration) * 100;
+      progressEl.style.width = `${pct}%`;
+    }
+
+    if (bufferEl && videoEl.buffered.length > 0) {
+      let bufferedEnd = 0;
+      for (let i = 0; i < videoEl.buffered.length; i++) {
+        if (videoEl.buffered.start(i) <= videoEl.currentTime && videoEl.currentTime <= videoEl.buffered.end(i)) {
+          bufferedEnd = videoEl.buffered.end(i);
+          break;
+        }
+        if (videoEl.buffered.end(i) > bufferedEnd) {
+          bufferedEnd = videoEl.buffered.end(i);
+        }
+      }
+      const bufPct = Math.min(100, (bufferedEnd / videoEl.duration) * 100);
+      bufferEl.style.width = `${bufPct}%`;
+    }
+  }
+
   function renderWatch() {
     const videos = window.LINGO_MOCK.videos;
     const cur = videos[state.watch.currentIndex];
@@ -475,8 +593,11 @@
     // 画面背景与 HTML5 视频流播放器
     const backdrop = document.getElementById('watch-backdrop-img');
     const videoEl = document.getElementById('watch-video-player');
+    const retryPill = document.getElementById('watch-retry-pill');
+    if (retryPill) retryPill.style.display = 'none';
+
     const resolvedPoster = resolveMediaUrl(cur.poster) || 'lingo/assets/vlog-clean.png';
-    const resolvedVideo = resolveMediaUrl(cur.videoUrl);
+    const rawVideoUrl = resolveMediaUrl(cur.videoUrl);
 
     if (backdrop) {
       backdrop.onerror = () => {
@@ -487,36 +608,80 @@
     }
 
     if (videoEl) {
-      if (resolvedVideo) {
+      if (rawVideoUrl) {
         videoEl.style.display = 'block';
-        if (videoEl.dataset.currentSrc !== resolvedVideo) {
-          videoEl.dataset.currentSrc = resolvedVideo;
-          videoEl.src = resolvedVideo;
+
+        // 优先使用 Blob 内存极速流 (0ms 秒开)，若无则使用标准流式 URL
+        const activeSrc = videoBlobCache.get(rawVideoUrl) || rawVideoUrl;
+
+        if (videoEl.dataset.currentSrc !== activeSrc) {
+          videoEl.dataset.currentSrc = activeSrc;
+          setWatchBuffering(true, '⚡ 视频加载中...');
+
+          videoEl.src = activeSrc;
+          videoEl.playbackRate = state.watch.playbackRate || 1.0;
           videoEl.load();
+
+          // 静默并发预载当前视频 Blob 并在后台预取相邻视频
+          if (!videoBlobCache.has(rawVideoUrl)) {
+            prefetchVideoBlob(rawVideoUrl);
+          }
+          preloadAdjacentVideos();
+
+          videoEl.onloadstart = () => {
+            setWatchBuffering(true, '⚡ 视频加载中...');
+          };
+
+          videoEl.onwaiting = () => {
+            setWatchBuffering(true, '⏳ 视频缓冲中...');
+          };
+
+          videoEl.oncanplay = () => {
+            setWatchBuffering(false);
+          };
 
           videoEl.onplaying = () => {
             state.watch.isPlaying = true;
+            setWatchBuffering(false);
             if (backdrop) backdrop.style.opacity = '0';
           };
+
           videoEl.onpause = () => {
             state.watch.isPlaying = false;
           };
+
           videoEl.onended = () => {
             if (state.config && state.config.featureFlags && state.config.featureFlags.autoPlayNext) {
               slideVideo('next');
             }
           };
-          videoEl.onerror = (e) => {
-            console.warn('视频播放失败或加载中，展示保底封面:', e);
-            if (backdrop) backdrop.style.opacity = '1';
+
+          videoEl.onprogress = () => {
+            updateScrubberBars(videoEl);
           };
 
-          const scrubberProgress = document.querySelector('.video-scrubber-progress');
           videoEl.ontimeupdate = () => {
-            if (scrubberProgress && videoEl.duration) {
-              const pct = (videoEl.currentTime / videoEl.duration) * 100;
-              scrubberProgress.style.width = `${pct}%`;
-            }
+            updateScrubberBars(videoEl);
+          };
+
+          let stallTimer = null;
+          videoEl.onstalled = () => {
+            console.warn('[Lingo Video] 视频传输轻微受阻，缓冲自愈中...');
+            clearTimeout(stallTimer);
+            stallTimer = setTimeout(() => {
+              if (videoEl.paused && !videoEl.ended) {
+                const pill = document.getElementById('watch-retry-pill');
+                if (pill) pill.style.display = 'flex';
+              }
+            }, 6000);
+          };
+
+          videoEl.onerror = (e) => {
+            console.warn('视频播放失败或加载中，展示保底封面:', e);
+            setWatchBuffering(false);
+            if (backdrop) backdrop.style.opacity = '1';
+            const pill = document.getElementById('watch-retry-pill');
+            if (pill) pill.style.display = 'flex';
           };
 
           const playPromise = videoEl.play();
@@ -537,6 +702,7 @@
       } else {
         videoEl.style.display = 'none';
         videoEl.pause();
+        setWatchBuffering(false);
         if (backdrop) backdrop.style.opacity = '1';
       }
     }
@@ -1487,8 +1653,8 @@
     const videoEl = document.getElementById('watch-video-player');
     if (videoEl) {
       videoEl.pause();
-      videoEl.dataset.currentSrc = '';
     }
+    setWatchBuffering(false);
 
     const total = window.LINGO_MOCK.videos.length;
     let nextIdx = state.watch.currentIndex;
@@ -1544,6 +1710,7 @@
     if (videoEl && videoEl.src) {
       if (videoEl.paused) {
         if (videoEl.muted) videoEl.muted = false;
+        videoEl.playbackRate = state.watch.playbackRate || 1.0;
         videoEl.play().catch(e => console.warn('Play error:', e));
         state.watch.isPlaying = true;
       } else {
@@ -1885,6 +2052,8 @@
     closeConfigModal,
     saveConfigModal,
     testBackendConnection,
+    togglePlaybackRate,
+    retryCurrentVideo,
     showToast
   };
 
