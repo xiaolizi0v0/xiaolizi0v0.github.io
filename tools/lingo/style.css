@@ -184,16 +184,16 @@ html, body {
   overflow-x: hidden;
 }
 
-/* 视图容器管理 */
+/* 视图容器管理 - 未激活的面板严格隐藏 */
 .view-panel {
-  display: none;
+  display: none !important;
   width: 100%;
   min-height: 100%;
   flex-direction: column;
 }
 
 .view-panel.active {
-  display: flex;
+  display: flex !important;
   animation: viewFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -775,7 +775,6 @@ html, body {
   background: #09090b;
   color: #ffffff;
   min-height: calc(100vh - 60px);
-  display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;

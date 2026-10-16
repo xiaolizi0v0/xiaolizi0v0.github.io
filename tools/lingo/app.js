@@ -143,20 +143,29 @@
     state.currentView = viewName;
     document.querySelectorAll('.view-panel').forEach(panel => {
       panel.classList.remove('active');
+      panel.style.display = 'none';
     });
 
     const target = document.getElementById('view-' + viewName);
     if (target) {
       target.classList.add('active');
+      target.style.display = 'flex';
     }
+
+    // 同步视口背景色与置顶
+    const viewport = document.querySelector('.app-main-viewport');
+    if (viewport) {
+      if (viewName === 'watch' || viewName.startsWith('step')) {
+        viewport.style.backgroundColor = '#0c0c0e';
+      } else {
+        viewport.style.backgroundColor = 'var(--lingo-cream)';
+      }
+      viewport.scrollTop = 0;
+    }
+    if (target) target.scrollTop = 0;
 
     // 更新导航高亮状态
     updateNavStates();
-
-    // 视窗滚动置顶
-    const viewport = document.querySelector('.app-main-viewport');
-    if (viewport) viewport.scrollTop = 0;
-    if (target) target.scrollTop = 0;
 
     renderCurrentView();
   }
