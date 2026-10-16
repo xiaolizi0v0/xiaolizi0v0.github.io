@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lingo IELTS API Configuration",
+  "version": "1.0.0",
+  "description": "Lingo 雅思轻学/伴学系统后端服务配置文件。可在本文件中修改后端基础服务地址与接口路由，应用启动时将自动加载。若服务未启动，将平滑回退至前端内置的高保真数据流。",
+  "apiBaseUrl": "http://127.0.0.1:8080/api/v1",
+  "timeoutMs": 8000,
+  "useMockFallback": true,
+  "headers": {
+    "Content-Type": "application/json",
+    "X-Client-Platform": "Web-DualScreen",
+    "X-App-Version": "1.0.0"
+  },
+  "endpoints": {
+    "user": {
+      "profile": "/user/profile",
+      "updateGoals": "/user/goals",
+      "syncProgress": "/user/progress/sync"
+    },
+    "watch": {
+      "feed": "/feed/videos",
+      "videoDetail": "/feed/videos/:id",
+      "quickQuiz": "/feed/videos/:id/quiz",
+      "speechEvaluate": "/ai/speech-evaluate"
+    },
+    "read": {
+      "publications": "/reading/publications",
+      "articles": "/reading/articles",
+      "articleDetail": "/reading/articles/:id",
+      "sentenceAnalyze": "/reading/analyze"
+    },
+    "guess": {
+      "dailyPuzzles": "/guess/daily",
+      "verifyAnswer": "/guess/verify"
+    },
+    "vocab": {
+      "list": "/vocab/list",
+      "add": "/vocab/add",
+      "remove": "/vocab/remove",
+      "markReviewed": "/vocab/reviewed"
+    },
+    "stats": {
+      "today": "/stats/today",
+      "calendar": "/stats/calendar"
+    }
+  },
+  "featureFlags": {
+    "speechShadowing": true,
+    "bilingualSubtitle": true,
+    "aiEndingExplanation": true,
+    "autoPlayNext": false,
+    "offlineStorage": true
+  }
+}

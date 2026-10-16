@@ -3,6 +3,16 @@ const dataConfig = {
  //工具
   tools: [
     {
+      id: "14",
+      title: "Lingo 雅思轻学",
+      icon: "fas fa-language",
+      description: "手机电脑双端雅思备考应用：刷一刷（AI剧情短视频与结尾考词精讲）、看一看（20大外刊分级精读与考频提示）、猜一猜（四宫格图像记忆法）。支持目标分/领域/时长设置、后端API地址配置与完整接口文档。",
+      file: "Lingo.html",
+      category: "text",
+      date: "2026-10-16",
+      cover: "lingo/assets/shot-home.png"
+    },
+    {
       id: "13",
       title: "死神VS火影 HD：重制版",
       icon: "fas fa-fire-alt",
