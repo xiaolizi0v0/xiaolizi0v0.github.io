@@ -9046,7 +9046,7 @@
         {
           "title": "第02集",
           "url": "https://cdn.yzzy30-play.com/20261016/60507_5aed5b45/3000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第03集",
@@ -9059,7 +9059,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1792157433547
+      "updatedAt": 1792160584895
     },
     {
       "watchedDate": "2026-10-16",
