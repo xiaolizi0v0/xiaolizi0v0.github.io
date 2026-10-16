@@ -7665,8 +7665,6 @@
       "updatedAt": 1787725010765
     },
     {
-      "watchedDate": "2026-08-27",
-      "timestamp": 1787809072830,
       "id": "baike-65619917",
       "title": "金色（2026年徐兵执导的大漠寻金武侠冒险剧）",
       "year": "2026",
@@ -7683,6 +7681,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-08-27",
+      "timestamp": 1787809072830,
       "updatedAt": 1787809089138
     },
     {
@@ -7828,8 +7828,6 @@
       "updatedAt": 1789451159034
     },
     {
-      "watchedDate": "2026-09-01",
-      "timestamp": 1788232199325,
       "id": "baike-1111485",
       "title": "魔幻手机",
       "year": "2008",
@@ -7852,6 +7850,8 @@
           "watched": false
         }
       ],
+      "watchedDate": "2026-09-01",
+      "timestamp": 1788232199325,
       "updatedAt": 1788758648628
     },
     {
@@ -8206,8 +8206,6 @@
       "updatedAt": 1791619271764
     },
     {
-      "watchedDate": "2026-09-12",
-      "timestamp": 1789199027743,
       "id": "baike-33675787",
       "title": "兰香如故",
       "year": "2026",
@@ -8224,6 +8222,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-09-12",
+      "timestamp": 1789199027743,
       "updatedAt": 1789199045970
     },
     {
@@ -8398,8 +8398,6 @@
       "updatedAt": 1790097933786
     },
     {
-      "watchedDate": "2026-09-24",
-      "timestamp": 1790254252325,
       "id": "baike-68973933",
       "title": "我不是大师（2026年杨磊执导的民国悬疑剧）",
       "year": "2026",
@@ -8416,6 +8414,8 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-09-24",
+      "timestamp": 1790254252325,
       "updatedAt": 1790254252325
     },
     {
@@ -8531,6 +8531,8 @@
       "updatedAt": 1791704969026
     },
     {
+      "watchedDate": "2026-09-29",
+      "timestamp": 1790683013015,
       "id": "baike-37282866",
       "title": "潜入你心",
       "year": "2026",
@@ -8547,13 +8549,9 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-09-29",
-      "timestamp": 1790683013015,
       "updatedAt": 1790683013015
     },
     {
-      "watchedDate": "2026-09-30",
-      "timestamp": 1790768921776,
       "id": "baike-66944695",
       "title": "密室大逃脱第八季（2026年芒果TV推出的益智类实景解密真人秀）",
       "year": "2026",
@@ -8653,9 +8651,13 @@
           "url": "https://cdn.vvvip-plays33.cc/20260930/20507_d3dc22ad/3000k/hls/mixed.m3u8"
         }
       ],
+      "watchedDate": "2026-09-30",
+      "timestamp": 1790768921776,
       "updatedAt": 1790777548329
     },
     {
+      "watchedDate": "2026-10-01",
+      "timestamp": 1790785351334,
       "id": "baike-21950664",
       "title": "梅比乌斯·尘埃",
       "year": "2025",
@@ -8672,11 +8674,11 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-10-01",
-      "timestamp": 1790785351334,
       "updatedAt": 1790785351334
     },
     {
+      "watchedDate": "2026-10-01",
+      "timestamp": 1790848885229,
       "id": "baike-34581525",
       "title": "仙逆剧场版：神临之战",
       "year": "2025",
@@ -8693,11 +8695,11 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-10-01",
-      "timestamp": 1790848885229,
       "updatedAt": 1790848885229
     },
     {
+      "watchedDate": "2026-10-01",
+      "timestamp": 1790848923591,
       "id": "baike-35556407",
       "title": "仙逆剧场版：弑仙之战",
       "year": "2025",
@@ -8720,11 +8722,11 @@
           "watched": true
         }
       ],
-      "watchedDate": "2026-10-01",
-      "timestamp": 1790848923591,
       "updatedAt": 1790856285444
     },
     {
+      "watchedDate": "2026-10-08",
+      "timestamp": 1791454360363,
       "id": "baike-34249294",
       "title": "囧徒之预演告别",
       "year": "2026",
@@ -8741,13 +8743,9 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-10-08",
-      "timestamp": 1791454360363,
       "updatedAt": 1791454360363
     },
     {
-      "watchedDate": "2026-10-09",
-      "timestamp": 1791553261466,
       "id": "manual-1791553261466",
       "title": "神隐",
       "year": "2023",
@@ -8764,11 +8762,11 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-10-09",
+      "timestamp": 1791553261466,
       "updatedAt": 1791553461607
     },
     {
-      "watchedDate": "2026-10-12",
-      "timestamp": 1791778118157,
       "id": "baike-82349",
       "title": "喜剧之王",
       "year": "1999",
@@ -8785,11 +8783,11 @@
       "done": 0,
       "count": 1,
       "eps": [],
+      "watchedDate": "2026-10-12",
+      "timestamp": 1791778118157,
       "updatedAt": 1791778118157
     },
     {
-      "watchedDate": "2026-10-12",
-      "timestamp": 1791778169315,
       "id": "baike-64327281",
       "title": "喜剧之王（2026年由蒋龙、李炳强等联合执导的喜剧）",
       "year": "2026",
@@ -8887,9 +8885,13 @@
           "watched": false
         }
       ],
+      "watchedDate": "2026-10-12",
+      "timestamp": 1791778169315,
       "updatedAt": 1791959260448
     },
     {
+      "watchedDate": "2026-10-15",
+      "timestamp": 1792063570737,
       "id": "baike-37426314",
       "title": "心动制造所",
       "year": "2026",
@@ -8906,13 +8908,9 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "watchedDate": "2026-10-15",
-      "timestamp": 1792063570737,
       "updatedAt": 1792063570737
     },
     {
-      "watchedDate": "2026-10-16",
-      "timestamp": 1792128331318,
       "id": "baike-63227492",
       "title": "此处通往繁星（2026 年史岳执导的现实题材都市剧）",
       "year": "2026",
@@ -8980,11 +8978,11 @@
           "watched": false
         }
       ],
+      "watchedDate": "2026-10-16",
+      "timestamp": 1792128331318,
       "updatedAt": 1792135573568
     },
     {
-      "watchedDate": "2026-10-16",
-      "timestamp": 1792128396648,
       "id": "baike-65564371",
       "title": "把黑夜点燃（2026年刘新执导的情感悬疑网剧）",
       "year": "2026",
@@ -9017,7 +9015,30 @@
           "watched": false
         }
       ],
+      "watchedDate": "2026-10-16",
+      "timestamp": 1792128396648,
       "updatedAt": 1792128865166
+    },
+    {
+      "id": "baike-34828153",
+      "title": "嫁金钗",
+      "year": "2026",
+      "type": "tv",
+      "url": "http://baike.baidu.com/item/%E5%AB%81%E9%87%91%E9%92%97/65253221",
+      "img": "https://bkimg.cdn.bcebos.com/pic/cf1b9d16fdfaaf51f3de454e0a0983eef01f3b29ccb6?x-bce-process=image/resize,w_300,limit_1/format,f_auto",
+      "genre": "古装 爱情",
+      "platform": "优酷",
+      "region": "国产",
+      "sub_title": "",
+      "desc": "《嫁金钗》是由优酷、大麦娱乐联合出品的古装爱情剧。剧情介绍：该剧改编自笑佳人的同名小说《嫁金钗》，讲述了魏娆因家庭变故自幼被调换出府，为筹措养母治病费用代替假魏娆嫁入陆府，并与苏醒后的陆濯在经历身份危机和家族难关后终成眷属，后共同投身保家卫国的边境战事，守护百姓安宁的故事。演职员",
+      "note": "",
+      "liked": 0,
+      "done": 0,
+      "count": 1,
+      "eps": [],
+      "watchedDate": "2026-10-16",
+      "timestamp": 1792136136139,
+      "updatedAt": 1792136136139
     }
   ],
   "deleted": {
