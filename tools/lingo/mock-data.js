@@ -655,82 +655,751 @@ window.LINGO_MOCK = {
     }
   ],
 
-  // 猜一猜：图像记忆单词（20 题库精选样例）
+  // 猜一猜：图像记忆单词（20 题库精选题库 · 选出所有符合它的图）
   guessPuzzles: [
     {
-      id: "gp_01",
-      clueZh: "形容把该做的事情拖到最后一刻的普遍人类行为",
-      category: "雅思生活高频动词",
-      images: [
-        { url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80", caption: "早上 7 点闹钟连按五次稍后提醒" },
-        { url: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80", caption: "书桌上堆积成山但就是不愿翻开" },
-        { url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80", caption: "熟人聚会时还在偷偷摸鱼刷猫猫视频" },
-        { url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80", caption: "距离截止时间仅剩 15 分钟开始狂敲键盘" }
-      ],
-      maskWord: "P _ _ C _ _ S T _ N _ T _",
-      correctWord: "Procrastinate",
-      phonetic: "/prəˈkræstɪneɪt/",
-      pos: "v.",
-      meaningZh: "拖延，耽搁",
-      band: "7.0",
-      mnemonic: "【四图联想记】前缀 pro-(向后推) + crastinus(明天的)。永远把手头最艰巨的试卷推给'明天的自己'，这就是典型的 procrastinate！",
-      options: ["Procrastinate", "Ponder", "Precede", "Persevere"]
+        "id": "gp_01",
+        "word": "restrain",
+        "phonetic": "/rɪˈstreɪn/",
+        "pos": "v.",
+        "meaningZh": "克制，抑制，约束；阻止",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "lingo/assets/guess_restrain_1.png",
+                "caption": "主人抱住想扑蛋糕的猫咪",
+                "isCorrect": true
+            },
+            {
+                "url": "lingo/assets/guess_restrain_2.png",
+                "caption": "男生在沙发上安静熟睡放松",
+                "isCorrect": false
+            },
+            {
+                "url": "lingo/assets/guess_restrain_3.png",
+                "caption": "同伴拉住男生阻止他坐下",
+                "isCorrect": true
+            },
+            {
+                "url": "lingo/assets/guess_restrain_4.png",
+                "caption": "操场跑道全速冲刺竞速",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            2
+        ],
+        "mnemonic": "【四图情境解析】前缀 re-(往回) + strain(拉紧) = 往回拉紧缰绳 -> 抑制、阻止。图1抱着猫不让扑蛋糕、图3拉住同伴不让踩陷阱，都生动演绎了 restrain 的真实语境！",
+        "ieltsQuote": "剑桥雅思 14 Test 2: The regulatory committee must act decisively to restrain speculative financial trading."
     },
     {
-      id: "gp_02",
-      clueZh: "指一个人在繁华世界中主动选择、心境平静的'高质量独处'",
-      category: "雅思情感与生活方式",
-      images: [
-        { url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80", caption: "面朝空旷静谧的大海独自静思" },
-        { url: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80", caption: "一人在暖黄壁灯下的书房安心阅读" },
-        { url: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=400&q=80", caption: "清晨在雾气弥漫的深山竹林漫步" },
-        { url: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=400&q=80", caption: "街角咖啡馆靠窗座位品味手冲" }
-      ],
-      maskWord: "S _ L _ T _ D _",
-      correctWord: "Solitude",
-      phonetic: "/ˈsɒlətjuːd/",
-      pos: "n.",
-      band: "7.0",
-      mnemonic: "【四图联想记】区别于被动孤单的 loneliness，solitude 是一种内心富足的高级享受：我自清欢，与己为伴。",
-      options: ["Solitude", "Isolation", "Desolation", "Alienation"]
+        "id": "gp_02",
+        "word": "procrastinate",
+        "phonetic": "/prəˈkræstɪneɪt/",
+        "pos": "v.",
+        "meaningZh": "拖延，耽搁",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+                "caption": "闹钟连按五次稍后提醒",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80",
+                "caption": "书堆成山却在转笔摸鱼",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+                "caption": "高效专注在键盘前敲代码",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80",
+                "caption": "死线前10分钟通宵狂赶作业",
+                "isCorrect": true
+            }
+        ],
+        "correctIndices": [
+            0,
+            1,
+            3
+        ],
+        "mnemonic": "【词根记忆】pro-(向后) + crastinus(明天的)。永远把手头最艰巨的任务留给明天的自己，这就是典型的 procrastinate！",
+        "ieltsQuote": "剑桥雅思 12 Test 4: Students who habitually procrastinate report significantly higher levels of academic anxiety."
     },
     {
-      id: "gp_03",
-      clueZh: "形容面对两个都极具挑战的抉择，左右为难的棘手困局",
-      category: "雅思思辨高频名词",
-      images: [
-        { url: "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=400&q=80", caption: "站在两条完全未知的十字路口前止步" },
-        { url: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80", caption: "高难度天平两端放着同样的砝码" },
-        { url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80", caption: "期末考试复习撞上心仪公司的实习面试" },
-        { url: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80", caption: "经典电车难题：扳动还是不扳动？" }
-      ],
-      maskWord: "D _ L _ M M _",
-      correctWord: "Dilemma",
-      phonetic: "/daɪˈlemə/",
-      pos: "n.",
-      band: "7.0",
-      mnemonic: "【四图联想记】前缀 di-(二) + lemma(前提命题)。两个命题相互打架，怎么选都扎心，这就是两难困境 dilemma！",
-      options: ["Dilemma", "Hazard", "Disaster", "Paradox"]
+        "id": "gp_03",
+        "word": "solitude",
+        "phonetic": "/ˈsɒlətjuːd/",
+        "pos": "n.",
+        "meaningZh": "独处，独居；清幽寂静",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80",
+                "caption": "面朝空旷静谧的大海独自静思",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80",
+                "caption": "一人在暖黄壁灯下的书房安心阅读",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
+                "caption": "摇滚音乐节万人狂欢合唱",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=400&q=80",
+                "caption": "火车站候车大厅人潮拥挤",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            1
+        ],
+        "mnemonic": "【情境区分】区别于孤单(loneliness)，solitude 是一种内心富足充盈的主动独处享受：我自清欢，与己为伴。",
+        "ieltsQuote": "剑桥雅思 16 Test 1: Solitude affords reflective minds the cognitive space required for deep creative synthesis."
     },
     {
-      id: "gp_04",
-      clueZh: "形容大都市或市集车水马龙、熙熙攘攘的活力全开状态",
-      category: "雅思地点环境描述词",
-      images: [
-        { url: "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=400&q=80", caption: "东京涩谷十字路口如潮的人流" },
-        { url: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80", caption: "热气蒸腾、吆喝声此起彼伏的夜市摊位" },
-        { url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80", caption: "金融街早高峰疾步穿梭的白领人群" },
-        { url: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=400&q=80", caption: "火车站大厅大包小包赶春运的旅客" }
-      ],
-      maskWord: "B _ S T L _ N G",
-      correctWord: "Bustling",
-      phonetic: "/ˈbʌslɪŋ/",
-      pos: "adj.",
-      band: "6.5",
-      mnemonic: "【四图联想记】bus(忙忙碌碌) + tling -> 人声鼎沸、车马川流不息的闹市，雅思口语描述家乡街景的无上法宝！",
-      options: ["Bustling", "Barren", "Bleak", "Bizarre"]
+        "id": "gp_04",
+        "word": "dilemma",
+        "phonetic": "/daɪˈlemə/",
+        "pos": "n.",
+        "meaningZh": "两难困境，左右为难的境地",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=400&q=80",
+                "caption": "站在十字路口前两难止步",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=400&q=80",
+                "caption": "跑车在通畅直道全速疾驰",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80",
+                "caption": "欢度生日派对吹灭蜡烛",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80",
+                "caption": "经典电车难题向左还是向右",
+                "isCorrect": true
+            }
+        ],
+        "correctIndices": [
+            0,
+            3
+        ],
+        "mnemonic": "【词根拆解】di-(两个) + lemma(命题)。面对两个针锋相对且难以兼顾的抉择，这就是 dilemma！",
+        "ieltsQuote": "剑桥雅思 11 Test 3: Policymakers are trapped in a moral dilemma between economic growth and environmental stewardship."
+    },
+    {
+        "id": "gp_05",
+        "word": "bustling",
+        "phonetic": "/ˈbʌslɪŋ/",
+        "pos": "adj.",
+        "meaningZh": "熙熙攘攘的，喧闹繁忙的",
+        "band": "6.5",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=400&q=80",
+                "caption": "涩谷十字路口如潮的人流",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80",
+                "caption": "热气蒸腾人声鼎沸的夜市小吃街",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80",
+                "caption": "金融街早高峰疾步穿梭的白领",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80",
+                "caption": "空无一人的深山云雾山脊",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            1,
+            2
+        ],
+        "mnemonic": "【生活联想】bus(忙碌) + tling -> 车水马龙、熙熙攘攘的街市景象，雅思口语描述家乡都市高分词！",
+        "ieltsQuote": "剑桥雅思 13 Test 1: The historic quarter transformed into a bustling tourist hub with vibrant artisanal stalls."
+    },
+    {
+        "id": "gp_06",
+        "word": "mitigate",
+        "phonetic": "/ˈmɪtɪɡeɪt/",
+        "pos": "v.",
+        "meaningZh": "缓解，减轻，缓和",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=400&q=80",
+                "caption": "遮阳棚洒水系统给旱田降温",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80",
+                "caption": "森林深处蔓延的熊熊烈火",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=400&q=80",
+                "caption": "戴上降噪耳机抵挡窗外噪音",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
+                "caption": "狂风暴雨拔起大树阻塞交通",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            2
+        ],
+        "mnemonic": "【词根拆解】miti-(柔和) + gate(使成为) -> 使痛苦、损害或严重性减轻变柔和。",
+        "ieltsQuote": "剑桥雅思 17 Test 3: Renewable energy investments are crucial to mitigate carbon emissions."
+    },
+    {
+        "id": "gp_07",
+        "word": "fragile",
+        "phonetic": "/ˈfrædʒaɪl/",
+        "pos": "adj.",
+        "meaningZh": "易碎的，脆弱的",
+        "band": "6.5",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=400&q=80",
+                "caption": "薄如蝉翼的水晶高脚杯",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80",
+                "caption": "树梢轻晃即将破壳的细脆鸟蛋",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=400&q=80",
+                "caption": "坚硬无比的花岗岩金字塔石阶",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=400&q=80",
+                "caption": "防暴特种作业装甲重型卡车",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            1
+        ],
+        "mnemonic": "【词根记忆】frag-(碎) + ile(易于...的) -> 易碎脆弱。不仅指玻璃，雅思常考脆弱生态(fragile ecosystem)。",
+        "ieltsQuote": "剑桥雅思 15 Test 1: The Arctic ecosystem is remarkably fragile in the face of warming ocean currents."
+    },
+    {
+        "id": "gp_08",
+        "word": "cognitive",
+        "phonetic": "/ˈkɒɡnətɪv/",
+        "pos": "adj.",
+        "meaningZh": "认知的，感知的",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=400&q=80",
+                "caption": "脑电波监测与神经回路模型",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
+                "caption": "猫猫在纸盒子里翻滚打盹",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80",
+                "caption": "复杂的逻辑思维导图与分析记录",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=400&q=80",
+                "caption": "喝奶茶自拍上传社交平台",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            2
+        ],
+        "mnemonic": "【词根拆解】cogn-(认知、了解) + itive -> 关于心智知觉与脑力推理思考过程的。",
+        "ieltsQuote": "剑桥雅思 10 Test 3: Excessive digital notifications exacerbate cognitive distraction in adolescent learners."
+    },
+    {
+        "id": "gp_09",
+        "word": "nostalgia",
+        "phonetic": "/nɒˈstældʒə/",
+        "pos": "n.",
+        "meaningZh": "怀旧，怀念往昔",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80",
+                "caption": "翻看泛黄胶卷黑白家庭老相册",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=400&q=80",
+                "caption": "老式黑胶唱片机流淌复古老歌",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
+                "caption": "赛博朋克霓虹灯未来科幻场景",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80",
+                "caption": "无人驾驶高空物流无人机",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            1
+        ],
+        "mnemonic": "【词根拆解】nost-(回家、旧时) + algia(伤感) -> 对旧时美好岁月的温情怀恋与回味。",
+        "ieltsQuote": "剑桥雅思 18 Test 2: Vintage vinyl revival is fueled by a pervasive sense of generational nostalgia."
+    },
+    {
+        "id": "gp_10",
+        "word": "resilient",
+        "phonetic": "/rɪˈzɪliənt/",
+        "pos": "adj.",
+        "meaningZh": "有弹性的；适应力强的，能迅速恢复的",
+        "band": "7.5",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?auto=format&fit=crop&w=400&q=80",
+                "caption": "砖石缝隙中倔强破土盛放的雏菊",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=400&q=80",
+                "caption": "摔在瓷砖上一击即碎的花瓶",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80",
+                "caption": "狂风暴雨后依然傲立不屈的深根竹林",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=400&q=80",
+                "caption": "烈日暴晒下脆弱易碎的枯叶",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            2
+        ],
+        "mnemonic": "【词根拆解】re-(回) + sili-(弹跳) + ent -> 遭遇重压依然能弹回原状 -> 坚韧不拔、抗逆力强。",
+        "ieltsQuote": "剑桥雅思 14 Test 4: Communities with robust social capital prove far more resilient during economic shocks."
+    },
+    {
+        "id": "gp_11",
+        "word": "monotonous",
+        "phonetic": "/məˈnɒtənəs/",
+        "pos": "adj.",
+        "meaningZh": "单调乏味的，毫无变化的",
+        "band": "6.5",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+                "caption": "日复一日打卡重复贴封条的流水线",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80",
+                "caption": "无休止重复复制粘贴相同表格数据",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
+                "caption": "五光十色的魔术烟火杂技表演",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80",
+                "caption": "探索神秘海底未知的珊瑚礁群",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            1
+        ],
+        "mnemonic": "【词根拆解】mono-(单一) + ton-(调子) + ous -> 永远只有一个调调 -> 单调乏味的。",
+        "ieltsQuote": "剑桥雅思 12 Test 2: Employees subjected to monotonous tasks showed significantly reduced attention spans."
+    },
+    {
+        "id": "gp_12",
+        "word": "fluctuate",
+        "phonetic": "/ˈflʌktʃueɪt/",
+        "pos": "v.",
+        "meaningZh": "波动，起伏不定",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80",
+                "caption": "股票行情K线剧烈大涨大跌",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=400&q=80",
+                "caption": "水平仪上纹丝不动的完美水平基准线",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80",
+                "caption": "没有一丝涟漪的绝对镜面湖水",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=400&q=80",
+                "caption": "狂暴大海潮汐剧烈升降的大浪",
+                "isCorrect": true
+            }
+        ],
+        "correctIndices": [
+            0,
+            3
+        ],
+        "mnemonic": "【小作文必备词】flu-(流动) + ctuate -> 像水流波涛一样起伏跌宕 -> 波动。小作文描述趋势王牌词！",
+        "ieltsQuote": "雅思写作 Task 1: The price of petroleum fluctuated wildly between January and August."
+    },
+    {
+        "id": "gp_13",
+        "word": "lucrative",
+        "phonetic": "/ˈluːkrətɪv/",
+        "pos": "adj.",
+        "meaningZh": "利润丰厚的，赚钱的",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=400&q=80",
+                "caption": "初创科技公司成功上市获得百倍回报",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80",
+                "caption": "常年亏损濒临破产甩卖的实体店",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80",
+                "caption": "签下价值十亿美元的高额跨国独家合同",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+                "caption": "向慈善孤儿院免费捐赠过冬棉衣",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            2
+        ],
+        "mnemonic": "【词根记忆】lucr-(钱财、利润) + ative -> 能带来大笔财富回报的 -> 利润极其丰厚。",
+        "ieltsQuote": "剑桥雅思 13 Test 3: The extraction of rare earth elements has evolved into a lucrative international industry."
+    },
+    {
+        "id": "gp_14",
+        "word": "vulnerable",
+        "phonetic": "/ˈvʌlnərəbl/",
+        "pos": "adj.",
+        "meaningZh": "易受伤害的，脆弱易受损的",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80",
+                "caption": "失去母兽庇护在冰天雪地瑟瑟发抖的幼崽",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=400&q=80",
+                "caption": "低洼沿海毫无防波堤保护的木质渔村",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=400&q=80",
+                "caption": "地下深处万无一失的防核掩体工事",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=400&q=80",
+                "caption": "装甲全封闭防弹警用护卫队",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            1
+        ],
+        "mnemonic": "【词根拆解】vulner-(创伤) + able -> 容易遭受物理或心理重创的。大作文环境弱势群体常客！",
+        "ieltsQuote": "剑桥雅思 16 Test 2: Low-income coastal populations are disproportionately vulnerable to rising sea levels."
+    },
+    {
+        "id": "gp_15",
+        "word": "ambiguous",
+        "phonetic": "/æmˈbɪɡjuəs/",
+        "pos": "adj.",
+        "meaningZh": "模棱两可的，含糊不清的",
+        "band": "7.5",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=400&q=80",
+                "caption": "指路牌同时指向互相矛盾的两个方向",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+                "caption": "严谨精确到小数点后六位的科学公式",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80",
+                "caption": "合同条款含混其词存在双重解释漏洞",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=400&q=80",
+                "caption": "黑白分明毫无争议的终点裁判录像",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            2
+        ],
+        "mnemonic": "【词根拆解】ambi-(两个方向、周围) + ag-(驱动) -> 怎么解读都能说得通 -> 模棱两可。",
+        "ieltsQuote": "剑桥雅思 15 Test 3: The survey generated ambiguous findings regarding consumer preferences."
+    },
+    {
+        "id": "gp_16",
+        "word": "spontaneous",
+        "phonetic": "/spɒnˈteɪniəs/",
+        "pos": "adj.",
+        "meaningZh": "自发的，非强迫的；心血来潮的",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80",
+                "caption": "街头艺人即兴演奏引来全场路人围圈起舞",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80",
+                "caption": "说走就走毫无旅行攻略的自驾探索",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80",
+                "caption": "严格按分钟执行的军训排队步操",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80",
+                "caption": "提前半年反复推敲修改的婚礼策划流程表",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            1
+        ],
+        "mnemonic": "【生活情境】不是经过精心规划编排的，而是源自内心天然冲动或即兴激发的 -> 自发、随兴。",
+        "ieltsQuote": "剑桥雅思 17 Test 4: The musical performance concluded with a spontaneous standing ovation."
+    },
+    {
+        "id": "gp_17",
+        "word": "tedious",
+        "phonetic": "/ˈtiːdiəs/",
+        "pos": "adj.",
+        "meaningZh": "冗长乏味的，令人厌烦的",
+        "band": "6.5",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80",
+                "caption": "逐行手动核对上万张发票税号数字",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80",
+                "caption": "在游乐场体验惊险过山车放声大笑",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+                "caption": "在办事窗口排长队等待盖几十个章",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80",
+                "caption": "品尝全球米其林星级特色甜点",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            2
+        ],
+        "mnemonic": "【情感记忆】ted-(令人厌烦) + ious -> 过程极其冗长、没有任何乐趣的折磨差事。",
+        "ieltsQuote": "剑桥雅思 10 Test 1: Sorting through centuries of archival documents proved to be a tedious undertaking."
+    },
+    {
+        "id": "gp_18",
+        "word": "perseverance",
+        "phonetic": "/ˌpɜːsɪˈvɪərəns/",
+        "pos": "n.",
+        "meaningZh": "毅力，坚持不懈，百折不挠",
+        "band": "7.5",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80",
+                "caption": "马拉松选手双腿抽筋依然咬牙冲向终点",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=400&q=80",
+                "caption": "遇到一点难题就立刻放弃退出游戏",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+                "caption": "通宵刷短视频直到天亮",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?auto=format&fit=crop&w=400&q=80",
+                "caption": "科学家历经数万次实验失败最终攻克难关",
+                "isCorrect": true
+            }
+        ],
+        "correctIndices": [
+            0,
+            3
+        ],
+        "mnemonic": "【词根拆解】per-(始终、贯彻) + severe(严酷) + ance -> 面对严酷逆境始终贯彻到底 -> 坚毅不拔。",
+        "ieltsQuote": "剑桥雅思 14 Test 1: Scientific breakthroughs demand exceptional intellectual brilliance alongside relentless perseverance."
+    },
+    {
+        "id": "gp_19",
+        "word": "metaphor",
+        "phonetic": "/ˈmetəfər/",
+        "pos": "n.",
+        "meaningZh": "隐喻，暗喻；象征",
+        "band": "7.5",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=400&q=80",
+                "caption": "时钟齿轮与枯萎花朵隐喻时光飞逝",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80",
+                "caption": "书籍作为灯塔隐喻知识照亮迷茫黑夜",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+                "caption": "用直尺实测桌子的精准厘米长度",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=400&q=80",
+                "caption": "汽车仪表盘显示时速80公里",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            1
+        ],
+        "mnemonic": "【修辞手法】meta-(转变、超越) + phor-(带来) -> 不带 like/as 而直接将两件事物互为寄托借代 -> 隐喻。",
+        "ieltsQuote": "剑桥雅思 15 Test 4: The author employs the clockwork mechanism as a metaphor for urban regimentation."
+    },
+    {
+        "id": "gp_20",
+        "word": "inevitable",
+        "phonetic": "/ɪnˈevɪtəbl/",
+        "pos": "adj.",
+        "meaningZh": "不可避免的，必然发生的",
+        "band": "7.0",
+        "instruction": "选出所有符合它的图（可多选）",
+        "images": [
+            {
+                "url": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=400&q=80",
+                "caption": "深秋树叶凋零化作春泥的大自然铁律",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=400&q=80",
+                "caption": "买彩票喜中千万头奖的极偶然小概率事件",
+                "isCorrect": false
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80",
+                "caption": "太阳自东方升起西方落下的客观必然",
+                "isCorrect": true
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80",
+                "caption": "掷骰子连续五次掷出六点幸运奇迹",
+                "isCorrect": false
+            }
+        ],
+        "correctIndices": [
+            0,
+            2
+        ],
+        "mnemonic": "【词根拆解】in-(不) + evit-(避开) + able -> 怎么躲也躲不过的 -> 必然发生、不可阻挡。",
+        "ieltsQuote": "剑桥雅思 16 Test 3: Structural automation has rendered certain repetitive vocations virtually inevitable to phase out."
     }
-  ],
+],
 
   // 生词本初始化数据
   vocabulary: [

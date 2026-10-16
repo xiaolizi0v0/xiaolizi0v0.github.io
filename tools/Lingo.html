@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- 引入 Lingo 独立样式表 -->
-  <link rel="stylesheet" href="lingo/style.css?v=2.5">
+  <link rel="stylesheet" href="lingo/style.css?v=2.6">
 </head>
 <body>
 
@@ -302,7 +302,7 @@
             </div>
             <div class="feature-card-right">
               <div class="feature-thumb-box">
-                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=200&q=80" alt="猜一猜封面" class="feature-thumb-img">
+                <img src="lingo/assets/guess_restrain_1.png" alt="猜一猜封面" class="feature-thumb-img">
               </div>
               <i class="fas fa-chevron-right feature-arrow-chevron"></i>
             </div>
@@ -489,28 +489,58 @@
     <section id="view-guess" class="view-panel">
       <div class="guess-view-container">
         
-        <div class="guess-top-bar">
-          <div>
-            <span style="font-size: 11px; font-weight: 700; color: #f97316;">GUESS & MEMORIZE</span>
-            <div class="headline-text" style="font-size: 20px;">根据图像猜单词</div>
+        <!-- 顶部返回、标题与进度指示 (还原图1) -->
+        <div class="guess-nav-header">
+          <button class="guess-back-btn" onclick="window.LingoApp.switchView('dashboard')" title="返回首页">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <span class="guess-header-title">猜一猜</span>
+          <span class="guess-counter-pill" id="guess-counter-pill">1 / 20</span>
+        </div>
+
+        <!-- 20 格微细分段进度条 -->
+        <div class="guess-seg-track" id="guess-seg-track"></div>
+
+        <!-- 单词题干与发音区 (大号衬线字体 + 朗读喇叭) -->
+        <div class="guess-prompt-card">
+          <div class="guess-word-row">
+            <h1 class="guess-target-word" id="guess-word-title">restrain</h1>
+            <button class="guess-speaker-btn" id="guess-speaker-btn" title="点击朗读发音">
+              <i class="fas fa-volume-up"></i>
+            </button>
           </div>
-          <div class="guess-progress-badge" id="guess-counter-badge">1 / 20 词</div>
+          <div class="guess-sub-instruction" id="guess-instruction-line">
+            <span class="guess-phonetic-text" id="guess-phonetic-text">/rɪ'streɪn/</span> · 选出所有符合它的图（可多选）
+          </div>
         </div>
 
-        <!-- 情境线索 -->
-        <div class="guess-clue-title" id="guess-clue-text">
-          💡 线索提示：形容把该做的事情拖到最后一刻的普遍人类行为
+        <!-- 2x2 四宫格情境图片互动矩阵 -->
+        <div class="guess-photo-grid" id="guess-photos-box"></div>
+
+        <!-- 底部主确认操作按钮: 确认（已选 0 张） -->
+        <div class="guess-action-bar">
+          <button class="guess-confirm-btn" id="guess-confirm-btn" disabled>
+            确认（已选 0 张）
+          </button>
         </div>
 
-        <!-- 四宫格生活/表情包情境图 -->
-        <div class="guess-grid-images" id="guess-images-grid"></div>
-
-        <!-- 单词掩码与选项 -->
-        <div class="guess-word-mask" id="guess-mask-text">P _ _ C _ _ S T _ N _ T _</div>
-        <div class="guess-options-grid" id="guess-options-box"></div>
-
-        <!-- 答对揭晓联想记忆卡 -->
-        <div class="guess-mnemonic-card" id="guess-mnemonic-box" style="display: none;"></div>
+        <!-- 提交答案后的解析与下一题卡片 -->
+        <div class="guess-feedback-card" id="guess-feedback-card" style="display: none;">
+          <div class="feedback-status-banner" id="guess-status-banner"></div>
+          <div class="feedback-word-detail">
+            <div class="feedback-meaning-zh" id="guess-meaning-zh"></div>
+            <div class="feedback-mnemonic-text" id="guess-mnemonic-text"></div>
+            <div class="feedback-quote-text" id="guess-quote-text"></div>
+          </div>
+          <div class="feedback-actions-row">
+            <button class="feedback-action-btn star" id="guess-star-word-btn">
+              <i class="far fa-star"></i> 加入生词本
+            </button>
+            <button class="feedback-action-btn next" id="guess-next-puzzle-btn">
+              下一题 ➔
+            </button>
+          </div>
+        </div>
 
       </div>
     </section>
@@ -653,7 +683,7 @@
   <div class="lingo-toast" id="global-toast">提示信息</div>
 
   <!-- 引入数据源与脚本 -->
-  <script src="lingo/mock-data.js?v=2.5"></script>
-  <script src="lingo/app.js?v=2.5"></script>
+  <script src="lingo/mock-data.js?v=2.6"></script>
+  <script src="lingo/app.js?v=2.6"></script>
 </body>
 </html>

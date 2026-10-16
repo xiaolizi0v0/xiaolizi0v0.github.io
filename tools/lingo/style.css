@@ -1480,152 +1480,395 @@ body:has(#view-watch.active) .app-main-viewport {
 
 .guess-view-container {
   width: 100%;
-  max-width: 720px;
+  max-width: 480px;
   margin: 0 auto;
-  padding: 36px 20px 80px;
+  padding: 24px 20px 100px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
-.guess-top-bar {
+/* 顶部导航与计数 */
+.guess-nav-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
-.guess-progress-badge {
+.guess-back-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f4f4f5;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
+  color: #18181b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.guess-back-btn:hover {
+  background: #e4e4e7;
+  transform: scale(1.05);
+}
+
+.guess-header-title {
+  font-size: 17px;
   font-weight: 700;
-  color: #f97316;
-  background: #ffedd5;
+  color: #18181b;
+  position: absolute;
+  left: 50px;
+}
+
+.guess-counter-pill {
+  font-size: 13px;
+  font-weight: 600;
+  color: #52525b;
+  background: #f4f4f5;
   padding: 4px 12px;
   border-radius: var(--lingo-radius-full);
 }
 
-.guess-clue-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #18181b;
-  line-height: 1.5;
-  background: #ffffff;
-  border-radius: var(--lingo-radius-md);
-  padding: 16px 18px;
-  border: 1px solid var(--lingo-border-light);
-  box-shadow: var(--lingo-shadow-card);
-}
-
-/* 四宫格图像矩阵 (2x2) */
-.guess-grid-images {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-.grid-image-card {
-  background: #f4f4f5;
-  border-radius: var(--lingo-radius-lg);
-  overflow: hidden;
-  position: relative;
-  height: 180px;
-  border: 1px solid var(--lingo-border-light);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.grid-image-card img {
+/* 20 格分段进度条 */
+.guess-seg-track {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  padding: 4px 0 8px;
 }
 
-.grid-caption-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 6px 10px;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.9);
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.guess-seg-dash {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: #e4e4e7;
+  transition: background 0.25s ease;
 }
 
-/* 单词线索与选项格 */
-.guess-word-mask {
+.guess-seg-dash.active {
+  background: #4f46e5;
+}
+
+.guess-seg-dash.completed {
+  background: #a5b4fc;
+}
+
+/* 单词题干卡片 */
+.guess-prompt-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  font-family: var(--lingo-font-mono);
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 3px;
+  padding: 4px 0 6px;
+  gap: 6px;
+}
+
+.guess-word-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.guess-target-word {
+  font-family: var(--lingo-font-serif), Georgia, "Times New Roman", serif;
+  font-size: 36px;
+  font-weight: 800;
   color: #18181b;
-  padding: 10px 0;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
 }
 
-.guess-options-grid {
+.guess-speaker-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f4f4f5;
+  border: none;
+  color: #52525b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.guess-speaker-btn:hover {
+  background: #e4e4e7;
+  color: #18181b;
+  transform: scale(1.1);
+}
+
+.guess-sub-instruction {
+  font-size: 14px;
+  color: #71717a;
+  font-weight: 500;
+}
+
+.guess-phonetic-text {
+  color: #52525b;
+  font-family: var(--lingo-font-sans);
+  font-weight: 600;
+}
+
+/* 2x2 四宫格图片矩阵 */
+.guess-photo-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
-.guess-opt-btn {
-  background: #ffffff;
-  border: 1px solid var(--lingo-border-light);
-  border-radius: var(--lingo-radius-full);
-  height: 52px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #18181b;
+.guess-photo-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  overflow: hidden;
   cursor: pointer;
-  box-shadow: var(--lingo-shadow-card);
-  transition: all 0.15s;
+  border: 3px solid transparent;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #e4e4e7;
+  user-select: none;
 }
 
-.guess-opt-btn:hover {
-  background: #f4f4f5;
+.guess-photo-card:hover {
+  transform: scale(1.02);
+}
+
+.guess-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 选中高亮状态 */
+.guess-photo-card.selected {
+  border-color: #2563eb;
+  transform: scale(0.98);
+}
+
+.guess-card-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 12px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.guess-photo-card.selected .guess-card-check {
+  opacity: 1;
+  transform: scale(1);
+  background: #2563eb;
+  border-color: #ffffff;
+}
+
+/* 结果判定状态 */
+.guess-photo-card.is-correct {
+  border-color: #22c55e !important;
+}
+
+.guess-photo-card.is-correct .guess-card-check {
+  background: #22c55e !important;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.guess-photo-card.is-wrong {
+  border-color: #ef4444 !important;
+}
+
+.guess-photo-card.is-wrong .guess-card-check {
+  background: #ef4444 !important;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.guess-photo-card.is-missed {
+  border-color: #f59e0b !important;
+  border-style: dashed !important;
+}
+
+.guess-card-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  display: none;
+}
+
+.guess-card-badge.correct {
+  display: block;
+  background: rgba(22, 101, 52, 0.9);
+  color: #ffffff;
+}
+
+.guess-card-badge.wrong {
+  display: block;
+  background: rgba(153, 27, 27, 0.9);
+  color: #ffffff;
+}
+
+.guess-card-badge.missed {
+  display: block;
+  background: rgba(180, 83, 9, 0.9);
+  color: #ffffff;
+}
+
+/* 底部主确认操作按钮 */
+.guess-action-bar {
+  margin-top: 6px;
+}
+
+.guess-confirm-btn {
+  width: 100%;
+  height: 54px;
+  border-radius: 16px;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  background: #a1a1aa;
+  color: #ffffff;
+  cursor: not-allowed;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.guess-confirm-btn.active {
+  background: #18181b;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(24, 24, 27, 0.25);
+}
+
+.guess-confirm-btn.active:hover {
   transform: translateY(-1px);
+  background: #27272a;
 }
 
-.guess-opt-btn.correct {
-  background: #15803d;
-  border-color: #22c55e;
-  color: #ffffff;
-}
-
-.guess-opt-btn.wrong {
-  background: #b91c1c;
-  border-color: #ef4444;
-  color: #ffffff;
-}
-
-/* 答题揭晓后的联想记忆解析卡 */
-.guess-mnemonic-card {
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  border-radius: var(--lingo-radius-lg);
-  padding: 18px 20px;
+/* 解析与下一题卡片 */
+.guess-feedback-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid var(--lingo-border-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  animation: fadeIn 0.25s ease;
+  gap: 14px;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.mnemonic-header {
+.feedback-status-banner {
+  padding: 10px 14px;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 700;
-  color: #b45309;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.mnemonic-text {
+.feedback-status-banner.success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.feedback-status-banner.partial {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.feedback-word-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   font-size: 14px;
-  color: #92400e;
   line-height: 1.6;
+}
+
+.feedback-meaning-zh {
+  font-size: 16px;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.feedback-mnemonic-text {
+  color: #4b5563;
+  background: #f9fafb;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border-left: 3px solid #6366f1;
+}
+
+.feedback-quote-text {
+  font-size: 13px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.feedback-actions-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.feedback-action-btn {
+  flex: 1;
+  height: 44px;
+  border-radius: var(--lingo-radius-full);
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.feedback-action-btn.star {
+  background: #f4f4f5;
+  color: #18181b;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.feedback-action-btn.star.starred {
+  background: #fef9c3;
+  color: #a16207;
+  border-color: #fde047;
+}
+
+.feedback-action-btn.next {
+  background: #18181b;
+  color: #ffffff;
+}
+
+.feedback-action-btn.next:hover {
+  background: #27272a;
 }
 
 /* ==========================================================================

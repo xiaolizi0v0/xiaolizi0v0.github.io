@@ -46,6 +46,7 @@
     // 猜一猜状态
     guess: {
       currentPuzzleIndex: 0,
+      selectedIndices: [],
       hasAnswered: false,
       isCorrect: false,
       score: 40
@@ -575,43 +576,246 @@
   }
 
   // ------------------------------------------------------------------------
-  // 8. 「猜一猜」图像记忆单词 (Guess Puzzles)
+  // 8. 「猜一猜」图像记忆单词 (根据图片选出所有符合它的图，支持多选)
   // ------------------------------------------------------------------------
   function renderGuess() {
     const puzzles = window.LINGO_MOCK.guessPuzzles;
+    if (!puzzles || puzzles.length === 0) return;
+
     const cur = puzzles[state.guess.currentPuzzleIndex % puzzles.length];
     if (!cur) return;
 
+    state.guess.selectedIndices = [];
     state.guess.hasAnswered = false;
 
-    const clueEl = document.getElementById('guess-clue-text');
-    const maskEl = document.getElementById('guess-mask-text');
-    const counterEl = document.getElementById('guess-counter-badge');
-    const imagesContainer = document.getElementById('guess-images-grid');
-    const optionsContainer = document.getElementById('guess-options-box');
-    const mnemonicCard = document.getElementById('guess-mnemonic-box');
+    // 1. 顶部进度计数与 20 格分段进度条
+    const counterEl = document.getElementById('guess-counter-pill');
+    const segTrackEl = document.getElementById('guess-seg-track');
+    const activeIdx = state.guess.currentPuzzleIndex % puzzles.length;
 
-    if (counterEl) counterEl.textContent = `${(state.guess.currentPuzzleIndex % puzzles.length) + 1} / ${puzzles.length} 词`;
-    if (clueEl) clueEl.textContent = `💡 线索提示：${cur.clueZh}`;
-    if (maskEl) maskEl.textContent = cur.maskWord;
-    if (mnemonicCard) mnemonicCard.style.display = 'none';
+    if (counterEl) {
+      counterEl.textContent = `${activeIdx + 1} / ${puzzles.length}`;
+    }
+    if (segTrackEl) {
+      segTrackEl.innerHTML = Array.from({ length: puzzles.length }, (_, i) => {
+        let cls = 'guess-seg-dash';
+        if (i === activeIdx) cls += ' active';
+        else if (i < activeIdx) cls += ' completed';
+        return `<div class="${cls}"></div>`;
+      }).join('');
+    }
 
-    // 渲染四宫格图
-    if (imagesContainer) {
-      imagesContainer.innerHTML = cur.images.map(img => `
-        <div class="grid-image-card">
-          <img src="${img.url}" alt="${img.caption}">
-          <div class="grid-caption-overlay">${img.caption}</div>
+    // 2. 单词题干与发音
+    const wordTitle = document.getElementById('guess-word-title');
+    const speakerBtn = document.getElementById('guess-speaker-btn');
+    const phoneticEl = document.getElementById('guess-phonetic-text');
+    const instructionLine = document.getElementById('guess-instruction-line');
+
+    if (wordTitle) wordTitle.textContent = cur.word;
+    if (phoneticEl) phoneticEl.textContent = cur.phonetic || '';
+    if (instructionLine) {
+      instructionLine.innerHTML = `<span class="guess-phonetic-text" id="guess-phonetic-text">${cur.phonetic || ''}</span> · ${cur.instruction || '选出所有符合它的图（可多选）'}`;
+    }
+    if (speakerBtn) {
+      speakerBtn.onclick = () => speakWord(cur.word);
+    }
+
+    // 3. 2x2 四宫格情境图片互动矩阵
+    const photosBox = document.getElementById('guess-photos-box');
+    if (photosBox) {
+      photosBox.innerHTML = cur.images.map((img, i) => `
+        <div class="guess-photo-card" data-idx="${i}" onclick="window.LingoApp.toggleGuessPhotoSelection(${i})">
+          <img src="${img.url}" alt="${img.caption || '情境图'}">
+          <div class="guess-card-check"><i class="fas fa-check"></i></div>
+          <div class="guess-card-badge" id="guess-card-badge-${i}"></div>
         </div>
       `).join('');
     }
 
-    // 渲染选项
-    if (optionsContainer) {
-      optionsContainer.innerHTML = cur.options.map(opt => `
-        <button class="guess-opt-btn" onclick="window.LingoApp.verifyGuessAnswer('${opt}', '${cur.correctWord}', this)">${opt}</button>
-      `).join('');
+    // 4. 底部主确认操作按钮
+    const confirmBtn = document.getElementById('guess-confirm-btn');
+    if (confirmBtn) {
+      confirmBtn.textContent = '确认（已选 0 张）';
+      confirmBtn.disabled = true;
+      confirmBtn.classList.remove('active');
+      confirmBtn.onclick = () => confirmGuessAnswer();
     }
+
+    // 5. 隐藏结果解析卡
+    const feedbackCard = document.getElementById('guess-feedback-card');
+    if (feedbackCard) feedbackCard.style.display = 'none';
+  }
+
+  function toggleGuessPhotoSelection(idx) {
+    if (state.guess.hasAnswered) return;
+
+    const list = state.guess.selectedIndices;
+    const pos = list.indexOf(idx);
+    if (pos > -1) {
+      list.splice(pos, 1);
+    } else {
+      list.push(idx);
+    }
+
+    // 更新各卡片的选中高亮样式
+    document.querySelectorAll('.guess-photo-card').forEach(card => {
+      const cIdx = parseInt(card.dataset.idx, 10);
+      if (list.includes(cIdx)) {
+        card.classList.add('selected');
+      } else {
+        card.classList.remove('selected');
+      }
+    });
+
+    // 更新确认按钮文字与激活状态
+    const confirmBtn = document.getElementById('guess-confirm-btn');
+    if (confirmBtn) {
+      const count = list.length;
+      confirmBtn.textContent = `确认（已选 ${count} 张）`;
+      if (count > 0) {
+        confirmBtn.disabled = false;
+        confirmBtn.classList.add('active');
+      } else {
+        confirmBtn.disabled = true;
+        confirmBtn.classList.remove('active');
+      }
+    }
+  }
+
+  function confirmGuessAnswer() {
+    if (state.guess.hasAnswered || state.guess.selectedIndices.length === 0) return;
+    state.guess.hasAnswered = true;
+
+    const puzzles = window.LINGO_MOCK.guessPuzzles;
+    const cur = puzzles[state.guess.currentPuzzleIndex % puzzles.length];
+    if (!cur) return;
+
+    // 自动读音
+    speakWord(cur.word);
+
+    const userSelected = state.guess.selectedIndices;
+    const correctIndices = cur.correctIndices || [];
+
+    // 判定全对：数量相同且每个选项都在正确答案中
+    const isAllCorrect = userSelected.length === correctIndices.length &&
+      correctIndices.every(idx => userSelected.includes(idx));
+
+    // 更新各图片卡片状态反馈角标
+    document.querySelectorAll('.guess-photo-card').forEach(card => {
+      const idx = parseInt(card.dataset.idx, 10);
+      const badge = document.getElementById(`guess-card-badge-${idx}`);
+      const isSelected = userSelected.includes(idx);
+      const isTarget = correctIndices.includes(idx);
+
+      if (isTarget) {
+        if (isSelected) {
+          card.classList.add('is-correct');
+          if (badge) {
+            badge.textContent = '✓ 符合释义';
+            badge.className = 'guess-card-badge correct';
+          }
+        } else {
+          card.classList.add('is-missed');
+          if (badge) {
+            badge.textContent = '💡 也是符合的';
+            badge.className = 'guess-card-badge missed';
+          }
+        }
+      } else {
+        if (isSelected) {
+          card.classList.add('is-wrong');
+          if (badge) {
+            badge.textContent = '✕ 不符合';
+            badge.className = 'guess-card-badge wrong';
+          }
+        }
+      }
+    });
+
+    // 禁用确认按钮
+    const confirmBtn = document.getElementById('guess-confirm-btn');
+    if (confirmBtn) {
+      confirmBtn.disabled = true;
+      confirmBtn.classList.remove('active');
+    }
+
+    // 渲染并展示解析卡
+    const feedbackCard = document.getElementById('guess-feedback-card');
+    const statusBanner = document.getElementById('guess-status-banner');
+    const meaningEl = document.getElementById('guess-meaning-zh');
+    const mnemonicEl = document.getElementById('guess-mnemonic-text');
+    const quoteEl = document.getElementById('guess-quote-text');
+    const starBtn = document.getElementById('guess-star-word-btn');
+    const nextBtn = document.getElementById('guess-next-puzzle-btn');
+
+    if (statusBanner) {
+      if (isAllCorrect) {
+        statusBanner.className = 'feedback-status-banner success';
+        statusBanner.innerHTML = '<i class="fas fa-check-circle"></i> 敏锐！全部正确匹配';
+        showToast('🎉 太棒了！敏锐抓取词汇语义');
+        state.userGoals.learnedWordsToday += 1;
+        saveLocalUserData();
+        updateDashboardMetrics();
+      } else {
+        statusBanner.className = 'feedback-status-banner partial';
+        statusBanner.innerHTML = '<i class="fas fa-info-circle"></i> 差一点点，来看语义解析';
+        showToast('别灰心，点击查看图文情境解析');
+      }
+    }
+
+    if (meaningEl) {
+      meaningEl.innerHTML = `<span style="font-size: 13px; color: #4f46e5; font-weight: 700; margin-right: 6px;">${cur.pos || ''}</span> ${cur.meaningZh}`;
+    }
+    if (mnemonicEl) {
+      mnemonicEl.textContent = cur.mnemonic || '';
+    }
+    if (quoteEl) {
+      quoteEl.textContent = cur.ieltsQuote || '';
+    }
+
+    if (starBtn) {
+      const isAlreadyStarred = state.vocabulary.some(v => v.word.toLowerCase() === cur.word.toLowerCase());
+      if (isAlreadyStarred) {
+        starBtn.classList.add('starred');
+        starBtn.innerHTML = '<i class="fas fa-star" style="color: #eab308;"></i> 已存生词本';
+      } else {
+        starBtn.classList.remove('starred');
+        starBtn.innerHTML = '<i class="far fa-star"></i> 加入生词本';
+      }
+      starBtn.onclick = () => {
+        addWordToVocab({
+          word: cur.word,
+          phonetic: cur.phonetic,
+          pos: cur.pos,
+          meaningZh: cur.meaningZh,
+          band: cur.band,
+          source: '猜一猜 · 图像记忆'
+        });
+        starBtn.classList.add('starred');
+        starBtn.innerHTML = '<i class="fas fa-star" style="color: #eab308;"></i> 已存生词本';
+      };
+    }
+
+    if (nextBtn) {
+      const isLast = (state.guess.currentPuzzleIndex + 1) >= puzzles.length;
+      nextBtn.innerHTML = isLast ? '重新从第 1 题开始 ➔' : `下一题 (${(state.guess.currentPuzzleIndex % puzzles.length) + 2}/${puzzles.length}) ➔`;
+      nextBtn.onclick = () => nextGuessPuzzle();
+    }
+
+    if (feedbackCard) {
+      feedbackCard.style.display = 'flex';
+      setTimeout(() => {
+        feedbackCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }
+
+  function nextGuessPuzzle() {
+    const puzzles = window.LINGO_MOCK.guessPuzzles;
+    state.guess.currentPuzzleIndex = (state.guess.currentPuzzleIndex + 1) % puzzles.length;
+    state.guess.selectedIndices = [];
+    state.guess.hasAnswered = false;
+    renderGuess();
   }
 
   // ------------------------------------------------------------------------
@@ -1271,6 +1475,8 @@
     removeWordFromVocab,
     answerWatchQuiz,
     verifyGuessAnswer,
+    toggleGuessPhotoSelection,
+    confirmGuessAnswer,
     nextGuessPuzzle,
     selectPublication,
     setReadingDifficulty,
