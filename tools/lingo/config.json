@@ -3,7 +3,7 @@
   "title": "Lingo IELTS API Configuration",
   "version": "1.0.0",
   "description": "Lingo 雅思轻学/伴学系统后端服务配置文件。可在本文件中修改后端基础服务地址与接口路由，应用启动时将自动加载。若服务未启动，将平滑回退至前端内置的高保真数据流。",
-  "apiBaseUrl": "http://127.0.0.1:8080/api/v1",
+  "apiBaseUrl": "https://session-positioning-cuts-promised.trycloudflare.com/api/v1",
   "timeoutMs": 8000,
   "useMockFallback": true,
   "headers": {

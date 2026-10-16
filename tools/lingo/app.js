@@ -134,7 +134,7 @@
     }
 
     // 静默检测后端联通性
-    testBackendConnection(false);
+    await testBackendConnection(false);
   }
 
   // ------------------------------------------------------------------------
@@ -1409,9 +1409,10 @@
       if (resp.ok) {
         state.backendStatus = 'online';
         if (statusPill) {
-          statusPill.innerHTML = '<span style="color: #22c55e;">● 联机成功</span>';
+          statusPill.innerHTML = '<span style="color: #22c55e;">● 联机成功 (云端实时)</span>';
         }
-        if (showFeedback) showToast('🟢 后端服务连接成功！');
+        if (showFeedback) showToast('🟢 后端服务连接成功！已加载云端数据');
+        syncBackendData();
         return true;
       } else {
         throw new Error('服务返回异常');
@@ -1423,6 +1424,35 @@
       }
       if (showFeedback) showToast('🟡 未连接到远程后端，已自动无缝切换高保真本地驱动');
       return false;
+    }
+  }
+
+  async function syncBackendData() {
+    const apiUrl = (state.config && state.config.apiBaseUrl) || 'http://127.0.0.1:8080/api/v1';
+    try {
+      const [vRes, pRes, aRes, gRes] = await Promise.all([
+        fetch(`${apiUrl}/feed/videos`).then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch(`${apiUrl}/reading/publications`).then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch(`${apiUrl}/reading/articles`).then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch(`${apiUrl}/guess/daily`).then(r => r.ok ? r.json() : null).catch(() => null)
+      ]);
+      if (vRes && vRes.data && vRes.data.videos && vRes.data.videos.length) {
+        window.LINGO_MOCK.videos = vRes.data.videos;
+      }
+      if (pRes && pRes.data && pRes.data.length) {
+        window.LINGO_MOCK.publications = pRes.data;
+      }
+      if (aRes && aRes.data && aRes.data.articles && aRes.data.articles.length) {
+        window.LINGO_MOCK.articles = aRes.data.articles;
+      }
+      if (gRes && gRes.data && gRes.data.puzzles && gRes.data.puzzles.length) {
+        window.LINGO_MOCK.guessPuzzles = gRes.data.puzzles;
+      }
+      if (state.currentView) {
+        renderCurrentView();
+      }
+    } catch (e) {
+      console.warn('Backend sync error:', e);
     }
   }
 
