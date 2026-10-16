@@ -1653,11 +1653,12 @@
   async function syncBackendData() {
     const apiUrl = (state.config && state.config.apiBaseUrl) || 'http://127.0.0.1:8080/api/v1';
     try {
-      const [vRes, pRes, aRes, gRes] = await Promise.all([
+      const [vRes, pRes, aRes, gRes, vocabRes] = await Promise.all([
         fetch(`${apiUrl}/feed/videos`).then(r => r.ok ? r.json() : null).catch(() => null),
         fetch(`${apiUrl}/reading/publications`).then(r => r.ok ? r.json() : null).catch(() => null),
         fetch(`${apiUrl}/reading/articles`).then(r => r.ok ? r.json() : null).catch(() => null),
-        fetch(`${apiUrl}/guess/daily`).then(r => r.ok ? r.json() : null).catch(() => null)
+        fetch(`${apiUrl}/guess/daily`).then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch(`${apiUrl}/vocab/list`).then(r => r.ok ? r.json() : null).catch(() => null)
       ]);
       if (vRes && vRes.data && vRes.data.videos && vRes.data.videos.length) {
         window.LINGO_MOCK.videos = vRes.data.videos;
@@ -1671,6 +1672,21 @@
       if (gRes && gRes.data && gRes.data.puzzles && gRes.data.puzzles.length) {
         window.LINGO_MOCK.guessPuzzles = gRes.data.puzzles;
       }
+      if (vocabRes && vocabRes.data && vocabRes.data.words && vocabRes.data.words.length) {
+        window.LINGO_MOCK.vocabulary = vocabRes.data.words;
+        if (!state.vocabulary || state.vocabulary.length <= 3) {
+          state.vocabulary = vocabRes.data.words.slice(0, 50);
+          saveLocalUserData();
+          renderProfile();
+        }
+      }
+      if (state.currentView) {
+        renderCurrentView();
+      }
+    } catch (e) {
+      console.warn('Backend sync error:', e);
+    }
+  }
       if (state.currentView) {
         renderCurrentView();
       }
