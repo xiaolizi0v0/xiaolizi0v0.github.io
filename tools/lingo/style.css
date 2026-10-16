@@ -37,12 +37,27 @@
   --lingo-shadow-floating: 0 12px 36px -4px rgba(0, 0, 0, 0.25);
 }
 
-/* 基础重置 */
+/* 基础重置与滚动条样式抑制 (移动端全站杜绝突兀的原生侧边滚动条) */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
+}
+
+html, body, .app-main-viewport, .watch-player-view, .watch-stage-box {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.app-main-viewport::-webkit-scrollbar,
+.watch-player-view::-webkit-scrollbar,
+.watch-stage-box::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 html, body {
@@ -182,6 +197,24 @@ html, body {
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
+  overscroll-behavior-y: contain;
+}
+
+/* 刷一刷视图激活时：严格锁定全页面与舞台滚动，杜绝视频滑动时弹出系统侧边滚动条 */
+body.view-watch-active,
+html.view-watch-active,
+body:has(#view-watch.active),
+html:has(#view-watch.active) {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  height: 100% !important;
+}
+
+body.view-watch-active .app-main-viewport,
+body:has(#view-watch.active) .app-main-viewport {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  height: 100% !important;
 }
 
 /* 视图容器管理 - 未激活的面板严格隐藏 */
@@ -778,6 +811,9 @@ html, body {
   align-items: center;
   justify-content: center;
   padding: 16px;
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none !important;
 }
 
 .watch-stage-box {
@@ -787,7 +823,9 @@ html, body {
   max-height: 840px;
   border-radius: 24px;
   position: relative;
-  overflow: hidden;
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1964,9 +2002,25 @@ body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item.active::after,
     padding: 24px 18px 40px;
   }
 
+  /* 移动端全局隐藏所有滚动条，体验如同原生 App */
+  * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
   .watch-player-view {
     padding: 0;
     min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+    touch-action: none !important;
   }
 
   .watch-stage-box {
@@ -1975,6 +2029,9 @@ body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item.active::after,
     max-height: 100vh;
     border-radius: 0;
     border: none;
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+    touch-action: none !important;
   }
 
   /* 解决快测按钮、字幕与进度线被底部导航栏遮挡问题 */

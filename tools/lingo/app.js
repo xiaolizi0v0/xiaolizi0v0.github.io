@@ -210,6 +210,20 @@
         }
       }
     }
+
+    // 刷一刷视图锁死全页面滚动，杜绝上下滑动切视频时出现系统侧边滚动条
+    if (state.currentView === 'watch') {
+      document.body.classList.add('view-watch-active');
+      document.documentElement.classList.add('view-watch-active');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.classList.remove('view-watch-active');
+      document.documentElement.classList.remove('view-watch-active');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
     if (topNavTabs) {
       if (state.currentView.startsWith('step')) {
         topNavTabs.style.visibility = 'hidden';
@@ -848,11 +862,17 @@
         const currentY = e.touches[0].clientY;
         const deltaY = currentY - touchStartY;
         const deltaX = e.touches[0].clientX - touchStartX;
+
+        // 核心修复：一旦开始纵向手势，立即拦截浏览器原生网页滚动，杜绝侧边滚动条闪烁
+        if (Math.abs(deltaY) > Math.abs(deltaX)) {
+          if (e.cancelable) e.preventDefault();
+        }
+
         // 跟手微动效 (仅限垂直拖动)
         if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) < 100) {
           stageBox.style.transform = `translateY(${deltaY * 0.3}px)`;
         }
-      }, { passive: true });
+      }, { passive: false });
 
       stageBox.addEventListener('touchend', (e) => {
         if (!isTouchActive) return;
@@ -874,6 +894,11 @@
         } else if (Math.abs(deltaY) < 12 && deltaX < 12 && duration < 350) {
           toggleWatchPlayPause();
         }
+      });
+
+      stageBox.addEventListener('touchcancel', () => {
+        isTouchActive = false;
+        stageBox.style.transform = '';
       });
 
       // 桌面端鼠标上下拖拽切视频
@@ -904,6 +929,7 @@
       let wheelDebounce = false;
       stageBox.addEventListener('wheel', (e) => {
         if (e.target.closest('.word-sheet-overlay')) return;
+        if (e.cancelable) e.preventDefault();
         if (wheelDebounce) return;
         if (Math.abs(e.deltaY) > 30) {
           wheelDebounce = true;
@@ -914,7 +940,7 @@
           }
           setTimeout(() => { wheelDebounce = false; }, 450);
         }
-      }, { passive: true });
+      }, { passive: false });
     }
 
     // 底部导航栏点击
