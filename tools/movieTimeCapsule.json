@@ -8916,11 +8916,16 @@
           "title": "第01集",
           "url": "https://cdn.yzzy31-play.com/20261009/27312_8ddbd719/3000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://cdn.yzzy31-play.com/20261009/27313_e4b68127/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-10-16",
       "timestamp": 1792128331318,
-      "updatedAt": 1792128614401
+      "updatedAt": 1792128626630
     },
     {
       "id": "baike-65564371",
