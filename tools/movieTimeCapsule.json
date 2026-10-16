@@ -8993,11 +8993,16 @@
           "title": "第02集",
           "url": "https://cdn.yzzy30-play.com/20261015/60443_b9a6863e/3000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第03集",
+          "url": "https://cdn.yzzy30-play.com/20261015/60444_db249076/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-10-16",
       "timestamp": 1792128396648,
-      "updatedAt": 1792128858343
+      "updatedAt": 1792128865166
     }
   ],
   "deleted": {
