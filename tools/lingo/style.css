@@ -2605,6 +2605,48 @@ body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item.active::after,
   transform: translate(-50%, -50%) scale(1);
 }
 
+/* 居中常驻播放/暂停悬浮键 (暂停时持续显现，轻触即播) */
+.watch-center-play-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #ffffff;
+  z-index: 16;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.watch-center-play-badge i {
+  margin-left: 5px; /* 光学居中对齐播放三角形 */
+}
+
+.watch-center-play-badge:hover {
+  background: rgba(0, 0, 0, 0.85);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
+.watch-center-play-badge.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 .swipe-hint-pill {
   position: absolute;
   top: 76px;

@@ -29,6 +29,9 @@
     // 刷一刷短视频流状态
     watch: {
       currentIndex: 0,
+      isPlaying: false,
+      playbackRate: 1.0,
+      isBuffering: false,
       subtitleMode: 'bilingual', // 'bilingual' | 'en' | 'none'
       isStarred: false,
       isRecording: false,
@@ -643,11 +646,13 @@
           videoEl.onplaying = () => {
             state.watch.isPlaying = true;
             setWatchBuffering(false);
+            updateWatchPlayPauseUI(true);
             if (backdrop) backdrop.style.opacity = '0';
           };
 
           videoEl.onpause = () => {
             state.watch.isPlaying = false;
+            updateWatchPlayPauseUI(false);
           };
 
           videoEl.onended = () => {
@@ -688,6 +693,7 @@
           if (playPromise !== undefined) {
             playPromise.then(() => {
               state.watch.isPlaying = true;
+              updateWatchPlayPauseUI(true);
             }).catch(err => {
               console.info('浏览器拦截带声自动播放，自动切换静音重试播放:', err);
               videoEl.muted = true;
@@ -695,7 +701,8 @@
             });
           }
         } else {
-          if (videoEl.paused) {
+          // 当前视频相同，若用户处于播放状态且视频被意外暂停，则维持播放；若用户已主动暂停，切勿强行播放
+          if (state.watch.isPlaying && videoEl.paused) {
             videoEl.play().catch(() => {});
           }
         }
@@ -1518,17 +1525,17 @@
     const stageBox = document.getElementById('watch-stage-box');
     let touchStartY = 0;
     let touchStartX = 0;
-    let touchStartTime = 0;
     let isTouchActive = false;
+    let didSwipe = false;
 
     if (stageBox) {
-      // 触屏滑动监听 (手机端主要交互方式)
+      // 触屏滑动监听 (手机端手势交互)
       stageBox.addEventListener('touchstart', (e) => {
         if (e.target.closest('button') || e.target.closest('.word-sheet-overlay')) return;
         touchStartY = e.touches[0].clientY;
         touchStartX = e.touches[0].clientX;
-        touchStartTime = Date.now();
         isTouchActive = true;
+        didSwipe = false;
       }, { passive: true });
 
       stageBox.addEventListener('touchmove', (e) => {
@@ -1536,6 +1543,10 @@
         const currentY = e.touches[0].clientY;
         const deltaY = currentY - touchStartY;
         const deltaX = e.touches[0].clientX - touchStartX;
+
+        if (Math.abs(deltaY) > 15 || Math.abs(deltaX) > 15) {
+          didSwipe = true;
+        }
 
         // 核心修复：一旦开始纵向手势，立即拦截浏览器原生网页滚动，杜绝侧边滚动条闪烁
         if (Math.abs(deltaY) > Math.abs(deltaX)) {
@@ -1557,46 +1568,71 @@
         const endX = e.changedTouches[0].clientX;
         const deltaY = touchStartY - endY; // 正数：向上滑动 -> 下一个视频
         const deltaX = Math.abs(touchStartX - endX);
-        const duration = Date.now() - touchStartTime;
 
         if (Math.abs(deltaY) > 40 && Math.abs(deltaY) > deltaX) {
+          didSwipe = true;
           if (deltaY > 0) {
             slideVideo('next');
           } else {
             slideVideo('prev');
           }
-        } else if (Math.abs(deltaY) < 12 && deltaX < 12 && duration < 350) {
-          toggleWatchPlayPause();
         }
       });
 
       stageBox.addEventListener('touchcancel', () => {
         isTouchActive = false;
+        didSwipe = false;
         stageBox.style.transform = '';
       });
 
       // 桌面端鼠标上下拖拽切视频
       let mouseStartY = 0;
       let isMouseDown = false;
+      let mouseMoved = false;
+
       stageBox.addEventListener('mousedown', (e) => {
         if (e.target.closest('button') || e.target.closest('.word-sheet-overlay')) return;
         mouseStartY = e.clientY;
         isMouseDown = true;
+        mouseMoved = false;
+      });
+
+      stageBox.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return;
+        if (Math.abs(mouseStartY - e.clientY) > 10) {
+          mouseMoved = true;
+        }
       });
 
       stageBox.addEventListener('mouseup', (e) => {
         if (!isMouseDown) return;
         isMouseDown = false;
         const mouseDelta = mouseStartY - e.clientY;
-        if (Math.abs(mouseDelta) > 50) {
+        if (Math.abs(mouseDelta) > 45) {
+          didSwipe = true;
           if (mouseDelta > 0) {
             slideVideo('next');
           } else {
             slideVideo('prev');
           }
-        } else if (Math.abs(mouseDelta) < 8) {
-          toggleWatchPlayPause();
         }
+      });
+
+      // 统一标准 click 事件 (覆盖手机轻触、桌面单击，杜绝手势时差/像素误判)
+      stageBox.addEventListener('click', (e) => {
+        // 如果刚刚执行了上下滑动切换，或者拖拽移动，或者点击的是交互按钮/弹窗抽屉，则不触发暂停/播放
+        if (didSwipe) {
+          didSwipe = false;
+          return;
+        }
+        if (mouseMoved) {
+          mouseMoved = false;
+          return;
+        }
+        if (e.target.closest('button') || e.target.closest('.word-sheet-overlay')) {
+          return;
+        }
+        toggleWatchPlayPause();
       });
 
       // 滚轮滚滑上下切视频 (电脑触摸板/鼠标滚轮上下滑动)
@@ -1625,10 +1661,13 @@
       });
     });
 
-    // 键盘上下键切视频
+    // 键盘快捷键 (空格键播放/暂停，上下键切视频)
     document.addEventListener('keydown', (e) => {
       if (state.currentView === 'watch') {
-        if (e.key === 'ArrowDown') {
+        if (e.code === 'Space' || e.key === ' ' || e.key === 'k') {
+          e.preventDefault();
+          toggleWatchPlayPause();
+        } else if (e.key === 'ArrowDown') {
           e.preventDefault();
           slideVideo('next');
         } else if (e.key === 'ArrowUp') {
@@ -1654,6 +1693,7 @@
     if (videoEl) {
       videoEl.pause();
     }
+    state.watch.isPlaying = true;
     setWatchBuffering(false);
 
     const total = window.LINGO_MOCK.videos.length;
@@ -1705,28 +1745,52 @@
 
   function toggleWatchPlayPause() {
     const videoEl = document.getElementById('watch-video-player');
-    const indicator = document.getElementById('watch-play-indicator');
 
     if (videoEl && videoEl.src) {
       if (videoEl.paused) {
+        state.watch.isPlaying = true;
         if (videoEl.muted) videoEl.muted = false;
         videoEl.playbackRate = state.watch.playbackRate || 1.0;
-        videoEl.play().catch(e => console.warn('Play error:', e));
-        state.watch.isPlaying = true;
+        const playPromise = videoEl.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(e => {
+            console.warn('Play error, fallback to muted:', e);
+            videoEl.muted = true;
+            videoEl.play().catch(() => {});
+          });
+        }
+        updateWatchPlayPauseUI(true);
+        showToast('▶ 继续播放');
       } else {
-        videoEl.pause();
         state.watch.isPlaying = false;
+        videoEl.pause();
+        updateWatchPlayPauseUI(false);
+        showToast('⏸ 暂停播放');
       }
     } else {
       state.watch.isPlaying = !state.watch.isPlaying;
+      updateWatchPlayPauseUI(state.watch.isPlaying);
+      showToast(state.watch.isPlaying ? '▶ 继续播放' : '⏸ 暂停播放');
+    }
+  }
+
+  function updateWatchPlayPauseUI(isPlaying) {
+    const centerBadge = document.getElementById('watch-center-play-badge');
+    const indicator = document.getElementById('watch-play-indicator');
+
+    if (centerBadge) {
+      if (isPlaying) {
+        centerBadge.classList.remove('visible');
+      } else {
+        centerBadge.classList.add('visible');
+      }
     }
 
     if (indicator) {
-      indicator.innerHTML = state.watch.isPlaying ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+      indicator.innerHTML = isPlaying ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
       indicator.classList.add('show');
       setTimeout(() => indicator.classList.remove('show'), 500);
     }
-    showToast(state.watch.isPlaying ? '▶ 继续播放' : '⏸ 暂停播放');
   }
 
   // ------------------------------------------------------------------------
@@ -2054,6 +2118,7 @@
     testBackendConnection,
     togglePlaybackRate,
     retryCurrentVideo,
+    toggleWatchPlayPause,
     showToast
   };
 
