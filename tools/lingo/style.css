@@ -1875,16 +1875,23 @@ html, body {
    ========================================================================== */
 
 @media (max-width: 768px) {
-  .web-nav-tabs {
-    display: none;
+  /* 手机端隐藏整个头部导航栏 */
+  .app-web-header {
+    display: none !important;
   }
   
   .lingo-bottom-nav {
     display: flex;
   }
 
+  .onboard-canvas {
+    min-height: 100vh;
+    padding: 24px 18px 40px;
+  }
+
   .watch-player-view {
     padding: 0;
+    min-height: 100vh;
   }
 
   .watch-stage-box {
@@ -1895,10 +1902,13 @@ html, body {
     border: none;
   }
 
-  .dashboard-container,
+  .dashboard-container {
+    padding: 24px 16px 84px;
+  }
+
   .read-view-container,
   .guess-view-container,
   .profile-view-container {
-    padding-bottom: 90px;
+    padding: 24px 16px 84px;
   }
 }
