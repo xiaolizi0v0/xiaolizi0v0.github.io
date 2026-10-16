@@ -47,8 +47,72 @@ window.LINGO_MOCK = {
     { id: "discovery", name: "Discovery", zh: "探索发现", icon: "fas fa-compass", domain: "nature", desc: "地球未解之谜与野外生存，生动的说明文语境" }
   ],
 
-  // 刷一刷：6 个短视频数据源（抽象短剧、生活 vlog、科普趣味）
+  // 刷一刷：短视频数据源（抽象短剧、生活 vlog、科普趣味）
   videos: [
+    {
+      id: "vid_20261016_01",
+      genre: "vlog",
+      genreTag: "Vlog",
+      genreColor: "#22c55e",
+      title: "双胞胎姐妹的默契与容貌之谜",
+      poster: "lingo/assets/guess_resemble_1.png",
+      videoUrl: "lingo/assets/videos/vid_20261016_01.mp4",
+      author: "@Yup_LifeDiary",
+      currentStepText: "1 / 7",
+      subtitleEn: "People say my twin sister and I strongly resemble each other. But our daily habits simulate two completely distinct personalities!",
+      subtitleZh: "大家都说我和双胞胎姐姐容貌极其相似。但日常习惯却模拟出完全不同的两种个性！",
+      humorousLine: "长得一模一样，但性格南辕北辙？",
+      bgGradient: "linear-gradient(135deg, #18181b 0%, #27272a 50%, #09090b 100%)",
+      words: [
+        {
+          id: "vw_20261016_1",
+          word: "resemble",
+          phonetic: "/ˈrɪˈzemb(ə)l/",
+          pos: "v.",
+          band: "7.0",
+          stars: 5,
+          meaningZh: "像，与……相似",
+          collocation: "strongly resemble (极度相似), bear a striking resemblance to (与……惊人相似)",
+          quote: "剑桥雅思 14 Test 2: Many modern office towers resemble one another in exterior design.",
+          endingSummary: "主角结语：雅思口语描述人物外貌或事物相似时，用 resemble 比 look like 更显学术与地道！"
+        },
+        {
+          id: "vw_20261016_2",
+          word: "simulate",
+          phonetic: "/ˈsɪmjuleɪt/",
+          pos: "v.",
+          band: "7.0",
+          stars: 4,
+          meaningZh: "模拟，模仿，假装",
+          collocation: "simulate realistic conditions (模拟真实情境), computer simulation (计算机模拟)",
+          quote: "剑桥雅思 16 Test 3: Flight training systems are designed to simulate severe weather conditions accurately.",
+          endingSummary: "主角结语：大作文讨论人工智能或科学实验时，simulate conditions 是万能 7 分学术表达！"
+        },
+        {
+          id: "vw_20261016_3",
+          word: "distinguish",
+          phonetic: "/dɪˈstɪŋɡwɪʃ/",
+          pos: "v.",
+          band: "7.5",
+          stars: 5,
+          meaningZh: "区分，辨别；使出众",
+          collocation: "distinguish between A and B (区分两者), distinguish oneself (表现出众)",
+          quote: "剑桥雅思 15 Test 1: Infants rapidly develop the capacity to distinguish between familiar and unfamiliar human voices.",
+          endingSummary: "主角结语：写作中想要展现严密思辨？用 distinguish between 辨析利弊，考官眼前一亮！"
+        }
+      ],
+      quickQuiz: {
+        question: "在描述“事物外观极度相像，但细节可被清晰辨析”时，最得体的雅思学术表达是？",
+        options: [
+          "A. resemble each other yet easily distinguished",
+          "B. look same but cannot tell any difference",
+          "C. simulate together without differ",
+          "D. fake copy and identical same"
+        ],
+        answer: 0,
+        tip: "resemble 强调外观整体相似，distinguish 强调细微差别辨识，两者在雅思学术对比中是高频黄金组合！"
+      }
+    },
     {
       id: "v_01",
       genre: "vlog",
@@ -56,7 +120,7 @@ window.LINGO_MOCK = {
       genreColor: "#22c55e",
       title: "咖啡依赖者的自白与晨间仪式",
       poster: "lingo/assets/vlog-clean.png",
-      videoUrl: "", // 纯CSS/Canvas动效+多媒体拟真
+      videoUrl: "",
       author: "@Yup_LifeDiary",
       currentStepText: "2 / 6",
       subtitleEn: "My daily routine? Coffee first. Drank a double espresso, but why am I still in fatigue?",
@@ -657,6 +721,40 @@ window.LINGO_MOCK = {
 
   // 猜一猜：图像记忆单词（20 题库精选题库 · 选出所有符合它的图）
   guessPuzzles: [
+    {
+      id: "gp_20261016_01",
+      word: "resemble",
+      phonetic: "/ˈrɪˈzemb(ə)l/",
+      pos: "v.",
+      meaningZh: "像，与……相似",
+      band: "7.0",
+      instruction: "选出所有符合它的图（可多选）",
+      images: [
+        {
+          url: "lingo/assets/guess_resemble_1.png",
+          caption: "母女俩五官轮廓非常相似",
+          isCorrect: true
+        },
+        {
+          url: "lingo/assets/guess_resemble_2.png",
+          caption: "舞者模仿动作，但长相并不相似",
+          isCorrect: false
+        },
+        {
+          url: "lingo/assets/guess_resemble_3.png",
+          caption: "两只小猫毛色和花纹几乎一样",
+          isCorrect: true
+        },
+        {
+          url: "lingo/assets/guess_resemble_4.png",
+          caption: "手机和计算器用途相近，但外形并不相似",
+          isCorrect: false
+        }
+      ],
+      correctIndices: [0, 2],
+      mnemonic: "【四图情境解析】resemble 强调外观或本质上的相似。母女同框相似（图1）、双胞胎小猫（图3）均生动演绎了 strongly resemble；而即使做同样的动作（图2）或功能相近（图4），外观不相符就不能用 resemble！",
+      ieltsQuote: "剑桥雅思 14 Test 2: Many modern office towers resemble one another in exterior design."
+    },
     {
         "id": "gp_01",
         "word": "restrain",

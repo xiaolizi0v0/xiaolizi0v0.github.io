@@ -1017,6 +1017,16 @@ body:has(#view-watch.active) .app-main-viewport {
   flex-direction: column;
   gap: 4px;
   padding-right: 68px; /* 预留右侧按键避让安全区，杜绝长文本与悬浮按钮水平撞车 */
+.sub-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 2px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .sub-en {

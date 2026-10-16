@@ -445,11 +445,13 @@
       backdrop.src = cur.poster;
     }
 
-    // 字幕
+    // 标题与字幕
+    const subTitle = document.getElementById('watch-sub-title');
     const subEn = document.getElementById('watch-sub-en');
     const subZh = document.getElementById('watch-sub-zh');
     const subHumor = document.getElementById('watch-sub-humor');
 
+    if (subTitle) subTitle.textContent = cur.title || '';
     if (subEn) subEn.textContent = cur.subtitleEn;
     if (subZh) subZh.textContent = cur.subtitleZh;
     if (subHumor) subHumor.textContent = cur.humorousLine;
