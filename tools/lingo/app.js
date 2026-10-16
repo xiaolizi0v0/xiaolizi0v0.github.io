@@ -91,15 +91,24 @@
         const parsed = JSON.parse(saved);
         if (parsed.userGoals) state.userGoals = Object.assign(state.userGoals, parsed.userGoals);
         if (parsed.hasCompletedOnboarding !== undefined) state.hasCompletedOnboarding = parsed.hasCompletedOnboarding;
-        if (parsed.vocabulary) state.vocabulary = parsed.vocabulary;
+        if (Array.isArray(parsed.vocabulary)) state.vocabulary = parsed.vocabulary;
       } else {
         // 初始注入内置生词
         if (window.LINGO_MOCK && window.LINGO_MOCK.vocabulary) {
           state.vocabulary = [...window.LINGO_MOCK.vocabulary];
         }
       }
+      if (!Array.isArray(state.userGoals.interestedDomains)) {
+        state.userGoals.interestedDomains = ['ai', 'tech', 'psychology'];
+      }
+      if (!Array.isArray(state.vocabulary)) {
+        state.vocabulary = (window.LINGO_MOCK && window.LINGO_MOCK.vocabulary) ? [...window.LINGO_MOCK.vocabulary] : [];
+      }
     } catch (e) {
       console.warn('本地状态读取失败，采用预设数据', e);
+      if (!Array.isArray(state.userGoals.interestedDomains)) {
+        state.userGoals.interestedDomains = ['ai', 'tech', 'psychology'];
+      }
     }
   }
 
@@ -307,7 +316,8 @@
     // 渲染感兴趣领域多选
     document.querySelectorAll('.domain-pill').forEach(pill => {
       const dom = pill.dataset.domain;
-      if (state.userGoals.interestedDomains.includes(dom)) {
+      const domains = state.userGoals.interestedDomains || [];
+      if (domains.includes(dom)) {
         pill.classList.add('active');
       } else {
         pill.classList.remove('active');
@@ -1093,6 +1103,9 @@
     document.querySelectorAll('.domain-pill').forEach(pill => {
       pill.addEventListener('click', function() {
         const dom = this.dataset.domain;
+        if (!Array.isArray(state.userGoals.interestedDomains)) {
+          state.userGoals.interestedDomains = [];
+        }
         if (state.userGoals.interestedDomains.includes(dom)) {
           state.userGoals.interestedDomains = state.userGoals.interestedDomains.filter(d => d !== dom);
           this.classList.remove('active');
@@ -1680,13 +1693,6 @@
           renderProfile();
         }
       }
-      if (state.currentView) {
-        renderCurrentView();
-      }
-    } catch (e) {
-      console.warn('Backend sync error:', e);
-    }
-  }
       if (state.currentView) {
         renderCurrentView();
       }
