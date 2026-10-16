@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- 引入 Lingo 独立样式表 -->
-  <link rel="stylesheet" href="lingo/style.css">
+  <link rel="stylesheet" href="lingo/style.css?v=2.2">
 </head>
 <body>
 
@@ -333,9 +333,13 @@
       <div class="watch-stage-box" id="watch-stage-box">
         
         <!-- 视频画面背景 -->
-        <img src="lingo/assets/shot-vlog.png" alt="视频画面" class="video-canvas-backdrop" id="watch-backdrop-img">
+        <img src="lingo/assets/vlog-clean.png" alt="视频画面" class="video-canvas-backdrop" id="watch-backdrop-img">
         <div class="video-scrim-top"></div>
         <div class="video-scrim-bottom"></div>
+
+        <!-- 播放/暂停状态指示与上下滑动提示 -->
+        <div class="watch-play-indicator" id="watch-play-indicator"></div>
+        <div class="swipe-hint-pill" id="watch-swipe-hint"><i class="fas fa-chevron-up"></i> 上下滑动切视频</div>
 
         <!-- 顶部 HUD 导航栏 -->
         <div class="watch-top-hud">
@@ -649,7 +653,7 @@
   <div class="lingo-toast" id="global-toast">提示信息</div>
 
   <!-- 引入数据源与脚本 -->
-  <script src="lingo/mock-data.js"></script>
-  <script src="lingo/app.js"></script>
+  <script src="lingo/mock-data.js?v=2.2"></script>
+  <script src="lingo/app.js?v=2.2"></script>
 </body>
 </html>

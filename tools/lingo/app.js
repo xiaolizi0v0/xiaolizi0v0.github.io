@@ -191,7 +191,7 @@
       }
     });
 
-    // 引导页隐藏底部导航与顶栏菜单高亮
+    // 引导页隐藏底部导航与顶栏菜单高亮；刷一刷专属黑底导航栏
     const bottomNav = document.getElementById('bottom-nav-bar');
     const topNavTabs = document.querySelector('.web-nav-tabs');
     if (bottomNav) {
@@ -199,6 +199,15 @@
         bottomNav.style.display = 'none';
       } else {
         bottomNav.style.display = '';
+        if (state.currentView === 'watch') {
+          bottomNav.classList.add('theme-dark-nav');
+          bottomNav.style.backgroundColor = '#000000';
+          bottomNav.style.borderTopColor = 'rgba(255, 255, 255, 0.12)';
+        } else {
+          bottomNav.classList.remove('theme-dark-nav');
+          bottomNav.style.backgroundColor = '';
+          bottomNav.style.borderTopColor = '';
+        }
       }
     }
     if (topNavTabs) {
@@ -815,16 +824,97 @@
       });
     }
 
-    // 刷一刷：点击画面切换播放/下一条
-    const stageBackdrop = document.getElementById('watch-stage-box');
-    if (stageBackdrop) {
-      stageBackdrop.addEventListener('click', (e) => {
-        // 如果点击的是交互按钮或抽屉，不触发切换
+    // ------------------------------------------------------------------------
+    // 刷一刷：抖音风格上下滑动切视频 + 单击暂停/播放
+    // ------------------------------------------------------------------------
+    const stageBox = document.getElementById('watch-stage-box');
+    let touchStartY = 0;
+    let touchStartX = 0;
+    let touchStartTime = 0;
+    let isTouchActive = false;
+
+    if (stageBox) {
+      // 触屏滑动监听 (手机端主要交互方式)
+      stageBox.addEventListener('touchstart', (e) => {
         if (e.target.closest('button') || e.target.closest('.word-sheet-overlay')) return;
-        // 循环切换下一个视频
-        state.watch.currentIndex = (state.watch.currentIndex + 1) % window.LINGO_MOCK.videos.length;
-        renderWatch();
+        touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
+        touchStartTime = Date.now();
+        isTouchActive = true;
+      }, { passive: true });
+
+      stageBox.addEventListener('touchmove', (e) => {
+        if (!isTouchActive) return;
+        const currentY = e.touches[0].clientY;
+        const deltaY = currentY - touchStartY;
+        const deltaX = e.touches[0].clientX - touchStartX;
+        // 跟手微动效 (仅限垂直拖动)
+        if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) < 100) {
+          stageBox.style.transform = `translateY(${deltaY * 0.3}px)`;
+        }
+      }, { passive: true });
+
+      stageBox.addEventListener('touchend', (e) => {
+        if (!isTouchActive) return;
+        isTouchActive = false;
+        stageBox.style.transform = '';
+
+        const endY = e.changedTouches[0].clientY;
+        const endX = e.changedTouches[0].clientX;
+        const deltaY = touchStartY - endY; // 正数：向上滑动 -> 下一个视频
+        const deltaX = Math.abs(touchStartX - endX);
+        const duration = Date.now() - touchStartTime;
+
+        if (Math.abs(deltaY) > 40 && Math.abs(deltaY) > deltaX) {
+          if (deltaY > 0) {
+            slideVideo('next');
+          } else {
+            slideVideo('prev');
+          }
+        } else if (Math.abs(deltaY) < 12 && deltaX < 12 && duration < 350) {
+          toggleWatchPlayPause();
+        }
       });
+
+      // 桌面端鼠标上下拖拽切视频
+      let mouseStartY = 0;
+      let isMouseDown = false;
+      stageBox.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button') || e.target.closest('.word-sheet-overlay')) return;
+        mouseStartY = e.clientY;
+        isMouseDown = true;
+      });
+
+      stageBox.addEventListener('mouseup', (e) => {
+        if (!isMouseDown) return;
+        isMouseDown = false;
+        const mouseDelta = mouseStartY - e.clientY;
+        if (Math.abs(mouseDelta) > 50) {
+          if (mouseDelta > 0) {
+            slideVideo('next');
+          } else {
+            slideVideo('prev');
+          }
+        } else if (Math.abs(mouseDelta) < 8) {
+          toggleWatchPlayPause();
+        }
+      });
+
+      // 滚轮滚滑上下切视频 (电脑触摸板/鼠标滚轮上下滑动)
+      let wheelDebounce = false;
+      stageBox.addEventListener('wheel', (e) => {
+        if (e.target.closest('.word-sheet-overlay')) return;
+        if (wheelDebounce) return;
+        if (Math.abs(e.deltaY) > 30) {
+          wheelDebounce = true;
+          if (e.deltaY > 0) {
+            slideVideo('next');
+          } else {
+            slideVideo('prev');
+          }
+          setTimeout(() => { wheelDebounce = false; }, 450);
+        }
+      }, { passive: true });
     }
 
     // 底部导航栏点击
@@ -835,18 +925,86 @@
       });
     });
 
-    // 键盘上下键在短视频中快速切视频
+    // 键盘上下键切视频
     document.addEventListener('keydown', (e) => {
       if (state.currentView === 'watch') {
         if (e.key === 'ArrowDown') {
-          state.watch.currentIndex = (state.watch.currentIndex + 1) % window.LINGO_MOCK.videos.length;
-          renderWatch();
+          e.preventDefault();
+          slideVideo('next');
         } else if (e.key === 'ArrowUp') {
-          state.watch.currentIndex = (state.watch.currentIndex - 1 + window.LINGO_MOCK.videos.length) % window.LINGO_MOCK.videos.length;
-          renderWatch();
+          e.preventDefault();
+          slideVideo('prev');
         }
       }
     });
+  }
+
+  // ------------------------------------------------------------------------
+  // 11. 刷一刷：抖音式纵向平滑切视频与播放状态
+  // ------------------------------------------------------------------------
+  let isVideoSliding = false;
+  function slideVideo(direction) {
+    if (isVideoSliding) return;
+    const stage = document.getElementById('watch-stage-box');
+    if (!stage) return;
+    isVideoSliding = true;
+
+    const total = window.LINGO_MOCK.videos.length;
+    let nextIdx = state.watch.currentIndex;
+    if (direction === 'next') {
+      nextIdx = (state.watch.currentIndex + 1) % total;
+    } else {
+      nextIdx = (state.watch.currentIndex - 1 + total) % total;
+    }
+
+    // 隐藏滑动提示
+    const hint = document.getElementById('watch-swipe-hint');
+    if (hint) hint.style.display = 'none';
+
+    // 垂直滑出动画
+    const outOffset = direction === 'next' ? -50 : 50;
+    stage.style.transition = 'transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.22s ease';
+    stage.style.transform = `translateY(${outOffset}px)`;
+    stage.style.opacity = '0.35';
+
+    setTimeout(() => {
+      state.watch.currentIndex = nextIdx;
+      state.watch.isStarred = false;
+      const btnStar = document.getElementById('watch-star-btn');
+      if (btnStar) btnStar.classList.remove('starred');
+
+      renderWatch();
+
+      // 从对应方向滑入
+      const inOffset = direction === 'next' ? 50 : -50;
+      stage.style.transition = 'none';
+      stage.style.transform = `translateY(${inOffset}px)`;
+      stage.style.opacity = '0.35';
+
+      // 强制重绘
+      stage.offsetHeight;
+      stage.style.transition = 'transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease';
+      stage.style.transform = 'translateY(0)';
+      stage.style.opacity = '1';
+
+      setTimeout(() => {
+        stage.style.transition = '';
+        stage.style.transform = '';
+        stage.style.opacity = '';
+        isVideoSliding = false;
+      }, 250);
+    }, 220);
+  }
+
+  function toggleWatchPlayPause() {
+    state.watch.isPlaying = !state.watch.isPlaying;
+    const indicator = document.getElementById('watch-play-indicator');
+    if (indicator) {
+      indicator.innerHTML = state.watch.isPlaying ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+      indicator.classList.add('show');
+      setTimeout(() => indicator.classList.remove('show'), 500);
+    }
+    showToast(state.watch.isPlaying ? '▶ 继续播放' : '⏸ 暂停播放');
   }
 
   // ------------------------------------------------------------------------

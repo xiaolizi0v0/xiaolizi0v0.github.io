@@ -1049,7 +1049,7 @@ html, body {
   inset: 0;
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
-  z-index: 100;
+  z-index: 1000;
   display: none;
   align-items: flex-end;
   justify-content: center;
@@ -1742,6 +1742,81 @@ html, body {
   border-radius: 50%;
 }
 
+/* 刷一刷页面专属黑底导航栏 */
+body:has(#view-watch.active) .lingo-bottom-nav,
+.lingo-bottom-nav.theme-dark-nav {
+  background: #000000 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item,
+.lingo-bottom-nav.theme-dark-nav .nav-tab-item {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item.active,
+.lingo-bottom-nav.theme-dark-nav .nav-tab-item.active {
+  color: #ffffff !important;
+}
+
+body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item.active::after,
+.lingo-bottom-nav.theme-dark-nav .nav-tab-item.active::after {
+  background: #f97316 !important;
+}
+
+/* 播放/暂停状态指示与上下滑动提示 */
+.watch-play-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #ffffff;
+  z-index: 15;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.watch-play-indicator.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.swipe-hint-pill {
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 5px 14px;
+  border-radius: var(--lingo-radius-full);
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 12;
+  pointer-events: none;
+  animation: pulseHint 2.4s infinite alternate;
+}
+
+@keyframes pulseHint {
+  from { opacity: 0.6; transform: translateX(-50%) translateY(0); }
+  to { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+}
+
 /* ==========================================================================
    全局弹窗模态框 (Config & API Doc Modal)
    ========================================================================== */
@@ -1900,6 +1975,23 @@ html, body {
     max-height: 100vh;
     border-radius: 0;
     border: none;
+  }
+
+  /* 解决快测按钮、字幕与进度线被底部导航栏遮挡问题 */
+  .watch-bottom-hud {
+    padding: 0 20px calc(82px + env(safe-area-inset-bottom, 10px)) !important;
+  }
+
+  .video-scrubber-line {
+    bottom: calc(60px + env(safe-area-inset-bottom, 4px)) !important;
+  }
+
+  .watch-right-actions {
+    bottom: calc(220px + env(safe-area-inset-bottom, 10px)) !important;
+  }
+
+  .word-sheet-drawer {
+    padding-bottom: calc(84px + env(safe-area-inset-bottom, 12px)) !important;
   }
 
   .dashboard-container {

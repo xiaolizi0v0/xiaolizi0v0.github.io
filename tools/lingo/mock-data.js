@@ -55,7 +55,7 @@ window.LINGO_MOCK = {
       genreTag: "Vlog",
       genreColor: "#22c55e",
       title: "咖啡依赖者的自白与晨间仪式",
-      poster: "lingo/assets/shot-vlog.png",
+      poster: "lingo/assets/vlog-clean.png",
       videoUrl: "", // 纯CSS/Canvas动效+多媒体拟真
       author: "@Yup_LifeDiary",
       currentStepText: "2 / 6",
