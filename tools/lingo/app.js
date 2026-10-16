@@ -53,7 +53,14 @@
     },
 
     // 生词本
-    vocabulary: []
+    vocabulary: [],
+    vocab: {
+      filterBand: 'all',
+      searchQuery: '',
+      isPlayingAll: false,
+      playAllIndex: 0,
+      playAllTimer: null
+    }
   };
 
   // ------------------------------------------------------------------------
@@ -182,15 +189,20 @@
       }
     });
 
-    // 移动端底部导航高亮
+    // 移动端底部导航高亮 (在独立生词表页面时，高亮“我的”)
     document.querySelectorAll('.nav-tab-item').forEach(btn => {
       const tab = btn.dataset.tab;
-      if (tab === state.currentView) {
+      if (tab === state.currentView || (state.currentView === 'vocab' && tab === 'profile')) {
         btn.classList.add('active');
       } else {
         btn.classList.remove('active');
       }
     });
+
+    // 离开生词表时自动停止正在运行的朗读
+    if (state.currentView !== 'vocab' && state.vocab && state.vocab.isPlayingAll) {
+      stopPlayAllVocab();
+    }
 
     // 引导页隐藏底部导航与顶栏菜单高亮；刷一刷专属黑底导航栏
     const bottomNav = document.getElementById('bottom-nav-bar');
@@ -262,6 +274,9 @@
         break;
       case 'profile':
         renderProfile();
+        break;
+      case 'vocab':
+        renderVocab();
         break;
     }
   }
@@ -822,40 +837,218 @@
   // 9. 生词本与用户设置 (Profile & Vocab)
   // ------------------------------------------------------------------------
   function renderProfile() {
-    const vocabListEl = document.getElementById('profile-vocab-list');
-    const vocabTotalEl = document.getElementById('profile-vocab-total');
+    const totalPill = document.getElementById('profile-vocab-pill');
+    const subtitleEl = document.getElementById('profile-vocab-subtitle');
 
-    if (vocabTotalEl) {
-      vocabTotalEl.textContent = `${state.vocabulary.length} 词`;
+    if (totalPill) {
+      totalPill.textContent = `${state.vocabulary.length} 词`;
+    }
+    if (subtitleEl) {
+      subtitleEl.textContent = state.vocabulary.length === 0
+        ? '生词本空空如也 · 去刷一刷/看一看收藏'
+        : `已收录 ${state.vocabulary.length} 个高频词 · 点击进入背词复习`;
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // 9.1 「生词表」独立页面渲染与交互系统
+  // ------------------------------------------------------------------------
+  function renderVocab() {
+    const cardsListEl = document.getElementById('vocab-cards-list');
+    const emptyStateEl = document.getElementById('vocab-empty-state');
+    const totalPillEl = document.getElementById('vocab-total-pill');
+
+    const total = state.vocabulary.length;
+    if (totalPillEl) totalPillEl.textContent = `共 ${total} 词`;
+
+    // 统计各 Band 数量
+    const cntAll = total;
+    const cnt60 = state.vocabulary.filter(w => String(w.band) === '6.0').length;
+    const cnt65 = state.vocabulary.filter(w => String(w.band) === '6.5').length;
+    const cnt70 = state.vocabulary.filter(w => parseFloat(w.band || 7.0) >= 7.0).length;
+
+    const elAll = document.getElementById('filter-cnt-all');
+    const el60 = document.getElementById('filter-cnt-60');
+    const el65 = document.getElementById('filter-cnt-65');
+    const el70 = document.getElementById('filter-cnt-70');
+    if (elAll) elAll.textContent = cntAll;
+    if (el60) el60.textContent = cnt60;
+    if (el65) el65.textContent = cnt65;
+    if (el70) el70.textContent = cnt70;
+
+    // 筛选与搜索过滤
+    let list = [...state.vocabulary];
+
+    if (state.vocab.filterBand && state.vocab.filterBand !== 'all') {
+      if (state.vocab.filterBand === '7.0') {
+        list = list.filter(w => parseFloat(w.band || 7.0) >= 7.0);
+      } else {
+        list = list.filter(w => String(w.band) === state.vocab.filterBand);
+      }
     }
 
-    if (vocabListEl) {
-      if (state.vocabulary.length === 0) {
-        vocabListEl.innerHTML = `
-          <div style="padding: 30px; text-align: center; color: #a1a1aa; font-size: 13px;">
-            <i class="far fa-folder-open" style="font-size: 28px; margin-bottom: 8px; display: block;"></i>
-            生词本空空如也，快去刷一刷或看一看里收藏吧！
-          </div>
-        `;
-      } else {
-        vocabListEl.innerHTML = state.vocabulary.map((w, idx) => `
-          <div class="setting-row-item">
-            <div class="setting-left">
-              <button class="topbar-btn" style="padding: 4px 8px;" onclick="window.LingoApp.speakWord('${w.word}')">
-                <i class="fas fa-volume-up"></i>
-              </button>
-              <div>
-                <div style="font-size: 15px; font-weight: 700;">${w.word} <span style="font-size: 12px; color: #9a3412;">Band ${w.band || '7.0'}</span></div>
-                <div style="font-size: 12px; color: #71717a;">${w.meaningZh}</div>
+    const query = (state.vocab.searchQuery || '').trim().toLowerCase();
+    if (query) {
+      list = list.filter(w => 
+        (w.word && w.word.toLowerCase().includes(query)) ||
+        (w.meaningZh && w.meaningZh.toLowerCase().includes(query)) ||
+        (w.phonetic && w.phonetic.toLowerCase().includes(query))
+      );
+    }
+
+    if (list.length === 0) {
+      if (cardsListEl) cardsListEl.style.display = 'none';
+      if (emptyStateEl) {
+        emptyStateEl.style.display = 'flex';
+        const titleEl = emptyStateEl.querySelector('.empty-title');
+        const descEl = emptyStateEl.querySelector('.empty-desc');
+        if (query) {
+          if (titleEl) titleEl.textContent = '未找到匹配单词';
+          if (descEl) descEl.textContent = `在生词本中没有找到包含 "${query}" 的词条，换个关键词试试吧。`;
+        } else {
+          if (titleEl) titleEl.textContent = '生词本空空如也';
+          if (descEl) descEl.textContent = '在「刷一刷」「看一看」「猜一猜」中遇到不熟悉的考词，点击星标或书签即可一键收入生词本进行针对性强化复习。';
+        }
+      }
+    } else {
+      if (emptyStateEl) emptyStateEl.style.display = 'none';
+      if (cardsListEl) {
+        cardsListEl.style.display = 'flex';
+        cardsListEl.innerHTML = list.map((w, idx) => `
+          <div class="vocab-word-card" id="vocab-card-${w.id || idx}">
+            <button class="vocab-speaker-btn" onclick="window.LingoApp.speakWord('${w.word}')" title="朗读发音">
+              <i class="fas fa-volume-up"></i>
+            </button>
+            <div class="vocab-card-body">
+              <div class="vocab-card-header">
+                <span class="vocab-card-word">${w.word}</span>
+                ${w.phonetic ? `<span class="vocab-card-phonetic">${w.phonetic}</span>` : ''}
+                <span class="vocab-card-band">Band ${w.band || '7.0'}</span>
+                ${w.pos ? `<span class="vocab-card-pos">${w.pos}</span>` : ''}
               </div>
+              <div class="vocab-card-meaning">${w.meaningZh || ''}</div>
+              ${w.source ? `<div class="vocab-card-source"><i class="fas fa-tag"></i> 来源：${w.source}</div>` : ''}
             </div>
-            <button class="topbar-btn" style="padding: 4px 8px; color: #ef4444;" onclick="window.LingoApp.removeWordFromVocab(${idx})">
+            <button class="vocab-delete-btn" onclick="window.LingoApp.removeWordFromVocab('${w.id || w.word}')" title="移出生词本">
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>
         `).join('');
       }
     }
+  }
+
+  function setVocabBandFilter(band) {
+    state.vocab.filterBand = band;
+    document.querySelectorAll('.vocab-filter-pill').forEach(pill => {
+      if (pill.dataset.band === band) {
+        pill.classList.add('active');
+      } else {
+        pill.classList.remove('active');
+      }
+    });
+    renderVocab();
+  }
+
+  function filterVocabList() {
+    const input = document.getElementById('vocab-search-input');
+    const clearBtn = document.getElementById('vocab-search-clear');
+    if (!input) return;
+
+    state.vocab.searchQuery = input.value;
+    if (clearBtn) {
+      clearBtn.style.display = input.value ? 'block' : 'none';
+    }
+    renderVocab();
+  }
+
+  function clearVocabSearch() {
+    const input = document.getElementById('vocab-search-input');
+    const clearBtn = document.getElementById('vocab-search-clear');
+    if (input) input.value = '';
+    if (clearBtn) clearBtn.style.display = 'none';
+    state.vocab.searchQuery = '';
+    renderVocab();
+  }
+
+  function togglePlayAllVocab() {
+    if (state.vocab.isPlayingAll) {
+      stopPlayAllVocab();
+      showToast('⏹ 已停止顺序朗读');
+    } else {
+      startPlayAllVocab();
+    }
+  }
+
+  function stopPlayAllVocab() {
+    state.vocab.isPlayingAll = false;
+    clearTimeout(state.vocab.playAllTimer);
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    const btn = document.getElementById('btn-play-all-vocab');
+    const textEl = document.getElementById('vocab-play-all-text');
+    if (btn) btn.classList.remove('playing');
+    if (textEl) textEl.textContent = '顺序朗读';
+
+    document.querySelectorAll('.vocab-word-card.is-reading').forEach(c => {
+      c.classList.remove('is-reading');
+    });
+  }
+
+  function startPlayAllVocab() {
+    let list = [...state.vocabulary];
+    if (state.vocab.filterBand && state.vocab.filterBand !== 'all') {
+      if (state.vocab.filterBand === '7.0') {
+        list = list.filter(w => parseFloat(w.band || 7.0) >= 7.0);
+      } else {
+        list = list.filter(w => String(w.band) === state.vocab.filterBand);
+      }
+    }
+    const query = (state.vocab.searchQuery || '').trim().toLowerCase();
+    if (query) {
+      list = list.filter(w => 
+        (w.word && w.word.toLowerCase().includes(query)) ||
+        (w.meaningZh && w.meaningZh.toLowerCase().includes(query))
+      );
+    }
+
+    if (list.length === 0) {
+      showToast('当前筛选条件下暂无生词可朗读');
+      return;
+    }
+
+    state.vocab.isPlayingAll = true;
+    state.vocab.playAllIndex = 0;
+
+    const btn = document.getElementById('btn-play-all-vocab');
+    const textEl = document.getElementById('vocab-play-all-text');
+    if (btn) btn.classList.add('playing');
+    if (textEl) textEl.textContent = '暂停朗读';
+    showToast('▶ 开始顺序朗读全部生词');
+
+    function playNext() {
+      if (!state.vocab.isPlayingAll) return;
+      if (state.vocab.playAllIndex >= list.length) {
+        stopPlayAllVocab();
+        showToast('🎉 本轮生词全部朗读完毕！');
+        return;
+      }
+
+      const item = list[state.vocab.playAllIndex];
+      document.querySelectorAll('.vocab-word-card.is-reading').forEach(c => c.classList.remove('is-reading'));
+      const activeCard = document.getElementById(`vocab-card-${item.id || state.vocab.playAllIndex}`);
+      if (activeCard) {
+        activeCard.classList.add('is-reading');
+        activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      speakWord(item.word);
+      state.vocab.playAllIndex += 1;
+      state.vocab.playAllTimer = setTimeout(playNext, 2000);
+    }
+
+    playNext();
   }
 
   // ------------------------------------------------------------------------
@@ -978,7 +1171,7 @@
     const entryGuess = document.getElementById('entry-card-guess');
     if (entryGuess) entryGuess.addEventListener('click', () => switchView('guess'));
     const entryVocab = document.getElementById('entry-card-vocab');
-    if (entryVocab) entryVocab.addEventListener('click', () => switchView('profile'));
+    if (entryVocab) entryVocab.addEventListener('click', () => switchView('vocab'));
 
     // 刷一刷：返回首页
     const watchBack = document.getElementById('watch-back-btn');
@@ -1343,31 +1536,61 @@
   // ------------------------------------------------------------------------
   // 13. 生词本存取
   // ------------------------------------------------------------------------
-  function addWordToVocab(word, phonetic, meaningZh, band, notify = true) {
+  function addWordToVocab(wordOrObj, phonetic, meaningZh, band, notify = true) {
+    let word = '', pos = '', source = '';
+    if (typeof wordOrObj === 'object' && wordOrObj !== null) {
+      word = wordOrObj.word;
+      phonetic = wordOrObj.phonetic;
+      pos = wordOrObj.pos || '';
+      meaningZh = wordOrObj.meaningZh;
+      band = wordOrObj.band || '7.0';
+      source = wordOrObj.source || '';
+      if (wordOrObj.notify !== undefined) notify = wordOrObj.notify;
+    } else {
+      word = wordOrObj;
+    }
+
+    if (!word) return;
+
     const exists = state.vocabulary.find(w => w.word.toLowerCase() === word.toLowerCase());
     if (!exists) {
       state.vocabulary.unshift({
-        id: 'vocab_' + Date.now(),
+        id: 'vocab_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
         word,
-        phonetic,
-        meaningZh,
+        phonetic: phonetic || '',
+        pos: pos || '',
+        meaningZh: meaningZh || '',
         band: band || '7.0',
+        source: source || '雅思精选词汇',
         addedAt: new Date().toLocaleDateString()
       });
       saveLocalUserData();
       updateDashboardMetrics();
-      if (notify) showToast(`已将 "${word}" 收入生词本`);
+      renderProfile();
+      if (state.currentView === 'vocab') renderVocab();
+      if (notify) showToast(`⭐ 已将 "${word}" 收入生词本`);
     } else if (notify) {
       showToast(`"${word}" 已在生词本中`);
     }
   }
 
-  function removeWordFromVocab(idx) {
-    const removed = state.vocabulary.splice(idx, 1);
+  function removeWordFromVocab(idOrIdx) {
+    let removedWord = '';
+    if (typeof idOrIdx === 'number') {
+      const removed = state.vocabulary.splice(idOrIdx, 1);
+      if (removed.length > 0) removedWord = removed[0].word;
+    } else {
+      const idx = state.vocabulary.findIndex(w => w.id === idOrIdx || w.word.toLowerCase() === String(idOrIdx).toLowerCase());
+      if (idx > -1) {
+        const removed = state.vocabulary.splice(idx, 1);
+        if (removed.length > 0) removedWord = removed[0].word;
+      }
+    }
     saveLocalUserData();
     renderProfile();
+    renderVocab();
     updateDashboardMetrics();
-    showToast(`已移出生词本`);
+    showToast(removedWord ? `已将 "${removedWord}" 移出生词本` : '已移出生词本');
   }
 
   // ------------------------------------------------------------------------
@@ -1503,6 +1726,12 @@
     speakWord,
     addWordToVocab,
     removeWordFromVocab,
+    renderVocab,
+    setVocabBandFilter,
+    filterVocabList,
+    clearVocabSearch,
+    togglePlayAllVocab,
+    stopPlayAllVocab,
     answerWatchQuiz,
     verifyGuessAnswer,
     toggleGuessPhotoSelection,

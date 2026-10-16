@@ -1967,6 +1967,425 @@ body:has(#view-watch.active) .app-main-viewport {
 }
 
 /* ==========================================================================
+   页面 6：「生词表」独立页面 (Vocab View) 与「我的」入口卡片
+   ========================================================================== */
+
+/* 「我的」页面中优雅的生词本入口卡片 */
+.profile-vocab-entry-card {
+  background: #ffffff;
+  border-radius: var(--lingo-radius-lg);
+  border: 1px solid var(--lingo-border-light);
+  box-shadow: var(--lingo-shadow-card);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.profile-vocab-entry-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e1;
+}
+
+.vocab-entry-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.vocab-entry-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.vocab-entry-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vocab-entry-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.vocab-entry-subtitle {
+  font-size: 13px;
+  color: #71717a;
+}
+
+.vocab-entry-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #a1a1aa;
+}
+
+.vocab-count-badge {
+  background: #f4f4f5;
+  color: #18181b;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--lingo-radius-full);
+}
+
+/* 独立生词表页面容器 */
+.vocab-view-container {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 20px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 顶部导航与操作 */
+.vocab-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vocab-back-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f4f4f5;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #18181b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vocab-back-btn:hover {
+  background: #e4e4e7;
+  transform: scale(1.05);
+}
+
+.vocab-header-title-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vocab-header-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #18181b;
+}
+
+.vocab-counter-pill {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4f46e5;
+  background: #eef2ff;
+  padding: 2px 10px;
+  border-radius: var(--lingo-radius-full);
+}
+
+.vocab-header-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--lingo-radius-full);
+  background: #f4f4f5;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+  font-weight: 600;
+  color: #18181b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vocab-header-action-btn:hover {
+  background: #e4e4e7;
+}
+
+.vocab-header-action-btn.playing {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4338ca;
+}
+
+/* 搜索与 Band 标签筛选 */
+.vocab-filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vocab-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.vocab-search-box .search-icon {
+  position: absolute;
+  left: 14px;
+  color: #a1a1aa;
+  font-size: 14px;
+}
+
+.vocab-search-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 38px 0 38px;
+  background: #f4f4f5;
+  border: 1px solid transparent;
+  border-radius: var(--lingo-radius-full);
+  font-size: 14px;
+  color: #18181b;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.vocab-search-input:focus {
+  background: #ffffff;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.vocab-search-clear {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #a1a1aa;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+}
+
+.vocab-band-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.vocab-filter-pill {
+  padding: 6px 14px;
+  border-radius: var(--lingo-radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  background: #f4f4f5;
+  color: #71717a;
+  border: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.vocab-filter-pill:hover {
+  background: #e4e4e7;
+  color: #18181b;
+}
+
+.vocab-filter-pill.active {
+  background: #18181b;
+  color: #ffffff;
+}
+
+/* 单词列表 */
+.vocab-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vocab-word-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--lingo-border-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vocab-word-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.vocab-word-card.is-reading {
+  border-color: #4f46e5;
+  background: #faf5ff;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.vocab-speaker-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f4f4f5;
+  border: none;
+  color: #52525b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s;
+}
+
+.vocab-speaker-btn:hover {
+  background: #e4e4e7;
+  color: #18181b;
+  transform: scale(1.08);
+}
+
+.vocab-word-card.is-reading .vocab-speaker-btn {
+  background: #4f46e5;
+  color: #ffffff;
+  animation: pulse 1s infinite alternate;
+}
+
+.vocab-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.vocab-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.vocab-card-word {
+  font-size: 17px;
+  font-weight: 800;
+  color: #18181b;
+}
+
+.vocab-card-phonetic {
+  font-size: 13px;
+  color: #71717a;
+  font-weight: 500;
+}
+
+.vocab-card-band {
+  font-size: 11px;
+  font-weight: 700;
+  color: #c2410c;
+  background: #fff7ed;
+  border: 1px solid #ffedd5;
+  padding: 2px 7px;
+  border-radius: var(--lingo-radius-full);
+}
+
+.vocab-card-pos {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4f46e5;
+}
+
+.vocab-card-meaning {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.vocab-card-source {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vocab-delete-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: all 0.18s;
+  flex-shrink: 0;
+}
+
+.vocab-delete-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* 空状态 */
+.vocab-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px dashed #d4d4d8;
+  gap: 12px;
+}
+
+.empty-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #f4f4f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #a1a1aa;
+  margin-bottom: 4px;
+}
+
+.empty-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.empty-desc {
+  font-size: 13px;
+  color: #71717a;
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
    移动端专属底部导航栏 (只在移动屏生效)
    ========================================================================== */
 
@@ -2302,7 +2721,8 @@ body:has(#view-watch.active) .lingo-bottom-nav .nav-tab-item.active::after,
 
   .read-view-container,
   .guess-view-container,
-  .profile-view-container {
+  .profile-view-container,
+  .vocab-view-container {
     padding: 24px 16px 84px;
   }
 }

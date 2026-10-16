@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- 引入 Lingo 独立样式表 -->
-  <link rel="stylesheet" href="lingo/style.css?v=2.6">
+  <link rel="stylesheet" href="lingo/style.css?v=2.7">
 </head>
 <body>
 
@@ -39,8 +39,11 @@
       <button class="web-nav-btn" data-tab="guess">
         <i class="fas fa-th-large"></i> 猜一猜
       </button>
+      <button class="web-nav-btn" data-tab="vocab">
+        <i class="fas fa-bookmark"></i> 生词本
+      </button>
       <button class="web-nav-btn" data-tab="profile">
-        <i class="fas fa-user"></i> 生词本
+        <i class="fas fa-user"></i> 我的
       </button>
     </nav>
 
@@ -561,13 +564,21 @@
           </div>
         </div>
 
-        <!-- 生词本列表 -->
-        <div>
-          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;">
-            <span style="font-size: 16px; font-weight: 700; color: #18181b;">已收藏生词</span>
-            <span style="font-size: 13px; color: #71717a;" id="profile-vocab-total">0 词</span>
+        <!-- 我的生词本入口卡片 (替代原来长长的内联生词列表，避免挤占我的页面) -->
+        <div class="profile-vocab-entry-card" onclick="window.LingoApp.switchView('vocab')">
+          <div class="vocab-entry-left">
+            <div class="vocab-entry-icon-box">
+              <i class="fas fa-book-bookmark"></i>
+            </div>
+            <div class="vocab-entry-info">
+              <div class="vocab-entry-title">我的生词本</div>
+              <div class="vocab-entry-subtitle" id="profile-vocab-subtitle">已收录 0 个高频词 · 点击进入背词复习</div>
+            </div>
           </div>
-          <div class="settings-list-group" id="profile-vocab-list"></div>
+          <div class="vocab-entry-right">
+            <span class="vocab-count-badge" id="profile-vocab-pill">0 词</span>
+            <i class="fas fa-chevron-right"></i>
+          </div>
         </div>
 
         <!-- 系统设置与重置目标 -->
@@ -613,6 +624,64 @@
               <i class="fas fa-chevron-right"></i>
             </div>
           </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================================================================
+         视图 9：「生词表」独立页面 (彻底解决生词过多挤占主页问题)
+         ================================================================ -->
+    <section id="view-vocab" class="view-panel">
+      <div class="vocab-view-container">
+        
+        <!-- 顶部导航栏 -->
+        <div class="vocab-nav-header">
+          <button class="vocab-back-btn" onclick="window.LingoApp.switchView('profile')" title="返回我的">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="vocab-header-title-box">
+            <span class="vocab-header-title">我的生词本</span>
+            <span class="vocab-counter-pill" id="vocab-total-pill">共 0 词</span>
+          </div>
+          <button class="vocab-header-action-btn" id="btn-play-all-vocab" onclick="window.LingoApp.togglePlayAllVocab()" title="顺序朗读播放生词">
+            <i class="fas fa-volume-up"></i>
+            <span id="vocab-play-all-text">顺序朗读</span>
+          </button>
+        </div>
+
+        <!-- 搜索与筛选栏 -->
+        <div class="vocab-filter-section">
+          <div class="vocab-search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="vocab-search-input" class="vocab-search-input" placeholder="搜索生词或中文释义..." oninput="window.LingoApp.filterVocabList()">
+            <button class="vocab-search-clear" id="vocab-search-clear" onclick="window.LingoApp.clearVocabSearch()" style="display: none;">
+              <i class="fas fa-times-circle"></i>
+            </button>
+          </div>
+
+          <div class="vocab-band-pills-row" id="vocab-band-filters">
+            <button class="vocab-filter-pill active" data-band="all" onclick="window.LingoApp.setVocabBandFilter('all')">全部 (<span id="filter-cnt-all">0</span>)</button>
+            <button class="vocab-filter-pill" data-band="6.0" onclick="window.LingoApp.setVocabBandFilter('6.0')">Band 6.0 (<span id="filter-cnt-60">0</span>)</button>
+            <button class="vocab-filter-pill" data-band="6.5" onclick="window.LingoApp.setVocabBandFilter('6.5')">Band 6.5 (<span id="filter-cnt-65">0</span>)</button>
+            <button class="vocab-filter-pill" data-band="7.0" onclick="window.LingoApp.setVocabBandFilter('7.0')">Band 7.0+ (<span id="filter-cnt-70">0</span>)</button>
+          </div>
+        </div>
+
+        <!-- 生词卡片列表容器 -->
+        <div class="vocab-cards-list" id="vocab-cards-list"></div>
+
+        <!-- 空状态提示 -->
+        <div class="vocab-empty-state" id="vocab-empty-state" style="display: none;">
+          <div class="empty-icon-circle">
+            <i class="far fa-folder-open"></i>
+          </div>
+          <h3 class="empty-title">生词本空空如也</h3>
+          <p class="empty-desc">在「刷一刷」「看一看」「猜一猜」中遇到不熟悉的考词，点击星标或书签即可一键收入生词本进行针对性强化复习。</p>
+          <button class="btn-primary-white" style="max-width: 220px; height: 44px; font-size: 14px;" onclick="window.LingoApp.switchView('watch')">
+            去刷一刷记单词 ➔
+          </button>
         </div>
 
       </div>
@@ -683,7 +752,7 @@
   <div class="lingo-toast" id="global-toast">提示信息</div>
 
   <!-- 引入数据源与脚本 -->
-  <script src="lingo/mock-data.js?v=2.6"></script>
-  <script src="lingo/app.js?v=2.6"></script>
+  <script src="lingo/mock-data.js?v=2.7"></script>
+  <script src="lingo/app.js?v=2.7"></script>
 </body>
 </html>
