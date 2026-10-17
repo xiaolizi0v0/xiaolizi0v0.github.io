@@ -59,9 +59,9 @@ window.LINGO_MOCK = {
         "videoUrl": "lingo/assets/videos/vid_20261017_01.mp4",
         "author": "@Yup_LifeDiary",
         "currentStepText": "1 / 2",
-        "subtitleEn": "In daily life and IELTS speaking, mastering resemble and related expressions helps express complex ideas with precision.",
-        "subtitleZh": "在日常与雅思口语中，掌握 resemble 及其相关表达能帮你更加精准地阐述观点。",
-        "humorousLine": "核心考词一网打尽，告别单一中式英语！",
+        "subtitleEn": "On my first day, I noticed this manager strongly resembles my college professor. She recognized my potential instantly and gave me great advice. It only took an hour to adjust completely to my new workplace!",
+        "subtitleZh": "入职第一天，我发现这位主管长得特别像我的大学教授。她一眼就认出了我的潜力，还给了我很棒的建议。只用了一小时，我就彻底适应了全新的职场环境！",
+        "humorousLine": "主管推了推眼镜：“别慌，我比你教授更通情达理。”",
         "bgGradient": "linear-gradient(135deg, #18181b 0%, #27272a 50%, #09090b 100%)",
         "video_prompt": "A stylish young Asian female protagonist facing camera, 9:16 vertical smartphone format, clearly opening her mouth to speak the English dialogue lines with lively lip movements and natural expressions. Calm atmospheric lighting, photorealistic vlog style, no subtitles/watermark. 此视频只保留清晰的英文对白人声与微弱环境音，不需要喧闹背景音乐。【声音】年轻知性女性清晰纯正的英文口语发音、说话人声对白清晰突出、无大声背景音乐。",
         "words": [
@@ -112,7 +112,27 @@ window.LINGO_MOCK = {
             ],
             "answer": 0,
             "tip": "resemble 是雅思真题极高频考词，搭配准确即可显著提升 Lexical Resource 分数！"
-        }
+        },
+        "subtitles": [
+            {
+                "start": 0.0,
+                "end": 4.5,
+                "en": "On my first day, I noticed this manager strongly resembles my college professor.",
+                "zh": "入职第一天，我发现这位主管长得特别像我的大学教授。"
+            },
+            {
+                "start": 4.5,
+                "end": 9.5,
+                "en": "She recognized my potential instantly and gave me great advice.",
+                "zh": "她一眼就认出了我的潜力，还给了我很棒的建议。"
+            },
+            {
+                "start": 9.5,
+                "end": 15.0,
+                "en": "It only took an hour to adjust completely to my new workplace!",
+                "zh": "只用了一小时，我就彻底适应了全新的职场环境！"
+            }
+        ]
     },
     {
         "id": "vid_20261017_02",
@@ -125,8 +145,8 @@ window.LINGO_MOCK = {
         "author": "@Yup_LifeDiary",
         "currentStepText": "2 / 2",
         "subtitleEn": "My approach is simple: first fix the fundamental problem, then test the plan with real users before launch.",
-        "subtitleZh": "我的方法很简单：先解决根本问题，再用真实用户测试方案，最后才上线。",
-        "humorousLine": "别急着换模板，先修 fundamental，不然再漂亮的 approach 也会翻车。",
+        "subtitleZh": "我的策略很简单：先解决根本问题，再用真实用户测试方案，最后才上线。",
+        "humorousLine": "老板听完愣了三秒：“就按你说的办，散会！”",
         "bgGradient": "linear-gradient(135deg, #18181b 0%, #27272a 50%, #09090b 100%)",
         "video_prompt": "Cinematic 9:16 vertical smartphone shot for ComfyUI MiniMax H3, workplace skit. A beautiful young Asian female protagonist with elegant wavy hair and delicate features, wearing a smart blazer, stands alone in a modern glass meeting room, speaking directly to camera with lively lip movements and confident expressions. She gestures toward a whiteboard with a simple flowchart, no other people visible. Cinematic lighting, realistic texture, shallow depth of field, no subtitles, no watermark. 此视频只保留清晰的英文对白人声与微弱环境音，不需要喧闹背景音乐。【声音】年轻知性女性清晰纯正的英文口语发音、说话人声对白清晰突出、无大声背景音乐。",
         "words": [
@@ -161,7 +181,21 @@ window.LINGO_MOCK = {
             ],
             "answer": 0,
             "tip": "fundamental 作形容词表示“基础的、根本的”，与 problem 搭配强调核心问题，不是预算或人员调整。"
-        }
+        },
+        "subtitles": [
+            {
+                "start": 0.0,
+                "end": 7.0,
+                "en": "My approach is simple: first fix the fundamental problem,",
+                "zh": "我的策略很简单：先解决根本问题，"
+            },
+            {
+                "start": 7.0,
+                "end": 15.0,
+                "en": "then test the plan with real users before launch.",
+                "zh": "再用真实用户测试方案，最后才上线。"
+            }
+        ]
     },
     {
         "id": "vid_20261017_03",
@@ -173,9 +207,9 @@ window.LINGO_MOCK = {
         "videoUrl": "lingo/assets/videos/vid_20261017_03.mp4",
         "author": "@Yup_LifeDiary",
         "currentStepText": "3 / 6",
-        "subtitleEn": "In daily life and IELTS speaking, mastering rely on and related expressions helps express complex ideas with precision.",
-        "subtitleZh": "在日常与雅思口语中，掌握 rely on 及其相关表达能帮你更加精准地阐述观点。",
-        "humorousLine": "核心考词一网打尽，告别单一中式英语！",
+        "subtitleEn": "Our team cannot solely rely on domestic market trends. We took every strict measure to evaluate user feedback, because smart data is key to measuring real success!",
+        "subtitleZh": "我们的团队不能仅仅依靠国内市场的发展趋势。我们采取了一切严密措施来评估用户反馈，因为智能数据才是衡量真正成功的关键！",
+        "humorousLine": "凭感觉做决策？数据团队第一个不同意！",
         "bgGradient": "linear-gradient(135deg, #18181b 0%, #27272a 50%, #09090b 100%)",
         "video_prompt": "A stylish young Asian female protagonist facing camera, 9:16 vertical smartphone format, clearly opening her mouth to speak the English dialogue lines with lively lip movements and natural expressions. Calm atmospheric lighting, photorealistic vlog style, no subtitles/watermark. 此视频只保留清晰的英文对白人声与微弱环境音，不需要喧闹背景音乐。【声音】年轻知性女性清晰纯正的英文口语发音、说话人声对白清晰突出、无大声背景音乐。",
         "words": [
@@ -226,21 +260,41 @@ window.LINGO_MOCK = {
             ],
             "answer": 0,
             "tip": "rely on 是雅思真题极高频考词，搭配准确即可显著提升 Lexical Resource 分数！"
-        }
+        },
+        "subtitles": [
+            {
+                "start": 0.0,
+                "end": 5.0,
+                "en": "Our team cannot solely rely on domestic market trends.",
+                "zh": "我们的团队不能仅仅依靠国内市场的发展趋势。"
+            },
+            {
+                "start": 5.0,
+                "end": 10.0,
+                "en": "We took every strict measure to evaluate user feedback,",
+                "zh": "我们采取了一切严密措施来评估用户反馈，"
+            },
+            {
+                "start": 10.0,
+                "end": 15.0,
+                "en": "because smart data is key to measuring real success!",
+                "zh": "因为智能数据才是衡量真正成功的关键！"
+            }
+        ]
     },
     {
         "id": "vid_20261017_04",
-        "genre": "workplace",
+        "genre": "skit",
         "genreTag": "职场脑洞",
-        "genreColor": "#8b5cf6",
+        "genreColor": "#ec4899",
         "title": "给智能吉祥物造词，假笑惊呆评审",
         "poster": "lingo/assets/vlog-clean.png",
         "videoUrl": "lingo/assets/videos/vid_20261017_04.mp4",
         "author": "@Yup_LifeDiary",
         "currentStepText": "4 / 6",
-        "subtitleEn": "I had to coin a new trait for the AI mascot, but its artificial grin made the board nervous.",
-        "subtitleZh": "我得给智能吉祥物造一个新特性，但它的假笑让董事会紧张起来。",
-        "humorousLine": "AI不会笑，但能笑到甲方心虚。",
+        "subtitleEn": "I had to coin a brand new trait for our AI mascot, but its artificial grin really made the whole board nervous!",
+        "subtitleZh": "我不得不为我们的智能吉祥物创造一个全新特质，但它的假笑让整个董事会心里发毛！",
+        "humorousLine": "它一笑，全场温度瞬间下降五度。",
         "bgGradient": "linear-gradient(135deg, #18181b 0%, #27272a 50%, #09090b 100%)",
         "video_prompt": "Cinematic 9:16 vertical smartphone format prompt for ComfyUI MiniMax H3, workplace comedy skit. A beautiful young Asian female protagonist with stylish wavy hair, elegant features, and a modern creative-office outfit stands in a bright product review room, facing a large screen showing an AI mascot with a fake grin. She speaks the English dialogue clearly with lively lip movements, expressive eyes, and a witty confident expression. Only one female character is present, no male character. Cinematic lighting, realistic texture, shallow depth of field, no subtitles, no watermark. 此视频只保留清晰的英文对白人声与微弱环境音，不需要喧闹背景音乐。【声音】年轻知性女性清晰纯正的英文口语发音、说话人声对白清晰突出、无大声背景音乐。",
         "words": [
@@ -285,21 +339,35 @@ window.LINGO_MOCK = {
             ],
             "answer": 0,
             "tip": "coin 在这里是动词“创造、生造”，常与 phrase、term、word 搭配；视频里她创造的是新 trait。"
-        }
+        },
+        "subtitles": [
+            {
+                "start": 0.0,
+                "end": 7.0,
+                "en": "I had to coin a brand new trait for our AI mascot,",
+                "zh": "我不得不为我们的智能吉祥物创造一个全新特质，"
+            },
+            {
+                "start": 7.0,
+                "end": 15.0,
+                "en": "but its artificial grin made the whole board nervous!",
+                "zh": "但它的假笑让整个董事会心里发毛！"
+            }
+        ]
     },
     {
         "id": "vid_20261017_05",
-        "genre": "skit",
+        "genre": "workplace",
         "genreTag": "职场乌龙",
-        "genreColor": "#ec4899",
+        "genreColor": "#8b5cf6",
         "title": "《会议室里的爆笑对话：你真的很像我前领导》",
         "poster": "lingo/assets/vlog-clean.png",
         "videoUrl": "lingo/assets/videos/vid_20261017_05.mp4",
         "author": "@Yup_LifeDiary",
         "currentStepText": "5 / 6",
-        "subtitleEn": "In daily life and IELTS speaking, mastering prompt and related expressions helps express complex ideas with precision.",
-        "subtitleZh": "在日常与雅思口语中，掌握 prompt 及其相关表达能帮你更加精准地阐述观点。",
-        "humorousLine": "核心考词一网打尽，告别单一中式英语！",
+        "subtitleEn": "A witty comment prompted an awkward laugh across the table. During our exchange, I said he resembles my former boss, but mutual trust underlies our great teamwork!",
+        "subtitleZh": "会议室里一句幽默发言促成了一阵尴尬的笑声。在交流中我脱口而出说他像我前领导，不过彼此信任才是高效协作的基础！",
+        "humorousLine": "领导：“那我俩到底谁比较帅？” 全场沉默了。",
         "bgGradient": "linear-gradient(135deg, #18181b 0%, #27272a 50%, #09090b 100%)",
         "video_prompt": "A stylish young Asian female protagonist facing camera, 9:16 vertical smartphone format, clearly opening her mouth to speak the English dialogue lines with lively lip movements and natural expressions. Calm atmospheric lighting, photorealistic vlog style, no subtitles/watermark. 此视频只保留清晰的英文对白人声与微弱环境音，不需要喧闹背景音乐。【声音】年轻知性女性清晰纯正的英文口语发音、说话人声对白清晰突出、无大声背景音乐。",
         "words": [
@@ -350,21 +418,41 @@ window.LINGO_MOCK = {
             ],
             "answer": 0,
             "tip": "prompt 是雅思真题极高频考词，搭配准确即可显著提升 Lexical Resource 分数！"
-        }
+        },
+        "subtitles": [
+            {
+                "start": 0.0,
+                "end": 4.5,
+                "en": "A witty comment prompted an awkward laugh across the table.",
+                "zh": "会议室里一句幽默发言促成了一阵尴尬的笑声。"
+            },
+            {
+                "start": 4.5,
+                "end": 9.5,
+                "en": "During our exchange, I said he resembles my former boss,",
+                "zh": "在交流中我脱口而出说他像我前领导，"
+            },
+            {
+                "start": 9.5,
+                "end": 15.0,
+                "en": "but mutual trust underlies our great teamwork!",
+                "zh": "不过彼此信任才是高效协作的基础！"
+            }
+        ]
     },
     {
         "id": "vid_20261017_06",
         "genre": "workplace",
         "genreTag": "职场反转",
-        "genreColor": "#e11d48",
+        "genreColor": "#10b981",
         "title": "《会议室里被质问“忽视邮件”，她一句话逆转》",
         "poster": "lingo/assets/vlog-clean.png",
         "videoUrl": "lingo/assets/videos/vid_20261017_06.mp4",
         "author": "@Yup_LifeDiary",
         "currentStepText": "6 / 6",
-        "subtitleEn": "When my female boss asked why I ignored her urgent email, I calmly explained that I prioritized the client crisis first.",
-        "subtitleZh": "当女老板问我为什么忽视她的紧急邮件时，我冷静解释，我优先处理了客户危机。",
-        "humorousLine": "邮件可以晚回，理由要秒回：ignore 不是装死，是优先级管理。",
+        "subtitleEn": "When my boss asked why I ignored her urgent email, I calmly explained that I resolved the client crisis first!",
+        "subtitleZh": "当老板质问我为什么没理会她的紧急邮件时，我冷静解释，我已经第一时间解决了客户的危机！",
+        "humorousLine": "老板放下了手里的咖啡：“干得漂亮，年终奖加倍。”",
         "bgGradient": "linear-gradient(135deg, #18181b 0%, #27272a 50%, #09090b 100%)",
         "video_prompt": "Cinematic 9:16 vertical smartphone format prompt for ComfyUI MiniMax H3, workplace drama: a beautiful young Asian female protagonist with stylish elegant wavy hair, expressive eyes and delicate facial features, wearing a tailored modern blazer, standing alone in a bright glass meeting room, speaking directly to camera with natural vivid lip movements, calm confident expression, subtle hand gesture, cinematic soft office lighting, realistic texture, shallow depth of field, no subtitles, no watermark. 此视频只保留清晰的英文对白人声与微弱环境音，不需要喧闹背景音乐。【声音】年轻知性女性清晰纯正的英文口语发音、说话人声对白清晰突出、无大声背景音乐。",
         "words": [
@@ -389,7 +477,21 @@ window.LINGO_MOCK = {
             ],
             "answer": 0,
             "tip": "ignore 常接 email/warning/suggestion，表示故意不理睬；口语中可用 because 解释原因。"
-        }
+        },
+        "subtitles": [
+            {
+                "start": 0.0,
+                "end": 7.0,
+                "en": "When my boss asked why I ignored her urgent email,",
+                "zh": "当老板质问我为什么没理会她的紧急邮件时，"
+            },
+            {
+                "start": 7.0,
+                "end": 15.0,
+                "en": "I calmly explained that I resolved the client crisis first!",
+                "zh": "我冷静解释，我已经第一时间解决了客户的危机！"
+            }
+        ]
     }
 ],
 

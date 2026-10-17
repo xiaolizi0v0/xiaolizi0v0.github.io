@@ -1066,6 +1066,17 @@ body:has(#view-watch.active) .app-main-viewport {
   margin-top: 2px;
 }
 
+.vocab-highlight {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  padding: 1px 4px;
+  border-radius: 4px;
+  border-bottom: 2px solid #38bdf8;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  display: inline-block;
+}
+
 /* 图1中标志性的底部药丸按钮: := 本条单词 3 · 快测 */
 .word-quiz-capsule-btn {
   background: #ffffff;

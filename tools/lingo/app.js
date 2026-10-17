@@ -565,6 +565,59 @@
     }
   }
 
+  // ------------------------------------------------------------------------
+  // 6.2 动态时间轴字幕与雅思考词高亮驱动 (音画对齐 + 毫秒级分段切换)
+  // ------------------------------------------------------------------------
+  let currentSubtitleSegmentIndex = -1;
+
+  function highlightVocabWords(text, words) {
+    if (!text) return '';
+    if (!words || !Array.isArray(words) || words.length === 0) return text;
+
+    let highlighted = text;
+    for (const w of words) {
+      const rawWord = w.word;
+      if (!rawWord) continue;
+      // 智能匹配核心词汇或其复数、时态变形
+      const safeWord = rawWord.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(`\\b(${safeWord}[a-zA-Z]*)\\b`, 'gi');
+      highlighted = highlighted.replace(regex, '<span class="vocab-highlight">$1</span>');
+    }
+    return highlighted;
+  }
+
+  function updateDynamicSubtitles(videoEl, cur, force = false) {
+    if (!cur) return;
+    const subEn = document.getElementById('watch-sub-en');
+    const subZh = document.getElementById('watch-sub-zh');
+    if (!subEn || !subZh) return;
+
+    if (cur.subtitles && Array.isArray(cur.subtitles) && cur.subtitles.length > 0) {
+      const t = videoEl ? (videoEl.currentTime || 0) : 0;
+      let matchedIdx = cur.subtitles.findIndex(s => t >= s.start && t < s.end);
+      if (matchedIdx === -1) {
+        if (t >= cur.subtitles[cur.subtitles.length - 1].end) {
+          matchedIdx = cur.subtitles.length - 1;
+        } else {
+          matchedIdx = 0;
+        }
+      }
+
+      if (matchedIdx !== currentSubtitleSegmentIndex || force) {
+        currentSubtitleSegmentIndex = matchedIdx;
+        const seg = cur.subtitles[matchedIdx];
+        subEn.innerHTML = highlightVocabWords(seg.en, cur.words);
+        subZh.textContent = seg.zh;
+      }
+    } else {
+      if (force || currentSubtitleSegmentIndex !== 0) {
+        currentSubtitleSegmentIndex = 0;
+        subEn.innerHTML = highlightVocabWords(cur.subtitleEn, cur.words);
+        subZh.textContent = cur.subtitleZh || '';
+      }
+    }
+  }
+
   function renderWatch() {
     const videos = window.LINGO_MOCK.videos;
     const cur = videos[state.watch.currentIndex];
@@ -657,6 +710,7 @@
 
           videoEl.ontimeupdate = () => {
             updateScrubberBars(videoEl);
+            updateDynamicSubtitles(videoEl, cur);
           };
 
           let stallTimer = null;
@@ -720,9 +774,11 @@
     const subHumor = document.getElementById('watch-sub-humor');
 
     if (subTitle) subTitle.textContent = cur.title || '';
-    if (subEn) subEn.textContent = cur.subtitleEn;
-    if (subZh) subZh.textContent = cur.subtitleZh;
-    if (subHumor) subHumor.textContent = cur.humorousLine;
+    if (subHumor) subHumor.textContent = cur.humorousLine || '';
+
+    // 初始化动态时间轴字幕与考词高亮
+    currentSubtitleSegmentIndex = -1;
+    updateDynamicSubtitles(videoEl, cur, true);
 
     // 字幕模式应用
     if (state.watch.subtitleMode === 'none') {
