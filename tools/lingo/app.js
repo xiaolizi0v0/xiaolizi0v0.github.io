@@ -131,7 +131,7 @@
   // 加载 config.json
   async function loadConfig() {
     const defaultConfig = {
-      apiBaseUrl: 'https://demonstration-commission-knock-mason.trycloudflare.com/api/v1',
+      apiBaseUrl: 'https://realtor-separate-life-unsubscribe.trycloudflare.com/api/v1',
       timeoutMs: 8000,
       useMockFallback: true
     };
@@ -449,30 +449,26 @@
   }
 
   // ------------------------------------------------------------------------
-  // 6. 「刷一刷」超低延迟智能视频引擎 (Blob Cache + 智能相邻预加载 + 缓冲监测)
+  // 6. 「刷一刷」超低延迟智能视频引擎 (原生 HTTP Range 直流 + 智能相邻预加载)
   // ------------------------------------------------------------------------
-  const videoBlobCache = new Map(); // resolvedUrl -> blobUrl (内存急速复用，秒开 0 延迟)
-  const videoPrefetchingSet = new Set();
+  const preloadedVideos = new Set();
 
-  // 异步静默预载入视频至内存 Blob (免去后续每次切换的网络握手与加载开销)
-  async function prefetchVideoBlob(rawUrl) {
+  // 原生静默预载入相邻视频流至浏览器缓存 (免去切换等待)
+  function prefetchVideo(rawUrl) {
     if (!rawUrl || rawUrl.startsWith('data:') || rawUrl.startsWith('blob:')) return;
     const resolved = resolveMediaUrl(rawUrl);
-    if (!resolved || videoBlobCache.has(resolved) || videoPrefetchingSet.has(resolved)) return;
+    if (!resolved || preloadedVideos.has(resolved)) return;
 
-    videoPrefetchingSet.add(resolved);
+    preloadedVideos.add(resolved);
     try {
-      const resp = await fetch(resolved, { mode: 'cors' });
-      if (resp.ok) {
-        const blob = await resp.blob();
-        const blobUrl = URL.createObjectURL(blob);
-        videoBlobCache.set(resolved, blobUrl);
-        console.log('[Lingo VideoEngine] 预加载成功并写入内存缓存:', resolved, `(${(blob.size / (1024 * 1024)).toFixed(2)} MB)`);
-      }
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'video';
+      link.href = resolved;
+      link.type = 'video/mp4';
+      document.head.appendChild(link);
     } catch (e) {
-      // 预加载容灾：网络异常时不阻塞主线程正常流式播放
-    } finally {
-      videoPrefetchingSet.delete(resolved);
+      // 预加载容灾
     }
   }
 
@@ -483,11 +479,11 @@
 
     const nextIdx = (state.watch.currentIndex + 1) % videos.length;
     if (videos[nextIdx] && videos[nextIdx].videoUrl) {
-      prefetchVideoBlob(videos[nextIdx].videoUrl);
+      prefetchVideo(videos[nextIdx].videoUrl);
     }
     const prevIdx = (state.watch.currentIndex - 1 + videos.length) % videos.length;
     if (videos[prevIdx] && videos[prevIdx].videoUrl) {
-      prefetchVideoBlob(videos[prevIdx].videoUrl);
+      prefetchVideo(videos[prevIdx].videoUrl);
     }
   }
 
@@ -614,21 +610,15 @@
       if (rawVideoUrl) {
         videoEl.style.display = 'block';
 
-        // 优先使用 Blob 内存极速流 (0ms 秒开)，若无则使用标准流式 URL
-        const activeSrc = videoBlobCache.get(rawVideoUrl) || rawVideoUrl;
-
-        if (videoEl.dataset.currentSrc !== activeSrc) {
-          videoEl.dataset.currentSrc = activeSrc;
+        if (videoEl.dataset.currentSrc !== rawVideoUrl) {
+          videoEl.dataset.currentSrc = rawVideoUrl;
           setWatchBuffering(true, '⚡ 视频加载中...');
 
-          videoEl.src = activeSrc;
+          videoEl.src = rawVideoUrl;
+          videoEl.preload = 'auto';
           videoEl.playbackRate = state.watch.playbackRate || 1.0;
           videoEl.load();
 
-          // 静默并发预载当前视频 Blob 并在后台预取相邻视频
-          if (!videoBlobCache.has(rawVideoUrl)) {
-            prefetchVideoBlob(rawVideoUrl);
-          }
           preloadAdjacentVideos();
 
           videoEl.onloadstart = () => {
