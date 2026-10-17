@@ -6089,12 +6089,12 @@
         {
           "title": "第14集",
           "url": "https://cdn.yzzy30-play.com/20261015/60425_dca15035/3000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         }
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787430287694,
-      "updatedAt": 1792128928577
+      "updatedAt": 1792226159456
     },
     {
       "watchedDate": "2026-08-24",
