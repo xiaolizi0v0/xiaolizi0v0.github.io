@@ -362,7 +362,10 @@
               <i class="fas fa-chevron-left"></i>
             </button>
             <div class="hud-genre-pill" id="watch-genre-pill">Vlog</div>
-            <div class="hud-counter-text" id="watch-counter-text">2 / 6</div>
+            <button class="hud-mode-pill" id="watch-mode-toggle-btn" onclick="window.LingoApp.toggleWatchMode()" title="切换 今日日课 / 全部视频">
+              <i class="fas fa-calendar-day" style="font-size: 10px; margin-right: 3px;"></i>今日日课
+            </button>
+            <div class="hud-counter-text" id="watch-counter-text">1 / 5</div>
           </div>
 
           <!-- 顶部故事段落指示线 -->
@@ -559,16 +562,26 @@
     <section id="view-guess" class="view-panel">
       <div class="guess-view-container">
         
-        <!-- 顶部返回、标题与进度指示 (还原图1) -->
+        <!-- 顶部返回、标题与模式切换 -->
         <div class="guess-nav-header">
           <button class="guess-back-btn" onclick="window.LingoApp.switchView('dashboard')" title="返回首页">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <span class="guess-header-title">猜一猜</span>
-          <span class="guess-counter-pill" id="guess-counter-pill">1 / 20</span>
+          <div class="guess-header-center">
+            <span class="guess-header-title">猜一猜</span>
+            <div class="guess-mode-switch-group">
+              <button class="guess-mode-pill active" id="guess-mode-daily-btn" onclick="window.LingoApp.toggleGuessMode('daily')">
+                <i class="fas fa-calendar-day"></i> 今日日课 (5)
+              </button>
+              <button class="guess-mode-pill" id="guess-mode-all-btn" onclick="window.LingoApp.toggleGuessMode('all')">
+                <i class="fas fa-archive"></i> 全部题库 (<span id="guess-total-badge">15</span>)
+              </button>
+            </div>
+          </div>
+          <span class="guess-counter-pill" id="guess-counter-pill">1 / 5</span>
         </div>
 
-        <!-- 20 格微细分段进度条 -->
+        <!-- 分段进度条 (日课模式为 5 段清晰刻度) -->
         <div class="guess-seg-track" id="guess-seg-track"></div>
 
         <!-- 单词题干与发音区 (大号衬线字体 + 朗读喇叭) -->
@@ -609,6 +622,49 @@
             <button class="feedback-action-btn next" id="guess-next-puzzle-btn">
               下一题 ➔
             </button>
+          </div>
+        </div>
+
+        <!-- 今日日课通关打卡结算卡 -->
+        <div class="guess-completion-card" id="guess-completion-card" style="display: none;">
+          <div class="completion-trophy-badge">
+            <i class="fas fa-award"></i>
+          </div>
+          <h2 class="completion-title">🎉 今日单词日课圆满通关！</h2>
+          <p class="completion-subtitle" id="guess-completion-date">今日精选 5 词全部达成 · 熟人情境深度内化</p>
+          
+          <div class="completion-stats-grid">
+            <div class="comp-stat-item">
+              <div class="comp-stat-val" id="guess-comp-score">5 / 5</div>
+              <div class="comp-stat-lbl">正确率</div>
+            </div>
+            <div class="comp-stat-item">
+              <div class="comp-stat-val" id="guess-comp-words">+5 词</div>
+              <div class="comp-stat-lbl">今日新学</div>
+            </div>
+            <div class="comp-stat-item">
+              <div class="comp-stat-val" id="guess-comp-streak">3 天</div>
+              <div class="comp-stat-lbl">连续打卡</div>
+            </div>
+          </div>
+
+          <div class="completion-words-box">
+            <div class="comp-box-header">✨ 今日掌握的核心词汇：</div>
+            <div class="comp-words-chips" id="guess-comp-words-chips"></div>
+          </div>
+
+          <div class="completion-actions-col">
+            <button class="comp-main-btn" onclick="window.LingoApp.finishDailyGuessPunchin()">
+              <i class="fas fa-check-circle"></i> 完成打卡 · 返回主页
+            </button>
+            <div class="comp-sub-actions">
+              <button class="comp-sec-btn" id="guess-btn-review-mistakes" style="display: none;" onclick="window.LingoApp.startMistakeReview()">
+                <i class="fas fa-redo-alt"></i> 专项攻克错题 (<span id="guess-mistakes-count">0</span>)
+              </button>
+              <button class="comp-sec-btn" onclick="window.LingoApp.toggleGuessMode('all')">
+                <i class="fas fa-layer-group"></i> 挑战全部题库
+              </button>
+            </div>
           </div>
         </div>
 
@@ -779,6 +835,20 @@
       <span>我的</span>
     </button>
   </nav>
+
+  <!-- 情境图高清放大预览 Lightbox Modal -->
+  <div class="guess-lightbox-modal" id="guess-lightbox-modal" style="display: none;" onclick="window.LingoApp.closeGuessPhotoLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close-btn" onclick="window.LingoApp.closeGuessPhotoLightbox()" title="关闭预览">✕</button>
+      <div class="lightbox-img-wrapper">
+        <img id="guess-lightbox-img" src="" alt="情境图高清大图">
+      </div>
+      <div class="lightbox-caption-bar">
+        <div class="lightbox-word-tag" id="guess-lightbox-word">resemble</div>
+        <div class="lightbox-desc-text" id="guess-lightbox-desc"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- 全局后端配置模态框 -->
   <div class="modal-dialog-overlay" id="config-modal-overlay">

@@ -28,6 +28,7 @@
 
     // 刷一刷短视频流状态
     watch: {
+      mode: 'daily', // 'daily' (今日 5 组日课) | 'all' (全部视频题库)
       currentIndex: 0,
       isPlaying: false,
       playbackRate: 1.0,
@@ -48,11 +49,15 @@
 
     // 猜一猜状态
     guess: {
+      mode: 'daily', // 'daily' (今日精选 5 词) | 'all' (全部题库归档)
       currentPuzzleIndex: 0,
       selectedIndices: [],
       hasAnswered: false,
       isCorrect: false,
-      score: 40
+      score: 40,
+      sessionResults: [],
+      mistakePuzzles: [],
+      isReviewingMistakes: false
     },
 
     // 生词本
@@ -430,14 +435,18 @@
     }
   }
 
-  // 媒体资源相对路径解析器 (自动补全云端隧道或本地绝对路径)
+  // 媒体资源相对路径解析器 (优先本地静态资源，动态媒体自动补全云端隧道)
   function resolveMediaUrl(url) {
     if (!url) return '';
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:')) {
       return url;
     }
+    // 本地内置资产优先直接加载，支持离线与 GitHub Pages 高速 CDN
+    if (url.startsWith('lingo/assets/') || url.startsWith('./lingo/assets/')) {
+      return url;
+    }
     const cleanUrl = url.replace(/^\/+/, '');
-    if (state.config && state.config.apiBaseUrl) {
+    if (state.config && state.config.apiBaseUrl && state.backendStatus === 'online') {
       try {
         const u = new URL(state.config.apiBaseUrl);
         return `${u.origin}/${cleanUrl}`;
@@ -446,6 +455,72 @@
       }
     }
     return cleanUrl;
+  }
+
+  // ------------------------------------------------------------------------
+  // 5.5 今日日课切片与自然日历自动轮转引擎 (Daily Curriculum & Calendar Engine)
+  // ------------------------------------------------------------------------
+  function getCalendarInfo() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const dateStr = `${year}${month}${day}`;
+    const isoDate = `${year}-${month}-${day}`;
+    const startOfYear = new Date(year, 0, 0);
+    const diff = now - startOfYear;
+    const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+    return { dateStr, isoDate, dayOfYear };
+  }
+
+  function getCuratedDailySlice(allItems, batchSize = 5, itemType = 'generic') {
+    if (!allItems || !Array.isArray(allItems) || allItems.length === 0) return [];
+    if (allItems.length <= batchSize) return allItems;
+
+    const { dateStr, isoDate, dayOfYear } = getCalendarInfo();
+
+    // 1. 优先尝试提取匹配当天日期的生成批次 (例如 vid_20261017_* 或 gp_20261017_*)
+    let todayMatched = [];
+    if (itemType === 'video' || itemType === 'guess') {
+      todayMatched = allItems.filter(item => item && item.id && (item.id.includes(`_${dateStr}_`) || item.id.includes(dateStr)));
+    } else if (itemType === 'article') {
+      todayMatched = allItems.filter(item => item && item.date === isoDate);
+    }
+
+    if (todayMatched.length >= batchSize) {
+      return todayMatched.slice(0, batchSize);
+    }
+
+    // 2. 确定性自然日历轮转：根据 dayOfYear 自动平滑滚动切换批次，每日更新
+    const totalBatches = Math.ceil(allItems.length / batchSize);
+    const batchIndex = dayOfYear % totalBatches;
+    const start = batchIndex * batchSize;
+    let slice = allItems.slice(start, start + batchSize);
+
+    // 末尾不足整组时从头部借补，确保每日学习量充实稳定
+    if (slice.length < batchSize && allItems.length >= batchSize) {
+      slice = slice.concat(allItems.slice(0, batchSize - slice.length));
+    }
+    return slice;
+  }
+
+  function getActiveWatchVideos() {
+    const all = window.LINGO_MOCK.videos || [];
+    if (state.watch.mode === 'daily') {
+      return getCuratedDailySlice(all, 5, 'video');
+    }
+    return all;
+  }
+
+  function getActiveGuessPuzzles() {
+    if (state.guess.isReviewingMistakes && state.guess.mistakePuzzles && state.guess.mistakePuzzles.length > 0) {
+      return state.guess.mistakePuzzles;
+    }
+    const all = window.LINGO_MOCK.guessPuzzles || [];
+    if (state.guess.mode === 'daily') {
+      return getCuratedDailySlice(all, 5, 'guess');
+    }
+    return all;
   }
 
   // ------------------------------------------------------------------------
@@ -474,7 +549,7 @@
 
   // 预载入下一条与前一条相邻视频（实现抖音同款无缝切流）
   function preloadAdjacentVideos() {
-    const videos = window.LINGO_MOCK.videos;
+    const videos = getActiveWatchVideos();
     if (!videos || !videos.length) return;
 
     const nextIdx = (state.watch.currentIndex + 1) % videos.length;
@@ -619,9 +694,27 @@
   }
 
   function renderWatch() {
-    const videos = window.LINGO_MOCK.videos;
+    const videos = getActiveWatchVideos();
+    if (!videos || !videos.length) return;
+
+    if (state.watch.currentIndex >= videos.length) {
+      state.watch.currentIndex = 0;
+    }
     const cur = videos[state.watch.currentIndex];
     if (!cur) return;
+
+    // 顶部模式切换按钮
+    const modeBtn = document.getElementById('watch-mode-toggle-btn');
+    if (modeBtn) {
+      modeBtn.innerHTML = state.watch.mode === 'daily'
+        ? '<i class="fas fa-calendar-day" style="font-size: 10px; margin-right: 3px;"></i>今日日课'
+        : '<i class="fas fa-archive" style="font-size: 10px; margin-right: 3px;"></i>全部视频';
+      if (state.watch.mode === 'daily') {
+        modeBtn.classList.add('active');
+      } else {
+        modeBtn.classList.remove('active');
+      }
+    }
 
     // 顶部信息
     const genrePill = document.getElementById('watch-genre-pill');
@@ -980,23 +1073,63 @@
   // ------------------------------------------------------------------------
   // 8. 「猜一猜」图像记忆单词 (根据图片选出所有符合它的图，支持多选)
   // ------------------------------------------------------------------------
+  // ------------------------------------------------------------------------
+  // 8. 「猜一猜」图像记忆单词 (根据图片选出所有符合它的图，支持多选与日课轮转)
+  // ------------------------------------------------------------------------
   function renderGuess() {
-    const puzzles = window.LINGO_MOCK.guessPuzzles;
+    const puzzles = getActiveGuessPuzzles();
     if (!puzzles || puzzles.length === 0) return;
 
-    const cur = puzzles[state.guess.currentPuzzleIndex % puzzles.length];
+    const activeIdx = state.guess.currentPuzzleIndex % puzzles.length;
+    const cur = puzzles[activeIdx];
     if (!cur) return;
 
     state.guess.selectedIndices = [];
     state.guess.hasAnswered = false;
 
-    // 1. 顶部进度计数与 20 格分段进度条
+    // 恢复主答题区域显示并隐藏结算卡
+    const promptCard = document.querySelector('.guess-prompt-card');
+    const photosBox = document.getElementById('guess-photos-box');
+    const actionBar = document.querySelector('.guess-action-bar');
+    const compCard = document.getElementById('guess-completion-card');
+    const feedbackCard = document.getElementById('guess-feedback-card');
+
+    if (promptCard) promptCard.style.display = '';
+    if (photosBox) photosBox.style.display = '';
+    if (actionBar) actionBar.style.display = '';
+    if (compCard) compCard.style.display = 'none';
+    if (feedbackCard) feedbackCard.style.display = 'none';
+
+    // 1. 顶部模式切换按钮高亮
+    const dailyBtn = document.getElementById('guess-mode-daily-btn');
+    const allBtn = document.getElementById('guess-mode-all-btn');
+    const totalBadge = document.getElementById('guess-total-badge');
+    if (dailyBtn && allBtn) {
+      if (state.guess.isReviewingMistakes) {
+        dailyBtn.classList.remove('active');
+        allBtn.classList.remove('active');
+      } else if (state.guess.mode === 'daily') {
+        dailyBtn.classList.add('active');
+        allBtn.classList.remove('active');
+      } else {
+        dailyBtn.classList.remove('active');
+        allBtn.classList.add('active');
+      }
+    }
+    if (totalBadge && window.LINGO_MOCK.guessPuzzles) {
+      totalBadge.textContent = window.LINGO_MOCK.guessPuzzles.length;
+    }
+
+    // 2. 顶部进度计数与分段进度条 (日课模式呈现清晰的 5 段刻度)
     const counterEl = document.getElementById('guess-counter-pill');
     const segTrackEl = document.getElementById('guess-seg-track');
-    const activeIdx = state.guess.currentPuzzleIndex % puzzles.length;
 
     if (counterEl) {
-      counterEl.textContent = `${activeIdx + 1} / ${puzzles.length}`;
+      if (state.guess.isReviewingMistakes) {
+        counterEl.textContent = `错题特训 ${activeIdx + 1} / ${puzzles.length}`;
+      } else {
+        counterEl.textContent = `${activeIdx + 1} / ${puzzles.length}`;
+      }
     }
     if (segTrackEl) {
       segTrackEl.innerHTML = Array.from({ length: puzzles.length }, (_, i) => {
@@ -1007,7 +1140,7 @@
       }).join('');
     }
 
-    // 2. 单词题干与发音
+    // 3. 单词题干与发音
     const wordTitle = document.getElementById('guess-word-title');
     const speakerBtn = document.getElementById('guess-speaker-btn');
     const phoneticEl = document.getElementById('guess-phonetic-text');
@@ -1016,17 +1149,19 @@
     if (wordTitle) wordTitle.textContent = cur.word;
     if (phoneticEl) phoneticEl.textContent = cur.phonetic || '';
     if (instructionLine) {
-      instructionLine.innerHTML = `<span class="guess-phonetic-text" id="guess-phonetic-text">${cur.phonetic || ''}</span> · ${cur.instruction || '选出所有符合它的图（可多选）'}`;
+      instructionLine.innerHTML = `<span class="guess-phonetic-text">${cur.phonetic || ''}</span> · ${cur.instruction || '选出所有符合它的图（可多选）'}`;
     }
     if (speakerBtn) {
       speakerBtn.onclick = () => speakWord(cur.word);
     }
 
-    // 3. 2x2 四宫格情境图片互动矩阵
-    const photosBox = document.getElementById('guess-photos-box');
+    // 4. 2x2 四宫格情境图片互动矩阵 (附带高清放大按钮)
     if (photosBox) {
       photosBox.innerHTML = cur.images.map((img, i) => `
         <div class="guess-photo-card" data-idx="${i}" onclick="window.LingoApp.toggleGuessPhotoSelection(${i})">
+          <button class="guess-card-zoom-btn" onclick="event.stopPropagation(); window.LingoApp.openGuessPhotoLightbox('${resolveMediaUrl(img.url)}', '${encodeURIComponent(img.caption || '')}', '${cur.word}')" title="放大查看原图">
+            <i class="fas fa-search-plus"></i>
+          </button>
           <img src="${resolveMediaUrl(img.url)}" alt="${img.caption || '情境图'}" onerror="this.onerror=null; this.src='lingo/assets/guess_resemble_1.png';">
           <div class="guess-card-check"><i class="fas fa-check"></i></div>
           <div class="guess-card-badge" id="guess-card-badge-${i}"></div>
@@ -1034,7 +1169,7 @@
       `).join('');
     }
 
-    // 4. 底部主确认操作按钮
+    // 5. 底部主确认操作按钮
     const confirmBtn = document.getElementById('guess-confirm-btn');
     if (confirmBtn) {
       confirmBtn.textContent = '确认（已选 0 张）';
@@ -1042,10 +1177,6 @@
       confirmBtn.classList.remove('active');
       confirmBtn.onclick = () => confirmGuessAnswer();
     }
-
-    // 5. 隐藏结果解析卡
-    const feedbackCard = document.getElementById('guess-feedback-card');
-    if (feedbackCard) feedbackCard.style.display = 'none';
   }
 
   function toggleGuessPhotoSelection(idx) {
@@ -1088,8 +1219,9 @@
     if (state.guess.hasAnswered || state.guess.selectedIndices.length === 0) return;
     state.guess.hasAnswered = true;
 
-    const puzzles = window.LINGO_MOCK.guessPuzzles;
-    const cur = puzzles[state.guess.currentPuzzleIndex % puzzles.length];
+    const puzzles = getActiveGuessPuzzles();
+    const activeIdx = state.guess.currentPuzzleIndex % puzzles.length;
+    const cur = puzzles[activeIdx];
     if (!cur) return;
 
     // 自动读音
@@ -1101,6 +1233,20 @@
     // 判定全对：数量相同且每个选项都在正确答案中
     const isAllCorrect = userSelected.length === correctIndices.length &&
       correctIndices.every(idx => userSelected.includes(idx));
+
+    // 记录答题结果与错题池
+    if (!state.guess.sessionResults.some(r => r.id === cur.id)) {
+      state.guess.sessionResults.push({
+        id: cur.id,
+        word: cur.word,
+        phonetic: cur.phonetic,
+        meaningZh: cur.meaningZh,
+        isCorrect: isAllCorrect
+      });
+    }
+    if (!isAllCorrect && !state.guess.mistakePuzzles.some(p => p.id === cur.id)) {
+      state.guess.mistakePuzzles.push(cur);
+    }
 
     // 更新各图片卡片状态反馈角标
     document.querySelectorAll('.guess-photo-card').forEach(card => {
@@ -1153,14 +1299,14 @@
     if (statusBanner) {
       if (isAllCorrect) {
         statusBanner.className = 'feedback-status-banner success';
-        statusBanner.innerHTML = '<i class="fas fa-check-circle"></i> 敏锐！全部正确匹配';
-        showToast('🎉 太棒了！敏锐抓取词汇语义');
+        statusBanner.innerHTML = '<i class="fas fa-check-circle"></i> 敏锐！全部正确匹配 (雅思核心词汇掌握 +1)';
+        showToast('🎉 太棒了！敏锐抓取情境语义');
         state.userGoals.learnedWordsToday += 1;
         saveLocalUserData();
         updateDashboardMetrics();
       } else {
         statusBanner.className = 'feedback-status-banner partial';
-        statusBanner.innerHTML = '<i class="fas fa-info-circle"></i> 差一点点，来看语义解析';
+        statusBanner.innerHTML = '<i class="fas fa-info-circle"></i> 差一点点，来看语义与真题情境解析';
         showToast('别灰心，点击查看图文情境解析');
       }
     }
@@ -1199,9 +1345,19 @@
     }
 
     if (nextBtn) {
-      const isLast = (state.guess.currentPuzzleIndex + 1) >= puzzles.length;
-      nextBtn.innerHTML = isLast ? '重新从第 1 题开始 ➔' : `下一题 (${(state.guess.currentPuzzleIndex % puzzles.length) + 2}/${puzzles.length}) ➔`;
-      nextBtn.onclick = () => nextGuessPuzzle();
+      const isLast = (activeIdx + 1) >= puzzles.length;
+      if (isLast) {
+        if (state.guess.mode === 'daily' || state.guess.isReviewingMistakes) {
+          nextBtn.innerHTML = '<i class="fas fa-award"></i> 查看今日通关结算 🎉';
+          nextBtn.onclick = () => renderGuessCompletionCard();
+        } else {
+          nextBtn.innerHTML = '再来一组 (轮转下一批) ➔';
+          nextBtn.onclick = () => nextGuessPuzzle();
+        }
+      } else {
+        nextBtn.innerHTML = `下一题 (${activeIdx + 2}/${puzzles.length}) ➔`;
+        nextBtn.onclick = () => nextGuessPuzzle();
+      }
     }
 
     if (feedbackCard) {
@@ -1213,11 +1369,120 @@
   }
 
   function nextGuessPuzzle() {
-    const puzzles = window.LINGO_MOCK.guessPuzzles;
+    const puzzles = getActiveGuessPuzzles();
     state.guess.currentPuzzleIndex = (state.guess.currentPuzzleIndex + 1) % puzzles.length;
     state.guess.selectedIndices = [];
     state.guess.hasAnswered = false;
     renderGuess();
+  }
+
+  function renderGuessCompletionCard() {
+    const feedbackCard = document.getElementById('guess-feedback-card');
+    if (feedbackCard) feedbackCard.style.display = 'none';
+
+    const promptCard = document.querySelector('.guess-prompt-card');
+    const photosBox = document.getElementById('guess-photos-box');
+    const actionBar = document.querySelector('.guess-action-bar');
+    if (promptCard) promptCard.style.display = 'none';
+    if (photosBox) photosBox.style.display = 'none';
+    if (actionBar) actionBar.style.display = 'none';
+
+    const compCard = document.getElementById('guess-completion-card');
+    if (!compCard) return;
+
+    const results = state.guess.sessionResults || [];
+    const total = results.length || 5;
+    const correctCount = results.filter(r => r.isCorrect).length;
+
+    const scoreEl = document.getElementById('guess-comp-score');
+    const wordsEl = document.getElementById('guess-comp-words');
+    const streakEl = document.getElementById('guess-comp-streak');
+    const chipsEl = document.getElementById('guess-comp-words-chips');
+    const mistakesBtn = document.getElementById('guess-btn-review-mistakes');
+    const mistakesCountEl = document.getElementById('guess-mistakes-count');
+
+    if (scoreEl) scoreEl.textContent = `${correctCount} / ${total}`;
+    if (wordsEl) wordsEl.textContent = `+${total} 词`;
+    if (streakEl) streakEl.textContent = `${state.userGoals.streakDays} 天`;
+
+    if (chipsEl) {
+      chipsEl.innerHTML = results.map(r => `
+        <div class="comp-word-chip">
+          <strong>${r.word}</strong>
+          <span class="chip-phonetic">${r.phonetic || ''}</span>
+          <span class="chip-tag">${r.isCorrect ? '✓ 掌握' : '需巩固'}</span>
+        </div>
+      `).join('');
+    }
+
+    if (mistakesBtn && mistakesCountEl) {
+      const mistakeCount = state.guess.mistakePuzzles.length;
+      if (mistakeCount > 0) {
+        mistakesBtn.style.display = 'inline-flex';
+        mistakesCountEl.textContent = mistakeCount;
+      } else {
+        mistakesBtn.style.display = 'none';
+      }
+    }
+
+    // 更新每日目标与成就打卡
+    state.userGoals.learnedWordsToday = Math.min(state.userGoals.dailyWordTarget, state.userGoals.learnedWordsToday + total);
+    state.userGoals.learnedMinutesToday = Math.min(state.userGoals.dailyMinutes, state.userGoals.learnedMinutesToday + 5);
+    saveLocalUserData();
+    updateDashboardMetrics();
+
+    compCard.style.display = 'flex';
+    compCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showToast('🎉 今日单词日课已打卡！学习成就达成');
+  }
+
+  function finishDailyGuessPunchin() {
+    switchView('dashboard');
+    showToast('🎉 今日单词日课已同步至学习主页！继续保持');
+  }
+
+  function startMistakeReview() {
+    if (!state.guess.mistakePuzzles || state.guess.mistakePuzzles.length === 0) {
+      showToast('当前没有错题记录！太优秀了');
+      return;
+    }
+    state.guess.isReviewingMistakes = true;
+    state.guess.currentPuzzleIndex = 0;
+    state.guess.selectedIndices = [];
+    state.guess.hasAnswered = false;
+    state.guess.sessionResults = [];
+    renderGuess();
+    showToast(`🎯 进入错题特训模式，共 ${state.guess.mistakePuzzles.length} 题`);
+  }
+
+  function toggleGuessMode(mode) {
+    if (mode === state.guess.mode && !state.guess.isReviewingMistakes) return;
+    state.guess.mode = mode;
+    state.guess.isReviewingMistakes = false;
+    state.guess.currentPuzzleIndex = 0;
+    state.guess.selectedIndices = [];
+    state.guess.hasAnswered = false;
+    state.guess.sessionResults = [];
+    renderGuess();
+    showToast(mode === 'daily' ? '📅 已切至「今日日课 (5)」精读模式' : '📚 已切至「全部题库归档」全览模式');
+  }
+
+  function openGuessPhotoLightbox(url, captionEncoded, word) {
+    const modal = document.getElementById('guess-lightbox-modal');
+    const imgEl = document.getElementById('guess-lightbox-img');
+    const wordEl = document.getElementById('guess-lightbox-word');
+    const descEl = document.getElementById('guess-lightbox-desc');
+    if (!modal) return;
+
+    if (imgEl) imgEl.src = url;
+    if (wordEl) wordEl.textContent = word || '';
+    if (descEl) descEl.textContent = decodeURIComponent(captionEncoded || '');
+    modal.style.display = 'flex';
+  }
+
+  function closeGuessPhotoLightbox() {
+    const modal = document.getElementById('guess-lightbox-modal');
+    if (modal) modal.style.display = 'none';
   }
 
   // ------------------------------------------------------------------------
@@ -1788,6 +2053,15 @@
   // 11. 刷一刷：抖音式纵向平滑切视频与播放状态
   // ------------------------------------------------------------------------
   let isVideoSliding = false;
+  function toggleWatchMode(targetMode) {
+    state.watch.mode = targetMode || (state.watch.mode === 'daily' ? 'all' : 'daily');
+    state.watch.currentIndex = 0;
+    const videoEl = document.getElementById('watch-video-player');
+    if (videoEl) videoEl.dataset.currentSrc = '';
+    renderWatch();
+    showToast(state.watch.mode === 'daily' ? '📅 已切至「今日精选日课 (5)」' : '📚 已切至「全部视频题库」');
+  }
+
   function slideVideo(direction) {
     if (isVideoSliding) return;
     const stage = document.getElementById('watch-stage-box');
@@ -1802,10 +2076,17 @@
     state.watch.isPlaying = true;
     setWatchBuffering(false);
 
-    const total = window.LINGO_MOCK.videos.length;
+    const videos = getActiveWatchVideos();
+    const total = videos.length || 1;
     let nextIdx = state.watch.currentIndex;
     if (direction === 'next') {
       nextIdx = (state.watch.currentIndex + 1) % total;
+      if (state.watch.mode === 'daily' && nextIdx === 0) {
+        showToast('🎉 今日视频日课完成！向下滑动继续复习或切换全部视频');
+        state.userGoals.learnedMinutesToday = Math.min(state.userGoals.dailyMinutes, state.userGoals.learnedMinutesToday + 2);
+        saveLocalUserData();
+        updateDashboardMetrics();
+      }
     } else {
       nextIdx = (state.watch.currentIndex - 1 + total) % total;
     }
@@ -2387,6 +2668,13 @@
     togglePlaybackRate,
     retryCurrentVideo,
     toggleWatchPlayPause,
+    toggleWatchMode,
+    toggleGuessMode,
+    openGuessPhotoLightbox,
+    closeGuessPhotoLightbox,
+    renderGuessCompletionCard,
+    finishDailyGuessPunchin,
+    startMistakeReview,
     showToast
   };
 
