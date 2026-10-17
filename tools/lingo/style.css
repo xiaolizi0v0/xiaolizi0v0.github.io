@@ -1598,6 +1598,255 @@ body:has(#view-watch.active) .app-main-viewport {
   line-height: 1.6;
 }
 
+/* 朗读全文按钮 */
+.article-audio-btn {
+  background: #f4f4f5;
+  border: none;
+  border-radius: var(--lingo-radius-full);
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #4b5563;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.article-audio-btn:hover {
+  background: #e4e4e7;
+  color: #18181b;
+}
+
+.article-audio-btn.playing {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* 刊物文章选择切换器 */
+.article-switcher-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-top: -4px;
+}
+
+.article-switch-pill {
+  background: #f4f4f5;
+  border: 1px solid #e4e4e7;
+  border-radius: var(--lingo-radius-full);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #52525b;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.article-switch-pill.active {
+  background: #18181b;
+  color: #ffffff;
+  border-color: #18181b;
+  font-weight: 600;
+}
+
+/* 底部打卡操作 */
+.article-footer-actions {
+  margin-top: 14px;
+}
+
+.read-punchin-btn {
+  width: 100%;
+  background: #18181b;
+  color: #ffffff;
+  border: none;
+  padding: 13px 20px;
+  border-radius: var(--lingo-radius-full);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+}
+
+.read-punchin-btn:hover {
+  background: #27272a;
+  transform: translateY(-1px);
+}
+
+.read-punchin-btn.completed {
+  background: #10b981;
+}
+
+/* 精读生词详情浮层弹窗 */
+.read-vocab-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 20px;
+}
+
+.read-vocab-modal-backdrop.active {
+  display: flex;
+}
+
+.read-vocab-popover-card {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 380px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: modalScaleUp 0.2s ease;
+}
+
+@keyframes modalScaleUp {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.vocab-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.vocab-card-title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.vocab-card-word {
+  font-size: 22px;
+  font-weight: 800;
+  color: #18181b;
+}
+
+.vocab-card-phonetic {
+  font-size: 14px;
+  color: #71717a;
+}
+
+.vocab-speaker-btn {
+  background: #f4f4f5;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.vocab-speaker-btn:hover {
+  background: #e4e4e7;
+  color: #18181b;
+}
+
+.vocab-modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #a1a1aa;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.vocab-chips-row {
+  display: flex;
+  gap: 6px;
+}
+
+.vocab-chip {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.vocab-chip.pos {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+
+.vocab-chip.band {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.vocab-meaning-box {
+  font-size: 15px;
+  font-weight: 600;
+  color: #27272a;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+.vocab-tip-box {
+  font-size: 12.5px;
+  color: #475569;
+  line-height: 1.6;
+  background: #fffbeb;
+  border-left: 3px solid #f59e0b;
+  padding: 8px 12px;
+  border-radius: 0 8px 8px 0;
+}
+
+.vocab-action-row {
+  margin-top: 6px;
+}
+
+.vocab-add-btn {
+  width: 100%;
+  background: #18181b;
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s;
+}
+
+.vocab-add-btn:hover {
+  background: #27272a;
+}
+
+.vocab-add-btn.added {
+  background: #10b981;
+}
+
 /* ==========================================================================
    功能 3：「猜一猜」图像记忆单词 (4 图猜词)
    ========================================================================== */

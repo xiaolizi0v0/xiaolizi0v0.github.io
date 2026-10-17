@@ -855,6 +855,26 @@
   // ------------------------------------------------------------------------
   // 7. 「看一看」20 大外刊分级精读逻辑 (Read Articles)
   // ------------------------------------------------------------------------
+  function getWordAnnotation(article, wordId) {
+    if (!article) return null;
+    if (article.annotations && article.annotations[wordId]) {
+      return article.annotations[wordId];
+    }
+    if (article.vocabulary && Array.isArray(article.vocabulary)) {
+      const found = article.vocabulary.find(v => v.id === wordId);
+      if (found) return found;
+    }
+    // Fallback: extract word from id if possible
+    return {
+      word: wordId.replace(/^w_/, ''),
+      phonetic: '',
+      pos: 'n.',
+      band: '7.5',
+      meaningZh: '核心考点学术词汇',
+      ieltsTip: '在学术类阅读与写作中注意同义替换与语境搭配。'
+    };
+  }
+
   function renderRead() {
     renderPublicationList();
     renderArticleContent();
@@ -864,7 +884,7 @@
     const container = document.getElementById('read-pubs-scroll');
     if (!container) return;
 
-    const pubs = window.LINGO_MOCK.publications;
+    const pubs = window.LINGO_MOCK.publications || [];
     container.innerHTML = pubs.map(p => `
       <div class="pub-pill-card ${p.id === state.read.selectedPubId ? 'active' : ''}" onclick="window.LingoApp.selectPublication('${p.id}')">
         <i class="${p.icon}"></i>
@@ -874,8 +894,9 @@
   }
 
   function renderArticleContent() {
-    const articles = window.LINGO_MOCK.articles;
-    let article = articles.find(a => a.publicationId === state.read.selectedPubId);
+    const articles = window.LINGO_MOCK.articles || [];
+    const pubArticles = articles.filter(a => a.publicationId === state.read.selectedPubId);
+    let article = pubArticles[state.read.currentArticleIndex % (pubArticles.length || 1)];
     if (!article) article = articles[0];
 
     const titleEl = document.getElementById('read-article-title');
@@ -883,19 +904,48 @@
     const pubTag = document.getElementById('read-pub-tag');
     const bodyEl = document.getElementById('read-article-body');
     const syntaxBox = document.getElementById('read-syntax-box');
+    const switcherEl = document.getElementById('read-article-switcher');
+    const audioBtn = document.getElementById('read-audio-btn');
+    const audioText = document.getElementById('read-audio-btn-text');
 
-    if (pubTag) pubTag.textContent = article.publicationName;
-    if (titleEl) titleEl.textContent = article.title;
-    if (titleZhEl) titleZhEl.textContent = article.titleZh;
+    if (pubTag) pubTag.textContent = article.publicationName || 'The Economist';
+    if (titleEl) titleEl.textContent = article.title || '';
+    if (titleZhEl) titleZhEl.textContent = article.titleZh || '';
+
+    // 同刊物多篇文章切换器
+    if (switcherEl) {
+      if (pubArticles.length > 1) {
+        switcherEl.style.display = 'flex';
+        const curIdx = state.read.currentArticleIndex % pubArticles.length;
+        switcherEl.innerHTML = pubArticles.map((a, i) => `
+          <button class="article-switch-pill ${i === curIdx ? 'active' : ''}" onclick="window.LingoApp.selectArticleIndex(${i})">
+            篇目 ${i + 1}: ${a.title.length > 18 ? a.title.slice(0, 16) + '...' : a.title}
+          </button>
+        `).join('');
+      } else {
+        switcherEl.style.display = 'none';
+      }
+    }
+
+    // 朗读按钮状态同步
+    if (audioBtn && audioText) {
+      if (state.read.isPlayingAudio) {
+        audioBtn.classList.add('playing');
+        audioText.textContent = '停止';
+      } else {
+        audioBtn.classList.remove('playing');
+        audioText.textContent = '朗读全文';
+      }
+    }
 
     // 根据当前难度获取段落
-    const diffData = article.difficultyLevels[state.read.currentDifficulty] || article.difficultyLevels.standard;
+    const diffData = (article.difficultyLevels && article.difficultyLevels[state.read.currentDifficulty]) || (article.difficultyLevels && article.difficultyLevels.standard) || { paragraphs: [] };
     if (bodyEl) {
       let html = '';
-      diffData.paragraphs.forEach(para => {
+      (diffData.paragraphs || []).forEach(para => {
         // 将 [[word|id]] 替换为可交互的高亮词
         const replaced = para.replace(/\[\[(.*?)\|(.*?)\]\]/g, (match, word, wid) => {
-          return `<span class="ielts-highlight-word" onclick="window.LingoApp.showWordAnnotation('${wid}', this)">${word}</span>`;
+          return `<span class="ielts-highlight-word" onclick="window.LingoApp.showWordAnnotation('${wid}', this, event)">${word}</span>`;
         });
         html += `<p>${replaced}</p>`;
       });
@@ -911,12 +961,13 @@
       }
     });
 
-    // 语法解析卡
+    // 语法长难句深度拆解卡
     if (syntaxBox) {
       if (article.syntaxBreakdowns && article.syntaxBreakdowns.length > 0) {
         const syn = article.syntaxBreakdowns[0];
         syntaxBox.innerHTML = `
-          <div class="syntax-label"><i class="fas fa-project-diagram"></i> 雅思长难句精解：${syn.structure}</div>
+          <div class="syntax-label"><i class="fas fa-project-diagram"></i> 雅思长难句深度拆解：${syn.structure}</div>
+          ${syn.sentence ? `<div style="font-weight: 600; color: #1e293b; margin: 4px 0 6px; font-family: var(--lingo-font-serif);">"${syn.sentence}"</div>` : ''}
           <div class="syntax-content">${syn.analysis}</div>
         `;
         syntaxBox.style.display = 'flex';
@@ -2016,26 +2067,178 @@
   }
 
   // ------------------------------------------------------------------------
-  // 14. 刊物与难度切换
+  // 14. 刊物、篇目与难度切换，互动生词卡片与全文朗读
   // ------------------------------------------------------------------------
   function selectPublication(pubId) {
     state.read.selectedPubId = pubId;
+    state.read.currentArticleIndex = 0;
+    if (state.read.isPlayingAudio) {
+      toggleArticleAudio();
+    }
     renderRead();
+  }
+
+  function selectArticleIndex(idx) {
+    state.read.currentArticleIndex = idx;
+    if (state.read.isPlayingAudio) {
+      toggleArticleAudio();
+    }
+    renderArticleContent();
   }
 
   function setReadingDifficulty(diff) {
     state.read.currentDifficulty = diff;
-    renderRead();
+    if (state.read.isPlayingAudio) {
+      toggleArticleAudio();
+    }
+    renderArticleContent();
   }
 
-  function showWordAnnotation(wordId, el) {
-    const articles = window.LINGO_MOCK.articles;
-    let article = articles.find(a => a.publicationId === state.read.selectedPubId) || articles[0];
-    const anno = article.annotations[wordId];
-    if (anno) {
-      speakWord(anno.word);
-      showToast(`📖 ${anno.word} [${anno.phonetic}]：${anno.meaningZh}`);
+  function showWordAnnotation(wordId, el, event) {
+    if (event) event.stopPropagation();
+    const articles = window.LINGO_MOCK.articles || [];
+    const pubArticles = articles.filter(a => a.publicationId === state.read.selectedPubId);
+    let article = pubArticles[state.read.currentArticleIndex % (pubArticles.length || 1)] || articles[0];
+    const anno = getWordAnnotation(article, wordId);
+    if (!anno) return;
+
+    state.read.activeAnnotation = anno;
+
+    const modal = document.getElementById('read-vocab-modal');
+    const rvWord = document.getElementById('rv-word');
+    const rvPhonetic = document.getElementById('rv-phonetic');
+    const rvPos = document.getElementById('rv-pos');
+    const rvBand = document.getElementById('rv-band');
+    const rvMeaning = document.getElementById('rv-meaning');
+    const rvTip = document.getElementById('rv-tip');
+    const rvAddBtn = document.getElementById('rv-add-btn');
+
+    if (rvWord) rvWord.textContent = anno.word;
+    if (rvPhonetic) rvPhonetic.textContent = anno.phonetic || '';
+    if (rvPos) rvPos.textContent = anno.pos || 'n.';
+    if (rvBand) rvBand.textContent = anno.band ? `Band ${anno.band}` : 'Band 7.5+';
+    if (rvMeaning) rvMeaning.textContent = anno.meaningZh || '';
+    if (rvTip) {
+      rvTip.innerHTML = `<strong>雅思真题提分要领：</strong>${anno.ieltsTip || '学术类阅读高频同义替换与核心搭配，务必熟练掌握。'}`;
     }
+
+    // 检查是否已经在生词本
+    const isAlreadyAdded = state.vocabulary && state.vocabulary.some(w => w.word && w.word.toLowerCase() === anno.word.toLowerCase());
+    if (rvAddBtn) {
+      if (isAlreadyAdded) {
+        rvAddBtn.classList.add('added');
+        rvAddBtn.innerHTML = '<i class="fas fa-check"></i> 已在生词本';
+      } else {
+        rvAddBtn.classList.remove('added');
+        rvAddBtn.innerHTML = '<i class="fas fa-bookmark"></i> 收藏至生词本';
+      }
+    }
+
+    if (modal) modal.classList.add('active');
+    speakWord(anno.word);
+  }
+
+  function closeWordAnnotation(event) {
+    if (event && event.target && event.target.id !== 'read-vocab-modal' && !event.target.classList.contains('vocab-modal-close-btn')) {
+      return;
+    }
+    const modal = document.getElementById('read-vocab-modal');
+    if (modal) modal.classList.remove('active');
+  }
+
+  function speakCurrentAnnotation() {
+    if (state.read.activeAnnotation && state.read.activeAnnotation.word) {
+      speakWord(state.read.activeAnnotation.word);
+    }
+  }
+
+  function addCurrentAnnotationToVocab() {
+    const anno = state.read.activeAnnotation;
+    if (!anno || !anno.word) return;
+
+    if (!Array.isArray(state.vocabulary)) state.vocabulary = [];
+    const exists = state.vocabulary.some(w => w.word && w.word.toLowerCase() === anno.word.toLowerCase());
+    if (!exists) {
+      state.vocabulary.unshift({
+        id: `vw_${Date.now()}`,
+        word: anno.word,
+        phonetic: anno.phonetic || '',
+        pos: anno.pos || 'n.',
+        meaningZh: anno.meaningZh || '',
+        band: anno.band || '7.5',
+        stars: 5,
+        mastered: false,
+        addedAt: new Date().toISOString()
+      });
+      saveLocalUserData();
+      renderProfile();
+      renderVocab();
+      updateDashboardMetrics();
+
+      const rvAddBtn = document.getElementById('rv-add-btn');
+      if (rvAddBtn) {
+        rvAddBtn.classList.add('added');
+        rvAddBtn.innerHTML = '<i class="fas fa-check"></i> 已收录至生词本';
+      }
+      showToast(`🌟 已成功将 "${anno.word}" 收录至我的生词本！`);
+    } else {
+      showToast(`📖 "${anno.word}" 已存在于生词本中`);
+    }
+  }
+
+  function toggleArticleAudio() {
+    if (!('speechSynthesis' in window)) {
+      showToast('⚠️ 当前浏览器不支持语音合成播放');
+      return;
+    }
+
+    if (state.read.isPlayingAudio) {
+      window.speechSynthesis.cancel();
+      state.read.isPlayingAudio = false;
+      renderArticleContent();
+      return;
+    }
+
+    const articles = window.LINGO_MOCK.articles || [];
+    const pubArticles = articles.filter(a => a.publicationId === state.read.selectedPubId);
+    let article = pubArticles[state.read.currentArticleIndex % (pubArticles.length || 1)] || articles[0];
+    const diffData = (article.difficultyLevels && article.difficultyLevels[state.read.currentDifficulty]) || (article.difficultyLevels && article.difficultyLevels.standard) || { paragraphs: [] };
+
+    const cleanParagraphs = (diffData.paragraphs || []).map(p => p.replace(/\[\[(.*?)\|(.*?)\]\]/g, '$1')).join('. ');
+    if (!cleanParagraphs) return;
+
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(cleanParagraphs);
+    utter.lang = 'en-US';
+    utter.rate = 0.92;
+
+    utter.onstart = () => {
+      state.read.isPlayingAudio = true;
+      renderArticleContent();
+    };
+    utter.onend = utter.onerror = () => {
+      state.read.isPlayingAudio = false;
+      renderArticleContent();
+    };
+
+    window.speechSynthesis.speak(utter);
+  }
+
+  function markArticleCompleted() {
+    const punchinBtn = document.getElementById('read-punchin-btn');
+    if (punchinBtn) {
+      punchinBtn.classList.add('completed');
+      punchinBtn.innerHTML = '<i class="fas fa-check-circle"></i> 今日已完成打卡！';
+    }
+
+    if (state.userGoals) {
+      if (!state.userGoals.todayProgress) state.userGoals.todayProgress = {};
+      state.userGoals.todayProgress.readCompleted = (state.userGoals.todayProgress.readCompleted || 0) + 1;
+      state.userGoals.learnedMinutesToday = (state.userGoals.learnedMinutesToday || 0) + 5;
+    }
+    saveLocalUserData();
+    updateDashboardMetrics();
+    showToast('🎉 恭喜完成精读打卡！雅思学术阅读经验值 +10');
   }
 
   // ------------------------------------------------------------------------
@@ -2170,7 +2373,13 @@
     nextGuessPuzzle,
     selectPublication,
     setReadingDifficulty,
+    selectArticleIndex,
     showWordAnnotation,
+    closeWordAnnotation,
+    speakCurrentAnnotation,
+    addCurrentAnnotationToVocab,
+    toggleArticleAudio,
+    markArticleCompleted,
     openConfigModal,
     closeConfigModal,
     saveConfigModal,

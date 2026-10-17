@@ -478,7 +478,12 @@
         <!-- 刊物文章分级精读详情卡片 -->
         <div class="article-detail-sheet">
           <div class="article-header-meta">
-            <span class="article-pub-tag" id="read-pub-tag">The Economist</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="article-pub-tag" id="read-pub-tag">The Economist</span>
+              <button class="article-audio-btn" id="read-audio-btn" onclick="window.LingoApp.toggleArticleAudio()" title="朗读当前分级全文">
+                <i class="fas fa-volume-up"></i> <span id="read-audio-btn-text">朗读全文</span>
+              </button>
+            </div>
             
             <!-- 阅读难度切换器 -->
             <div class="difficulty-pill-switcher">
@@ -488,6 +493,9 @@
               <button class="diff-btn" data-diff="challenge" onclick="window.LingoApp.setReadingDifficulty('challenge')">挑战</button>
             </div>
           </div>
+
+          <!-- 同刊物多篇文章切换条 (若本刊有多篇文章) -->
+          <div class="article-switcher-row" id="read-article-switcher" style="display: none;"></div>
 
           <h2 class="article-headline" id="read-article-title">
             Generative AI and the Future of Intellectual Autonomy
@@ -501,6 +509,44 @@
 
           <!-- 雅思长难句精解卡片 -->
           <div class="syntax-helper-card" id="read-syntax-box"></div>
+
+          <!-- 底部打卡操作栏 -->
+          <div class="article-footer-actions">
+            <button class="read-punchin-btn" id="read-punchin-btn" onclick="window.LingoApp.markArticleCompleted()">
+              <i class="fas fa-check-circle"></i> 完成精读打卡 (阅读进度 +1)
+            </button>
+          </div>
+        </div>
+
+        <!-- 精读生词互动详情浮层 Modal -->
+        <div class="read-vocab-modal-backdrop" id="read-vocab-modal" onclick="window.LingoApp.closeWordAnnotation(event)">
+          <div class="read-vocab-popover-card" onclick="event.stopPropagation()">
+            <div class="vocab-card-header">
+              <div class="vocab-card-title-group">
+                <h3 class="vocab-card-word" id="rv-word">paradigm</h3>
+                <span class="vocab-card-phonetic" id="rv-phonetic">/ˈpær.ə.daɪm/</span>
+                <button class="vocab-speaker-btn" onclick="window.LingoApp.speakCurrentAnnotation()" title="点击朗读发音">
+                  <i class="fas fa-volume-up"></i>
+                </button>
+              </div>
+              <button class="vocab-modal-close-btn" onclick="window.LingoApp.closeWordAnnotation()" title="关闭">✕</button>
+            </div>
+            <div class="vocab-chips-row">
+              <span class="vocab-chip pos" id="rv-pos">n.</span>
+              <span class="vocab-chip band" id="rv-band">Band 7.5</span>
+            </div>
+            <div class="vocab-meaning-box" id="rv-meaning">
+              范式；典范，主导模式
+            </div>
+            <div class="vocab-tip-box" id="rv-tip">
+              <strong>雅思真题提分要领：</strong>Passage 3 常考学术论述词汇，与 model、framework 同义替换。
+            </div>
+            <div class="vocab-action-row">
+              <button class="vocab-add-btn" id="rv-add-btn" onclick="window.LingoApp.addCurrentAnnotationToVocab()">
+                <i class="fas fa-bookmark"></i> 收藏至生词本
+              </button>
+            </div>
+          </div>
         </div>
 
       </div>
