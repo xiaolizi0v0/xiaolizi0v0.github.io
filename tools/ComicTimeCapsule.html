@@ -812,6 +812,44 @@
             color: var(--ds-text-primary);
         }
 
+        .modal-field input[type=date],
+        .modal-field select {
+            border: 1px solid var(--ds-border-subtle);
+            background: var(--ds-bg-surface-1);
+            color: var(--ds-text-primary);
+            border-radius: 8px;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.88rem;
+            font-family: var(--ds-font-sans);
+            cursor: pointer;
+            color-scheme: dark;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .modal-field input[type=date]:hover,
+        .modal-field select:hover {
+            border-color: var(--ds-border-hover);
+        }
+
+        .modal-field input[type=date]:focus,
+        .modal-field select:focus {
+            border-color: var(--ds-brand);
+            box-shadow: 0 0 0 3px rgba(77, 107, 254, .2);
+        }
+
+        .modal-field input[type=date]::-webkit-calendar-picker-indicator {
+            filter: invert(0.85);
+            cursor: pointer;
+            opacity: 0.75;
+            transition: var(--transition);
+        }
+
+        .modal-field input[type=date]::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+            filter: invert(1);
+        }
+
         .modal-actions {
             margin-top: auto;
             padding-top: 1.5rem;
