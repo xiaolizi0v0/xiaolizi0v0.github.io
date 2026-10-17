@@ -235,6 +235,10 @@ body {
     padding: 0 24px;
 }
 
+.hidden {
+    display: none !important;
+}
+
 /* ===================== 导航栏 ===================== */
 .navbar {
     position: fixed;
