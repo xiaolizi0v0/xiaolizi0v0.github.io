@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": 1792240472856,
+  "updatedAt": 1792240521928,
   "records": [
     {
       "id": "longzuiii-zhiyinmanke",
@@ -19,11 +19,11 @@
       "note": "童年知音漫客连载神作，画风精美，回忆满满！",
       "readDate": "2026-10-17",
       "timestamp": 1792238573477,
-      "updatedAt": 1792240471807,
+      "updatedAt": 1792240520861,
       "liked": 1,
       "done": 0,
       "count": 1,
-      "lastChapter": 1,
+      "lastChapter": 2,
       "lastPage": 1,
       "total_chapters": 150,
       "total_images": 1889,
@@ -79,7 +79,8 @@
             "https://s1.bzcdn.net/scomic/longzuiii-zhiyinmanke/0/2-gfr9/16.jpg",
             "https://s1.bzcdn.net/scomic/longzuiii-zhiyinmanke/0/2-gfr9/17.jpg",
             "https://s1.bzcdn.net/scomic/longzuiii-zhiyinmanke/0/2-gfr9/18.jpg"
-          ]
+          ],
+          "read": true
         },
         {
           "chapter": 3,
