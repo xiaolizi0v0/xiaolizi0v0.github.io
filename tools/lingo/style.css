@@ -2308,33 +2308,7 @@ body:has(#view-watch.active) .app-main-viewport {
   background: #27272a;
 }
 
-/* 情境图放大镜按钮 */
-.guess-card-zoom-btn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 11px;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 5;
-}
 
-.guess-card-zoom-btn:hover {
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.85);
-  transform: scale(1.15);
-}
 
 /* 今日日课通关打卡结算卡 */
 .guess-completion-card {
@@ -2514,96 +2488,7 @@ body:has(#view-watch.active) .app-main-viewport {
   color: #18181b;
 }
 
-/* 情境图放大预览 Lightbox Modal */
-.guess-lightbox-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  box-sizing: border-box;
-  animation: fadeIn 0.2s ease;
-}
 
-.lightbox-content {
-  position: relative;
-  max-width: 480px;
-  width: 100%;
-  background: #18181b;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-}
-
-.lightbox-close-btn {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  font-size: 15px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  transition: all 0.2s;
-}
-
-.lightbox-close-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(1.1);
-}
-
-.lightbox-img-wrapper {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background: #000;
-  overflow: hidden;
-}
-
-.lightbox-img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.lightbox-caption-bar {
-  padding: 14px 18px;
-  background: #27272a;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.lightbox-word-tag {
-  font-family: var(--lingo-font-serif);
-  font-size: 16px;
-  font-weight: 700;
-  color: #818cf8;
-}
-
-.lightbox-desc-text {
-  font-size: 13px;
-  color: #d4d4d8;
-  line-height: 1.4;
-}
 
 /* ==========================================================================
    页面 5：「我的」与配置面板 (Settings & Vocab)

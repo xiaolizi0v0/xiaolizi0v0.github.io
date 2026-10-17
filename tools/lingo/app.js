@@ -435,18 +435,14 @@
     }
   }
 
-  // 媒体资源相对路径解析器 (优先本地静态资源，动态媒体自动补全云端隧道)
+  // 媒体资源相对路径解析器 (走服务器云端隧道地址)
   function resolveMediaUrl(url) {
     if (!url) return '';
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:')) {
       return url;
     }
-    // 本地内置资产优先直接加载，支持离线与 GitHub Pages 高速 CDN
-    if (url.startsWith('lingo/assets/') || url.startsWith('./lingo/assets/')) {
-      return url;
-    }
     const cleanUrl = url.replace(/^\/+/, '');
-    if (state.config && state.config.apiBaseUrl && state.backendStatus === 'online') {
+    if (state.config && state.config.apiBaseUrl) {
       try {
         const u = new URL(state.config.apiBaseUrl);
         return `${u.origin}/${cleanUrl}`;
@@ -1155,13 +1151,10 @@
       speakerBtn.onclick = () => speakWord(cur.word);
     }
 
-    // 4. 2x2 四宫格情境图片互动矩阵 (附带高清放大按钮)
+    // 4. 2x2 四宫格情境图片互动矩阵
     if (photosBox) {
       photosBox.innerHTML = cur.images.map((img, i) => `
         <div class="guess-photo-card" data-idx="${i}" onclick="window.LingoApp.toggleGuessPhotoSelection(${i})">
-          <button class="guess-card-zoom-btn" onclick="event.stopPropagation(); window.LingoApp.openGuessPhotoLightbox('${resolveMediaUrl(img.url)}', '${encodeURIComponent(img.caption || '')}', '${cur.word}')" title="放大查看原图">
-            <i class="fas fa-search-plus"></i>
-          </button>
           <img src="${resolveMediaUrl(img.url)}" alt="${img.caption || '情境图'}" onerror="this.onerror=null; this.src='lingo/assets/guess_resemble_1.png';">
           <div class="guess-card-check"><i class="fas fa-check"></i></div>
           <div class="guess-card-badge" id="guess-card-badge-${i}"></div>
@@ -1467,23 +1460,7 @@
     showToast(mode === 'daily' ? '📅 已切至「今日日课 (5)」精读模式' : '📚 已切至「全部题库归档」全览模式');
   }
 
-  function openGuessPhotoLightbox(url, captionEncoded, word) {
-    const modal = document.getElementById('guess-lightbox-modal');
-    const imgEl = document.getElementById('guess-lightbox-img');
-    const wordEl = document.getElementById('guess-lightbox-word');
-    const descEl = document.getElementById('guess-lightbox-desc');
-    if (!modal) return;
 
-    if (imgEl) imgEl.src = url;
-    if (wordEl) wordEl.textContent = word || '';
-    if (descEl) descEl.textContent = decodeURIComponent(captionEncoded || '');
-    modal.style.display = 'flex';
-  }
-
-  function closeGuessPhotoLightbox() {
-    const modal = document.getElementById('guess-lightbox-modal');
-    if (modal) modal.style.display = 'none';
-  }
 
   // ------------------------------------------------------------------------
   // 9. 生词本与用户设置 (Profile & Vocab)
@@ -2670,8 +2647,6 @@
     toggleWatchPlayPause,
     toggleWatchMode,
     toggleGuessMode,
-    openGuessPhotoLightbox,
-    closeGuessPhotoLightbox,
     renderGuessCompletionCard,
     finishDailyGuessPunchin,
     startMistakeReview,
