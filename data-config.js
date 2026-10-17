@@ -3,6 +3,16 @@ const dataConfig = {
  //工具
   tools: [
     {
+      id: "15",
+      title: "漫画阅读存储时间胶囊",
+      icon: "fas fa-book-open",
+      description: "漫客风格书架：一键导入漫画抓取JSON（如龙族III），支持条漫长卷轴与双页翻页模式、多维题材筛选、阅读进度记忆与GitHub云端同步",
+      file: "ComicTimeCapsule.html",
+      category: "other",
+      date: "2026-10-17",
+      cover: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+    },
+    {
       id: "14",
       title: "Lingo 雅思轻学",
       icon: "fas fa-language",
@@ -286,16 +296,6 @@ const dataConfig = {
       file: "notes/研究生英语期末.md",
       date: "2025-12-10",
       cover: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      id: "17",
-      title: "漫画阅读存储时间胶囊",
-      icon: "fas fa-book-open",
-      description: "漫客风格书架：一键导入漫画抓取JSON（如龙族III），支持条漫长卷轴与双页翻页模式、多维题材筛选、进度记忆与GitHub云端同步",
-      file: "ComicTimeCapsule.html",
-      category: "other",
-      date: "2026-10-17",
-      cover: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
     }
   ],
   categories: {
