@@ -21,6 +21,62 @@
             display: none !important;
         }
 
+        /* ========== 全局下拉选择器深色风格 ========== */
+        select,
+        .manual-form select,
+        .edit-form select,
+        .modal-field select {
+            color-scheme: dark !important;
+            background-color: var(--ds-bg-surface-1) !important;
+            color: var(--ds-text-primary) !important;
+            border: 1px solid var(--ds-border-subtle) !important;
+            border-radius: 8px;
+            padding: 0.45rem 2.2rem 0.45rem 0.75rem;
+            font-size: 0.86rem;
+            font-family: var(--ds-font-sans);
+            outline: none;
+            cursor: pointer;
+            transition: var(--transition);
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.7)' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 0.75rem center !important;
+        }
+
+        select:hover,
+        .manual-form select:hover,
+        .edit-form select:hover,
+        .modal-field select:hover {
+            border-color: var(--ds-border-hover) !important;
+        }
+
+        select:focus,
+        .manual-form select:focus,
+        .edit-form select:focus,
+        .modal-field select:focus {
+            border-color: var(--ds-brand) !important;
+            box-shadow: 0 0 0 3px rgba(77, 107, 254, .2) !important;
+        }
+
+        /* 下拉展开选项 (option) 全局深色底色与浅色文字 */
+        select option,
+        .manual-form select option,
+        .edit-form select option,
+        .modal-field select option {
+            background-color: #181822 !important;
+            color: #ffffff !important;
+            padding: 0.55rem 0.8rem;
+            font-size: 0.88rem;
+        }
+
+        select option:checked,
+        select option:hover {
+            background-color: #2b3b7a !important;
+            color: #5b9dff !important;
+        }
+
         .tool-container {
             max-width: 1240px;
             margin: 5rem auto;

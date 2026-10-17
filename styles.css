@@ -239,6 +239,15 @@ body {
     display: none !important;
 }
 
+select {
+    color-scheme: dark;
+}
+
+select option {
+    background-color: #181822;
+    color: #ffffff;
+}
+
 /* ===================== 导航栏 ===================== */
 .navbar {
     position: fixed;
