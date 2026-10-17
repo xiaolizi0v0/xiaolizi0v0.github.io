@@ -131,7 +131,7 @@
   // 加载 config.json
   async function loadConfig() {
     const defaultConfig = {
-      apiBaseUrl: 'https://travesti-broadcast-flower-planned.trycloudflare.com/api/v1',
+      apiBaseUrl: 'https://demonstration-commission-knock-mason.trycloudflare.com/api/v1',
       timeoutMs: 8000,
       useMockFallback: true
     };
@@ -437,7 +437,7 @@
       return url;
     }
     const cleanUrl = url.replace(/^\/+/, '');
-    if (state.config && state.config.apiBaseUrl && state.backendStatus === 'online') {
+    if (state.config && state.config.apiBaseUrl) {
       try {
         const u = new URL(state.config.apiBaseUrl);
         return `${u.origin}/${cleanUrl}`;
@@ -682,7 +682,8 @@
           };
 
           videoEl.onerror = (e) => {
-            console.warn('视频播放失败或加载中，展示保底封面:', e);
+            if (!videoEl.src || videoEl.src === window.location.href) return;
+            console.warn('[Lingo Video] 视频播放失败或加载中，展示保底封面:', e);
             setWatchBuffering(false);
             if (backdrop) backdrop.style.opacity = '1';
             const pill = document.getElementById('watch-retry-pill');
@@ -695,9 +696,17 @@
               state.watch.isPlaying = true;
               updateWatchPlayPauseUI(true);
             }).catch(err => {
-              console.info('浏览器拦截带声自动播放，自动切换静音重试播放:', err);
-              videoEl.muted = true;
-              videoEl.play().catch(e2 => console.warn('静音自动播放被拦截:', e2));
+              if (err.name === 'AbortError') {
+                // 用户快速滑动切片时的正常打断，切勿强行静音重播
+                return;
+              }
+              if (err.name === 'NotAllowedError') {
+                // 浏览器策略拦截带声自动播放，自动切换静音重试播放
+                videoEl.muted = true;
+                videoEl.play().catch(() => {});
+                return;
+              }
+              console.warn('[Lingo Video] 自动播放受阻:', err.name, err.message);
             });
           }
         } else {
@@ -1754,9 +1763,13 @@
         const playPromise = videoEl.play();
         if (playPromise !== undefined) {
           playPromise.catch(e => {
-            console.warn('Play error, fallback to muted:', e);
-            videoEl.muted = true;
-            videoEl.play().catch(() => {});
+            if (e.name === 'AbortError') return;
+            if (e.name === 'NotAllowedError') {
+              videoEl.muted = true;
+              videoEl.play().catch(() => {});
+              return;
+            }
+            console.warn('[Lingo Video] 播放调用受阻:', e.name, e.message);
           });
         }
         updateWatchPlayPauseUI(true);
