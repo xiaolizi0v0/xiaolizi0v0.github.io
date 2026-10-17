@@ -8947,7 +8947,7 @@
         {
           "title": "第04集",
           "url": "https://cdn.yzzy31-play.com/20261010/27365_c7ca76a7/3000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第05集",
@@ -8980,7 +8980,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1792138672165
+      "updatedAt": 1792224753958
     },
     {
       "watchedDate": "2026-10-16",
