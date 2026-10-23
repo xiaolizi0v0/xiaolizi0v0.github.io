@@ -9173,10 +9173,16 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
+      "eps": [
+        {
+          "title": "第01集",
+          "url": "https://player.yzzy37-play.vip/20261021/339_04025959/3000k/hls/mixed.m3u8",
+          "watched": false
+        }
+      ],
       "watchedDate": "2026-10-23",
       "timestamp": 1792735979288,
-      "updatedAt": 1792735979288
+      "updatedAt": 1792736093278
     }
   ],
   "deleted": {
