@@ -9184,7 +9184,7 @@
         {
           "title": "第02集",
           "url": "https://player.yzzy37-play.vip/20261021/340_40008b9a/3000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第03集",
@@ -9207,7 +9207,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1792738558442
+      "updatedAt": 1792740674284
     }
   ],
   "deleted": {
