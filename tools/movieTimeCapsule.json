@@ -8907,7 +8907,7 @@
       "year": "2026",
       "type": "tv",
       "url": "http://baike.baidu.com/item/%E5%BF%83%E5%8A%A8%E5%88%B6%E9%80%A0%E6%89%80",
-      "img": "",
+      "img": "https://bkimg.cdn.bcebos.com/pic/eac4b74543a98226cffc424800dfae014a90f603bd15?x-bce-process=image/format,f_auto/watermark,image_d2F0ZXIvYmFpa2UyNzI,g_7,xp_5,yp_5,P_20/resize,m_lfit,limit_1,h_1080",
       "genre": "浪漫喜剧",
       "platform": "其他",
       "region": "日韩",
@@ -8918,7 +8918,7 @@
       "done": 0,
       "count": 1,
       "eps": [],
-      "updatedAt": 1792063570737
+      "updatedAt": 1792830522406
     },
     {
       "id": "baike-63227492",
