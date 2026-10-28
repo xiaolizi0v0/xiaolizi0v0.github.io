@@ -1,0 +1,127 @@
+[
+  {
+    "file": "logo.png",
+    "source": "tools/warm-signal/publishing/studio/qingchuan-shiguang-logo-512-v1.png",
+    "bytes": 263250
+  },
+  {
+    "file": "car-hero.jpg",
+    "source": "D:/汽车质检模拟器/dev/final-34.jpg",
+    "bytes": 335734
+  },
+  {
+    "file": "car-inspect.png",
+    "source": "D:/汽车质检模拟器/dev/check-docs.png",
+    "bytes": 542307
+  },
+  {
+    "file": "car-manual.png",
+    "source": "D:/汽车质检模拟器/dev/manual-day12.png",
+    "bytes": 386173
+  },
+  {
+    "file": "car-icon.png",
+    "source": "D:/汽车质检模拟器/dist/icon/autoqc-icon-512.png",
+    "bytes": 344357
+  },
+  {
+    "file": "printing-hero.webp",
+    "source": "D:/重生之我的印刷术等级1000/dist/assets/art/workshop-1.webp",
+    "bytes": 543786
+  },
+  {
+    "file": "printing-city.webp",
+    "source": "D:/重生之我的印刷术等级1000/dist/assets/art/workshop-5.webp",
+    "bytes": 551040
+  },
+  {
+    "file": "printing-setting.png",
+    "source": "D:/重生之我的印刷术等级1000/release/v1/store-screenshots/01-typesetting.png",
+    "bytes": 102749
+  },
+  {
+    "file": "printing-line.png",
+    "source": "D:/重生之我的印刷术等级1000/release/v1/store-screenshots/02-production-line.png",
+    "bytes": 84069
+  },
+  {
+    "file": "printing-workshop.png",
+    "source": "D:/重生之我的印刷术等级1000/release/v1/store-screenshots/03-workshop.png",
+    "bytes": 190748
+  },
+  {
+    "file": "printing-inking.png",
+    "source": "D:/重生之我的印刷术等级1000/release/v1/store-screenshots/04-inking.png",
+    "bytes": 90120
+  },
+  {
+    "file": "printing-bi-sheng.webp",
+    "source": "D:/重生之我的印刷术等级1000/dist/assets/art/bi-sheng.webp",
+    "bytes": 287502
+  },
+  {
+    "file": "printing-li-qingzhao.webp",
+    "source": "D:/重生之我的印刷术等级1000/dist/assets/art/li-qingzhao.webp",
+    "bytes": 267674
+  },
+  {
+    "file": "printing-su-qingwan.webp",
+    "source": "D:/重生之我的印刷术等级1000/dist/assets/art/su-qingwan.webp",
+    "bytes": 306662
+  },
+  {
+    "file": "warm-hero.jpg",
+    "source": "tools/warm-signal/publishing/taptap-banner-v2.jpg",
+    "bytes": 819184
+  },
+  {
+    "file": "warm-icon.png",
+    "source": "tools/warm-signal/assets/taptap-icon-v1.png",
+    "bytes": 2157530
+  },
+  {
+    "file": "warm-abc.webp",
+    "source": "tools/warm-signal/assets/companion-abc-v1.webp",
+    "bytes": 733292
+  },
+  {
+    "file": "warm-def.webp",
+    "source": "tools/warm-signal/assets/companion-def-v1.webp",
+    "bytes": 659738
+  },
+  {
+    "file": "warm-home.jpg",
+    "source": "artifacts/taptap/20261014-materials/user-home-720.jpg",
+    "bytes": 283878
+  },
+  {
+    "file": "warm-moments.jpg",
+    "source": "artifacts/taptap/20261014-materials/user-moments-720.jpg",
+    "bytes": 110090
+  },
+  {
+    "file": "warm-chat.jpg",
+    "source": "artifacts/taptap/20261014-materials/user-chat-720.jpg",
+    "bytes": 83766
+  },
+  {
+    "file": "warm-crafting.jpg",
+    "source": "artifacts/taptap/20261014-materials/gameplay-720.jpg",
+    "bytes": 124053
+  },
+  {
+    "file": "warm-gameplay.mp4",
+    "source": "tools/warm-signal/publishing/taptap-gameplay-v1.mp4",
+    "bytes": 530010
+  },
+  {
+    "file": "car-gameplay.mp4",
+    "source": "D:/汽车质检模拟器/dist/video/autoqc-gameplay-1080p.mp4",
+    "bytes": 12123339
+  },
+  {
+    "file": "printing-trailer.mp4",
+    "source": "D:/重生之我的印刷术等级1000/release/v1/qingmo-promo-comfy.mp4",
+    "bytes": 10629755
+  }
+]

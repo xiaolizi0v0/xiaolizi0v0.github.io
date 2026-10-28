@@ -3,3 +3,4 @@ worker-proxy/cookie.txt
 
 # Local TapTap delivery archives and extracted previews (reproducible build output).
 /artifacts/taptap/
+/artifacts/studio-site-*/
