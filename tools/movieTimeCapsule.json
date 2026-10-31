@@ -8575,10 +8575,10 @@
         {
           "title": "20261016下",
           "url": "https://cdn.yzzy31-play.com/20261016/27744_9b00b137/index.m3u8",
-          "watched": false
+          "watched": true
         }
       ],
-      "updatedAt": 1793447820486
+      "updatedAt": 1793449095326
     },
     {
       "watchedDate": "2026-09-29",
