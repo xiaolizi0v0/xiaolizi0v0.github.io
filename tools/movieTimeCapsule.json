@@ -6084,7 +6084,7 @@
         {
           "title": "第45集",
           "url": "https://cdn.yzzy30-play.com/20261024/60793_b48eae9d/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第46集",
@@ -6097,7 +6097,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1794141562719
+      "updatedAt": 1794141565084
     },
     {
       "watchedDate": "2026-08-23",
