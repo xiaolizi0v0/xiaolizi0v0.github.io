@@ -4720,20 +4720,20 @@
         {
           "title": "第197集",
           "url": "https://player.yzzyvip-35.com/20261024/19591_4d3515f6/3000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第198集",
           "url": "https://cdn.yzzy30-play.com/20261031/61025_6f871b13/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第199集",
           "url": "https://player.yzzyvip-35.com/20261107/20145_b5cfd61c/index.m3u8",
-          "watched": false
+          "watched": true
         }
       ],
-      "updatedAt": 1794111913011
+      "updatedAt": 1794141497258
     },
     {
       "watchedDate": "2026-08-22",
@@ -6079,7 +6079,7 @@
         {
           "title": "第44集",
           "url": "https://cdn.yzzy30-play.com/20261017/60527_e6a6267b/3000k/hls/mixed.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第45集",
@@ -6097,7 +6097,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1794111882584
+      "updatedAt": 1794141562719
     },
     {
       "watchedDate": "2026-08-23",
