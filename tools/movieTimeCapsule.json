@@ -9467,10 +9467,16 @@
       "liked": 0,
       "done": 0,
       "count": 1,
-      "eps": [],
+      "eps": [
+        {
+          "title": "20261022上",
+          "url": "https://cdn.vvvip-plays33.cc/20261022/21542_3e4e67cb/index.m3u8",
+          "watched": false
+        }
+      ],
       "watchedDate": "2026-11-08",
       "timestamp": 1794111965004,
-      "updatedAt": 1794111965004
+      "updatedAt": 1794112301780
     }
   ],
   "deleted": {
