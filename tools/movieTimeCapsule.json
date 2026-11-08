@@ -459,7 +459,7 @@
         {
           "title": "第100集",
           "url": "https://v.fengbao14.com/video/cangyuantu/31793781bf62/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第101集",
@@ -472,7 +472,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1794150460750
+      "updatedAt": 1794151566264
     },
     {
       "watchedDate": "2026-08-21",
