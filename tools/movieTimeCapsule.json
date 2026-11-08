@@ -6145,11 +6145,16 @@
           "title": "第15集",
           "url": "https://cdn.yzzy31-play.com/20261022/27988_731d1ffc/index.m3u8",
           "watched": true
+        },
+        {
+          "title": "第16集",
+          "url": "https://cdn.yzzy30-play.com/20261029/60926_39e989a0/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787430287694,
-      "updatedAt": 1793450095917
+      "updatedAt": 1794111848710
     },
     {
       "watchedDate": "2026-08-24",
