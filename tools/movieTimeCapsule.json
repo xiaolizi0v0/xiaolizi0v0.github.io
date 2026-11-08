@@ -6171,7 +6171,7 @@
         {
           "title": "第16集",
           "url": "https://cdn.yzzy30-play.com/20261029/60926_39e989a0/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第17集",
@@ -6179,7 +6179,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1794111856320
+      "updatedAt": 1794135302589
     },
     {
       "watchedDate": "2026-08-24",
