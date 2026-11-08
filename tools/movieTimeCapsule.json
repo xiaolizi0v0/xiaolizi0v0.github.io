@@ -9482,11 +9482,16 @@
           "title": "20261029上",
           "url": "https://player.yzzy37-play.vip/20261029/1562_92af93f7/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "20261029下",
+          "url": "https://player.yzzy37-play.vip/20261029/1563_4d6e4749/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-11-08",
       "timestamp": 1794111965004,
-      "updatedAt": 1794112336741
+      "updatedAt": 1794112344834
     }
   ],
   "deleted": {
