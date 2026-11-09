@@ -9504,7 +9504,7 @@
         {
           "title": "20261029上",
           "url": "https://player.yzzy37-play.vip/20261029/1562_92af93f7/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "20261029下",
@@ -9522,7 +9522,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1794206966188
+      "updatedAt": 1794206978706
     }
   ],
   "deleted": {
