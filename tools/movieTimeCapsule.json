@@ -9585,11 +9585,16 @@
           "title": "第09集",
           "url": "https://cdn.yzzy31-play.com/20261108/28686_f4401dd0/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第10集",
+          "url": "https://cdn.yzzy31-play.com/20261108/28687_5d130e4c/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-11-09",
       "timestamp": 1794226649490,
-      "updatedAt": 1794227046885
+      "updatedAt": 1794227056560
     }
   ],
   "deleted": {
