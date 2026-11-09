@@ -9575,11 +9575,16 @@
           "title": "第07集",
           "url": "https://cdn.yzzy30-play.com/20261107/61352_41212a9d/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第08集",
+          "url": "https://cdn.yzzy30-play.com/20261107/61353_7566e16c/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-11-09",
       "timestamp": 1794226649490,
-      "updatedAt": 1794227026315
+      "updatedAt": 1794227037404
     }
   ],
   "deleted": {
