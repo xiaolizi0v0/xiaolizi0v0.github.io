@@ -9502,11 +9502,16 @@
           "title": "20261112上",
           "url": "https://cdn.yzzy30-play.com/20261112/61555_506e71b9/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "20261112下",
+          "url": "https://cdn.yzzy30-play.com/20261112/61556_8f491869/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-11-08",
       "timestamp": 1794111965004,
-      "updatedAt": 1794555386681
+      "updatedAt": 1794555393340
     },
     {
       "watchedDate": "2026-10-22",
