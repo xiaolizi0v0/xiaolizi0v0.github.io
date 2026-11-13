@@ -9497,11 +9497,16 @@
           "title": "20261105下",
           "url": "https://player.yzzyvip-35.com/20261105/20056_b1823297/index.m3u8",
           "watched": true
+        },
+        {
+          "title": "20261112上",
+          "url": "https://cdn.yzzy30-play.com/20261112/61555_506e71b9/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-11-08",
       "timestamp": 1794111965004,
-      "updatedAt": 1794214980061
+      "updatedAt": 1794555386681
     },
     {
       "watchedDate": "2026-10-22",
