@@ -9529,10 +9529,10 @@
         {
           "title": "20261112下",
           "url": "https://cdn.yzzy30-play.com/20261112/61556_8f491869/index.m3u8",
-          "watched": false
+          "watched": true
         }
       ],
-      "updatedAt": 1794559173885
+      "updatedAt": 1794564483065
     },
     {
       "watchedDate": "2026-11-09",
