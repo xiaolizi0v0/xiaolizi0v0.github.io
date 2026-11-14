@@ -9610,11 +9610,16 @@
           "title": "第12集",
           "url": "https://cdn.yzzy30-play.com/20261109/61423_46625972/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第13集",
+          "url": "https://cdn.yzzy31-play.com/20261110/28761_d8769c1f/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-11-09",
       "timestamp": 1794226649490,
-      "updatedAt": 1794227072157
+      "updatedAt": 1794632879351
     },
     {
       "id": "baike-65101583",
