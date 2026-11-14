@@ -9658,11 +9658,16 @@
           "title": "第01集",
           "url": "https://player.yzzy37-play.vip/20261106/2079_654ad60e/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "第02集",
+          "url": "https://player.yzzy37-play.vip/20261106/2081_0070d23b/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-11-14",
       "timestamp": 1794632511790,
-      "updatedAt": 1794632672868
+      "updatedAt": 1794632710450
     }
   ],
   "deleted": {
