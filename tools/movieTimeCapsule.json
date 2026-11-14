@@ -6103,11 +6103,16 @@
           "title": "第47集",
           "url": "https://cdn.yzzy30-play.com/20261107/61327_6725296e/index.m3u8",
           "watched": true
+        },
+        {
+          "title": "第48集",
+          "url": "https://cdn.yzzy31-play.com/20261114/28990_bddf7668/index.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-08-23",
       "timestamp": 1787430055073,
-      "updatedAt": 1794145266583
+      "updatedAt": 1794633049428
     },
     {
       "id": "baike-35977696",
