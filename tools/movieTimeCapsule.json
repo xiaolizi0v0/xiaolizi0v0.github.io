@@ -9555,9 +9555,14 @@
           "title": "20261112下",
           "url": "https://cdn.yzzy30-play.com/20261112/61556_8f491869/index.m3u8",
           "watched": true
+        },
+        {
+          "title": "20261119上",
+          "url": "https://svip.yzzy33-play.vip/20261119/23180_db782d22/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1794564483065
+      "updatedAt": 1795146387547
     },
     {
       "watchedDate": "2026-11-09",
