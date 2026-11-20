@@ -9742,7 +9742,7 @@
         {
           "title": "第03集",
           "url": "https://player.yzzy37-play.vip/20261106/2080_54ff9e9e/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第04集",
@@ -9817,7 +9817,7 @@
       ],
       "watchedDate": "2026-11-14",
       "timestamp": 1794632511790,
-      "updatedAt": 1795170014248
+      "updatedAt": 1795172897045
     },
     {
       "id": "baike-35926872",
