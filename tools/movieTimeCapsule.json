@@ -9560,9 +9560,14 @@
           "title": "20261119上",
           "url": "https://svip.yzzy33-play.vip/20261119/23180_db782d22/index.m3u8",
           "watched": false
+        },
+        {
+          "title": "20261119下",
+          "url": "https://svip.yzzy33-play.vip/20261119/23181_a249084a/index.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1795146387547
+      "updatedAt": 1795146410317
     },
     {
       "watchedDate": "2026-11-09",
