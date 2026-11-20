@@ -123,5 +123,25 @@
     "file": "printing-trailer.mp4",
     "source": "D:/重生之我的印刷术等级1000/release/v1/qingmo-promo-comfy.mp4",
     "bytes": 10629755
+  },
+  {
+    "file": "pico-six-player.jpg",
+    "source": "https://github.com/xiaolizi0v0/pico-park-reproduce/blob/main/docs/media/six-player.jpg",
+    "bytes": 21729
+  },
+  {
+    "file": "pico-tetris-8p.jpg",
+    "source": "https://github.com/xiaolizi0v0/pico-park-reproduce/blob/main/docs/media/tetris-8p.jpg",
+    "bytes": 35652
+  },
+  {
+    "file": "pico-relay.jpg",
+    "source": "https://github.com/xiaolizi0v0/pico-park-reproduce/blob/main/docs/media/relay.jpg",
+    "bytes": 20781
+  },
+  {
+    "file": "pico-gameplay.mp4",
+    "source": "https://github.com/xiaolizi0v0/pico-park-reproduce/blob/main/docs/media/gameplay.mp4",
+    "bytes": 78282
   }
 ]

@@ -8,6 +8,7 @@ GitHub Pages 静态站点，无构建依赖、无后端服务，页面和视频�
 - 汽车质检模拟器：<https://xiaolizi0v0.github.io/studio/games/car-inspection/>
 - 重生之我的印刷术等级1000：<https://xiaolizi0v0.github.io/studio/games/printing/>
 - 心动来信：<https://xiaolizi0v0.github.io/studio/games/warm-signal/>
+- Pico Park Reproduce：[项目页](https://xiaolizi0v0.github.io/studio/games/pico-park-reproduce/)／[GitHub 安装包](https://github.com/xiaolizi0v0/pico-park-reproduce/releases/latest)
 
 工作室列表和文案已通过浏览器核对[工作室 TapTap 页面](https://www.taptap.cn/developer/493296)及各游戏详情页。三款游戏的测试状态和可用平台以 TapTap 实际页面为准；页面没有编造评分、玩家数量或编辑推荐。
 
@@ -19,7 +20,7 @@ GitHub Pages 静态站点，无构建依赖、无后端服务，页面和视频�
 python studio/build.py
 ```
 
-生成 `index.html` 和三个 `games/*/index.html`。样式与交互位于 `assets/site.css`、`assets/site.js`。静态 HTML 中直接写入跳转链接，停用 JavaScript 时仍可导航和前往 TapTap；JavaScript 增强类型筛选、手机菜单、截图灯箱和键盘操作。视频默认不自动播放、不预加载完整内容。
+生成 `index.html` 和作品目录中各个 `games/*/index.html`。样式与交互位于 `assets/site.css`、`assets/site.js`。静态 HTML 中直接写入跳转链接，停用 JavaScript 时仍可导航和前往 TapTap；JavaScript 增强类型筛选、手机菜单、截图灯箱和键盘操作。视频默认不自动播放、不预加载完整内容。
 
 ## TapREP 官网品牌挂件
 
