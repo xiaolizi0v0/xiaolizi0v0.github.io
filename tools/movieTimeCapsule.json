@@ -9764,7 +9764,7 @@
         {
           "title": "第07集",
           "url": "https://player.yzzy37-play.vip/20261108/2217_b5c01503/index.m3u8",
-          "watched": false
+          "watched": true
         },
         {
           "title": "第08集",
@@ -9817,7 +9817,7 @@
           "watched": false
         }
       ],
-      "updatedAt": 1795423710297
+      "updatedAt": 1795505514129
     },
     {
       "watchedDate": "2026-11-17",
