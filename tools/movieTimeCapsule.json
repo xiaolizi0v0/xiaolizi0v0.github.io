@@ -9883,11 +9883,16 @@
           "title": "第22集",
           "url": "https://cdn.yzzy30-play.com/20261117/61886_6c7e6074/3000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第23集",
+          "url": "https://cdn.yzzy31-play.com/20261117/29206_24cc4e6e/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
       "watchedDate": "2026-11-14",
       "timestamp": 1794632511790,
-      "updatedAt": 1795701292557
+      "updatedAt": 1795701302226
     },
     {
       "id": "baike-35926872",
