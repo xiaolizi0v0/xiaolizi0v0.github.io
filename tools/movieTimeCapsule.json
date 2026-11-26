@@ -1134,9 +1134,14 @@
           "title": "第18集",
           "url": "https://cdn.yzzy30-play.com/20261116/61860_2e2d85d6/3000k/hls/mixed.m3u8",
           "watched": false
+        },
+        {
+          "title": "第19集",
+          "url": "https://cdn.yzzy30-play.com/20261123/62153_d892cfee/3000k/hls/mixed.m3u8",
+          "watched": false
         }
       ],
-      "updatedAt": 1795701222205
+      "updatedAt": 1795701229556
     },
     {
       "watchedDate": "2026-08-21",
